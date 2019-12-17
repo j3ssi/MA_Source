@@ -33,6 +33,21 @@ class ResNet50(nn.Module):
         self.conv8  = nn.Conv2d(16, 64, kernel_size=1, padding=0, bias=False, stride=1)
         self.bn8    = nn.BatchNorm2d(64)
 
+        #3
+        self.conv9  = nn.Conv2d(64, 16, kernel_size=1, padding=0, bias=False, stride=1)
+        self.bn9    = nn.BatchNorm2d(16)
+        self.conv10 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+        self.bn10   = nn.BatchNorm2d(16)
+        self.conv11 = nn.Conv2d(16, 64, kernel_size=1, padding=0, bias=False, stride=1)
+        self.bn11   = nn.BatchNorm2d(64)
+
+        #4
+        self.conv12 = nn.Conv2d(64, 16, kernel_size=1, padding=0, bias=False, stride=1)
+        self.bn12   = nn.BatchNorm2d(16)
+        self.conv13 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+        self.bn13   = nn.BatchNorm2d(16)
+        self.conv14 = nn.Conv2d(16, 64, kernel_size=1, padding=0, bias=False, stride=1)
+        self.bn14   = nn.BatchNorm2d(64)
 
         #5
         self.conv15 = nn.Conv2d(64, 16, kernel_size=1, padding=0, bias=False, stride=1)
