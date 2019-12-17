@@ -23,6 +23,9 @@ import shutil
 import time
 import random
 
+from fairseq import utils as util
+
+
 import torch
 import torch.nn as nn
 import torch.nn.parallel
@@ -379,7 +382,7 @@ def test(testloader, model, criterion, epoch, use_cuda):
 
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
-        inputs, targets = torch.autograd.Variable(inputs, volatile=True), torch.autograd.Variable(targets)
+        inputs, targets = util.volatile_variable(inputs), torch.autograd.Variable(targets)
 
         # compute output
         outputs = model(inputs)
