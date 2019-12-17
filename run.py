@@ -19,7 +19,7 @@ if args.dataset == 'imagenet':
     runfile = 'python imagenet.py'
 elif args.dataset in ['cifar10', 'cifar100']:
     assert args.model in ['resnet50', 'resnet32', 'resnet20', 'vgg13', 'vgg11', 'vgg8']
-    cfg_file = "src/cifar_{}.yaml".format(args.model)
+    cfg_file = "cifar_{}.yaml".format(args.model)
     runfile = 'python cifar.py'
 else:
     raise ValueError("{} is a wrong dataset".format(args.dataset))
