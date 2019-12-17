@@ -295,7 +295,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
-        inputs, targets = torch.autograd.Variable(inputs, volatile=True), torch.autograd.Variable(targets)
+        inputs, targets = utils.volatile_variable(inputs), torch.autograd.Variable(targets)
 
         outputs = model(inputs)
         loss = criterion(outputs, targets)
