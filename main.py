@@ -133,7 +133,6 @@ if use_cuda:
 best_acc = 0  # best test accuracy
 
 
-
 def main():
     global best_acc
 
@@ -223,11 +222,11 @@ def main():
 
     # Train and val
     for current_cycle in range(1, 10):
-        #print('\nCurrent Cycle of Net2Net :', current_cycle)
+        # print('\nCurrent Cycle of Net2Net :', current_cycle)
         for epoch in range(start_epoch, args.epochs + 1):
             adjust_learning_rate(optimizer, epoch)
 
-            #print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
+            # print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
 
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader,
                                                                          model,
@@ -300,7 +299,8 @@ def main():
 
 def train_a_student_network_deeper(model):
     pass
-    #new_w1, new_b1 = model.
+    # new_w1, new_b1 = model.
+
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     # switch to train mode
@@ -376,15 +376,15 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         batch_time.update(time.time() - end - data_load_time)
         end = time.time()
 
-     #   if batch_idx % args.print_freq == 0:
-            #print('Epoch: [{0}][{1}/{2}]\t'
-            #      'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-            #      'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
-            #      'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
-            #      'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
-            #      'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
-            #   epoch, batch_idx, len(trainloader), batch_time=batch_time,
-            #   data_time=data_time, loss=losses, top1=top1, top5=top5))
+    #   if batch_idx % args.print_freq == 0:
+    # print('Epoch: [{0}][{1}/{2}]\t'
+    #      'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
+    #      'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
+    #      'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
+    #      'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
+    #      'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
+    #   epoch, batch_idx, len(trainloader), batch_time=batch_time,
+    #   data_time=data_time, loss=losses, top1=top1, top5=top5))
 
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
     return (losses.avg, top1.avg, lasso_ratio.avg, epoch_time)
