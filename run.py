@@ -39,7 +39,7 @@ if not os.path.exists(cfg['base']['model_dir']):
     os.makedirs(cfg['base']['model_dir'])
 
 # Data parallelism setup
-gpu_id = '0'
+gpu_id = '1'
 for i in range(1, args.num_gpus):
     gpu_id += ',' + str(i)
 
