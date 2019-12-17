@@ -23,8 +23,6 @@ import shutil
 import time
 import random
 
-from fairseq import utils
-
 
 import torch
 import torch.nn as nn
@@ -34,6 +32,8 @@ import torch.optim as optim
 import torch.utils.data as data
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
+from torch.autograd import Variable
+
 import src.src.models.cifar as models
 
 from src.src.utils import Logger, AverageMeter, accuracy, mkdir_p, savefig
@@ -295,7 +295,10 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
-        inputs, targets = utils.volatile_variable(inputs), torch.autograd.Variable(targets)
+
+        with torch.no_grad():
+            inputs  = Variable(inputs)
+            target = Variable(targets)
 
         outputs = model(inputs)
         loss = criterion(outputs, targets)
@@ -382,7 +385,9 @@ def test(testloader, model, criterion, epoch, use_cuda):
 
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
-        inputs, targets = utils.volatile_variable(inputs), torch.autograd.Variable(targets)
+        with torch.no_grad():
+            inputs  = Variable(inputs)
+            target = Variable(targets)
 
         # compute output
         outputs = model(inputs)
