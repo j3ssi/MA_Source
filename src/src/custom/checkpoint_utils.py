@@ -25,8 +25,8 @@ import torch.nn as nn
 import heapq
 
 sys.path.append('..')
-import models.cifar as models_cifar
-import models.imagenet as models_imagenet
+import src.src.models.cifar as models_cifar
+import src.src.models.imagenet as models_imagenet
 from .resnet_stages import *
 from .rm_layers import getRmLayers
 
