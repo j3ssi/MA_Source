@@ -31,7 +31,7 @@ from .resnet_stages import *
 from .rm_layers import getRmLayers
 
 # Packages to calculate inference cost
-from scripts.feature_size_cifar import cifar_feature_size, imagenet_feature_size
+from src.src.scripts.feature_size_cifar import cifar_feature_size, imagenet_feature_size
 
 WORD_SIZE = 4
 MFLOPS = 1000000/2
