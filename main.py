@@ -185,6 +185,8 @@ def main():
     model = models.__dict__[args.arch](num_classes=num_classes)
     model = _DataParallel(model).cuda()
 
+
+    print("\n MODEL: \n")
     for name, param in model.named_parameters():
         print("\nName: %s", name)
 
