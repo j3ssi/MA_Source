@@ -186,9 +186,9 @@ def main():
     model = _DataParallel(model).cuda()
 
     for name, param in model.named_parameters():
-        print("Name: %s", name)
+        print("\nName: %s", name)
 
-        
+
     # Sanity check: print module name and shape
     # for name, param in model.named_parameters():
     #    print("{}, {}".format(name, list(param.shape)))
