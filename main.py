@@ -185,11 +185,9 @@ def main():
     model = models.__dict__[args.arch](num_classes=num_classes)
     model = _DataParallel(model).cuda()
 
-
     print("\n MODEL: \n")
     for name, param in model.named_parameters():
         print("\nName: %s", name)
-
 
     # Sanity check: print module name and shape
     # for name, param in model.named_parameters():
@@ -328,7 +326,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
-        inputs, targets = torch.autograd.Variable(inputs, volatile=True), torch.autograd.Variable(targets)
+        inputs, targets = torch.no_grad.Variable(inputs), torch.autograd.Variable(targets)
 
         outputs = model(inputs)
         loss = criterion(outputs, targets)
