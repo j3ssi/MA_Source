@@ -17,7 +17,6 @@
 
 import torch.nn as nn
 
-from Net2Net.examples.train_cifar10 import net2net_deeper_recursive
 from Net2Net.net2net import deeper, wider
 
 
@@ -28,12 +27,13 @@ class CustomDataParallel(nn.DataParallel):
     """ Remove sparsified module parameter from the network model
     # rm_name: name of module to remove
     """
+
     def del_param_in_flat_arch(self, rm_name):
         # We remove an entire layer holding the delete target parameters
         rm_module = rm_name.split('.')
-        module  = self._modules[rm_module[0]]
+        module = self._modules[rm_module[0]]
         if module._modules[rm_module[1]] != None:
-            print("[INFO] Removing parameters/buffers in module [{}]".format(rm_module[0]+'.'+rm_module[1]))
+            print("[INFO] Removing parameters/buffers in module [{}]".format(rm_module[0] + '.' + rm_module[1]))
             del module._modules[rm_module[1]]
 
     def net2net_wider(self, args):
@@ -91,16 +91,16 @@ class CustomDataParallel(nn.DataParallel):
         self.fc1 = nn.Linear(48 * 3 * 3, 10)
         print(self)
 
-    def net2net_deeper_recursive(model):
-        """
-        Apply deeper operator recursively any conv layer.
-        """
-        for name, module in model._modules.items():
-            if isinstance(module, nn.Conv2d):
-                s = deeper(module, nn.ReLU, bnorm_flag=False)
-                model._modules[name] = s
-            elif isinstance(module, nn.Sequential):
-                module = net2net_deeper_recursive(module)
-                model._modules[name] = module
-        return model
 
+def net2net_deeper_recursive(model):
+    """
+    Apply deeper operator recursively any conv layer.
+    """
+    for name, module in model._modules.items():
+        if isinstance(module, nn.Conv2d):
+            s = deeper(module, nn.ReLU, bnorm_flag=False)
+            model._modules[name] = s
+        elif isinstance(module, nn.Sequential):
+            module = net2net_deeper_recursive(module)
+            model._modules[name] = module
+    return model
