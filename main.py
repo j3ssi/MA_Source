@@ -286,7 +286,7 @@ def main():
             del model
             model = model_
 
-            model.net2net_deeper_nononline(model, args)
+            model.net2net_deeper_nononline(args)
 
     logger.close()
 
