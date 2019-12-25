@@ -35,7 +35,6 @@ import torchvision.datasets as datasets
 from torch.autograd import Variable
 
 import src.src.models.cifar as models
-from Net2Net.tests import Net
 from src.src.models.cifar.resnet32_flat import ResNet32
 
 from src.src.utils import Logger, AverageMeter, accuracy, mkdir_p, savefig
