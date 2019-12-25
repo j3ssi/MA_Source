@@ -280,7 +280,7 @@ def main():
 
             # deeper student training
             print("\n\n > Wider+Deeper Student training ... ")
-            model_ = ResNet32(nn.Module)
+            # model_ = ResNet32(nn.Module)
             model_ = copy.deepcopy(model)
 
             del model
