@@ -36,6 +36,7 @@ from torch.autograd import Variable
 
 import src.src.models.cifar as models
 from Net2Net.tests import Net
+from src.src.models.cifar.resnet32_flat import ResNet32
 
 from src.src.utils import Logger, AverageMeter, accuracy, mkdir_p, savefig
 from src.src.custom import _makeSparse, _genDenseModel, _DataParallel
@@ -280,7 +281,7 @@ def main():
 
             # deeper student training
             print("\n\n > Wider+Deeper Student training ... ")
-            model_ = Net()
+            model_ = ResNet32(nn.Module)
             model_ = copy.deepcopy(model)
 
             del model
