@@ -35,7 +35,6 @@ import torchvision.datasets as datasets
 from torch.autograd import Variable
 
 import src.src.models.cifar as models
-from src.src.models.cifar.resnet32_flat import ResNet32
 
 from src.src.utils import Logger, AverageMeter, accuracy, mkdir_p, savefig
 from src.src.custom import _makeSparse, _genDenseModel, _DataParallel
@@ -286,7 +285,8 @@ def main():
 
             del model
             model = model_
-            model.net2net_deeper_nononline()
+
+            model.net2net_deeper_nononline(model, args)
 
     logger.close()
 

@@ -273,7 +273,7 @@ class ResNet32(nn.Module):
         x = self.fc(x)
         return x
 
-    def net2net_wider(self):
+    def net2net_wider(self, args):
         self.conv1, self.conv2, _ = wider(self.conv1, self.conv2, 12,
                                           self.bn1, noise=args.noise)
         self.conv2, self.conv3, _ = wider(self.conv2, self.conv3, 24,
@@ -282,7 +282,7 @@ class ResNet32(nn.Module):
                                         self.bn3, noise=args.noise)
         print(self)
 
-    def net2net_deeper(self):
+    def net2net_deeper(self, args):
         s = deeper(self.conv1, nn.ReLU, bnorm_flag=True, weight_norm=args.weight_norm, noise=args.noise)
         self.conv1 = s
         s = deeper(self.conv2, nn.ReLU, bnorm_flag=True, weight_norm=args.weight_norm, noise=args.noise)
@@ -291,7 +291,7 @@ class ResNet32(nn.Module):
         self.conv3 = s
         print(self)
 
-    def net2net_deeper_nononline(self):
+    def net2net_deeper_nononline(self, args):
         s = deeper(self.conv1, None, bnorm_flag=True, weight_norm=args.weight_norm, noise=args.noise)
         self.conv1 = s
         s = deeper(self.conv2, None, bnorm_flag=True, weight_norm=args.weight_norm, noise=args.noise)
@@ -300,7 +300,7 @@ class ResNet32(nn.Module):
         self.conv3 = s
         print(self)
 
-    def define_wider(self):
+    def define_wider(self, args):
         self.conv1 = nn.Conv2d(3, 12, kernel_size=3, padding=1)
         self.bn1 = nn.BatchNorm2d(12)
         self.conv2 = nn.Conv2d(12, 24, kernel_size=3, padding=1)
@@ -309,7 +309,7 @@ class ResNet32(nn.Module):
         self.bn3 = nn.BatchNorm2d(48)
         self.fc1 = nn.Linear(48 * 3 * 3, 10)
 
-    def define_wider_deeper(self):
+    def define_wider_deeper(self,args):
         self.conv1 = nn.Sequential(nn.Conv2d(3, 12, kernel_size=3, padding=1),
                                    nn.BatchNorm2d(12),
                                    nn.ReLU(),
