@@ -18,11 +18,11 @@
 from __future__ import print_function
 
 import argparse
+import copy
 import os
 import shutil
 import time
 import random
-
 
 import torch
 import torch.nn as nn
@@ -35,6 +35,7 @@ import torchvision.datasets as datasets
 from torch.autograd import Variable
 
 import src.src.models.cifar as models
+from Net2Net.tests import Net
 
 from src.src.utils import Logger, AverageMeter, accuracy, mkdir_p, savefig
 from src.src.custom import _makeSparse, _genDenseModel, _DataParallel
@@ -42,10 +43,9 @@ from src.src.custom import get_group_lasso_global, get_group_lasso_group
 from src.src.custom_arch import *
 import numpy as np
 
-
 model_names = sorted(name for name in models.__dict__
-    if name.islower() and not name.startswith("__")
-    and callable(models.__dict__[name]))
+                     if name.islower() and not name.startswith("__")
+                     and callable(models.__dict__[name]))
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 
@@ -64,7 +64,7 @@ parser.add_argument('--test_batch', default=100, type=int, metavar='N',
 parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
                     metavar='LR', help='initial learning rate')
 parser.add_argument('--schedule', type=int, nargs='+', default=[150, 225],
-                        help='Decrease learning rate at these epochs.')
+                    help='Decrease learning rate at these epochs.')
 parser.add_argument('--gamma', type=float, default=0.1, help='LR is multiplied by gamma on schedule.')
 parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
                     help='momentum')
@@ -94,7 +94,7 @@ parser.add_argument('--en_group_lasso', default=False, action='store_true',
                     help='Set the group-lasso coefficient')
 parser.add_argument('--global_group_lasso', default=True, action='store_true',
                     help='True: use a global group lasso coefficient, '
-                    'False: use sqrt(num_params) as a coefficient for each group')
+                         'False: use sqrt(num_params) as a coefficient for each group')
 parser.add_argument('--var_group_lasso_coeff', default=0.1, type=float,
                     help='Ratio = group-lasso / (group-lasso + loss)')
 parser.add_argument('--grp_lasso_coeff', default=0.0005, type=float,
@@ -136,6 +136,7 @@ if use_cuda:
 
 best_acc = 0  # best test accuracy
 
+
 def main():
     global best_acc
 
@@ -166,9 +167,9 @@ def main():
 
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
     trainloader = data.DataLoader(trainset,
-                                batch_size=args.train_batch,
-                                shuffle=True,
-                                num_workers=args.workers)
+                                  batch_size=args.train_batch,
+                                  shuffle=True,
+                                  num_workers=args.workers)
 
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
@@ -179,11 +180,11 @@ def main():
     model = _DataParallel(model).cuda()
 
     # Sanity check: print module name and shape
-    #for name, param in model.named_parameters():
+    # for name, param in model.named_parameters():
     #    print("{}, {}".format(name, list(param.shape)))
 
     cudnn.benchmark = True
-    print('    Total params: %.2fM' % (sum(p.numel() for p in model.parameters())/1000000.0))
+    print('    Total params: %.2fM' % (sum(p.numel() for p in model.parameters()) / 1000000.0))
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
@@ -197,14 +198,15 @@ def main():
         args.checkpoint = os.path.dirname(args.resume)
         checkpoint = torch.load(args.resume)
         best_acc = checkpoint['best_acc']
-        start_epoch = checkpoint['epoch'] +1
+        start_epoch = checkpoint['epoch'] + 1
         model.load_state_dict(checkpoint['state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer'])
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     else:
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
-        logger.set_names(['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.', 'Lasso/Full_loss', 'TrainEpochTime(s)', 'TestEpochTime(s)'])
-
+        logger.set_names(
+            ['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.', 'Lasso/Full_loss', 'TrainEpochTime(s)',
+             'TestEpochTime(s)'])
 
     if args.evaluate:
         print('\nEvaluation only')
@@ -213,62 +215,78 @@ def main():
         return
 
     # Train and val
-    for epoch in range(start_epoch, args.epochs+1):
-        adjust_learning_rate(optimizer, epoch)
+    for epochNet2Net in range(1, 10):
+        print("\n Net 2 Net Durchläufe: %d", epochNet2Net)
 
-        print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
+        for epoch in range(start_epoch, args.epochs + 1):
+            adjust_learning_rate(optimizer, epoch)
 
-        train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion, optimizer, epoch, use_cuda)
-        test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
+            print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
 
-        # append logger file
-        logger.append([state['lr'], train_loss, test_loss, train_acc, test_acc, lasso_ratio, train_epoch_time, test_epoch_time])
+            train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion, optimizer,
+                                                                         epoch, use_cuda)
+            test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
-        # SparseTrain routine
-        if args.en_group_lasso and (epoch % args.sparse_interval == 0):
-            # Force weights under threshold to zero
-            dense_chs, chs_map = _makeSparse(model, args.threshold, args.arch,
-                                             args.threshold_type,
-                                             'cifar',
-                                             is_gating=args.is_gating)
-            # Reconstruct architecture
-            if args.arch_out_dir2 != None:
-                _genDenseModel(model, dense_chs, optimizer, args.arch, 'cifar')
-                _genDenseArch = custom_arch_cifar[args.arch]
-                if 'resnet' in args.arch:
-                    _genDenseArch(model, args.arch_out_dir1, args.arch_out_dir2,
-                                args.arch_name, dense_chs,
-                                chs_map, args.is_gating)
-                else:
-                    _genDenseArch(model, args.arch_out_dir1, args.arch_out_dir2,
-                                args.arch_name, dense_chs, chs_map)
+            # append logger file
+            logger.append([state['lr'], train_loss, test_loss, train_acc, test_acc, lasso_ratio, train_epoch_time,
+                           test_epoch_time])
 
+            # SparseTrain routine
+            if args.en_group_lasso and (epoch % args.sparse_interval == 0):
+                # Force weights under threshold to zero
+                dense_chs, chs_map = _makeSparse(model, args.threshold, args.arch,
+                                                 args.threshold_type,
+                                                 'cifar',
+                                                 is_gating=args.is_gating)
+                # Reconstruct architecture
+                if args.arch_out_dir2 is not None:
+                    _genDenseModel(model, dense_chs, optimizer, args.arch, 'cifar')
+                    _genDenseArch = custom_arch_cifar[args.arch]
+                    if 'resnet' in args.arch:
+                        _genDenseArch(model, args.arch_out_dir1, args.arch_out_dir2,
+                                      args.arch_name, dense_chs,
+                                      chs_map, args.is_gating)
+                    else:
+                        _genDenseArch(model, args.arch_out_dir1, args.arch_out_dir2,
+                                      args.arch_name, dense_chs, chs_map)
 
-        # save model
-        is_best = test_acc > best_acc
-        best_acc = max(test_acc, best_acc)
+            # save model
+            is_best = test_acc > best_acc
+            best_acc = max(test_acc, best_acc)
 
-        print("[INFO] Storing checkpoint...")
-        save_checkpoint({
+            print("[INFO] Storing checkpoint...")
+            save_checkpoint({
                 'epoch': epoch,
                 'state_dict': model.state_dict(),
                 'acc': test_acc,
                 'best_acc': best_acc,
-                'optimizer' : optimizer.state_dict(),},
+                'optimizer': optimizer.state_dict(), },
                 is_best,
                 checkpoint=args.checkpoint)
 
-        # Leave unique checkpoint of pruned models druing training
-        if epoch % args.save_checkpoint == 0:
-            save_checkpoint({
+            # Leave unique checkpoint of pruned models druing training
+            if epoch % args.save_checkpoint == 0:
+                save_checkpoint({
                     'epoch': epoch,
                     'state_dict': model.state_dict(),
                     'acc': test_acc,
                     'best_acc': best_acc,
-                    'optimizer' : optimizer.state_dict(),},
+                    'optimizer': optimizer.state_dict(), },
                     is_best,
                     checkpoint=args.checkpoint,
-                    filename='checkpoint'+str(epoch)+'.tar')
+                    filename='checkpoint' + str(epoch) + '.tar')
+
+            print("\n Accuracy in this cycle \n %f", test_acc)
+
+            # deeper student training
+            print("\n\n > Wider+Deeper Student training ... ")
+            model_ = Net()
+            model_ = copy.deepcopy(model)
+
+            del model
+            model = model_
+            model.net2net_deeper_nononline()
+
     logger.close()
 
     print('Best acc:')
@@ -297,7 +315,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             inputs, targets = inputs.cuda(), targets.cuda()
 
         with torch.no_grad():
-            inputs  = Variable(inputs)
+            inputs = Variable(inputs)
             target = Variable(targets)
 
         outputs = model(inputs)
@@ -315,16 +333,17 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             # Auto-tune the group-lasso coefficient @first training iteration
             coeff_dir = os.path.join(args.coeff_container, 'cifar', args.arch)
             if init_batch:
-                args.grp_lasso_coeff = args.var_group_lasso_coeff *loss.item() / (lasso_penalty * (1-args.var_group_lasso_coeff))
+                args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
+                            lasso_penalty * (1 - args.var_group_lasso_coeff))
                 grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
 
-                if not os.path.exists( coeff_dir ):
-                    os.makedirs( coeff_dir )
-                with open( os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'w' ) as f_coeff:
-                    f_coeff.write( str(grp_lasso_coeff.item()) )
+                if not os.path.exists(coeff_dir):
+                    os.makedirs(coeff_dir)
+                with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
+                    f_coeff.write(str(grp_lasso_coeff.item()))
 
             else:
-                with open( os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'r' ) as f_coeff:
+                with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
                     for line in f_coeff:
                         grp_lasso_coeff = float(line)
 
@@ -353,15 +372,15 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
         if batch_idx % args.print_freq == 0:
             print('Epoch: [{0}][{1}/{2}]\t'
-            'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-            'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
-            'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
-            'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
-            'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
+                  'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
+                  'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
+                  'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
+                  'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
+                  'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
                 epoch, batch_idx, len(trainloader), batch_time=batch_time,
                 data_time=data_time, loss=losses, top1=top1, top5=top5))
 
-    epoch_time = batch_time.avg * len(trainloader)    # Time for total training dataset
+    epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
     return (losses.avg, top1.avg, lasso_ratio.avg, epoch_time)
 
 
@@ -386,7 +405,7 @@ def test(testloader, model, criterion, epoch, use_cuda):
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
         with torch.no_grad():
-            inputs  = Variable(inputs)
+            inputs = Variable(inputs)
             target = Variable(targets)
 
         # compute output
@@ -403,14 +422,16 @@ def test(testloader, model, criterion, epoch, use_cuda):
         batch_time.update(time.time() - end - data_load_time)
         end = time.time()
 
-    epoch_time = batch_time.avg * len(testloader)   # Time for total test dataset
+    epoch_time = batch_time.avg * len(testloader)  # Time for total test dataset
     return (losses.avg, top1.avg, epoch_time)
+
 
 def save_checkpoint(state, is_best, checkpoint='checkpoint', filename='checkpoint.pth.tar'):
     filepath = os.path.join(checkpoint, filename)
     torch.save(state, filepath)
     if is_best:
         shutil.copyfile(filepath, os.path.join(checkpoint, 'model_best.pth.tar'))
+
 
 def adjust_learning_rate(optimizer, epoch):
     global state
@@ -424,11 +445,12 @@ def adjust_learning_rate(optimizer, epoch):
     else:
         # Exponential LR decay
         set_lr = args.lr
-        exp = int((epoch -1) / args.schedule_exp)
-        state['lr'] = set_lr * (args.gamma**exp)
+        exp = int((epoch - 1) / args.schedule_exp)
+        state['lr'] = set_lr * (args.gamma ** exp)
 
     for param_group in optimizer.param_groups:
         param_group['lr'] = state['lr']
+
 
 if __name__ == '__main__':
     main()
