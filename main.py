@@ -279,8 +279,9 @@ def main():
             print("\n Accuracy in this cycle \n %f", test_acc)
 
             # deeper student training
-            print("\n\n > Wider+Deeper Student training ... ")
-            # model_ = ResNet32(nn.Module)
+            print("\n\n > Deeper Student training ... ")
+            model_ = models.__dict__[args.arch](num_classes=num_classes)
+            model_ = _DataParallel(model).cuda()
             model_ = copy.deepcopy(model)
 
             del model
