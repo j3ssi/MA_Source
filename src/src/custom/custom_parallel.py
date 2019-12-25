@@ -17,7 +17,11 @@
 
 import torch.nn as nn
 
-class CustomDataParallel(nn.DataParallel):  
+from Net2Net.examples.train_cifar10 import net2net_deeper_recursive
+from Net2Net.net2net import deeper, wider
+
+
+class CustomDataParallel(nn.DataParallel):
     def __init__(self, module, device_ids=None, output_device=None, dim=0):
         super(CustomDataParallel, self).__init__(module, device_ids, output_device, dim)
 
@@ -31,3 +35,72 @@ class CustomDataParallel(nn.DataParallel):
         if module._modules[rm_module[1]] != None:
             print("[INFO] Removing parameters/buffers in module [{}]".format(rm_module[0]+'.'+rm_module[1]))
             del module._modules[rm_module[1]]
+
+    def net2net_wider(self, args):
+        self.conv1, self.conv2, _ = wider(self.conv1, self.conv2, 12,
+                                          self.bn1, noise=args.noise)
+        self.conv2, self.conv3, _ = wider(self.conv2, self.conv3, 24,
+                                          self.bn2, noise=args.noise)
+        self.conv3, self.fc1, _ = wider(self.conv3, self.fc1, 48,
+                                        self.bn3, noise=args.noise)
+        print(self)
+
+    def net2net_deeper(self, args):
+        s = deeper(self.conv1, nn.ReLU, bnorm_flag=True, weight_norm=args.weight_norm, noise=args.noise)
+        self.conv1 = s
+        s = deeper(self.conv2, nn.ReLU, bnorm_flag=True, weight_norm=args.weight_norm, noise=args.noise)
+        self.conv2 = s
+        s = deeper(self.conv3, nn.ReLU, bnorm_flag=True, weight_norm=args.weight_norm, noise=args.noise)
+        self.conv3 = s
+        print(self)
+
+    def net2net_deeper_nononline(self, args):
+        s = deeper(self.conv1, None, bnorm_flag=True, weight_norm=args.weight_norm, noise=args.noise)
+        self.conv1 = s
+        s = deeper(self.conv2, None, bnorm_flag=True, weight_norm=args.weight_norm, noise=args.noise)
+        self.conv2 = s
+        s = deeper(self.conv3, None, bnorm_flag=True, weight_norm=args.weight_norm, noise=args.noise)
+        self.conv3 = s
+        print(self)
+
+    def define_wider(self, args):
+        self.conv1 = nn.Conv2d(3, 12, kernel_size=3, padding=1)
+        self.bn1 = nn.BatchNorm2d(12)
+        self.conv2 = nn.Conv2d(12, 24, kernel_size=3, padding=1)
+        self.bn2 = nn.BatchNorm2d(24)
+        self.conv3 = nn.Conv2d(24, 48, kernel_size=3, padding=1)
+        self.bn3 = nn.BatchNorm2d(48)
+        self.fc1 = nn.Linear(48 * 3 * 3, 10)
+
+    def define_wider_deeper(self):
+        self.conv1 = nn.Sequential(nn.Conv2d(3, 12, kernel_size=3, padding=1),
+                                   nn.BatchNorm2d(12),
+                                   nn.ReLU(),
+                                   nn.Conv2d(12, 12, kernel_size=3, padding=1))
+        self.bn1 = nn.BatchNorm2d(12)
+        self.conv2 = nn.Sequential(nn.Conv2d(12, 24, kernel_size=3, padding=1),
+                                   nn.BatchNorm2d(24),
+                                   nn.ReLU(),
+                                   nn.Conv2d(24, 24, kernel_size=3, padding=1))
+        self.bn2 = nn.BatchNorm2d(24)
+        self.conv3 = nn.Sequential(nn.Conv2d(24, 48, kernel_size=3, padding=1),
+                                   nn.BatchNorm2d(48),
+                                   nn.ReLU(),
+                                   nn.Conv2d(48, 48, kernel_size=3, padding=1))
+        self.bn3 = nn.BatchNorm2d(48)
+        self.fc1 = nn.Linear(48 * 3 * 3, 10)
+        print(self)
+
+    def net2net_deeper_recursive(model):
+        """
+        Apply deeper operator recursively any conv layer.
+        """
+        for name, module in model._modules.items():
+            if isinstance(module, nn.Conv2d):
+                s = deeper(module, nn.ReLU, bnorm_flag=False)
+                model._modules[name] = s
+            elif isinstance(module, nn.Sequential):
+                module = net2net_deeper_recursive(module)
+                model._modules[name] = module
+        return model
+
