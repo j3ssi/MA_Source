@@ -124,6 +124,7 @@ class Net(nn.Module):
         print(self)
 
     def net2net_deeper_nononline(self):
+
         s = deeper(self.conv1, None, bnorm_flag=True, weight_norm=args.weight_norm, noise=args.noise)
         self.conv1 = s
         s = deeper(self.conv2, None, bnorm_flag=True, weight_norm=args.weight_norm, noise=args.noise)

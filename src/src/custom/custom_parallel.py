@@ -21,6 +21,30 @@ from Net2Net.net2net import deeper, wider
 
 
 class CustomDataParallel(nn.DataParallel):
+
+    def __init__(self):
+        super(Net, self).__init__()
+        self.conv1 = nn.Conv2d(3, 8, 3, padding=1)
+        self.bn1 = nn.BatchNorm2d(8)
+        self.pool1 = nn.MaxPool2d(3, 2)
+        self.conv2 = nn.Conv2d(8, 16, 3, padding=1)
+        self.bn2 = nn.BatchNorm2d(16)
+        self.pool2 = nn.MaxPool2d(3, 2)
+        self.conv3 = nn.Conv2d(16, 32, 3, padding=1)
+        self.bn3 = nn.BatchNorm2d(32)
+        self.pool3 = nn.AvgPool2d(5, 1)
+        self.fc1 = nn.Linear(32 * 3 * 3, 10)
+        for m in self.modules():
+            if isinstance(m, nn.Conv2d):
+                n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
+                m.weight.data.normal_(0, np.sqrt(2. / n))
+                m.bias.data.fill_(0.0)
+            if isinstance(m, nn.Linear):
+                m.bias.data.fill_(0.0)
+
+
+
+
     def __init__(self, module, device_ids=None, output_device=None, dim=0):
         super(CustomDataParallel, self).__init__(module, device_ids, output_device, dim)
 
