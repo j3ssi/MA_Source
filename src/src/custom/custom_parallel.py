@@ -23,6 +23,7 @@ from Net2Net.net2net import deeper, wider
 class CustomDataParallel(nn.Module):
 
     def __init__(self):
+        super(CustomDataParallel, self).__init__()
 
         self.conv1 = nn.Conv2d(3, 8, 3, padding=1)
         self.bn1 = nn.BatchNorm2d(8)
