@@ -36,7 +36,7 @@ from torch.autograd import Variable
 
 import src.src.models.cifar as models
 
-import Net2Net.utils
+import Net2Net.examples.utils
 
 from Net2Net.net2net import wider, deeper
 
