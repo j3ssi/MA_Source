@@ -8,12 +8,12 @@ from torchvision import datasets, transforms
 from torch.autograd import Variable
 import sys
 sys.path.append('../')
-from net2net import wider, deeper
+from Net2Net.net2net import wider, deeper
 import copy
 import numpy as np
 
-from utils import NLL_loss_instance
-from utils import PlotLearning
+from Net2Net.utils import NLL_loss_instance
+from Net2Net.utils import PlotLearning
 
 
 # Training settings

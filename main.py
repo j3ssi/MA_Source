@@ -208,9 +208,9 @@ def main():
              'TestEpochTime(s)'])
 
     if args.evaluate:
-        print('\nEvaluation only')
+        #print('\nEvaluation only')
         test_loss, test_acc = test(testloader, model, criterion, start_epoch, use_cuda)
-        print(' Test Loss:  %.8f, Test Acc:  %.2f' % (test_loss, test_acc))
+        #print(' Test Loss:  %.8f, Test Acc:  %.2f' % (test_loss, test_acc))
         return
 
     # Train and val
@@ -220,15 +220,16 @@ def main():
         for epoch in range(start_epoch, args.epochs + 1):
             adjust_learning_rate(optimizer, epoch)
 
-            print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
+            #print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
+
 
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion, optimizer,
                                                                          epoch, use_cuda)
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
             # append logger file
-            logger.append([state['lr'], train_loss, test_loss, train_acc, test_acc, lasso_ratio, train_epoch_time,
-                           test_epoch_time])
+            #logger.append([state['lr'], train_loss, test_loss, train_acc, test_acc, lasso_ratio, train_epoch_time,
+            #               test_epoch_time])
 
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):
@@ -253,7 +254,7 @@ def main():
             is_best = test_acc > best_acc
             best_acc = max(test_acc, best_acc)
 
-            print("[INFO] Storing checkpoint...")
+            #print("[INFO] Storing checkpoint...")
             save_checkpoint({
                 'epoch': epoch,
                 'state_dict': model.state_dict(),
@@ -275,12 +276,12 @@ def main():
                     checkpoint=args.checkpoint,
                     filename='checkpoint' + str(epoch) + '.tar')
 
-            print("\n Accuracy in this cycle \n %f", test_acc)
+            #print("%f \n"file=open("output.txt", "a") test_acc)
 
             # deeper student training
             print("\n\n > Deeper Student training ... ")
             model_ = models.__dict__[args.arch](num_classes=num_classes)
-            model_ = _DataParallel(model_).cuda()
+            #model_ = _DataParallel(model_).cuda()
             model_ = copy.deepcopy(model)
 
             del model
