@@ -20,7 +20,7 @@ import numpy as np
 from Net2Net.net2net import deeper, wider
 
 
-class CustomDataParallel(nn.DataParallel):
+class CustomDataParallel(nn.DataParallel, nn.Module):
 
     def __init__(self, module, device_ids=None, output_device=None, dim=0):
         super(CustomDataParallel, self).__init__(module, device_ids, output_device, dim)
