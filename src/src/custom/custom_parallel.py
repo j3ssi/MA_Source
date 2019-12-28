@@ -20,10 +20,10 @@ import numpy as np
 from Net2Net.net2net import deeper, wider
 
 
-class Net(nn.Module):
+class CustomDataParallel(nn.Module):
 
     def __init__(self):
-        super(Net, self).__init__()
+        super(CustomDataParallel, self).__init__()
 
         self.conv1 = nn.Conv2d(3, 8, 3, padding=1)
         self.bn1 = nn.BatchNorm2d(8)
