@@ -26,7 +26,6 @@ import random
 
 import torch
 import torch.nn as nn
-import torch.nn.parallel
 import torch.backends.cudnn as cudnn
 import torch.optim as optim
 import torch.utils.data as data
@@ -184,7 +183,7 @@ def main():
 
 
     model = models.__dict__[args.arch](num_classes=num_classes)
-    model = _DataParallel(model)
+    model = _DataParallel()
 
     # Sanity check: print module name and shape
     # for name, param in model.named_parameters():
@@ -289,7 +288,7 @@ def main():
             # deeper student training
             print("\n\n > Deeper Student training ... ")
             model_ = models.__dict__[args.arch](num_classes=num_classes)
-            #model_ = _DataParallel(model_).cuda()
+            #model_ = _DataParallel()
             model_ = copy.deepcopy(model)
 
             del model
