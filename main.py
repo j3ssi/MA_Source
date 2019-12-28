@@ -36,6 +36,10 @@ from torch.autograd import Variable
 
 import src.src.models.cifar as models
 
+import Net2Net.utils
+
+from Net2Net.net2net import wider, deeper
+
 from src.src.utils import Logger, AverageMeter, accuracy, mkdir_p, savefig
 from src.src.custom import _makeSparse, _genDenseModel, _DataParallel
 from src.src.custom import get_group_lasso_global, get_group_lasso_group
@@ -136,6 +140,8 @@ if use_cuda:
 best_acc = 0  # best test accuracy
 
 
+
+
 def main():
     global best_acc
 
@@ -175,6 +181,8 @@ def main():
 
     # Model
     print("==> creating model '{}'".format(args.arch))
+
+
     model = models.__dict__[args.arch](num_classes=num_classes)
     model = _DataParallel(model).cuda()
 
