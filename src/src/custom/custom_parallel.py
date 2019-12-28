@@ -45,10 +45,6 @@ class CustomDataParallel(nn.DataParallel):
 
 
 
-
-    def __init__(self, module, device_ids=None, output_device=None, dim=0):
-        super(CustomDataParallel, self).__init__(module, device_ids, output_device, dim)
-
     """ Remove sparsified module parameter from the network model
     # rm_name: name of module to remove
     """
