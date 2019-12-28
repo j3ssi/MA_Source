@@ -184,7 +184,7 @@ def main():
 
 
     model = models.__dict__[args.arch](num_classes=num_classes)
-    model = _DataParallel(model).cuda()
+    model = _DataParallel(model)
 
     # Sanity check: print module name and shape
     # for name, param in model.named_parameters():
