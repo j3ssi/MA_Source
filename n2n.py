@@ -5,7 +5,7 @@ import torch.nn.functional as F
 
 class N2N(nn.Module):
 
-    def __init__(self,num_classes):
+    def __init__(self, num_classes):
         super(N2N, self).__init__()
         # 1 input image channel, 6 output channels, 3x3 square convolution
         # kernel
@@ -46,54 +46,51 @@ class N2N(nn.Module):
         self.relu = nn.ReLU(inplace=True)
 
 
+# self.conv2 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+# self.bn2 = nn.BatchNorm2d(16)
+# self.conv3 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+# self.bn3 = nn.BatchNorm2d(16)
+
+
+
     def forward(self, x, num):
         x = self.conv1(x)
         x = self.bn1(x)
         _x = self.relu(x)
 
-        # 1
-        x = self.conv2(_x)
-        x = self.bn2(x)
-        x = self.relu(x)
-        x = self.conv3(x)
-        x = self.bn3(x)
-        _x = _x + x
-        _x = self.relu(_x)
+        names, module = self._modules().items()
+        i=2
 
-        # 2
-        x = self.conv4(_x)
-        x = self.bn4(x)
-        x = self.relu(x)
-        x = self.conv5(x)
-        x = self.bn5(x)
-        _x = _x + x
-        _x = self.relu(_x)
+        while i>0 :
 
-        # 3
-        x = self.conv6(_x)
-        x = self.bn6(x)
-        x = self.relu(x)
-        x = self.conv7(x)
-        x = self.bn7(x)
-        _x = _x + x
-        _x = self.relu(_x)
+            if isinstance(module, nn.Conv2d):
+                convStr = 'conv' + i
+                x = self.__dict__(convStr).forward(_x)
 
-        # 4
-        x = self.conv8(_x)
-        x = self.bn8(x)
-        x = self.relu(x)
-        x = self.conv9(x)
-        x = self.bn9(x)
-        _x = _x + x
-        _x = self.relu(_x)
+                bnStr = 'bn' + i
+                x = self.__dict__(bnStr).forward(x)
 
-        # 5
-        x = self.conv10(_x)
+                x = self.relu(x)
+                i=i+1
 
-        x = self.bn10(x)
-        x = self.avgpool(_x)
-        x = x.view(x.size(0), -1)
-        x = self.fc(x)
+                convStr = 'conv' + i
+                x = self.__dict__(convStr).forward(x)
+
+                bnStr = 'bn' + i
+                x = self.__dict__(bnStr).forward(x)
+                _x = _x + x
+
+                x = self.relu
+                i=i+1
+
+            else:
+                # Forward at last layer
+                _x = self.relu(_x)
+                x = self.avgpool(_x)
+                x = x.view(x.size(0), -1)
+                x = self.fc(x)
+
+                i = -1
         return x
 
 

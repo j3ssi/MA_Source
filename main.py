@@ -139,9 +139,6 @@ if use_cuda:
 best_acc = 0  # best test accuracy
 
 
-def train_student_network(model):
-    pass
-
 
 def main():
     global best_acc
