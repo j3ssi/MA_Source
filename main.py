@@ -206,7 +206,7 @@ def main():
         model.load_state_dict(checkpoint['state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer'])
         #logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
-    else:
+    #else:
         #logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
         #logger.set_names(
           #  ['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.', 'Lasso/Full_loss', 'TrainEpochTime(s)',
