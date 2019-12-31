@@ -60,7 +60,7 @@ class N2N(nn.Module):
 
         module = self.named_modules()
         i=2
-
+        print(self.__dict__)
         while i>0 :
 
             convStr = 'conv' + str(i)
