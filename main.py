@@ -32,7 +32,7 @@ import torch.utils.data as data
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 from torch.autograd import Variable
-
+import N2N
 import src.src.models.cifar as models
 
 import Net2Net.examples.utils
@@ -139,6 +139,9 @@ if use_cuda:
 best_acc = 0  # best test accuracy
 
 
+def train_student_network(model):
+
+    pass
 
 
 def main():
@@ -184,7 +187,7 @@ def main():
 
     model = models.__dict__[args.arch](num_classes=num_classes)
     model.cuda()
-    #model = _DataParallel()
+
 
     # Sanity check: print module name and shape
     # for name, param in model.named_parameters():
@@ -288,14 +291,8 @@ def main():
 
             # deeper student training
             print("\n\n > Deeper Student training ... ")
-            model_ = models.__dict__[args.arch](num_classes=num_classes)
-            #model_ = _DataParallel()
-            model_ = copy.deepcopy(model)
-
-            del model
-            model = model_
-
-            model.net2net_deeper_nononline(args)
+            model = N2N.deeper(model,1,[1])
+            model.cuda()
 
     logger.close()
 

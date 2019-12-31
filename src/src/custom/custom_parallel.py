@@ -22,7 +22,7 @@ from Net2Net.net2net import deeper, wider
 
 class CustomDataParallel(nn.Module):
 
-    def __init__(self, module, device_ids=None, output_device=None, dim=0):
+    def __init__(CustomDataParallself, module, device_ids=None, output_device=None, dim=0):
         super(CustomDataParallel, self).__init__(module, device_ids, output_device, dim)
 
         self.conv1 = nn.Conv2d(3, 8, 3, padding=1)
