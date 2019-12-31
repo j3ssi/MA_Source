@@ -32,7 +32,7 @@ import torch.utils.data as data
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 from torch.autograd import Variable
-import N2N
+import n2n
 import src.src.models.cifar as models
 
 import Net2Net.examples.utils
@@ -140,7 +140,6 @@ best_acc = 0  # best test accuracy
 
 
 def train_student_network(model):
-
     pass
 
 
@@ -184,17 +183,15 @@ def main():
     # Model
     print("==> creating model '{}'".format(args.arch))
 
-
-    model = N2N()
+    model = n2n.N2N()
     model.cuda()
-
 
     # Sanity check: print module name and shape
     # for name, param in model.named_parameters():
     #    print("{}, {}".format(name, list(param.shape)))
 
     cudnn.benchmark = True
-    #print('    Total params: %.2fM' % (sum(p.numel() for p in model.parameters()) / 1000000.0))
+    # print('    Total params: %.2fM' % (sum(p.numel() for p in model.parameters()) / 1000000.0))
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
@@ -219,9 +216,9 @@ def main():
              'TestEpochTime(s)'])
 
     if args.evaluate:
-        #print('\nEvaluation only')
+        # print('\nEvaluation only')
         test_loss, test_acc = test(testloader, model, criterion, start_epoch, use_cuda)
-        #print(' Test Loss:  %.8f, Test Acc:  %.2f' % (test_loss, test_acc))
+        # print(' Test Loss:  %.8f, Test Acc:  %.2f' % (test_loss, test_acc))
         return
 
     # Train and val
@@ -231,15 +228,14 @@ def main():
         for epoch in range(start_epoch, args.epochs + 1):
             adjust_learning_rate(optimizer, epoch)
 
-            #print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
-
+            # print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
 
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion, optimizer,
                                                                          epoch, use_cuda)
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
             # append logger file
-            #logger.append([state['lr'], train_loss, test_loss, train_acc, test_acc, lasso_ratio, train_epoch_time,
+            # logger.append([state['lr'], train_loss, test_loss, train_acc, test_acc, lasso_ratio, train_epoch_time,
             #               test_epoch_time])
 
             # SparseTrain routine
@@ -265,7 +261,7 @@ def main():
             is_best = test_acc > best_acc
             best_acc = max(test_acc, best_acc)
 
-            #print("[INFO] Storing checkpoint...")
+            # print("[INFO] Storing checkpoint...")
             save_checkpoint({
                 'epoch': epoch,
                 'state_dict': model.state_dict(),
@@ -287,11 +283,11 @@ def main():
                     checkpoint=args.checkpoint,
                     filename='checkpoint' + str(epoch) + '.tar')
 
-            #print("%f \n"file=open("output.txt", "a") test_acc)
+            # print("%f \n"file=open("output.txt", "a") test_acc)
 
             # deeper student training
             print("\n\n > Deeper Student training ... ")
-            model = N2N.deeper(model,1,[1])
+            model = n2n.deeper(model, 1, [1])
             model.cuda()
 
     logger.close()
@@ -341,7 +337,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             coeff_dir = os.path.join(args.coeff_container, 'cifar', args.arch)
             if init_batch:
                 args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
-                            lasso_penalty * (1 - args.var_group_lasso_coeff))
+                        lasso_penalty * (1 - args.var_group_lasso_coeff))
                 grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
 
                 if not os.path.exists(coeff_dir):
