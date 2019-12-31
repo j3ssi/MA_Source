@@ -185,7 +185,7 @@ def main():
     print("==> creating model '{}'".format(args.arch))
 
 
-    model = models.__dict__[args.arch](num_classes=num_classes)
+    model = N2N(num_classes)
     model.cuda()
 
 
@@ -194,7 +194,7 @@ def main():
     #    print("{}, {}".format(name, list(param.shape)))
 
     cudnn.benchmark = True
-    print('    Total params: %.2fM' % (sum(p.numel() for p in model.parameters()) / 1000000.0))
+    #print('    Total params: %.2fM' % (sum(p.numel() for p in model.parameters()) / 1000000.0))
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
