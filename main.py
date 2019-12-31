@@ -207,10 +207,10 @@ def main():
         optimizer.load_state_dict(checkpoint['optimizer'])
         #logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     else:
-        logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
-        logger.set_names(
-            ['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.', 'Lasso/Full_loss', 'TrainEpochTime(s)',
-             'TestEpochTime(s)'])
+        #logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
+        #logger.set_names(
+          #  ['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.', 'Lasso/Full_loss', 'TrainEpochTime(s)',
+           #  'TestEpochTime(s)'])
 
     if args.evaluate:
         # print('\nEvaluation only')
