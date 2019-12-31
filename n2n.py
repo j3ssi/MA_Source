@@ -5,7 +5,7 @@ import torch.nn.functional as F
 
 class N2N(nn.Module):
 
-    def __init__(self, num_classes):
+    def __init__(self):
         super(N2N, self).__init__()
         # 1 input image channel, 6 output channels, 3x3 square convolution
         # kernel
