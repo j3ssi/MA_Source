@@ -205,7 +205,7 @@ def main():
         start_epoch = checkpoint['epoch'] + 1
         model.load_state_dict(checkpoint['state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer'])
-        logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
+        #logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     else:
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
         logger.set_names(
@@ -287,7 +287,7 @@ def main():
             model = n2n.deeper(model, 1, [1])
             model.cuda()
 
-    logger.close()
+    #logger.close()
 
     print('Best acc:')
     print(best_acc)
