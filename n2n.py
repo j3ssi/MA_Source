@@ -81,22 +81,27 @@ class N2N(nn.Module):
                 x = x.view(x.size(0), -1)
                 x = self.fc(x)
                 i = -1
-            name, module = self.named_modules()
-
-            j = name.index(convStr)
-            x = module[j].forward(_x)
-            #print(x)
+            # find the module with name convStr
+            for name, module in self.named_modules():
+                if(name == convStr):
+                    x = module.forward(_x)
             bnStr = 'bn' + str(i)
-            x = self.__dict__[bnStr].forward(x)
-
+            for name, module in self.named_modules():
+                if(name == bnStr):
+                    x = module.forward(x)
             x = self.relu(x)
             i=i+1
 
             convStr = 'conv' + str(i)
-            x = self.__dict__[convStr].forward(x)
-
+            for name, module in self.named_modules():
+                if (name == convStr):
+                    x = module.forward(_x)
             bnStr = 'bn' + str(i)
-            x = self.__dict__[bnStr].forward(x)
+            for name, module in self.named_modules():
+                if (name == bnStr):
+                    x = module.forward(x)
+
+
             _x = _x + x
 
             x = self.relu
