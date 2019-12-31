@@ -92,23 +92,41 @@ class N2N(nn.Module):
             bnStr = 'bn' + str(i)
             for name, module in self.named_modules():
                 if(name == bnStr):
-                    x = module.forward(x)
+                    try:
+                        x = module.forward(x)
+                        break
+                    except RuntimeError:
+                        print("\n \n Oops!!! \n \n \n"
+                              )
             x = self.relu(x)
             i=i+1
 
             convStr = 'conv' + str(i)
             for name, module in self.named_modules():
                 if (name == convStr):
-                    x = module.forward(x)
+                    try:
+                        x = module.forward(x)
+                        break
+                    except RuntimeError:
+                        print("\n \n Oops!!! \n \n \n"
+                               )
+
             bnStr = 'bn' + str(i)
             for name, module in self.named_modules():
                 if (name == bnStr):
-                    x = module.forward(x)
+                    try:
+                        x = module.forward(x)
+                        break
+                    except RuntimeError:
+                        print("\n \n Oops!!! \n \n \n"
+                              )
+            try:
+                _x = _x + x
+                break
+            except RuntimeError:
+                print("\n \n Oops!!  \n \n \n")
 
-
-            _x = _x + x
-
-            x = self.relu
+            x = self.relu(x)
             i=i+1
 
         return x
