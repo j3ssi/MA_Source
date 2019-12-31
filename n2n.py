@@ -46,55 +46,55 @@ class N2N(nn.Module):
         self.relu = nn.ReLU(inplace=True)
 
 
-def forward(self, x, num):
-    x = self.conv1(x)
-    x = self.bn1(x)
-    _x = self.relu(x)
+    def forward(self, x, num):
+        x = self.conv1(x)
+        x = self.bn1(x)
+        _x = self.relu(x)
 
-    # 1
-    x = self.conv2(_x)
-    x = self.bn2(x)
-    x = self.relu(x)
-    x = self.conv3(x)
-    x = self.bn3(x)
-    _x = _x + x
-    _x = self.relu(_x)
+        # 1
+        x = self.conv2(_x)
+        x = self.bn2(x)
+        x = self.relu(x)
+        x = self.conv3(x)
+        x = self.bn3(x)
+        _x = _x + x
+        _x = self.relu(_x)
 
-    # 2
-    x = self.conv4(_x)
-    x = self.bn4(x)
-    x = self.relu(x)
-    x = self.conv5(x)
-    x = self.bn5(x)
-    _x = _x + x
-    _x = self.relu(_x)
+        # 2
+        x = self.conv4(_x)
+        x = self.bn4(x)
+        x = self.relu(x)
+        x = self.conv5(x)
+        x = self.bn5(x)
+        _x = _x + x
+        _x = self.relu(_x)
 
-    # 3
-    x = self.conv6(_x)
-    x = self.bn6(x)
-    x = self.relu(x)
-    x = self.conv7(x)
-    x = self.bn7(x)
-    _x = _x + x
-    _x = self.relu(_x)
+        # 3
+        x = self.conv6(_x)
+        x = self.bn6(x)
+        x = self.relu(x)
+        x = self.conv7(x)
+        x = self.bn7(x)
+        _x = _x + x
+        _x = self.relu(_x)
 
-    # 4
-    x = self.conv8(_x)
-    x = self.bn8(x)
-    x = self.relu(x)
-    x = self.conv9(x)
-    x = self.bn9(x)
-    _x = _x + x
-    _x = self.relu(_x)
+        # 4
+        x = self.conv8(_x)
+        x = self.bn8(x)
+        x = self.relu(x)
+        x = self.conv9(x)
+        x = self.bn9(x)
+        _x = _x + x
+        _x = self.relu(_x)
 
-    # 5
-    x = self.conv10(_x)
+        # 5
+        x = self.conv10(_x)
 
-    x = self.bn10(x)
-    x = self.avgpool(_x)
-    x = x.view(x.size(0), -1)
-    x = self.fc(x)
-    return x
+        x = self.bn10(x)
+        x = self.avgpool(_x)
+        x = x.view(x.size(0), -1)
+        x = self.fc(x)
+        return x
 
 
 def num_flat_features(self, x):
