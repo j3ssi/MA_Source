@@ -86,7 +86,7 @@ class N2N(nn.Module):
 
             bnStr = 'bn' + i
             x = self.__dict__(bnStr).forward(x)
-                _x = _x + x
+            _x = _x + x
 
             x = self.relu
             i=i+1
