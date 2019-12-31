@@ -85,7 +85,13 @@ class N2N(nn.Module):
             for name, module in self.named_modules():
                 if(name == convStr):
                     print("\n\n convStr:",convStr)
-                    x = module.forward(_x)
+                    try:
+                        x = module.forward(_x)
+                        break
+                    except RuntimeError:
+                        print("\n \n Oops!!! \n \n \n"
+                               )
+
             bnStr = 'bn' + str(i)
             for name, module in self.named_modules():
                 if(name == bnStr):

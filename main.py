@@ -39,7 +39,7 @@ import Net2Net.examples.utils
 
 from Net2Net.net2net import wider, deeper
 
-from src.src.utils import Logger, AverageMeter, accuracy, mkdir_p, savefig
+from src.src.utils import AverageMeter, accuracy, mkdir_p, savefig
 from src.src.custom import _makeSparse, _genDenseModel, _DataParallel
 from src.src.custom import get_group_lasso_global, get_group_lasso_group
 from src.src.custom_arch import *
