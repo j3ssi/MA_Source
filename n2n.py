@@ -82,8 +82,9 @@ class N2N(nn.Module):
                 x = self.fc(x)
                 i = -1
             name, module = self.named_modules()
-            print( module)
-            #x = module
+
+            j = name.index(convStr)
+            x = module[j].forward(_x)
             #print(x)
             bnStr = 'bn' + str(i)
             x = self.__dict__[bnStr].forward(x)
