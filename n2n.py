@@ -41,7 +41,7 @@ class N2N(nn.Module):
         self.conv10 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
         self.bn10 = nn.BatchNorm2d(16)
 
-        self.avgpool = nn.AvgPool2d(8)
+        self.avgpool = nn.AvgPool2d(_x)
         self.fc = nn.Linear(16, num_classes)
         self.relu = nn.ReLU(inplace=True)
 
