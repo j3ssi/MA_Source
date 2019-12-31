@@ -67,15 +67,14 @@ class N2N(nn.Module):
         x = self.bn1(x)
         _x = self.relu(x)
 
-        module = self.named_modules()
         i=2
-        #print(self.__dict__)
         while i>0 :
 
             convStr = 'conv' + str(i)
 
             if(convStr not in self.__dict__ ):
                 # Forward at last layer
+                print("\n \n ConvStr not in __dict",convStr)
                 _x = self.relu(_x)
                 x = self.avgpool(_x)
                 x = x.view(x.size(0), -1)
@@ -95,7 +94,7 @@ class N2N(nn.Module):
             convStr = 'conv' + str(i)
             for name, module in self.named_modules():
                 if (name == convStr):
-                    x = module.forward(_x)
+                    x = module.forward(x)
             bnStr = 'bn' + str(i)
             for name, module in self.named_modules():
                 if (name == bnStr):
