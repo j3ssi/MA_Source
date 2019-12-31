@@ -63,7 +63,7 @@ class N2N(nn.Module):
 
         while i>0 :
 
-            convStr = 'conv' + i
+            convStr = 'conv' + str(i)
 
             if(self.__dict__(convStr) == None):
                 # Forward at last layer
@@ -75,16 +75,16 @@ class N2N(nn.Module):
 
             x = self.__dict__(convStr).forward(_x)
 
-            bnStr = 'bn' + i
+            bnStr = 'bn' + str(i)
             x = self.__dict__(bnStr).forward(x)
 
             x = self.relu(x)
             i=i+1
 
-            convStr = 'conv' + i
+            convStr = 'conv' + str(i)
             x = self.__dict__(convStr).forward(x)
 
-            bnStr = 'bn' + i
+            bnStr = 'bn' + str(i)
             x = self.__dict__(bnStr).forward(x)
             _x = _x + x
 
