@@ -69,7 +69,7 @@ class N2N(nn.Module):
 
         module = self.named_modules()
         i=2
-        print(self.__dict__)
+        #print(self.__dict__)
         while i>0 :
 
             convStr = 'conv' + str(i)
@@ -81,9 +81,10 @@ class N2N(nn.Module):
                 x = x.view(x.size(0), -1)
                 x = self.fc(x)
                 i = -1
-
-            x = self.named_modules(convStr)
-            print(x)
+            name, module = self.named_modules()
+            print( module)
+            #x = module
+            #print(x)
             bnStr = 'bn' + str(i)
             x = self.__dict__[bnStr].forward(x)
 
