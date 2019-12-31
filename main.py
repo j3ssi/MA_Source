@@ -185,7 +185,7 @@ def main():
     print("==> creating model '{}'".format(args.arch))
 
 
-    model = N2N(num_classes)
+    model = N2N()
     model.cuda()
 
 
