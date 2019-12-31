@@ -74,7 +74,8 @@ class N2N(nn.Module):
 
             if(convStr not in self.__dict__ ):
                 # Forward at last layer
-                print("\n \n ConvStr not in __dict",convStr)
+                print("\n \n ConvStr not in __dict \n")
+                print(convStr)
                 _x = self.relu(_x)
                 x = self.avgpool(_x)
                 x = x.view(x.size(0), -1)
