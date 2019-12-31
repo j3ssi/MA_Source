@@ -65,7 +65,7 @@ class N2N(nn.Module):
 
             convStr = 'conv' + str(i)
 
-            if(self.__dict__(convStr) == None):
+            if(self.__dict__[convStr] == None):
                 # Forward at last layer
                 _x = self.relu(_x)
                 x = self.avgpool(_x)
@@ -73,19 +73,19 @@ class N2N(nn.Module):
                 x = self.fc(x)
                 i = -1
 
-            x = self.__dict__(convStr).forward(_x)
+            x = self.__dict__[convStr].forward(_x)
 
             bnStr = 'bn' + str(i)
-            x = self.__dict__(bnStr).forward(x)
+            x = self.__dict__[bnStr].forward(x)
 
             x = self.relu(x)
             i=i+1
 
             convStr = 'conv' + str(i)
-            x = self.__dict__(convStr).forward(x)
+            x = self.__dict__[convStr].forward(x)
 
             bnStr = 'bn' + str(i)
-            x = self.__dict__(bnStr).forward(x)
+            x = self.__dict__[bnStr].forward(x)
             _x = _x + x
 
             x = self.relu
