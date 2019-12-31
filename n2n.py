@@ -38,7 +38,7 @@ class N2N(nn.Module):
         self.bn9 = nn.BatchNorm2d(16)
 
         # 5
-        self.avgpool = nn.AdaptiveAvgPool2d(1)
+        self.avgpool = nn.AvgPool2d(4)
         self.fc = nn.Linear(16, num_classes)
         self.relu = nn.ReLU(inplace=True)
 
@@ -69,7 +69,7 @@ class N2N(nn.Module):
 
             convStr = 'conv' + str(i)
 
-            if(convStr not in self.__dict__ ):
+            if convStr not in self.__dict__:
                 # Forward at last layer
                 print("\n \n ConvStr not in __dict \n")
                 print(convStr)
@@ -126,9 +126,13 @@ class N2N(nn.Module):
             except RuntimeError:
                 print("\n \n Oops!!  \n \n \n")
 
-            x = self.relu(x)
+
+            _x = self.relu(_x)
             i=i+1
 
+        x = self.avgpool(_x)
+        x = x.view(x.size(0), -1)
+        x = self.fc(x)
         return x
 
 
