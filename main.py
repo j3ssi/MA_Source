@@ -183,7 +183,7 @@ def main():
     # Model
     print("==> creating model '{}'".format(args.arch))
 
-    model = n2n.N2N()
+    model = n2n.N2N(num_classes)
     model.cuda()
 
     # Sanity check: print module name and shape
