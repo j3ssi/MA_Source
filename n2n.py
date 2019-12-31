@@ -58,7 +58,7 @@ class N2N(nn.Module):
         x = self.bn1(x)
         _x = self.relu(x)
 
-        names, module = self._modules().items()
+        names, module = self.named_modules()
         i=2
 
         while i>0 :
