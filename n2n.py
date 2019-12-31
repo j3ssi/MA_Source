@@ -79,17 +79,17 @@ class N2N(nn.Module):
             x = self.__dict__(bnStr).forward(x)
 
             x = self.relu(x)
-                i=i+1
+            i=i+1
 
-                convStr = 'conv' + i
-                x = self.__dict__(convStr).forward(x)
+            convStr = 'conv' + i
+            x = self.__dict__(convStr).forward(x)
 
-                bnStr = 'bn' + i
-                x = self.__dict__(bnStr).forward(x)
+            bnStr = 'bn' + i
+            x = self.__dict__(bnStr).forward(x)
                 _x = _x + x
 
-                x = self.relu
-                i=i+1
+            x = self.relu
+            i=i+1
 
         return x
 
