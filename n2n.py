@@ -58,19 +58,27 @@ class N2N(nn.Module):
         x = self.bn1(x)
         _x = self.relu(x)
 
-        names, module = self.named_modules()
+        module = self.named_modules()
         i=2
 
         while i>0 :
 
-            if isinstance(module, nn.Conv2d):
-                convStr = 'conv' + i
-                x = self.__dict__(convStr).forward(_x)
+            convStr = 'conv' + i
 
-                bnStr = 'bn' + i
-                x = self.__dict__(bnStr).forward(x)
+            if(self.__dict__(convStr) == None):
+                # Forward at last layer
+                _x = self.relu(_x)
+                x = self.avgpool(_x)
+                x = x.view(x.size(0), -1)
+                x = self.fc(x)
+                i = -1
 
-                x = self.relu(x)
+            x = self.__dict__(convStr).forward(_x)
+
+            bnStr = 'bn' + i
+            x = self.__dict__(bnStr).forward(x)
+
+            x = self.relu(x)
                 i=i+1
 
                 convStr = 'conv' + i
@@ -83,14 +91,6 @@ class N2N(nn.Module):
                 x = self.relu
                 i=i+1
 
-            else:
-                # Forward at last layer
-                _x = self.relu(_x)
-                x = self.avgpool(_x)
-                x = x.view(x.size(0), -1)
-                x = self.fc(x)
-
-                i = -1
         return x
 
 
