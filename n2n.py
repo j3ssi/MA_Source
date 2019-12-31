@@ -53,7 +53,7 @@ class N2N(nn.Module):
 
 
 
-    def forward(self, x, num):
+    def forward(self, x):
         x = self.conv1(x)
         x = self.bn1(x)
         _x = self.relu(x)
