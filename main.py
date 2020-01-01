@@ -424,7 +424,7 @@ def test(testloader, model, criterion, epoch, use_cuda):
         with torch.no_grad():
             inputs = Variable(inputs)
             #target = Variable(targets)
-
+        target = torch.autograd.Variable(targets)
         # compute output
         outputs = model(inputs)
         loss = criterion(outputs, targets)
