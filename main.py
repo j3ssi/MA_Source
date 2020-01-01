@@ -330,7 +330,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         target = torch.autograd.Variable(targets)
 
 #        inputs, targets = torch.autograd.Variable(inputs, volatile=True),\
-                          torch.autograd.Variable(targets)
+                        #  torch.autograd.Variable(targets)
 
 
 
