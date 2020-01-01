@@ -39,7 +39,7 @@ class N2N(nn.Module):
         self.bn9 = nn.BatchNorm2d(16)
 
         # 5
-        self.avgpool = nn.AdaptiveAvgPool2d(1)
+        self.avgpool = nn.AvgPool2d(1)
         self.fc = nn.Linear(16, num_classes)
         self.relu = nn.ReLU(inplace=True)
 
@@ -64,8 +64,6 @@ class N2N(nn.Module):
             print("\n \n ConvStr: ")
             print(convStr)
             print("\n")
-
-            j = 3 + (i - 2) * 3
 
             names = self.__dict__.__getitem__('_modules')
             print(names)
@@ -131,7 +129,7 @@ class N2N(nn.Module):
             print("\n")
 
             for name, module in self.named_modules():
-                if (name == bnStr):
+                if name == bnStr:
                     try:
                         x = module.forward(x)
                         break
@@ -140,7 +138,6 @@ class N2N(nn.Module):
                               )
             try:
                 _x = _x + x
-
             except RuntimeError:
                 print("\n \n Oops!!  \n \n \n")
 
