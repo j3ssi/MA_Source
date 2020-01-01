@@ -50,7 +50,7 @@ class N2N(nn.Module):
             elif isinstance(m, nn.BatchNorm2d):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
-20480
+
     def forward(self, x):
         x = self.conv1(x)
         x = self.bn1(x)
