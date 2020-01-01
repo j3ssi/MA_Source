@@ -78,8 +78,6 @@ class N2N(nn.Module):
                 print(x.tolist())
                 return x
             # find the module with name convStr
-            if (i == -1):
-                break
             for name, module in self.named_modules():
                 if (name == convStr):
                     #print("\n\n convStr:")
