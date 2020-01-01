@@ -76,9 +76,8 @@ class N2N(nn.Module):
                 x = self.fc(x)
                 i = -1
                 print(x.tolist())
-                print("\n conv9")
-                print(self.conv9)
-                print("\n AvgPool ")
+                print("\n Module")
+                print(self.parameters())
                 print(self.avgpool)
 
                 return x
