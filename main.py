@@ -337,7 +337,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
 
         print("\n target shape:")
-        print(targets.shape())
+        print(targets.size())
         outputs = model(inputs)
         print("\n output shape:")
         print(outputs.shape())
