@@ -74,7 +74,7 @@ class N2N(nn.Module):
                 x = self.avgpool(_x)
                 print("\n x.size:")
                 print(x.size())
-                x = x.view(-1,8192)
+                x = x.view(-1,10)
                 print("\n x.size:")
                 print(x.size())
                 x = self.fc(x)
