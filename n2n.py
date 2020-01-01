@@ -72,6 +72,8 @@ class N2N(nn.Module):
                 print("\n \n ConvStr not in __dict: ")
                 print(convStr)
                 x = self.avgpool(_x)
+                print("\n x.size:")
+                print(x.size())
                 x = x.view(x.size(0), -1)
                 x = self.fc(x)
                 i = -1
