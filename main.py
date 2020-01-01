@@ -24,6 +24,8 @@ import shutil
 import time
 import random
 
+from collections import OrderedDict
+
 import torch
 import torch.nn as nn
 import torch.backends.cudnn as cudnn
@@ -203,7 +205,15 @@ def main():
         checkpoint = torch.load(args.resume)
         best_acc = checkpoint['best_acc']
         start_epoch = checkpoint['epoch'] + 1
-        model.load_state_dict(checkpoint['state_dict'])
+
+        state_dict = model.load_state_dict(checkpoint['state_dict'])
+
+        new_state_dict = OrderedDict()
+        for k, v in state_dict.items():
+            name = k[7:] # remove `module.`
+            new_state_dict[name] = v
+
+
         optimizer.load_state_dict(checkpoint['optimizer'])
         #logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     #else:
