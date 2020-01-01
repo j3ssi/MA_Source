@@ -70,8 +70,9 @@ class N2N(nn.Module):
             #print("self.dict:\n")
             #print(self.__dict__)
 
+            j = 4 + (i-2) * 3
 
-            names = list(self.named_modules())[2*i+3]
+            names = list(self.named_modules())[j]
             print(names)
             if(convStr not in names ):
                 # Forward at last layer
