@@ -67,7 +67,7 @@ class N2N(nn.Module):
 
             j = 3 + (i - 2) * 3
 
-            names = self.__dict__.__getitem__(7)
+            names = self.__dict__.__getitem__('_modules')
             print(names)
             if (convStr not in names):
                 # Forward at last layer
