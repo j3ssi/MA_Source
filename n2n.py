@@ -55,8 +55,8 @@ class N2N(nn.Module):
         x = self.conv1(x)
         x = self.bn1(x)
         _x = self.relu(x)
-        #print("self.dict:\n")
-        #print(self.__dict__)
+        print("self.dict:\n")
+        print(self.__dict__)
 
         i = 2
         while i > 0:
