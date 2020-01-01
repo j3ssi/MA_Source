@@ -70,7 +70,7 @@ class N2N(nn.Module):
             #print("self.dict:\n")
             #print(self.__dict__)
 
-            j = 4 + (i-2) * 3
+            j = 3 + (i-2) * 3
 
             names = list(self.named_modules())[j]
             print(names)
