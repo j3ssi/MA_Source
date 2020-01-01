@@ -77,7 +77,7 @@ class N2N(nn.Module):
                 i = -1
                 print(x.tolist())
                 print("\n Module")
-                print(self.named_parameters(.__dict__))
+                print(self.named_parameters().__dict__)
                 print(self.avgpool)
 
                 return x
