@@ -274,6 +274,8 @@ def main():
             best_acc = max(test_acc, best_acc)
 
             # print("[INFO] Storing checkpoint...")
+            print("\nModel State Dict .to save : \n")
+            print(model.state_dict())
             save_checkpoint({
                 'epoch': epoch,
                 'state_dict': model.state_dict(),
