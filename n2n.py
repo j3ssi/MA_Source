@@ -169,7 +169,7 @@ def deeper(model, num, positions):
 
     # here is room for improvement through 2 seperate for
     for pos in positions:
-        posStr = 'conv' + pos
+        posStr = 'conv' + str(pos)
         for name, module in model.named_parameters():
             if (posStr in name):
                 i = name.index(posStr)
