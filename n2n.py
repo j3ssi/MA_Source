@@ -40,7 +40,7 @@ class N2N(nn.Module):
 
         # 5
         self.avgpool = nn.AvgPool2d(8)
-        self.fc = nn.Linear(128, num_classes)
+        self.fc = nn.Linear(256, num_classes)
         self.relu = nn.ReLU(inplace=True)
 
         for m in self.modules():
@@ -74,7 +74,7 @@ class N2N(nn.Module):
                 x = self.avgpool(_x)
                 print("\n x.size:")
                 print(x.size())
-                x = x.view( -1, x.size(1)*8)
+                x = x.view( -1, x.size(1))
                 #x = x.view(-1,10)
                 print("\n x.size:")
                 print(x.size())
