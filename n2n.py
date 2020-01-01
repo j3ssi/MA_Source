@@ -71,9 +71,11 @@ class N2N(nn.Module):
                 # Forward at last layer
                 print("\n \n ConvStr not in __dict: ")
                 print(convStr)
-                x = self.avgpool(_x)
                 print("\n x.size:")
-                print(x.size())
+
+                print(_x.size())
+                x = self.avgpool(_x)
+
                 #x = x.view(x.size(0), -1)
                 #x = x.view(-1,10)
                 print("\n x.size:")
