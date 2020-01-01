@@ -66,7 +66,7 @@ class N2N(nn.Module):
             print("\n")
 
             names = self.__dict__.__getitem__('_modules')
-            print(names)
+
             if (convStr not in names):
                 # Forward at last layer
                 print("\n \n ConvStr not in __dict: ")
@@ -76,6 +76,11 @@ class N2N(nn.Module):
                 x = self.fc(x)
                 i = -1
                 print(x.tolist())
+                print("\n conv9")
+                print(self.conv9)
+                print("\n AvgPool ")
+                print(self.avgpool)
+
                 return x
             # find the module with name convStr
             for name, module in self.named_modules():
