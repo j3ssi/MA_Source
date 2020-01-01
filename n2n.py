@@ -68,8 +68,8 @@ class N2N(nn.Module):
         while i>0 :
 
             convStr = 'conv' + str(i)
-            print("self.dict:\n")
-            print(self.__dict__)
+#           print("self.dict:\n")
+#           print(self.__dict__)
             if convStr not in self.__dict__:
                 # Forward at last layer
                 print("\n \n ConvStr not in __dict: ")
