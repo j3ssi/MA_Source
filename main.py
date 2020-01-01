@@ -219,7 +219,7 @@ def main():
             new_state_dict[name] = v
 
         optimizer.load_state_dict(checkpoint['optimizer'])
-        
+
         #logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     #else:
         #logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
