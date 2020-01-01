@@ -207,12 +207,19 @@ def main():
         start_epoch = checkpoint['epoch'] + 1
 
         new_state_dict = OrderedDict()
-        for k, v in checkpoint.items():
+        for k, v in checkpoint['state_dict'].items():
             name = k[7:] # remove `module.`
             new_state_dict[name] = v
 
+        model.load_state_dict(new_state_dict)
+
+        new_state_dict = OrderedDict()
+        for k, v in checkpoint['optimizer'].items():
+            name = k[7:]  # remove `module.`
+            new_state_dict[name] = v
 
         optimizer.load_state_dict(checkpoint['optimizer'])
+        
         #logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     #else:
         #logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
