@@ -69,16 +69,16 @@ class N2N(nn.Module):
             convStr = 'conv' + str(i)
             print("self.dict:\n")
             print(self.__dict__)
-            for name, module in self.named_modules():
-                if(convStr != name):
-                    # Forward at last layer
-                    print("\n \n ConvStr not in __dict: ")
-                    print(convStr)
-                    _x = self.relu(_x)
-                    x = self.avgpool(_x)
-                    x = x.view(x.size(0), -1)
-                    x = self.fc(x)
-                    i = -1
+            names = list(self.named_modules())
+            if(convStr not in names ):
+                # Forward at last layer
+                print("\n \n ConvStr not in __dict: ")
+                print(convStr)
+                _x = self.relu(_x)
+                x = self.avgpool(_x)
+                x = x.view(x.size(0), -1)
+                x = self.fc(x)
+                i = -1
             # find the module with name convStr
             if(i==-1):
                 break
