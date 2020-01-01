@@ -15,8 +15,6 @@
  limitations under the License.
 """
 
-from __future__ import print_function
-
 import argparse
 import copy
 import os
@@ -36,10 +34,6 @@ import torchvision.datasets as datasets
 from torch.autograd import Variable
 import n2n
 import src.src.models.cifar as models
-
-import Net2Net.examples.utils
-
-from Net2Net.net2net import wider, deeper
 
 from src.src.utils import AverageMeter, accuracy, mkdir_p, savefig
 from src.src.custom import _makeSparse, _genDenseModel, _DataParallel
@@ -136,10 +130,9 @@ if args.manualSeed is None:
 random.seed(args.manualSeed)
 torch.manual_seed(args.manualSeed)
 if use_cuda:
-    torch.cuda.manual_seed_all(args.manualSeed)
+    torch.cuda.manual_seed(args.manualSeed)
 
 best_acc = 0  # best test accuracy
-
 
 
 def main():
@@ -208,7 +201,7 @@ def main():
 
         new_state_dict = OrderedDict()
         for k, v in checkpoint['state_dict'].items():
-            name = k[7:] # remove `module.`
+            name = k[7:]  # remove `module.`
             new_state_dict[name] = v
 
         model.load_state_dict(new_state_dict)
@@ -220,12 +213,12 @@ def main():
 
         optimizer.load_state_dict(checkpoint['optimizer'])
 
-        #logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
-    #else:
-        #logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
-        #logger.set_names(
-          #  ['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.', 'Lasso/Full_loss', 'TrainEpochTime(s)',
-           #  'TestEpochTime(s)'])
+        # logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
+    # else:
+    # logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
+    # logger.set_names(
+    #  ['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.', 'Lasso/Full_loss', 'TrainEpochTime(s)',
+    #  'TestEpochTime(s)'])
 
     if args.evaluate:
         # print('\nEvaluation only')
@@ -304,7 +297,7 @@ def main():
             model = n2n.deeper(model, 1, [1])
             model.cuda()
 
-    #logger.close()
+    # logger.close()
 
     print('Best acc:')
     print(best_acc)
