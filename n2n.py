@@ -55,6 +55,8 @@ class N2N(nn.Module):
         x = self.conv1(x)
         x = self.bn1(x)
         _x = self.relu(x)
+        print("self.dict:\n")
+        print(self.__dict__)
 
         i = 2
         while i > 0:
@@ -62,8 +64,6 @@ class N2N(nn.Module):
             print("\n \n ConvStr: ")
             print(convStr)
             print("\n")
-            # print("self.dict:\n")
-            # print(self.__dict__)
 
             j = 3 + (i - 2) * 3
 
@@ -140,7 +140,7 @@ class N2N(nn.Module):
                               )
             try:
                 _x = _x + x
-                
+
             except RuntimeError:
                 print("\n \n Oops!!  \n \n \n")
 
