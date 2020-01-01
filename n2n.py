@@ -67,9 +67,12 @@ class N2N(nn.Module):
         i=2
         while i>0 :
             convStr = 'conv' + str(i)
-            print("self.dict:\n")
-            print(self.__dict__)
+            #print("self.dict:\n")
+            #print(self.__dict__)
+
+
             names = list(self.named_modules())
+            print(names)
             if(convStr not in names ):
                 # Forward at last layer
                 print("\n \n ConvStr not in __dict: ")
