@@ -282,7 +282,7 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
   - Union: Maintain all dense channels on the shared nodes (No indexing)
   - Individual: Add gating layers >> Layers at the shared node skip more computation
   """
-    if 'resnet' in arch:
+    if True:
         if 'cifar' in dataset:
             stages, ch_maps = stages_cifar[arch], []
         else:
