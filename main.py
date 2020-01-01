@@ -423,7 +423,7 @@ def test(testloader, model, criterion, epoch, use_cuda):
             inputs, targets = inputs.cuda(), targets.cuda()
         with torch.no_grad():
             inputs = Variable(inputs)
-            target = Variable(targets)
+            #target = Variable(targets)
 
         # compute output
         outputs = model(inputs)
