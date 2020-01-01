@@ -228,7 +228,7 @@ def main():
         return
 
     # Train and val
-    for epochNet2Net in range(1, 2):
+    for epochNet2Net in range(1, 5):
         print("\n Net 2 Net Durchläufe:")
         print(epochNet2Net)
 
@@ -296,8 +296,8 @@ def main():
 
             # deeper student training
             print("\n\n > Deeper Student training ... ")
-        #    model = n2n.deeper(model, 1, [1])
-         #   model.cuda()
+            model = n2n.deeper(model, 1, [1])
+            model.cuda()
 
     # logger.close()
 
