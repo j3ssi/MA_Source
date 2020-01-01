@@ -325,11 +325,13 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
 
-        #with torch.no_grad():
-        #    inputs = Variable(inputs)
-        #    target = Variable(targets)
+        with torch.no_grad():
+            inputs = Variable(inputs)
+        target = torch.autograd.Variable(targets)
 
-        inputs, targets = torch.autograd.Variable(inputs, volatile=True), torch.autograd.Variable(targets)
+#        inputs, targets = torch.autograd.Variable(inputs, volatile=True),\
+                          torch.autograd.Variable(targets)
+
 
 
         outputs = model(inputs)
