@@ -228,7 +228,7 @@ def main():
         return
 
     # Train and val
-    for epochNet2Net in range(1, 10):
+    for epochNet2Net in range(1, 2):
         print("\n Net 2 Net Durchläufe:")
         print(epochNet2Net)
 
