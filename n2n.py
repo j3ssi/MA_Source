@@ -82,7 +82,8 @@ class N2N(nn.Module):
             # find the module with name convStr
             for name, module in self.named_modules():
                 if(name == convStr):
-                    #print("\n\n convStr:",convStr)
+                    print("\n\n convStr:")
+                    print(name)
                     try:
                         x = module.forward(_x)
                         break
