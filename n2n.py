@@ -39,8 +39,8 @@ class N2N(nn.Module):
         self.bn9 = nn.BatchNorm2d(16)
 
         # 5
-        self.avgpool = nn.AdaptiveAvgPool2d(64)
-        self.fc = nn.Linear(64, num_classes)
+        self.avgpool = nn.AdaptiveAvgPool2d(16)
+        self.fc = nn.Linear(16, num_classes)
         self.relu = nn.ReLU(inplace=True)
 
         for m in self.modules():
