@@ -55,32 +55,32 @@ class N2N(nn.Module):
         x = self.conv1(x)
         x = self.bn1(x)
         _x = self.relu(x)
-        print("self.dict:\n")
-        print(self.__dict__)
+        #print("self.dict:\n")
+        #print(self.__dict__)
 
         i = 2
         while i > 0:
             convStr = 'conv' + str(i)
-            print("\n \n ConvStr: ")
-            print(convStr)
-            print("\n")
+            #print("\n \n ConvStr: ")
+            #print(convStr)
+            #print("\n")
 
             names = self.__dict__.__getitem__('_modules')
 
             if (convStr not in names):
                 # Forward at last layer
-                print("\n \n ConvStr not in __dict: ")
-                print(convStr)
-                print("\n x.size:")
+                #print("\n \n ConvStr not in __dict: ")
+                #print(convStr)
+                #print("\n x.size:")
 
-                print(_x.size())
+                #print(_x.size())
                 x = self.avgpool(_x)
 
                 x = x.view(x.size(0), -1)
 
                 #x = x.view(-1,10)
-                print("\n x.size:")
-                print(x.size())
+                #print("\n x.size:")
+                #print(x.size())
                 x = self.fc(x)
                 i = -1
 
@@ -88,8 +88,8 @@ class N2N(nn.Module):
             # find the module with name convStr
             for name, module in self.named_modules():
                 if (name == convStr):
-                    print("\n\n convStr:")
-                    print(name)
+                    #print("\n\n convStr:")
+                    #print(name)
 
                     try:
                         x = module.forward(_x)
@@ -100,9 +100,9 @@ class N2N(nn.Module):
 
             bnStr = 'bn' + str(i)
 
-            print("\n \n bnStr: ")
-            print(bnStr)
-            print("\n")
+            #print("\n \n bnStr: ")
+            #print(bnStr)
+            #print("\n")
 
             for name, module in self.named_modules():
                 if (name == bnStr):
@@ -117,9 +117,9 @@ class N2N(nn.Module):
 
             convStr = 'conv' + str(i)
 
-            print("\n \n ConvStr: ")
-            print(convStr)
-            print("\n")
+            #print("\n \n ConvStr: ")
+            #print(convStr)
+            #print("\n")
 
             for name, module in self.named_modules():
                 if (name == convStr):
@@ -132,9 +132,9 @@ class N2N(nn.Module):
 
             bnStr = 'bn' + str(i)
 
-            print("\n \n bnStr: ")
-            print(bnStr)
-            print("\n")
+            #print("\n \n bnStr: ")
+            #print(bnStr)
+            #print("\n")
 
             for name, module in self.named_modules():
                 if name == bnStr:
@@ -151,9 +151,9 @@ class N2N(nn.Module):
 
             _x = self.relu(_x)
             i = i + 1
-            print("\n \ni: ")
-            print(i)
-            print("\n")
+            #print("\n \ni: ")
+            #print(i)
+            #print("\n")
         return x
 
 
