@@ -75,6 +75,7 @@ class N2N(nn.Module):
                 x = x.view(x.size(0), -1)
                 x = self.fc(x)
                 i = -1
+                print(x.tolist())
                 return x
             # find the module with name convStr
             if (i == -1):
