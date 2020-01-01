@@ -39,7 +39,7 @@ class N2N(nn.Module):
         self.bn9 = nn.BatchNorm2d(16)
 
         # 5
-        self.avgpool = nn.AvgPool2d(4)
+#        self.avgpool = nn.AvgPool2d(4)
         self.fc = nn.Linear(16, num_classes)
         self.relu = nn.ReLU(inplace=True)
 
