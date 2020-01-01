@@ -71,11 +71,11 @@ class N2N(nn.Module):
                 # Forward at last layer
                 print("\n \n ConvStr not in __dict: ")
                 print(convStr)
-                _x = self.relu(_x)
                 x = self.avgpool(_x)
                 x = x.view(x.size(0), -1)
                 x = self.fc(x)
                 i = -1
+                return x
             # find the module with name convStr
             if (i == -1):
                 break
