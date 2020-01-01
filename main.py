@@ -253,7 +253,7 @@ def main():
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):
                 # Force weights under threshold to zero
-                dense_chs, chs_map = _makeSparse(model, args.threshold, args.arch,
+                dense_chs, chs_map = _makeSparse(model, args.threshold,
                                                  args.threshold_type,
                                                  'cifar',
                                                  is_gating=args.is_gating)

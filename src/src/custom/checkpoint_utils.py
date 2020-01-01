@@ -211,7 +211,7 @@ Make only the (conv, FC) layer parameters sparse
 """
 
 
-def _makeSparse(model, threshold, arch, threshold_type, dataset, is_gating=False, reconf=True):
+def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reconf=True):
     # print ("[INFO] Force the sparse filters to zero...")
     dense_chs, chs_temp, idx = {}, {}, 0
 
@@ -229,10 +229,9 @@ def _makeSparse(model, threshold, arch, threshold_type, dataset, is_gating=False
                 else:
                     conv_dw = False
                 # Forcing sparse input channels to zero
-                if ('mobilenet' not in arch) or ('mobilenet' in arch and not conv_dw):
-                    for c in range(dims[1]):
-                        if param[:, c, :, :].abs().max() > 0:
-                            dense_in_chs.append(c)
+                for c in range(dims[1]):
+                    if param[:, c, :, :].abs().max() > 0:
+                        dense_in_chs.append(c)
 
                 # Forcing sparse output channels to zero
                 for c in range(dims[0]):
@@ -425,7 +424,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         if (('conv' in name) or ('fc' in name)) and ('weight' in name):
 
             if 'conv' in name:
-                conv_dw = int(name.split('.')[1].split('conv')[1]) % 2 == 0
+                conv_dw = int(name.split('.')[0].split('conv')[1]) % 2 == 0
             else:
                 conv_dw = False
 
