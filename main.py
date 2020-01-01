@@ -335,7 +335,13 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             #targets = Variable(targets)
         targets = torch.autograd.Variable(targets)
 
+
+        print("\n target shape:")
+        print(targets.shape())
         outputs = model(inputs)
+        print("\n output shape:")
+        print(outputs.shape())
+
         loss = criterion(outputs, targets)
 
         # lasso penalty
