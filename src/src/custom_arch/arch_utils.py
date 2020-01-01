@@ -65,7 +65,7 @@ class layerUtil():
 
   @classmethod
   def fcLayer(cls, name, lyr_info):
-    param = cls.model.state_dict()['module.'+name+'.weight']
+    param = cls.model.state_dict()[name+'.weight']
     dims = list(param.shape)
     in_chs, out_chs = str(dims[1]), str(dims[0])
     if name in ['fc', 'fc3']:
@@ -75,7 +75,7 @@ class layerUtil():
 
   @classmethod
   def bnLayer(cls, name):
-    param_name = 'module.'+name+'.weight'
+    param_name = name+'.weight'
     if param_name in cls.model.state_dict():
       param = cls.model.state_dict()[param_name]
       dims = list(param.shape)
