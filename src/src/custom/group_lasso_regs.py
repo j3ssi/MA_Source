@@ -35,7 +35,7 @@ def get_group_lasso_global(model, arch):
             if param.dim() == 4:
                 print("\nName:\n")
                 print( name.split('.')[1])
-                conv_dw = int(name.split('.')[1].split('conv')[1]) %2 == 0
+                conv_dw = int(name.split('conv')[1]) %2 == 0
                 add_lasso = ('mobilenet' not in arch) or ('mobilenet' in arch and not conv_dw)
 
                 # Exclude depth-wise convolution layers from regularization
