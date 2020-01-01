@@ -140,7 +140,7 @@ class N2N(nn.Module):
                               )
             try:
                 _x = _x + x
-                break
+                
             except RuntimeError:
                 print("\n \n Oops!!  \n \n \n")
 
