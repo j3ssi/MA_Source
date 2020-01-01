@@ -68,10 +68,11 @@ class N2N(nn.Module):
         while i>0 :
 
             convStr = 'conv' + str(i)
-
+            print("self.dict:\n")
+            print(self.__dict__)
             if convStr not in self.__dict__:
                 # Forward at last layer
-                print("\n \n ConvStr not in __dict \n")
+                print("\n \n ConvStr not in __dict: ")
                 print(convStr)
                 _x = self.relu(_x)
                 x = self.avgpool(_x)
