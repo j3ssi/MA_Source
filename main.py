@@ -206,10 +206,8 @@ def main():
         best_acc = checkpoint['best_acc']
         start_epoch = checkpoint['epoch'] + 1
 
-        state_dict = model.load_state_dict(checkpoint['state_dict'])
-
         new_state_dict = OrderedDict()
-        for k, v in state_dict.items():
+        for k, v in checkpoint.items():
             name = k[7:] # remove `module.`
             new_state_dict[name] = v
 
