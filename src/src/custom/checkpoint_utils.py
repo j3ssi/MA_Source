@@ -226,8 +226,12 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
             if param.dim() == 4:
                 if 'conv' in name:
 
-                    print(name)
-                    conv_dw = int(name.split('.')[1].split('conv')[1]) % 2 == 0
+                    try:
+                        conv_dw = int(name.split('.')[1].split('conv')[1]) % 2 == 0
+                        break
+                    except IndexError:
+                        print("\nindex out of bound. Name: ")
+                        print(name)
                 else:
                     conv_dw = False
                 # Forcing sparse input channels to zero
