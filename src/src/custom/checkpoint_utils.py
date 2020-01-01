@@ -225,6 +225,8 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
             dense_in_chs, dense_out_chs = [], []
             if param.dim() == 4:
                 if 'conv' in name:
+
+                    print(name)
                     conv_dw = int(name.split('.')[1].split('conv')[1]) % 2 == 0
                 else:
                     conv_dw = False

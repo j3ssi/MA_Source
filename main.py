@@ -229,7 +229,8 @@ def main():
 
     # Train and val
     for epochNet2Net in range(1, 10):
-        print("\n Net 2 Net Durchläufe: %d", epochNet2Net)
+        print("\n Net 2 Net Durchläufe:")
+        print(epochNet2Net)
 
         for epoch in range(start_epoch, args.epochs + 1):
             adjust_learning_rate(optimizer, epoch)
@@ -268,8 +269,8 @@ def main():
             best_acc = max(test_acc, best_acc)
 
             # print("[INFO] Storing checkpoint...")
-            print("\nModel State Dict .to save : \n")
-            print(model.state_dict())
+            #print("\nModel State Dict .to save : \n")
+            #print(model.state_dict())
             save_checkpoint({
                 'epoch': epoch,
                 'state_dict': model.state_dict(),

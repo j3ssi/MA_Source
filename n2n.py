@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import math
 
+
 class N2N(nn.Module):
 
     def __init__(self, num_classes):
@@ -42,7 +43,6 @@ class N2N(nn.Module):
         self.fc = nn.Linear(16, num_classes)
         self.relu = nn.ReLU(inplace=True)
 
-
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
                 n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
@@ -51,30 +51,25 @@ class N2N(nn.Module):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
 
-
-# self.conv2 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-# self.bn2 = nn.BatchNorm2d(16)
-# self.conv3 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-# self.bn3 = nn.BatchNorm2d(16)
-
-
-
     def forward(self, x):
         x = self.conv1(x)
         x = self.bn1(x)
         _x = self.relu(x)
 
-        i=2
-        while i>0 :
+        i = 2
+        while i > 0:
             convStr = 'conv' + str(i)
-            #print("self.dict:\n")
-            #print(self.__dict__)
+            print("\n \n ConvStr: ")
+            print(convStr)
+            print("\n")
+            # print("self.dict:\n")
+            # print(self.__dict__)
 
-            j = 3 + (i-2) * 3
+            j = 3 + (i - 2) * 3
 
             names = list(self.named_modules())[j]
-            print(names)
-            if(convStr not in names ):
+            # print(names)
+            if (convStr not in names):
                 # Forward at last layer
                 print("\n \n ConvStr not in __dict: ")
                 print(convStr)
@@ -84,10 +79,10 @@ class N2N(nn.Module):
                 x = self.fc(x)
                 i = -1
             # find the module with name convStr
-            if(i==-1):
+            if (i == -1):
                 break
             for name, module in self.named_modules():
-                if(name == convStr):
+                if (name == convStr):
                     print("\n\n convStr:")
                     print(name)
                     try:
@@ -95,11 +90,16 @@ class N2N(nn.Module):
                         break
                     except RuntimeError:
                         print("\n \n Oops!!! \n \n \n"
-                               )
+                              )
 
             bnStr = 'bn' + str(i)
+
+            print("\n \n bnStr: ")
+            print(bnStr)
+            print("\n")
+
             for name, module in self.named_modules():
-                if(name == bnStr):
+                if (name == bnStr):
                     try:
                         x = module.forward(x)
                         break
@@ -107,9 +107,14 @@ class N2N(nn.Module):
                         print("\n \n Oops!!! \n \n \n"
                               )
             x = self.relu(x)
-            i=i+1
+            i = i + 1
 
             convStr = 'conv' + str(i)
+
+            print("\n \n ConvStr: ")
+            print(convStr)
+            print("\n")
+
             for name, module in self.named_modules():
                 if (name == convStr):
                     try:
@@ -117,9 +122,14 @@ class N2N(nn.Module):
                         break
                     except RuntimeError:
                         print("\n \n Oops!!! \n \n \n"
-                               )
+                              )
 
             bnStr = 'bn' + str(i)
+
+            print("\n \n bnStr: ")
+            print(bnStr)
+            print("\n")
+
             for name, module in self.named_modules():
                 if (name == bnStr):
                     try:
@@ -134,9 +144,8 @@ class N2N(nn.Module):
             except RuntimeError:
                 print("\n \n Oops!!  \n \n \n")
 
-
             _x = self.relu(_x)
-            i=i+1
+            i = i + 1
 
         x = self.avgpool(_x)
         x = x.view(x.size(0), -1)
@@ -155,23 +164,20 @@ def num_flat_features(self, x):
 def deeper(model, num, positions):
     name, module = model.named_parameters()
 
-
-    #here is room for improvement through 2 seperate for
+    # here is room for improvement through 2 seperate for
     for pos in positions:
         posStr = 'conv' + pos
-        if(posStr in name):
+        if (posStr in name):
             i = name.index(posStr)
             conv = model[i]
             conv2 = conv.deepcopy()
-            for posModel in range(pos+1,len(module)):
+            for posModel in range(pos + 1, len(module)):
                 if 'conv' in name[posModel]:
                     posStr1 = 'conv' + posModel
                     name[posModel] = posStr1
-                    model[posModel+1]=model[posModel]
-                    model[posModel]=conv2
+                    model[posModel + 1] = model[posModel]
+                    model[posModel] = conv2
                 else:
                     print(name[posModel])
 
-
     return model
-
