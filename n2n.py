@@ -40,7 +40,7 @@ class N2N(nn.Module):
 
         # 5
         self.avgpool = nn.AdaptiveAvgPool2d(10)
-        self.fc = nn.Linear(1, num_classes)
+        self.fc = nn.Linear(20480, num_classes)
         self.relu = nn.ReLU(inplace=True)
 
         for m in self.modules():
@@ -50,7 +50,7 @@ class N2N(nn.Module):
             elif isinstance(m, nn.BatchNorm2d):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
-
+20480
     def forward(self, x):
         x = self.conv1(x)
         x = self.bn1(x)
