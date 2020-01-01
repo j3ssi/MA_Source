@@ -173,7 +173,7 @@ def deeper(model, num, positions):
         for name, module in model.named_parameters():
             if (posStr in name):
                 i = name.index(posStr)
-                conv = model[i]
+                conv = module[i]
                 conv2 = conv.deepcopy()
         for posModel in range(pos + 1, len(module)):
             if 'conv' in name[posModel]:
