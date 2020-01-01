@@ -340,7 +340,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         print(targets.size())
         outputs = model(inputs)
         print("\n output shape:")
-        print(outputs.shape())
+        print(outputs.size())
 
         loss = criterion(outputs, targets)
 
