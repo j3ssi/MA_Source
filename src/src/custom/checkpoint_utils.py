@@ -284,7 +284,7 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
   """
     if True:
         if 'cifar' in dataset:
-            stages, ch_maps = stages_cifar['resnet32'], []
+            stages, ch_maps = stages_cifar['resnet32_flat'], []
         else:
             pass
 #            stages, ch_maps = stages_imagenet[arch], []
