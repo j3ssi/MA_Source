@@ -148,9 +148,6 @@ class N2N(nn.Module):
             print("\n \ni: ")
             print(i)
             print("\n")
-   #     x = self.avgpool(_x)
-        _x = _x.view(x.size(0), -1)
-        x = self.fc(_x)
         return x
 
 
