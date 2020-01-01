@@ -83,8 +83,8 @@ class N2N(nn.Module):
                 break
             for name, module in self.named_modules():
                 if (name == convStr):
-                    print("\n\n convStr:")
-                    print(name)
+                    #print("\n\n convStr:")
+                    #print(name)
                     try:
                         x = module.forward(_x)
                         break
@@ -146,7 +146,9 @@ class N2N(nn.Module):
 
             _x = self.relu(_x)
             i = i + 1
-
+            print("\n \ni: ")
+            print(i)
+            print("\n")
         x = self.avgpool(_x)
         x = x.view(x.size(0), -1)
         x = self.fc(x)
