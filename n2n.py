@@ -43,7 +43,7 @@ class N2N(nn.Module):
         self.fc = nn.Linear(16, num_classes)
         self.relu = nn.ReLU(inplace=True)
 
-        for m in self.modules():
+        for m in self.named_modules():
             print("Dict in initi:\n")
             print(m.__dict__)
             if isinstance(m, nn.Conv2d):
