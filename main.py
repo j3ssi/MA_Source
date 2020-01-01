@@ -136,6 +136,7 @@ best_acc = 0  # best test accuracy
 
 
 def main():
+    torch.autograd.set_detect_anomaly(True)
     global best_acc
 
     start_epoch = args.start_epoch  # start from epoch 0 or last checkpoint epoch
