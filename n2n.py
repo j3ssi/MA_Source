@@ -71,7 +71,7 @@ class N2N(nn.Module):
             #print(self.__dict__)
 
 
-            names = self.named_modules()
+            names = list(self.named_modules())[1]
             print(names)
             if(convStr not in names ):
                 # Forward at last layer
