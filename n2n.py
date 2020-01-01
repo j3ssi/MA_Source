@@ -166,22 +166,22 @@ def num_flat_features(self, x):
 
 
 def deeper(model, num, positions):
-    name, module = model.named_parameters()
 
     # here is room for improvement through 2 seperate for
     for pos in positions:
         posStr = 'conv' + pos
-        if (posStr in name):
-            i = name.index(posStr)
-            conv = model[i]
-            conv2 = conv.deepcopy()
-            for posModel in range(pos + 1, len(module)):
-                if 'conv' in name[posModel]:
-                    posStr1 = 'conv' + posModel
-                    name[posModel] = posStr1
-                    model[posModel + 1] = model[posModel]
-                    model[posModel] = conv2
-                else:
-                    print(name[posModel])
+        for name, module in model.named_parameters():
+            if (posStr in name):
+                i = name.index(posStr)
+                conv = model[i]
+                conv2 = conv.deepcopy()
+        for posModel in range(pos + 1, len(module)):
+            if 'conv' in name[posModel]:
+                posStr1 = 'conv' + posModel
+                name[posModel] = posStr1
+                model[posModel + 1] = model[posModel]
+                model[posModel] = conv2
+            else:
+                print(name[posModel])
 
     return model
