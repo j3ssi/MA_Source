@@ -295,8 +295,8 @@ def main():
 
             # deeper student training
             print("\n\n > Deeper Student training ... ")
-            model = n2n.deeper(model, 1, [1])
-            model.cuda()
+        #    model = n2n.deeper(model, 1, [1])
+         #   model.cuda()
 
     # logger.close()
 
@@ -329,7 +329,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             inputs = Variable(inputs)
         target = torch.autograd.Variable(targets)
 
-#        inputs, targets = torch.autograd.Variable(inputs, volatile=True),\
+#       inputs, targets = torch.autograd.Variable(inputs, volatile=True),\
                         #  torch.autograd.Variable(targets)
 
 
