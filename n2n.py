@@ -43,7 +43,7 @@ class N2N(nn.Module):
         self.bn9 = nn.BatchNorm2d(16)
 
         # 5
-        self.avgpool = nn.AvgPool2d(8)
+        self.avgpool = nn.AvgPool2d(4)
         self.fc = nn.Linear(1024, num_classes)
         self.relu = nn.ReLU(inplace=True)
 
@@ -66,7 +66,7 @@ class N2N(nn.Module):
 
             if convStr not in names:
                 x = self.avgpool(_x)
-                x = x.view(_x.size(0),-1)
+                x = x.view(x.size(0),-1)
                 x = self.fc(x)
                 return x
             # find the module with name convStr
