@@ -116,8 +116,6 @@ class N2N(nn.Module):
             i = i + 1
 
     def deeper(self, model, positions):
-        print("\ninput size")
-        print(x)
         print("\nDeeper!")
         modelList = list(model.children())
         print("\n\n> ModelList:\n")
