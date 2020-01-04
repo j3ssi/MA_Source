@@ -121,51 +121,51 @@ class N2N(nn.Module):
             print("\n\nposition:")
             print(pos)
 
-            print("\n >Position 18 in modelList: \n\n"")
+            print("\n >Position 18 in modelList: \n\n")
             print(modelList[18])
 
 
-            for name, module in self.named_parameters():
-                if posStr in name:
-                    i = name.index(posStr)
-                    conv1 = module[i]
-                    conv2 = conv1.clone()
-                    convStr2 = 'conv' + str(j)
-                    if convStr2 not in names:
-                        posStr = 'conv' + str(j)
-                        self.add_module()
-                        print(self.__dict__.__getitem__('_modules'))
-                        return model
-                    else:
-                        conv3 = module[i + 1]
-                        posStr = 'conv' + str(pos + 1)
-                        self.__dict__[posStr] = conv2
-                        print(self.__dict__.__getitem__('_modules'))
-                        j = j + 1
-                        break
-            while j > 0:
-                convStr = 'conv' + str(j)
-                if convStr not in names:
-                    return model
-                else:
-                    conv1 = module[i]
-                    conv2 = conv1.clone()
-                    convStr3 = 'conv' + str(j)
-                    if convStr3 not in names:
-                        return model
-                    else:
-                        conv3 = module[i + 1]
-                        posStr = 'conv' + str(pos + 1)
-                        model.__dict__[posStr] = conv2
-                        j = j + 1
-            for name, module in model.named_parameters():
-                posStr = 'conv' + str(pos + i)
-                #    posStr1 = 'conv' + posModel
-                #   name[posModel] = posStr1
-                #  model[posModel + 1] = model[posModel]
-                # model[posModel] = conv2
-                # else:
-                #   print(name[posModel])
+            # for name, module in self.named_parameters(#):
+            #     if posStr in name:
+            #         i = name.index(posStr)
+            #         conv1 = module[i]
+            #         conv2 = conv1.clone()
+            #         convStr2 = 'conv' + str(j)
+            #         if convStr2 not in names:
+            #             posStr = 'conv' + str(j)
+            #             self.add_module()
+            #             print(self.__dict__.__getitem__('_modules'))
+            #             return model
+            #         else:
+            #             conv3 = module[i + 1]
+            #             posStr = 'conv' + str(pos + 1)
+            #             self.__dict__[posStr] = conv2
+            #             print(self.__dict__.__getitem__('_modules'))
+            #             j = j + 1
+            #             break
+            # while j > 0:
+            #     convStr = 'conv' + str(j)
+            #     if convStr not in names:
+            #         return model
+            #     else:
+            #         conv1 = module[i]
+            #         conv2 = conv1.clone()
+            #         convStr3 = 'conv' + str(j)
+            #         if convStr3 not in names:
+            #             return model
+            #         else:
+            #             conv3 = module[i + 1]
+            #             posStr = 'conv' + str(pos + 1)
+            #             model.__dict__[posStr] = conv2
+            #             j = j + 1
+            # for name, module in model.named_parameters():
+            #     posStr = 'conv' + str(pos + i)
+            #     #    posStr1 = 'conv' + posModel
+            #     #   name[posModel] = posStr1
+            #     #  model[posModel + 1] = model[posModel]
+            #     # model[posModel] = conv2
+            #     # else:
+            #     #   print(name[posModel])
 
 
 def num_flat_features(x):
