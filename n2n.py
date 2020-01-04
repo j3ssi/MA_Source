@@ -129,7 +129,7 @@ def deeper( model, positions):
                 i = name.index(posStr)
                 conv1 = module[i]
                 conv2 = conv1.clone()
-                convStr3 = 'conv' + j
+                convStr3 = 'conv' + str(j)
                 if convStr3 not in names:
                     posStr = 'conv' + str(j)
                     model.__dict__[posStr] = conv2
