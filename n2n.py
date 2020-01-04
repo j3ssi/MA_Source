@@ -120,9 +120,9 @@ class N2N(nn.Module):
         for pos in positions:
             print("\n\nposition:")
             print(pos)
-
-            print("\n >Position 18 in modelList: \n\n")
-            print(modelList[17])
+            for i in range (1,19):
+                print("\n >Position in modelList: \n\n")
+                print(modelList[i])
 
 
             # for name, module in self.named_parameters(#):
