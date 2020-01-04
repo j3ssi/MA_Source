@@ -138,7 +138,7 @@ input_size = None
 def main():
     torch.autograd.set_detect_anomaly(True)
     global best_acc
-
+    global input_size
     start_epoch = args.start_epoch  # start from epoch 0 or last checkpoint epoch
 
     if not os.path.isdir(args.checkpoint):
