@@ -132,8 +132,8 @@ def deeper( model, positions):
                 convStr3 = 'conv' + j
                 if convStr3 not in names:
                     posStr = 'conv' + str(j)
-                    self.__dict__[posStr] = conv2
-                    print(self.__dict__.__getitem__('_modules'))
+                    model.__dict__[posStr] = conv2
+                    print(model.__dict__.__getitem__('_modules'))
                     return model
                 else:
                     conv3 = module[i+1]
