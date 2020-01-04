@@ -145,7 +145,7 @@ def main():
         mkdir_p(args.checkpoint)
 
     # Data
-    print('==> Preparing dataset %s' % args.dataset)
+    #print('==> Preparing dataset %s' % args.dataset)
     transform_train = transforms.Compose([
         transforms.RandomCrop(32, padding=4),
         transforms.RandomHorizontalFlip(),
@@ -174,7 +174,7 @@ def main():
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
     # Model
-    print("==> creating model '{}'".format(args.arch))
+   # print("==> creating model '{}'".format(args.arch))
 
     model = n2n.N2N(num_classes)
     model.cuda()
@@ -193,7 +193,7 @@ def main():
     title = 'cifar-10-' + args.arch
     if args.resume:
         # Load checkpoint.
-        print('==> Resuming from checkpoint..')
+        #print('==> Resuming from checkpoint..')
         assert os.path.isfile(args.resume), 'Error: no checkpoint directory found!'
         args.checkpoint = os.path.dirname(args.resume)
         checkpoint = torch.load(args.resume)
@@ -336,11 +336,11 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         targets = torch.autograd.Variable(targets)
 
 
-        print("\n target shape:")
-        print(targets.size())
+        #print("\n target shape:")
+        #print(targets.size())
         outputs = model.forward(inputs)
-        print("\n output shape:")
-        print(outputs.size())
+        #print("\n output shape:")
+        #print(outputs.size())
 
         loss = criterion(outputs, targets)
 
