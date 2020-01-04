@@ -120,14 +120,19 @@ class N2N(nn.Module):
         for pos in positions:
             print("\n\nposition:")
             print(pos)
-            for i in range (0,20):
-                print("\n >Position in modelList:")
-                print(i)
-                print("\n\n")
-                print(modelList[i])
 
-
-            # for name, module in self.named_parameters(#):
+            j = 2*pos-2
+            conv = modelList[j]
+            conv2 = conv.clone()
+            modelList.insert(j+2,conv2)
+            bn = modelList[j+1]
+            bn2 = bn.clone()
+            modelList.insert(j+3, bn2)
+            newModel = nn.Sequential(*modelList)
+            for name, module in newModel.named_parameters():
+                print("\nName:")
+                print(name)
+            return newModel
             #     if posStr in name:
             #         i = name.index(posStr)
             #         conv1 = module[i]
