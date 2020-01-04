@@ -118,11 +118,11 @@ def num_flat_features(x):
     return num_features
 
 
-def deeper(self, model, positions):
+def deeper( model, positions):
     #each pos is the position in which the layer sholud be duplicated to make the cnn deeper
     for pos in positions:
         posStr = 'conv' + str(pos)
-        names = self.__dict__.__getitem__('_modules')
+        names = model.__dict__.__getitem__('_modules')
         j = pos + 1
         for name, module in model.named_parameters():
             if posStr in name:
