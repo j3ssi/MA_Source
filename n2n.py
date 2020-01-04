@@ -119,6 +119,7 @@ def num_flat_features(x):
 
 
 def deeper( model, positions):
+    print("Deeper!")
     #each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
     for pos in positions:
         print("\n\nposition:")
