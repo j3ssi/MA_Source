@@ -123,10 +123,10 @@ class N2N(nn.Module):
 
             j = 2*pos-2
             conv = modelList[j]
-            conv2 = conv.clone()
+            conv2 = conv.deepcopy()
             modelList.insert(j+2,conv2)
             bn = modelList[j+1]
-            bn2 = bn.clone()
+            bn2 = bn.deepcopy()
             modelList.insert(j+3, bn2)
             newModel = nn.Sequential(*modelList)
             for name, module in newModel.named_parameters():
