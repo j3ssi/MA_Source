@@ -131,7 +131,7 @@ class N2N(nn.Module):
             bn2 = copy.deepcopy(bn)
             modelList.insert(j+3, bn2)
             newModel = nn.Sequential(*modelList)
-            for name, module in newModel.named_parameters():
+            for name, module in newModel.named_children():
                 print("\nName:")
                 print(name)
             return newModel
