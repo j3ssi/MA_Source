@@ -55,86 +55,45 @@ class N2N(nn.Module):
         x = self.conv1(x)
         x = self.bn1(x)
         _x = self.relu(x)
-        #print("self.dict:\n")
-        #print(self.__dict__)
-
         i = 2
         while i > 0:
             convStr = 'conv' + str(i)
-            #print("\n \n ConvStr: ")
-            #print(convStr)
-            #print("\n")
-
             names = self.__dict__.__getitem__('_modules')
 
-            if (convStr not in names):
-                # Forward at last layer
-                #print("\n \n ConvStr not in __dict: ")
-                #print(convStr)
-                #print("\n x.size:")
-
-                #print(_x.size())
+            if convStr not in names:
                 x = self.avgpool(_x)
-
                 x = x.view(x.size(0), -1)
-
-                #x = x.view(-1,10)
-                #print("\n x.size:")
-                #print(x.size())
                 x = self.fc(x)
-                i = -1
-
                 return x
             # find the module with name convStr
             for name, module in self.named_modules():
-                if (name == convStr):
-                    #print("\n\n convStr:")
-                    #print(name)
-
+                if name == convStr:
                     try:
                         x = module.forward(_x)
                         break
                     except RuntimeError:
-                        print("\n \n Oops!!! \n \n \n"
-                              )
+                        print("\n \n Oops!!! \n \n \n")
 
             bnStr = 'bn' + str(i)
-
-            #print("\n \n bnStr: ")
-            #print(bnStr)
-            #print("\n")
-
             for name, module in self.named_modules():
-                if (name == bnStr):
+                if name == bnStr:
                     try:
                         x = module.forward(x)
                         break
                     except RuntimeError:
-                        print("\n \n Oops!!! \n \n \n"
-                              )
+                        print("\n \n Oops!!! \n \n \n")
             x = self.relu(x)
             i = i + 1
-
             convStr = 'conv' + str(i)
-
-            #print("\n \n ConvStr: ")
-            #print(convStr)
-            #print("\n")
-
             for name, module in self.named_modules():
-                if (name == convStr):
+                if name == convStr:
                     try:
                         x = module.forward(x)
                         break
                     except RuntimeError:
-                        print("\n \n Oops!!! \n \n \n"
-                              )
+                        print("\n \n Oops!!! \n \n \n")
 
             bnStr = 'bn' + str(i)
-
-            #print("\n \n bnStr: ")
-            #print(bnStr)
-            #print("\n")
 
             for name, module in self.named_modules():
                 if name == bnStr:
@@ -142,8 +101,7 @@ class N2N(nn.Module):
                         x = module.forward(x)
                         break
                     except RuntimeError:
-                        print("\n \n Oops!!! \n \n \n"
-                              )
+                        print("\n \n Oops!!! \n \n \n")
             try:
                 _x = _x + x
             except RuntimeError:
@@ -151,13 +109,8 @@ class N2N(nn.Module):
 
             _x = self.relu(_x)
             i = i + 1
-            #print("\n \ni: ")
-            #print(i)
-            #print("\n")
-        return x
 
-
-def num_flat_features(self, x):
+def num_flat_features(x):
     size = x.size()[1:]  # all dimensions except the batch dimension
     num_features = 1
     for s in size:
@@ -165,18 +118,47 @@ def num_flat_features(self, x):
     return num_features
 
 
-def deeper(model, num, positions):
-
-    # here is room for improvement through 2 seperate for
+def deeper(self, model, positions):
+    #each pos is the position in which the layer sholud be duplicated to make the cnn deeper
     for pos in positions:
         posStr = 'conv' + str(pos)
+        names = self.__dict__.__getitem__('_modules')
+        j = pos + 1
         for name, module in model.named_parameters():
-            if (posStr in name):
+            if posStr in name:
                 i = name.index(posStr)
-                conv = module[i]
-                conv2 = conv.clone()
-        for posModel in range(pos + 1, len(module)):
-            if 'conv' in name[posModel]:
+                conv1 = module[i]
+                conv2 = conv1.clone()
+                convStr3 = 'conv' + j
+                if convStr3 not in names:
+                    posStr = 'conv' + str(j)
+                    self.__dict__[posStr] = conv2
+                    print(self.__dict__.__getitem__('_modules'))
+                    return model
+                else:
+                    conv3 = module[i+1]
+                    posStr = 'conv' + str(pos+1)
+                    self.__dict__[posStr] = conv2
+                    j=j+1
+                    break
+        while j>0:
+            convStr = 'conv' + str(j)
+            if convStr not in names:
+                return model
+            else:
+                conv1 = module[i]
+                conv2 = conv1.clone()
+                convStr3 = 'conv' + j
+                if convStr3 not in names:
+                    return model
+                else:
+                    conv3 = module[i + 1]
+                    posStr = 'conv' + str(pos + 1)
+                    self.__dict__[posStr] = conv2
+                    j = j + 1
+        for name, module in model.named_parameters():
+
+            posStr = 'conv'+ str(pos+i)
                 posStr1 = 'conv' + posModel
                 name[posModel] = posStr1
                 model[posModel + 1] = model[posModel]
@@ -184,4 +166,3 @@ def deeper(model, num, positions):
             else:
                 print(name[posModel])
 
-    return model
