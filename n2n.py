@@ -120,9 +120,11 @@ class N2N(nn.Module):
         for pos in positions:
             print("\n\nposition:")
             print(pos)
-            posStr = 'conv' + str(pos)
-            names = self.__dict__.__getitem__('_modules')
-            j = pos + 1
+
+            print("\n >Position 18 in modelList: \n\n"")
+            print(modelList[18])
+
+
             for name, module in self.named_parameters():
                 if posStr in name:
                     i = name.index(posStr)
