@@ -132,10 +132,10 @@ def deeper( model, positions):
                 i = name.index(posStr)
                 conv1 = module[i]
                 conv2 = conv1.clone()
-                convStr3 = 'conv' + str(j)
-                if convStr3 not in names:
+                convStr2 = 'conv' + str(j)
+                if convStr2 not in names:
                     posStr = 'conv' + str(j)
-                    model.__dict__[posStr] = conv2
+                    model.add_module(posStr, conv2 )
                     print(model.__dict__.__getitem__('_modules'))
                     return model
                 else:
