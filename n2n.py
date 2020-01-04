@@ -112,6 +112,10 @@ class N2N(nn.Module):
 
     def deeper(self, model, positions):
         print("Deeper!")
+        modelList = list(model.children())
+        print("\n\n> ModelList:\n")
+        print(modelList)
+
         # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
         for pos in positions:
             print("\n\nposition:")
@@ -127,7 +131,7 @@ class N2N(nn.Module):
                     convStr2 = 'conv' + str(j)
                     if convStr2 not in names:
                         posStr = 'conv' + str(j)
-                        self.add_module(posStr, conv2)
+                        self.add_module()
                         print(self.__dict__.__getitem__('_modules'))
                         return model
                     else:
