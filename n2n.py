@@ -120,8 +120,10 @@ class N2N(nn.Module):
         for pos in positions:
             print("\n\nposition:")
             print(pos)
-            for i in range (1,19):
-                print("\n >Position in modelList: \n\n")
+            for i in range (0,20):
+                print("\n >Position in modelList:")
+                print(i)
+                print("\n\n")
                 print(modelList[i])
 
 
