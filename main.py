@@ -133,12 +133,11 @@ if use_cuda:
     torch.cuda.manual_seed(args.manualSeed)
 
 best_acc = 0  # best test accuracy
-input_size = None
+
 
 def main():
     torch.autograd.set_detect_anomaly(True)
     global best_acc
-    global input_size
     start_epoch = args.start_epoch  # start from epoch 0 or last checkpoint epoch
 
     if not os.path.isdir(args.checkpoint):
@@ -317,7 +316,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     lasso_ratio = AverageMeter()
 
     end = time.time()
-
+    input_size = 0
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         # measure data loading time
         data_time.update(time.time() - end)
@@ -335,12 +334,11 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             #targets = Variable(targets)
         targets = torch.autograd.Variable(targets)
 
-
-        #print("\n target shape:")
-        #print(targets.size())
+        print("\n target shape:")
+        print(targets.size())
         outputs = model.forward(inputs)
-        #print("\n output shape:")
-        #print(outputs.size())
+        print("\n output shape:")
+        print(outputs.size())
 
         loss = criterion(outputs, targets)
 
