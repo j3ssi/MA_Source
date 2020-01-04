@@ -67,7 +67,8 @@ class N2N(nn.Module):
 
             if convStr not in names:
                 x = self.avgpool(_x)
-                x = x.view(x.size(0), -1)
+                x = x.view(-1, x.size(1) * x.size(2) * x.size(3))
+                #x = x.view(x.size(0), -1)
                 x = self.fc(x)
                 return x
             # find the module with name convStr
