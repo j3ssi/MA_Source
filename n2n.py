@@ -5,6 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import math
 import numpy as np
+
 from torch.autograd import Variable
 
 
@@ -66,7 +67,7 @@ class N2N(nn.Module):
 
             if convStr not in names:
                 x = self.avgpool(_x)
-                x = x.view(x.size(0),-1)
+                x = x.view(x.size(0), -1)
                 x = self.fc(x)
                 return x
             # find the module with name convStr
@@ -114,66 +115,7 @@ class N2N(nn.Module):
             _x = self.relu(_x)
             i = i + 1
 
-
-    def forwardWithoutFC(self, x):
-        x = self.conv1(x)
-        x = self.bn1(x)
-        _x = self.relu(x)
-        i = 2
-        while i > 0:
-            convStr = 'conv' + str(i)
-            names = self.__dict__.__getitem__('_modules')
-
-            if convStr not in names:
-                x = self.avgpool(_x)
-                return x
-            # find the module with name convStr
-            for name, module in self.named_modules():
-                if name == convStr:
-                    try:
-                        x = module.forward(_x)
-                        break
-                    except RuntimeError:
-                        print("\n \n Oops!!! \n \n \n")
-
-            bnStr = 'bn' + str(i)
-            for name, module in self.named_modules():
-                if name == bnStr:
-                    try:
-                        x = module.forward(x)
-                        break
-                    except RuntimeError:
-                        print("\n \n Oops!!! \n \n \n")
-            x = self.relu(x)
-            i = i + 1
-            convStr = 'conv' + str(i)
-            for name, module in self.named_modules():
-                if name == convStr:
-                    try:
-                        x = module.forward(x)
-                        break
-                    except RuntimeError:
-                        print("\n \n Oops!!! \n \n \n")
-
-            bnStr = 'bn' + str(i)
-
-            for name, module in self.named_modules():
-                if name == bnStr:
-                    try:
-                        x = module.forward(x)
-                        break
-                    except RuntimeError:
-                        print("\n \n Oops!!! \n \n \n")
-            try:
-                _x = _x + x
-            except RuntimeError:
-                print("\n \n Oops!!  \n \n \n")
-
-            _x = self.relu(_x)
-            i = i + 1
-
-
-    def deeper(self, model, positions, x):
+    def deeper(self, model, positions):
         print("\ninput size")
         print(x)
         print("\nDeeper!")
@@ -186,49 +128,44 @@ class N2N(nn.Module):
             print("\n\nposition:")
             print(pos)
 
-            j = 2*pos-2
+            j = 2 * pos - 2
             conv = modelList[j]
             conv2 = copy.deepcopy(conv)
-            modelList.insert(j+2,conv2)
-            bn = modelList[j+1]
+            modelList.insert(j + 2, conv2)
+            bn = modelList[j + 1]
             bn2 = copy.deepcopy(bn)
 
-            modelList.insert(j+3, bn2)
+            modelList.insert(j + 3, bn2)
 
-
-        modelList = modelList[:len(modelList)-2]
-
-
+        modelList = modelList[:len(modelList) - 2]
 
         newModel = nn.Sequential(*modelList)
         print(newModel.__dict__.__getitem__('_modules'))
         return newModel
-            #     if posStr in name:
-            #         i = name.index(posStr)
-            #         conv1 = module[i]
-            #         conv2 = conv1.clone()
-            #         convStr2 = 'conv' + str(j)
-            #         if convStr2 not in names:
-            #             posStr = 'conv' + str(j)
-            #             self.add_module()
-            #             print(self.__dict__.__getitem__('_modules'))
-            #             return model
-            #         else:
-            #             conv3 = module[i + 1]
-            #             posStr = 'conv' + str(pos + 1)
-            #             j = j + 1
-            # for name, module in model.named_parameters():
-            #     posStr = 'conv' + str(pos + i)
-            #     #    posStr1 = 'conv' + posModel
-            #     #   name[posModel] = posStr1
-            #     #  model[posModel + 1] = model[posModel]
-            #     # model[posModel] = conv2
-            #     # else:
-            #     #   print(name[posModel])
+        #     if posStr in name:
+        #         i = name.index(posStr)
+        #         conv1 = module[i]
+        #         conv2 = conv1.clone()
+        #         convStr2 = 'conv' + str(j)
+        #         if convStr2 not in names:
+        #             posStr = 'conv' + str(j)
+        #             self.add_module()
+        #             print(self.__dict__.__getitem__('_modules'))
+        #             return model
+        #         else:
+        #             conv3 = module[i + 1]
+        #             posStr = 'conv' + str(pos + 1)
+        #             j = j + 1
+        # for name, module in model.named_parameters():
+        #     posStr = 'conv' + str(pos + i)
+        #     #    posStr1 = 'conv' + posModel
+        #     #   name[posModel] = posStr1
+        #     #  model[posModel + 1] = model[posModel]
+        #     # model[posModel] = conv2
+        #     # else:
+        #     #   print(name[posModel])
 
-    def get_flat_fts(self, in_size, fts):
-        f = fts(Variable(torch.ones(1, *in_size)))
-        return int(np.prod(f.size()[1:]))
+
 
 def num_flat_features(x):
     size = x.size()[1:]  # all dimensions except the batch dimension
@@ -236,5 +173,3 @@ def num_flat_features(x):
     for s in size:
         num_features *= s
     return num_features
-
-
