@@ -296,7 +296,7 @@ def main():
 
             # deeper student training
             print("\n\n > Deeper Student training ... ")
-            model = n2n.deeper(model, 1, [1])
+            model = n2n.deeper(model, [1])
             model.cuda()
 
     # logger.close()
