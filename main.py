@@ -133,7 +133,7 @@ if use_cuda:
     torch.cuda.manual_seed(args.manualSeed)
 
 best_acc = 0  # best test accuracy
-
+input_size = None
 
 def main():
     torch.autograd.set_detect_anomaly(True)
@@ -296,7 +296,7 @@ def main():
 
             # deeper student training
             print("\n\n > Deeper Student training ... ")
-            model = model.deeper(model, [9])
+            model = model.deeper(model, [9],input_size)
             model.cuda()
 
     # logger.close()
@@ -322,7 +322,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         # measure data loading time
         data_time.update(time.time() - end)
         data_load_time = time.time() - end
-
+        input_size = inputs.size
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
 
