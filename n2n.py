@@ -138,7 +138,7 @@ def deeper( model, positions):
                 else:
                     conv3 = module[i+1]
                     posStr = 'conv' + str(pos+1)
-                    self.__dict__[posStr] = conv2
+                    model.__dict__[posStr] = conv2
                     j=j+1
                     break
         while j>0:
