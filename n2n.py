@@ -134,6 +134,8 @@ class N2N(nn.Module):
             for name, module in newModel.named_children():
                 print("\nName:")
                 print(name)
+                print("\n")
+                print(module)
             return newModel
             #     if posStr in name:
             #         i = name.index(posStr)
