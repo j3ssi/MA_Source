@@ -1,3 +1,5 @@
+import copy
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -123,10 +125,10 @@ class N2N(nn.Module):
 
             j = 2*pos-2
             conv = modelList[j]
-            conv2 = conv.deepcopy()
+            conv2 = copy.deepcopy(conv)
             modelList.insert(j+2,conv2)
             bn = modelList[j+1]
-            bn2 = bn.deepcopy()
+            bn2 = copy.deepcopy(bn)
             modelList.insert(j+3, bn2)
             newModel = nn.Sequential(*modelList)
             for name, module in newModel.named_parameters():
