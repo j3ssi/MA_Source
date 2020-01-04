@@ -157,12 +157,11 @@ def deeper(self, model, positions):
                     self.__dict__[posStr] = conv2
                     j = j + 1
         for name, module in model.named_parameters():
-
             posStr = 'conv'+ str(pos+i)
-                posStr1 = 'conv' + posModel
-                name[posModel] = posStr1
-                model[posModel + 1] = model[posModel]
-                model[posModel] = conv2
-            else:
-                print(name[posModel])
+            #    posStr1 = 'conv' + posModel
+             #   name[posModel] = posStr1
+              #  model[posModel + 1] = model[posModel]
+               # model[posModel] = conv2
+            #else:
+             #   print(name[posModel])
 
