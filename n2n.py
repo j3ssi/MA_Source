@@ -129,9 +129,10 @@ class N2N(nn.Module):
             modelList.insert(j+2,conv2)
             bn = modelList[j+1]
             bn2 = copy.deepcopy(bn)
+
             modelList.insert(j+3, bn2)
             newModel = nn.Sequential(*modelList)
-            print(self.__dict__.__getitem__('_modules'))
+            print(newModel.__dict__.__getitem__('_modules'))
             return newModel
             #     if posStr in name:
             #         i = name.index(posStr)
