@@ -158,7 +158,9 @@ class N2N(nn.Module):
 
         #modelList = modelList[:len(modelList) - 2]
 
-        newModel = nn.Sequential(*modelList)
+        newModel = super(N2N, self).__init__()
+        for item in modelList:
+            newModel.add_module(item)
         print(newModel.__dict__.__getitem__('_modules'))
         return newModel
         #     if posStr in name:
