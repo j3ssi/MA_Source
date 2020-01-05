@@ -44,7 +44,7 @@ class N2N(nn.Module):
         self.bn9 = nn.BatchNorm2d(16)
 
         # 5
-        self.avgpool = nn.AdaptiveAvgPool1d(512)
+        self.avgpool = nn.AdaptiveAvgPool2d((4,4))
         self.fc = nn.Linear(512, num_classes)
         self.relu = nn.ReLU(inplace=True)
 
@@ -66,14 +66,15 @@ class N2N(nn.Module):
             names = self.__dict__.__getitem__('_modules')
 
             if convStr not in names:
+                print("\nX.size:\n")
+                print(x.size(1))
+                print("\n")
+                print(x.size(2))
+                print("\n")
+                print(x.size(3))
+                print("\n")
+
                 x = self.avgpool(_x)
-                # print("\nX.size:\n")
-                # print(x.size(1))
-                # print("\n")
-                # print(x.size(2))
-                # print("\n")
-                # print(x.size(3))
-                # print("\n")
                 #
                 #
                 # x = x.view(-1, x.size(1) * x.size(2) * x.size(3))
