@@ -420,7 +420,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
 
     print("==================")
     for key in optimizer.state:
-        print("==> {}, {}, {}".format(key, type(key), optimizer.state[key]))
+        print("==> {}, {}".format(key, type(key)))
 
     for name, param in model.named_parameters():
 

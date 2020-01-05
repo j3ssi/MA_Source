@@ -171,16 +171,16 @@ class N2N(nn.Module):
         # newModel.add_module("buffer",buffer)
         for item in modelListNames:
             j = modelListNames.index(item)
-            print("\nitem: \n")
+            #print("\nitem: \n")
 
             if len(item[0]) < 2 and item[0] == 'c':
-                print('\nDrin!!!\n\n')
+                #print('\nDrin!!!\n\n')
                 itemName = item[0:4]
             elif len(item[0]) < 2 and item[0] == 'b':
                 itemName = item[0:2]
             else:
                 itemName = item[0]
-            print(itemName)
+            #print(itemName)
             newModel.add_module(itemName, modelList[j])
         print(newModel.__dict__.__getitem__('_modules'))
         return newModel
