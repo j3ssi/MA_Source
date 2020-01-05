@@ -86,7 +86,7 @@ class N2N(nn.Module):
 
                 #
                 #
-                #x = x.view(-1, x.size(1) * x.size(2))
+                x = x.view(-1,512)
                 # #x = x.view(x.size(0), -1)
                 x = self.fc(x)
                 return x
