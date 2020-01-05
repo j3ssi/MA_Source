@@ -136,12 +136,8 @@ class N2N(nn.Module):
             i = i + 1
 
     def deeper(self, model, positions):
-        #TODO: currently deeper destroys the model dict that is used in other functions to find named childran
-        print("\nDeeper!")
-        modelList = list(model.named_children())
-        print("\n\n> ModelList:\n")
-        print(modelList)
-
+        modelListNames = list(model.named_children())
+        modelList = list(model.children())
         # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
         for pos in positions:
             print("\n\nposition:")
@@ -151,18 +147,23 @@ class N2N(nn.Module):
             conv = modelList[j]
             conv2 = copy.deepcopy(conv)
             modelList.insert(j + 2, conv2)
+            convStr = '((conv' + str(j+2) + '),'
+            modelListNames.insert(j+2, convStr)
             bn = modelList[j + 1]
             bn2 = copy.deepcopy(bn)
+            bnStr = '((bn' + str(j+3) + '),'
+            modelListNames.insert(j+3, bnStr)
 
             modelList.insert(j + 3, bn2)
 
-        #modelList = modelList[:len(modelList) - 2]
-
         newModel = N2N(10, True)
-        for item in modelList:
+        for item in modelListNames:
+            j = modelListNames.index(item)
             print("\nitem: \n")
-            print(item)
-            newModel.add_module(item)
+            itemName = item.split(',')[0]
+            itemName = itemName[2:-1]
+            print(itemName)
+            newModel.add_module(itemName, modelList[j])
         print(newModel.__dict__.__getitem__('_modules'))
         return newModel
         #     if posStr in name:
