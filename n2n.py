@@ -77,11 +77,11 @@ class N2N(nn.Module):
                 x = self.avgpool(_x)
 
                 print("\nX.size:\n")
-                print(_x.size(1))
+                print(x.size(1))
                 print("\n")
-                print(_x.size(2))
+                print(x.size(2))
                 print("\n")
-                print(_x.size(3))
+                print(x.size(3))
                 print("\n")
 
                 #
