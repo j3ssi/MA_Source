@@ -155,13 +155,18 @@ class N2N(nn.Module):
             convStr = 'conv' + str(pos + 1)
             print('\n\nconvStr:')
             print(convStr)
-            modelListNames.insert(j + 2, (convStr, conv2))
-            bn = modelList[j + 1]
-            bn2 = copy.deepcopy(bn)
-            bnStr = 'bn' + str(pos + 2)
-            modelListNames.insert(j + 3, (bnStr, bn2))
+            if modelListNames[j+2] == convStr:
+                #net is deeper, move all next layers
+                for k in range(j+2, len(modelList)):
 
-            modelList.insert(j + 3, bn2)
+
+            else:
+                modelListNames.insert(j + 2, (convStr, conv2))
+                bn = modelList[j + 1]
+                bn2 = copy.deepcopy(bn)
+                bnStr = 'bn' + str(pos + 2)
+                modelListNames.insert(j + 3, (bnStr, bn2))
+                modelList.insert(j + 3, bn2)
             print("\n> modelListNames:\n")
             print(modelListNames)
         newModel = N2N(10, True)

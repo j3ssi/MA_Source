@@ -294,9 +294,9 @@ def main():
             # print("%f \n"file=open("output.txt", "a") test_acc)
 
             # deeper student training
-            print("\n\n > Deeper Student training ... ")
-            model = model.deeper(model, [9])
-            model.cuda()
+        print("\n\n > Deeper Student training ... ")
+        model = model.deeper(model, [9])
+        model.cuda()
 
     # logger.close()
 
