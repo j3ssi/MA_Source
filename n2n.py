@@ -45,7 +45,7 @@ class N2N(nn.Module):
 
         # 5
         self.avgpool = nn.AdaptiveAvgPool2d((1,1))
-        self.fc = nn.Linear(2048, num_classes)
+        self.fc = nn.Linear(128, num_classes)
         self.relu = nn.ReLU(inplace=True)
 
         for m in self.modules():
