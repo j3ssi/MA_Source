@@ -167,9 +167,9 @@ class N2N(nn.Module):
         for item in modelListNames:
             j = modelListNames.index(item)
             print("\nitem: \n")
-            if(item[0].size<2 and item[0]== 'c'):
+            if(len(item[0]) <2 and item[0]== 'c'):
                 itemName = item[0:4]
-            elif (item[0].size<2 and item[0]== 'b'):
+            elif (len(item[0])<2 and item[0]== 'b'):
                 itemName = item[0:2]
             else:
                 itemName = item[0]
