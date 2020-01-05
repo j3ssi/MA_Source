@@ -160,7 +160,8 @@ class N2N(nn.Module):
             modelListNames.insert(j+3, bnStr)
 
             modelList.insert(j + 3, bn2)
-
+            print("\n> modelListNames:\n")
+            print(modelListNames)
         newModel = N2N(10, True)
         #newModel.add_module("buffer",buffer)
         for item in modelListNames:
