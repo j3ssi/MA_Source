@@ -67,6 +67,7 @@ class N2N(nn.Module):
 
             if convStr not in names:
                 x = self.avgpool(_x)
+                x = torch.flatten(x, 1)
                 # print("\nX.size:\n")
                 # print(x.size(1))
                 # print("\n")
