@@ -140,7 +140,7 @@ class N2N(nn.Module):
         modelList = list(model.children())
         buffer = self.buffers()
         print("\nself.modules():\n")
-        print(model.__dict__.__getitem__('_modules'))
+        print(model.__dict__)
         # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
         for pos in positions:
             print("\n\nposition:")
