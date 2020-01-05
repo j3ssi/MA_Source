@@ -152,11 +152,11 @@ class N2N(nn.Module):
             conv = modelList[j]
             conv2 = copy.deepcopy(conv)
             modelList.insert(j + 2, conv2)
-            convStr = '((conv' + str(pos+1) + ')'
+            convStr = 'conv' + str(pos+1)
             modelListNames.insert(j+2,(convStr,conv2))
             bn = modelList[j + 1]
             bn2 = copy.deepcopy(bn)
-            bnStr = 'bn' + str(j+3)
+            bnStr = 'bn' + str(pos+2)
             modelListNames.insert(j+3, (bnStr,bn2))
 
             modelList.insert(j + 3, bn2)
@@ -167,7 +167,12 @@ class N2N(nn.Module):
         for item in modelListNames:
             j = modelListNames.index(item)
             print("\nitem: \n")
-            itemName = item[0]
+            if(item[0].size<2 and item[0]== c):
+                itemName = item[0:4]
+            elif (item[0].size<2 and item[0]== b)
+                itemName = item[0:2]
+            else:
+                itemName = item[0]
             print(itemName)
             newModel.add_module(itemName, modelList[j])
         print(newModel.__dict__.__getitem__('_modules'))
