@@ -139,7 +139,7 @@ class N2N(nn.Module):
         modelListNames = list(model.named_children())
         modelList = list(model.children())
         buffer = self.buffers()
-        print("\nself.modules():\n")
+        print("\nself.buffers():\n")
         print(self.buffers())
         print('\n\n')
         print(self.buffers())
