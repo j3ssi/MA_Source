@@ -136,6 +136,7 @@ class N2N(nn.Module):
             i = i + 1
 
     def deeper(self, model, positions):
+        #TODO: currently deeper destroys the model dict that is used in other functions to find named childran
         print("\nDeeper!")
         modelList = list(model.children())
         print("\n\n> ModelList:\n")
