@@ -145,7 +145,7 @@ class N2N(nn.Module):
 
             modelList.insert(j + 3, bn2)
 
-        modelList = modelList[:len(modelList) - 2]
+        #modelList = modelList[:len(modelList) - 2]
 
         newModel = nn.Sequential(*modelList)
         print(newModel.__dict__.__getitem__('_modules'))
