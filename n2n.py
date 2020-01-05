@@ -162,7 +162,7 @@ class N2N(nn.Module):
             modelListNames.insert(j + 2, (convStr, conv2))
             bn = modelList[j + 1]
             bn2 = copy.deepcopy(bn)
-            bnStr = 'bn' + str(pos + 2)
+            bnStr = 'bn' + str(pos + 1)
             modelListNames.insert(j + 3, (bnStr, bn2))
             modelList.insert(j + 3, bn2)
             print("\n> modelListNames:\n")
