@@ -47,7 +47,7 @@ class N2N(nn.Module):
         self.avgpool = nn.AdaptiveAvgPool2d((None,128))
         self.fc = nn.Linear(128, num_classes)
         self.relu = nn.ReLU(inplace=True)
-adaptive avg pooling pytorch
+
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
                 n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
