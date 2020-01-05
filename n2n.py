@@ -160,8 +160,9 @@ class N2N(nn.Module):
         for item in modelListNames:
             j = modelListNames.index(item)
             print("\nitem: \n")
-            itemName = item.split(',')[0]
-            itemName = itemName[2:-1]
+            itemName = item[0]
+            print(itemName)
+#            itemName = itemName[2:-1]
             print(itemName)
             newModel.add_module(itemName, modelList[j])
         print(newModel.__dict__.__getitem__('_modules'))
