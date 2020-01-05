@@ -98,7 +98,7 @@ class N2N(nn.Module):
                         break
                     except RuntimeError:
                         print("\n \n Oops!!! \n \n \n")
-
+                        print(convStr)
             bnStr = 'bn' + str(i)
             for name, module in self.named_modules():
                 if name == bnStr:
@@ -107,6 +107,7 @@ class N2N(nn.Module):
                         break
                     except RuntimeError:
                         print("\n \n Oops!!! \n \n \n")
+                        print(bnStr)
             x = self.relu(x)
             i = i + 1
             convStr = 'conv' + str(i)
@@ -117,6 +118,7 @@ class N2N(nn.Module):
                         break
                     except RuntimeError:
                         print("\n \n Oops!!! \n \n \n")
+                        print(convStr)
 
             bnStr = 'bn' + str(i)
 
@@ -127,10 +129,12 @@ class N2N(nn.Module):
                         break
                     except RuntimeError:
                         print("\n \n Oops!!! \n \n \n")
+                        print(bnStr)
             try:
                 _x = _x + x
             except RuntimeError:
                 print("\n \n Oops!!  \n \n \n")
+                print('_x = _x + x')
 
             _x = self.relu(_x)
             i = i + 1
@@ -182,6 +186,7 @@ class N2N(nn.Module):
                 itemName = item[0]
             #print(itemName)
             newModel.add_module(itemName, modelList[j])
+        print("\n\n >newModelList:\n")
         print(newModel.__dict__.__getitem__('_modules'))
         return newModel
         #     if posStr in name:
