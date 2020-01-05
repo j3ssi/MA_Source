@@ -11,7 +11,7 @@ from torch.autograd import Variable
 
 class N2N(nn.Module):
 
-    def __init__(self, num_classes, is_deeper =False):
+    def __init__(self, num_classes, is_deeper=False):
         super(N2N, self).__init__()
         # 1 input image channel, 6 output channels, 3x3 square convolution
         # kernel
@@ -44,7 +44,7 @@ class N2N(nn.Module):
             self.bn9 = nn.BatchNorm2d(16)
 
             # 5
-            self.avgpool = nn.AdaptiveAvgPool2d((1,1))
+            self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
             self.fc = nn.Linear(16, num_classes)
             self.relu = nn.ReLU(inplace=True)
 
@@ -86,7 +86,7 @@ class N2N(nn.Module):
 
                 #
                 #
-                x = x.view(-1,16)
+                x = x.view(-1, 16)
                 # #x = x.view(x.size(0), -1)
                 x = self.fc(x)
                 return x
@@ -138,11 +138,11 @@ class N2N(nn.Module):
     def deeper(self, model, positions):
         modelListNames = list(model.named_children())
         modelList = list(model.children())
-        buffer = self.buffers()
-        #print("\nself.buffers():\n")
-        #print(list(model.modules()))
-        #print('\n\n')
-        #print(list(model.named_buffers()))
+        #buffer = self.buffers()
+        # print("\nself.buffers():\n")
+        # print(list(model.modules()))
+        # print('\n\n')
+        # print(list(model.named_buffers()))
         # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
         for pos in positions:
             print("\n\nposition:")
@@ -152,24 +152,26 @@ class N2N(nn.Module):
             conv = modelList[j]
             conv2 = copy.deepcopy(conv)
             modelList.insert(j + 2, conv2)
-            convStr = 'conv' + str(pos+1)
-            modelListNames.insert(j+2,(convStr,conv2))
+            convStr = 'conv' + str(pos + 1)
+            modelListNames.insert(j + 2, (convStr, conv2))
             bn = modelList[j + 1]
             bn2 = copy.deepcopy(bn)
-            bnStr = 'bn' + str(pos+2)
-            modelListNames.insert(j+3, (bnStr,bn2))
+            bnStr = 'bn' + str(pos + 2)
+            modelListNames.insert(j + 3, (bnStr, bn2))
 
             modelList.insert(j + 3, bn2)
             print("\n> modelListNames:\n")
             print(modelListNames)
         newModel = N2N(10, True)
-        #newModel.add_module("buffer",buffer)
+        # newModel.add_module("buffer",buffer)
         for item in modelListNames:
             j = modelListNames.index(item)
             print("\nitem: \n")
-            if(len(item[0]) <2 and item[0]== 'c'):
+
+            if len(item[0]) < 2 and item[0] == 'c':
+                print('\nDrin!!!\n\n')
                 itemName = item[0:4]
-            elif (len(item[0])<2 and item[0]== 'b'):
+            elif len(item[0]) < 2 and item[0] == 'b':
                 itemName = item[0:2]
             else:
                 itemName = item[0]
@@ -199,7 +201,6 @@ class N2N(nn.Module):
         #     # model[posModel] = conv2
         #     # else:
         #     #   print(name[posModel])
-
 
 
 def num_flat_features(x):
