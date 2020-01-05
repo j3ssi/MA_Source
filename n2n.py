@@ -160,6 +160,8 @@ class N2N(nn.Module):
 
         newModel = N2N(10, True)
         for item in modelList:
+            print("\nitem: \n")
+            print(item)
             newModel.add_module(item)
         print(newModel.__dict__.__getitem__('_modules'))
         return newModel
