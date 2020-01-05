@@ -66,23 +66,23 @@ class N2N(nn.Module):
             names = self.__dict__.__getitem__('_modules')
 
             if convStr not in names:
-                print("\nX.size:\n")
-                print(_x.size(1))
-                print("\n")
-                print(_x.size(2))
-                print("\n")
-                print(_x.size(3))
-                print("\n")
+                # print("\nX.size:\n")
+                # print(_x.size(1))
+                # print("\n")
+                # print(_x.size(2))
+                # print("\n")
+                # print(_x.size(3))
+                # print("\n")
 
                 x = self.avgpool(_x)
 
-                print("\nX.size:\n")
-                print(x.size(1))
-                print("\n")
-                print(x.size(2))
-                print("\n")
-                print(x.size(3))
-                print("\n")
+                # print("\nX.size:\n")
+                # print(x.size(1))
+                # print("\n")
+                # print(x.size(2))
+                # print("\n")
+                # print(x.size(3))
+                # print("\n")
 
                 #
                 #
@@ -138,6 +138,9 @@ class N2N(nn.Module):
     def deeper(self, model, positions):
         modelListNames = list(model.named_children())
         modelList = list(model.children())
+        buffer = self.buffers()
+        print("\nself.modules():\n")
+        print(self.named_modules())
         # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
         for pos in positions:
             print("\n\nposition:")
@@ -147,22 +150,21 @@ class N2N(nn.Module):
             conv = modelList[j]
             conv2 = copy.deepcopy(conv)
             modelList.insert(j + 2, conv2)
-            convStr = '((conv' + str(j+2) + '),'
+            convStr = 'conv' + str(j+2)
             modelListNames.insert(j+2, convStr)
             bn = modelList[j + 1]
             bn2 = copy.deepcopy(bn)
-            bnStr = '((bn' + str(j+3) + '),'
+            bnStr = 'bn' + str(j+3)
             modelListNames.insert(j+3, bnStr)
 
             modelList.insert(j + 3, bn2)
 
         newModel = N2N(10, True)
+        newModel.add_module(buffer)
         for item in modelListNames:
             j = modelListNames.index(item)
             print("\nitem: \n")
             itemName = item[0]
-            print(itemName)
-#            itemName = itemName[2:-1]
             print(itemName)
             newModel.add_module(itemName, modelList[j])
         print(newModel.__dict__.__getitem__('_modules'))

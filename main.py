@@ -334,11 +334,11 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             #targets = Variable(targets)
         targets = torch.autograd.Variable(targets)
 
-        print("\n target shape:")
-        print(targets.size())
+        #print("\n target shape:")
+        #print(targets.size())
         outputs = model.forward(inputs)
-        print("\n output shape:")
-        print(outputs.size())
+        #print("\n output shape:")
+        #print(outputs.size())
 
         loss = criterion(outputs, targets)
 
