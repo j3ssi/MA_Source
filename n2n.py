@@ -67,11 +67,11 @@ class N2N(nn.Module):
 
             if convStr not in names:
                 print("\nX.size:\n")
-                print(x.size(1))
+                print(_x.size(1))
                 print("\n")
-                print(x.size(2))
+                print(_x.size(2))
                 print("\n")
-                print(x.size(3))
+                print(_x.size(3))
                 print("\n")
 
                 x = self.avgpool(_x)
