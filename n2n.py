@@ -145,7 +145,7 @@ class N2N(nn.Module):
         #buffer = self.buffers()
         print("\nself.modules():\n")
         #print(list(model.modules()))
-        print(list(self.named_parameters()))
+        print(list(self.modules()))
         # print('\n\n')
         # print(list(model.named_buffers()))
         # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
@@ -192,7 +192,7 @@ class N2N(nn.Module):
 
 
         print("\nnew Model:\n")
-        print(list(newModel.named_parameters()))
+        print(list(newModel.modules()))
         print()
         return newModel
         #     if posStr in name:
