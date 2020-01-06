@@ -178,23 +178,20 @@ class N2N(nn.Module):
             modelList.insert(j + 3, bn2)
             #print("\n> modelListNames:\n")
             #print(modelListNames)
-        newModel = N2N(10, True)
+        newModel = nn.Sequential(*modelListNames)
         # newModel.add_module("buffer",buffer)
-        for item in modelListNames:
-            j = modelListNames.index(item)
-            #print("\nitem: \n")
+        #for item in modelListNames:
+        #    j = modelListNames.index(item)
+        #    #print("\nitem: \n")
 
-            if len(item[0]) < 2 and item[0] == 'c':
-                #print('\nDrin!!!\n\n')
-                itemName = item[0:4]
-            elif len(item[0]) < 2 and item[0] == 'b':
-                itemName = item[0:2]
-            else:
-                itemName = item[0]
-            #print(itemName)
-            newModel.add_module(itemName, modelList[j])
-        print("\nnewModel.modules():\n")
-        #print(list(newModel.modules()))
+#            if len(item[0]) < 2 and item[0] == 'c':
+ #               #print('\nDrin!!!\n\n')
+  #              itemName = item[0:4]
+   #         elif len(item[0]) < 2 and item[0] == 'b':
+    #            itemName = item[0:2]
+
+
+        print("newModel")
         print(list(newModel.named_parameters()))
         print()
         return newModel
