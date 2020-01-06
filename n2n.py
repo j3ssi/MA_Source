@@ -157,8 +157,8 @@ class N2N(nn.Module):
             conv2 = copy.deepcopy(conv)
             modelList.insert(j + 2, conv2)
             convStr = 'conv' + str(pos + 1)
-            print('\n\nconvStr:')
-            print(convStr)
+            #print('\n\nconvStr:')
+            #print(convStr)
             if modelListNames[j+2] == convStr:
                 #net is deeper, move all next layers first and then insert new conv layer
                 #insert is theroatically fine for this but the names of the layer are not updated
@@ -175,8 +175,8 @@ class N2N(nn.Module):
             bnStr = 'bn' + str(pos + 1)
             modelListNames.insert(j + 3, (bnStr, bn2))
             modelList.insert(j + 3, bn2)
-            print("\n> modelListNames:\n")
-            print(modelListNames)
+            #print("\n> modelListNames:\n")
+            #print(modelListNames)
         newModel = N2N(10, True)
         # newModel.add_module("buffer",buffer)
         for item in modelListNames:
@@ -192,8 +192,8 @@ class N2N(nn.Module):
                 itemName = item[0]
             #print(itemName)
             newModel.add_module(itemName, modelList[j])
-        print("\n\n >newModelList:\n")
-        print(newModel.__dict__.__getitem__('_modules'))
+        print("\nnewModel.modules():\n")
+        print(list(newModel.modules()))
         return newModel
         #     if posStr in name:
         #         i = name.index(posStr)
