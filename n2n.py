@@ -66,7 +66,7 @@ class N2N(nn.Module):
         _x = self.relu(x)
         i = 2
         while i > 0:
-            if isinstance(self.module_list[i],nn.AdaptiveAvgPool2d()):
+            if isinstance(self.module_list[i],nn.AdaptiveAvgPool2d((1,1))):
                 try:
                     x = self.module_list[i](_x)
                     x = x.view(-1, 16)
