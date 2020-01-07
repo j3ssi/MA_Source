@@ -441,6 +441,10 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
                                 new_mom_param[out_idx, in_idx, :, :] = mom_param[out_ch, in_ch, :, :]
                                 print("\nTensor1 Size:")
                                 print(mom_param.size())
+                                print(", ")
+                                print(out_idx)
+                                print(", ")
+                                print(in_idx)
                                 print("\nTensor2 Size:")
                                 print(new_mom_param.size())
                 # Generate a new dense tensor and replace (FC layer)
