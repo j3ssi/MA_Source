@@ -407,16 +407,13 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
     new_mom_param_list = []
     for name, param in model.named_parameters():
         # Get Momentum parameters to adjust
-        mom_param_list.append(optimizer.state[param]['momentum_buffer'])
+        mom_param = optimizer.state[param]['momentum_buffer']
+        # Change parameters of neural computing layers (Conv, FC)
+        if (('conv' in name) or ('fc' in name)) and ('weight' in name):
+            print("\nName:")
+            print(name)
 
-    # Change parameters of neural computing layers (Conv, FC)
-    for i in range(0, len(mom_param_list) - 1):
 
-        param = mom_param_list[i]
-        print("\n> Param:")
-        print(param)
-        if isinstance(model.module_list[i], nn.Conv2d) or isinstance(model.module_list[i], nn.Linear):
-            param = model.module_list[i].weight
             dims = param.shape()
             dense_in_ch_idxs = dense_chs[i]['in_chs']
             dense_out_ch_idxs = dense_chs[i]['out_chs']
