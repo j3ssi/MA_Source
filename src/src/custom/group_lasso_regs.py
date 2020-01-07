@@ -44,7 +44,7 @@ def get_group_lasso_global(model, arch):
             _out = weight.pow(2).sum(dim=[1, 2, 3])
             lasso_out_ch.append(_out)
 
-        if isinstance(model.module_list[i], nn.Linear) and model.module_list[i + 1] is not None:
+        if isinstance(model.module_list[i], nn.Linear) and i < len(model.module_list):
             weight = model.module_list[i].weight
             lasso_out_ch.append(weight.pow(2).sum(dim=[1]))
         elif isinstance(model.module_list[i], nn.Linear):
