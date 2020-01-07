@@ -113,7 +113,7 @@ def _getConvStructSparsity(model, threshold, file_name, arch, dataset):
         fmap = cifar_feature_size[arch]
 
     tot_weights = 0
-    for i in range(0, len(model.module_list)-1)
+    for i in range(0, len(model.module_list)-1):
         layer = []
         param = model.module_list[i].weight
         dims = list(param.shape)
