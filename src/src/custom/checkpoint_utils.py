@@ -422,34 +422,25 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
     #for key in optimizer.state:
     #    print("==> {}, {}".format(key, type(key)))
 
-    for name, param in model.named_parameters():
-
+    #for name, param in model.named_parameters():
+    for i in range (0, len(model.module_list)):
         # Get Momentum parameters to adjust
-        mom_param = optimizer.state[param]['momentum_buffer']
+        mom_param = optimizer.state[model.module_list[i]]['momentum_buffer']
 
         # Change parameters of neural computing layers (Conv, FC)
-        if (('conv' in name) or ('fc' in name)) and ('weight' in name):
 
-            if 'conv' in name:
-                conv_dw = int(name.split('.')[0].split('conv')[1]) % 2 == 0
-            else:
-                conv_dw = False
-
+        if isinstance(model.module_list[i], nn.Conv2d) or isinstance(model.module_list[i], nn.Linear):
+            param = model.module_list[i].weight
             dims = list(param.shape)
-
-            if 'mobilenet' in arch and conv_dw:
-                dense_in_ch_idxs = [0]
-            else:
-                dense_in_ch_idxs = dense_chs[name]['in_chs']
-            dense_out_ch_idxs = dense_chs[name]['out_chs']
+            dense_in_ch_idxs = dense_chs[i]['in_chs']
+            dense_out_ch_idxs = dense_chs[i]['out_chs']
             num_in_ch, num_out_ch = len(dense_in_ch_idxs), len(dense_out_ch_idxs)
 
-            # print("===> Dense inchs: [{}], outchs: [{}]".format(num_in_ch, num_out_ch))
+            print("===> Dense inchs: [{}], outchs: [{}]".format(num_in_ch, num_out_ch))
 
             # Enlist layers with zero channels for removal
             if num_in_ch == 0 or num_out_ch == 0:
-                rm_list.append(name)
-
+                rm_list.append(i)
             else:
                 # Generate a new dense tensor and replace (Convolution layer)
                 if len(dims) == 4:
@@ -466,8 +457,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
                 elif len(dims) == 2:
                     new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
                     new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
-
-                    if ('fc1' in name) or ('fc2' in name):
+                    if i < len(model.module_list):
                         for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
                             for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
                                 with torch.no_grad():
@@ -484,12 +474,12 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
                 param.data = new_param
                 optimizer.state[param]['momentum_buffer'].data = new_mom_param
 
-                print("[{}]: {} >> {}".format(name, dims, list(new_param.shape)))
+                print("[{}]: {} >> {}".format(i, dims, list(new_param.shape)))
 
         # Change parameters of non-neural computing layers (BN, biases)
         else:
-            w_name = name.replace('bias', 'weight').replace('bn', 'conv')
-            dense_out_ch_idxs = dense_chs[w_name]['out_chs']
+            #w_name = name.replace('bias', 'weight').replace('bn', 'conv')
+            dense_out_ch_idxs = dense_chs[i]['out_chs']
             num_out_ch = len(dense_out_ch_idxs)
 
             new_param = Parameter(torch.Tensor(num_out_ch)).cuda()

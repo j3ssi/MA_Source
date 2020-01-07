@@ -33,7 +33,7 @@ def get_group_lasso_global(model, arch):
     lasso_out_ch = []
 
     #for name, param in model.module_list.named_parameters():
-    for i in range(1, len(model.module_list)):
+    for i in range(0, len(model.module_list)-1):
         # Lasso added to only the neuronal layers
         if isinstance(model.module_list[i], nn.Conv2d):
             weight = model.module_list[i].weight
