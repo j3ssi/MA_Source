@@ -207,7 +207,7 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
     for i in range(0, len(model.module_list)):
 #    for name, param in model.named_parameters():
         paramModule = model.module_list[i]
-        dims = list(paramModule.shape)
+        dims = list(paramModule.weight.shape)
         if isinstance(paramModule, nn.Conv2d) or isinstance(paramModule, nn.Linear):
             with torch.no_grad():
                 param =paramModule.weight
