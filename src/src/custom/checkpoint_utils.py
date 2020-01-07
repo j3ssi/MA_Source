@@ -174,7 +174,7 @@ def _getConvStructSparsity(model, threshold, file_name, arch, dataset):
         # Calculate inference cost = (CRS)(K)(NPQ)
         #fmap_name = name.split('module.')[1].split('.weight')[0]
         if isinstance(model.module_list[i], nn.Conv2d):
-            inf_cost = (num_dense_in_ch * dims[2] * dims[3]) * (num_dense_out_ch) * (fmap[fmap_name][1] ** 2)
+            inf_cost = (num_dense_in_ch * dims[2] * dims[3]) * (num_dense_out_ch) * (fmap[i][1] ** 2)
         else:
             inf_cost = (num_dense_in_ch * num_dense_out_ch)
         # print("{}, {}, {}".format(fmap_name, num_dense_in_ch, num_dense_out_ch))
@@ -403,13 +403,13 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
     rm_list = []
 
     print("==================")
-    for key in optimizer.state:
-        print("==> {}, {}".format(key, type(key)))
+#    for key in optimizer.state:
+#        print("==> {}, {}".format(key, type(key)))
 
     # for name, param in model.named_parameters():
     for i in range(0, len(model.module_list)-1):
         # Get Momentum parameters to adjust
-        mom_param = optimizer.state[model.module_list[i]]['momentum_buffer']
+        mom_param = optimizer.state[model.]['momentum_buffer']
 
         # Change parameters of neural computing layers (Conv, FC)
 
