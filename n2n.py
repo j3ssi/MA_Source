@@ -14,7 +14,7 @@ class N2N(nn.Module):
     def __init__(self, num_classes):
         super(N2N, self).__init__()
 
-        conv1 = nn.Conv2d(3, 16, kernel_size=3, padding=1, bias=False, stride=1),
+        conv1 = nn.Conv2d(3, 16, kernel_size=3, padding=1, bias=False, stride=1)
         bn1 = nn.BatchNorm2d(16)
 
         #1
