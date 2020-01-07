@@ -212,7 +212,6 @@ def main():
             new_state_dict[name] = v
 
         optimizer.load_state_dict(checkpoint['optimizer'])
-        print(optimizer.state_dict())
         # logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     # else:
     # logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
@@ -226,11 +225,14 @@ def main():
         # print(' Test Loss:  %.8f, Test Acc:  %.2f' % (test_loss, test_acc))
         return
 
+
     # Train and val
     for epochNet2Net in range(1, 3):
         print("\n Net 2 Net Durchläufe:")
         print(epochNet2Net)
 
+        print("\nParameters:\n)
+        print(model.named_parameters().__dict__)
         for epoch in range(start_epoch, args.epochs + 1):
             adjust_learning_rate(optimizer, epoch)
 
