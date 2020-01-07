@@ -11,51 +11,52 @@ from torch.autograd import Variable
 
 class N2N(nn.Module):
 
-    def __init__(self, num_classes, is_deeper=False):
-        super(nn.ModuleList, self).__init__()
-        # 1 input image channel, 6 output channels, 3x3 square convolution
-        # kernel
-        if not is_deeper:
-            self.conv1 = nn.Conv2d(3, 16, kernel_size=3, padding=1, bias=False, stride=1)
-            self.bn1 = nn.BatchNorm2d(16)
+    def __init__(self, num_classes):
+        super(N2N, self).__init__()
 
-            # 1
-            self.conv2 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-            self.bn2 = nn.BatchNorm2d(16)
-            self.conv3 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-            self.bn3 = nn.BatchNorm2d(16)
+        conv1 = nn.Conv2d(3, 16, kernel_size=3, padding=1, bias=False, stride=1),
+        bn1 = nn.BatchNorm2d(16)
 
-            # 2
-            self.conv4 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-            self.bn4 = nn.BatchNorm2d(16)
-            self.conv5 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-            self.bn5 = nn.BatchNorm2d(16)
+        #1
+        conv2 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+        bn2 = nn.BatchNorm2d(16)
+        conv3 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+        bn3 = nn.BatchNorm2d(16)
 
-            # 3
-            self.conv6 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-            self.bn6 = nn.BatchNorm2d(16)
-            self.conv7 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-            self.bn7 = nn.BatchNorm2d(16)
+        # 2
+        conv4 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+        bn4 = nn.BatchNorm2d(16)
+        conv5 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+        bn5 = nn.BatchNorm2d(16)
 
-            # 4
-            self.conv8 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-            self.bn8 = nn.BatchNorm2d(16)
-            self.conv9 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-            self.bn9 = nn.BatchNorm2d(16)
+        # 3
+        conv6 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+        bn6 = nn.BatchNorm2d(16)
+        conv7 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+        bn7 = nn.BatchNorm2d(16)
 
-            # 5
-            self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
-            self.fc = nn.Linear(16, num_classes)
-            self.relu = nn.ReLU(inplace=True)
+        # 4
+        conv8 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+        bn8 = nn.BatchNorm2d(16)
+        conv9 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+        bn9 = nn.BatchNorm2d(16)
 
-            for m in self.modules():
-                if isinstance(m, nn.Conv2d):
-                    n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
-                    m.weight.data.normal_(0, math.sqrt(2. / n))
-                elif isinstance(m, nn.BatchNorm2d):
-                    m.weight.data.fill_(1)
-                    m.bias.data.zero_()
+        # 5
+        avgpool = nn.AdaptiveAvgPool2d((1, 1))
+        fc = nn.Linear(16, num_classes)
+        relu = nn.ReLU(inplace=True)
 
+        for m in self.modules():
+            if isinstance(m, nn.Conv2d):
+                n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
+                m.weight.data.normal_(0, math.sqrt(2. / n))
+            elif isinstance(m, nn.BatchNorm2d):
+                m.weight.data.fill_(1)
+                m.bias.data.zero_()
+        l = [conv1, bn1, conv2, bn2, conv3, bn3, conv4, bn4, conv5, bn5, conv6, bn6, conv7, bn7, conv8, bn8, conv9, bn9, avgpool, fc]
+        self.module_list = nn.ModuleList(l)
+        print("\n\n> moduleList:\n")
+        print(self.module_list)
     def forward(self, x):
         x = self.conv1(x)
         x = self.bn1(x)
