@@ -12,7 +12,7 @@ from torch.autograd import Variable
 class N2N(nn.Module):
 
     def __init__(self, num_classes, is_deeper=False):
-        super(N2N, self).__init__()
+        super(nn.ModuleList, self).__init__()
         # 1 input image channel, 6 output channels, 3x3 square convolution
         # kernel
         if not is_deeper:
@@ -140,9 +140,7 @@ class N2N(nn.Module):
             i = i + 1
 
     def deeper(self, model, positions):
-        #modelListNames = list(model.named_children())
         modelList = list(model.children())
-        #buffer = self.buffers()
         print("\nself.modules():\n")
         #print(list(model.modules()))
         print(list(self.modules()))
@@ -178,7 +176,7 @@ class N2N(nn.Module):
             modelList.insert(j + 3, bn2)
             #print("\n> modelListNames:\n")
             #print(modelListNames)
-        newModel = nn.Sequential(*modelList)
+        newModel = nn.ModuleList(*modelList)
         # newModel.add_module("buffer",buffer)
         #for item in modelListNames:
         #    j = modelListNames.index(item)
