@@ -440,7 +440,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
                                 mom_param = mom_param_list[i]
                                 new_mom_param[out_idx, in_idx, :, :] = mom_param[out_ch, in_ch, :, :]
                                 print("\nTensor Size:")
-                                print(mom_param.size)
+                                print(mom_param.size())
                 # Generate a new dense tensor and replace (FC layer)
                 elif len(dims) == 2:
                     new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
