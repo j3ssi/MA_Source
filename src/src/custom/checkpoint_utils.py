@@ -201,8 +201,16 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
     # print ("[INFO] Force the sparse filters to zero...")
     dense_chs, chs_temp, idx = {}, {}, 0
 
-    for i in range(0, len(model.module_list)):
-        #    for name, param in model.named_parameters():
+    for name, param in model.named_parameters():
+        dims = list(param.shape)
+        print("\n>Name2:")
+        print(name)
+        if (('conv' in name) or ('fc' in name)) and ('weight' in name):
+            with torch.no_grad():
+                param = torch.where(param < threshold, torch.tensor(0.).cuda(), param)
+
+            dense_in_chs, dense_out_chs = [], []
+
         paramModule = model.module_list[i]
         if isinstance(paramModule, nn.Conv2d) or isinstance(paramModule, nn.Linear):
             dims = list(paramModule.weight.shape)
