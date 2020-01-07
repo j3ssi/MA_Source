@@ -412,12 +412,12 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
     # Change parameters of neural computing layers (Conv, FC)
     for i in range(0, len(mom_param_list) - 1):
 
-        param = model.module_list[i].weight
+        param = mom_param_list[i]
+        print("\n> Param:")
+        print(param)
         if isinstance(model.module_list[i], nn.Conv2d) or isinstance(model.module_list[i], nn.Linear):
             param = model.module_list[i].weight
-            dims = list(param.shape)
-            print("\n>dims:")
-            print(dims)
+            dims = param.shape()
             dense_in_ch_idxs = dense_chs[i]['in_chs']
             dense_out_ch_idxs = dense_chs[i]['out_chs']
             num_in_ch, num_out_ch = len(dense_in_ch_idxs), len(dense_out_ch_idxs)
@@ -429,7 +429,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
                 rm_list.append(i)
             else:
                 # Generate a new dense tensor and replace (Convolution layer)
-                if len(dims) == 4:
+                if isinstance(model.module_list[i], nn.Conv2d):
                     new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
                     new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
 
@@ -441,14 +441,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
                                     mom_param = mom_param_list[i]
                                     new_mom_param[out_idx, in_idx, :, :] = mom_param[out_ch, in_ch, :, :]
                                 except IndexError:
-                                    print("\nTensor1 Size:")
-                                    print(mom_param.size())
-                                    print(", ")
-                                    print(out_idx)
-                                    print(", ")
-                                    print(in_idx)
-                                    print("\nTensor2 Size:")
-                                    print(new_mom_param.size())
+                                    break
                 # Generate a new dense tensor and replace (FC layer)
                 elif len(dims) == 2:
                     new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
