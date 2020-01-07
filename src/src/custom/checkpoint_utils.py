@@ -410,7 +410,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         mom_param_list.append(optimizer.state[param]['momentum_buffer'])
 
     # Change parameters of neural computing layers (Conv, FC)
-    for i in range(0, len(model.module_list) - 1):
+    for i in range(0, len(mom_param_list) - 1):
 
         param = model.module_list[i].weight
         if isinstance(model.module_list[i], nn.Conv2d) or isinstance(model.module_list[i], nn.Linear):
