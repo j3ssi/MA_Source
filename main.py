@@ -231,7 +231,7 @@ def main():
         print("\n Net 2 Net Durchläufe:")
         print(epochNet2Net)
 
-        print("\nParameters:\n)
+        print("\nParameters:\n")
         print(model.named_parameters().__dict__)
         for epoch in range(start_epoch, args.epochs + 1):
             adjust_learning_rate(optimizer, epoch)
