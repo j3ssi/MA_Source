@@ -186,7 +186,7 @@ def main():
     # print('    Total params: %.2fM' % (sum(p.numel() for p in model.parameters()) / 1000000.0))
 
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.SGD(model.module_list.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+    optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
 
     # Resume
     title = 'cifar-10-' + args.arch
@@ -212,7 +212,7 @@ def main():
             new_state_dict[name] = v
 
         optimizer.load_state_dict(checkpoint['optimizer'])
-
+        print(optimizer.state_dict())
         # logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     # else:
     # logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
@@ -236,7 +236,7 @@ def main():
 
             print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
 
-            print('\nParameters:\n')
+            #print('\nParameters:\n')
             #print(model.parameters())
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion, optimizer,
                                                                          epoch, use_cuda)
