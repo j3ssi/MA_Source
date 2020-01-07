@@ -228,14 +228,14 @@ def main():
 
     # Train and val
     for epochNet2Net in range(1, 3):
-        for name, param in model.named_parameters():
-            print("\n>Name:")
-            print(name)
+        #for name, param in model.named_parameters():
+        #    print("\n>Name:")
+        #    print(name)
         print("\n Net 2 Net Durchläufe:")
         print(epochNet2Net)
 
-        print("\nParameters:\n")
-        print(model.__dict__)
+        #print("\nParameters:\n")
+        #print(model.__dict__)
         for epoch in range(start_epoch, args.epochs + 1):
             adjust_learning_rate(optimizer, epoch)
 

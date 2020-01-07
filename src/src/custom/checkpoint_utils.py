@@ -209,73 +209,68 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
             with torch.no_grad():
                 param = torch.where(param < threshold, torch.tensor(0.).cuda(), param)
 
-            dense_in_chs, dense_out_chs = [], []
+        dense_in_chs, dense_out_chs = [], []
 
-        paramModule = model.module_list[i]
-        if isinstance(paramModule, nn.Conv2d) or isinstance(paramModule, nn.Linear):
-            dims = list(paramModule.weight.shape)
-            with torch.no_grad():
-                param = paramModule.weight
-                param = torch.where(param < threshold, torch.tensor(0.).cuda(), param)
-
-            dense_in_chs, dense_out_chs = [], []
-
-            if isinstance(paramModule, nn.Conv2d):
-                conv_dw = True
-                # Forcing sparse input channels to zero
+        if param.dim() == 4:
+            if 'conv' in name:
+                conv_dw = int(name.split('.')[1].split('conv')[1]) % 2 == 0
+            else:
+                conv_dw = False
+            # Forcing sparse input channels to zero
+            if not conv_dw:
                 for c in range(dims[1]):
                     if param[:, c, :, :].abs().max() > 0:
                         dense_in_chs.append(c)
 
-                # Forcing sparse output channels to zero
-                for c in range(dims[0]):
-                    if param[c, :, :, :].abs().max() > 0:
-                        dense_out_chs.append(c)
+            # Forcing sparse output channels to zero
+            for c in range(dims[0]):
+                if param[c, :, :, :].abs().max() > 0:
+                    dense_out_chs.append(c)
 
             # Forcing input channels of FC layer to zero
-            elif isinstance(paramModule, nn.Linear):
-                # Last FC layers (fc, fc3): Remove only the input neurons
-                for c in range(dims[1]):
-                    if param[:, c].abs().max() > 0:
-                        dense_in_chs.append(c)
-                # FC layer in the middle remove their output neurons
-                if i < len(model.module_list) - 1:
-                    for c in range(dims[0]):
-                        if param[c, :].abs().max() > 0:
-                            dense_out_chs.append(c)
-                else:
-                    # [fc, fc3] output channels (class probabilities) are all dense
-                    dense_out_chs = [c for c in range(dims[0])]
+        elif param.dim() == 2:
+            # Last FC layers (fc, fc3): Remove only the input neurons
+            for c in range(dims[1]):
+                if param[:, c].abs().max() > 0:
+                    dense_in_chs.append(c)
+            # FC layer in the middle remove their output neurons
+            if any(i for i in ['fc1', 'fc2'] if i in name):
+                for c in range(dims[0]):
+                    if param[c, :].abs().max() > 0:
+                        dense_out_chs.append(c)
+            else:
+                # [fc, fc3] output channels (class probabilities) are all dense
+                dense_out_chs = [c for c in range(dims[0])]
 
-            chs_temp[idx] = {'name': i, 'in_chs': dense_in_chs, 'out_chs': dense_out_chs}
-            idx += 1
-            dense_chs[i] = {'in_chs': dense_in_chs, 'out_chs': dense_out_chs, 'idx': idx}
+        chs_temp[idx] = {'name': name, 'in_chs': dense_in_chs, 'out_chs': dense_out_chs}
+        idx += 1
+        dense_chs[name] = {'in_chs': dense_in_chs, 'out_chs': dense_out_chs, 'idx': idx}
 
-            # print the inter-layer tensor dim [out_ch, in_ch, feature_h, feature_w]
-    #   if not reconf:
-    #   if 'fc' in name:
-    #            print("[{}]: [{}, {}]".format(name,
-    #                                         len(dense_chs[name]['out_chs']),
-    #                                        len(dense_chs[name]['in_chs']),
-    #                                       ))
-    #    else:
-    #        print("[{}]: [{}, {}, {}, {}]".format(name,
-    #                                             len(dense_chs[name]['out_chs']),
-    #                                            len(dense_chs[name]['in_chs']),
-    #                                           param.shape[2],
-    #                                          param.shape[3],
-    #                                         ))
+        # print the inter-layer tensor dim [out_ch, in_ch, feature_h, feature_w]
+        if not reconf:
+            if 'fc' in name:
+                print("[{}]: [{}, {}]".format(name,
+                                              len(dense_chs[name]['out_chs']),
+                                              len(dense_chs[name]['in_chs']),
+                                              ))
+            else:
+                print("[{}]: [{}, {}, {}, {}]".format(name,
+                                                      len(dense_chs[name]['out_chs']),
+                                                      len(dense_chs[name]['in_chs']),
+                                                      param.shape[2],
+                                                      param.shape[3],
+                                                      ))
+
+    """     
+    Inter-layer channel is_gating
+    - Union: Maintain all dense channels on the shared nodes (No indexing)
+    - Individual: Add gating layers >> Layers at the shared node skip more computation
     """
-  Inter-layer channel is_gating
-  - Union: Maintain all dense channels on the shared nodes (No indexing)
-  - Individual: Add gating layers >> Layers at the shared node skip more computation
-  """
     if True:
         if 'cifar' in dataset:
             stages, ch_maps = stages_cifar['resnet32_flat'], []
         else:
-            pass
-        #            stages, ch_maps = stages_imagenet[arch], []
+            stages, ch_maps = stages_imagenet[arch], []
 
         # Within a residual branch >> Union of adjacent pairs
         adj_lyrs = stages[10]
@@ -411,17 +406,11 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
     #        print("==> {}, {}".format(key, type(key)))
 
     # for name, param in model.named_parameters():
-    mom_param_list = []
-    new_mom_param_list = []
     for name, param in model.named_parameters():
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[param]['momentum_buffer']
         # Change parameters of neural computing layers (Conv, FC)
         if (('conv' in name) or ('fc' in name)) and ('weight' in name):
-            print("\nName1:")
-            print(name)
-
-
             dims = param.shape()
             dense_in_ch_idxs = dense_chs[i]['in_chs']
             dense_out_ch_idxs = dense_chs[i]['out_chs']
@@ -431,10 +420,10 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
 
             # Enlist layers with zero channels for removal
             if num_in_ch == 0 or num_out_ch == 0:
-                rm_list.append(i)
+                rm_list.append(name)
             else:
                 # Generate a new dense tensor and replace (Convolution layer)
-                if isinstance(model.module_list[i], nn.Conv2d):
+                if len(dims) == 4:
                     new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
                     new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
 
@@ -442,58 +431,50 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
                         for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
                             with torch.no_grad():
                                 new_param[out_idx, in_idx, :, :] = param[out_ch, in_ch, :, :]
-                                try:
-                                    mom_param = mom_param_list[i]
-                                    new_mom_param[out_idx, in_idx, :, :] = mom_param[out_ch, in_ch, :, :]
-                                except IndexError:
-                                    break
+                                new_mom_param[out_idx, in_idx, :, :] = mom_param[out_ch, in_ch, :, :]
+
                 # Generate a new dense tensor and replace (FC layer)
                 elif len(dims) == 2:
                     new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
                     new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
-                    if i < len(model.module_list) - 1:
+
+                    if ('fc1' in name) or ('fc2' in name):
                         for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
                             for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
                                 with torch.no_grad():
                                     new_param[out_idx, in_idx] = param[out_ch, in_ch]
-                                    new_mom_param[out_idx, in_idx] = mom_param_list[i][out_ch, in_ch]
+                                    new_mom_param[out_idx, in_idx] = mom_param[out_ch, in_ch]
                     else:
                         for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
                             with torch.no_grad():
                                 new_param[:, in_idx] = param[:, in_ch]
-                                new_mom_param[:, in_idx] = mom_param_list[i][:, in_ch]
+                                new_mom_param[:, in_idx] = mom_param[:, in_ch]
                 else:
                     assert True, "Wrong tensor dimension: {} at layer {}".format(dims, name)
-                new_mom_param_list.append(new_mom_param)
 
                 param.data = new_param
-        #
-        #         print("[{}]: {} >> {}".format(i, dims, list(new_param.shape)))
-        #
-        # # Change parameters of non-neural computing layers (BN, biases)
-        # else:
-        #     # w_name = name.replace('bias', 'weight').replace('bn', 'conv')
-        #     dense_out_ch_idxs = dense_chs[i]['out_chs']
-        #     num_out_ch = len(dense_out_ch_idxs)
-        #
-        #     new_param = Parameter(torch.Tensor(num_out_ch)).cuda()
-        #     new_mom_param = Parameter(torch.Tensor(num_out_ch)).cuda()
-        #
-        #     for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
-        #         with torch.no_grad():
-        #             new_param[out_idx] = param[out_ch]
-        #             new_mom_param[out_idx] = mom_param[out_ch]
-        #
-        #     param.data = new_param
-        #     optimizer.state[param]['momentum_buffer'].data = new_mom_param
-        #
-        #     # print("[{}]: {} >> {}".format(name, dims[0], num_out_ch))
+                optimizer.state[param]['momentum_buffer'].data = new_mom_param
 
-    i = 0
-    for name, param in model.named_parameters():
-        # Get Momentum parameters to adjust
-        optimizer.state[param]['momentum_buffer'] = new_mom_param_list[i]
-        i = i + 1
+                print("[{}]: {} >> {}".format(name, dims, list(new_param.shape)))
+
+                # Change parameters of non-neural computing layers (BN, biases)
+            else:
+            w_name = name.replace('bias', 'weight').replace('bn', 'conv')
+            dense_out_ch_idxs = dense_chs[w_name]['out_chs']
+            num_out_ch = len(dense_out_ch_idxs)
+
+            new_param = Parameter(torch.Tensor(num_out_ch)).cuda()
+            new_mom_param = Parameter(torch.Tensor(num_out_ch)).cuda()
+
+            for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
+                with torch.no_grad():
+                    new_param[out_idx] = param[out_ch]
+                    new_mom_param[out_idx] = mom_param[out_ch]
+
+            param.data = new_param
+            optimizer.state[param]['momentum_buffer'].data = new_mom_param
+
+            # print("[{}]: {} >> {}".format(name, dims[0], num_out_ch))
 
     # Change moving_mean and moving_var of BN
     for name, buf in model.named_buffers():
