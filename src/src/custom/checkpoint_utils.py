@@ -440,7 +440,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
                                 try:
                                     mom_param = mom_param_list[i]
                                     new_mom_param[out_idx, in_idx, :, :] = mom_param[out_ch, in_ch, :, :]
-                                except RuntimeError:
+                                except IndexError:
                                     print("\nTensor1 Size:")
                                     print(mom_param.size())
                                     print(", ")
