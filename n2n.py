@@ -44,7 +44,7 @@ class N2N(nn.Module):
         # 5
         avgpool = nn.AdaptiveAvgPool2d((1, 1))
         fc = nn.Linear(16, num_classes)
-        relu = nn.ReLU(inplace=True)
+        self.relu = nn.ReLU(inplace=True)
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
@@ -54,92 +54,115 @@ class N2N(nn.Module):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
         l = [conv1, bn1, conv2, bn2, conv3, bn3, conv4, bn4, conv5, bn5, conv6, bn6, conv7, bn7, conv8, bn8, conv9, bn9, avgpool, fc]
-        print(l)
+        #print(l)
         self.module_list = nn.ModuleList(l)
-        print("\n\n> moduleList:\n")
-        print(self.module_list)
+        #print("\n\n> moduleList:\n")
+        #print(self.module_list)
+
     def forward(self, x):
-        x = self.conv1(x)
-        x = self.bn1(x)
+
+        x = self.module_list[0](x)
+        x = self.module_list[1](x)
         _x = self.relu(x)
         i = 2
         while i > 0:
-            convStr = 'conv' + str(i)
-            names = self.__dict__.__getitem__('_modules')
+            if isinstance(self.module_list[i],nn.AdaptiveAvgPool2d()):
+                try:
+                    x = self.module_list[i](_x)
+                    x = x.view(-1, 16)
+                    x = self.module_list[i+1](x)
+                    return x
+                except RuntimeError:
+                    print("\n \n Oops!!!: ")
+                    print(i)
 
-            if convStr not in names:
-                # print("\nX.size:\n")
-                # print(_x.size(1))
-                # print("\n")
-                # print(_x.size(2))
-                # print("\n")
-                # print(_x.size(3))
-                # print("\n")
+            if isinstance(self.module_list[i], nn.Conv2d):
+                try:
+                    x = self.module_list[i](_x)
+                    i = i+1
+                except RuntimeError:
+                    print("\n \n Oops!!!: ")
+                    print(i)
 
-                x = self.avgpool(_x)
+            if isinstance(self.module_list[i], nn.BatchNorm2d):
+                try:
+                    x = self.module_list[i](x)
+                    i = i+1
+                except RuntimeError:
+                    print("\n \n Oops!!!: ")
+                    print(i)
 
-                # print("\nX.size:\n")
-                # print(x.size(1))
-                # print("\n")
-                # print(x.size(2))
-                # print("\n")
-                # print(x.size(3))
-                # print("\n")
-
-                #
-                #
-                x = x.view(-1, 16)
-                # #x = x.view(x.size(0), -1)
-                x = self.fc(x)
-                return x
-            # find the module with name convStr
-            for name, module in self.named_modules():
-                if name == convStr:
-                    try:
-                        x = module.forward(_x)
-                        break
-                    except RuntimeError:
-                        print("\n \n Oops!!! \n \n \n")
-                        print(convStr)
-            bnStr = 'bn' + str(i)
-            for name, module in self.named_modules():
-                if name == bnStr:
-                    try:
-                        x = module.forward(x)
-                        break
-                    except RuntimeError:
-                        print("\n \n Oops!!! \n \n \n")
-                        print(bnStr)
             x = self.relu(x)
-            i = i + 1
-            convStr = 'conv' + str(i)
-            for name, module in self.named_modules():
-                if name == convStr:
-                    try:
-                        x = module.forward(x)
-                        break
-                    except RuntimeError:
-                        print("\n \n Oops!!! \n \n \n")
-                        print(convStr)
 
-            bnStr = 'bn' + str(i)
+            if isinstance(self.module_list[i], nn.Conv2d):
+                try:
+                    x = self.module_list[i](x)
+                    i = i + 1
+                except RuntimeError:
+                    print("\n \n Oops!!!: ")
+                    print(i)
 
-            for name, module in self.named_modules():
-                if name == bnStr:
-                    try:
-                        x = module.forward(x)
-                        break
-                    except RuntimeError:
-                        print("\n \n Oops!!! \n \n \n")
-                        print(bnStr)
-            try:
-                _x = _x + x
-            except RuntimeError:
-                print("\n \n Oops!!  \n \n \n")
-                print('_x = _x + x')
-
+            if isinstance(self.module_list[i], nn.BatchNorm2d):
+                try:
+                    x = self.module_list[i](x)
+                    i = i+1
+                except RuntimeError:
+                    print("\n \n Oops!!!: ")
+                    print(i)
+            _x = _x + x
             _x = self.relu(_x)
-            i = i + 1
+            #         except RuntimeError:
+            #             print("\n \n Oops!!! \n \n \n")
+            #             print(convStr)
+            # if convStr not in names:
+            #
+            #     x = self.avgpool(_x)
+            #
+            #     x = self.fc(x)
+            #     return x
+            # # find the module with name convStr
+            # for name, module in self.named_modules():
+            #     if name == convStr:
+            #
+            # bnStr = 'bn' + str(i)
+            # for name, module in self.named_modules():
+            #     if name == bnStr:
+            #         try:
+            #             x = module.forward(x)
+            #             break
+            #         except RuntimeError:
+            #             print("\n \n Oops!!! \n \n \n")
+            #             print(bnStr)
+            # x = self.relu(x)
+            # i = i + 1
+            # convStr = 'conv' + str(i)
+            # for name, module in self.named_modules():
+            #     if name == convStr:
+            #         try:
+            #             x = module.forward(x)
+            #             break
+            #         except RuntimeError:
+            #             print("\n \n Oops!!! \n \n \n")
+            #             print(convStr)
+            #
+            # bnStr = 'bn' + str(i)
+            #
+            # for name, module in self.named_modules():
+            #     if name == bnStr:
+            #         try:
+            #             x = module.forward(x)
+            #             break
+            #         except RuntimeError:
+            #             print("\n \n Oops!!! \n \n \n")
+            #             print(bnStr)
+            # try:
+            #     _x = _x + x
+            # except RuntimeError:
+            #     print("\n \n Oops!!  \n \n \n")
+            #     print('_x = _x + x')
+            #
+            # _x = self.relu(_x)
+            # i = i + 1
 
     def deeper(self, model, positions):
         modelList = list(model.children())
