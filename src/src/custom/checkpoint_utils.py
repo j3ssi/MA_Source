@@ -15,7 +15,7 @@
  limitations under the License.
 """
 
-import os, sys
+import sys
 import torch
 from torch.nn.parameter import Parameter
 import torch.optim as optim
@@ -24,7 +24,6 @@ import torch.nn as nn
 
 import heapq
 
-sys.path.append('..')
 import src.src.models.cifar as models_cifar
 import src.src.models.imagenet as models_imagenet
 from .resnet_stages import *
@@ -33,13 +32,17 @@ from .rm_layers import getRmLayers
 # Packages to calculate inference cost
 from src.src.scripts.feature_size_cifar import cifar_feature_size, imagenet_feature_size
 
+sys.path.append('..')
+
+
 WORD_SIZE = 4
 MFLOPS = 1000000 / 2
 
 
-class Checkpoint():
+class Checkpoint:
     def __init__(self, arch, dataset, model_path, num_classes, depth=None):
         # print("{}, {}".format(models.__dict__, arch))
+        self.depth = depth
         self.arch = arch
         if dataset == 'imagnet':
             self.model = models_imagenet.__dict__[arch]()
@@ -77,14 +80,15 @@ def third_largest(numbers):
 
 def _getFilterData(model, target_lyr):
     fil_data = {}
-    for name, param in model.named_parameters():
-        if ('weight' in name) and ('conv' in name):
-            if any(i for i in target_lyr if i in name):
+    for i in range(0,len(model.modle_list)-1):
+        if isinstance(model.module_list, nn.Conv2d):
+            if target_lyr == model.module_list:
+                param = model.module_list[i].weight
                 dims = list(param.shape)
                 chs = []
                 for out_ch in range(dims[0]):
                     chs.append(param.data[out_ch, :, :, :].numpy().flatten())
-                fil_data[name] = chs
+                fil_data[i] = chs
     return fil_data
 
 
@@ -109,89 +113,74 @@ def _getConvStructSparsity(model, threshold, file_name, arch, dataset):
         fmap = cifar_feature_size[arch]
 
     tot_weights = 0
+    for i in range(0, len(model.module_list)-1)
+        layer = []
+        param = model.module_list[i].weight
+        dims = list(param.shape)
+        if isinstance( model.module_list[i], nn.Conv2d):
+            channel_map = np.zeros([dims[1], dims[0]])
+            filter_size = dims[2] * dims[3]
+            for in_ch in range(dims[1]):
+                fil_row = []
+                for out_ch in range(dims[0]):
+                    fil = param.data.numpy()[out_ch, in_ch, :, :]
+                    fil_max = np.absolute(fil).max()
+                    fil_row.append(fil_max)
+                    # if fil_max > threshold:
+                    if fil_max > 0.:
+                        channel_map[in_ch, out_ch] = 1
+                layer.append(fil_row)
 
-    for name, param in model.named_parameters():
-        if ('weight' in name) and ('conv' in name or 'fc' in name):
-            # Filter sparsity graph: Row(in_chs), Col(out_chs)
-            # Tensor dims = [out_chs, in_chs, fil_height, fil_width]
-            layer = []
-            dims = list(param.shape)
+        elif isinstance(model.module_list[i], nn.Linear):
+            channel_map = np.zeros([dims[1], dims[0]])
+            filter_size = 1
+            for in_ch in range(dims[1]):
+                fil_row = []
+                for out_ch in range(dims[0]):
+                    fil = param.data.numpy()[out_ch, in_ch]
+                    fil_max = np.absolute(fil)
+                    fil_row.append(fil_max)
+                    # if fil_max > threshold:
+                    if fil_max > 0.:
+                        channel_map[in_ch, out_ch] = 1
+                layer.append(fil_row)
 
-            if len(dims) == 4:
-                channel_map = np.zeros([dims[1], dims[0]])
-                filter_size = dims[2] * dims[3]
-                for in_ch in range(dims[1]):
-                    fil_row = []
-                    for out_ch in range(dims[0]):
-                        fil = param.data.numpy()[out_ch, in_ch, :, :]
-                        fil_max = np.absolute(fil).max()
-                        fil_row.append(fil_max)
-                        # if fil_max > threshold:
-                        if fil_max > 0.:
-                            channel_map[in_ch, out_ch] = 1
-                    layer.append(fil_row)
+        # ratio of non_zero weights
+        weights = param.data.numpy()
+        weight_density = float(weights[weights >= threshold].size) / weights.size
 
-            elif len(dims) == 2:
-                channel_map = np.zeros([dims[1], dims[0]])
-                filter_size = 1
-                for in_ch in range(dims[1]):
-                    fil_row = []
-                    for out_ch in range(dims[0]):
-                        fil = param.data.numpy()[out_ch, in_ch]
-                        fil_max = np.absolute(fil)
-                        fil_row.append(fil_max)
-                        # if fil_max > threshold:
-                        if fil_max > 0.:
-                            channel_map[in_ch, out_ch] = 1
-                    layer.append(fil_row)
+        tot_weights += weights[weights >= threshold].size
 
-            # ratio of non_zero weights
-            weights = param.data.numpy()
-            weight_density = float(weights[weights >= threshold].size) / weights.size
+        sparse_val_map[conv_id] = np.array(layer)
+        sparse_bi_map[conv_id] = channel_map
 
-            tot_weights += weights[weights >= threshold].size
+        rows = channel_map.max(axis=1)  # in_channels
+        cols = channel_map.max(axis=0)  # out_channels
 
-            sparse_val_map[conv_id] = np.array(layer)
-            sparse_bi_map[conv_id] = channel_map
 
-            rows = channel_map.max(axis=1)  # in_channels
-            cols = channel_map.max(axis=0)  # out_channels
+        num_dense_out_ch = float(np.count_nonzero(cols))
+        num_dense_in_ch = float(np.count_nonzero(rows))
 
-            #      if 'conv' in name or 'fc' in name:
-            #        if file_name != None:
-            #          out_file.write("\n{}:{}, ".format(name, 'i_ch'))
-            #          for row in rows:
-            #            out_file.write("{},".format(row))
-            #          out_file.write("\n{}:{}, ".format(name, 'o_ch'))
-            #          for col in cols:
-            #            out_file.write("{},".format(col))
-            #        else:
-            #          print ("{}:{}, {}".format(name, 'i_ch', rows))
-            #          print ("{}:{}, {}".format(name, 'o_ch', cols))
+        out_density = num_dense_out_ch / len(cols)
+        in_density = num_dense_in_ch / len(rows)
 
-            num_dense_out_ch = float(np.count_nonzero(cols))
-            num_dense_in_ch = float(np.count_nonzero(rows))
+        conv_struct_density[conv_id] = {'in_ch': in_density, 'out_ch': out_density}
+        conv_rand_density[conv_id] = weight_density
+        # print("{}: {}".format(name, weight_density))
 
-            out_density = num_dense_out_ch / len(cols)
-            in_density = num_dense_in_ch / len(rows)
+        model_size += num_dense_out_ch * num_dense_in_ch * filter_size  # Add filters
+        model_size += num_dense_out_ch  # Add bias
 
-            conv_struct_density[conv_id] = {'in_ch': in_density, 'out_ch': out_density}
-            conv_rand_density[conv_id] = weight_density
-            # print("{}: {}".format(name, weight_density))
+        # Calculate inference cost = (CRS)(K)(NPQ)
+        #fmap_name = name.split('module.')[1].split('.weight')[0]
+        if isinstance(model.module_list[i], nn.Conv2d):
+            inf_cost = (num_dense_in_ch * dims[2] * dims[3]) * (num_dense_out_ch) * (fmap[fmap_name][1] ** 2)
+        else:
+            inf_cost = (num_dense_in_ch * num_dense_out_ch)
+        # print("{}, {}, {}".format(fmap_name, num_dense_in_ch, num_dense_out_ch))
 
-            model_size += num_dense_out_ch * num_dense_in_ch * filter_size  # Add filters
-            model_size += num_dense_out_ch  # Add bias
-
-            # Calculate inference cost = (CRS)(K)(NPQ)
-            fmap_name = name.split('module.')[1].split('.weight')[0]
-            if len(dims) == 4:
-                inf_cost = (num_dense_in_ch * dims[2] * dims[3]) * (num_dense_out_ch) * (fmap[fmap_name][1] ** 2)
-            elif len(dims) == 2:
-                inf_cost = (num_dense_in_ch * num_dense_out_ch)
-            # print("{}, {}, {}".format(fmap_name, num_dense_in_ch, num_dense_out_ch))
-
-            conv_id += 1
-            acc_inf_cost += inf_cost
+        conv_id += 1
+        acc_inf_cost += inf_cost
 
     print("tot_weights:{}".format(tot_weights))
 
@@ -215,25 +204,20 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
     # print ("[INFO] Force the sparse filters to zero...")
     dense_chs, chs_temp, idx = {}, {}, 0
 
-    for name, param in model.named_parameters():
-        dims = list(param.shape)
-        if (('conv' in name) or ('fc' in name)) and ('weight' in name):
-
+    for i in range(0, len(model.module_list)):
+#    for name, param in model.named_parameters():
+        paramModule = model.module_list[i]
+        dims = list(paramModule.shape)
+        if isinstance(paramModule, nn.Conv2d) or isinstance(paramModule, nn.Linear):
             with torch.no_grad():
+                param =paramModule.weight
                 param = torch.where(param < threshold, torch.tensor(0.).cuda(), param)
 
             dense_in_chs, dense_out_chs = [], []
-            if param.dim() == 4:
-                if 'conv' in name:
 
-                    try:
-                        conv_dw = int(name.split('.')[1].split('conv')[1]) % 2 == 0
-                        break
-                    except IndexError:
-                        print("\nindex out of bound. Name: ")
-                        print(name)
-                else:
-                    conv_dw = False
+
+            if isinstance(paramModule, nn.Conv2d):
+                conv_dw = True
                 # Forcing sparse input channels to zero
                 for c in range(dims[1]):
                     if param[:, c, :, :].abs().max() > 0:
@@ -245,13 +229,13 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
                         dense_out_chs.append(c)
 
             # Forcing input channels of FC layer to zero
-            elif param.dim() == 2:
+            elif isinstance(paramModule, nn.Linear):
                 # Last FC layers (fc, fc3): Remove only the input neurons
                 for c in range(dims[1]):
                     if param[:, c].abs().max() > 0:
                         dense_in_chs.append(c)
                 # FC layer in the middle remove their output neurons
-                if any(i for i in ['fc1', 'fc2'] if i in name):
+                if i < len(model.module_list)
                     for c in range(dims[0]):
                         if param[c, :].abs().max() > 0:
                             dense_out_chs.append(c)
@@ -259,9 +243,9 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
                     # [fc, fc3] output channels (class probabilities) are all dense
                     dense_out_chs = [c for c in range(dims[0])]
 
-            chs_temp[idx] = {'name': name, 'in_chs': dense_in_chs, 'out_chs': dense_out_chs}
+            chs_temp[idx] = {'name': i, 'in_chs': dense_in_chs, 'out_chs': dense_out_chs}
             idx += 1
-            dense_chs[name] = {'in_chs': dense_in_chs, 'out_chs': dense_out_chs, 'idx': idx}
+            dense_chs[i] = {'in_chs': dense_in_chs, 'out_chs': dense_out_chs, 'idx': idx}
 
             # print the inter-layer tensor dim [out_ch, in_ch, feature_h, feature_w]
     #   if not reconf:
@@ -287,7 +271,7 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
             stages, ch_maps = stages_cifar['resnet32_flat'], []
         else:
             pass
-#            stages, ch_maps = stages_imagenet[arch], []
+        #            stages, ch_maps = stages_imagenet[arch], []
 
         # Within a residual branch >> Union of adjacent pairs
         adj_lyrs = stages[10]
@@ -418,12 +402,12 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
     # List of layers to remove
     rm_list = []
 
-    #print("==================")
-    #for key in optimizer.state:
+    # print("==================")
+    # for key in optimizer.state:
     #    print("==> {}, {}".format(key, type(key)))
 
-    #for name, param in model.named_parameters():
-    for i in range (0, len(model.module_list)):
+    # for name, param in model.named_parameters():
+    for i in range(0, len(model.module_list)-1):
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[model.module_list[i]]['momentum_buffer']
 
@@ -457,7 +441,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
                 elif len(dims) == 2:
                     new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
                     new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
-                    if i < len(model.module_list):
+                    if i < len(model.module_list)-1:
                         for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
                             for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
                                 with torch.no_grad():
@@ -478,7 +462,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
 
         # Change parameters of non-neural computing layers (BN, biases)
         else:
-            #w_name = name.replace('bias', 'weight').replace('bn', 'conv')
+            # w_name = name.replace('bias', 'weight').replace('bn', 'conv')
             dense_out_ch_idxs = dense_chs[i]['out_chs']
             num_out_ch = len(dense_out_ch_idxs)
 
