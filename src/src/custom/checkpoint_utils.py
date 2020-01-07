@@ -408,8 +408,6 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
     mom_param_list = []
     new_mom_param_list = []
     for name, param in model.named_parameters():
-        print("\n>i: ")
-        print(i)
         # Get Momentum parameters to adjust
         mom_param_list.append( optimizer.state[param]['momentum_buffer'] )
 
