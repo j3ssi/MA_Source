@@ -432,31 +432,32 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
                  # Generate a new dense tensor and replace (Convolution layer)
                  if len(dims) == 4:
                      new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
-                     new_mom_param_list[i] = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
+                     new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
 
                      for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
                          for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
                              with torch.no_grad():
                                  new_param[out_idx, in_idx, :, :] = param[out_ch, in_ch, :, :]
-                                 new_mom_param_list[i][out_idx, in_idx, :, :] = mom_param_list[i][out_ch, in_ch, :, :]
+                                 new_mom_param[out_idx, in_idx, :, :] = mom_param_list[i][out_ch, in_ch, :, :]
 
                  # Generate a new dense tensor and replace (FC layer)
                  elif len(dims) == 2:
                      new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
-                     new_mom_param_list[i] = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
+                     new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
                      if i < len(model.module_list)-1:
                          for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
                              for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
                                  with torch.no_grad():
                                      new_param[out_idx, in_idx] = param[out_ch, in_ch]
-                                     new_mom_param_list[i][out_idx, in_idx] = mom_param_list[i][out_ch, in_ch]
+                                     new_mom_param[out_idx, in_idx] = mom_param_list[i][out_ch, in_ch]
                      else:
                          for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
                              with torch.no_grad():
                                  new_param[:, in_idx] = param[:, in_ch]
-                                 new_mom_param_list[i][:, in_idx] = mom_param_list[i][:, in_ch]
+                                 new_mom_param[:, in_idx] = mom_param_list[i][:, in_ch]
                  else:
                      assert True, "Wrong tensor dimension: {} at layer {}".format(dims, name)
+                 new_mom_param_list.append(new_mom_param)
 
                  param.data = new_param
         #
