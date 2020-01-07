@@ -402,9 +402,9 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
     # List of layers to remove
     rm_list = []
 
-    # print("==================")
-    # for key in optimizer.state:
-    #    print("==> {}, {}".format(key, type(key)))
+    print("==================")
+    for key in optimizer.state:
+        print("==> {}, {}".format(key, type(key)))
 
     # for name, param in model.named_parameters():
     for i in range(0, len(model.module_list)-1):
