@@ -437,16 +437,18 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
                         for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
                             with torch.no_grad():
                                 new_param[out_idx, in_idx, :, :] = param[out_ch, in_ch, :, :]
-                                mom_param = mom_param_list[i]
-                                new_mom_param[out_idx, in_idx, :, :] = mom_param[out_ch, in_ch, :, :]
-                                print("\nTensor1 Size:")
-                                print(mom_param.size())
-                                print(", ")
-                                print(out_idx)
-                                print(", ")
-                                print(in_idx)
-                                print("\nTensor2 Size:")
-                                print(new_mom_param.size())
+                                try:
+                                    mom_param = mom_param_list[i]
+                                    new_mom_param[out_idx, in_idx, :, :] = mom_param[out_ch, in_ch, :, :]
+                                except RuntimeError:
+                                    print("\nTensor1 Size:")
+                                    print(mom_param.size())
+                                    print(", ")
+                                    print(out_idx)
+                                    print(", ")
+                                    print(in_idx)
+                                    print("\nTensor2 Size:")
+                                    print(new_mom_param.size())
                 # Generate a new dense tensor and replace (FC layer)
                 elif len(dims) == 2:
                     new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
