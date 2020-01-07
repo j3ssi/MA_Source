@@ -235,7 +235,7 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
                     if param[:, c].abs().max() > 0:
                         dense_in_chs.append(c)
                 # FC layer in the middle remove their output neurons
-                if i < len(model.module_list)
+                if i < len(model.module_list)-1:
                     for c in range(dims[0]):
                         if param[c, :].abs().max() > 0:
                             dense_out_chs.append(c)
