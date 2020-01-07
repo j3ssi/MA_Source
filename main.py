@@ -228,6 +228,8 @@ def main():
 
     # Train and val
     for epochNet2Net in range(1, 3):
+        for name, param in model.named_parameters():
+            print(name, param.data)
         print("\n Net 2 Net Durchläufe:")
         print(epochNet2Net)
 
