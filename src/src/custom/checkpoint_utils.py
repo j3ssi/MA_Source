@@ -51,7 +51,7 @@ class Checkpoint:
         self.model = torch.nn.ModuleList
         checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
         self.model.load_state_dict(checkpoint['state_dict'])
-        self.optimizer = optim.SGD(self.model.module_list.parameters(), lr=0.1, momentum=0.9, weight_decay=0.005)
+        self.optimizer = optim.SGD(self.model.parameters(), lr=0.1, momentum=0.9, weight_decay=0.005)
         self.optimizer.load_state_dict(checkpoint['optimizer'])
         self.epoch = checkpoint['epoch']
 
