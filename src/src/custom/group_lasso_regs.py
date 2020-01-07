@@ -16,6 +16,7 @@
 """
 
 import torch
+import torch.nn as nn
 
 """ A single global group-lasso regularization coefficient
 # 1. Exclude depth-wise separable convolution from regularization
@@ -25,41 +26,38 @@ import torch
 # arch: architecture name
 # lasso_penalty: group lasso regularization penalty
 """
+
+
 def get_group_lasso_global(model, arch):
     lasso_in_ch = []
     lasso_out_ch = []
 
-    for name, param in model.module_list.named_parameters():
+    #for name, param in model.module_list.named_parameters():
+    for i in range(1, len(model.module_list)):
         # Lasso added to only the neuronal layers
-        if ('weight' in name) and any([i for i in ['conv', 'fc'] if i in name]):
-            if param.dim() == 4:
-               #print("\nName:\n")
-                #print(name.split('.'))
-                conv_dw = int(name.split('.')[0].split('conv')[1]) %2 == 0
-                add_lasso = ('mobilenet' not in arch) or ('mobilenet' in arch and not conv_dw)
+        if isinstance(model.module_list[i], nn.Conv2d):
+            weight = model.module_list[i].weight
 
-                # Exclude depth-wise convolution layers from regularization
-                if add_lasso:
-                    if 'conv1.' not in name:
-                        _in = param.pow(2).sum(dim=[0,2,3])
-                        lasso_in_ch.append( _in )
+            if i > 1:
+                _in = weight.pow(2).sum(dim=[0, 2, 3])
+                lasso_in_ch.append(_in)
+            _out = weight.pow(2).sum(dim=[1, 2, 3])
+            lasso_out_ch.append(_out)
 
-                    _out = param.pow(2).sum(dim=[1,2,3])
-                    lasso_out_ch.append( _out )
+        if isinstance(model.module_list[i], nn.Linear) and model.module_list[i + 1] is not None:
+            weight = model.module_list[i].weight
+            lasso_out_ch.append(weight.pow(2).sum(dim=[1]))
+        elif isinstance(model.module_list[i], nn.Linear):
+            weight = model.module_list[i].weight
+            lasso_in_ch.append(weight.pow(2).sum(dim=[0]))
 
-            elif param.dim() == 2:
-                # Multi-FC-layer based classifier (only fc or fc3 are the last layers)
-                if ('fc1' in name) or ('fc2' in name):
-                    lasso_out_ch.append( param.pow(2).sum(dim=[1]) )
-                lasso_in_ch.append( param.pow(2).sum(dim=[0]) )
+    _lasso_in_ch = torch.cat(lasso_in_ch).cuda()
+    _lasso_out_ch = torch.cat(lasso_out_ch).cuda()
 
-    _lasso_in_ch         = torch.cat(lasso_in_ch).cuda()
-    _lasso_out_ch        = torch.cat(lasso_out_ch).cuda()
-
-    lasso_penalty_in_ch  = _lasso_in_ch.add(1.0e-8).sqrt().sum()
+    lasso_penalty_in_ch = _lasso_in_ch.add(1.0e-8).sqrt().sum()
     lasso_penalty_out_ch = _lasso_out_ch.add(1.0e-8).sqrt().sum()
 
-    lasso_penalty        = lasso_penalty_in_ch + lasso_penalty_out_ch
+    lasso_penalty = lasso_penalty_in_ch + lasso_penalty_out_ch
     return lasso_penalty
 
 
@@ -71,6 +69,8 @@ def get_group_lasso_global(model, arch):
 # arch: architecture name
 # lasso_penalty: group lasso regularization penalty
 """
+
+
 def get_group_lasso_group(model, arch):
     lasso_in_ch = []
     lasso_out_ch = []
@@ -81,7 +81,7 @@ def get_group_lasso_group(model, arch):
         # Lasso added to only the neuronal layers
         if ('weight' in name) and any([i for i in ['conv', 'fc'] if i in name]):
             if param.dim() == 4:
-                conv_dw = int(name.split('.')[0].split('conv')[1]) %2 == 0
+                conv_dw = int(name.split('.')[0].split('conv')[1]) % 2 == 0
                 add_lasso = ('mobilenet' not in arch) or ('mobilenet' in arch and not conv_dw)
 
                 w_num_i_ch = param.shape[0] * param.shape[2] * param.shape[3]
@@ -90,38 +90,38 @@ def get_group_lasso_group(model, arch):
                 # Exclude depth-wise convolution layers from regularization
                 if add_lasso:
                     if 'conv1.' not in name:
-                        _in = param.pow(2).sum(dim=[0,2,3])
-                        lasso_in_ch.append( _in )
+                        _in = param.pow(2).sum(dim=[0, 2, 3])
+                        lasso_in_ch.append(_in)
                         penalty_tensor = torch.Tensor(param.shape[1]).cuda()
-                        lasso_in_ch_penalty.append( penalty_tensor.new_full([param.shape[1]], w_num_i_ch) )
+                        lasso_in_ch_penalty.append(penalty_tensor.new_full([param.shape[1]], w_num_i_ch))
 
-                    _out = param.pow(2).sum(dim=[1,2,3])
-                    lasso_out_ch.append( _out )
+                    _out = param.pow(2).sum(dim=[1, 2, 3])
+                    lasso_out_ch.append(_out)
                     penalty_tensor = torch.Tensor(param.shape[0]).cuda()
-                    lasso_out_ch_penalty.append( penalty_tensor.new_full([param.shape[0]], w_num_o_ch) )
+                    lasso_out_ch_penalty.append(penalty_tensor.new_full([param.shape[0]], w_num_o_ch))
 
             elif param.dim() == 2:
                 w_num_i_ch = param.shape[0]
                 w_num_o_ch = param.shape[1]
 
                 if ('fc1' in name) or ('fc2' in name):
-                    lasso_out_ch.append( param.pow(2).sum(dim=[1]) )
+                    lasso_out_ch.append(param.pow(2).sum(dim=[1]))
                     penalty_tensor = torch.Tensor(param.shape[0]).cuda()
-                    lasso_out_ch_penalty.append( penalty_tensor.new_full([param.shape[0]], w_num_o_ch) )
-                lasso_in_ch.append( param.pow(2).sum(dim=[0]) )
+                    lasso_out_ch_penalty.append(penalty_tensor.new_full([param.shape[0]], w_num_o_ch))
+                lasso_in_ch.append(param.pow(2).sum(dim=[0]))
                 penalty_tensor = torch.Tensor(param.shape[1]).cuda()
-                lasso_in_ch_penalty.append( penalty_tensor.new_full([param.shape[1]], w_num_i_ch) )
+                lasso_in_ch_penalty.append(penalty_tensor.new_full([param.shape[1]], w_num_i_ch))
 
-    _lasso_in_ch         = torch.cat(lasso_in_ch).cuda()
-    _lasso_out_ch        = torch.cat(lasso_out_ch).cuda()
-    lasso_penalty_in_ch  = _lasso_in_ch.add(1.0e-8).sqrt()
+    _lasso_in_ch = torch.cat(lasso_in_ch).cuda()
+    _lasso_out_ch = torch.cat(lasso_out_ch).cuda()
+    lasso_penalty_in_ch = _lasso_in_ch.add(1.0e-8).sqrt()
     lasso_penalty_out_ch = _lasso_out_ch.add(1.0e-8).sqrt()
 
     # Extra penalty using the number of parameters in each group
-    lasso_in_ch_penalty  = torch.cat(lasso_in_ch_penalty).cuda().sqrt()
-    lasso_out_ch_penalty  = torch.cat(lasso_out_ch_penalty).cuda().sqrt()
-    lasso_penalty_in_ch  = lasso_penalty_in_ch.mul(lasso_in_ch_penalty).sum()
+    lasso_in_ch_penalty = torch.cat(lasso_in_ch_penalty).cuda().sqrt()
+    lasso_out_ch_penalty = torch.cat(lasso_out_ch_penalty).cuda().sqrt()
+    lasso_penalty_in_ch = lasso_penalty_in_ch.mul(lasso_in_ch_penalty).sum()
     lasso_penalty_out_ch = lasso_penalty_out_ch.mul(lasso_out_ch_penalty).sum()
 
-    lasso_penalty        = lasso_penalty_in_ch + lasso_penalty_out_ch
+    lasso_penalty = lasso_penalty_in_ch + lasso_penalty_out_ch
     return lasso_penalty
