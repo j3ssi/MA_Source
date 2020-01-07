@@ -188,43 +188,43 @@ def main():
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
 
-    # Resume
-    title = 'cifar-10-' + args.arch
-    if args.resume:
-        # Load checkpoint.
-        #print('==> Resuming from checkpoint..')
-        assert os.path.isfile(args.resume), 'Error: no checkpoint directory found!'
-        args.checkpoint = os.path.dirname(args.resume)
-        checkpoint = torch.load(args.resume)
-        best_acc = checkpoint['best_acc']
-        start_epoch = checkpoint['epoch'] + 1
-
-        new_state_dict = OrderedDict()
-        for k, v in checkpoint['state_dict'].items():
-            name = k[7:]  # remove `module.`
-            new_state_dict[name] = v
-
-        model.load_state_dict(new_state_dict)
-
-        new_state_dict = OrderedDict()
-        for k, v in checkpoint['optimizer'].items():
-            name = k[7:]  # remove `module.`
-            new_state_dict[name] = v
-
-        optimizer.load_state_dict(checkpoint['optimizer'])
-        # logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
-    # else:
-    # logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
-    # logger.set_names(
-    #  ['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.', 'Lasso/Full_loss', 'TrainEpochTime(s)',
-    #  'TestEpochTime(s)'])
-
-    if args.evaluate:
-        # print('\nEvaluation only')
-        test_loss, test_acc = test(testloader, model, criterion, start_epoch, use_cuda)
-        # print(' Test Loss:  %.8f, Test Acc:  %.2f' % (test_loss, test_acc))
-        return
-
+    # # Resume
+    # title = 'cifar-10-' + args.arch
+    # if args.resume:
+    #     # Load checkpoint.
+    #     #print('==> Resuming from checkpoint..')
+    #     assert os.path.isfile(args.resume), 'Error: no checkpoint directory found!'
+    #     args.checkpoint = os.path.dirname(args.resume)
+    #     checkpoint = torch.load(args.resume)
+    #     best_acc = checkpoint['best_acc']
+    #     start_epoch = checkpoint['epoch'] + 1
+    #
+    #     new_state_dict = OrderedDict()
+    #     for k, v in checkpoint['state_dict'].items():
+    #         name = k[7:]  # remove `module.`
+    #         new_state_dict[name] = v
+    #
+    #     model.load_state_dict(new_state_dict)
+    #
+    #     new_state_dict = OrderedDict()
+    #     for k, v in checkpoint['optimizer'].items():
+    #         name = k[7:]  # remove `module.`
+    #         new_state_dict[name] = v
+    #
+    #     optimizer.load_state_dict(checkpoint['optimizer'])
+    #     # logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
+    # # else:
+    # # logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
+    # # logger.set_names(
+    # #  ['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.', 'Lasso/Full_loss', 'TrainEpochTime(s)',
+    # #  'TestEpochTime(s)'])
+    #
+    # if args.evaluate:
+    #     # print('\nEvaluation only')
+    #     test_loss, test_acc = test(testloader, model, criterion, start_epoch, use_cuda)
+    #     # print(' Test Loss:  %.8f, Test Acc:  %.2f' % (test_loss, test_acc))
+    #     return
+    #
 
     # Train and val
     for epochNet2Net in range(1, 3):
@@ -274,26 +274,26 @@ def main():
             # print("[INFO] Storing checkpoint...")
             #print("\nModel State Dict .to save : \n")
             #print(model.state_dict())
-            save_checkpoint({
-                'epoch': epoch,
-                'state_dict': model.state_dict(),
-                'acc': test_acc,
-                'best_acc': best_acc,
-                'optimizer': optimizer.state_dict(), },
-                is_best,
-                checkpoint=args.checkpoint)
-
-            # Leave unique checkpoint of pruned models druing training
-            if epoch % args.save_checkpoint == 0:
-                save_checkpoint({
-                    'epoch': epoch,
-                    'state_dict': model.state_dict(),
-                    'acc': test_acc,
-                    'best_acc': best_acc,
-                    'optimizer': optimizer.state_dict(), },
-                    is_best,
-                    checkpoint=args.checkpoint,
-                    filename='checkpoint' + str(epoch) + '.tar')
+            # save_checkpoint({
+            #     'epoch': epoch,
+            #     'state_dict': model.state_dict(),
+            #     'acc': test_acc,
+            #     'best_acc': best_acc,
+            #     'optimizer': optimizer.state_dict(), },
+            #     is_best,
+            #     checkpoint=args.checkpoint)
+            #
+            # # Leave unique checkpoint of pruned models druing training
+            # if epoch % args.save_checkpoint == 0:
+            #     save_checkpoint({
+            #         'epoch': epoch,
+            #         'state_dict': model.state_dict(),
+            #         'acc': test_acc,
+            #         'best_acc': best_acc,
+            #         'optimizer': optimizer.state_dict(), },
+            #         is_best,
+            #         checkpoint=args.checkpoint,
+            #         filename='checkpoint' + str(epoch) + '.tar')
 
             # print("%f \n"file=open("output.txt", "a") test_acc)
 
