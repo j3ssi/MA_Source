@@ -437,7 +437,8 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
                         for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
                             with torch.no_grad():
                                 new_param[out_idx, in_idx, :, :] = param[out_ch, in_ch, :, :]
-                                new_mom_param[out_idx, in_idx, :, :] = mom_param_list[i][out_ch, in_ch, :, :]
+                                mom_param = mom_param_list[i]
+                                new_mom_param[out_idx, in_idx, :, :] = mom_param[out_ch, in_ch, :, :]
 
                 # Generate a new dense tensor and replace (FC layer)
                 elif len(dims) == 2:
