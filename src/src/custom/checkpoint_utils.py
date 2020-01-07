@@ -207,10 +207,10 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
     for i in range(0, len(model.module_list)):
 #    for name, param in model.named_parameters():
         paramModule = model.module_list[i]
-        dims = list(paramModule.weight.shape)
         if isinstance(paramModule, nn.Conv2d) or isinstance(paramModule, nn.Linear):
+            dims = list(paramModule.weight.shape)
             with torch.no_grad():
-                param =paramModule.weight
+                param = paramModule.weight
                 param = torch.where(param < threshold, torch.tensor(0.).cuda(), param)
 
             dense_in_chs, dense_out_chs = [], []
