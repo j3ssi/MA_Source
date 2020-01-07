@@ -111,66 +111,9 @@ class N2N(nn.Module):
                     print(i)
             _x = _x + x
             _x = self.relu(_x)
-            #         except RuntimeError:
-            #             print("\n \n Oops!!! \n \n \n")
-            #             print(convStr)
-            # if convStr not in names:
-            #
-            #     x = self.avgpool(_x)
-            #
-            #     x = self.fc(x)
-            #     return x
-            # # find the module with name convStr
-            # for name, module in self.named_modules():
-            #     if name == convStr:
-            #
-            # bnStr = 'bn' + str(i)
-            # for name, module in self.named_modules():
-            #     if name == bnStr:
-            #         try:
-            #             x = module.forward(x)
-            #             break
-            #         except RuntimeError:
-            #             print("\n \n Oops!!! \n \n \n")
-            #             print(bnStr)
-            # x = self.relu(x)
-            # i = i + 1
-            # convStr = 'conv' + str(i)
-            # for name, module in self.named_modules():
-            #     if name == convStr:
-            #         try:
-            #             x = module.forward(x)
-            #             break
-            #         except RuntimeError:
-            #             print("\n \n Oops!!! \n \n \n")
-            #             print(convStr)
-            #
-            # bnStr = 'bn' + str(i)
-            #
-            # for name, module in self.named_modules():
-            #     if name == bnStr:
-            #         try:
-            #             x = module.forward(x)
-            #             break
-            #         except RuntimeError:
-            #             print("\n \n Oops!!! \n \n \n")
-            #             print(bnStr)
-            # try:
-            #     _x = _x + x
-            # except RuntimeError:
-            #     print("\n \n Oops!!  \n \n \n")
-            #     print('_x = _x + x')
-            #
-            # _x = self.relu(_x)
-            # i = i + 1
 
     def deeper(self, model, positions):
         modelList = list(model.children())
-        print("\nself.modules():\n")
-        #print(list(model.modules()))
-        print(list(self.modules()))
-        # print('\n\n')
-        # print(list(model.named_buffers()))
         # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
         for pos in positions:
             print("\n\nposition:")
