@@ -48,7 +48,7 @@ class Checkpoint:
             self.model = models_imagenet.__dict__[arch]()
         else:
             self.model = models_cifar.__dict__[arch](num_classes=num_classes)
-        self.model = torch.nn.ModuleList
+        self.model = torch.nn.ModuleList(self.model)
         checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
         self.model.load_state_dict(checkpoint['state_dict'])
         self.optimizer = optim.SGD(self.model.parameters(), lr=0.1, momentum=0.9, weight_decay=0.005)
