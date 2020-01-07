@@ -34,11 +34,11 @@ from src.src.scripts.feature_size_cifar import cifar_feature_size, imagenet_feat
 
 sys.path.append('..')
 
-
 WORD_SIZE = 4
 MFLOPS = 1000000 / 2
 
 from n2n import N2N
+
 
 class Checkpoint:
     def __init__(self, arch, dataset, model_path, num_classes, depth=None):
@@ -46,7 +46,7 @@ class Checkpoint:
         self.depth = depth
         self.arch = arch
         self.model = N2N(num_classes=num_classes)
-        #self.model = torch.nn.ModuleList(self.model)
+        # self.model = torch.nn.ModuleList(self.model)
         checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
         self.model.load_state_dict(checkpoint['state_dict'])
         self.optimizer = optim.SGD(self.model.parameters(), lr=0.1, momentum=0.9, weight_decay=0.005)
@@ -78,7 +78,7 @@ def third_largest(numbers):
 
 def _getFilterData(model, target_lyr):
     fil_data = {}
-    for i in range(0,len(model.modle_list)-1):
+    for i in range(0, len(model.modle_list) - 1):
         if isinstance(model.module_list, nn.Conv2d):
             if target_lyr == model.module_list:
                 param = model.module_list[i].weight
@@ -111,11 +111,11 @@ def _getConvStructSparsity(model, threshold, file_name, arch, dataset):
         fmap = cifar_feature_size[arch]
 
     tot_weights = 0
-    for i in range(0, len(model.module_list)-1):
+    for i in range(0, len(model.module_list) - 1):
         layer = []
         param = model.module_list[i].weight
         dims = list(param.shape)
-        if isinstance( model.module_list[i], nn.Conv2d):
+        if isinstance(model.module_list[i], nn.Conv2d):
             channel_map = np.zeros([dims[1], dims[0]])
             filter_size = dims[2] * dims[3]
             for in_ch in range(dims[1]):
@@ -155,7 +155,6 @@ def _getConvStructSparsity(model, threshold, file_name, arch, dataset):
         rows = channel_map.max(axis=1)  # in_channels
         cols = channel_map.max(axis=0)  # out_channels
 
-
         num_dense_out_ch = float(np.count_nonzero(cols))
         num_dense_in_ch = float(np.count_nonzero(rows))
 
@@ -170,7 +169,7 @@ def _getConvStructSparsity(model, threshold, file_name, arch, dataset):
         model_size += num_dense_out_ch  # Add bias
 
         # Calculate inference cost = (CRS)(K)(NPQ)
-        #fmap_name = name.split('module.')[1].split('.weight')[0]
+        # fmap_name = name.split('module.')[1].split('.weight')[0]
         if isinstance(model.module_list[i], nn.Conv2d):
             inf_cost = (num_dense_in_ch * dims[2] * dims[3]) * (num_dense_out_ch) * (fmap[i][1] ** 2)
         else:
@@ -203,7 +202,7 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
     dense_chs, chs_temp, idx = {}, {}, 0
 
     for i in range(0, len(model.module_list)):
-#    for name, param in model.named_parameters():
+        #    for name, param in model.named_parameters():
         paramModule = model.module_list[i]
         if isinstance(paramModule, nn.Conv2d) or isinstance(paramModule, nn.Linear):
             dims = list(paramModule.weight.shape)
@@ -212,7 +211,6 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
                 param = torch.where(param < threshold, torch.tensor(0.).cuda(), param)
 
             dense_in_chs, dense_out_chs = [], []
-
 
             if isinstance(paramModule, nn.Conv2d):
                 conv_dw = True
@@ -233,7 +231,7 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
                     if param[:, c].abs().max() > 0:
                         dense_in_chs.append(c)
                 # FC layer in the middle remove their output neurons
-                if i < len(model.module_list)-1:
+                if i < len(model.module_list) - 1:
                     for c in range(dims[0]):
                         if param[c, :].abs().max() > 0:
                             dense_out_chs.append(c)
@@ -401,65 +399,66 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
     rm_list = []
 
     print("==================")
-#    for key in optimizer.state:
-#        print("==> {}, {}".format(key, type(key)))
+    #    for key in optimizer.state:
+    #        print("==> {}, {}".format(key, type(key)))
 
     # for name, param in model.named_parameters():
     mom_param_list = []
     new_mom_param_list = []
     for name, param in model.named_parameters():
         # Get Momentum parameters to adjust
-        mom_param_list.append( optimizer.state[param]['momentum_buffer'] )
+        mom_param_list.append(optimizer.state[param]['momentum_buffer'])
 
-
-    #Change parameters of neural computing layers (Conv, FC)
-    for i in range (0,len(model.module_list)-1):
+    # Change parameters of neural computing layers (Conv, FC)
+    for i in range(0, len(model.module_list) - 1):
 
         param = model.module_list[i].weight
         if isinstance(model.module_list[i], nn.Conv2d) or isinstance(model.module_list[i], nn.Linear):
-             param = model.module_list[i].weight
-             dims = list(param.shape)
-             dense_in_ch_idxs = dense_chs[i]['in_chs']
-             dense_out_ch_idxs = dense_chs[i]['out_chs']
-             num_in_ch, num_out_ch = len(dense_in_ch_idxs), len(dense_out_ch_idxs)
+            param = model.module_list[i].weight
+            dims = list(param.shape)
+            print("\n>dims:")
+            print(dims)
+            dense_in_ch_idxs = dense_chs[i]['in_chs']
+            dense_out_ch_idxs = dense_chs[i]['out_chs']
+            num_in_ch, num_out_ch = len(dense_in_ch_idxs), len(dense_out_ch_idxs)
 
-             print("===> Dense inchs: [{}], outchs: [{}]".format(num_in_ch, num_out_ch))
+            print("===> Dense inchs: [{}], outchs: [{}]".format(num_in_ch, num_out_ch))
 
-             # Enlist layers with zero channels for removal
-             if num_in_ch == 0 or num_out_ch == 0:
-                 rm_list.append(i)
-             else:
-                 # Generate a new dense tensor and replace (Convolution layer)
-                 if len(dims) == 4:
-                     new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
-                     new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
+            # Enlist layers with zero channels for removal
+            if num_in_ch == 0 or num_out_ch == 0:
+                rm_list.append(i)
+            else:
+                # Generate a new dense tensor and replace (Convolution layer)
+                if len(dims) == 4:
+                    new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
+                    new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
 
-                     for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
-                         for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
-                             with torch.no_grad():
-                                 new_param[out_idx, in_idx, :, :] = param[out_ch, in_ch, :, :]
-                                 new_mom_param[out_idx, in_idx, :, :] = mom_param_list[i][out_ch, in_ch, :, :]
+                    for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
+                        for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
+                            with torch.no_grad():
+                                new_param[out_idx, in_idx, :, :] = param[out_ch, in_ch, :, :]
+                                new_mom_param[out_idx, in_idx, :, :] = mom_param_list[i][out_ch, in_ch, :, :]
 
-                 # Generate a new dense tensor and replace (FC layer)
-                 elif len(dims) == 2:
-                     new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
-                     new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
-                     if i < len(model.module_list)-1:
-                         for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
-                             for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
-                                 with torch.no_grad():
-                                     new_param[out_idx, in_idx] = param[out_ch, in_ch]
-                                     new_mom_param[out_idx, in_idx] = mom_param_list[i][out_ch, in_ch]
-                     else:
-                         for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
-                             with torch.no_grad():
-                                 new_param[:, in_idx] = param[:, in_ch]
-                                 new_mom_param[:, in_idx] = mom_param_list[i][:, in_ch]
-                 else:
-                     assert True, "Wrong tensor dimension: {} at layer {}".format(dims, name)
-                 new_mom_param_list.append(new_mom_param)
+                # Generate a new dense tensor and replace (FC layer)
+                elif len(dims) == 2:
+                    new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
+                    new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
+                    if i < len(model.module_list) - 1:
+                        for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
+                            for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
+                                with torch.no_grad():
+                                    new_param[out_idx, in_idx] = param[out_ch, in_ch]
+                                    new_mom_param[out_idx, in_idx] = mom_param_list[i][out_ch, in_ch]
+                    else:
+                        for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
+                            with torch.no_grad():
+                                new_param[:, in_idx] = param[:, in_ch]
+                                new_mom_param[:, in_idx] = mom_param_list[i][:, in_ch]
+                else:
+                    assert True, "Wrong tensor dimension: {} at layer {}".format(dims, name)
+                new_mom_param_list.append(new_mom_param)
 
-                 param.data = new_param
+                param.data = new_param
         #
         #         print("[{}]: {} >> {}".format(i, dims, list(new_param.shape)))
         #
@@ -482,12 +481,11 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         #
         #     # print("[{}]: {} >> {}".format(name, dims[0], num_out_ch))
 
-    i=0
+    i = 0
     for name, param in model.named_parameters():
         # Get Momentum parameters to adjust
         optimizer.state[param]['momentum_buffer'] = new_mom_param_list[i]
         i = i + 1
-
 
     # Change moving_mean and moving_var of BN
     for name, buf in model.named_buffers():
