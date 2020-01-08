@@ -401,14 +401,14 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
     # List of layers to remove
     rm_list = []
 
-    print("==================")
+    #print("==================")
     #    for key in optimizer.state:
     #        print("==> {}, {}".format(key, type(key)))
 
     for name, param in model.named_parameters():
         # Get Momentum parameters to adjust
-        print("\nName des Parameters:")
-        print(name)
+        #print("\nName des Parameters:")
+        #print(name)
         mom_param = optimizer.state[param]['momentum_buffer']
         # Change parameters of neural computing layers (Conv, FC)
         if name.startswith("module") and ('weight' in name):
@@ -419,8 +419,8 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
             if not isinstance(model.module_list[conv_dw], nn.Conv2d):
                 conv_dw = False
             dims = param.size()
-            print("\n>Size: ")
-            print(dims)
+            #print("\n>Size: ")
+            #print(dims)
             dense_in_ch_idxs = dense_chs[name]['in_chs']
             dense_out_ch_idxs = dense_chs[name]['out_chs']
             num_in_ch, num_out_ch = len(dense_in_ch_idxs), len(dense_out_ch_idxs)
@@ -464,7 +464,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
                 param.data = new_param
                 optimizer.state[param]['momentum_buffer'].data = new_mom_param
 
-                print("[{}]: {} >> {}".format(name, dims, list(new_param.shape)))
+                #print("[{}]: {} >> {}".format(name, dims, list(new_param.shape)))
 
         # Change parameters of non-neural computing layers (BN, biases)
         else:

@@ -119,11 +119,14 @@ class N2N(nn.Module):
             print("\n\nposition:")
             print(pos)
 
-            j = 2 * pos - 2
-            conv = modelList[j]
+            conv = model.module_list[pos*2]
+            bn = model.module_list[pos*2+1]
             conv2 = copy.deepcopy(conv)
-            modelList.insert(j + 2, conv2)
-            convStr = 'conv' + str(pos + 1)
+            bn2 = copy.deepcopy(bn)
+            model.module_list.insert(pos*2+2, conv2)
+            model.module_list.insert(pos*2+3, bn2)
+
+
             #print('\n\nconvStr:')
             #print(convStr)
            # if modelListNames[j+2] == convStr:
