@@ -9,7 +9,7 @@ import numpy as np
 from torch.autograd import Variable
 
 
-class N2N(nn.Module):_
+class N2N(nn.Module):
 
     def __init__(self, num_classes):
         super(N2N, self).__init__()
