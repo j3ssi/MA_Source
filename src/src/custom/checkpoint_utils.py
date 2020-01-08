@@ -412,17 +412,18 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         mom_param = optimizer.state[param]['momentum_buffer']
         # Change parameters of neural computing layers (Conv, FC)
         if name.startswith("module") and ('weight' in name):
-            conv_dw = name.split('.')
-            #conv_dw = int(name.split('.')[1].split('conv')[1]) % 2 == 0
-            print("\n>convdw")
-            print(conv_dw)
-
+            try:
+                conv_dw = int(name.split('.')[1])
+            except IndexError:
+                continue
+            if not isinstance(model.module_list[conv_dw], nn.Conv2d):
+                conv_dw = False
             dims = param.shape()
-            dense_in_ch_idxs = dense_chs[i]['in_chs']
-            dense_out_ch_idxs = dense_chs[i]['out_chs']
+            dense_in_ch_idxs = dense_chs[name]['in_chs']
+            dense_out_ch_idxs = dense_chs[name]['out_chs']
             num_in_ch, num_out_ch = len(dense_in_ch_idxs), len(dense_out_ch_idxs)
 
-            print("===> Dense inchs: [{}], outchs: [{}]".format(num_in_ch, num_out_ch))
+            #print("===> Dense inchs: [{}], outchs: [{}]".format(num_in_ch, num_out_ch))
 
             # Enlist layers with zero channels for removal
             if num_in_ch == 0 or num_out_ch == 0:
