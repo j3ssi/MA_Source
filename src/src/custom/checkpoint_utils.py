@@ -207,7 +207,7 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
         #print(name)
         if name.startswith('module'):
             i = int(name.split('.')[1])
-        if isinstance(model.module_list[i], nn.Conv2d) or isinstance(model.module_list[i],nn.BatchNorm2d):
+        if (isinstance(model.module_list[i], nn.Conv2d) or isinstance(model.module_list[i],nn.BatchNorm2d)) and ('weight' in name):
             #if (('conv' in name) or ('fc' in name)) and ('weight' in name):
 
             with torch.no_grad():
@@ -231,14 +231,14 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
                 for c in range(dims[1]):
                     if param[:, c].abs().max() > 0:
                         dense_in_chs.append(c)
-                # FC layer in the middle remove their output neurons
-                if any(i for i in ['fc1', 'fc2'] if i in name):
-                    for c in range(dims[0]):
-                        if param[c, :].abs().max() > 0:
-                            dense_out_chs.append(c)
-                else:
+                # # FC layer in the middle remove their output neurons
+                # if any(i for i in ['fc1', 'fc2'] if i in name):
+                #     for c in range(dims[0]):
+                #         if param[c, :].abs().max() > 0:
+                #             dense_out_chs.append(c)
+                #else:
                     # [fc, fc3] output channels (class probabilities) are all dense
-                    dense_out_chs = [c for c in range(dims[0])]
+                dense_out_chs = [c for c in range(dims[0])]
 
             chs_temp[idx] = {'name': name, 'in_chs': dense_in_chs, 'out_chs': dense_out_chs}
             idx += 1
