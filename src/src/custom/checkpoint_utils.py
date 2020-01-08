@@ -220,11 +220,15 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
             if param.dim() == 4:
                 for c in range(dims[1]):
                     if param[:, c, :, :].abs().max() > 0:
+                        print("\n>dense in:")
+                        print(name)
                         dense_in_chs.append(c)
 
                 # Forcing sparse output channels to zero
                 for c in range(dims[0]):
                     if param[c, :, :, :].abs().max() > 0:
+                        print("\n>dense out:")
+                        print(name)
                         dense_out_chs.append(c)
 
             # Forcing input channels of FC layer to zero
