@@ -203,8 +203,8 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
 
     for name, param in model.named_parameters():
         dims = list(param.shape)
-        print("\n>Name2:")
-        print(name)
+        #print("\n>Name2:")
+        #print(name)
         if (('conv' in name) or ('fc' in name)) and ('weight' in name):
             with torch.no_grad():
                 param = torch.where(param < threshold, torch.tensor(0.).cuda(), param)
@@ -416,7 +416,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
             conv_dw = int(name.split('.')[1].split('conv')[1]) % 2 == 0
             print("\n>convdw")
             print(conv_dw)
-            
+
             dims = param.shape()
             dense_in_ch_idxs = dense_chs[i]['in_chs']
             dense_out_ch_idxs = dense_chs[i]['out_chs']
