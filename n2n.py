@@ -90,7 +90,6 @@ class N2N(nn.Module):
     def forward(self, x):
 
         x = self.module_list[0](x)
-        self.module_list[0].name ='conv0'
         #print("\n >shape of x1:")
         #print(x.size())
         x = self.module_list[1](x)

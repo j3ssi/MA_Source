@@ -172,65 +172,19 @@ def main():
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
-    # Model
-   # print("==> creating model '{}'".format(args.arch))
-
     model = n2n.N2N(num_classes)
     model.cuda()
 
-    # Sanity check: print module name and shape
-    # for name, param in model.named_parameters():
-    #    print("{}, {}".format(name, list(param.shape)))
-
     cudnn.benchmark = True
-    # print('    Total params: %.2fM' % (sum(p.numel() for p in model.parameters()) / 1000000.0))
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
 
-    # # Resume
-    # title = 'cifar-10-' + args.arch
-    # if args.resume:
-    #     # Load checkpoint.
-    #     #print('==> Resuming from checkpoint..')
-    #     assert os.path.isfile(args.resume), 'Error: no checkpoint directory found!'
-    #     args.checkpoint = os.path.dirname(args.resume)
-    #     checkpoint = torch.load(args.resume)
-    #     best_acc = checkpoint['best_acc']
-    #     start_epoch = checkpoint['epoch'] + 1
-    #
-    #     new_state_dict = OrderedDict()
-    #     for k, v in checkpoint['state_dict'].items():
-    #         name = k[7:]  # remove `module.`
-    #         new_state_dict[name] = v
-    #
-    #     model.load_state_dict(new_state_dict)
-    #
-    #     new_state_dict = OrderedDict()
-    #     for k, v in checkpoint['optimizer'].items():
-    #         name = k[7:]  # remove `module.`
-    #         new_state_dict[name] = v
-    #
-    #     optimizer.load_state_dict(checkpoint['optimizer'])
-    #     # logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
-    # # else:
-    # # logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
-    # # logger.set_names(
-    # #  ['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.', 'Lasso/Full_loss', 'TrainEpochTime(s)',
-    # #  'TestEpochTime(s)'])
-    #
-    # if args.evaluate:
-    #     # print('\nEvaluation only')
-    #     test_loss, test_acc = test(testloader, model, criterion, start_epoch, use_cuda)
-    #     # print(' Test Loss:  %.8f, Test Acc:  %.2f' % (test_loss, test_acc))
-    #     return
-    #
-
     # Train and val
     for epochNet2Net in range(1, 3):
-        #for name, param in model.named_parameters():
-        #    print("\n>Name:")
-        #    print(name)
+        for name, param in model.named_parameters():
+            print("\n>Name:")
+            print(name)
         print("\n Net 2 Net Durchläufe:")
         print(epochNet2Net)
 
