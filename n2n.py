@@ -90,11 +90,11 @@ class N2N(nn.Module):
     def forward(self, x):
 
         x = self.module_list[0](x)
-        print("\n >shape of x1:")
-        print(x.size())
+        #print("\n >shape of x1:")
+        #print(x.size())
         x = self.module_list[1](x)
-        print("\n >shape of x2:")
-        print(x.size())
+        #print("\n >shape of x2:")
+        #print(x.size())
 
         _x = self.relu(x)
         i = 2
