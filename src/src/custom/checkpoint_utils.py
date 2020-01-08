@@ -205,15 +205,19 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
         dims = list(param.shape)
         #print("\n>Name2:")
         #print(name)
-        if (('conv' in name) or ('fc' in name)) and ('weight' in name):
+        if name.startswith('module'):
+            i = int(name.split('.')[1])
+        if isinstance(model.module_list[i], nn.Conv2d) or isinstance(model.module_list[i],nn.BatchNorm2d):
+            #if (('conv' in name) or ('fc' in name)) and ('weight' in name):
+
             with torch.no_grad():
                 param = torch.where(param < threshold, torch.tensor(0.).cuda(), param)
 
         dense_in_chs, dense_out_chs = [], []
 
         if param.dim() == 4:
-            if 'conv' in name:
-                conv_dw = int(name.split('.')[1].split('conv')[1]) % 2 == 0
+            if isinstance(model.module_list[i], nn.Conv2d):
+                conv_dw = int(name.split('.')[1]) % 2 == 1
             else:
                 conv_dw = False
             # Forcing sparse input channels to zero
@@ -413,7 +417,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         # Change parameters of neural computing layers (Conv, FC)
         if name.startswith("module") and ('weight' in name):
             try:
-                conv_dw = int(name.split('.')[1])%2
+                conv_dw = int(name.split('.')[1])%2 == 1
             except IndexError:
                 continue
             if not isinstance(model.module_list[conv_dw], nn.Conv2d):
