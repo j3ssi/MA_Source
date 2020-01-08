@@ -358,8 +358,8 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         #print(name)
         mom_param = optimizer.state[param]['momentum_buffer']
         # Change parameters of neural computing layers (Conv, FC)
-        if name.startswith("module") and ('weight' in name):
-            i =int(name.split('.')[1])
+        i = int(name.split('.')[1])
+        if (isinstance(model.module_list[i], nn.Conv2d) or isinstance(model.module_list[i], nn.BatchNorm2d )) and ('weight' in name):
             dims = param.size()
             #print("\n>Size: ")
             #print(dims)
