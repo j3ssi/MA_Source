@@ -288,8 +288,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         outputs = model.forward(inputs)
         #print("\n output shape:")
         #print(outputs.size())
-        print("\n> model:")
-        print(model)
+        #print("\n> model:")
+        #print(model)
 
         loss = criterion(outputs, targets)
 
