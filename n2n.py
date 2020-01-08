@@ -159,8 +159,8 @@ class N2N(nn.Module):
             #noise = torch.rand(0,0.5)
  #           conv2.weight.data += noise
             bn2 = copy.deepcopy(bn)
-            model.module_list.insert(pos*2+2, conv2)
-            model.module_list.insert(pos*2+3, bn2)
+            model.module_list.insert(pos*2, conv2)
+            model.module_list.insert(pos*2+1, bn2)
         return model
 
         #     if posStr in name:
