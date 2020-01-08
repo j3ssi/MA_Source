@@ -418,7 +418,9 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
                 continue
             if not isinstance(model.module_list[conv_dw], nn.Conv2d):
                 conv_dw = False
-            dims = param.shape()
+            dims = param.size()
+            print("\n>Size: ")
+            print(dims)
             dense_in_ch_idxs = dense_chs[name]['in_chs']
             dense_out_ch_idxs = dense_chs[name]['out_chs']
             num_in_ch, num_out_ch = len(dense_in_ch_idxs), len(dense_out_ch_idxs)
