@@ -219,6 +219,7 @@ def _makeSparse(model, threshold, threshold_type, arch, dataset, is_gating=False
     i = -1
     for name, param in model.named_parameters():
         i = i + 1
+        nameTmp = name
         name = altList[i]
         dims = list(param.shape)
         print("\n>Name2:")
@@ -343,7 +344,6 @@ def _makeSparse(model, threshold, threshold_type, arch, dataset, is_gating=False
 
                 # for name in dense_chs:
                 #  print ("[{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
-
                 return dense_chs, None
 
 
@@ -389,6 +389,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
     #  print("==> {}, {}, {}".format(key, type(key), optimizer.state[key]))
     for name, param in model.named_parameters():
         i = i + 1
+        nameTmp = name
         name = altList[i]
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[param]['momentum_buffer']
