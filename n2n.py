@@ -84,8 +84,8 @@ class N2N(nn.Module):
             elif isinstance(m, nn.BatchNorm2d):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
-        #print("\n\n> moduleList:\n")
-        #print(self.module_list)
+        print("\n\n> moduleList:\n")
+        print(self.module_list[0])
 
     def forward(self, x):
 
@@ -143,7 +143,6 @@ class N2N(nn.Module):
             _x = self.relu(_x)
 
     def deeper(self, model, positions):
-        modelList = list(model.children())
         # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
         for pos in positions:
             print("\n\nposition:")
