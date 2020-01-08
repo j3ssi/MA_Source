@@ -150,7 +150,7 @@ class N2N(nn.Module):
             conv = model.module_list[pos*2-2]
             bn = model.module_list[pos*2-1]
             conv2 = copy.deepcopy(conv)
-            noise = torch.Tensor(conv2.size())
+            noise = torch.Tensor(conv2.shape())
             noise = torch.rand(0,0.5)
             conv2.weight.data += noise
             bn2 = copy.deepcopy(bn)
