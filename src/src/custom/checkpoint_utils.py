@@ -207,7 +207,7 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
         #print(name)
         if name.startswith('module'):
             i = int(name.split('.')[1])
-        if isinstance(model.module_list[i], nn.Conv2d) or isinstance(model.module_list[i],nn.BatchNorm2d):
+            if isinstance(model.module_list[i], nn.Conv2d) or isinstance(model.module_list[i],nn.BatchNorm2d):
             #if (('conv' in name) or ('fc' in name)) and ('weight' in name):
 
             with torch.no_grad():
@@ -267,8 +267,8 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
     if True:
         if 'cifar' in dataset:
             stages, ch_maps = stages_cifar['resnet32_flat'], []
-        else:
-            stages, ch_maps = stages_imagenet[arch], []
+#        else:
+ #           stages, ch_maps = stages_imagenet[arch], []
 
         # Within a residual branch >> Union of adjacent pairs
         adj_lyrs = stages[10]
@@ -360,12 +360,6 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         # Change parameters of neural computing layers (Conv, FC)
         if name.startswith("module") and ('weight' in name):
             i =int(name.split('.')[1])
-                try:
-                conv_dw = int(name.split('.')[1])%2 == 1
-            except IndexError:
-                continue
-            if not isinstance(model.module_list[i], nn.Conv2d):
-                conv_dw = False
             dims = param.size()
             #print("\n>Size: ")
             #print(dims)
