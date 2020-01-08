@@ -143,6 +143,9 @@ class N2N(nn.Module):
                     print("\n \n Oops!!!: ")
                     print(i)
 
+            try:
+
+
             if  _x.size() != x.size:
                 _x = _x.view(x.size())
                 _x = _x + x
