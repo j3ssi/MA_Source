@@ -328,8 +328,8 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
                         # print ("Output_ch [{}]: {} => {}".format(lyr_name, len(dense_chs[lyr_name]['out_chs']), len(edges)))
                         dense_chs[lyr_name]['out_chs'] = edges
 
-            # for name in dense_chs:
-            #  print ("[{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
+            for name in dense_chs:
+                print ("[{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
             return dense_chs, None
 
@@ -348,15 +348,15 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
     print("[INFO] Squeezing the sparse model to dense one...")
 
     # Sanity check
-    for layer in dense_chs:
-        print("==> [{}]: {},{}".format(layer, len(dense_chs[layer]['in_chs']), len(dense_chs[layer]['out_chs'])))
+    #for layer in dense_chs:
+     #   print("==> [{}]: {},{}".format(layer, len(dense_chs[layer]['in_chs']), len(dense_chs[layer]['out_chs'])))
 
     # List of layers to remove
     rm_list = []
 
     print("==================")
-    for key in optimizer.state:
-        print("==> {}, {}".format(key, type(key)))
+    #for key in optimizer.state:
+    #    print("==> {}, {}".format(key, type(key)))
 
     for name, param in model.named_parameters():
         # Get Momentum parameters to adjust
