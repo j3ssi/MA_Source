@@ -323,6 +323,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
     end = time.time()
     input_size = 0
+    grp_lasso_coeff = None
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         # measure data loading time
         data_time.update(time.time() - end)
@@ -359,6 +360,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
             # Auto-tune the group-lasso coefficient @first training iteration
             #coeff_dir = os.path.join(args.coeff_container, 'cifar', args.arch)
+
             if init_batch:
                 args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
                         lasso_penalty * (1 - args.var_group_lasso_coeff))
@@ -369,9 +371,9 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
              #   with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
              #       f_coeff.write(str(grp_lasso_coeff.item()))
 
-#            else:
+            #else:
                 #with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
-                #    for line in f_coeff:
+            #   for line in f_coeff:
                 #        grp_lasso_coeff = float(line)
 
             lasso_penalty = lasso_penalty * grp_lasso_coeff
