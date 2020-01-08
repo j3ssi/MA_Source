@@ -48,11 +48,11 @@ def get_group_lasso_global(model):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
         #print(altList[-1])
 
-    i = -1
+    j = -1
     for name, param in model.named_parameters():
-        i = i + 1
+        j = j + 1
         nameTmp = name
-        name = altList[i]
+        name = altList[j]
         # Lasso added to only the neuronal layers
         if ('weight' in name) and any([i for i in ['conv', 'fc'] if i in name]):
             if param.dim() == 4:
