@@ -28,36 +28,59 @@ import torch.nn as nn
 """
 
 
-def get_group_lasso_global(model):
+def get_group_lasso_global(model, arch):
     lasso_in_ch = []
     lasso_out_ch = []
+    altList = []
+    for name, param in model.named_parameters():
+        i = int(name.split('.')[1])
+        if i % 2 == 0:
+            altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
 
-    #for name, param in model.module_list.named_parameters():
-    for i in range(0, len(model.module_list)-1):
+        if (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
+            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
+        elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
+            altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
+
+        if (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
+            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
+        elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
+            altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
+        #print(altList[-1])
+
+    i = -1
+    for name, param in model.named_parameters():
+        i = i + 1
+        nameTmp = name
+        name = altList[i]
         # Lasso added to only the neuronal layers
-        if isinstance(model.module_list[i], nn.Conv2d):
-            weight = model.module_list[i].weight
+        if ('weight' in name) and any([i for i in ['conv', 'fc'] if i in name]):
+            if param.dim() == 4:
+                conv_dw = int(name.split('.')[1].split('conv')[1]) %2 == 0
+                add_lasso = ('mobilenet' not in arch) or ('mobilenet' in arch and not conv_dw)
 
-            if i > 1:
-                _in = weight.pow(2).sum(dim=[0, 2, 3])
-                lasso_in_ch.append(_in)
-            _out = weight.pow(2).sum(dim=[1, 2, 3])
-            lasso_out_ch.append(_out)
+                # Exclude depth-wise convolution layers from regularization
+                if add_lasso:
+                    if 'conv1.' not in name:
+                        _in = param.pow(2).sum(dim=[0,2,3])
+                        lasso_in_ch.append( _in )
 
-        if isinstance(model.module_list[i], nn.Linear) and i < len(model.module_list):
-            weight = model.module_list[i].weight
-            lasso_out_ch.append(weight.pow(2).sum(dim=[1]))
-        elif isinstance(model.module_list[i], nn.Linear):
-            weight = model.module_list[i].weight
-            lasso_in_ch.append(weight.pow(2).sum(dim=[0]))
+                    _out = param.pow(2).sum(dim=[1,2,3])
+                    lasso_out_ch.append( _out )
 
-    _lasso_in_ch = torch.cat(lasso_in_ch).cuda()
-    _lasso_out_ch = torch.cat(lasso_out_ch).cuda()
+            elif param.dim() == 2:
+                # Multi-FC-layer based classifier (only fc or fc3 are the last layers)
+                if ('fc1' in name) or ('fc2' in name):
+                    lasso_out_ch.append( param.pow(2).sum(dim=[1]) )
+                lasso_in_ch.append( param.pow(2).sum(dim=[0]) )
 
-    lasso_penalty_in_ch = _lasso_in_ch.add(1.0e-8).sqrt().sum()
+    _lasso_in_ch         = torch.cat(lasso_in_ch).cuda()
+    _lasso_out_ch        = torch.cat(lasso_out_ch).cuda()
+
+    lasso_penalty_in_ch  = _lasso_in_ch.add(1.0e-8).sqrt().sum()
     lasso_penalty_out_ch = _lasso_out_ch.add(1.0e-8).sqrt().sum()
 
-    lasso_penalty = lasso_penalty_in_ch + lasso_penalty_out_ch
+    lasso_penalty        = lasso_penalty_in_ch + lasso_penalty_out_ch
     return lasso_penalty
 
 

@@ -216,9 +216,12 @@ def main():
             is_best = test_acc > best_acc
             best_acc = max(test_acc, best_acc)
             # deeper student training
-
-        print("\n\n > Deeper Student training ... ")
-        model = model.deeper(model, [8])
+        if best_acc< 0.5:
+            model = model.deeper(model, [2,4,6,8])
+        elif best_acc < 0.75:
+            model = model.deeper(model, [2,6])
+        elif best_acc < 0.95:
+            model = model.deeper(model, [6])
         model.cuda()
 
         print('Best acc:')
