@@ -185,7 +185,7 @@ def main():
 
         print("\n Net 2 Net Durchläufe:")
         print(epochNet2Net)
-
+        print(model.__dict__)
         print("\nParameters:\n")
         OrderedDict = model.__dict__.__getitem__('_parameters')
         for key, value in OrderedDict.items():
