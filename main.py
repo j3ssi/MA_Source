@@ -354,9 +354,9 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
         if args.en_group_lasso:
             if args.global_group_lasso:
-                lasso_penalty = get_group_lasso_global(model, args.arch)
+                lasso_penalty = get_group_lasso_global(model)
             else:
-                lasso_penalty = get_group_lasso_group(model, args.arch)
+                lasso_penalty = get_group_lasso_group(model)
 
             # Auto-tune the group-lasso coefficient @first training iteration
             coeff_dir = os.path.join(args.coeff_container, 'cifar', args.arch)
