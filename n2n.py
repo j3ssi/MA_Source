@@ -56,7 +56,9 @@ class N2N(nn.Module):
         self.module_list.append(bn9)
         # 5
         avgpool = nn.AdaptiveAvgPool2d((1, 1))
+        self.module_list.append(avgpool)
         fc = nn.Linear(16, num_classes)
+        self.module_list.append(fc)
         self.relu = nn.ReLU(inplace=True)
 
         for m in self.module_list:
