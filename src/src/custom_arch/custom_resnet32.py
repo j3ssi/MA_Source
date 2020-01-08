@@ -38,7 +38,9 @@ arch[66] = {'name':'avgpool', 'num':8}
 arch[67] = {'name':'relu'}
 arch[68] = {'name':'fc', 'out_chs':'num_classes'}
 
-def _genDenseArchResNet32(model, out_f_dir1, out_f_dir2, arch_name, dense_chs, chs_map, is_gating=False):
+
+def _genDenseArchResNet32(model, out_f_dir1, out_f_dir2, arch_name, dense_chs,
+                          chs_map, is_gating=False):
 
   # File heading
   ctx = 'import torch.nn as nn\n'
@@ -51,6 +53,8 @@ def _genDenseArchResNet32(model, out_f_dir1, out_f_dir2, arch_name, dense_chs, c
 
   # Layer definition
   for idx in sorted(arch):
+    print("\n> idx")
+    print(idx)
     ctx += lyr.getLayerDef(arch[idx])
 
   # Architecture sequential
