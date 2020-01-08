@@ -412,14 +412,8 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
 
         # Change parameters of non-neural computing layers (BN, biases)
         elif not isinstance(model.module_list[i], nn.AdaptiveAvgPool2d):
-
-
-
-            w_name = name.replace('bias', 'weight').replace('bn', 'conv')
-            print("\n> w_name: ")
-            print(w_name)
-            print(', ')
-            print(name)
+            if isinstance(model.module_list[i],nn.BatchNorm2d):
+                w_name = "module_list."+ str(i-1) + "weight"
             dense_out_ch_idxs = dense_chs[w_name]['out_chs']
             num_out_ch = len(dense_out_ch_idxs)
 
