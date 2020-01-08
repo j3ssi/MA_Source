@@ -213,7 +213,7 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
     altList[-2].replace('bn', 'fc')
     altList[-1].replace('bn','fc')
     print(altList)
-    int i=-1
+    i=-1
     for name, param in model.named_parameters():
         i=i+1
         name = altList[i]
