@@ -411,6 +411,13 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         mom_param = optimizer.state[param]['momentum_buffer']
         # Change parameters of neural computing layers (Conv, FC)
         if (('conv' in name) or ('fc' in name)) and ('weight' in name):
+            if 'conv' in name:
+                conv_dw = int(name.split('.')[1].split('conv')[1]) % 2 == 0
+                print("\n>convdw")
+                print(conv_dw)
+            else:
+                conv_dw = False
+
             dims = param.shape()
             dense_in_ch_idxs = dense_chs[i]['in_chs']
             dense_out_ch_idxs = dense_chs[i]['out_chs']
@@ -457,8 +464,8 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
 
                 print("[{}]: {} >> {}".format(name, dims, list(new_param.shape)))
 
-                # Change parameters of non-neural computing layers (BN, biases)
-            else:
+        # Change parameters of non-neural computing layers (BN, biases)
+        else:
             w_name = name.replace('bias', 'weight').replace('bn', 'conv')
             dense_out_ch_idxs = dense_chs[w_name]['out_chs']
             num_out_ch = len(dense_out_ch_idxs)
