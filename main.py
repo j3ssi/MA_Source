@@ -68,12 +68,12 @@ parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
                     help='momentum')
 parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')
-#parser.add_argument('-c', '--checkpoint', default='checkpoint', type=str, metavar='PATH',
-#                    help='path to save checkpoint (default: checkpoint)')
-#parser.add_argument('--resume', default='', type=str, metavar='PATH',
-#                    help='path to latest checkpoint (default: none)')
-#parser.add_argument('--arch', '-a', metavar='ARCH', default='resnet20',
-#                    choices=model_names, help='model architecture')
+parser.add_argument('-c', '--checkpoint', default='checkpoint', type=str, metavar='PATH',
+                    help='path to save checkpoint (default: checkpoint)')
+parser.add_argument('--resume', default='', type=str, metavar='PATH',
+                    help='path to latest checkpoint (default: none)')
+parser.add_argument('--arch', '-a', metavar='ARCH', default='resnet20',
+                    choices=model_names, help='model architecture')
 parser.add_argument('--manualSeed', type=int, help='manual seed')
 parser.add_argument('-e', '--evaluate', dest='evaluate', action='store_true',
                     help='evaluate model on validation set')
@@ -82,8 +82,8 @@ parser.add_argument('--gpu-id', default='0', type=str,
 
 # PruneTrain
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
-#parser.add_argument('--save_checkpoint', default=10, type=int,
-#                    help='Interval to save checkpoint')
+parser.add_argument('--save_checkpoint', default=10, type=int,
+                    help='Interval to save checkpoint')
 parser.add_argument('--sparse_interval', default=0, type=int,
                     help='Interval to force the value under threshold')
 parser.add_argument('--threshold', default=0.0001, type=float,
@@ -97,12 +97,12 @@ parser.add_argument('--var_group_lasso_coeff', default=0.1, type=float,
                     help='Ratio = group-lasso / (group-lasso + loss)')
 parser.add_argument('--grp_lasso_coeff', default=0.0005, type=float,
                     help='claim as a global param')
-#parser.add_argument('--arch_out_dir1', default=None, type=str,
-#                    help='directory to store the temporary architecture file')
-#parser.add_argument('--arch_out_dir2', default=None, type=str,
-#                    help='directory to architecture files matching to checkpoints ')
-#parser.add_argument('--arch_name', default='net.py', type=str,
-#                    help='name of the new architecture')
+parser.add_argument('--arch_out_dir1', default=None, type=str,
+                    help='directory to store the temporary architecture file')
+parser.add_argument('--arch_out_dir2', default=None, type=str,
+                    help='directory to architecture files matching to checkpoints ')
+parser.add_argument('--arch_name', default='net.py', type=str,
+                    help='name of the new architecture')
 parser.add_argument('--is_gating', default=False, action='store_true',
                     help='Use gating for residual network')
 parser.add_argument('--threshold_type', default='max', choices=['max', 'mean'], type=str,
@@ -138,9 +138,10 @@ best_acc = 0  # best test accuracy
 def main():
     #torch.autograd.set_detect_anomaly(True)
     global best_acc
-    start_epoch = 0
-#    if not os.path.isdir(args.checkpoint):
- #       mkdir_p(args.checkpoint)
+    start_epoch = args.start_epoch  # start from epoch 0 or last checkpoint epoch
+
+    if not os.path.isdir(args.checkpoint):
+        mkdir_p(args.checkpoint)
 
     # Data
     #print('==> Preparing dataset %s' % args.dataset)
@@ -323,7 +324,6 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
     end = time.time()
     input_size = 0
-    grp_lasso_coeff = None
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         # measure data loading time
         data_time.update(time.time() - end)
@@ -354,27 +354,26 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
         if args.en_group_lasso:
             if args.global_group_lasso:
-                lasso_penalty = get_group_lasso_global(model)
+                lasso_penalty = get_group_lasso_global(model, args.arch)
             else:
-                lasso_penalty = get_group_lasso_group(model)
+                lasso_penalty = get_group_lasso_group(model, args.arch)
 
             # Auto-tune the group-lasso coefficient @first training iteration
-            #coeff_dir = os.path.join(args.coeff_container, 'cifar', args.arch)
-
-            #if init_batch:
-            args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
+            coeff_dir = os.path.join(args.coeff_container, 'cifar', args.arch)
+            if init_batch:
+                args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
                         lasso_penalty * (1 - args.var_group_lasso_coeff))
-            grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
+                grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
 
-             #   if not os.path.exists(coeff_dir):
-             #       os.makedirs(coeff_dir)
-             #   with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
-             #       f_coeff.write(str(grp_lasso_coeff.item()))
+                if not os.path.exists(coeff_dir):
+                    os.makedirs(coeff_dir)
+                with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
+                    f_coeff.write(str(grp_lasso_coeff.item()))
 
-            #else:
-                #with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
-            #   for line in f_coeff:
-                #        grp_lasso_coeff = float(line)
+            else:
+                with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
+                    for line in f_coeff:
+                        grp_lasso_coeff = float(line)
 
             lasso_penalty = lasso_penalty * grp_lasso_coeff
         else:
