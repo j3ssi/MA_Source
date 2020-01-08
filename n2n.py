@@ -13,42 +13,51 @@ class N2N(nn.Module):
 
     def __init__(self, num_classes):
         super(N2N, self).__init__()
-
+        self.module_list = nn.ModuleList()
         conv1 = nn.Conv2d(3, 16, kernel_size=3, padding=1, bias=False, stride=1)
+        self.module_list.append(conv1)
         bn1 = nn.BatchNorm2d(16)
-
+        self.module_list.append(bn1)
         #1
         conv2 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+        self.module_list.append(conv2)
         bn2 = nn.BatchNorm2d(16)
+        self.module_list.append(bn2)
         conv3 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+        self.module_list.app(conv3)
         bn3 = nn.BatchNorm2d(16)
-
+        self.module_list.append(bn3)
         # 2
         conv4 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+        self.module_list.append(conv4)
         bn4 = nn.BatchNorm2d(16)
+        self.module_list.append(bn4)
         conv5 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+        self.module_list.append(conv5)
         bn5 = nn.BatchNorm2d(16)
-
+        self.module_list.append(bn5)
         # 3
         conv6 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+        self.module_list.append(conv6)
         bn6 = nn.BatchNorm2d(16)
+        self.module_list.append(bn6)
         conv7 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+        self.module_list.append(conv7)
         bn7 = nn.BatchNorm2d(16)
-
+        self.module_list.append(bn7)
         # 4
         conv8 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+        self.module_list.append(conv8)
         bn8 = nn.BatchNorm2d(16)
+        self.module_list.append(bn8)
         conv9 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+        self.module_list.append(conv9)
         bn9 = nn.BatchNorm2d(16)
-
+        self.module_list.append(bn9)
         # 5
         avgpool = nn.AdaptiveAvgPool2d((1, 1))
         fc = nn.Linear(16, num_classes)
         self.relu = nn.ReLU(inplace=True)
-
-        l = [conv1, bn1, conv2, bn2, conv3, bn3, conv4, bn4, conv5, bn5, conv6, bn6, conv7, bn7, conv8, bn8, conv9, bn9,
-             avgpool, fc]
-        self.module_list = nn.ModuleList(l)
 
         for m in self.module_list:
             if isinstance(m, nn.Conv2d):
@@ -125,48 +134,16 @@ class N2N(nn.Module):
             conv = model.module_list[pos*2]
             bn = model.module_list[pos*2+1]
             conv2 = copy.deepcopy(conv)
+
+            noise = np.random.normal(scale=5e-2 * conv2.weight.data.std(),
+                                     size=list(conv2.weight.size()))
+            conv2.weight.data += torch.FloatTensor(noise).type_as(conv2.weight.data)
+
             bn2 = copy.deepcopy(bn)
             model.module_list.insert(pos*2+2, conv2)
             model.module_list.insert(pos*2+3, bn2)
+        return model
 
-
-            #print('\n\nconvStr:')
-            #print(convStr)
-           # if modelListNames[j+2] == convStr:
-                #net is deeper, move all next layers first and then insert new conv layer
-                #insert is theroatically fine for this but the names of the layer are not updated
-            #    for k in range(j+2, len(modelList)):
-             #       name, module = modelListNames.__getitem__(k)
-              #      if 'conv' in name:
-               #         newName = 'conv' + str(k/2+1)
-                #    elif 'bn' in name:
-                 #       newName = 'bn' + str((k-1)/2+1)
-                  #  modelListNames[k] = (newName,module)
-            #modelListNames.insert(j + 2, (convStr, conv2))
-            bn = modelList[j + 1]
-            bn2 = copy.deepcopy(bn)
-            bnStr = 'bn' + str(pos + 1)
-            #modelListNames.insert(j + 3, (bnStr, bn2))
-            modelList.insert(j + 3, bn2)
-            #print("\n> modelListNames:\n")
-            #print(modelListNames)
-        newModel = nn.ModuleList(*modelList)
-        # newModel.add_module("buffer",buffer)
-        #for item in modelListNames:
-        #    j = modelListNames.index(item)
-        #    #print("\nitem: \n")
-
-#            if len(item[0]) < 2 and item[0] == 'c':
- #               #print('\nDrin!!!\n\n')
-  #              itemName = item[0:4]
-   #         elif len(item[0]) < 2 and item[0] == 'b':
-    #            itemName = item[0:2]
-
-
-        print("\nnew Model:\n")
-        print(list(newModel.modules()))
-        print()
-        return newModel
         #     if posStr in name:
         #         i = name.index(posStr)
         #         conv1 = module[i]
