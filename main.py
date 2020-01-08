@@ -188,8 +188,8 @@ def main():
 
         print("\nParameters:\n")
         OrderedDict = model.__dict__.__getitem__('_parameters')
-        for item in OrderedDict:
-            print(item)
+        for key, value in OrderedDict.items():
+            print(key, value)
             print("\n\n")
         for epoch in range(start_epoch, args.epochs + 1):
             adjust_learning_rate(optimizer, epoch)
