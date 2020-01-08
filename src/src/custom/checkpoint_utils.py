@@ -541,8 +541,8 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
 
     # Remove optimizer parameters
     # Adjuster: Absolute parameter location changes after each removal
-    for idx_adjuster, idx in enumerate(sorted(idx)):
-        del optimizer.param_groups[0]['params'][idx - idx_adjuster]
+        for idx_adjuster, idx in enumerate(sorted(idxs)):
+            del optimizer.param_groups[0]['params'][idx - idx_adjuster]
 
     # Sanity check => Print out optimizer parameters after change
     # print ("[INFO] ==== Size of parameter group (After)")
