@@ -220,7 +220,7 @@ def main():
         print(best_acc)
         print("\n\nnow deeper")
         if best_acc< 50:
-             model = model.deeper(model, [2,4,6,8])
+             model = model.deeper(model, [2,8])
         elif best_acc < 75:
              model = model.deeper(model, [2,6])
         elif best_acc < 95:
