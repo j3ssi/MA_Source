@@ -68,10 +68,10 @@ parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
                     help='momentum')
 parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')
-parser.add_argument('-c', '--checkpoint', default='checkpoint', type=str, metavar='PATH',
-                    help='path to save checkpoint (default: checkpoint)')
-parser.add_argument('--resume', default='', type=str, metavar='PATH',
-                    help='path to latest checkpoint (default: none)')
+#parser.add_argument('-c', '--checkpoint', default='checkpoint', type=str, metavar='PATH',
+#                    help='path to save checkpoint (default: checkpoint)')
+#parser.add_argument('--resume', default='', type=str, metavar='PATH',
+#                    help='path to latest checkpoint (default: none)')
 parser.add_argument('--arch', '-a', metavar='ARCH', default='resnet20',
                     choices=model_names, help='model architecture')
 parser.add_argument('--manualSeed', type=int, help='manual seed')
@@ -82,8 +82,8 @@ parser.add_argument('--gpu-id', default='0', type=str,
 
 # PruneTrain
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
-parser.add_argument('--save_checkpoint', default=10, type=int,
-                    help='Interval to save checkpoint')
+#parser.add_argument('--save_checkpoint', default=10, type=int,
+#                    help='Interval to save checkpoint')
 parser.add_argument('--sparse_interval', default=0, type=int,
                     help='Interval to force the value under threshold')
 parser.add_argument('--threshold', default=0.0001, type=float,
