@@ -139,8 +139,8 @@ def main():
     #torch.autograd.set_detect_anomaly(True)
     global best_acc
     start_epoch = 0
-    if not os.path.isdir(args.checkpoint):
-        mkdir_p(args.checkpoint)
+#    if not os.path.isdir(args.checkpoint):
+ #       mkdir_p(args.checkpoint)
 
     # Data
     #print('==> Preparing dataset %s' % args.dataset)
