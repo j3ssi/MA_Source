@@ -207,6 +207,8 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
         #print(name)
         if name.startswith('module'):
             i = int(name.split('.')[1])
+
+
         if ((2*i < len(model.module_list) and isinstance(model.module_list[i*2], nn.Conv2d)) or isinstance(model.module_list[i],nn.Linear)) and ('weight' in name):
             #if (('conv' in name) or ('fc' in name)) and ('weight' in name):
 
@@ -359,7 +361,8 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         mom_param = optimizer.state[param]['momentum_buffer']
         # Change parameters of neural computing layers (Conv, FC)
         i = int(name.split('.')[1])
-        if (isinstance(model.module_list[i], nn.Conv2d) or isinstance(model.module_list[i], nn.Linear )) and ('weight' in name):
+        if ((i*2 < len(model.module_list) and isinstance(model.module_list[i*2], nn.Conv2d)) or
+            isinstance(model.module_list[i], nn.Linear )) and ('weight' in name):
             dims = list(param.shape)
             #print("\n>Size: ")
             #print(dims)
