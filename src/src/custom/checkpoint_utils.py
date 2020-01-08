@@ -327,57 +327,6 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
 
             return dense_chs, None
 
-    # Non-residual networks
-    elif 'mobilenet' in arch:
-        for idx in sorted(chs_temp):
-            # From conv2 layer
-            if idx != 0:
-                # Depth-wise convolution layer: Matintain the union of adjacent layers' dense channels
-                if ((idx + 1) % 2 == 0) and ('fc' not in chs_temp[idx]['name']):
-                    edge = list(set().union(chs_temp[idx - 1]['out_chs'], chs_temp[idx + 1]['in_chs']))
-                    dense_chs[chs_temp[idx - 1]['name']]['out_chs'] = edge
-                    dense_chs[chs_temp[idx]['name']]['out_chs'] = edge
-                    dense_chs[chs_temp[idx + 1]['name']]['in_chs'] = edge
-
-                    ## Search the target DW-convolution layer and change group#
-                    conv_idx = 0
-                    for layer in model.modules():
-                        if isinstance(layer, nn.Conv2d):
-                            # Found the target conv-layer
-                            if idx == conv_idx:
-                                layer.groups = len(edge)
-                                break
-                            else:
-                                conv_idx += 1
-
-                elif 'fc' in chs_temp[idx]['name']:
-                    edge = list(set().union(chs_temp[idx]['in_chs'], chs_temp[idx - 1]['out_chs']))
-                    dense_chs[chs_temp[idx]['name']]['in_chs'] = edge
-                    dense_chs[chs_temp[idx - 1]['name']]['out_chs'] = edge
-
-        return dense_chs, None
-
-    # Non-residual networks
-    else:
-        for idx in sorted(chs_temp):
-            if idx != 0:
-                # Dense input channels <= previous layers's output channel granularity
-                if 'fc1' in chs_temp[idx]['name']:
-                    feature_size = 7 * 7
-                    edge = []
-                    for prev_dense_ch in dense_chs[chs_temp[idx - 1]['name']]['out_chs']:
-                        for i in range(feature_size):
-                            edge.append(prev_dense_ch * feature_size + i)
-                    dense_chs[chs_temp[idx]['name']]['in_chs'] = edge
-                else:
-                    if is_gating:
-                        edge = [x for x in chs_temp[idx - 1]['out_chs'] if x in chs_temp[idx]['in_chs']]
-                    else:
-                        edge = list(set().union(chs_temp[idx - 1]['out_chs'], chs_temp[idx]['in_chs']))
-
-                    dense_chs[chs_temp[idx - 1]['name']]['out_chs'] = edge
-                    dense_chs[chs_temp[idx]['name']]['in_chs'] = edge
-        return dense_chs, None
 
 
 """
