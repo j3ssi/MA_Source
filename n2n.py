@@ -85,7 +85,7 @@ class N2N(nn.Module):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
         print("\n\n> moduleList:\n")
-        print(self.module_list[0])
+        print(self.module_list)
 
     def forward(self, x):
 
