@@ -207,9 +207,9 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
         #print(name)
         if name.startswith('module'):
             i = int(name.split('.')[1])
-            if i*2 > len(model.module_list):
+            if not (isinstance(model.module_list[i*2],nn.Conv2d) or isinstance(model.module_list[i*2],nn.BatchNorm2d)):
                 continue
-        if (isinstance(model.module_list[i*2], nn.Conv2d) or isinstance(model.module_list[i*2+i],nn.BatchNorm2d)) and ('weight' in name):
+        if (isinstance(model.module_list[i*2], nn.Conv2d) or isinstance(model.module_list[i],nn.Linear)) and ('weight' in name):
             #if (('conv' in name) or ('fc' in name)) and ('weight' in name):
 
             with torch.no_grad():
