@@ -334,8 +334,8 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
                         # print ("Output_ch [{}]: {} => {}".format(lyr_name, len(dense_chs[lyr_name]['out_chs']), len(edges)))
                         dense_chs[lyr_name]['out_chs'] = edges
 
-            for name in dense_chs:
-                print ("[{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
+            #for name in dense_chs:
+            #    print ("[{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
             return dense_chs, None
 
@@ -360,14 +360,14 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
     # List of layers to remove
     rm_list = []
 
-    print("==================")
+    #print("==================")
     #for key in optimizer.state:
     #    print("==> {}, {}".format(key, type(key)))
 
     for name, param in model.named_parameters():
         # Get Momentum parameters to adjust
-        print("\nName des Parameters:")
-        print(name)
+        #print("\nName des Parameters:")
+        #print(name)
         mom_param = optimizer.state[param]['momentum_buffer']
         # Change parameters of neural computing layers (Conv, FC)
         i = int(name.split('.')[1])
