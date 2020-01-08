@@ -69,6 +69,8 @@ class N2N(nn.Module):
             if isinstance(self.module_list[i],nn.AdaptiveAvgPool2d):
                 try:
                     x = self.module_list[i](_x)
+                    print("\n>X1: ")
+                    print(x)
                     x = x.view(-1, 16)
                     x = self.module_list[i+1](x)
                     return x
@@ -79,6 +81,10 @@ class N2N(nn.Module):
             if isinstance(self.module_list[i], nn.Conv2d):
                 try:
                     x = self.module_list[i](_x)
+                    print("\n>X ")
+                    print(i)
+                    print(": ")
+                    print(x)
                     i = i+1
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
@@ -88,6 +94,11 @@ class N2N(nn.Module):
                 try:
                     x = self.module_list[i](x)
                     i = i+1
+                    print("\n>X ")
+                    print(i)
+                    print(": ")
+                    print(x)
+
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
                     print(i)
@@ -97,7 +108,13 @@ class N2N(nn.Module):
             if isinstance(self.module_list[i], nn.Conv2d):
                 try:
                     x = self.module_list[i](x)
+                    print("\n>X ")
+                    print(i)
+                    print(": ")
+                    print(x)
+
                     i = i + 1
+
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
                     print(i)
@@ -105,6 +122,11 @@ class N2N(nn.Module):
             if isinstance(self.module_list[i], nn.BatchNorm2d):
                 try:
                     x = self.module_list[i](x)
+                    print("\n>X ")
+                    print(i)
+                    print(": ")
+                    print(x)
+
                     i = i+1
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
