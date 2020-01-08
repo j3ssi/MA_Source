@@ -142,7 +142,9 @@ class N2N(nn.Module):
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
                     print(i)
-            _x = _x + x
+            if _x.size() != x.size:
+                x = x.view(_x.size())
+                _x = _x + x
             _x = self.relu(_x)
 
     def deeper(self, model, positions):
