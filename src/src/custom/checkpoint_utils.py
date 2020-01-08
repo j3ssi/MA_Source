@@ -374,7 +374,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
     altList[-2].replace('bn', 'fc')
     altList[-1].replace('bn','fc')
     print(altList)
-    int i=-1
+    i=-1
 
     # print("==================")
     # for key in optimizer.state:
