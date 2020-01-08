@@ -136,7 +136,7 @@ best_acc = 0  # best test accuracy
 
 
 def main():
-    #torch.autograd.set_detect_anomaly(True)
+    torch.autograd.set_detect_anomaly(True)
     global best_acc
     start_epoch = args.start_epoch  # start from epoch 0 or last checkpoint epoch
 
@@ -188,15 +188,10 @@ def main():
 
             #print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
 
-            #print('\nParameters:\n')
-            #print(model.parameters())
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion, optimizer,
                                                                          epoch, use_cuda)
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
-            # append logger file
-            # logger.append([state['lr'], train_loss, test_loss, train_acc, test_acc, lasso_ratio, train_epoch_time,
-            #               test_epoch_time])
 
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):

@@ -200,16 +200,26 @@ Make only the (conv, FC) layer parameters sparse
 def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reconf=True):
     print ("[INFO] Force the sparse filters to zero...")
     dense_chs, chs_temp, idx = {}, {}, 0
+    altList =[]
+    for name, param in model.named_parameters():
+        i = int(name.split('.')[1])
+        if i %2 == 0:
+            altList.append('module.conv' + str(i))
+        if i%2 == 1 and 'weight' in name:
+            altList.append('module.bn' + str(i) + ".weight")
+        if i%2 == 1 and 'bias' in name:
+            altList.append('module.bn' + str(i) + ".bias")
 
+    altList[-2].replace('bn', 'fc')
+    altList[-1].replace('bn','fc')
+    print(altList)
     for name, param in model.named_parameters():
         dims = list(param.shape)
         #print("\n>Name2:")
         #print(name)
         if name.startswith('module'):
             i = int(name.split('.')[1])
-            print("\n> i:")
-            print(i)
-        if (isinstance(model.module_list[i], nn.Conv2d) or isinstance(model.module_list[i],nn.Linear)) and ('weight' in name):
+                  if (isinstance(model.module_list[i], nn.Conv2d) or isinstance(model.module_list[i],nn.Linear)) and ('weight' in name):
             #if (('conv' in name) or ('fc' in name)) and ('weight' in name):
 
             with torch.no_grad():
