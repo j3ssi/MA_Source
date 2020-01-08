@@ -383,7 +383,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
             altList.append('module.bn' + str(int(((i-1)/2)+1)) + ".bias")
         elif (i % 2 == 1 ) and ('bias' in name) and (i > (len(model.module_list)-2)):
             altList.append('module.fc' + str(int((i +1) / 2)) + ".bias")
-        print(altList[-1])
+        #print(altList[-1])
 
     #print(altList)
     i = -1
@@ -401,17 +401,9 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         # Change parameters of neural computing layers (Conv, FC)
         if (('conv' in name) or ('fc' in name)) and ('weight' in name):
 
-            if 'conv' in name:
-                conv_dw = int(name.split('.')[1].split('conv')[1]) % 2 == 0
-            else:
-                conv_dw = False
-
             dims = list(param.shape)
 
-            if 'mobilenet' in arch and conv_dw:
-                dense_in_ch_idxs = [0]
-            else:
-                dense_in_ch_idxs = dense_chs[name]['in_chs']
+            dense_in_ch_idxs = dense_chs[name]['in_chs']
             dense_out_ch_idxs = dense_chs[name]['out_chs']
             num_in_ch, num_out_ch = len(dense_in_ch_idxs), len(dense_out_ch_idxs)
 
