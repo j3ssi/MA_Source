@@ -91,9 +91,10 @@ class N2N(nn.Module):
             i = int(name.split('.')[1])
             if i%2 == 0:
                 OrderedDict['conv'+str(i/2)] = OrderedDict.pop(name)
-                print("\n>Name:")
-                print(name)
-        print(OrderedDict)
+
+        for name, param in self.named_parameters():
+            print("\n>Name:")
+            print(name)
     def forward(self, x):
 
         x = self.module_list[0](x)
