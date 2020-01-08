@@ -57,12 +57,12 @@ for cur_epoch in range(0, cfg['base']['epochs'], cfg['pt']['sparse_interval']):
     cmd_line += ' --epochs ' + str(cur_epoch + cfg['pt']['sparse_interval'])
     cmd_line += ' --learning-rate ' + str(cfg['base']['learning-rate'])
     cmd_line += ' --schedule ' + str(cfg['base']['schedule'])
-    #cmd_line += ' --checkpoint ' + os.path.join(cfg['base']['model_dir'], cfg['base']['description'])
+    cmd_line += ' --checkpoint ' + os.path.join(cfg['base']['model_dir'], cfg['base']['description'])
     cmd_line += ' --arch ' + cfg['base']['arch']
     cmd_line += ' --gpu-id ' + gpu_id
     cmd_line += ' --train_batch ' + str(cfg['base']['train_batch'])
     cmd_line += ' --test_batch ' + str(cfg['base']['test_batch'])
-    #cmd_line += ' --save_checkpoin ' + str(cfg['base']['save_checkpoint'])
+    cmd_line += ' --save_checkpoin ' + str(cfg['base']['save_checkpoint'])
     cmd_line += ' --resume ' + cfg['base']['resume'] if cfg['base']['resume'] != '' else ''
 
     cmd_line += ' --sparse_interval ' + str(cfg['pt']['sparse_interval'])
