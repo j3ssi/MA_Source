@@ -224,7 +224,7 @@ def _makeSparse(model, threshold, threshold_type, arch, dataset, is_gating=False
         print("\n>Name2:")
         print(name)
         if (('conv' in name) or ('fc' in name)) and ('weight' in name):
-
+            print('\n\ndrin')
             with torch.no_grad():
                 param = torch.where(param < threshold, torch.tensor(0.).cuda(), param)
 
