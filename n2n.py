@@ -148,7 +148,7 @@ class N2N(nn.Module):
 
 #            if _x.size() != x.size:
 
-            _x = _x 
+            _x = x
             _x = self.relu(_x)
 
     def deeper(self, model, positions):
