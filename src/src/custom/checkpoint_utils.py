@@ -360,7 +360,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         # Change parameters of neural computing layers (Conv, FC)
         i = int(name.split('.')[1])
         if (isinstance(model.module_list[i], nn.Conv2d) or isinstance(model.module_list[i], nn.Linear )) and ('weight' in name):
-            dims = param.size()
+            dims = list(param.shape)
             #print("\n>Size: ")
             #print(dims)
             dense_in_ch_idxs = dense_chs[name]['in_chs']
