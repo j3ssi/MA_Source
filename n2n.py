@@ -133,8 +133,8 @@ class N2N(nn.Module):
             print("\n\nposition:")
             print(pos)
 
-            conv = model.module_list[pos*2]
-            bn = model.module_list[pos*2+1]
+            conv = model.module_list[pos*2-1]
+            bn = model.module_list[pos*2]
             conv2 = copy.deepcopy(conv)
 
             noise = np.random.normal(scale=5e-2 * conv2.weight.data.std(),
