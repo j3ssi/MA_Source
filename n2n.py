@@ -142,8 +142,9 @@ class N2N(nn.Module):
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
                     print(i)
-            if _x.size() != x.size:
-                x = x.view(_x.size())
+
+            if  _x.size() != x.size:
+                _x = _x.view(x.size())
                 _x = _x + x
             _x = self.relu(_x)
 
