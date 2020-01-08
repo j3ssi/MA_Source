@@ -132,9 +132,8 @@ class N2N(nn.Module):
         for pos in positions:
             print("\n\nposition:")
             print(pos)
-
-            conv = model.module_list[pos*2-1]
-            bn = model.module_list[pos*2]
+            conv = model.module_list[pos*2]
+            bn = model.module_list[pos*2+1]
             conv2 = copy.deepcopy(conv)
             noise = torch.Tensor(conv2.size())
             noise = torch.rand(0,0.5)
