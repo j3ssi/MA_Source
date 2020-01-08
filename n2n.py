@@ -46,6 +46,10 @@ class N2N(nn.Module):
         fc = nn.Linear(16, num_classes)
         self.relu = nn.ReLU(inplace=True)
 
+        l = [conv1, bn1, conv2, bn2, conv3, bn3, conv4, bn4, conv5, bn5, conv6, bn6, conv7, bn7, conv8, bn8, conv9, bn9,
+             avgpool, fc]
+        self.module_list = nn.ModuleList(l)
+
         for m in self.module_list:
             if isinstance(m, nn.Conv2d):
                 n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
@@ -53,9 +57,6 @@ class N2N(nn.Module):
             elif isinstance(m, nn.BatchNorm2d):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
-        l = [conv1, bn1, conv2, bn2, conv3, bn3, conv4, bn4, conv5, bn5, conv6, bn6, conv7, bn7, conv8, bn8, conv9, bn9, avgpool, fc]
-        #print(l)
-        self.module_list = nn.ModuleList(l)
         #print("\n\n> moduleList:\n")
         #print(self.module_list)
 
