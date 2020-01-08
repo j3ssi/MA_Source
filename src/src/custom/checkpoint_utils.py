@@ -216,7 +216,8 @@ def _makeSparse(model, threshold, threshold_type, arch, dataset, is_gating=False
         #print(altList[-1])
     altList[-2].replace('bn', 'fc')
     altList[-1].replace('bn', 'fc')
-    #print(altList)
+    print("\n\n")
+    print(altList)
     i = -1
     for name, param in model.named_parameters():
         i = i + 1
@@ -226,7 +227,7 @@ def _makeSparse(model, threshold, threshold_type, arch, dataset, is_gating=False
         #print("\n>Name2:")
         #print(name)
         if (('conv' in name) or ('fc' in name)) and ('weight' in name):
-            print('\n\ndrin')
+            #print('\n\ndrin')
             with torch.no_grad():
                 param = torch.where(param < threshold, torch.tensor(0.).cuda(), param)
 
