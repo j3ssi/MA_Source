@@ -213,7 +213,7 @@ def _makeSparse(model, threshold, threshold_type, arch, dataset, is_gating=False
         if i % 2 == 1 and 'bias' in name:
             altList.append('module.bn' + str(int((i-1)/2)) + ".bias")
         #
-        print(altList[-1])
+        #print(altList[-1])
     altList[-2].replace('bn', 'fc')
     altList[-1].replace('bn', 'fc')
     #print(altList)
@@ -223,8 +223,8 @@ def _makeSparse(model, threshold, threshold_type, arch, dataset, is_gating=False
         nameTmp = name
         name = altList[i]
         dims = list(param.shape)
-        print("\n>Name2:")
-        print(name)
+        #print("\n>Name2:")
+        #print(name)
         if (('conv' in name) or ('fc' in name)) and ('weight' in name):
             print('\n\ndrin')
             with torch.no_grad():
@@ -370,8 +370,8 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
     altList = []
     for name, param in model.named_parameters():
         i = int(name.split('.')[1])
-        print("\n\n>i")
-        print(i)
+        #print("\n\n>i")
+        #print(i)
 
         if i % 2 == 0:
             altList.append('module.conv' + str(int(i/2)) + '.weight')
@@ -383,7 +383,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
 
     altList[-2].replace('bn', 'fc')
     altList[-1].replace('bn', 'fc')
-    print(altList)
+    #print(altList)
     i = -1
 
     # print("==================")
@@ -486,3 +486,70 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
                 with torch.no_grad():
                     new_buf[out_idx] = buf[out_ch]
             buf.data = new_buf
+
+
+    """
+    Remove layers (Only applicable to ResNet-like networks)
+    - Remove model parameters
+    - Remove parameters/states in optimizer
+    """
+
+
+    def getLayerIdx(lyr_name):
+        if 'conv' in lyr_name:
+            conv_id = dense_chs[lyr_name + '.weight']['idx']
+            return [3 * (conv_id - 1)], [lyr_name + '.weight']
+        elif 'bn' in lyr_name:
+            conv_name = lyr_name.replace('bn', 'conv')
+            conv_id = dense_chs[conv_name + '.weight']['idx']
+            return [3 * conv_id - 1, 3 * conv_id - 2], [lyr_name + '.bias', lyr_name + '.weight']
+
+
+    if len(rm_list) > 0:
+        rm_lyrs = []
+        for name in rm_list:
+            rm_lyr = getRmLayers(name, arch, dataset)
+            if any(i for i in rm_lyr if i not in rm_lyrs):
+                rm_lyrs.extend(rm_lyr)
+
+        # Remove model parameters
+        for rm_lyr in rm_lyrs:
+            model.del_param_in_flat_arch(rm_lyr)
+
+        idxs, rm_params = [], []
+        for rm_lyr in rm_lyrs:
+            idx, rm_param = getLayerIdx(rm_lyr)
+            idxs.extend(idx)
+            rm_params.extend(rm_param)
+
+        # Remove optimizer states
+        for name, param in model.named_parameters():
+            for rm_param in rm_params:
+                if name == rm_param:
+                    del optimizer.state[param]
+
+    # Sanity check: Print out optimizer parameters before change
+    # print ("[INFO] ==== Size of parameter group (Before)")
+    # for g in optimizer.param_groups:
+    #  for idx, g2 in enumerate(g['params']):
+    #    print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
+
+    # Remove optimizer parameters
+    # Adjuster: Absolute parameter location changes after each removal
+    for idx_adjuster, idx in enumerate(sorted(idxs)):
+        del optimizer.param_groups[0]['params'][idx - idx_adjuster]
+
+    # Sanity check => Print out optimizer parameters after change
+    # print ("[INFO] ==== Size of parameter group (After)")
+    # for g in optimizer.param_groups:
+    #  for idx, g2 in enumerate(g['params']):
+    #    print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
+
+# Sanity check => Check the changed parameters
+# for name, param in model.named_parameters():
+#  print("===>>> [{}]: {}".format(name, list(param.shape)))
+
+# Sanity check => Check the changed buffers
+# for name, param in model.named_parameters():
+#  print("===<<< [{}]: {}".format(name, optimizer.state[param]['momentum_buffer'].shape))
+
