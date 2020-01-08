@@ -416,7 +416,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         mom_param = optimizer.state[param]['momentum_buffer']
         # Change parameters of neural computing layers (Conv, FC)
         if name.startswith("module") and ('weight' in name):
-                i =int(name.split('.')[1])
+            i =int(name.split('.')[1])
             try:
                 conv_dw = int(name.split('.')[1])%2 == 1
             except IndexError:
