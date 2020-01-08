@@ -368,11 +368,11 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         print(name)
         i = int(name.split('.')[1])
         if i % 2 == 0:
-            altList.append('module.conv' + str(i) + '.weight')
+            altList.append('module.conv' + str(i/2) + '.weight')
         if i % 2 == 1 and 'weight' in name:
-            altList.append('module.bn' + str(i) + ".weight")
+            altList.append('module.bn' + str(i/2-1) + ".weight")
         if i % 2 == 1 and 'bias' in name:
-            altList.append('module.bn' + str(i) + ".bias")
+            altList.append('module.bn' + str(i/2-1) + ".bias")
 
     altList[-2].replace('bn', 'fc')
     altList[-1].replace('bn', 'fc')
