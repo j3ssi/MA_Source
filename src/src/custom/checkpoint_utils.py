@@ -203,8 +203,8 @@ def _makeSparse(model, threshold, threshold_type, arch, dataset, is_gating=False
     altList = []
     for name, param in model.named_parameters():
         i = int(name.split('.')[1])
-        print("\n\n>i")
-        print(i)
+        #print("\n\n>i")
+        #print(i)
 
         if i % 2 == 0:
             altList.append('module.conv' + str(int(i/2)) + '.weight')
@@ -218,10 +218,7 @@ def _makeSparse(model, threshold, threshold_type, arch, dataset, is_gating=False
             altList.append('module.bn' + str(int((i-1)/2)) + ".bias")
         elif i % 2 == 1 and 'bias' in name and i >= len(model.module_list)-1:
             altList.append('module.fc' + str(int((i +1) / 2)) + ".weight")
-
-
-        #
-        #print(altList[-1])
+        print(altList[-1])
     print("\n\n")
     print(altList)
     i = -1
