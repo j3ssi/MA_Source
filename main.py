@@ -182,7 +182,7 @@ def main():
 
     # Train and val
     for epochNet2Net in range(1, 3):
-
+        best_acc = 0
         for epoch in range(start_epoch, args.epochs + 1):
             adjust_learning_rate(optimizer, epoch)
 
@@ -221,10 +221,11 @@ def main():
         model = model.deeper(model, [8])
         model.cuda()
 
+        print('Best acc:')
+        print(best_acc)
     # logger.close()
 
-    print('Best acc:')
-    print(best_acc)
+
 
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda):

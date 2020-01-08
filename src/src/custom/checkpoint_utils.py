@@ -207,11 +207,11 @@ def _makeSparse(model, threshold, threshold_type, arch, dataset, is_gating=False
         print(i)
 
         if i % 2 == 0:
-            altList.append('module.conv' + str(i/2) + '.weight')
+            altList.append('module.conv' + str(int(i/2)) + '.weight')
         if i % 2 == 1 and 'weight' in name:
-            altList.append('module.bn' + str((i-1)/2) + ".weight")
+            altList.append('module.bn' + str(int((i-1)/2)) + ".weight")
         if i % 2 == 1 and 'bias' in name:
-            altList.append('module.bn' + str((i-1)/2) + ".bias")
+            altList.append('module.bn' + str(int((i-1)/2)) + ".bias")
         print(altList[-1])
     altList[-2].replace('bn', 'fc')
     altList[-1].replace('bn', 'fc')
@@ -372,11 +372,11 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         print(i)
 
         if i % 2 == 0:
-            altList.append('module.conv' + str(i/2) + '.weight')
+            altList.append('module.conv' + str(int(i/2)) + '.weight')
         if i % 2 == 1 and 'weight' in name:
-            altList.append('module.bn' + str((i-1)/2) + ".weight")
+            altList.append('module.bn' + str(int((i-1)/2)) + ".weight")
         if i % 2 == 1 and 'bias' in name:
-            altList.append('module.bn' + str((i-1)/2) + ".bias")
+            altList.append('module.bn' + str(int((i-1)/2)) + ".bias")
         print(altList[-1])
 
     altList[-2].replace('bn', 'fc')
