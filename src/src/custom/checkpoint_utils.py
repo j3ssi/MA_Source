@@ -203,11 +203,8 @@ def _makeSparse(model, threshold, threshold_type, arch, dataset, is_gating=False
     altList = []
     for name, param in model.named_parameters():
         i = int(name.split('.')[1])
-        #print("\n\n>i")
-        #print(i)
-
         if i % 2 == 0:
-            altList.append('module.conv' + str(int((i/2)+1) + '.weight')
+            altList.append('module.conv' + str(int((i/2)+1)) + '.weight')
 
         if (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list)-2)):
             altList.append('module.bn' + str(int(((i-1)/2)+1)) + ".weight")
