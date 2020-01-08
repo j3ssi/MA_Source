@@ -183,14 +183,6 @@ def main():
     # Train and val
     for epochNet2Net in range(1, 3):
 
-        print("\n Net 2 Net Durchläufe:")
-        print(epochNet2Net)
-        print(model.__dict__)
-        print("\nParameters:\n")
-        OrderedDict = model.__dict__.__getitem__('_parameters')
-        for key, value in OrderedDict.items():
-            print(key, value)
-            print("\n\n")
         for epoch in range(start_epoch, args.epochs + 1):
             adjust_learning_rate(optimizer, epoch)
 
