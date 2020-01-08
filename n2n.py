@@ -84,15 +84,16 @@ class N2N(nn.Module):
             elif isinstance(m, nn.BatchNorm2d):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
-        print("\n\n> moduleList:\n")
-        print(self)
-        OrderedDict = self.named_parameters()
+        #print("\n\n> moduleList:\n")
+        #print(self)
+        OrderedDict = self.named_parameters().__dict__
         for name, param in self.named_parameters():
             i = int(name.split('.')[1])
             if i%2 == 0:
+                OrderedDict['conv'+str(i/2)] = OrderedDict.pop(name)
                 print("\n>Name:")
                 print(name)
-
+        print(OrderedDict)
     def forward(self, x):
 
         x = self.module_list[0](x)
