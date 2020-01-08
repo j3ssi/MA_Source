@@ -87,6 +87,12 @@ class N2N(nn.Module):
         print("\n\n> moduleList:\n")
         print(self.module_list)
 
+        for name, param in self.named_parameters():
+            #i = int(name.split('.')[1])
+            #if i%2 == 0
+            print("\n>Name:")
+            print(name)
+
     def forward(self, x):
 
         x = self.module_list[0](x)
