@@ -55,7 +55,9 @@ def _genDenseArchResNet32(model, out_f_dir1, out_f_dir2, arch_name, dense_chs,
   for idx in sorted(arch):
     print("\n> idx")
     print(idx)
+    print("\n")
     ctx += lyr.getLayerDef(arch[idx])
+    print(arch[idx])
 
   # Architecture sequential
   ctx += '\tdef forward(self, x):\n'
