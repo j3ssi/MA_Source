@@ -196,8 +196,8 @@ def main():
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):
                 # Force weights under threshold to zero
-                dense_chs, chs_map = _makeSparse(model, args.threshold,args.arch, 
-                                                 args.threshold_type,
+                dense_chs, chs_map = _makeSparse(model, args.threshold,
+                                                 args.threshold_type, args.arch,
                                                  'cifar',
                                                  is_gating=args.is_gating)
                 # Reconstruct architecture
@@ -215,34 +215,8 @@ def main():
             # save model
             is_best = test_acc > best_acc
             best_acc = max(test_acc, best_acc)
-
-            # print("[INFO] Storing checkpoint...")
-            #print("\nModel State Dict .to save : \n")
-            #print(model.state_dict())
-            # save_checkpoint({
-            #     'epoch': epoch,
-            #     'state_dict': model.state_dict(),
-            #     'acc': test_acc,
-            #     'best_acc': best_acc,
-            #     'optimizer': optimizer.state_dict(), },
-            #     is_best,
-            #     checkpoint=args.checkpoint)
-            #
-            # # Leave unique checkpoint of pruned models druing training
-            # if epoch % args.save_checkpoint == 0:
-            #     save_checkpoint({
-            #         'epoch': epoch,
-            #         'state_dict': model.state_dict(),
-            #         'acc': test_acc,
-            #         'best_acc': best_acc,
-            #         'optimizer': optimizer.state_dict(), },
-            #         is_best,
-            #         checkpoint=args.checkpoint,
-            #         filename='checkpoint' + str(epoch) + '.tar')
-
-            # print("%f \n"file=open("output.txt", "a") test_acc)
-
             # deeper student training
+
         print("\n\n > Deeper Student training ... ")
         model = model.deeper(model, [8])
         model.cuda()
