@@ -413,7 +413,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         # Change parameters of neural computing layers (Conv, FC)
         if name.startswith("module") and ('weight' in name):
             try:
-                conv_dw = int(name.split('.')[1])
+                conv_dw = int(name.split('.')[1])%2
             except IndexError:
                 continue
             if not isinstance(model.module_list[conv_dw], nn.Conv2d):
