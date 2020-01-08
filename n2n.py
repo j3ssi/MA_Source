@@ -9,7 +9,7 @@ import numpy as np
 from torch.autograd import Variable
 
 
-class N2N(nn.Module):
+class N2N(nn.Module):_
 
     def __init__(self, num_classes):
         super(N2N, self).__init__()
@@ -85,13 +85,13 @@ class N2N(nn.Module):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
         print("\n\n> moduleList:\n")
-        print(self.module_list)
-
+        print(self)
+        OrderedDict = self.named_parameters()
         for name, param in self.named_parameters():
-            #i = int(name.split('.')[1])
-            #if i%2 == 0
-            print("\n>Name:")
-            print(name)
+            i = int(name.split('.')[1])
+            if i%2 == 0:
+                print("\n>Name:")
+                print(name)
 
     def forward(self, x):
 
@@ -156,8 +156,8 @@ class N2N(nn.Module):
     def deeper(self, model, positions):
         # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
         for pos in positions:
-            print("\n\nposition:")
-            print(pos)
+            #print("\n\nposition:")
+            #print(pos)
             conv = model.module_list[pos*2-2]
             bn = model.module_list[pos*2-1]
             conv1 = model.module_list[pos]
@@ -175,8 +175,8 @@ class N2N(nn.Module):
             model.module_list.insert(pos*2+1, bn2)
             model.module_list.insert(pos*2+1, conv3)
             model.module_list.insert(pos*2+2, bn3)
-            print("\n\n> moduleList:\n")
-            print(self.module_list)
+            #print("\n\n> moduleList:\n")
+            #print(self.module_list)
 
         return model
 
