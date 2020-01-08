@@ -14,65 +14,65 @@ class N2N(nn.Module):
     def __init__(self, num_classes):
         super(N2N, self).__init__()
         self.module_list = nn.ModuleList()
-        #0
+        # 0
         conv1 = nn.Conv2d(3, 16, kernel_size=3, padding=1, bias=False, stride=1)
         self.module_list.append(conv1)
-        #1
+        # 1
         bn1 = nn.BatchNorm2d(16)
         self.module_list.append(bn1)
-        #2
+        # 2
         conv2 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
         self.module_list.append(conv2)
 
-        #3
+        # 3
         bn2 = nn.BatchNorm2d(16)
         self.module_list.append(bn2)
-        #4
+        # 4
         conv3 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
         self.module_list.append(conv3)
-        #5
+        # 5
         bn3 = nn.BatchNorm2d(16)
         self.module_list.append(bn3)
-        #6
+        # 6
         conv4 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
         self.module_list.append(conv4)
-        #7
+        # 7
         bn4 = nn.BatchNorm2d(16)
         self.module_list.append(bn4)
-        #8
+        # 8
         conv5 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
         self.module_list.append(conv5)
-        #9
+        # 9
         bn5 = nn.BatchNorm2d(16)
         self.module_list.append(bn5)
-        #10
+        # 10
         conv6 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
         self.module_list.append(conv6)
-        #11
+        # 11
         bn6 = nn.BatchNorm2d(16)
         self.module_list.append(bn6)
-        #12
+        # 12
         conv7 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
         self.module_list.append(conv7)
-        #13
+        # 13
         bn7 = nn.BatchNorm2d(16)
         self.module_list.append(bn7)
         # 14
         conv8 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
         self.module_list.append(conv8)
-        #15
+        # 15
         bn8 = nn.BatchNorm2d(16)
         self.module_list.append(bn8)
-        #16
+        # 16
         conv9 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
         self.module_list.append(conv9)
-        #17
+        # 17
         bn9 = nn.BatchNorm2d(16)
         self.module_list.append(bn9)
         # 18
         avgpool = nn.AdaptiveAvgPool2d((1, 1))
         self.module_list.append(avgpool)
-        #19
+        # 19
         fc = nn.Linear(16, num_classes)
         self.module_list.append(fc)
         self.relu = nn.ReLU(inplace=True)
@@ -84,23 +84,24 @@ class N2N(nn.Module):
             elif isinstance(m, nn.BatchNorm2d):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
+
     def forward(self, x):
 
         x = self.module_list[0](x)
-        #print("\n >shape of x1:")
-        #print(x.size())
+        # print("\n >shape of x1:")
+        # print(x.size())
         x = self.module_list[1](x)
-        #print("\n >shape of x2:")
-        #print(x.size())
+        # print("\n >shape of x2:")
+        # print(x.size())
 
         _x = self.relu(x)
         i = 2
         while i > 0:
-            if isinstance(self.module_list[i],nn.AdaptiveAvgPool2d):
+            if isinstance(self.module_list[i], nn.AdaptiveAvgPool2d):
                 try:
                     x = self.module_list[i](_x)
                     x = x.view(-1, 16)
-                    x = self.module_list[i+1](x)
+                    x = self.module_list[i + 1](x)
                     return x
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
@@ -109,7 +110,7 @@ class N2N(nn.Module):
             if isinstance(self.module_list[i], nn.Conv2d):
                 try:
                     x = self.module_list[i](_x)
-                    i = i+1
+                    i = i + 1
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
                     print(i)
@@ -117,7 +118,7 @@ class N2N(nn.Module):
             if isinstance(self.module_list[i], nn.BatchNorm2d):
                 try:
                     x = self.module_list[i](x)
-                    i = i+1
+                    i = i + 1
 
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
@@ -137,7 +138,7 @@ class N2N(nn.Module):
             if isinstance(self.module_list[i], nn.BatchNorm2d):
                 try:
                     x = self.module_list[i](x)
-                    i = i+1
+                    i = i + 1
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
                     print(i)
@@ -147,27 +148,27 @@ class N2N(nn.Module):
     def deeper(self, model, positions):
         # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
         for pos in positions:
-            #print("\n\nposition:")
-            #print(pos)
-            conv = model.module_list[pos*2-2]
-            bn = model.module_list[pos*2-1]
+            # print("\n\nposition:")
+            # print(pos)
+            conv = model.module_list[pos * 2 - 2]
+            bn = model.module_list[pos * 2 - 1]
             conv1 = model.module_list[pos]
-            bn1 = model.module_list[pos+1]
+            bn1 = model.module_list[pos + 1]
             conv2 = copy.deepcopy(conv)
             conv3 = copy.deepcopy(conv1)
-            noise = torch.Tensor(conv2.weight.shape).random_(0,1).cuda()
-            #noise = torch.rand(0,0.5)
+            noise = torch.Tensor(conv2.weight.shape).random_(0, 1).cuda()
+            # noise = torch.rand(0,0.5)
             conv2.weight.data += noise
             bn2 = copy.deepcopy(bn)
             noise = torch.Tensor(conv1.weight.shape).random_(0, 1).cuda()
             conv3.weight.data += noise
             bn3 = copy.deepcopy(bn1)
-            model.module_list.insert(pos*2, conv2)
-            model.module_list.insert(pos*2+1, bn2)
-            model.module_list.insert(pos*2+1, conv3)
-            model.module_list.insert(pos*2+2, bn3)
-            #print("\n\n> moduleList:\n")
-            #print(self.module_list)
+            model.module_list.insert(pos * 2, conv2)
+            model.module_list.insert(pos * 2 + 1, bn2)
+            model.module_list.insert(pos * 2 + 1, conv3)
+            model.module_list.insert(pos * 2 + 2, bn3)
+            # print("\n\n> moduleList:\n")
+            # print(self.module_list)
 
         return model
 

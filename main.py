@@ -280,16 +280,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
         with torch.no_grad():
             inputs = Variable(inputs)
-            #targets = Variable(targets)
         targets = torch.autograd.Variable(targets)
-
-        #print("\n target shape:")
-        #print(targets.size())
         outputs = model.forward(inputs)
-        #print("\n output shape:")
-        #print(outputs.size())
-        #print("\n> model:")
-        #print(model)
 
         loss = criterion(outputs, targets)
 

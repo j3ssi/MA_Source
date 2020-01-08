@@ -198,28 +198,28 @@ Make only the (conv, FC) layer parameters sparse
 
 
 def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reconf=True):
-    print ("[INFO] Force the sparse filters to zero...")
+    print("[INFO] Force the sparse filters to zero...")
     dense_chs, chs_temp, idx = {}, {}, 0
-    altList =[]
+    altList = []
     for name, param in model.named_parameters():
         i = int(name.split('.')[1])
-        if i %2 == 0:
-            altList.append('module.conv' + str(i)+ '.weight')
-        if i%2 == 1 and 'weight' in name:
+        if i % 2 == 0:
+            altList.append('module.conv' + str(i) + '.weight')
+        if i % 2 == 1 and 'weight' in name:
             altList.append('module.bn' + str(i) + ".weight")
-        if i%2 == 1 and 'bias' in name:
+        if i % 2 == 1 and 'bias' in name:
             altList.append('module.bn' + str(i) + ".bias")
 
     altList[-2].replace('bn', 'fc')
-    altList[-1].replace('bn','fc')
+    altList[-1].replace('bn', 'fc')
     print(altList)
-    i=-1
+    i = -1
     for name, param in model.named_parameters():
-        i=i+1
+        i = i + 1
         name = altList[i]
         dims = list(param.shape)
-        #print("\n>Name2:")
-        #print(name)
+        # print("\n>Name2:")
+        # print(name)
         if (('conv' in name) or ('fc' in name)) and ('weight' in name):
 
             with torch.no_grad():
@@ -280,7 +280,7 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
         - Union: Maintain all dense channels on the shared nodes (No indexing)
         - Individual: Add gating layers >> Layers at the shared node skip more computation
         """
-        if 'resnet' in arch:
+        if True:
             if 'cifar' in dataset:
                 stages, ch_maps = stages_cifar[arch], []
             else:
@@ -352,6 +352,7 @@ Generate a new dense network model
 - Manage optimization/momentum/buffer parameters
 """
 
+
 def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
     print("[INFO] Squeezing the sparse model to dense one...")
 
@@ -361,26 +362,26 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
 
     # List of layers to remove
     rm_list = []
-    altList =[]
+    altList = []
     for name, param in model.named_parameters():
         i = int(name.split('.')[1])
-        if i %2 == 0:
-            altList.append('module.conv' + str(i)+ '.weight')
-        if i%2 == 1 and 'weight' in name:
+        if i % 2 == 0:
+            altList.append('module.conv' + str(i) + '.weight')
+        if i % 2 == 1 and 'weight' in name:
             altList.append('module.bn' + str(i) + ".weight")
-        if i%2 == 1 and 'bias' in name:
+        if i % 2 == 1 and 'bias' in name:
             altList.append('module.bn' + str(i) + ".bias")
 
     altList[-2].replace('bn', 'fc')
-    altList[-1].replace('bn','fc')
+    altList[-1].replace('bn', 'fc')
     print(altList)
-    i=-1
+    i = -1
 
     # print("==================")
     # for key in optimizer.state:
     #  print("==> {}, {}, {}".format(key, type(key), optimizer.state[key]))
     for name, param in model.named_parameters():
-        i=i+1
+        i = i + 1
         name = altList[i]
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[param]['momentum_buffer']
