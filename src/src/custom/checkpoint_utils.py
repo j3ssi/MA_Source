@@ -213,52 +213,46 @@ def _makeSparse(model, threshold, threshold_type, dataset, is_gating=False, reco
             with torch.no_grad():
                 param = torch.where(param < threshold, torch.tensor(0.).cuda(), param)
 
-        dense_in_chs, dense_out_chs = [], []
+            dense_in_chs, dense_out_chs = [], []
 
-        if param.dim() == 4:
-            if isinstance(model.module_list[i], nn.Conv2d):
-                conv_dw = int(name.split('.')[1]) % 2 == 1
-            else:
-                conv_dw = False
-            # Forcing sparse input channels to zero
-            if not conv_dw:
+            if param.dim() == 4:
                 for c in range(dims[1]):
                     if param[:, c, :, :].abs().max() > 0:
                         dense_in_chs.append(c)
 
-            # Forcing sparse output channels to zero
-            for c in range(dims[0]):
-                if param[c, :, :, :].abs().max() > 0:
-                    dense_out_chs.append(c)
+                # Forcing sparse output channels to zero
+                for c in range(dims[0]):
+                    if param[c, :, :, :].abs().max() > 0:
+                        dense_out_chs.append(c)
 
             # Forcing input channels of FC layer to zero
-        elif param.dim() == 2:
-            # Last FC layers (fc, fc3): Remove only the input neurons
-            for c in range(dims[1]):
-                if param[:, c].abs().max() > 0:
-                    dense_in_chs.append(c)
-            # FC layer in the middle remove their output neurons
-            if any(i for i in ['fc1', 'fc2'] if i in name):
-                for c in range(dims[0]):
-                    if param[c, :].abs().max() > 0:
-                        dense_out_chs.append(c)
-            else:
-                # [fc, fc3] output channels (class probabilities) are all dense
-                dense_out_chs = [c for c in range(dims[0])]
+            elif param.dim() == 2:
+                # Last FC layers (fc, fc3): Remove only the input neurons
+                for c in range(dims[1]):
+                    if param[:, c].abs().max() > 0:
+                        dense_in_chs.append(c)
+                # FC layer in the middle remove their output neurons
+                if any(i for i in ['fc1', 'fc2'] if i in name):
+                    for c in range(dims[0]):
+                        if param[c, :].abs().max() > 0:
+                            dense_out_chs.append(c)
+                else:
+                    # [fc, fc3] output channels (class probabilities) are all dense
+                    dense_out_chs = [c for c in range(dims[0])]
 
-        chs_temp[idx] = {'name': name, 'in_chs': dense_in_chs, 'out_chs': dense_out_chs}
-        idx += 1
-        dense_chs[name] = {'in_chs': dense_in_chs, 'out_chs': dense_out_chs, 'idx': idx}
+            chs_temp[idx] = {'name': name, 'in_chs': dense_in_chs, 'out_chs': dense_out_chs}
+            idx += 1
+            dense_chs[name] = {'in_chs': dense_in_chs, 'out_chs': dense_out_chs, 'idx': idx}
 
-        # print the inter-layer tensor dim [out_ch, in_ch, feature_h, feature_w]
-        if not reconf:
-            if 'fc' in name:
-                print("[{}]: [{}, {}]".format(name,
+            # print the inter-layer tensor dim [out_ch, in_ch, feature_h, feature_w]
+            if not reconf:
+                if 'fc' in name:
+                    print("[{}]: [{}, {}]".format(name,
                                               len(dense_chs[name]['out_chs']),
                                               len(dense_chs[name]['in_chs']),
                                               ))
-            else:
-                print("[{}]: [{}, {}, {}, {}]".format(name,
+                else:
+                    print("[{}]: [{}, {}, {}, {}]".format(name,
                                                       len(dense_chs[name]['out_chs']),
                                                       len(dense_chs[name]['in_chs']),
                                                       param.shape[2],
@@ -417,7 +411,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         # Change parameters of neural computing layers (Conv, FC)
         if name.startswith("module") and ('weight' in name):
             i =int(name.split('.')[1])
-            try:
+                try:
                 conv_dw = int(name.split('.')[1])%2 == 1
             except IndexError:
                 continue
