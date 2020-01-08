@@ -187,7 +187,10 @@ def main():
         print(epochNet2Net)
 
         print("\nParameters:\n")
-        print(model.__dict__.__getitem__('_parameters'))
+        OrderedDict = model.__dict__.__getitem__('_parameters')
+        for item in OrderedDict:
+            print(item)
+            print("\n\n")
         for epoch in range(start_epoch, args.epochs + 1):
             adjust_learning_rate(optimizer, epoch)
 
