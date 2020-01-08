@@ -28,7 +28,7 @@ import torch.nn as nn
 """
 
 
-def get_group_lasso_global(model, arch):
+def get_group_lasso_global(model):
     lasso_in_ch = []
     lasso_out_ch = []
 
