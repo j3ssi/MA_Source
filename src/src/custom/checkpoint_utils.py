@@ -212,7 +212,8 @@ def _makeSparse(model, threshold, threshold_type, arch, dataset, is_gating=False
             altList.append('module.bn' + str(int((i-1)/2)) + ".weight")
         if i % 2 == 1 and 'bias' in name:
             altList.append('module.bn' + str(int((i-1)/2)) + ".bias")
-        #print(altList[-1])
+        #
+        print(altList[-1])
     altList[-2].replace('bn', 'fc')
     altList[-1].replace('bn', 'fc')
     #print(altList)
