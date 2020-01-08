@@ -85,7 +85,8 @@ def _makeSparse(model, threshold, arch, threshold_type, dataset, is_gating=False
         # Shared nodes >> Leave union of all in/out channels
         if is_gating:
             for idx in range(len(stages) - 1):
-                edges = []  # Container of dense edges indexes
+                edges = []
+                # Container of dense edges indexes
                 for lyr_name in stages[idx]['i']:
                     if lyr_name in dense_chs:
                         edges = list(set().union(edges, dense_chs[lyr_name]['in_chs']))
