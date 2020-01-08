@@ -239,7 +239,7 @@ def main():
         for epoch in range(start_epoch, args.epochs + 1):
             adjust_learning_rate(optimizer, epoch)
 
-            print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
+            #print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
 
             #print('\nParameters:\n')
             #print(model.parameters())

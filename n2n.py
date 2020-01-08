@@ -161,6 +161,9 @@ class N2N(nn.Module):
             bn2 = copy.deepcopy(bn)
             model.module_list.insert(pos*2, conv2)
             model.module_list.insert(pos*2+1, bn2)
+            print("\n\n> moduleList:\n")
+            print(self.module_list)
+
         return model
 
         #     if posStr in name:
