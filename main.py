@@ -103,7 +103,7 @@ parser.add_argument('--arch_out_dir2', default=None, type=str,
                     help='directory to architecture files matching to checkpoints ')
 parser.add_argument('--arch_name', default='net.py', type=str,
                     help='name of the new architecture')
-parser.add_argument('--is_gating', default=False, action='store_true',
+parser.add_argument('--is_gating', default=True, action='store_true',
                     help='Use gating for residual network')
 parser.add_argument('--threshold_type', default='max', choices=['max', 'mean'], type=str,
                     help='Thresholding type')
