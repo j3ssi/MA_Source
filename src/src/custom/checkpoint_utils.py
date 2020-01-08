@@ -364,6 +364,8 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
     rm_list = []
     altList = []
     for name, param in model.named_parameters():
+        print("\n >name:")
+        print(name)
         i = int(name.split('.')[1])
         if i % 2 == 0:
             altList.append('module.conv' + str(i) + '.weight')
