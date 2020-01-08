@@ -203,8 +203,8 @@ def _makeSparse(model, threshold, threshold_type, arch, dataset, is_gating=False
     altList = []
     for name, param in model.named_parameters():
         i = int(name.split('.')[1])
-        print("\n\n>i")
-        print(i)
+        #print("\n\n>i")
+        #print(i)
 
         if i % 2 == 0:
             altList.append('module.conv' + str(int(i/2)) + '.weight')
@@ -212,17 +212,17 @@ def _makeSparse(model, threshold, threshold_type, arch, dataset, is_gating=False
             altList.append('module.bn' + str(int((i-1)/2)) + ".weight")
         if i % 2 == 1 and 'bias' in name:
             altList.append('module.bn' + str(int((i-1)/2)) + ".bias")
-        print(altList[-1])
+        #print(altList[-1])
     altList[-2].replace('bn', 'fc')
     altList[-1].replace('bn', 'fc')
-    print(altList)
+    #print(altList)
     i = -1
     for name, param in model.named_parameters():
         i = i + 1
         name = altList[i]
         dims = list(param.shape)
-        # print("\n>Name2:")
-        # print(name)
+        print("\n>Name2:")
+        print(name)
         if (('conv' in name) or ('fc' in name)) and ('weight' in name):
 
             with torch.no_grad():
