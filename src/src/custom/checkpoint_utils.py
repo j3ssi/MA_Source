@@ -398,6 +398,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
 
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[param]
+        print('\n\n mom_param: ')
         print(mom_param)
 #
 #         # Change parameters of neural computing layers (Conv, FC)
