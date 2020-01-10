@@ -147,7 +147,7 @@ def main():
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
     model = n2n.N2N(num_classes)
-    model.cuda()
+    model.cuda(args.gpu_id)
 
     cudnn.benchmark = True
 
@@ -186,7 +186,7 @@ def main():
                 model = model.deeper(model, [2,6])
             elif best_acc < 95:
                 model = model.deeper(model, [6])
-        model.cuda()
+            model.cuda(args.gpu_id)
 
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
