@@ -46,7 +46,7 @@ class Checkpoint:
         self.depth = depth
         self.arch = arch
         self.model = N2N(num_classes=num_classes)
-        # self.model = torch.nn.ModuleList(self.model)
+        self.model = torch.nn.ModuleList(self.model)
         checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
         self.model.load_state_dict(checkpoint['state_dict'])
         self.optimizer = optim.SGD(self.model.parameters(), lr=0.1, momentum=0.9, weight_decay=0.005)
