@@ -203,7 +203,7 @@ def main():
                 # Reconstruct architecture
                 #if args.arch_out_dir2 is not None:
                 #_genDenseModel(model, dense_chs, optimizer, args.arch, 'cifar')
-    3                # _genDenseArch = custom_arch_cifar[args.arch]
+                    # _genDenseArch = custom_arch_cifar[args.arch]
                     # if 'resnet' in args.arch:
                     #     _genDenseArch(model, args.arch_out_dir1, args.arch_out_dir2,
                     #                   args.arch_name, dense_chs,
