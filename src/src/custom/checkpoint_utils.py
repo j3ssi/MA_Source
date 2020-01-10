@@ -40,32 +40,32 @@ MFLOPS = 1000000 / 2
 from n2n import N2N
 
 
-# class Checkpoint:
-#     def __init__(self, arch, dataset, model_path, num_classes, depth=None):
-#         # print("{}, {}".format(models.__dict__, arch))
-#         self.depth = depth
-#         self.arch = arch
-#         self.model = N2N(num_classes=num_classes)
-#         self.model = torch.nn.ModuleList(self.model)
-#         checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
-#         self.model.load_state_dict(checkpoint['state_dict'])
-#         self.optimizer = optim.SGD(self.model.parameters(), lr=0.1, momentum=0.9, weight_decay=0.005)
-#         self.optimizer.load_state_dict(checkpoint['optimizer'])
-#         self.epoch = checkpoint['epoch']
-#
-#     def getEpoch(self):
-#         return self.epoch
-#
-#     def printParams(self):
-#         print("[INFO] print learning parameters")
-#         for name, param in self.model.named_parameters():
-#             print("{}: {}".format(name, list(param.shape)))
-#
-#     def getConvStructSparsity(self, threshold, file_name=None, arch=None, dataset='imagenet'):
-#         return _getConvStructSparsity(self.model, threshold, file_name, self.arch, dataset)
-#
-#     def getFilterData(self, target_lyr):
-#         return _getFilterData(self.model, target_lyr)
+class Checkpoint:
+    def __init__(self, arch, dataset, model_path, num_classes, depth=None):
+        # print("{}, {}".format(models.__dict__, arch))
+        self.depth = depth
+        self.arch = arch
+        self.model = N2N(num_classes=num_classes)
+        self.model = torch.nn.ModuleList(self.model)
+        checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
+        self.model.load_state_dict(checkpoint['state_dict'])
+        self.optimizer = optim.SGD(self.model.parameters(), lr=0.1, momentum=0.9, weight_decay=0.005)
+        self.optimizer.load_state_dict(checkpoint['optimizer'])
+        self.epoch = checkpoint['epoch']
+
+    def getEpoch(self):
+        return self.epoch
+
+    def printParams(self):
+        print("[INFO] print learning parameters")
+        for name, param in self.model.named_parameters():
+            print("{}: {}".format(name, list(param.shape)))
+
+    def getConvStructSparsity(self, threshold, file_name=None, arch=None, dataset='imagenet'):
+        return _getConvStructSparsity(self.model, threshold, file_name, self.arch, dataset)
+
+    def getFilterData(self, target_lyr):
+        return _getFilterData(self.model, target_lyr)
 
 
 def third_largest(numbers):
@@ -397,8 +397,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         name = altList[i]
 
         # Get Momentum parameters to adjust
-        mom_param = optimizer.state['momentum_buffer']
-        print(mom_param)
+        mom_param = optimizer.state['momentum_buffer'][param]
 #
 #         # Change parameters of neural computing layers (Conv, FC)
 #         if (('conv' in name) or ('fc' in name)) and ('weight' in name):
