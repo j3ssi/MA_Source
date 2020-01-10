@@ -41,10 +41,6 @@ from src.src.custom import get_group_lasso_global, get_group_lasso_group
 from src.src.custom_arch import *
 import numpy as np
 
-model_names = sorted(name for name in models.__dict__
-                     if name.islower() and not name.startswith("__")
-                     and callable(models.__dict__[name]))
-
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 
 # Baseline
@@ -53,8 +49,6 @@ parser.add_argument('-j', '--workers', default=4, type=int, metavar='N',
                     help='number of data loading workers (default: 4)')
 parser.add_argument('--epochs', default=300, type=int, metavar='N',
                     help='number of total epochs to run')
-parser.add_argument('--start-epoch', default=1, type=int, metavar='N',
-                    help='manual epoch number (useful on restarts)')
 parser.add_argument('--train_batch', default=128, type=int, metavar='N',
                     help='train batchsize')
 parser.add_argument('--test_batch', default=100, type=int, metavar='N',
@@ -68,22 +62,12 @@ parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
                     help='momentum')
 parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')
-parser.add_argument('-c', '--checkpoint', default='checkpoint', type=str, metavar='PATH',
-                    help='path to save checkpoint (default: checkpoint)')
-parser.add_argument('--resume', default='', type=str, metavar='PATH',
-                    help='path to latest checkpoint (default: none)')
-parser.add_argument('--arch', '-a', metavar='ARCH', default='resnet20',
-                    choices=model_names, help='model architecture')
 parser.add_argument('--manualSeed', type=int, help='manual seed')
-parser.add_argument('-e', '--evaluate', dest='evaluate', action='store_true',
-                    help='evaluate model on validation set')
 parser.add_argument('--gpu-id', default='0', type=str,
                     help='id(s) for CUDA_VISIBLE_DEVICES')
 
 # PruneTrain
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
-parser.add_argument('--save_checkpoint', default=10, type=int,
-                    help='Interval to save checkpoint')
 parser.add_argument('--sparse_interval', default=0, type=int,
                     help='Interval to force the value under threshold')
 parser.add_argument('--threshold', default=0.0001, type=float,
@@ -97,13 +81,7 @@ parser.add_argument('--var_group_lasso_coeff', default=0.1, type=float,
                     help='Ratio = group-lasso / (group-lasso + loss)')
 parser.add_argument('--grp_lasso_coeff', default=0.0005, type=float,
                     help='claim as a global param')
-parser.add_argument('--arch_out_dir1', default=None, type=str,
-                    help='directory to store the temporary architecture file')
-parser.add_argument('--arch_out_dir2', default=None, type=str,
-                    help='directory to architecture files matching to checkpoints ')
-parser.add_argument('--arch_name', default='net.py', type=str,
-                    help='name of the new architecture')
-parser.add_argument('--is_gating', default=True, action='store_true',
+parser.add_argument('--is_gating', default=False, action='store_true',
                     help='Use gating for residual network')
 parser.add_argument('--threshold_type', default='max', choices=['max', 'mean'], type=str,
                     help='Thresholding type')
@@ -113,12 +91,14 @@ parser.add_argument('--global_coeff', default=True, action='store_true',
                     help='Use a global group lasso regularizaiton coefficient')
 parser.add_argument('--print-freq', default=10, type=int,
                     metavar='N', help='print frequency (default: 10)')
+#N2N
+parser.add_argument('--deeper', default=False, action='store_true',
+                    help='Male network deeper')
+
+
 
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
-
-# Validate dataset
-assert args.dataset == 'cifar10' or args.dataset == 'cifar100', 'Dataset can only be cifar10 or cifar100.'
 
 # Use CUDA
 os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
@@ -138,11 +118,6 @@ best_acc = 0  # best test accuracy
 def main():
     torch.autograd.set_detect_anomaly(True)
     global best_acc
-    start_epoch = args.start_epoch  # start from epoch 0 or last checkpoint epoch
-
-    if not os.path.isdir(args.checkpoint):
-        mkdir_p(args.checkpoint)
-
     # Data
     #print('==> Preparing dataset %s' % args.dataset)
     transform_train = transforms.Compose([
@@ -156,12 +131,9 @@ def main():
         transforms.ToTensor(),
         transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
     ])
-    if args.dataset == 'cifar10':
-        dataloader = datasets.CIFAR10
-        num_classes = 10
-    else:
-        dataloader = datasets.CIFAR100
-        num_classes = 100
+
+    dataloader = datasets.CIFAR10
+    num_classes = 10
 
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
     trainloader = data.DataLoader(trainset,
@@ -179,10 +151,11 @@ def main():
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+
     # Train and val
     for epochNet2Net in range(1, 3):
         best_acc = 0
-        for epoch in range(start_epoch, args.epochs + 1):
+        for epoch in range(1, args.epochs + 1):
             adjust_learning_rate(optimizer, epoch)
 
             #print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
@@ -190,8 +163,6 @@ def main():
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion, optimizer,
                                                                          epoch, use_cuda)
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
-
-            print(optimizer.state_dict().items())
 
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):
@@ -201,36 +172,21 @@ def main():
                                                  'cifar',
                                                  is_gating=args.is_gating)
                 # Reconstruct architecture
-                #if args.arch_out_dir2 is not None:
                 _genDenseModel(model, dense_chs, optimizer, args.arch, 'cifar')
-                    #_genDenseArch = custom_arch_cifar[args.arch]
-                    # if 'resnet' in args.arch:
-                    #     _genDenseArch(model, args.arch_out_dir1, args.arch_out_dir2,
-                    #                   args.arch_name, dense_chs,
-                    #                   chs_map, args.is_gating)
-                    # else:
-                    #     _genDenseArch(model, args.arch_out_dir1, args.arch_out_dir2,
-                    #                   args.arch_name, dense_chs, chs_map)
 
-            # save model
-            is_best = test_acc > best_acc
             best_acc = max(test_acc, best_acc)
-            # deeper student training
         print('Best acc:')
         print(best_acc)
-        print("\n\nnow deeper")
-        if best_acc< 50:
-             model = model.deeper(model, [2,8])
-        elif best_acc < 75:
-             model = model.deeper(model, [2,6])
-        elif best_acc < 95:
-             model = model.deeper(model, [6])
+        if(args.deeper):
+            print("\n\nnow deeper")
+            # deeper student training
+            if best_acc< 50:
+                model = model.deeper(model, [2,8])
+            elif best_acc < 75:
+                model = model.deeper(model, [2,6])
+            elif best_acc < 95:
+                model = model.deeper(model, [6])
         model.cuda()
-
-
-    # logger.close()
-
-
 
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
