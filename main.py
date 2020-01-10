@@ -185,7 +185,7 @@ def main():
         for epoch in range(start_epoch, args.epochs + 1):
             adjust_learning_rate(optimizer, epoch)
 
-            print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
+            #print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
 
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion, optimizer,
                                                                          epoch, use_cuda)
