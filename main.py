@@ -231,7 +231,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 lasso_penalty = get_group_lasso_group(model)
 
             # Auto-tune the group-lasso coefficient @first training iteration
-            coeff_dir = os.path.join(args.coeff_container, 'cifar', args.arch)
+            coeff_dir = os.path.join(args.coeff_container)
             if init_batch:
                 args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
                         lasso_penalty * (1 - args.var_group_lasso_coeff))
