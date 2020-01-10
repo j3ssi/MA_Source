@@ -17,7 +17,7 @@
 
 import sys
 import torch
-# from torch.nn.parameter import Parameter
+from torch.nn.parameter import Parameter
 # import torch.optim as optim
 import numpy as np
 import torch.nn as nn
