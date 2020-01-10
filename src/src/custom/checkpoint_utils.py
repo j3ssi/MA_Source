@@ -17,17 +17,14 @@
 
 import sys
 import torch
-from torch.nn.parameter import Parameter
-import torch.optim as optim
+# from torch.nn.parameter import Parameter
+# import torch.optim as optim
 import numpy as np
 import torch.nn as nn
 
 import heapq
-
-import src.src.models.cifar as models_cifar
-import src.src.models.imagenet as models_imagenet
-from .resnet_stages import *
-from .rm_layers import getRmLayers
+import n2n
+# from .rm_layers import getRmLayers
 
 # Packages to calculate inference cost
 from src.src.scripts.feature_size_cifar import cifar_feature_size, imagenet_feature_size
@@ -37,36 +34,34 @@ sys.path.append('..')
 WORD_SIZE = 4
 MFLOPS = 1000000 / 2
 
-from n2n import N2N
 
-
-class Checkpoint:
-    def __init__(self, arch, dataset, model_path, num_classes, depth=None):
-        # print("{}, {}".format(models.__dict__, arch))
-        self.depth = depth
-        self.arch = arch
-        self.model = N2N(num_classes=num_classes)
-        self.model = torch.nn.ModuleList(self.model)
-        checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
-        self.model.load_state_dict(checkpoint['state_dict'])
-        self.optimizer = optim.SGD(self.model.parameters(), lr=0.1, momentum=0.9, weight_decay=0.005)
-        self.optimizer.load_state_dict(checkpoint['optimizer'])
-        self.epoch = checkpoint['epoch']
-
-    def getEpoch(self):
-        return self.epoch
-
-    def printParams(self):
-        print("[INFO] print learning parameters")
-        for name, param in self.model.named_parameters():
-            print("{}: {}".format(name, list(param.shape)))
-
-    def getConvStructSparsity(self, threshold, file_name=None, arch=None, dataset='imagenet'):
-        return _getConvStructSparsity(self.model, threshold, file_name, self.arch, dataset)
-
-    def getFilterData(self, target_lyr):
-        return _getFilterData(self.model, target_lyr)
-
+# class Checkpoint:
+#     def __init__(self, arch, dataset, model_path, num_classes, depth=None):
+#         # print("{}, {}".format(models.__dict__, arch))
+#         self.depth = depth
+#         self.arch = arch
+#         self.model = n2n.N2N(num_classes=num_classes)
+#         self.model = torch.nn.ModuleList(self.model)
+#         checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
+#         self.model.load_state_dict(checkpoint['state_dict'])
+#         self.optimizer = optim.SGD(self.model.parameters(), lr=0.1, momentum=0.9, weight_decay=0.005)
+#         self.optimizer.load_state_dict(checkpoint['optimizer'])
+#         self.epoch = checkpoint['epoch']
+#
+#     def getEpoch(self):
+#         return self.epoch
+#
+#     def printParams(self):
+#         print("[INFO] print learning parameters")
+#         for name, param in self.model.named_parameters():
+#             print("{}: {}".format(name, list(param.shape)))
+#
+#     def getConvStructSparsity(self, threshold, file_name=None, arch=None, dataset='imagenet'):
+#         return _getConvStructSparsity(self.model, threshold, file_name, self.arch, dataset)
+#
+#     def getFilterData(self, target_lyr):
+#         return _getFilterData(self.model, target_lyr)
+#
 
 def third_largest(numbers):
     return heapq.nlargest(3, numbers)[2]
@@ -96,7 +91,7 @@ def _getFilterData(model, target_lyr):
 """
 
 
-def _getConvStructSparsity(model, threshold, file_name, arch, dataset):
+def _getConvStructSparsity(model, threshold, arch, dataset):
     conv_struct_density = {}
     conv_rand_density = {}
     sparse_bi_map = {}
@@ -110,6 +105,8 @@ def _getConvStructSparsity(model, threshold, file_name, arch, dataset):
     else:
         fmap = cifar_feature_size[arch]
 
+    filter_size = 0
+    channel_map = []
     tot_weights = 0
     for i in range(0, len(model.module_list) - 1):
         layer = []
@@ -171,7 +168,7 @@ def _getConvStructSparsity(model, threshold, file_name, arch, dataset):
         # Calculate inference cost = (CRS)(K)(NPQ)
         # fmap_name = name.split('module.')[1].split('.weight')[0]
         if isinstance(model.module_list[i], nn.Conv2d):
-            inf_cost = (num_dense_in_ch * dims[2] * dims[3]) * (num_dense_out_ch) * (fmap[i][1] ** 2)
+            inf_cost = (num_dense_in_ch * dims[2] * dims[3]) * num_dense_out_ch * (fmap[i][1] ** 2)
         else:
             inf_cost = (num_dense_in_ch * num_dense_out_ch)
         # print("{}, {}, {}".format(fmap_name, num_dense_in_ch, num_dense_out_ch))
@@ -181,13 +178,8 @@ def _getConvStructSparsity(model, threshold, file_name, arch, dataset):
 
     print("tot_weights:{}".format(tot_weights))
 
-    return sparse_bi_map, \
-           sparse_val_map, \
-           conv_id, \
-           conv_struct_density, \
-           conv_rand_density, \
-           (model_size * WORD_SIZE), \
-           acc_inf_cost / MFLOPS
+    return (sparse_bi_map, sparse_val_map, conv_id, conv_struct_density,
+            conv_rand_density, (model_size * WORD_SIZE), acc_inf_cost / MFLOPS)
 
 
 """
@@ -197,51 +189,46 @@ Make only the (conv, FC) layer parameters sparse
 """
 
 
-def _makeSparse(model, threshold, threshold_type, arch, dataset, is_gating=False, reconf=True):
+def _makeSparse(model, threshold, is_gating=False, reconf=True):
     print("[INFO] Force the sparse filters to zero...")
     dense_chs, chs_temp, idx = {}, {}, 0
     altList = []
     for name, param in model.named_parameters():
         i = int(name.split('.')[1])
         if i % 2 == 0:
-            altList.append('module.conv' + str(int((i/2)+1)) + '.weight')
+            altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
 
-        if (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list)-2)):
-            altList.append('module.bn' + str(int(((i-1)/2)+1)) + ".weight")
-        elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list)-3)):
-            altList.append('module.fc' + str(int((i +1) / 2)) + ".weight")
+        if (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
+            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
+        elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
+            altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
 
-        if (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list)-1)):
-            altList.append('module.bn' + str(int(((i-1)/2)+1)) + ".bias")
-        elif (i % 2 == 1 ) and ('bias' in name) and (i > (len(model.module_list)-2)):
-            altList.append('module.fc' + str(int((i +1) / 2)) + ".bias")
-        #print(altList[-1])
-    #print("\n\n")
-    #print(altList)
+        if (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
+            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
+        elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
+            altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
+        # print(altList[-1])
+    # print("\n\n")
+    # print(altList)
     i = -1
     for name, param in model.named_parameters():
         i = i + 1
-        nameTmp = name
+        # nameTmp = name
         name = altList[i]
         dims = list(param.shape)
-        #print("\n>Name2:")
-        #print(name)
+        # print("\n>Name2:")
+        # print(name)
         if (('conv' in name) or ('fc' in name)) and ('weight' in name):
-            #print('\n\ndrin')
+            # print('\n\ndrin')
             with torch.no_grad():
                 param = torch.where(param < threshold, torch.tensor(0.).cuda(), param)
 
             dense_in_chs, dense_out_chs = [], []
             if param.dim() == 4:
-                if 'conv' in name:
-                    conv_dw = int(name.split('.')[1].split('conv')[1]) % 2 == 0
-                else:
-                    conv_dw = False
                 # Forcing sparse input channels to zero
-                if True:
-                    for c in range(dims[1]):
-                        if param[:, c, :, :].abs().max() > 0:
-                            dense_in_chs.append(c)
+                for c in range(dims[1]):
+                    if param[:, c, :, :].abs().max() > 0:
+                        dense_in_chs.append(c)
 
                 # Forcing sparse output channels to zero
                 for c in range(dims[0]):
@@ -281,28 +268,26 @@ def _makeSparse(model, threshold, threshold_type, arch, dataset, is_gating=False
                                                           param.shape[2],
                                                           param.shape[3],
                                                           ))
-        """
-        Inter-layer channel is_gating
-        - Union: Maintain all dense channels on the shared nodes (No indexing)
-        - Individual: Add gating layers >> Layers at the shared node skip more computation
-        """
-    if True:
-        if 'cifar' in dataset:
-            stages, ch_maps = stages_cifar[arch], []
-        else:
-            stages, ch_maps = stages_imagenet[arch], []
+    """
+    Inter-layer channel is_gating
+    - Union: Maintain all dense channels on the shared nodes (No indexing)
+    - Individual: Add gating layers >> Layers at the shared node skip more computation
+    """
+    stages = n2n.getResidualPath(model)
+    ch_maps = []
 
-        # Within a residual branch >> Union of adjacent pairs
-        adj_lyrs = stages[10]
-        for adj_lyr in adj_lyrs:
-            if any(i for i in adj_lyr if i not in dense_chs):
-                """ not doing anything """
-            else:
-                for idx in range(len(adj_lyr) - 1):
-                    edge = list(set().union(dense_chs[adj_lyr[idx]]['out_chs'],
-                                                dense_chs[adj_lyr[idx + 1]]['in_chs']))
-                    dense_chs[adj_lyr[idx]]['out_chs'] = edge
-                    dense_chs[adj_lyr[idx + 1]]['in_chs'] = edge
+    # Within a residual branch >> Union of adjacent pairs
+    adj_lyrs = n2n.getShareSameNodeLayers(model)
+    print(adj_lyrs)
+    for adj_lyr in adj_lyrs:
+        if any(i for i in adj_lyr if i not in dense_chs):
+            """ not doing anything """
+        else:
+            for idx in range(len(adj_lyr) - 1):
+                edge = list(set().union(dense_chs[adj_lyr[idx]]['out_chs'],
+                                        dense_chs[adj_lyr[idx + 1]]['in_chs']))
+                dense_chs[adj_lyr[idx]]['out_chs'] = edge
+                dense_chs[adj_lyr[idx + 1]]['in_chs'] = edge
 
         # Shared nodes >> Leave union of all in/out channels
         if is_gating:
@@ -359,7 +344,7 @@ Generate a new dense network model
 """
 
 
-def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
+def _genDenseModel(model, dense_chs, optimizer, dataset):
     print("[INFO] Squeezing the sparse model to dense one...")
 
     # Sanity check
@@ -372,20 +357,20 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
     for name, param in model.named_parameters():
         i = int(name.split('.')[1])
         if i % 2 == 0:
-            altList.append('module.conv' + str(int((i/2)+1)) + '.weight')
+            altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
 
-        if (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list)-2)):
-            altList.append('module.bn' + str(int(((i-1)/2)+1)) + ".weight")
-        elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list)-3)):
-            altList.append('module.fc' + str(int((i +1) / 2)) + ".weight")
+        if (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
+            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
+        elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
+            altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
 
-        if (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list)-1)):
-            altList.append('module.bn' + str(int(((i-1)/2)+1)) + ".bias")
-        elif (i % 2 == 1 ) and ('bias' in name) and (i > (len(model.module_list)-2)):
-            altList.append('module.fc' + str(int((i +1) / 2)) + ".bias")
-        #print(altList[-1])
+        if (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
+            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
+        elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
+            altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
+        # print(altList[-1])
 
-    #print(altList)
+    # print(altList)
     i = -1
 
     # print("==================")
@@ -400,8 +385,8 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         print('\n\n')
         print(model)
         mom_param = optimizer.state[param]['momentum_buffer']
-        #print('\n\n mom_param: ')
-        #print(mom_param)
+        # print('\n\n mom_param: ')
+        # print(mom_param)
 #
 #         # Change parameters of neural computing layers (Conv, FC)
 #         if (('conv' in name) or ('fc' in name)) and ('weight' in name):

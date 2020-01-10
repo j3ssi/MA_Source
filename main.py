@@ -168,11 +168,11 @@ def main():
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):
                 # Force weights under threshold to zero
                 dense_chs, chs_map = _makeSparse(model, args.threshold,
-                                                 args.threshold_type, args.arch,
+                                                 args.threshold_type,
                                                  'cifar',
                                                  is_gating=args.is_gating)
                 # Reconstruct architecture
-                _genDenseModel(model, dense_chs, optimizer, args.arch, 'cifar')
+                _genDenseModel(model, dense_chs, optimizer, 'cifar')
 
             best_acc = max(test_acc, best_acc)
         print('Best acc:')

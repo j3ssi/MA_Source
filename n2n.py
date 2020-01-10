@@ -173,29 +173,6 @@ class N2N(nn.Module):
 
         return model
 
-        #     if posStr in name:
-        #         i = name.index(posStr)
-        #         conv1 = module[i]
-        #         conv2 = conv1.clone()
-        #         convStr2 = 'conv' + str(j)
-        #         if convStr2 not in names:
-        #             posStr = 'conv' + str(j)
-        #             self.add_module()
-        #             print(self.__dict__.__getitem__('_modules'))
-        #             return model
-        #         else:
-        #             conv3 = module[i + 1]
-        #             posStr = 'conv' + str(pos + 1)
-        #             j = j + 1
-        # for name, module in model.named_parameters():
-        #     posStr = 'conv' + str(pos + i)
-        #     #    posStr1 = 'conv' + posModel
-        #     #   name[posModel] = posStr1
-        #     #  model[posModel + 1] = model[posModel]
-        #     # model[posModel] = conv2
-        #     # else:
-        #     #   print(name[posModel])
-
 
 def num_flat_features(x):
     size = x.size()[1:]  # all dimensions except the batch dimension
@@ -203,3 +180,37 @@ def num_flat_features(x):
     for s in size:
         num_features *= s
     return num_features
+
+
+def getResidualPath(model):
+    stages = {0: {}}
+
+    stages[0]['i'] = []
+    stages[0]['o'] = []
+    i = len(model.module_list)-2
+    listI = []
+    listO = []
+    for j in range (1,i)
+        if j%2 == 0:
+            listI.insert(n(j))
+        else:
+            listO.insert(n(j))
+    stages[0]['i'] = listI
+    stages[0]['o'] = listO
+    return stages
+
+
+def getShareSameNodeLayers(model):
+    sameNode =[]
+    i = len(model.module_list)-2
+    for j in range (1,i)
+        if j%2 == 1:
+            sameNode.insert((n(j),n(j+1)))
+    return sameNode
+
+
+def n(name):
+    if isinstance(name, int):
+        return 'module.conv'+str(name)+'.weight'
+    else:
+        return 'module.'+name+'.weight'

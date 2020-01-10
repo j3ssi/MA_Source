@@ -19,11 +19,6 @@
 """ Module name constructor
 # Model naming for each layer. Layer is assumed to be flattened.
 """
-def n(name):
-    if isinstance(name, int):
-        return 'module.conv'+str(name)+'.weight'
-    else:
-        return 'module.'+name+'.weight'
 
 
 """ ResNet models for CIFAR
