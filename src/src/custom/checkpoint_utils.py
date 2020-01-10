@@ -215,9 +215,9 @@ def _makeSparse(model, threshold, threshold_type, arch, dataset, is_gating=False
             altList.append('module.bn' + str(int(((i-1)/2)+1)) + ".bias")
         elif (i % 2 == 1 ) and ('bias' in name) and (i > (len(model.module_list)-2)):
             altList.append('module.fc' + str(int((i +1) / 2)) + ".bias")
-        print(altList[-1])
-    print("\n\n")
-    print(altList)
+        #print(altList[-1])
+    #print("\n\n")
+    #print(altList)
     i = -1
     for name, param in model.named_parameters():
         i = i + 1
@@ -397,156 +397,156 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         name = altList[i]
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[param]['momentum_buffer']
-
-        # Change parameters of neural computing layers (Conv, FC)
-        if (('conv' in name) or ('fc' in name)) and ('weight' in name):
-
-            dims = list(param.shape)
-
-            dense_in_ch_idxs = dense_chs[name]['in_chs']
-            dense_out_ch_idxs = dense_chs[name]['out_chs']
-            num_in_ch, num_out_ch = len(dense_in_ch_idxs), len(dense_out_ch_idxs)
-
-            # print("===> Dense inchs: [{}], outchs: [{}]".format(num_in_ch, num_out_ch))
-
-            # Enlist layers with zero channels for removal
-            if num_in_ch == 0 or num_out_ch == 0:
-                rm_list.append(name)
-
-            else:
-                # Generate a new dense tensor and replace (Convolution layer)
-                if len(dims) == 4:
-                    new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
-                    new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
-
-                    for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
-                        for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
-                            with torch.no_grad():
-                                new_param[out_idx, in_idx, :, :] = param[out_ch, in_ch, :, :]
-                                new_mom_param[out_idx, in_idx, :, :] = mom_param[out_ch, in_ch, :, :]
-
-                # Generate a new dense tensor and replace (FC layer)
-                elif len(dims) == 2:
-                    new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
-                    new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
-
-                    if ('fc1' in name) or ('fc2' in name):
-                        for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
-                            for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
-                                with torch.no_grad():
-                                    new_param[out_idx, in_idx] = param[out_ch, in_ch]
-                                    new_mom_param[out_idx, in_idx] = mom_param[out_ch, in_ch]
-                    else:
-                        for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
-                            with torch.no_grad():
-                                new_param[:, in_idx] = param[:, in_ch]
-                                new_mom_param[:, in_idx] = mom_param[:, in_ch]
-                else:
-                    assert True, "Wrong tensor dimension: {} at layer {}".format(dims, name)
-
-                param.data = new_param
-                optimizer.state[param]['momentum_buffer'].data = new_mom_param
-
-                print("[{}]: {} >> {}".format(name, dims, list(new_param.shape)))
-
-        # Change parameters of non-neural computing layers (BN, biases)
-        else:
-            w_name = name.replace('bias', 'weight').replace('bn', 'conv')
-            dense_out_ch_idxs = dense_chs[w_name]['out_chs']
-            num_out_ch = len(dense_out_ch_idxs)
-
-            new_param = Parameter(torch.Tensor(num_out_ch)).cuda()
-            new_mom_param = Parameter(torch.Tensor(num_out_ch)).cuda()
-
-            for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
-                with torch.no_grad():
-                    new_param[out_idx] = param[out_ch]
-                    new_mom_param[out_idx] = mom_param[out_ch]
-
-            param.data = new_param
-            optimizer.state[param]['momentum_buffer'].data = new_mom_param
-
-            # print("[{}]: {} >> {}".format(name, dims[0], num_out_ch))
-
-    # Change moving_mean and moving_var of BN
-    for name, buf in model.named_buffers():
-        #print("\n\nbuffer name:")
-        #print(name)
-        if 'running_mean' in name or 'running_var' in name:
-            i = int(name.split('.')[1])
-            w_name = 'module.conv' +str(int((i+1)/2)) + '.weight'
-            dense_out_ch_idxs = dense_chs[w_name]['out_chs']
-            num_out_ch = len(dense_out_ch_idxs)
-            new_buf = Parameter(torch.Tensor(num_out_ch)).cuda()
-
-            for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
-                with torch.no_grad():
-                    new_buf[out_idx] = buf[out_ch]
-            buf.data = new_buf
-
-
-    """
-    Remove layers (Only applicable to ResNet-like networks)
-    - Remove model parameters
-    - Remove parameters/states in optimizer
-    """
-
-
-    def getLayerIdx(lyr_name):
-        if 'conv' in lyr_name:
-            conv_id = dense_chs[lyr_name + '.weight']['idx']
-            return [3 * (conv_id - 1)], [lyr_name + '.weight']
-        elif 'bn' in lyr_name:
-            conv_name = lyr_name.replace('bn', 'conv')
-            conv_id = dense_chs[conv_name + '.weight']['idx']
-            return [3 * conv_id - 1, 3 * conv_id - 2], [lyr_name + '.bias', lyr_name + '.weight']
-
-
-    if len(rm_list) > 0:
-        rm_lyrs = []
-        for name in rm_list:
-            rm_lyr = getRmLayers(name, arch, dataset)
-            if any(i for i in rm_lyr if i not in rm_lyrs):
-                rm_lyrs.extend(rm_lyr)
-
-        # Remove model parameters
-        for rm_lyr in rm_lyrs:
-            model.del_param_in_flat_arch(rm_lyr)
-
-        idxs, rm_params = [], []
-        for rm_lyr in rm_lyrs:
-            idx, rm_param = getLayerIdx(rm_lyr)
-            idxs.extend(idx)
-            rm_params.extend(rm_param)
-
-        # Remove optimizer states
-        for name, param in model.named_parameters():
-            for rm_param in rm_params:
-                if name == rm_param:
-                    del optimizer.state[param]
-
-    # Sanity check: Print out optimizer parameters before change
-    # print ("[INFO] ==== Size of parameter group (Before)")
-    # for g in optimizer.param_groups:
-    #  for idx, g2 in enumerate(g['params']):
-    #    print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
-
-    # Remove optimizer parameters
-    # Adjuster: Absolute parameter location changes after each removal
-        for idx_adjuster, idx in enumerate(sorted(idxs)):
-            del optimizer.param_groups[0]['params'][idx - idx_adjuster]
-
-    # Sanity check => Print out optimizer parameters after change
-    # print ("[INFO] ==== Size of parameter group (After)")
-    # for g in optimizer.param_groups:
-    #  for idx, g2 in enumerate(g['params']):
-    #    print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
-
-# Sanity check => Check the changed parameters
-# for name, param in model.named_parameters():
-#  print("===>>> [{}]: {}".format(name, list(param.shape)))
-
-# Sanity check => Check the changed buffers
-# for name, param in model.named_parameters():
-#  print("===<<< [{}]: {}".format(name, optimizer.state[param]['momentum_buffer'].shape))
-
+#
+#         # Change parameters of neural computing layers (Conv, FC)
+#         if (('conv' in name) or ('fc' in name)) and ('weight' in name):
+#
+#             dims = list(param.shape)
+#
+#             dense_in_ch_idxs = dense_chs[name]['in_chs']
+#             dense_out_ch_idxs = dense_chs[name]['out_chs']
+#             num_in_ch, num_out_ch = len(dense_in_ch_idxs), len(dense_out_ch_idxs)
+#
+#             # print("===> Dense inchs: [{}], outchs: [{}]".format(num_in_ch, num_out_ch))
+#
+#             # Enlist layers with zero channels for removal
+#             if num_in_ch == 0 or num_out_ch == 0:
+#                 rm_list.append(name)
+#
+#             else:
+#                 # Generate a new dense tensor and replace (Convolution layer)
+#                 if len(dims) == 4:
+#                     new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
+#                     new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
+#
+#                     for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
+#                         for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
+#                             with torch.no_grad():
+#                                 new_param[out_idx, in_idx, :, :] = param[out_ch, in_ch, :, :]
+#                                 new_mom_param[out_idx, in_idx, :, :] = mom_param[out_ch, in_ch, :, :]
+#
+#                 # Generate a new dense tensor and replace (FC layer)
+#                 elif len(dims) == 2:
+#                     new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
+#                     new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
+#
+#                     if ('fc1' in name) or ('fc2' in name):
+#                         for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
+#                             for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
+#                                 with torch.no_grad():
+#                                     new_param[out_idx, in_idx] = param[out_ch, in_ch]
+#                                     new_mom_param[out_idx, in_idx] = mom_param[out_ch, in_ch]
+#                     else:
+#                         for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
+#                             with torch.no_grad():
+#                                 new_param[:, in_idx] = param[:, in_ch]
+#                                 new_mom_param[:, in_idx] = mom_param[:, in_ch]
+#                 else:
+#                     assert True, "Wrong tensor dimension: {} at layer {}".format(dims, name)
+#
+#                 param.data = new_param
+#                 optimizer.state[param]['momentum_buffer'].data = new_mom_param
+#
+#                 print("[{}]: {} >> {}".format(name, dims, list(new_param.shape)))
+#
+#         # Change parameters of non-neural computing layers (BN, biases)
+#         else:
+#             w_name = name.replace('bias', 'weight').replace('bn', 'conv')
+#             dense_out_ch_idxs = dense_chs[w_name]['out_chs']
+#             num_out_ch = len(dense_out_ch_idxs)
+#
+#             new_param = Parameter(torch.Tensor(num_out_ch)).cuda()
+#             new_mom_param = Parameter(torch.Tensor(num_out_ch)).cuda()
+#
+#             for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
+#                 with torch.no_grad():
+#                     new_param[out_idx] = param[out_ch]
+#                     new_mom_param[out_idx] = mom_param[out_ch]
+#
+#             param.data = new_param
+#             optimizer.state[param]['momentum_buffer'].data = new_mom_param
+#
+#             # print("[{}]: {} >> {}".format(name, dims[0], num_out_ch))
+#
+#     # Change moving_mean and moving_var of BN
+#     for name, buf in model.named_buffers():
+#         #print("\n\nbuffer name:")
+#         #print(name)
+#         if 'running_mean' in name or 'running_var' in name:
+#             i = int(name.split('.')[1])
+#             w_name = 'module.conv' +str(int((i+1)/2)) + '.weight'
+#             dense_out_ch_idxs = dense_chs[w_name]['out_chs']
+#             num_out_ch = len(dense_out_ch_idxs)
+#             new_buf = Parameter(torch.Tensor(num_out_ch)).cuda()
+#
+#             for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
+#                 with torch.no_grad():
+#                     new_buf[out_idx] = buf[out_ch]
+#             buf.data = new_buf
+#
+#
+#     """
+#     Remove layers (Only applicable to ResNet-like networks)
+#     - Remove model parameters
+#     - Remove parameters/states in optimizer
+#     """
+#
+#
+#     def getLayerIdx(lyr_name):
+#         if 'conv' in lyr_name:
+#             conv_id = dense_chs[lyr_name + '.weight']['idx']
+#             return [3 * (conv_id - 1)], [lyr_name + '.weight']
+#         elif 'bn' in lyr_name:
+#             conv_name = lyr_name.replace('bn', 'conv')
+#             conv_id = dense_chs[conv_name + '.weight']['idx']
+#             return [3 * conv_id - 1, 3 * conv_id - 2], [lyr_name + '.bias', lyr_name + '.weight']
+#
+#
+#     if len(rm_list) > 0:
+#         rm_lyrs = []
+#         for name in rm_list:
+#             rm_lyr = getRmLayers(name, arch, dataset)
+#             if any(i for i in rm_lyr if i not in rm_lyrs):
+#                 rm_lyrs.extend(rm_lyr)
+#
+#         # Remove model parameters
+#         for rm_lyr in rm_lyrs:
+#             model.del_param_in_flat_arch(rm_lyr)
+#
+#         idxs, rm_params = [], []
+#         for rm_lyr in rm_lyrs:
+#             idx, rm_param = getLayerIdx(rm_lyr)
+#             idxs.extend(idx)
+#             rm_params.extend(rm_param)
+#
+#         # Remove optimizer states
+#         for name, param in model.named_parameters():
+#             for rm_param in rm_params:
+#                 if name == rm_param:
+#                     del optimizer.state[param]
+#
+#     # Sanity check: Print out optimizer parameters before change
+#     # print ("[INFO] ==== Size of parameter group (Before)")
+#     # for g in optimizer.param_groups:
+#     #  for idx, g2 in enumerate(g['params']):
+#     #    print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
+#
+#     # Remove optimizer parameters
+#     # Adjuster: Absolute parameter location changes after each removal
+#         for idx_adjuster, idx in enumerate(sorted(idxs)):
+#             del optimizer.param_groups[0]['params'][idx - idx_adjuster]
+#
+#     # Sanity check => Print out optimizer parameters after change
+#     # print ("[INFO] ==== Size of parameter group (After)")
+#     # for g in optimizer.param_groups:
+#     #  for idx, g2 in enumerate(g['params']):
+#     #    print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
+#
+# # Sanity check => Check the changed parameters
+# # for name, param in model.named_parameters():
+# #  print("===>>> [{}]: {}".format(name, list(param.shape)))
+#
+# # Sanity check => Check the changed buffers
+# # for name, param in model.named_parameters():
+# #  print("===<<< [{}]: {}".format(name, optimizer.state[param]['momentum_buffer'].shape))
+#
