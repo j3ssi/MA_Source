@@ -180,7 +180,7 @@ def main():
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     # Train and val
-    for epochNet2Net in range(1, 6):
+    for epochNet2Net in range(1, 3):
         best_acc = 0
         for epoch in range(start_epoch, args.epochs + 1):
             adjust_learning_rate(optimizer, epoch)
