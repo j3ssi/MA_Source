@@ -192,9 +192,9 @@ def getResidualPath(model):
     listO = []
     for j in range (1,i):
         if j%2 == 0:
-            listI.insert(n(j))
+            listI.insert(j-1, n(j))
         else:
-            listO.insert(n(j))
+            listO.insert(j-1, n(j))
     stages[0]['i'] = listI
     stages[0]['o'] = listO
     return stages
@@ -205,7 +205,7 @@ def getShareSameNodeLayers(model):
     i = len(model.module_list)-2
     for j in range (1,i):
         if j%2 == 1:
-            sameNode.insert((n(j),n(j+1)))
+            sameNode.append((n(j),n(j+1)))
     return sameNode
 
 
