@@ -202,9 +202,9 @@ def getResidualPath(model):
 
 def getShareSameNodeLayers(model):
     sameNode =[]
-    i = len(model.module_list)-2
+    i = (len(model.module_list)-2)/2
     for j in range (2,i):
-        if j%2 == 1:
+        if j%2 == 0:
             sameNode.append((n(j),n(j+1)))
     print("\n\n SameNode:")
     print(sameNode)
