@@ -397,9 +397,11 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
         name = altList[i]
 
         # Get Momentum parameters to adjust
+        print('\n\n')
+        print(name)
         mom_param = optimizer.state[param]['momentum_buffer']
-        print('\n\n mom_param: ')
-        print(mom_param)
+        #print('\n\n mom_param: ')
+        #print(mom_param)
 #
 #         # Change parameters of neural computing layers (Conv, FC)
 #         if (('conv' in name) or ('fc' in name)) and ('weight' in name):
