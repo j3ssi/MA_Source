@@ -110,11 +110,11 @@ class N2N(nn.Module):
             if isinstance(self.module_list[i], nn.Conv2d):
                 try:
                     x = self.module_list[i](_x)
-                    i = i + 1
+
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
                     print(i)
-
+                i = i + 1
             if isinstance(self.module_list[i], nn.BatchNorm2d):
                 try:
                     x = self.module_list[i](x)
