@@ -147,7 +147,7 @@ def main():
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
     model = n2n.N2N(num_classes)
-    model.cuda(args.gpu_id)
+    model.cuda()
 
     cudnn.benchmark = True
 
