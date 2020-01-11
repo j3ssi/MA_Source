@@ -104,7 +104,7 @@ best_acc = 0  # best test accuracy
 def main():
     # Use CUDA
     #os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
-    torch.cuda.set_device(args.gpu-id)
+    torch.cuda.set_device(args.gpu_id)
 
     # torch.cuda.set_device(args.gpu_id)
     use_cuda = torch.cuda.is_available()
