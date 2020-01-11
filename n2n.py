@@ -105,15 +105,13 @@ class N2N(nn.Module):
             if isinstance(self.module_list[i], nn.Conv2d):
                 try:
                     x = self.module_list[i](_x)
-                    print("\nconv {}",i)
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
-                    print(i)
+                    print(_x)
                 i = i + 1
             if isinstance(self.module_list[i], nn.BatchNorm2d):
                 try:
                     x = self.module_list[i](x)
-                    print("\nbn {}", i)
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
                     print(i)
@@ -123,7 +121,6 @@ class N2N(nn.Module):
             if isinstance(self.module_list[i], nn.Conv2d):
                 try:
                     x = self.module_list[i](x)
-                    print("\nconv {}", i)
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
                     print(i)
@@ -132,7 +129,6 @@ class N2N(nn.Module):
             if isinstance(self.module_list[i], nn.BatchNorm2d):
                 try:
                     x = self.module_list[i](x)
-                    print("\nbn {}", i)
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
                     print(i)
