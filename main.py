@@ -97,11 +97,6 @@ parser.add_argument('--deeper', default=True, action='store_true',
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
 
-# Use CUDA
-os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
-
-#torch.cuda.set_device(args.gpu_id)
-use_cuda = torch.cuda.is_available()
 
 # Random seed
 if args.manualSeed is None:
@@ -115,6 +110,12 @@ best_acc = 0  # best test accuracy
 
 
 def main():
+    # Use CUDA
+    os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
+
+    # torch.cuda.set_device(args.gpu_id)
+    use_cuda = torch.cuda.is_available()
+
     print(torch.cuda.current_device())
     torch.autograd.set_detect_anomaly(True)
     global best_acc
