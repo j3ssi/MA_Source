@@ -98,14 +98,6 @@ args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
 
 
-# Random seed
-if args.manualSeed is None:
-    args.manualSeed = random.randint(1, 10000)
-random.seed(args.manualSeed)
-torch.manual_seed(args.manualSeed)
-if use_cuda:
-    torch.cuda.manual_seed(args.manualSeed)
-
 best_acc = 0  # best test accuracy
 
 
@@ -115,6 +107,14 @@ def main():
 
     # torch.cuda.set_device(args.gpu_id)
     use_cuda = torch.cuda.is_available()
+
+    # Random seed
+    if args.manualSeed is None:
+        args.manualSeed = random.randint(1, 10000)
+    random.seed(args.manualSeed)
+    torch.manual_seed(args.manualSeed)
+    if use_cuda:
+        torch.cuda.manual_seed(args.manualSeed)
 
     print(torch.cuda.current_device())
     torch.autograd.set_detect_anomaly(True)
