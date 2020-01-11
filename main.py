@@ -69,7 +69,7 @@ parser.add_argument('--sparse_interval', default=0, type=int,
                     help='Interval to force the value under threshold')
 parser.add_argument('--threshold', default=0.0001, type=float,
                     help='Threshold to force weight to zero')
-parser.add_argument('--en_group_lasso', default=False, action='store_true',
+parser.add_argument('--en_group_lasso', default=True, action='store_true',
                     help='Set the group-lasso coefficient')
 parser.add_argument('--global_group_lasso', default=False, action='store_true',
                     help='True: use a global group lasso coefficient, '
@@ -89,7 +89,7 @@ parser.add_argument('--global_coeff', default=True, action='store_true',
 parser.add_argument('--print-freq', default=10, type=int,
                     metavar='N', help='print frequency (default: 10)')
 #N2N
-parser.add_argument('--deeper', default=True, action='store_true',
+parser.add_argument('--deeper', default=False, action='store_true',
                     help='Male network deeper')
 
 
@@ -166,7 +166,7 @@ def main():
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
             # SparseTrain routine
-            if True and (epoch % args.sparse_interval == 0):
+            if args.en_group_lasso and (epoch % args.sparse_interval == 0):
                 # Force weights under threshold to zero
                 dense_chs, chs_map = _makeSparse(model, args.threshold,
                                                  is_gating=args.is_gating)
