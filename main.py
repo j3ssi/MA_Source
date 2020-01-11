@@ -61,7 +61,7 @@ parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
 parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')
 parser.add_argument('--manualSeed', type=int, help='manual seed')
-parser.add_argument('--gpu-id', default='2', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
+parser.add_argument('--gpu_id', default='2', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
 
 # PruneTrain
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
@@ -103,7 +103,7 @@ best_acc = 0  # best test accuracy
 
 def main():
     # Use CUDA
-    os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu-id
+    os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
 #    torch.cuda.set_device(args.gpu-id)
 
     # torch.cuda.set_device(args.gpu_id)
