@@ -85,60 +85,108 @@ class N2N(nn.Module):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
 
-    def forward(self, x):
-        try:
-            x = self.module_list[0](x)
-            x = self.module_list[1](x)
-            _x = self.relu(x)
-        except RuntimeError:
-            print("\n \n Oops!!!: ")
-            print(1)
-
-        i = 2
-        while i > 0:
-            if isinstance(self.module_list[i], nn.AdaptiveAvgPool2d):
+    def forward(self,model, x):
+        odd =False
+        first = True
+        bn = False
+        _x = None
+        for module in model.module_list:
+            if isinstance(module, nn.AdaptiveAvgPool2d):
                 try:
-                    x = self.module_list[i](_x)
+                    x = module(_x)
                     x = x.view(-1, 16)
-                    x = self.module_list[i + 1](x)
-                    return x
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
-                    print(i)
+                    print("AvgPool")
+            elif isinstance(module, nn.Linear):
+                x = module(x)
+                return x
+            else:
+                if first and not bn:
+                    x = module(x)
+                    bn = True
+                elif first and bn:
+                    x = module(x)
+                    _x = self.relu(x)
+                    first = False
+                    bn = False
+                else:
+                    if not odd and not bn:
+                        x = module(_x)
+                        bn = True
+                    elif not odd and bn:
+                        x = module(x)
+                        x = self.relu(x)
+                        odd = True
+                        bn = False
+                    else:
+                        if not bn:
+                            x = module(x)
+                            bn = True
+                        if bn:
+                            x = module(x)
+                            _x = _x + x
+                            _x = self.relu(_x)
+                            odd = False
+                            bn = False
 
-            if isinstance(self.module_list[i], nn.Conv2d):
-                try:
-                    x = self.module_list[i](_x)
-                except RuntimeError:
-                    print("\n \n Oops!!!: ")
-                    print(i)
-                i = i + 1
-            if isinstance(self.module_list[i], nn.BatchNorm2d):
-                try:
-                    x = self.module_list[i](x)
-                except RuntimeError:
-                    print("\n \n Oops!!!: ")
-                    print(i)
-                i = i + 1
-            x = self.relu(x)
 
-            if isinstance(self.module_list[i], nn.Conv2d):
-                try:
-                    x = self.module_list[i](x)
-                except RuntimeError:
-                    print("\n \n Oops!!!: ")
-                    print(i)
-                i = i + 1
 
-            if isinstance(self.module_list[i], nn.BatchNorm2d):
-                try:
-                    x = self.module_list[i](x)
-                except RuntimeError:
-                    print("\n \n Oops!!!: ")
-                    print(i)
-                i = i + 1
-            _x = _x + x
-            _x = self.relu(_x)
+
+
+        # try:
+        #     x = self.module_list[0](x)
+        #     x = self.module_list[1](x)
+        #     _x = self.relu(x)
+        # except RuntimeError:
+        #     print("\n \n Oops!!!: ")
+        #     print(1)
+        #
+        # i = 2
+        # while i > 0:
+        #     if isinstance(self.module_list[i], nn.AdaptiveAvgPool2d):
+        #         try:
+        #             x = self.module_list[i](_x)
+        #             x = x.view(-1, 16)
+        #             x = self.module_list[i + 1](x)
+        #             return x
+        #         except RuntimeError:
+        #             print("\n \n Oops!!!: ")
+        #             print(i)
+        #
+        #     if isinstance(self.module_list[i], nn.Conv2d):
+        #         try:
+        #             x = self.module_list[i](_x)
+        #         except RuntimeError:
+        #             print("\n \n Oops!!!: ")
+        #             print(i)
+        #         i = i + 1
+        #     if isinstance(self.module_list[i], nn.BatchNorm2d):
+        #         try:
+        #             x = self.module_list[i](x)
+        #         except RuntimeError:
+        #             print("\n \n Oops!!!: ")
+        #             print(i)
+        #         i = i + 1
+        #     x = self.relu(x)
+        #
+        #     if isinstance(self.module_list[i], nn.Conv2d):
+        #         try:
+        #             x = self.module_list[i](x)
+        #         except RuntimeError:
+        #             print("\n \n Oops!!!: ")
+        #             print(i)
+        #         i = i + 1
+        #
+        #     if isinstance(self.module_list[i], nn.BatchNorm2d):
+        #         try:
+        #             x = self.module_list[i](x)
+        #         except RuntimeError:
+        #             print("\n \n Oops!!!: ")
+        #             print(i)
+        #         i = i + 1
+        #     _x = _x + x
+        #     _x = self.relu(_x)
 
     def deeper(self, model, optimizer, positions):
         # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper

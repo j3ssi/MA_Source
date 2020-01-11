@@ -133,6 +133,7 @@ class ResNet32(nn.Module):
         x = self.conv2(_x)
         x = self.bn2(x)
         x = self.relu(x)
+
         x = self.conv3(x)
         x = self.bn3(x)
         _x = _x + x
