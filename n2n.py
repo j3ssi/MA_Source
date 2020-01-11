@@ -5,6 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import math
 import numpy as np
+from torch import optim
 
 from torch.autograd import Variable
 
@@ -146,15 +147,15 @@ class N2N(nn.Module):
             _x = _x + x
             _x = self.relu(_x)
 
-    def deeper(self, model, positions):
+    def deeper(self, model, optimizer, positions):
         # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
         for pos in positions:
             # print("\n\nposition:")
             # print(pos)
             conv = model.module_list[pos * 2 - 2]
             bn = model.module_list[pos * 2 - 1]
-            conv1 = model.module_list[pos*2]
-            bn1 = model.module_list[pos*2 + 1]
+            conv1 = model.module_list[pos * 2]
+            bn1 = model.module_list[pos * 2 + 1]
             conv2 = copy.deepcopy(conv)
             conv3 = copy.deepcopy(conv1)
             noise = torch.Tensor(conv2.weight.shape).random_(0, 1).cuda()
@@ -171,7 +172,10 @@ class N2N(nn.Module):
             # print("\n\n> moduleList:\n")
             # print(self.module_list)
 
-        return model
+        optimizer = optim.SGD(model.parameters(), get_lr(optimizer), get_momentum(optimizer),
+                              get_weight_decay(optimizer))
+
+        return model, optimizer
 
 
 def num_flat_features(x):
@@ -187,25 +191,25 @@ def getResidualPath(model):
 
     stages[0]['i'] = []
     stages[0]['o'] = []
-    i = len(model.module_list)-2
+    i = len(model.module_list) - 2
     listI = []
     listO = []
-    for j in range (1,i):
-        if j%2 == 0:
-            listI.insert(j-1, n(j))
+    for j in range(1, i):
+        if j % 2 == 0:
+            listI.insert(j - 1, n(j))
         else:
-            listO.insert(j-1, n(j))
+            listO.insert(j - 1, n(j))
     stages[0]['i'] = listI
     stages[0]['o'] = listO
     return stages
 
 
 def getShareSameNodeLayers(model):
-    sameNode =[]
-    i = int((len(model.module_list)-2)/2)
-    for j in range (2,i):
-        if j%2 == 0:
-            sameNode.append((n(j),n(j+1)))
+    sameNode = []
+    i = int((len(model.module_list) - 2) / 2)
+    for j in range(2, i):
+        if j % 2 == 0:
+            sameNode.append((n(j), n(j + 1)))
     print("\n\n SameNode:")
     print(sameNode)
     print('; ')
@@ -215,6 +219,21 @@ def getShareSameNodeLayers(model):
 
 def n(name):
     if isinstance(name, int):
-        return 'module.conv'+str(name)+'.weight'
+        return 'module.conv' + str(name) + '.weight'
     else:
-        return 'module.'+name+'.weight'
+        return 'module.' + name + '.weight'
+
+
+def get_lr(optimizer):
+    for param_group in optimizer.param_groups:
+        return param_group['lr']
+
+
+def get_momentum(optimizer):
+    for param_group in optimizer.param_groups:
+        return param_group['momentum']
+
+
+def get_weight_decay(optimizer):
+    for param_group in optimizer.param_groups:
+        return param_group['weight_decay']

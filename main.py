@@ -63,8 +63,7 @@ parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
 parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')
 parser.add_argument('--manualSeed', type=int, help='manual seed')
-parser.add_argument('--gpu-id', default='2', type=str,
-                    help='id(s) for CUDA_VISIBLE_DEVICES')
+parser.add_argument('--gpu-id', default='2', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
 
 # PruneTrain
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
@@ -181,11 +180,11 @@ def main():
             print("\n\nnow deeper")
             # deeper student training
             if best_acc< 50:
-                model = model.deeper(model, optimizer, [2, 4, 6, 8])
+                model, optimizer = model.deeper(model, optimizer, [2, 4, 6, 8])
             elif best_acc < 75:
-                model = model.deeper(model, optimizer, [2,6])
+                model, optimizer = model.deeper(model, optimizer, [2,6])
             elif best_acc < 95:
-                model = model.deeper(model, optimizer, [6])
+                model, optimizer = model.deeper(model, optimizer, [6])
             model.cuda(args.gpu_id)
 
 
