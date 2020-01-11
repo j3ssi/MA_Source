@@ -171,7 +171,7 @@ def main():
                 dense_chs, chs_map = _makeSparse(model, args.threshold,
                                                  is_gating=args.is_gating)
                 # Reconstruct architecture
-                #_genDenseModel(model, dense_chs, optimizer, 'cifar')
+                _genDenseModel(model, dense_chs, optimizer, 'cifar')
 
             best_acc = max(test_acc, best_acc)
         print('Best acc:')
