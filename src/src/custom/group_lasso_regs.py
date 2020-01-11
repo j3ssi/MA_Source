@@ -90,34 +90,52 @@ def get_group_lasso_global(model):
 """
 
 
-def get_group_lasso_group(model, arch):
+def get_group_lasso_group(model):
     lasso_in_ch = []
     lasso_out_ch = []
     lasso_in_ch_penalty = []
     lasso_out_ch_penalty = []
 
+    altList = []
     for name, param in model.named_parameters():
+        i = int(name.split('.')[1])
+        if i % 2 == 0:
+            altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
+
+        if (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
+            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
+        elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
+            altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
+
+        if (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
+            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
+        elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
+            altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
+        #print(altList[-1])
+
+    j = -1
+
+
+    for name, param in model.named_parameters():
+        j = j + 1
+        name = altList[j]
         # Lasso added to only the neuronal layers
         if ('weight' in name) and any([i for i in ['conv', 'fc'] if i in name]):
             if param.dim() == 4:
-                conv_dw = int(name.split('.')[0].split('conv')[1]) % 2 == 0
-                add_lasso = ('mobilenet' not in arch) or ('mobilenet' in arch and not conv_dw)
-
                 w_num_i_ch = param.shape[0] * param.shape[2] * param.shape[3]
                 w_num_o_ch = param.shape[1] * param.shape[2] * param.shape[3]
 
                 # Exclude depth-wise convolution layers from regularization
-                if add_lasso:
-                    if 'conv1.' not in name:
-                        _in = param.pow(2).sum(dim=[0, 2, 3])
-                        lasso_in_ch.append(_in)
-                        penalty_tensor = torch.Tensor(param.shape[1]).cuda()
-                        lasso_in_ch_penalty.append(penalty_tensor.new_full([param.shape[1]], w_num_i_ch))
+                if 'conv1.' not in name:
+                    _in = param.pow(2).sum(dim=[0, 2, 3])
+                    lasso_in_ch.append(_in)
+                    penalty_tensor = torch.Tensor(param.shape[1]).cuda()
+                    lasso_in_ch_penalty.append(penalty_tensor.new_full([param.shape[1]], w_num_i_ch))
 
-                    _out = param.pow(2).sum(dim=[1, 2, 3])
-                    lasso_out_ch.append(_out)
-                    penalty_tensor = torch.Tensor(param.shape[0]).cuda()
-                    lasso_out_ch_penalty.append(penalty_tensor.new_full([param.shape[0]], w_num_o_ch))
+                _out = param.pow(2).sum(dim=[1, 2, 3])
+                lasso_out_ch.append(_out)
+                penalty_tensor = torch.Tensor(param.shape[0]).cuda()
+                lasso_out_ch_penalty.append(penalty_tensor.new_full([param.shape[0]], w_num_o_ch))
 
             elif param.dim() == 2:
                 w_num_i_ch = param.shape[0]
