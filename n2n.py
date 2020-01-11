@@ -180,7 +180,7 @@ def getResidualPath(model):
 
     stages[0]['i'] = []
     stages[0]['o'] = []
-    i = len(model.module_list) - 2
+    i = (len(model.module_list) - 2)/2
     listI = []
     listO = []
     for j in range(1, i):
