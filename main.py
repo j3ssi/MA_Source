@@ -185,7 +185,7 @@ def main():
                 model, optimizer = model.deeper(model, optimizer, [2,6])
             elif best_acc < 95:
                 model, optimizer = model.deeper(model, optimizer, [6])
-            model.cuda(args.gpu_id)
+            model.cuda()
 
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
