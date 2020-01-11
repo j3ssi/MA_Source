@@ -166,7 +166,7 @@ def main():
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
             # SparseTrain routine
-            if args.en_group_lasso and (epoch % args.sparse_interval == 0):
+            if True and (epoch % args.sparse_interval == 0):
                 # Force weights under threshold to zero
                 dense_chs, chs_map = _makeSparse(model, args.threshold,
                                                  is_gating=args.is_gating)
