@@ -181,11 +181,11 @@ def main():
             print("\n\nnow deeper")
             # deeper student training
             if best_acc< 50:
-                model = model.deeper(model, [2,8])
+                model = model.deeper(model, optimizer, [2, 4, 6, 8])
             elif best_acc < 75:
-                model = model.deeper(model, [2,6])
+                model = model.deeper(model, optimizer, [2,6])
             elif best_acc < 95:
-                model = model.deeper(model, [6])
+                model = model.deeper(model, optimizer, [6])
             model.cuda(args.gpu_id)
 
 
