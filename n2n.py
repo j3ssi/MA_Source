@@ -107,7 +107,7 @@ class N2N(nn.Module):
                     x = self.module_list[i](_x)
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
-                    print(_x)
+                    print(i)
                 i = i + 1
             if isinstance(self.module_list[i], nn.BatchNorm2d):
                 try:
