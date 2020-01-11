@@ -33,13 +33,11 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 from torch.autograd import Variable
 import n2n
-import src.src.models.cifar as models
 
 from src.src.utils import AverageMeter, accuracy, mkdir_p, savefig
 from src.src.custom import _makeSparse, _genDenseModel, _DataParallel
 from src.src.custom import get_group_lasso_global, get_group_lasso_group
 from src.src.custom_arch import *
-import numpy as np
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 
@@ -117,6 +115,7 @@ best_acc = 0  # best test accuracy
 
 
 def main():
+    print(torch.cuda.current_device())
     torch.autograd.set_detect_anomaly(True)
     global best_acc
     # Data
