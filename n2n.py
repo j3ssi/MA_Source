@@ -190,6 +190,7 @@ def getResidualPath(model):
             listO.insert(j - 1, n(j))
     stages[0]['i'] = listI
     stages[0]['o'] = listO
+    print stages
     return stages
 
 

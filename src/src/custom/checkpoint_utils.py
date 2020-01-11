@@ -18,7 +18,7 @@
 import sys
 import torch
 from torch.nn.parameter import Parameter
-# import torch.optim as optim
+import torch.optim as optim
 import numpy as np
 import torch.nn as nn
 
@@ -34,37 +34,6 @@ sys.path.append('..')
 WORD_SIZE = 4
 MFLOPS = 1000000 / 2
 
-
-# class Checkpoint:
-#     def __init__(self, arch, dataset, model_path, num_classes, depth=None):
-#         # print("{}, {}".format(models.__dict__, arch))
-#         self.depth = depth
-#         self.arch = arch
-#         self.model = n2n.N2N(num_classes=num_classes)
-#         self.model = torch.nn.ModuleList(self.model)
-#         checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
-#         self.model.load_state_dict(checkpoint['state_dict'])
-#         self.optimizer = optim.SGD(self.model.parameters(), lr=0.1, momentum=0.9, weight_decay=0.005)
-#         self.optimizer.load_state_dict(checkpoint['optimizer'])
-#         self.epoch = checkpoint['epoch']
-#
-#     def getEpoch(self):
-#         return self.epoch
-#
-#     def printParams(self):
-#         print("[INFO] print learning parameters")
-#         for name, param in self.model.named_parameters():
-#             print("{}: {}".format(name, list(param.shape)))
-#
-#     def getConvStructSparsity(self, threshold, file_name=None, arch=None, dataset='imagenet'):
-#         return _getConvStructSparsity(self.model, threshold, file_name, self.arch, dataset)
-#
-#     def getFilterData(self, target_lyr):
-#         return _getFilterData(self.model, target_lyr)
-#
-
-def third_largest(numbers):
-    return heapq.nlargest(3, numbers)[2]
 
 
 """ Return 1D list of weights for the target layer
