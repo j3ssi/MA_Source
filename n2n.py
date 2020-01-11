@@ -86,10 +86,14 @@ class N2N(nn.Module):
                 m.bias.data.zero_()
 
     def forward(self, x):
+        try:
+            x = self.module_list[0](x)
+            x = self.module_list[1](x)
+            _x = self.relu(x)
+        except RuntimeError:
+            print("\n \n Oops!!!: ")
+            print(1)
 
-        x = self.module_list[0](x)
-        x = self.module_list[1](x)
-        _x = self.relu(x)
         i = 2
         while i > 0:
             if isinstance(self.module_list[i], nn.AdaptiveAvgPool2d):
