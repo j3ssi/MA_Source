@@ -24,7 +24,6 @@ class N2N(nn.Module):
         # 2
         conv2 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
         self.module_list.append(conv2)
-
         # 3
         bn2 = nn.BatchNorm2d(16)
         self.module_list.append(bn2)
@@ -89,12 +88,7 @@ class N2N(nn.Module):
     def forward(self, x):
 
         x = self.module_list[0](x)
-        # print("\n >shape of x1:")
-        # print(x.size())
         x = self.module_list[1](x)
-        # print("\n >shape of x2:")
-        # print(x.size())
-
         _x = self.relu(x)
         i = 2
         while i > 0:
@@ -111,7 +105,7 @@ class N2N(nn.Module):
             if isinstance(self.module_list[i], nn.Conv2d):
                 try:
                     x = self.module_list[i](_x)
-
+                    print("\nconv {}",i)
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
                     print(i)
@@ -119,31 +113,30 @@ class N2N(nn.Module):
             if isinstance(self.module_list[i], nn.BatchNorm2d):
                 try:
                     x = self.module_list[i](x)
-                    i = i + 1
-
+                    print("\nbn {}", i)
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
                     print(i)
-
+                i = i + 1
             x = self.relu(x)
 
             if isinstance(self.module_list[i], nn.Conv2d):
                 try:
                     x = self.module_list[i](x)
-                    i = i + 1
-
+                    print("\nconv {}", i)
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
                     print(i)
+                i = i + 1
 
             if isinstance(self.module_list[i], nn.BatchNorm2d):
                 try:
                     x = self.module_list[i](x)
-                    i = i + 1
+                    print("\nbn {}", i)
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
                     print(i)
-
+                i = i + 1
             _x = _x + x
             _x = self.relu(_x)
 
