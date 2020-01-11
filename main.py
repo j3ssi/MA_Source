@@ -308,7 +308,7 @@ def test(testloader, model, criterion, epoch, use_cuda):
             #targets = Variable(targets)
         targets = torch.autograd.Variable(targets)
         # compute output
-        outputs = model(inputs)
+        outputs = model(model, inputs)
         loss = criterion(outputs, targets)
 
         # measure accuracy and record loss
