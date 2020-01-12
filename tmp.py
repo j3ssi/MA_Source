@@ -1,125 +1,87 @@
-"""
- Copyright 2019 Sangkug Lym
- Copyright 2019 The University of Texas at Austin
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
-"""
+import os
 
 import torch
+import torch.nn as nn
+import torch.optim as optim
+import torch.utils.data as data
+import torchvision.transforms as transforms
+import torchvision.datasets as datasets
+from torch.autograd import Variable
 
-""" A single global group-lasso regularization coefficient
-# 1. Exclude depth-wise separable convolution from regularization
-# 2. Exclude first layer's input channel and last layer's output from regularization
-# 3. Consider multi-layer classifier
-
-# arch: architecture name
-# lasso_penalty: group lasso regularization penalty
-"""
-def get_group_lasso_global(model, arch):
-    lasso_in_ch = []
-    lasso_out_ch = []
-
-    for name, param in model.named_parameters():
-        # Lasso added to only the neuronal layers
-        if ('weight' in name) and any([i for i in ['conv', 'fc'] if i in name]):
-            if param.dim() == 4:
-                conv_dw = int(name.split('.')[1].split('conv')[1]) %2 == 0
-                add_lasso = ('mobilenet' not in arch) or ('mobilenet' in arch and not conv_dw)
-
-                # Exclude depth-wise convolution layers from regularization
-                if add_lasso:
-                    if 'conv1.' not in name:
-                        _in = param.pow(2).sum(dim=[0,2,3])
-                        lasso_in_ch.append( _in )
-
-                    _out = param.pow(2).sum(dim=[1,2,3])
-                    lasso_out_ch.append( _out )
-
-            elif param.dim() == 2:
-                # Multi-FC-layer based classifier (only fc or fc3 are the last layers)
-                if ('fc1' in name) or ('fc2' in name):
-                    lasso_out_ch.append( param.pow(2).sum(dim=[1]) )
-                lasso_in_ch.append( param.pow(2).sum(dim=[0]) )
-
-    _lasso_in_ch         = torch.cat(lasso_in_ch).cuda()
-    _lasso_out_ch        = torch.cat(lasso_out_ch).cuda()
-
-    lasso_penalty_in_ch  = _lasso_in_ch.add(1.0e-8).sqrt().sum()
-    lasso_penalty_out_ch = _lasso_out_ch.add(1.0e-8).sqrt().sum()
-
-    lasso_penalty        = lasso_penalty_in_ch + lasso_penalty_out_ch
-    return lasso_penalty
+import n2n
 
 
-""" Number of parameter-based per-group regularization coefficient
-# 1. Exclude depth-wise separable convolution from regularization
-# 2. Exclude first layer's input channel and last layer's output from regularization
-# 3. Consider multi-layer classifier
+def main():
+    # Use CUDA
+    os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
+    use_cuda = torch.cuda.is_available()
 
-# arch: architecture name
-# lasso_penalty: group lasso regularization penalty
-"""
-def get_group_lasso_group(model, arch):
-    lasso_in_ch = []
-    lasso_out_ch = []
-    lasso_in_ch_penalty = []
-    lasso_out_ch_penalty = []
+    if use_cuda:
+        torch.cuda.manual_seed(args.manualSeed)
 
-    for name, param in model.named_parameters():
-        # Lasso added to only the neuronal layers
-        if ('weight' in name) and any([i for i in ['conv', 'fc'] if i in name]):
-            if param.dim() == 4:
-                conv_dw = int(name.split('.')[1].split('conv')[1]) %2 == 0
-                add_lasso = ('mobilenet' not in arch) or ('mobilenet' in arch and not conv_dw)
+    torch.autograd.set_detect_anomaly(True)
+    global best_acc
+    # Data
+    #print('==> Preparing dataset %s' % args.dataset)
+    transform_train = transforms.Compose([
+        transforms.RandomCrop(32, padding=4),
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor(),
+        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+    ])
 
-                w_num_i_ch = param.shape[0] * param.shape[2] * param.shape[3]
-                w_num_o_ch = param.shape[1] * param.shape[2] * param.shape[3]
+    transform_test = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+    ])
 
-                # Exclude depth-wise convolution layers from regularization
-                if add_lasso:
-                    if 'conv1.' not in name:
-                        _in = param.pow(2).sum(dim=[0,2,3])
-                        lasso_in_ch.append( _in )
-                        penalty_tensor = torch.Tensor(param.shape[1]).cuda()
-                        lasso_in_ch_penalty.append( penalty_tensor.new_full([param.shape[1]], w_num_i_ch) )
+    dataloader = datasets.CIFAR10
+    num_classes = 10
 
-                    _out = param.pow(2).sum(dim=[1,2,3])
-                    lasso_out_ch.append( _out )
-                    penalty_tensor = torch.Tensor(param.shape[0]).cuda()
-                    lasso_out_ch_penalty.append( penalty_tensor.new_full([param.shape[0]], w_num_o_ch) )
+    trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
+    trainloader = data.DataLoader(trainset,
+                                  batch_size=args.train_batch,
+                                  shuffle=True,
+                                  num_workers=args.workers)
 
-            elif param.dim() == 2:
-                w_num_i_ch = param.shape[0]
-                w_num_o_ch = param.shape[1]
+    testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
+    testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
-                if ('fc1' in name) or ('fc2' in name):
-                    lasso_out_ch.append( param.pow(2).sum(dim=[1]) )
-                    penalty_tensor = torch.Tensor(param.shape[0]).cuda()
-                    lasso_out_ch_penalty.append( penalty_tensor.new_full([param.shape[0]], w_num_o_ch) )
-                lasso_in_ch.append( param.pow(2).sum(dim=[0]) )
-                penalty_tensor = torch.Tensor(param.shape[1]).cuda()
-                lasso_in_ch_penalty.append( penalty_tensor.new_full([param.shape[1]], w_num_i_ch) )
+    model = n2n.N2N(num_classes)
+    model.cuda()
 
-    _lasso_in_ch         = torch.cat(lasso_in_ch).cuda()
-    _lasso_out_ch        = torch.cat(lasso_out_ch).cuda()
-    lasso_penalty_in_ch  = _lasso_in_ch.add(1.0e-8).sqrt()
-    lasso_penalty_out_ch = _lasso_out_ch.add(1.0e-8).sqrt()
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+    for epoch in range(1, args.epochs + 1):
 
-    # Extra penalty using the number of parameters in each group
-    lasso_in_ch_penalty  = torch.cat(lasso_in_ch_penalty).cuda().sqrt()
-    lasso_out_ch_penalty  = torch.cat(lasso_out_ch_penalty).cuda().sqrt()
-    lasso_penalty_in_ch  = lasso_penalty_in_ch.mul(lasso_in_ch_penalty).sum()
-    lasso_penalty_out_ch = lasso_penalty_out_ch.mul(lasso_out_ch_penalty).sum()
+        train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion, optimizer,
+                                                                 epoch, use_cuda)
+def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
-    lasso_penalty        = lasso_penalty_in_ch + lasso_penalty_out_ch
-    return lasso_penalty
+    model.train()
+
+    for batch_idx, (inputs, targets) in enumerate(trainloader):
+        if use_cuda:
+            inputs, targets = inputs.cuda(), targets.cuda()
+
+        # inputs = Variable(inputs)
+        # target = torch.autograd.Variable(targets)
+
+        with torch.no_grad():
+            inputs = Variable(inputs)
+        targets = torch.autograd.Variable(targets)
+        outputs = model.forward(inputs)
+
+        loss = criterion(outputs, targets)
+
+        # lasso penalty
+        init_batch = batch_idx == 0 and epoch == 1
+
+        # compute gradient and do SGD step
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+        for name, param in model.named_parameters():
+            # Get Momentum parameters to adjust
+            print(name)
+            mom_param = optimizer.state[param]['momentum_buffer']
