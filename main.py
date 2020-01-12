@@ -263,6 +263,9 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+        for name, param in model.named_parameters():
+            # Get Momentum parameters to adjust
+            mom_param = optimizer.state[param]['momentum_buffer']
 
         # measure elapsed time
         batch_time.update(time.time() - end - data_load_time)
@@ -323,12 +326,12 @@ def test(testloader, model, criterion, epoch, use_cuda):
     epoch_time = batch_time.avg * len(testloader)  # Time for total test dataset
     return (losses.avg, top1.avg, epoch_time)
 
-
-def save_checkpoint(state, is_best, checkpoint='checkpoint', filename='checkpoint.pth.tar'):
-    filepath = os.path.join(checkpoint, filename)
-    torch.save(state, filepath)
-    if is_best:
-        shutil.copyfile(filepath, os.path.join(checkpoint, 'model_best.pth.tar'))
+#
+# def save_checkpoint(state, is_best, checkpoint='checkpoint', filename='checkpoint.pth.tar'):
+#     filepath = os.path.join(checkpoint, filename)
+#     torch.save(state, filepath)
+#     if is_best:
+#         shutil.copyfile(filepath, os.path.join(checkpoint, 'model_best.pth.tar'))
 
 
 def adjust_learning_rate(optimizer, epoch):
