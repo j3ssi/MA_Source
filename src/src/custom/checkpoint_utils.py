@@ -420,10 +420,10 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             conv_name = lyr_name.replace('bn', 'conv')
             conv_id = dense_chs[conv_name + '.weight']['idx']
             return [3 * conv_id - 1, 3 * conv_id - 2], [lyr_name + '.bias', lyr_name + '.weight']
-    print("TODO: hier noch nicht angepasst")
     if len(rm_list) > 0:
         rm_lyrs = []
         for name in rm_list:
+            print("\n>Name: ", name)
             rm_lyr = n2n.getRmLayers(name, model)
             if any(i for i in rm_lyr if i not in rm_lyrs):
                 rm_lyrs.extend(rm_lyr)
