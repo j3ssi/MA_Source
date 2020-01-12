@@ -261,7 +261,7 @@ def _genDenseModel(model, dense_chs, optimizer, arch, dataset):
 
             param.data = new_param
             optimizer.state[param]['momentum_buffer'].data = new_mom_param
-
+            print(model)
             # print("[{}]: {} >> {}".format(name, dims[0], num_out_ch))
 
     # Change moving_mean and moving_var of BN
