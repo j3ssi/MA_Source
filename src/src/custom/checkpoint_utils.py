@@ -175,8 +175,8 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
         elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
         # print(altList[-1])
-    # print("\n\n")
-    # print(altList)
+    print("\n\n")
+    print(altList)
     i = -1
     for name, param in model.named_parameters():
         i = i + 1
