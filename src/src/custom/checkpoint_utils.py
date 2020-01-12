@@ -268,6 +268,8 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
                         ch_map[edge] = idx
                     ch_maps.append(ch_map)
                 return dense_chs, ch_maps
+            for name in dense_chs:
+                print("[{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
         else:
             for idx in range(len(stages) - 1):
