@@ -335,7 +335,6 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             # Enlist layers with zero channels for removal
             if num_in_ch == 0 or num_out_ch == 0:
                 rm_list.append(name)
-
             else:
                 # Generate a new dense tensor and replace (Convolution layer)
                 if len(dims) == 4:
@@ -389,9 +388,9 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             param.data = new_param
             optimizer.state[param]['momentum_buffer'].data = new_mom_param
 
-            #print("[{}]: {} >> {}".format(name, dims[0], num_out_ch))
+            print("[{}]: {} >> {}".format(name, dims[0], num_out_ch))
 
-    #print(model)
+    print(model)
     # Change moving_mean and moving_var of BN
     for name, buf in model.named_buffers():
         if 'running_mean' in name or 'running_var' in name:
