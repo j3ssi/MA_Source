@@ -174,18 +174,13 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
             altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
         elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-    print("\n\n")
-    print(altList)
     i = -1
     for name, param in model.named_parameters():
         i = i + 1
-        # nameTmp = name
         name = altList[i]
         dims = list(param.shape)
-        # print("\n>Name2:")
-        # print(name)
         if (('conv' in name) or ('fc' in name)) and ('weight' in name):
-            # print('\n\ndrin')
+
             with torch.no_grad():
                 param = torch.where(param < threshold, torch.tensor(0.).cuda(), param)
 
@@ -296,8 +291,8 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
                         # print ("Output_ch [{}]: {} => {}".format(lyr_name, len(dense_chs[lyr_name]['out_chs']), len(edges)))
                         dense_chs[lyr_name]['out_chs'] = edges
 
-                # for name in dense_chs:
-                #  print ("[{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
+                for name in dense_chs:
+                    print ("[{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
             return dense_chs, None
 
 
@@ -335,9 +330,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
         elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-        # print("\nName: {}", altList[-1])
 
-    # print(altList)
     i = -1
 
     # print("==================")
@@ -345,9 +338,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
     #  print("==> {}, {}, {}".format(key, type(key), optimizer.state[key]))
     for name, param in model.named_parameters():
         i = i + 1
-        nameTmp = name
         name = altList[i]
-        # print("\nName: {}", name)
 
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[param]['momentum_buffer']
@@ -424,8 +415,6 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
 
     # Change moving_mean and moving_var of BN
     for name, buf in model.named_buffers():
-        # print("\n\nbuffer name:")
-        # print(name)
         if 'running_mean' in name or 'running_var' in name:
             i = int(name.split('.')[1])
             w_name = 'module.conv' + str(int((i + 1) / 2)) + '.weight'
