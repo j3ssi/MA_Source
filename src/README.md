@@ -24,10 +24,15 @@ We train CNN models on both CIFAR10/100 for 182 epochs and ResNet50 on ImageNet 
 
 * Training ResNet32 on CIFAR10 with 1 GPU
 ```
-python run-script.py --data-path /path/to/dataset --dataset cifar10 --model resnet32 --num-gpus 1
+python run.py --data-path /path/to/dataset --dataset cifar10 --model resnet32 --num-gpus 1
 ```
 
 * Training VGG11 on CIFAR100 with 2 GPU
+
+
+python main.py --workers 4 --dataset cifar10 --epochs 5 --learning-rate 0.1 --schedule 91 136 --gpu_id 3 --train_batch 128 --test_batch 100 --sparse_interval 2 --threshold 0.0001 --var_group_lasso_coeff 0.2 --en_group_lasso  
+
+
 ```
 python run-script.py --data-path /path/to/dataset --dataset cifar100 --model vgg11 --num-gpus 2
 ```

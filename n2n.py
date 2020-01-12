@@ -146,7 +146,7 @@ class N2N(nn.Module):
                             bn = True
                             print('Odd conv',i)
                             i=i+1
-                        if bn:
+                        elif bn:
                             x = module(x)
                             _x = _x + x
                             _x = self.relu(_x)
