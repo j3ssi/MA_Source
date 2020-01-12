@@ -91,6 +91,7 @@ class N2N(nn.Module):
                 m.bias.data.zero_()
 
     def forward(self, x):
+        print(self)
         odd = False
         first = True
         bn = False

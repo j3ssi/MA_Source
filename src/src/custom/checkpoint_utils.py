@@ -309,8 +309,8 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
     print("[INFO] Squeezing the sparse model to dense one...")
 
     # Sanity check
-    for layer in dense_chs:
-        print("==> [{}]: {},{}".format(layer, len(dense_chs[layer]['in_chs']), len(dense_chs[layer]['out_chs'])))
+    # for layer in dense_chs:
+    #     print("==> [{}]: {},{}".format(layer, len(dense_chs[layer]['in_chs']), len(dense_chs[layer]['out_chs'])))
 
     # List of layers to remove
     rm_list = []
