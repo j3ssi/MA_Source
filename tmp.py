@@ -60,7 +60,7 @@ def main():
     torch.autograd.set_detect_anomaly(True)
     global best_acc
     # Data
-    # print('==> Preparing dataset %s' % args.dataset)
+    print('==> Preparing dataset %s' % args.dataset)
     transform_train = transforms.Compose([
         transforms.RandomCrop(32, padding=4),
         transforms.RandomHorizontalFlip(),
