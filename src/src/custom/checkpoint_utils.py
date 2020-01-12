@@ -421,7 +421,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             param.data = new_param
             optimizer.state[param]['momentum_buffer'].data = new_mom_param
 
-            # print("[{}]: {} >> {}".format(name, dims[0], num_out_ch))
+            #print("[{}]: {} >> {}".format(name, dims[0], num_out_ch))
 
     # Change moving_mean and moving_var of BN
     for name, buf in model.named_buffers():
@@ -457,7 +457,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
     if len(rm_list) > 0:
         rm_lyrs = []
         for name in rm_list:
-            rm_lyr = n2n.getRmLayers(name, dataset)
+            rm_lyr = n2n.getRmLayers(name, model)
             if any(i for i in rm_lyr if i not in rm_lyrs):
                 rm_lyrs.extend(rm_lyr)
 
@@ -487,6 +487,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
         # Adjuster: Absolute parameter location changes after each removal
         for idx_adjuster, idx in enumerate(sorted(idxs)):
             del optimizer.param_groups[0]['params'][idx - idx_adjuster]
+            print("\n Del", name)
 
     # Sanity check => Print out optimizer parameters after change
     # print ("[INFO] ==== Size of parameter group (After)")
