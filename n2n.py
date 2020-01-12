@@ -85,12 +85,12 @@ class N2N(nn.Module):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
 
-    def forward(self,model, x):
+    def forward(self,x):
         odd =False
         first = True
         bn = False
         _x = None
-        for module in model.module_list:
+        for module in self.module_list:
             if isinstance(module, nn.AdaptiveAvgPool2d):
                 try:
                     x = module(_x)
