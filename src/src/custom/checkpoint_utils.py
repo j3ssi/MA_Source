@@ -269,8 +269,8 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
                 # print ("Output_ch [{}]: {} => {}".format(lyr_name, len(dense_chs[lyr_name]['out_chs']), len(edges)))
                 dense_chs[lyr_name]['out_chs'] = edges
 
-    for name in dense_chs:
-        print ("[{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
+    #for name in dense_chs:
+    #    print ("[{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
     return dense_chs, None
 
 
@@ -370,7 +370,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
                 param.data = new_param
                 optimizer.state[param]['momentum_buffer'].data = new_mom_param
 
-                print("[{}]: {} >> {}".format(name, dims, list(new_param.shape)))
+                #print("[{}]: {} >> {}".format(name, dims, list(new_param.shape)))
 
         # Change parameters of non-neural computing layers (BN, biases)
         else:
@@ -391,7 +391,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
 
             #print("[{}]: {} >> {}".format(name, dims[0], num_out_ch))
 
-    print(model)
+    #print(model)
     # Change moving_mean and moving_var of BN
     for name, buf in model.named_buffers():
         if 'running_mean' in name or 'running_var' in name:
@@ -421,6 +421,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             conv_id = dense_chs[conv_name + '.weight']['idx']
             return [3 * conv_id - 1, 3 * conv_id - 2], [lyr_name + '.bias', lyr_name + '.weight']
     if len(rm_list) > 0:
+        print("\nRM RM\n")
         rm_lyrs = []
         for name in rm_list:
             print("\n>Name: ", name)
