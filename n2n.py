@@ -213,8 +213,8 @@ class N2N(nn.Module):
             # print("\n\n> moduleList:\n")
             # print(self.module_list)
 
-        optimizer = optim.SGD(model.parameters(), get_lr(optimizer), get_momentum(optimizer),
-                              get_weight_decay(optimizer))
+       # optimizer = optim.SGD(model.parameters(), get_lr(optimizer), get_momentum(optimizer),
+        #                      get_weight_decay(optimizer))
 
         return model, optimizer
 

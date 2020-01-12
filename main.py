@@ -104,8 +104,6 @@ best_acc = 0  # best test accuracy
 def main():
     # Use CUDA
     os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
-
-    #torch.cuda.set_device('cuda:2')
     use_cuda = torch.cuda.is_available()
 
     # Random seed
@@ -116,7 +114,6 @@ def main():
     if use_cuda:
         torch.cuda.manual_seed(args.manualSeed)
 
-    print(torch.cuda.current_device())
     torch.autograd.set_detect_anomaly(True)
     global best_acc
     # Data
