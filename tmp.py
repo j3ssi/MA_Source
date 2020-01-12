@@ -47,7 +47,7 @@ def main():
     os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
     use_cuda = torch.cuda.is_available()
     if args.manualSeed is None:
-        args.manualSeed = torch.random.randint(1, 10000)
+        args.manualSeed = random.randint(1, 10000)
     random.seed(args.manualSeed)
     torch.manual_seed(args.manualSeed)
     if use_cuda:
