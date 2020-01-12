@@ -391,8 +391,8 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
 
                 param.data = new_param
                 optimizer.state[param]['momentum_buffer'].data = new_mom_param
-
-                print("[{}]: {} >> {}".format(name, dims, list(new_param.shape)))
+                print(model)
+                #print("[{}]: {} >> {}".format(name, dims, list(new_param.shape)))
 
         # Change parameters of non-neural computing layers (BN, biases)
         else:
