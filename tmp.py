@@ -11,6 +11,38 @@ from torch.autograd import Variable
 import n2n
 
 
+parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
+
+# Baseline
+parser.add_argument('-d', '--dataset', default='cifar10', type=str)
+parser.add_argument('-j', '--workers', default=4, type=int, metavar='N',
+                    help='number of data loading workers (default: 4)')
+parser.add_argument('--epochs', default=300, type=int, metavar='N',
+                    help='number of total epochs to run')
+parser.add_argument('--train_batch', default=128, type=int, metavar='N',
+                    help='train batchsize')
+parser.add_argument('--test_batch', default=100, type=int, metavar='N',
+                    help='test batchsize')
+parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
+                    metavar='LR', help='initial learning rate')
+parser.add_argument('--schedule', type=int, nargs='+', default=[150, 225],
+                    help='Decrease learning rate at these epochs.')
+parser.add_argument('--gamma', type=float, default=0.1, help='LR is multiplied by gamma on schedule.')
+parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
+                    help='momentum')
+parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
+                    metavar='W', help='weight decay (default: 1e-4)')
+parser.add_argument('--manualSeed', type=int, help='manual seed')
+parser.add_argument('--gpu_id', default='2', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
+
+
+
+
+args = parser.parse_args()
+state = {k: v for k, v in args._get_kwargs()}
+
+
+
 def main():
     # Use CUDA
     os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
