@@ -96,7 +96,7 @@ class N2N(nn.Module):
         bn = False
         _x = None
         print(self)
-        i=1
+        i=0
         for module in self.module_list:
             if isinstance(module, nn.AdaptiveAvgPool2d):
                 try:
