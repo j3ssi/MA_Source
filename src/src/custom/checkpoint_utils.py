@@ -388,7 +388,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             param.data = new_param
             optimizer.state[param]['momentum_buffer'].data = new_mom_param
 
-            print("[{}]: {} >> {}".format(name, dims[0], num_out_ch))
+            #print("[{}]: {} >> {}".format(name, dims[0], num_out_ch))
 
     print(model)
     # Change moving_mean and moving_var of BN
@@ -446,10 +446,10 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
                     del optimizer.state[param]
                     print("\n Del", name)
         # Sanity check: Print out optimizer parameters before change
-        # print ("[INFO] ==== Size of parameter group (Before)")
-        # for g in optimizer.param_groups:
-        #  for idx, g2 in enumerate(g['params']):
-        #    print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
+        print ("[INFO] ==== Size of parameter group (Before)")
+        for g in optimizer.param_groups:
+            for idx, g2 in enumerate(g['params']):
+                print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
 
         # Remove optimizer parameters
         # Adjuster: Absolute parameter location changes after each removal
@@ -458,10 +458,10 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             print("\n Del", name)
 
     # Sanity check => Print out optimizer parameters after change
-    # print ("[INFO] ==== Size of parameter group (After)")
-    # for g in optimizer.param_groups:
-    #  for idx, g2 in enumerate(g['params']):
-    #    print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
+    print ("[INFO] ==== Size of parameter group (After)")
+        for g in optimizer.param_groups:
+            for idx, g2 in enumerate(g['params']):
+                print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
 
 # Sanity check => Check the changed parameters
 # for name, param in model.named_parameters():
