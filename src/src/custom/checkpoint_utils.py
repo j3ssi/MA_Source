@@ -250,28 +250,6 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
                 dense_chs[adj_lyr[idx]]['out_chs'] = edge
                 dense_chs[adj_lyr[idx + 1]]['in_chs'] = edge
 
-        # Shared nodes >> Leave union of all in/out channels
-        # if is_gating:
-        #     for idx in range(len(stages) - 1):
-        #         edges = []
-        #         # Container of dense edges indexes
-        #         for lyr_name in stages[idx]['i']:
-        #             if lyr_name in dense_chs:
-        #                 edges = list(set().union(edges, dense_chs[lyr_name]['in_chs']))
-        #         for lyr_name in stages[idx]['o']:
-        #             if lyr_name in dense_chs:
-        #                 edges = list(set().union(edges, dense_chs[lyr_name]['out_chs']))
-        #
-        #             # Edit the dense channel indexes
-        #             ch_map = {}
-        #             for idx, edge in enumerate(sorted(edges)):
-        #                 ch_map[edge] = idx
-        #             ch_maps.append(ch_map)
-        #         return dense_chs, ch_maps
-        #     for name in dense_chs:
-        #         print("[{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
-        #
-        # else:
     for idx in range(len(stages) - 1):
         edges = []
         # Find union of the channels sharing the same node
@@ -442,7 +420,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             conv_name = lyr_name.replace('bn', 'conv')
             conv_id = dense_chs[conv_name + '.weight']['idx']
             return [3 * conv_id - 1, 3 * conv_id - 2], [lyr_name + '.bias', lyr_name + '.weight']
-
+    print("TODO: hier noch nicht angepasst")
     if len(rm_list) > 0:
         rm_lyrs = []
         for name in rm_list:
