@@ -156,7 +156,7 @@ def main():
     for epochNet2Net in range(1, 3):
         best_acc = 0
         for epoch in range(1, args.epochs + 1):
-            adjust_learning_rate(optimizer, epoch)
+            #adjust_learning_rate(optimizer, epoch)
 
             #print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
 
