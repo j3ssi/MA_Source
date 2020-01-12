@@ -189,7 +189,7 @@ def main():
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     # switch to train mode
-    model.train()
+    #model.train()
 
     batch_time = AverageMeter()
     data_time = AverageMeter()
