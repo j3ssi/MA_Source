@@ -83,9 +83,6 @@ def main():
                                   shuffle=True,
                                   num_workers=args.workers)
 
-    testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
-    testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
-
     model = n2n.N2N(num_classes)
     model.cuda()
 
@@ -97,13 +94,9 @@ def main():
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     model.train()
-    print("Train")
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
-
-        # inputs = Variable(inputs)
-        # target = torch.autograd.Variable(targets)
 
         with torch.no_grad():
             inputs = Variable(inputs)
@@ -112,18 +105,16 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
         loss = criterion(outputs, targets)
 
-        # lasso penalty
-        init_batch = batch_idx == 0 and epoch == 1
-
         # compute gradient and do SGD step
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
         for name, param in model.named_parameters():
             # Get Momentum parameters to adjust
-            print(name)
-            mom_param = optimizer.state[param]['momentum_buffer']
-
+            try:
+                mom_param = optimizer.state[param]['momentum_buffer']
+            except KeyError:
+                print(name)
 
 
 if __name__ == '__main__':
