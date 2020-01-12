@@ -100,7 +100,7 @@ class N2N(nn.Module):
                     print("AvgPool")
             elif isinstance(module, nn.Linear):
                 x = module(x)
-                print(X)
+                print(x)
                 return x
             else:
                 if first and not bn:
