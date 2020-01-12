@@ -115,12 +115,12 @@ class N2N(nn.Module):
                 if first and not bn:
                     x = module(x)
                     bn = True
-                    print("\nconv", i)
+                    print("\nFirst conv", i)
                     i = i+1
                 elif first and bn:
                     x = module(x)
                     _x = self.relu(x)
-                    print("\nbn", i)
+                    print("\nFirst bn", i)
                     i = i+1
                     first = False
                     bn = False
