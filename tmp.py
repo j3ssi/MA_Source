@@ -41,6 +41,7 @@ state = {k: v for k, v in args._get_kwargs()}
 
 best_acc = 0
 
+
 def main():
     # Use CUDA
     os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
@@ -122,3 +123,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             # Get Momentum parameters to adjust
             print(name)
             mom_param = optimizer.state[param]['momentum_buffer']
+
+
+
+if __name__ == '__main__':
+    main()
