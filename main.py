@@ -153,7 +153,7 @@ def main():
     for epochNet2Net in range(1, 3):
         best_acc = 0
         for epoch in range(1, args.epochs + 1):
-            #adjust_learning_rate(optimizer, epoch)
+            adjust_learning_rate(optimizer, epoch)
 
             #print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
 
@@ -186,22 +186,22 @@ def main():
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     # switch to train mode
-    #model.train()
+    model.train()
 
-    # batch_time = AverageMeter()
-    # data_time = AverageMeter()
+    batch_time = AverageMeter()
+    data_time = AverageMeter()
     losses = AverageMeter()
     top1 = AverageMeter()
     top5 = AverageMeter()
-    # lasso_ratio = AverageMeter()
-    #
-    # end = time.time()
-    # input_size = 0
+    lasso_ratio = AverageMeter()
+
+    end = time.time()
+    input_size = 0
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         # measure data loading time
-        # data_time.update(time.time() - end)
-        # data_load_time = time.time() - end
-        # input_size = inputs.size
+        data_time.update(time.time() - end)
+        data_load_time = time.time() - end
+        input_size = inputs.size
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
 
@@ -218,52 +218,52 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
         # lasso penalty
         init_batch = batch_idx == 0 and epoch == 1
-        #
-        # if args.en_group_lasso:
-        #     if args.global_group_lasso:
-        #         lasso_penalty = get_group_lasso_global(model)
-        #     else:
-        #         lasso_penalty = get_group_lasso_group(model)
-        #
-        #     # Auto-tune the group-lasso coefficient @first training iteration
-        #     coeff_dir = os.path.join(args.coeff_container)
-        #     if init_batch:
-        #         args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
-        #                 lasso_penalty * (1 - args.var_group_lasso_coeff))
-        #         grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
-        #
-        #         if not os.path.exists(coeff_dir):
-        #             os.makedirs(coeff_dir)
-        #         with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
-        #             f_coeff.write(str(grp_lasso_coeff.item()))
-        #
-        #     else:
-        #         with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
-        #             for line in f_coeff:
-        #                 grp_lasso_coeff = float(line)
-        #
-        #     lasso_penalty = lasso_penalty * grp_lasso_coeff
-        # else:
-        #     lasso_penalty = 0
-        #
-        # # Group lasso calcution is not performance-optimized => Ignore from execution time
-        # loss += lasso_penalty
+
+        if args.en_group_lasso:
+            if args.global_group_lasso:
+                lasso_penalty = get_group_lasso_global(model)
+            else:
+                lasso_penalty = get_group_lasso_group(model)
+
+            # Auto-tune the group-lasso coefficient @first training iteration
+            coeff_dir = os.path.join(args.coeff_container)
+            if init_batch:
+                args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
+                        lasso_penalty * (1 - args.var_group_lasso_coeff))
+                grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
+
+                if not os.path.exists(coeff_dir):
+                    os.makedirs(coeff_dir)
+                with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
+                    f_coeff.write(str(grp_lasso_coeff.item()))
+
+            else:
+                with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
+                    for line in f_coeff:
+                        grp_lasso_coeff = float(line)
+
+            lasso_penalty = lasso_penalty * grp_lasso_coeff
+        else:
+            lasso_penalty = 0
+
+        # Group lasso calcution is not performance-optimized => Ignore from execution time
+        loss += lasso_penalty
 
         # measure accuracy and record loss
         prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
         losses.update(loss.item(), inputs.size(0))
         top1.update(prec1.item(), inputs.size(0))
         top5.update(prec5.item(), inputs.size(0))
-        #lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
+        lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
 
         # compute gradient and do SGD step
-        #optimizer.zero_grad()
+        optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        for name, param in model.named_parameters():
-            # Get Momentum parameters to adjust
-            print(name)
-            mom_param = optimizer.state[param]['momentum_buffer']
+        # for name, param in model.named_parameters():
+        #     # Get Momentum parameters to adjust
+        #     print(name)
+        #     mom_param = optimizer.state[param]['momentum_buffer']
 
         # measure elapsed time
         batch_time.update(time.time() - end - data_load_time)
