@@ -86,7 +86,7 @@ class N2N(nn.Module):
                 m.bias.data.zero_()
 
     def forward(self,x):
-        odd =False
+        odd = False
         first = True
         bn = False
         _x = None
@@ -100,6 +100,7 @@ class N2N(nn.Module):
                     print("AvgPool")
             elif isinstance(module, nn.Linear):
                 x = module(x)
+                print(X)
                 return x
             else:
                 if first and not bn:
