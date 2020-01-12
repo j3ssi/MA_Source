@@ -7,10 +7,10 @@ import torch.optim as optim
 import torch.utils.data as data
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
+import random
 from torch.autograd import Variable
 
 import n2n
-
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 
@@ -36,18 +36,22 @@ parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
 parser.add_argument('--manualSeed', type=int, help='manual seed')
 parser.add_argument('--gpu_id', default='2', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
 
-
-
-
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
-
 
 
 def main():
     # Use CUDA
     os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
     use_cuda = torch.cuda.is_available()
+    if args.manualSeed is None:
+        args.manualSeed = torch.random.randint(1, 10000)
+    random.seed(args.manualSeed)
+    torch.manual_seed(args.manualSeed)
+    if use_cuda:
+        torch.cuda.manual_seed(args.manualSeed)
+
+    torch.autograd.set_detect_anomaly(True)
 
     if use_cuda:
         torch.cuda.manual_seed(args.manualSeed)
@@ -55,7 +59,7 @@ def main():
     torch.autograd.set_detect_anomaly(True)
     global best_acc
     # Data
-    #print('==> Preparing dataset %s' % args.dataset)
+    # print('==> Preparing dataset %s' % args.dataset)
     transform_train = transforms.Compose([
         transforms.RandomCrop(32, padding=4),
         transforms.RandomHorizontalFlip(),
@@ -86,11 +90,11 @@ def main():
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     for epoch in range(1, args.epochs + 1):
+        train(trainloader, model, criterion, optimizer,
+                                                                     epoch, use_cuda)
 
-        train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion, optimizer,
-                                                                 epoch, use_cuda)
+
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
-
     model.train()
 
     for batch_idx, (inputs, targets) in enumerate(trainloader):
