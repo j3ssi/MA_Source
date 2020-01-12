@@ -21,6 +21,7 @@ class N2N(nn.Module):
         # 1
         bn1 = nn.BatchNorm2d(16)
         self.module_list.append(bn1)
+
         # 2
         conv2 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
         self.module_list.append(conv2)
@@ -33,6 +34,7 @@ class N2N(nn.Module):
         # 5
         bn3 = nn.BatchNorm2d(16)
         self.module_list.append(bn3)
+
         # 6
         conv4 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
         self.module_list.append(conv4)
@@ -45,6 +47,7 @@ class N2N(nn.Module):
         # 9
         bn5 = nn.BatchNorm2d(16)
         self.module_list.append(bn5)
+
         # 10
         conv6 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
         self.module_list.append(conv6)
@@ -57,6 +60,7 @@ class N2N(nn.Module):
         # 13
         bn7 = nn.BatchNorm2d(16)
         self.module_list.append(bn7)
+
         # 14
         conv8 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
         self.module_list.append(conv8)
@@ -69,6 +73,7 @@ class N2N(nn.Module):
         # 17
         bn9 = nn.BatchNorm2d(16)
         self.module_list.append(bn9)
+
         # 18
         avgpool = nn.AdaptiveAvgPool2d((1, 1))
         self.module_list.append(avgpool)
@@ -90,46 +95,62 @@ class N2N(nn.Module):
         first = True
         bn = False
         _x = None
+        print(self)
+        i=1
         for module in self.module_list:
             if isinstance(module, nn.AdaptiveAvgPool2d):
                 try:
                     x = module(_x)
                     x = x.view(-1, 16)
+                    print("\navgpool", i)
+                    i = i + 1
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
                     print("AvgPool")
             elif isinstance(module, nn.Linear):
                 x = module(x)
+                print("\nfc", i)
                 return x
             else:
                 if first and not bn:
                     x = module(x)
                     bn = True
+                    print("\nconv", i)
+                    i = i+1
                 elif first and bn:
                     x = module(x)
                     _x = self.relu(x)
+                    print("\nbn", i)
+                    i = i+1
                     first = False
                     bn = False
                 else:
                     if not odd and not bn:
                         x = module(_x)
+                        print('\nconv',i)
+                        i=i+1
                         bn = True
                     elif not odd and bn:
                         x = module(x)
                         x = self.relu(x)
+                        print("\nbn",i)
+                        i=i+1
                         odd = True
                         bn = False
                     else:
                         if not bn:
                             x = module(x)
                             bn = True
+                            print('conv',i)
+                            i=i+1
                         if bn:
                             x = module(x)
                             _x = _x + x
                             _x = self.relu(_x)
                             odd = False
                             bn = False
-
+                            print('bn',i)
+                            i=i+1
 
 
 

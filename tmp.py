@@ -109,14 +109,13 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        i=0
-        j=0
-        for param in model.parameters():
-            i=i+1
         for name, param in model.named_parameters():
-            j=j+1
             # Get Momentum parameters to adjust
-        print(j==i)
+            try:
+                mom_param = optimizer.state[param]['momentum_buffer']
+            except KeyError:
+                print(name)
+
 
 if __name__ == '__main__':
     main()
