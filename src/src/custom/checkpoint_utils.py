@@ -420,6 +420,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             conv_name = lyr_name.replace('bn', 'conv')
             conv_id = dense_chs[conv_name + '.weight']['idx']
             return [3 * conv_id - 1, 3 * conv_id - 2], [lyr_name + '.bias', lyr_name + '.weight']
+
     if len(rm_list) > 0:
         print("\nRM RM\n")
         rm_lyrs = []
