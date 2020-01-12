@@ -90,7 +90,10 @@ class N2N(nn.Module):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
 
+
+
     def forward(self,x):
+        print("\nmodule-list", len(self.module_list))
         odd = False
         first = True
         bn = False
