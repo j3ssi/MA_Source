@@ -97,46 +97,62 @@ class N2N(nn.Module):
         first = True
         bn = False
         _x = None
+        i=0
         for module in self.module_list:
             if isinstance(module, nn.AdaptiveAvgPool2d):
                 try:
                     x = module(_x)
                     x = x.view(-1, 16)
+                    print("\navgpool", i)
+                    i = i + 1
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
                     print("AvgPool")
             elif isinstance(module, nn.Linear):
                 x = module(x)
+                print("\nfc", i)
                 return x
             else:
                 if first and not bn:
                     x = module(x)
                     bn = True
+                    print("\nFirst conv", i)
+                    i = i+1
                 elif first and bn:
                     x = module(x)
                     _x = self.relu(x)
+                    print("\nFirst bn", i)
+                    i = i+1
                     first = False
                     bn = False
                 else:
                     if not odd and not bn:
                         x = module(_x)
+                        print('\nconv',i)
+                        i=i+1
                         bn = True
                     elif not odd and bn:
                         x = module(x)
                         x = self.relu(x)
+                        print("\nbn",i)
+                        i=i+1
                         odd = True
                         bn = False
                     else:
                         if not bn:
                             x = module(x)
                             bn = True
+                            print('Odd conv',i)
+                            i=i+1
                         elif bn:
                             x = module(x)
                             _x = _x + x
                             _x = self.relu(_x)
                             odd = False
                             bn = False
-    
+                            print('Odd bn',i)
+                            i=i+1
+
 
 
 
