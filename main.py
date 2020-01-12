@@ -263,7 +263,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        for name, param in model.named_parameters():
+        for name, param in model.parameters():
             # Get Momentum parameters to adjust
             mom_param = optimizer.state[param]['momentum_buffer']
 
