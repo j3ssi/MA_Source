@@ -272,28 +272,28 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
         #         print("[{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
         #
         # else:
-        for idx in range(len(stages) - 1):
-            edges = []
-            # Find union of the channels sharing the same node
-            for lyr_name in stages[idx]['i']:
-                if lyr_name in dense_chs:
-                    edges = list(set().union(edges, dense_chs[lyr_name]['in_chs']))
-            for lyr_name in stages[idx]['o']:
-                if lyr_name in dense_chs:
-                    edges = list(set().union(edges, dense_chs[lyr_name]['out_chs']))
-            # Maintain the dense channels at the shared node
-            for lyr_name in stages[idx]['i']:
-                if lyr_name in dense_chs:
-                    # print ("Input_ch [{}]: {} => {}".format(lyr_name, len(dense_chs[lyr_name]['in_chs']), len(edges)))
-                    dense_chs[lyr_name]['in_chs'] = edges
-            for lyr_name in stages[idx]['o']:
-                if lyr_name in dense_chs:
-                    # print ("Output_ch [{}]: {} => {}".format(lyr_name, len(dense_chs[lyr_name]['out_chs']), len(edges)))
-                    dense_chs[lyr_name]['out_chs'] = edges
+    for idx in range(len(stages) - 1):
+        edges = []
+        # Find union of the channels sharing the same node
+        for lyr_name in stages[idx]['i']:
+            if lyr_name in dense_chs:
+                edges = list(set().union(edges, dense_chs[lyr_name]['in_chs']))
+        for lyr_name in stages[idx]['o']:
+            if lyr_name in dense_chs:
+                edges = list(set().union(edges, dense_chs[lyr_name]['out_chs']))
+        # Maintain the dense channels at the shared node
+        for lyr_name in stages[idx]['i']:
+            if lyr_name in dense_chs:
+                # print ("Input_ch [{}]: {} => {}".format(lyr_name, len(dense_chs[lyr_name]['in_chs']), len(edges)))
+                dense_chs[lyr_name]['in_chs'] = edges
+        for lyr_name in stages[idx]['o']:
+            if lyr_name in dense_chs:
+                # print ("Output_ch [{}]: {} => {}".format(lyr_name, len(dense_chs[lyr_name]['out_chs']), len(edges)))
+                dense_chs[lyr_name]['out_chs'] = edges
 
-            for name in dense_chs:
-                print ("[{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
-        return dense_chs, None
+        for name in dense_chs:
+            print ("[{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
+    return dense_chs, None
 
 
 """
