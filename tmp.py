@@ -39,6 +39,7 @@ parser.add_argument('--gpu_id', default='2', type=str, help='id(s) for CUDA_VISI
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
 
+best_acc = 0
 
 def main():
     # Use CUDA
@@ -90,13 +91,12 @@ def main():
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     for epoch in range(1, args.epochs + 1):
-        train(trainloader, model, criterion, optimizer,
-                                                                     epoch, use_cuda)
+        train(trainloader, model, criterion, optimizer, epoch, use_cuda)
 
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     model.train()
-
+    print("Train")
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
