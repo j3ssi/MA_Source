@@ -141,7 +141,7 @@ class N2N(nn.Module):
                         if not bn:
                             x = module(x)
                             bn = True
-                            print('conv',i)
+                            print('Odd conv',i)
                             i=i+1
                         if bn:
                             x = module(x)
@@ -149,7 +149,7 @@ class N2N(nn.Module):
                             _x = self.relu(_x)
                             odd = False
                             bn = False
-                            print('bn',i)
+                            print('Odd bn',i)
                             i=i+1
 
 
