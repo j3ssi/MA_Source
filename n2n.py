@@ -279,3 +279,7 @@ def get_momentum(optimizer):
 def get_weight_decay(optimizer):
     for param_group in optimizer.param_groups:
         return param_group['weight_decay']
+
+
+def getRmLayers(name, dataset):
+    pass

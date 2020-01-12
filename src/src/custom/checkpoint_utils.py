@@ -24,7 +24,7 @@ import torch.nn as nn
 
 import heapq
 import n2n
-# from .rm_layers import getRmLayers
+from .rm_layers import getRmLayers
 
 # Packages to calculate inference cost
 from src.src.scripts.feature_size_cifar import cifar_feature_size, imagenet_feature_size
@@ -33,8 +33,6 @@ sys.path.append('..')
 
 WORD_SIZE = 4
 MFLOPS = 1000000 / 2
-
-
 
 """ Return 1D list of weights for the target layer
 """
@@ -247,7 +245,7 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
 
     # Within a residual branch >> Union of adjacent pairs
     adj_lyrs = n2n.getShareSameNodeLayers(model)
-    #print(adj_lyrs)
+    # print(adj_lyrs)
     for adj_lyr in adj_lyrs:
         if any(i for i in adj_lyr if i not in dense_chs):
             """ not doing anything """
@@ -324,7 +322,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
     rm_list = []
     altList = []
     for name, param in model.named_parameters():
-        #print("\nName: {}", name)
+        # print("\nName: {}", name)
         i = int(name.split('.')[1])
         if i % 2 == 0:
             altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
@@ -338,7 +336,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
         elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-        #print("\nName: {}", altList[-1])
+        # print("\nName: {}", altList[-1])
 
     # print(altList)
     i = -1
@@ -350,7 +348,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
         i = i + 1
         nameTmp = name
         name = altList[i]
-        #print("\nName: {}", name)
+        # print("\nName: {}", name)
 
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[param]['momentum_buffer']
@@ -427,11 +425,11 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
 
     # Change moving_mean and moving_var of BN
     for name, buf in model.named_buffers():
-        #print("\n\nbuffer name:")
-        #print(name)
+        # print("\n\nbuffer name:")
+        # print(name)
         if 'running_mean' in name or 'running_var' in name:
             i = int(name.split('.')[1])
-            w_name = 'module.conv' +str(int((i+1)/2)) + '.weight'
+            w_name = 'module.conv' + str(int((i + 1) / 2)) + '.weight'
             dense_out_ch_idxs = dense_chs[w_name]['out_chs']
             num_out_ch = len(dense_out_ch_idxs)
             new_buf = Parameter(torch.Tensor(num_out_ch)).cuda()
@@ -441,13 +439,11 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
                     new_buf[out_idx] = buf[out_ch]
             buf.data = new_buf
 
-
     """
     Remove layers (Only applicable to ResNet-like networks)
     - Remove model parameters
     - Remove parameters/states in optimizer
     """
-
 
     def getLayerIdx(lyr_name):
         if 'conv' in lyr_name:
@@ -458,11 +454,10 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             conv_id = dense_chs[conv_name + '.weight']['idx']
             return [3 * conv_id - 1, 3 * conv_id - 2], [lyr_name + '.bias', lyr_name + '.weight']
 
-
     if len(rm_list) > 0:
         rm_lyrs = []
         for name in rm_list:
-            rm_lyr = getRmLayers(name, arch, dataset)
+            rm_lyr = n2n.getRmLayers(name, dataset)
             if any(i for i in rm_lyr if i not in rm_lyrs):
                 rm_lyrs.extend(rm_lyr)
 
@@ -481,15 +476,15 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             for rm_param in rm_params:
                 if name == rm_param:
                     del optimizer.state[param]
+                    print("\n Del", name)
+        # Sanity check: Print out optimizer parameters before change
+        # print ("[INFO] ==== Size of parameter group (Before)")
+        # for g in optimizer.param_groups:
+        #  for idx, g2 in enumerate(g['params']):
+        #    print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
 
-    # Sanity check: Print out optimizer parameters before change
-    # print ("[INFO] ==== Size of parameter group (Before)")
-    # for g in optimizer.param_groups:
-    #  for idx, g2 in enumerate(g['params']):
-    #    print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
-
-    # Remove optimizer parameters
-    # Adjuster: Absolute parameter location changes after each removal
+        # Remove optimizer parameters
+        # Adjuster: Absolute parameter location changes after each removal
         for idx_adjuster, idx in enumerate(sorted(idxs)):
             del optimizer.param_groups[0]['params'][idx - idx_adjuster]
 
@@ -506,4 +501,3 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
 # Sanity check => Check the changed buffers
 # for name, param in model.named_parameters():
 #  print("===<<< [{}]: {}".format(name, optimizer.state[param]['momentum_buffer'].shape))
-
