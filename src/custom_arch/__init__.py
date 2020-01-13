@@ -1,7 +1,7 @@
 from .arch_utils import *
 
-from .custom_resnet import _genDenseArchResnet
+from .custom_resnet import _genDenseArchResNet
 
 custom_arch = {
-    'resnet':_genDenseArchResnet
+    'resnet':_genDenseArchResNet
 }
