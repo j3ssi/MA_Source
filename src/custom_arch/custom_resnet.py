@@ -95,7 +95,7 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
     ctx += 'def resnet50_flat(**kwargs):\n'
     ctx += '\tmodel = ResNet50(**kwargs)\n'
     ctx += '\treturn model\n'
-    if not os.path.exists():
+    if not os.path.exists(out_dir):
         os.makedirs(out_dir)
 
     print ("[INFO] Generating a new dense architecture...")
