@@ -24,7 +24,7 @@ import torch.nn as nn
 from src import n2n
 
 # Packages to calculate inference cost
-from gitignore.src.scripts import cifar_feature_size, imagenet_feature_size
+#from gitignore.src.scripts import cifar_feature_size, imagenet_feature_size
 
 sys.path.append('..')
 
