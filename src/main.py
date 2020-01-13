@@ -30,7 +30,7 @@ from torch.autograd import Variable
 from torch.backends import cudnn
 
 from src import n2n
-
+from src.checkpoint_utils import _makeSparse, _genDenseModel
 from src.utils import AverageMeter, accuracy
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
