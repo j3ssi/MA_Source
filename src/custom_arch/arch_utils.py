@@ -59,10 +59,12 @@ class layerUtil:
             out_chs = str(dims[0])
             return '\t\tlayer = nn.BatchNorm2d({})\n'.format(name, out_chs)
 
+    @classmethod
     def fcLayer(self, module):
 
         return '\t\tlayer = nn.Linear(16, num_classes)\n'.format(self.num_classes)
 
+    @classmethod
     def avgPool(self):
         return '\t\tlayer = nn.AdaptiveAvgPool2d((1, 1))\n'
 
