@@ -167,7 +167,7 @@ def main():
                 # Force weights under threshold to zero
                 dense_chs, chs_map = _makeSparse(model, args.threshold,
                                                  is_gating=args.is_gating)
-                if args.out_dir != None:
+                if args.out_dir is not None:
                     _genDenseModel(model, dense_chs, optimizer, 'cifar')
                     _genDenseArch = custom_arch['resnet']
                     _genDenseArch(model, args.out_dir, dense_chs, chs_map, num_classes)
