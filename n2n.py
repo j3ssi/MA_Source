@@ -113,8 +113,12 @@ class N2N(nn.Module):
                 return x
             else:
                 if first and not bn:
+                    #while True:
+                    #    try:
+                    print("\n\nx shape: ", x.shape)
+                    print("\n\n conv shape: " module.shape)
                     x = module(x)
-                    bn = True
+                            bn = True
                 #          print("\nFirst conv", i)
                 #         i = i+1
                 elif first and bn:
