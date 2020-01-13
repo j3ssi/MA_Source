@@ -71,47 +71,44 @@ class N2N(nn.Module):
                 return x
             else:
                 if first and not bn:
-                    #while True:
-                    #    try:
-                    print("\n\nx shape: ", x.shape)
-                    #print("\n\n conv shape: ", module.)
                     x = module(x)
                     bn = True
-                #          print("\nFirst conv", i)
-                #         i = i+1
+                    # print("\nFirst conv", i)
+                    # i = i+1
                 elif first and bn:
                     x = module(x)
                     _x = self.relu(x)
-                    #        print("\nFirst bn", i)
-                    #       i = i+1
+                    # print("\nFirst bn", i)
+                    # i = i+1
                     first = False
                     bn = False
                 else:
                     if not odd and not bn:
                         x = module(_x)
-                        #          print('\nconv',i)
-                        #         i=i+1
+                        # print('\nconv',i)
+                        # i=i+1
                         bn = True
                     elif not odd and bn:
                         x = module(x)
                         x = self.relu(x)
-                        #        print("\nbn",i)
-                        #       i=i+1
+                        # print("\nbn",i)
+                        # i=i+1
                         odd = True
                         bn = False
                     else:
                         if not bn:
                             x = module(x)
                             bn = True
-                        #          print('Odd conv',i)
-                        #         i=i+1
+                            # print('Odd conv',i)
+                            # i=i+1
                         elif bn:
                             x = module(x)
                             _x = _x + x
                             _x = self.relu(_x)
                             odd = False
                             bn = False
-
+                            # print('Odd bn',i)
+                            # i=i+1
     def deeper(self, model, optimizer, positions):
         # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
         for pos in positions:
