@@ -6,8 +6,8 @@ import math
 
 __all__ = ['resnet32_flat']
 
-from Net2Net.examples.train_cifar10 import net2net_deeper_recursive
-from Net2Net.net2net import deeper, wider
+from gitignore.Net2Net.examples import net2net_deeper_recursive
+from gitignore.Net2Net.net2net import deeper, wider
 
 
 class ResNet32(nn.Module):

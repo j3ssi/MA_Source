@@ -18,16 +18,13 @@
 import sys
 import torch
 from torch.nn.parameter import Parameter
-import torch.optim as optim
 import numpy as np
 import torch.nn as nn
 
-import heapq
-import n2n
-from .rm_layers import getRmLayers
+from src import n2n
 
 # Packages to calculate inference cost
-from src.src.scripts.feature_size_cifar import cifar_feature_size, imagenet_feature_size
+from gitignore.src.scripts import cifar_feature_size, imagenet_feature_size
 
 sys.path.append('..')
 

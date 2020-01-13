@@ -24,7 +24,7 @@ elif args.dataset in ['cifar10', 'cifar100']:
 else:
     raise ValueError("{} is a wrong dataset".format(args.dataset))
 
-with open(os.path.join('../configs/', cfg_file)) as f_config:
+with open(os.path.join('../gitignore/configs/', cfg_file)) as f_config:
    cfg = yaml.safe_load(f_config)
    if args.dataset.startswith('cifar'):
        cfg['base']['model_dir'].replace('cifar', args.dataset)

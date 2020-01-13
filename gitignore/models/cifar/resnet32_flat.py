@@ -2,11 +2,10 @@
 """
 
 import torch.nn as nn
-import math
 
 __all__ = ['resnet32_flat']
 
-from Net2Net.net2net import wider, deeper
+from gitignore.Net2Net.net2net import wider, deeper
 
 
 class ResNet32(nn.Module):

@@ -17,7 +17,7 @@
 
 import torch.nn as nn
 import numpy as np
-from Net2Net.net2net import deeper, wider
+from gitignore.Net2Net.net2net import deeper, wider
 
 
 class CustomDataParallel(nn.Module):

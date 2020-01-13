@@ -16,28 +16,22 @@
 """
 
 import argparse
-import copy
 import os
-import shutil
 import time
 import random
 
-from collections import OrderedDict
-
 import torch
 import torch.nn as nn
-import torch.backends.cudnn as cudnn
 import torch.optim as optim
 import torch.utils.data as data
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 from torch.autograd import Variable
-import n2n
+from torch.backends import cudnn
 
-from src.src.utils import AverageMeter, accuracy, mkdir_p, savefig
-from src.src.custom import _makeSparse, _genDenseModel, _DataParallel
-from src.src.custom import get_group_lasso_global, get_group_lasso_group
-from src.src.custom_arch import *
+from src import n2n
+
+from src.utils import AverageMeter, accuracy
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 
@@ -97,22 +91,22 @@ parser.add_argument('--deeper', default=False, action='store_true',
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
 
+os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
+use_cuda = torch.cuda.is_available()
+
+# Random seed
+if args.manualSeed is None:
+    args.manualSeed = random.randint(1, 10000)
+random.seed(args.manualSeed)
+torch.manual_seed(args.manualSeed)
+if use_cuda:
+    torch.cuda.manual_seed(args.manualSeed)
 
 best_acc = 0  # best test accuracy
 
 
 def main():
     # Use CUDA
-    os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
-    use_cuda = torch.cuda.is_available()
-
-    # Random seed
-    if args.manualSeed is None:
-        args.manualSeed = random.randint(1, 10000)
-    random.seed(args.manualSeed)
-    torch.manual_seed(args.manualSeed)
-    if use_cuda:
-        torch.cuda.manual_seed(args.manualSeed)
 
     # use anomaly detection of torch
     torch.autograd.set_detect_anomaly(True)
@@ -149,7 +143,7 @@ def main():
     model = n2n.N2N(num_classes)
     model.cuda()
 
-    #cudnn.benchmark = True
+    cudnn.benchmark = True
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
