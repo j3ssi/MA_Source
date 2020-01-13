@@ -116,7 +116,7 @@ class N2N(nn.Module):
                     #while True:
                     #    try:
                     print("\n\nx shape: ", x.shape)
-                    print("\n\n conv shape:, " module.shape)
+                    print("\n\n conv shape: ", module.shape)
                     x = module(x)
                             bn = True
                 #          print("\nFirst conv", i)
