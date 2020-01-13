@@ -167,10 +167,10 @@ def main():
                 # Force weights under threshold to zero
                 dense_chs, chs_map = _makeSparse(model, args.threshold,
                                                  is_gating=args.is_gating)
-                if args.arch_out_dir != None:
+                if args.out_dir != None:
                     _genDenseModel(model, dense_chs, optimizer, 'cifar')
                     _genDenseArch = custom_arch['resnet']
-                    _genDenseArch(model, dense_chs, chs_map)
+                    _genDenseArch(model, args.out_dir, dense_chs, chs_map, num_classes)
 
             best_acc = max(test_acc, best_acc)
         print('Best acc:')
