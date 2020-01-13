@@ -51,7 +51,8 @@ class N2N(nn.Module):
         printNet = False
         i=0
         for module in self.module_list:
-            print(module.named_modules())
+            for name, mod in module:
+                print(name)
             if isinstance(module, nn.AdaptiveAvgPool2d):
                 try:
                     x = module(_x)
