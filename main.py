@@ -29,7 +29,8 @@ import torchvision.datasets as datasets
 from torch.autograd import Variable
 from torch.backends import cudnn
 
-from src import n2n, custom_arch
+from src import n2n
+from src.custom_arch import *
 from src.checkpoint_utils import _makeSparse, _genDenseModel
 from src.group_lasso_regs import get_group_lasso_global, get_group_lasso_group
 from src.utils import AverageMeter, accuracy
