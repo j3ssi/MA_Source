@@ -4,6 +4,7 @@ from src.custom_arch import layerUtil
 
 
 def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
+    print('\n\nDrin!!!!')
     ctx = 'import torch.nn as nn\n'
     ctx += 'import math'
     ctx += '__all__ = [\'resnet\']\n'
