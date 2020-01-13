@@ -120,7 +120,7 @@ class N2N(nn.Module):
                                 i=i+1
 
     def genDenseArch(self, model, dense_chs, chs_map):
-        self.model = model
+        self.module_list = model.module_list
 
     def deeper(self, model, optimizer, positions):
         # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
