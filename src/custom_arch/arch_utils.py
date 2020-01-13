@@ -31,13 +31,13 @@ class layerUtil:
 
     @classmethod
     def getModuleDef(cls, module):
-        if isinstance(module, nn.Conv2d): return cls.convLayer(module)
+        if isinstance(module, nn.Conv2d): return cls.convLayer(model, module)
         elif isinstance(module, nn.BatchNorm2d): return cls.bnLayer(module)
         elif isinstance(module, nn.Linear): return cls.fcLayer(module)
         elif isinstance(module, nn.AdaptiveAvgPool2d): return cls.avgPool()
 
     @classmethod
-    def convLayer(cls, module):
+    def convLayer(cls,model, module):
         for name, param in module.named_parameters():
             if 'weight' in name:
                 dims = list(param.shape)

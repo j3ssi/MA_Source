@@ -16,8 +16,13 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
 
     ctx += '\t\tself.module_list = nn.ModuleList()\n'
 
+
     for module in model.module_list:
-        ctx += lyr.getModuleDef(module)
+        i = int(model.module_list.index(module))
+        for name, param in model.named_parameter():
+            if str(i) in name:
+                print("\n\nName In Custom: ", name)
+        ctx += lyr.getModuleDef(module,param)
         ctx += '\t\tmodule_list.append(layer)\n'
 
     ctx +='\tdef forward(self,x):\n'
