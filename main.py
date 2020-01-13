@@ -57,8 +57,8 @@ parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')
 parser.add_argument('--manualSeed', type=int, help='manual seed')
 parser.add_argument('--gpu_id', default='2', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
-parser.add_argument('--num_of_residual_blocks', default=4, type=int, help='defines the number of residualblocks in '
-                                                                          'the baseline network')
+parser.add_argument('-r', '--numOfResidualBlocks', default=4, type=int, help='defines the number of residualblocks in '
+                                                                             'the baseline network')
 # PruneTrain
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
 parser.add_argument('--sparse_interval', default=0, type=int,
@@ -84,11 +84,9 @@ parser.add_argument('--global_coeff', default=True, action='store_true',
                     help='Use a global group lasso regularizaiton coefficient')
 parser.add_argument('--print-freq', default=10, type=int,
                     metavar='N', help='print frequency (default: 10)')
-#N2N
+# N2N
 parser.add_argument('--deeper', default=False, action='store_true',
                     help='Male network deeper')
-
-
 
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
@@ -108,15 +106,13 @@ best_acc = 0  # best test accuracy
 
 
 def main():
-    # Use CUDA
-
     # use anomaly detection of torch
     torch.autograd.set_detect_anomaly(True)
 
     global best_acc
 
     # Data
-    #print('==> Preparing dataset %s' % args.dataset)
+    # print('==> Preparing dataset %s' % args.dataset)
     transform_train = transforms.Compose([
         transforms.RandomCrop(32, padding=4),
         transforms.RandomHorizontalFlip(),
@@ -141,8 +137,8 @@ def main():
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
-    #Model
-    model = n2n.N2N(num_classes, num_of_residual_blocks )
+    # Model
+    model = n2n.N2N(num_classes, args.numOfResidualBlocks)
     model.cuda()
 
     cudnn.benchmark = True
@@ -150,14 +146,14 @@ def main():
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     # Train and val
-    #how many times N2N should make the network deeper
+    # how many times N2N should make the network deeper
     for epochNet2Net in range(1, 3):
         best_acc = 0
         for epoch in range(1, args.epochs + 1):
-            #adjust learning rate when epoch is the scheduled epoch
+            # adjust learning rate when epoch is the scheduled epoch
             adjust_learning_rate(optimizer, epoch)
 
-            #print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
+            # print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
 
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion, optimizer,
                                                                          epoch, use_cuda)
@@ -174,13 +170,13 @@ def main():
             best_acc = max(test_acc, best_acc)
         print('Best acc:')
         print(best_acc)
-        if(args.deeper):
+        if (args.deeper):
             print("\n\nnow deeper")
             # deeper student training
-            if best_acc< 50:
+            if best_acc < 50:
                 model, optimizer = model.deeper(model, optimizer, [2, 4, 6, 8])
             elif best_acc < 75:
-                model, optimizer = model.deeper(model, optimizer, [2,6])
+                model, optimizer = model.deeper(model, optimizer, [2, 6])
             elif best_acc < 95:
                 model, optimizer = model.deeper(model, optimizer, [6])
             model.cuda()
@@ -207,9 +203,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
 
-
-        #inputs = Variable(inputs)
-        #target = torch.autograd.Variable(targets)
+        # inputs = Variable(inputs)
+        # target = torch.autograd.Variable(targets)
 
         with torch.no_grad():
             inputs = Variable(inputs)
@@ -272,14 +267,14 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         end = time.time()
 
         if batch_idx % args.print_freq == 0:
-             print('Epoch: [{0}][{1}/{2}]\t'
-                   'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-                   'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
-                   'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
-                   'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
-                   'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
-                 epoch, batch_idx, len(trainloader), batch_time=batch_time,
-                 data_time=data_time, loss=losses, top1=top1, top5=top5))
+            print('Epoch: [{0}][{1}/{2}]\t'
+                  'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
+                  'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
+                  'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
+                  'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
+                  'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
+                epoch, batch_idx, len(trainloader), batch_time=batch_time,
+                data_time=data_time, loss=losses, top1=top1, top5=top5))
 
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
     return (losses.avg, top1.avg, lasso_ratio.avg, epoch_time)
@@ -307,7 +302,7 @@ def test(testloader, model, criterion, epoch, use_cuda):
             inputs, targets = inputs.cuda(), targets.cuda()
         with torch.no_grad():
             inputs = Variable(inputs)
-            #targets = Variable(targets)
+            # targets = Variable(targets)
         targets = torch.autograd.Variable(targets)
         # compute output
         outputs = model(inputs)
@@ -325,6 +320,7 @@ def test(testloader, model, criterion, epoch, use_cuda):
 
     epoch_time = batch_time.avg * len(testloader)  # Time for total test dataset
     return (losses.avg, top1.avg, epoch_time)
+
 
 #
 # def save_checkpoint(state, is_best, checkpoint='checkpoint', filename='checkpoint.pth.tar'):
@@ -366,8 +362,6 @@ def get_momentum(optimizer):
 def get_weight_decay(optimizer):
     for param_group in optimizer.param_groups:
         return param_group['weight_decay']
-
-
 
 
 if __name__ == '__main__':
