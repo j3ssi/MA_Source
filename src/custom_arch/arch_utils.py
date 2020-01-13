@@ -21,30 +21,49 @@ from torch import nn
 
 
 class layerUtil:
-    def __init__(self, model, dense_chs):
+    def __init__(self, model, dense_chs, num_classes):
         self.setModel(model, dense_chs)
+        self.num_classes = num_classes
 
     @classmethod
     def setModel(cls, model, dense_chs):
         cls.model = model
         cls.dense_chs = dense_chs
 
+    @classmethod
     def getModuleDef(cls, module):
         if isinstance(module, nn.Conv2d): return cls.convLayer(module)
         elif isinstance(module, nn.BatchNorm2d): return cls.bnLayer(module)
         elif isinstance(module, nn.Linear): return cls.fcLayer(module)
         elif isinstance(module, nn.AdaptiveAvgPool2d): return cls.avgPool(module)
 
+    @classmethod
     def convLayer(cls, module):
-        pass
+        for name, param in module.named_parameters():
+            if 'weight' in name:
+                dims = list(param.shape)
+                in_chs = str(dims[1])
+                out_chs = str(dims[0])
+                kernel_size = str(module.kernel_size)
+                stride = str(module.stride)
+                padding = str(module.padding)
+                bias = module.bias if module.bias != None else True
 
+                return '\t\tlayer = nn.Conv2d({}, {}, kernel_size={}, stride={}, padding={}, bias={})\n'.format(
+          name, in_chs, out_chs, kernel_size, stride, padding, bias)
+
+    @classmethod
     def bnLayer(self, module):
-        pass
+        for name, param in module.named_parameters():
+            dims = list(param.shape)
+            out_chs = str(dims[0])
+            return '\t\tlayer = nn.BatchNorm2d({})\n'.format(name, out_chs)
 
     def fcLayer(self, module):
-        pass
+
+        return '\t\tlayer = nn.Linear(16, num_classes)\n'.format(self.num_classes)
 
     def avgPool(self, module):
-        pass
+        return '\t\tlayer = nn.AdaptiveAvgPool2d((1, 1))\n'
 
         

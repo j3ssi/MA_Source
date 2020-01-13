@@ -166,8 +166,8 @@ def main():
                                                  is_gating=args.is_gating)
                 if args.arch_out_dir != None:
                     _genDenseModel(model, dense_chs, optimizer, 'cifar')
-                    #_genDenseArch = custom_arch['resnet']
-                    #_genDenseArch(model, dense_chs, chs_map)
+                    _genDenseArch = custom_arch['resnet']
+                    _genDenseArch(model, dense_chs, chs_map)
 
             best_acc = max(test_acc, best_acc)
         print('Best acc:')

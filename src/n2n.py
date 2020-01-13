@@ -69,8 +69,6 @@ class N2N(nn.Module):
                 return x
             else:
                 if first and not bn:
-                    for name, param in module.named_parameters():
-                        print("\n>Name: ", name)
                     x = module(x)
                     bn = True
                     if printNet:
@@ -117,35 +115,35 @@ class N2N(nn.Module):
                                 i=i+1
 
 
-    def deeper(self, model, optimizer, positions):
-        # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
-        for pos in positions:
-            # print("\n\nposition:")
-            # print(pos)
-            conv = model.module_list[pos * 2 - 2]
-            bn = model.module_list[pos * 2 - 1]
-            conv1 = model.module_list[pos * 2]
-            bn1 = model.module_list[pos * 2 + 1]
-            conv2 = copy.deepcopy(conv)
-            conv3 = copy.deepcopy(conv1)
-            noise = torch.Tensor(conv2.weight.shape).random_(0, 1).cuda()
-            # noise = torch.rand(0,0.5)
-            conv2.weight.data += noise
-            bn2 = copy.deepcopy(bn)
-            noise = torch.Tensor(conv1.weight.shape).random_(0, 1).cuda()
-            conv3.weight.data += noise
-            bn3 = copy.deepcopy(bn1)
-            model.module_list.insert(pos * 2 + 2, conv2)
-            model.module_list.insert(pos * 2 + 3, bn2)
-            model.module_list.insert(pos * 2 + 4, conv3)
-            model.module_list.insert(pos * 2 + 5, bn3)
-            # print("\n\n> moduleList:\n")
-            # print(self.module_list)
+def deeper(model, optimizer, positions):
+    # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
+    for pos in positions:
+        # print("\n\nposition:")
+        # print(pos)
+        conv = model.module_list[pos * 2 - 2]
+        bn = model.module_list[pos * 2 - 1]
+        conv1 = model.module_list[pos * 2]
+        bn1 = model.module_list[pos * 2 + 1]
+        conv2 = copy.deepcopy(conv)
+        conv3 = copy.deepcopy(conv1)
+        noise = torch.Tensor(conv2.weight.shape).random_(0, 1).cuda()
+        # noise = torch.rand(0,0.5)
+        conv2.weight.data += noise
+        bn2 = copy.deepcopy(bn)
+        noise = torch.Tensor(conv1.weight.shape).random_(0, 1).cuda()
+        conv3.weight.data += noise
+        bn3 = copy.deepcopy(bn1)
+        model.module_list.insert(pos * 2 + 2, conv2)
+        model.module_list.insert(pos * 2 + 3, bn2)
+        model.module_list.insert(pos * 2 + 4, conv3)
+        model.module_list.insert(pos * 2 + 5, bn3)
+        # print("\n\n> moduleList:\n")
+        # print(self.module_list)
 
         # optimizer = optim.SGD(model.parameters(), get_lr(optimizer), get_momentum(optimizer),
         #                      get_weight_decay(optimizer))
 
-        return model, optimizer
+    return model, optimizer
 
 
 def num_flat_features(x):
