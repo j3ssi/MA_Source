@@ -84,6 +84,9 @@ parser.add_argument('--global_coeff', default=True, action='store_true',
                     help='Use a global group lasso regularizaiton coefficient')
 parser.add_argument('--print-freq', default=10, type=int,
                     metavar='N', help='print frequency (default: 10)')
+parser.add_argument('--out_dir', default='out', type=str,
+                    help='directory to store the temporary architecture file')
+
 # N2N
 parser.add_argument('--deeper', default=False, action='store_true',
                     help='Male network deeper')
