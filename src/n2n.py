@@ -12,67 +12,25 @@ from torch.autograd import Variable
 
 class N2N(nn.Module):
 
-    def __init__(self, num_classes):
+    def __init__(self, num_classes, num_residual_blocks):
         super(N2N, self).__init__()
         self.module_list = nn.ModuleList()
-        # 0
         conv1 = nn.Conv2d(3, 16, kernel_size=3, padding=1, bias=False, stride=1)
         self.module_list.append(conv1)
-        # 1
         bn1 = nn.BatchNorm2d(16)
         self.module_list.append(bn1)
 
-        # 2
-        conv2 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-        self.module_list.append(conv2)
-        # 3
-        bn2 = nn.BatchNorm2d(16)
-        self.module_list.append(bn2)
-        # 4
-        conv3 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-        self.module_list.append(conv3)
-        # 5
-        bn3 = nn.BatchNorm2d(16)
-        self.module_list.append(bn3)
 
-        # 6
-        conv4 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-        self.module_list.append(conv4)
-        # 7
-        bn4 = nn.BatchNorm2d(16)
-        self.module_list.append(bn4)
-        # 8
-        conv5 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-        self.module_list.append(conv5)
-        # 9
-        bn5 = nn.BatchNorm2d(16)
-        self.module_list.append(bn5)
+        for block in range(num_residual_blocks):
+            conv2 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+            self.module_list.append(conv2)
+            bn2 = nn.BatchNorm2d(16)
+            self.module_list.append(bn2)
+            conv3 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+            self.module_list.append(conv3)
+            bn3 = nn.BatchNorm2d(16)
+            self.module_list.append(bn3)
 
-        # 10
-        conv6 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-        self.module_list.append(conv6)
-        # 11
-        bn6 = nn.BatchNorm2d(16)
-        self.module_list.append(bn6)
-        # 12
-        conv7 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-        self.module_list.append(conv7)
-        # 13
-        bn7 = nn.BatchNorm2d(16)
-        self.module_list.append(bn7)
-
-        # 14
-        conv8 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-        self.module_list.append(conv8)
-        # 15
-        bn8 = nn.BatchNorm2d(16)
-        self.module_list.append(bn8)
-        # 16
-        conv9 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-        self.module_list.append(conv9)
-        # 17
-        bn9 = nn.BatchNorm2d(16)
-        self.module_list.append(bn9)
 
         # 18
         avgpool = nn.AdaptiveAvgPool2d((1, 1))

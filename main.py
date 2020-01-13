@@ -57,7 +57,8 @@ parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')
 parser.add_argument('--manualSeed', type=int, help='manual seed')
 parser.add_argument('--gpu_id', default='2', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
-
+parser.add_argument('--num_of_residual_blocks', default=4, type=int, help='defines the number of residualblocks in '
+                                                                          'the baseline network')
 # PruneTrain
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
 parser.add_argument('--sparse_interval', default=0, type=int,
@@ -141,7 +142,7 @@ def main():
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
     #Model
-    model = n2n.N2N(num_classes)
+    model = n2n.N2N(num_classes, num_of_residual_blocks )
     model.cuda()
 
     cudnn.benchmark = True
