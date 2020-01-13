@@ -35,7 +35,7 @@ class layerUtil:
         if isinstance(module, nn.Conv2d): return cls.convLayer(module)
         elif isinstance(module, nn.BatchNorm2d): return cls.bnLayer(module)
         elif isinstance(module, nn.Linear): return cls.fcLayer(module)
-        elif isinstance(module, nn.AdaptiveAvgPool2d): return cls.avgPool(module)
+        elif isinstance(module, nn.AdaptiveAvgPool2d): return cls.avgPool()
 
     @classmethod
     def convLayer(cls, module):
@@ -63,7 +63,7 @@ class layerUtil:
 
         return '\t\tlayer = nn.Linear(16, num_classes)\n'.format(self.num_classes)
 
-    def avgPool(self, module):
+    def avgPool(self):
         return '\t\tlayer = nn.AdaptiveAvgPool2d((1, 1))\n'
 
         
