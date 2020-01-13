@@ -4,5 +4,5 @@ from .custom_resnet import _genDenseArchResNet
 
 custom_arch = {
     'resnet':_genDenseArchResNet,
-    'blablanet'_genDenseArchResNet
+    'blablanet':_genDenseArchResNet
 }
