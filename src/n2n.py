@@ -2,12 +2,7 @@ import copy
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 import math
-import numpy as np
-from torch import optim
-
-from torch.autograd import Variable
 
 
 class N2N(nn.Module):
@@ -56,6 +51,7 @@ class N2N(nn.Module):
         printNet = False
         i=0
         for module in self.module_list:
+            print(module.named_modules())
             if isinstance(module, nn.AdaptiveAvgPool2d):
                 try:
                     x = module(_x)
@@ -119,8 +115,6 @@ class N2N(nn.Module):
                                 print('Odd bn',i)
                                 i=i+1
 
-    def genDenseArch(self, model, dense_chs, chs_map):
-        self.module_list = model.module_list
 
     def deeper(self, model, optimizer, positions):
         # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper

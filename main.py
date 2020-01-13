@@ -29,7 +29,7 @@ import torchvision.datasets as datasets
 from torch.autograd import Variable
 from torch.backends import cudnn
 
-from src import n2n
+from src import n2n, custom_arch
 from src.checkpoint_utils import _makeSparse, _genDenseModel
 from src.group_lasso_regs import get_group_lasso_global, get_group_lasso_group
 from src.utils import AverageMeter, accuracy
@@ -164,9 +164,10 @@ def main():
                 # Force weights under threshold to zero
                 dense_chs, chs_map = _makeSparse(model, args.threshold,
                                                  is_gating=args.is_gating)
-
-                _genDenseModel(model, dense_chs, optimizer, 'cifar')
-                model.genDenseArch(model, dense_chs, chs_map)
+                if args.arch_out_dir != None:
+                    _genDenseModel(model, dense_chs, optimizer, 'cifar')
+                    #_genDenseArch = custom_arch['resnet']
+                    #_genDenseArch(model, dense_chs, chs_map)
 
             best_acc = max(test_acc, best_acc)
         print('Best acc:')
