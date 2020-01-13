@@ -14,5 +14,5 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map):
     ctx += 'self.module_list = nn.ModuleList()'
 
     for module in model.module_list:
-        ctx += lyr.getLayerDef(module)
+        ctx += lyr.getModuleDef(module)
 

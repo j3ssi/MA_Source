@@ -36,7 +36,7 @@ class layerUtil:
         elif isinstance(module, nn.AdaptiveAvgPool2d): return cls.avgPool(module)
 
     def convLayer(cls, module):
-        pass
+
 
     def bnLayer(self, module):
         pass
@@ -46,4 +46,5 @@ class layerUtil:
 
     def avgPool(self, module):
         pass
+
         
