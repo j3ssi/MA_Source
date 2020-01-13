@@ -21,9 +21,8 @@ from torch import nn
 
 
 class layerUtil:
-    def __init__(self, model, dense_chs, num_classes):
+    def __init__(self, model, dense_chs):
         self.setModel(model, dense_chs)
-        self.num_classes = num_classes
 
     @classmethod
     def setModel(cls, model, dense_chs):
@@ -62,7 +61,7 @@ class layerUtil:
     @classmethod
     def fcLayer(self, module):
 
-        return '\t\tlayer = nn.Linear(16, num_classes)\n'.format(self.num_classes)
+        return '\t\tlayer = nn.Linear(16, 10)\n'
 
     @classmethod
     def avgPool(self):
