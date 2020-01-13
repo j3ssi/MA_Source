@@ -159,6 +159,7 @@ Make only the (conv, FC) layer parameters sparse
 def _makeSparse(model, threshold, is_gating=False, reconf=False):
     print("[INFO] Force the sparse filters to zero...")
     dense_chs, chs_temp, idx = {}, {}, 0
+    #alternative List to find the layers by name and not the stupid index of module_list
     altList = []
     for name, param in model.named_parameters():
         i = int(name.split('.')[1])
@@ -185,6 +186,7 @@ def _makeSparse(model, threshold, is_gating=False, reconf=False):
                 param = torch.where(param < threshold, torch.tensor(0.).cuda(), param)
 
             dense_in_chs, dense_out_chs = [], []
+            # param din ==4 -> param is for conv Layer
             if param.dim() == 4:
                 # Forcing sparse input channels to zero
                 for c in range(dims[1]):
@@ -234,10 +236,12 @@ def _makeSparse(model, threshold, is_gating=False, reconf=False):
     - Union: Maintain all dense channels on the shared nodes (No indexing)
     - Individual: Add gating layers >> Layers at the shared node skip more computation
     """
+    #get the residual Path of Resnet
     stages = n2n.getResidualPath(model)
     ch_maps = []
 
     # Within a residual branch >> Union of adjacent pairs
+    # get the Layers that share the same node
     adj_lyrs = n2n.getShareSameNodeLayers(model)
     # print(adj_lyrs)
     for adj_lyr in adj_lyrs:

@@ -114,8 +114,11 @@ def main():
     if use_cuda:
         torch.cuda.manual_seed(args.manualSeed)
 
+    # use anomaly detection of torch
     torch.autograd.set_detect_anomaly(True)
+
     global best_acc
+
     # Data
     #print('==> Preparing dataset %s' % args.dataset)
     transform_train = transforms.Compose([
@@ -142,17 +145,20 @@ def main():
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
+    #Model
     model = n2n.N2N(num_classes)
     model.cuda()
 
-    cudnn.benchmark = True
+    #cudnn.benchmark = True
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     # Train and val
+    #how many times N2N should make the network deeper
     for epochNet2Net in range(1, 3):
         best_acc = 0
         for epoch in range(1, args.epochs + 1):
+            #adjust learning rate when epoch is the scheduled epoch
             adjust_learning_rate(optimizer, epoch)
 
             #print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
@@ -349,6 +355,23 @@ def adjust_learning_rate(optimizer, epoch):
 
     for param_group in optimizer.param_groups:
         param_group['lr'] = state['lr']
+
+
+def get_lr(optimizer):
+    for param_group in optimizer.param_groups:
+        return param_group['lr']
+
+
+def get_momentum(optimizer):
+    for param_group in optimizer.param_groups:
+        return param_group['momentum']
+
+
+def get_weight_decay(optimizer):
+    for param_group in optimizer.param_groups:
+        return param_group['weight_decay']
+
+
 
 
 if __name__ == '__main__':

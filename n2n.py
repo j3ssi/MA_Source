@@ -196,16 +196,15 @@ def getResidualPath(model):
     stages[0]['o'] = []
     i = int((len(model.module_list) - 2) / 2 + 1)
     listI = []
-    listI.append(n(1))
     listO = []
-    for j in range(2, i):
+    for j in range(1, i):
         if j % 2 == 0:
             listI.append(n(j))
         else:
             listO.append(n(j))
     stages[0]['o'] = listO
     stages[0]['i'] = listI
-    #print(stages)
+    print(stages)
     return stages
 
 
@@ -224,20 +223,6 @@ def n(name):
     else:
         return 'module.' + name + '.weight'
 
-
-def get_lr(optimizer):
-    for param_group in optimizer.param_groups:
-        return param_group['lr']
-
-
-def get_momentum(optimizer):
-    for param_group in optimizer.param_groups:
-        return param_group['momentum']
-
-
-def get_weight_decay(optimizer):
-    for param_group in optimizer.param_groups:
-        return param_group['weight_decay']
 
 
 def getRmLayers(name, dataset):
