@@ -12,7 +12,7 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
     ctx += '\tdef __init__(self, num_classes=10):\n'
     ctx += '\t\tsuper(ResNet, self).__init__()\n'
 
-    lyr = layerUtil(model, dense_chs, num_classes)
+    lyr = layerUtil(model, dense_chs)
 
     ctx += '\t\tself.module_list = nn.ModuleList()'
 
