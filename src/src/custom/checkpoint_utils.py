@@ -156,7 +156,7 @@ Make only the (conv, FC) layer parameters sparse
 """
 
 
-def _makeSparse(model, threshold, is_gating=False, reconf=True):
+def _makeSparse(model, threshold, is_gating=False, reconf=False):
     print("[INFO] Force the sparse filters to zero...")
     dense_chs, chs_temp, idx = {}, {}, 0
     altList = []
