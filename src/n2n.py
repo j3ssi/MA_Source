@@ -7,7 +7,7 @@ import math
 
 class N2N(nn.Module):
 
-    def __init__(self, num_classes, num_residual_blocks, first):
+    def __init__(self, num_classes, num_residual_blocks, first, model=None):
         super(N2N, self).__init__()
         if first:
             self.module_list = nn.ModuleList()
