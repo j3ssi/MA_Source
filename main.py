@@ -58,7 +58,7 @@ parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')
 parser.add_argument('--manualSeed', type=int, help='manual seed')
 parser.add_argument('--gpu_id', default='2', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
-parser.add_argument('-r', '--numOfResidualBlocks', default=1, type=int, help='defines the number of residualblocks in '
+parser.add_argument('-r', '--numOfResidualBlocks', default=2, type=int, help='defines the number of residualblocks in '
                                                                              'the baseline network')
 # PruneTrain
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
