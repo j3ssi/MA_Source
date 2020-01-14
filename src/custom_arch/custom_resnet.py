@@ -74,12 +74,8 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
     ctx += '\t\t_x = None\n'
     ctx += '\t\tfor module in self.module_list:\n'
     ctx += '\t\t\tif isinstance(module, nn.AdaptiveAvgPool2d):\n'
-    ctx += '\t\t\t\ttry:\n'
-    ctx += '\t\t\t\t\tx = module(_x)\n'
-    ctx += '\t\t\t\t\tx = x.view(-1, 16)\n'
-    ctx += '\t\t\t\texcept RuntimeError:\n'
-    ctx += '\t\t\t\t\tprint("\n \n Oops!!!: ")\n'
-    ctx += '\t\t\t\t\tprint("AvgPool")\n'
+    ctx += '\t\t\t\tx = module(_x)\n'
+    ctx += '\t\t\t\tx = x.view(-1, 16)\n'
     ctx += '\t\t\telif isinstance(module, nn.Linear):\n'
     ctx += '\t\t\t\tx = module(x)\n'
     ctx += '\t\t\t\treturn x\n'
@@ -111,7 +107,7 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
     ctx += '\t\t\t\t\t\t\t_x = self.relu(_x)\n'
     ctx += '\t\t\t\t\t\t\todd = False\n'
     ctx += '\t\t\t\t\t\t\tbn = False\n'
- 
+
     # ResNet50 definition
     ctx += 'def N2N(**kwargs):\n'
     ctx += '\tmodel = N2N(**kwargs)\n'
