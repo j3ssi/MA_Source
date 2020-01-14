@@ -250,6 +250,7 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
             for idx in range(len(adj_lyr) - 1):
                 edge = list(set().union(dense_chs[adj_lyr[idx]]['out_chs'],
                                         dense_chs[adj_lyr[idx + 1]]['in_chs']))
+                print("\n>Edge: ", edge)
                 dense_chs[adj_lyr[idx]]['out_chs'] = edge
                 dense_chs[adj_lyr[idx + 1]]['in_chs'] = edge
     for name in dense_chs:
