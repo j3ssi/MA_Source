@@ -231,7 +231,7 @@ def getResidualPath(model):
     i = int((len(model.module_list) - 1) / 2)
     listI = []
     listO = []
-    for j in range(1, i):
+    for j in range(1, i+1):
         if j % 2 == 0:
             listI.append(n(j))
         else:
