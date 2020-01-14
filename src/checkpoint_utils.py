@@ -260,9 +260,12 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
         edges = []
         # Find union of the channels sharing the same node
         for lyr_name in stages[idx]['i']:
+            print("\nLyr_name: ", lyr_name)
             if lyr_name in dense_chs:
                 edges = list(set().union(edges, dense_chs[lyr_name]['in_chs']))
         for lyr_name in stages[idx]['o']:
+
+            print("\nLyr_name: ", lyr_name)
             if lyr_name in dense_chs:
                 edges = list(set().union(edges, dense_chs[lyr_name]['out_chs']))
         # Maintain the dense channels at the shared node
