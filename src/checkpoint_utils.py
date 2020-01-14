@@ -202,13 +202,13 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
                     if param[:, c].abs().max() > 0:
                         dense_in_chs.append(c)
                 # FC layer in the middle remove their output neurons
-                if any(i for i in ['fc1', 'fc2'] if i in name):
-                    for c in range(dims[0]):
-                        if param[c, :].abs().max() > 0:
-                            dense_out_chs.append(c)
-                else:
+                # if any(i for i in ['fc1', 'fc2'] if i in name):
+                #     for c in range(dims[0]):
+                #         if param[c, :].abs().max() > 0:
+                #             dense_out_chs.append(c)
+                # else:
                     # [fc, fc3] output channels (class probabilities) are all dense
-                    dense_out_chs = [c for c in range(dims[0])]
+                dense_out_chs = [c for c in range(dims[0])]
 
             chs_temp[idx] = {'name': name, 'in_chs': dense_in_chs, 'out_chs': dense_out_chs}
             idx += 1
@@ -242,6 +242,7 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
     adj_lyrs = n2n.getShareSameNodeLayers(model)
     # print(adj_lyrs)
     for adj_lyr in adj_lyrs:
+        #if i exists that is in adj_lyr and this i is not in dense_chs
         if any(i for i in adj_lyr if i not in dense_chs):
             """ not doing anything """
         else:
@@ -250,6 +251,8 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
                                         dense_chs[adj_lyr[idx + 1]]['in_chs']))
                 dense_chs[adj_lyr[idx]]['out_chs'] = edge
                 dense_chs[adj_lyr[idx + 1]]['in_chs'] = edge
+    for name in dense_chs:
+        print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
     for idx in range(len(stages) - 1):
         edges = []
@@ -269,9 +272,9 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
             if lyr_name in dense_chs:
                 # print ("Output_ch [{}]: {} => {}".format(lyr_name, len(dense_chs[lyr_name]['out_chs']), len(edges)))
                 dense_chs[lyr_name]['out_chs'] = edges
+    for name in dense_chs:
+        print("2: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
-    #for name in dense_chs:
-    #    print ("[{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
     return dense_chs, None
 
 

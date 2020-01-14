@@ -42,70 +42,70 @@ class N2N(nn.Module):
                     m.weight.data.fill_(1)
                     m.bias.data.zero_()
 
-        else:
-            altList = []
-            paramList = []
-            for name, param in model.named_parameters():
-                #print("\nName: {}", name)
-                paramList.append(param)
-                i = int(name.split('.')[1])
-                if i % 2 == 0:
-                    altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
-
-                if (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
-                    altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
-                elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
-                    altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
-
-                if (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
-                    altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
-                elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
-                    altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-
-            #print("\naltList", altList)
-            module_list1 = nn.ModuleList()
-            for i in range(len(altList)):
-                name = altList[i]
-                param = paramList[i]
-                #print("\nName: ", name)
-                if 'conv' in name:
-                    dims = list(param.shape)
-                    in_chs = dims[1]
-                    if 'conv' in altList[i+2] :
-                        out_chs = paramList[i+2].shape[1]
-                    # Search for the corresponding Conv Module in Module_list
-                    k = int(name.split('.')[1].split('v')[1])
-                    module = model.module_list[(k - 1) * 2]
-                    kernel_size = module.kernel_size
-                    stride = module.stride
-                    padding = module.padding
-                    bias = module.bias if module.bias != None else False
-
-                    layer = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
-                                      bias=bias)
-                    print("\n>new Layer: ", layer, " ; ", param.shape)
-                    layer.weight = module.weight
-                    module_list1.append(layer)
-
-                elif 'bn' in name and not 'bias' in name:
-                    if'conv' in (altList[i+2]):
-                        layer = nn.BatchNorm2d(paramList[i+2].shape[1])
-                        print("\n>new Layer: ", layer)
-                    else:
-                        layer = nn.BatchNorm2d(paramList[i].shape[0])
-                    module_list1.append(layer)
-                elif 'bn' in name and 'bias' in name:
-                    module_list1[-1].bias
-                else:
-                    print('\nelse: ', name)
-
-            avgpool = nn.AdaptiveAvgPool2d((1, 1))
-            module_list1.append(avgpool)
-            fc = nn.Linear(16, num_classes)
-            module_list1.append(fc)
-            self.module_list = module_list1
-            self.relu = nn.ReLU(inplace=True)
-            print("\nnew Model: ", self)
+        # else:
+        #     altList = []
+        #     paramList = []
+        #     for name, param in model.named_parameters():
+        #         #print("\nName: {}", name)
+        #         paramList.append(param)
+        #         i = int(name.split('.')[1])
+        #         if i % 2 == 0:
+        #             altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
+        #
+        #         if (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
+        #             altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
+        #         elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
+        #             altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
+        #
+        #         if (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
+        #             altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
+        #         elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
+        #             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
+        #
+        #     #print("\naltList", altList)
+        #     module_list1 = nn.ModuleList()
+        #     for i in range(len(altList)):
+        #         name = altList[i]
+        #         param = paramList[i]
+        #         #print("\nName: ", name)
+        #         if 'conv' in name:
+        #             dims = list(param.shape)
+        #             in_chs = dims[1]
+        #             if 'conv' in altList[i+2] :
+        #                 out_chs = paramList[i+2].shape[1]
+        #             # Search for the corresponding Conv Module in Module_list
+        #             k = int(name.split('.')[1].split('v')[1])
+        #             module = model.module_list[(k - 1) * 2]
+        #             kernel_size = module.kernel_size
+        #             stride = module.stride
+        #             padding = module.padding
+        #             bias = module.bias if module.bias != None else False
+        #
+        #             layer = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
+        #                               bias=bias)
+        #             print("\n>new Layer: ", layer, " ; ", param.shape)
+        #             layer.weight = module.weight
+        #             module_list1.append(layer)
+        #
+        #         elif 'bn' in name and not 'bias' in name:
+        #             if'conv' in (altList[i+2]):
+        #                 layer = nn.BatchNorm2d(paramList[i+2].shape[1])
+        #                 print("\n>new Layer: ", layer)
+        #             else:
+        #                 layer = nn.BatchNorm2d(paramList[i].shape[0])
+        #             module_list1.append(layer)
+        #         elif 'bn' in name and 'bias' in name:
+        #             module_list1[-1].bias
+        #         else:
+        #             print('\nelse: ', name)
+        #
+        #     avgpool = nn.AdaptiveAvgPool2d((1, 1))
+        #     module_list1.append(avgpool)
+        #     fc = nn.Linear(16, num_classes)
+        #     module_list1.append(fc)
+        #     self.module_list = module_list1
+        #     self.relu = nn.ReLU(inplace=True)
+        #     print("\nnew Model: ", self)
 
     def forward(self, x):
         odd = False
@@ -148,7 +148,6 @@ class N2N(nn.Module):
                     bn = False
                 else:
                     if not odd and not bn:
-                        if _x.shape[1] =! module
                         x = module(_x)
                         if printNet:
                             print('\nconv', i)
