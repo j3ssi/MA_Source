@@ -144,7 +144,7 @@ def main():
     # Model
     model = n2n.N2N(num_classes, args.numOfResidualBlocks)
     model.cuda()
-
+    print(model)
     cudnn.benchmark = True
 
     criterion = nn.CrossEntropyLoss()
