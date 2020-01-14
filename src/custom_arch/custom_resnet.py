@@ -43,20 +43,20 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
             in_chs = str(dims[1])
             out_chs = str(dims[0])
             #Search for the corresponding Conv Module in Module_list
-            k = name.split('.')[1]
+            k = int(name.split('.')[1].split('v')[1])
+            module = model.module_list[k-1]
             print("\nName module", k)
-                #kernel_size = str(module.kernel_size)
-                #stride = str(module.stride)
-                #    padding = str(module.padding)
-                #    bias = module.bias if module.bias != None else True
+            kernel_size = str(module.kernel_size)
+            stride = str(module.stride)
+            padding = str(module.padding)
+            bias = module.bias if module.bias != None else True
 
-            #ctx += '\t\tlayer = nn.Conv2d({}, {}, kernel_size={}, stride={}, padding={}, bias={})\n'.format(
-            #    name, in_chs, out_chs, kernel_size, stride, padding, bias)
-
-            print("\nDims: ", dims)
-            print('\nconv: ', name)
+            ctx += '\t\tlayer = nn.Conv2d({}, {}, kernel_size={}, stride={}, padding={}, bias={})\n'.format(
+                name, in_chs, out_chs, kernel_size, stride, padding, bias)
         elif 'bn' in name:
-            print('\nbn: ', name)
+            dims = list(param.shape)
+            out_chs = str(dims[0])
+            ctx += '\t\tlayer = nn.BatchNorm2d({})\n'.format(name, out_chs)
         else:
             print('\nelse: ',name)
 
