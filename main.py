@@ -58,7 +58,7 @@ parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')
 parser.add_argument('--manualSeed', type=int, help='manual seed')
 parser.add_argument('--gpu_id', default='2', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
-parser.add_argument('-r', '--numOfResidualBlocks', default=4, type=int, help='defines the number of residualblocks in '
+parser.add_argument('-r', '--numOfResidualBlocks', default=1, type=int, help='defines the number of residualblocks in '
                                                                              'the baseline network')
 # PruneTrain
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
@@ -90,7 +90,7 @@ parser.add_argument('--out_dir', default='out', type=str,
 
 # N2N
 parser.add_argument('--deeper', default=False, action='store_true',
-                    help='Male network deeper')
+                    help='Make network deeper')
 
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
