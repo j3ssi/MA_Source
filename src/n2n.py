@@ -81,7 +81,7 @@ class N2N(nn.Module):
                     kernel_size = module.kernel_size
                     stride = module.stride
                     padding = module.padding
-                    bias = module.bias if module.bias != None else True
+                    bias = module.bias if module.bias != None else False
 
                     layer = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
                                       bias=bias)
