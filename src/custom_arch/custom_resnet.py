@@ -34,8 +34,10 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
 
     print(altList)
-
+    i = -1
     for name, param in model.named_parameters():
+        i = i + 1
+        name = altList[i]
         if 'conv' in name:
             print('\nconv', name)
         if 'bn' in name:
