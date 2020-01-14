@@ -15,14 +15,28 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
     lyr = layerUtil(model, dense_chs)
 
     ctx += '\t\tself.module_list = nn.ModuleList()\n'
+    altList = []
+    for name, param in model.named_parameters():
+        # print("\nName: {}", name)
+        i = int(name.split('.')[1])
+        if i % 2 == 0:
+            altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
+
+        if (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
+            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
+        elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
+            altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
+
+        if (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
+            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
+        elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
+            altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
 
 
-    for name1, module in model.module_list.named_modules():
-        for name, param in model.named_parameter():
-            print("\n\nName In Module_list: ", name1)
-            print("\n\nName In Parameter_list: ", name)
-        ctx += lyr.getModuleDef(module,param)
-        ctx += '\t\tmodule_list.append(layer)\n'
+    for name, module in model.module_list.named_modules():
+        print("\n\nName In Parameter_list: ", name)
+        #ctx += lyr.getModuleDef(module,param)
+        #ctx += '\t\tmodule_list.append(layer)\n'
 
     ctx +='\tdef forward(self,x):\n'
     ctx +='\t\todd = False\n'
