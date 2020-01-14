@@ -37,9 +37,9 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
     moduleName = list(model.module_list.named_modules())
     i=1
     j=0
-    while i>0:
-        if 'Conv2d' in moduleName[i]:         
-            print("\n Name: ", moduleName[i])
+    for i in range(2,len(moduleName)):
+
+        print("\n Name: ", moduleName[i])
         i = i+1
         # ctx += lyr.getModuleDef(module,param)
         # ctx += '\t\tmodule_list.append(layer)\n'
