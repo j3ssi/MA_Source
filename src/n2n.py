@@ -228,7 +228,7 @@ def getResidualPath(model):
 
     stages[0]['i'] = []
     stages[0]['o'] = []
-    i = int((len(model.module_list) - 2) / 2 + 1)
+    i = int((len(model.module_list) - 1) / 2)
     listI = []
     listO = []
     for j in range(1, i):
@@ -236,7 +236,6 @@ def getResidualPath(model):
             listI.append(n(j))
         else:
             listO.append(n(j))
-    listI.append(n('fc'))
     stages[0]['o'] = listO
     stages[0]['i'] = listI
     print(stages)
