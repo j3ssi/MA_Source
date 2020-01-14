@@ -73,8 +73,8 @@ class N2N(nn.Module):
 
                 if 'conv' in name:
                     dims = list(param.shape)
-                    in_chs = str(dims[1])
-                    out_chs = str(dims[0])
+                    in_chs = dims[1]
+                    out_chs = dims[0]
                     # Search for the corresponding Conv Module in Module_list
                     k = int(name.split('.')[1].split('v')[1])
                     module = model.module_list[(k - 1) * 2]
