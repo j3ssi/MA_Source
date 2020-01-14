@@ -11,7 +11,7 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
     ctx += '\tdef __init__(self, num_classes=10):\n'
     ctx += '\t\tsuper(N2N, self).__init__()\n'
 
-    lyr = layerUtil(model, dense_chs)
+    #lyr = layerUtil(model, dense_chs)
 
     ctx += '\t\tself.module_list = nn.ModuleList()\n'
     altList = []
@@ -38,6 +38,7 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
     while i>0:
 
         print("\n Name: ", moduleName[i])
+        i = i+1
         # ctx += lyr.getModuleDef(module,param)
         # ctx += '\t\tmodule_list.append(layer)\n'
 
