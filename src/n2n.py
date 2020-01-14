@@ -104,7 +104,7 @@ class N2N(nn.Module):
             module_list1.append(fc)
             self.module_list = module_list1
             self.relu = nn.ReLU(inplace=True)
-
+            print("\nnew Model: ", self)
 
     def forward(self, x):
         odd = False
