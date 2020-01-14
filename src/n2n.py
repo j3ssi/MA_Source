@@ -80,6 +80,7 @@ class N2N(nn.Module):
 
                     layer = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
                                       bias=bias)
+                    print("\n>new Layer: ", layer)
                     layer.weight = module.weight
                     module_list1.append(layer)
 
