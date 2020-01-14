@@ -246,6 +246,7 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
         if any(i for i in adj_lyr if i not in dense_chs):
             """ not doing anything """
         else:
+            print("\n> Adj_lyr: ", adj_lyr)
             for idx in range(len(adj_lyr) - 1):
                 edge = list(set().union(dense_chs[adj_lyr[idx]]['out_chs'],
                                         dense_chs[adj_lyr[idx + 1]]['in_chs']))
