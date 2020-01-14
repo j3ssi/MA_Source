@@ -4,7 +4,6 @@ from src.custom_arch import layerUtil
 
 
 def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
-    print('\n\nDrin!!!!')
     ctx = 'import torch.nn as nn\n'
     ctx += 'import math'
     ctx += '__all__ = [\'resnet\']\n'
@@ -16,9 +15,11 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
 
     ctx += '\t\tself.module_list = nn.ModuleList()\n'
     altList = []
+    paramList = []
     for name, param in model.named_parameters():
         # print("\nName: {}", name)
         i = int(name.split('.')[1])
+        paramList.append(param)
         if i % 2 == 0:
             altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
 
@@ -33,7 +34,9 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
 
     moduleName = list(model.module_list.named_modules())
-    for i in range(len(model.module_list)):
+    i=1
+    while i>0:
+
         print("\n Name: ", moduleName[i])
         # ctx += lyr.getModuleDef(module,param)
         # ctx += '\t\tmodule_list.append(layer)\n'
