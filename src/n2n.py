@@ -87,7 +87,10 @@ class N2N(nn.Module):
                     module_list1.append(layer)
 
                 elif 'bn' in name and not 'bias' in name:
-                    layer = nn.BatchNorm2d(paramList[i+1].shape[1])
+                    if'conv' in (altList[i+1]):
+                        layer = nn.BatchNorm2d(paramList[i+1].shape[1])
+                    else:
+                        layer = nn.BatchNorm2d(paramList[i].shape[0])
                     module_list1.append(layer)
                 elif 'bn' in name and 'bias' in name:
                     module_list1[-1].bias
