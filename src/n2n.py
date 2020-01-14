@@ -91,6 +91,7 @@ class N2N(nn.Module):
                         layer = nn.BatchNorm2d(paramList[i+1].shape[1])
                     else:
                         layer = nn.BatchNorm2d(paramList[i].shape[0])
+                    print("\n>new Layer: ", layer)
                     module_list1.append(layer)
                 elif 'bn' in name and 'bias' in name:
                     module_list1[-1].bias
