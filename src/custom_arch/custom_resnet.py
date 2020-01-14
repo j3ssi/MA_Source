@@ -53,15 +53,19 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
 
             ctx += '\t\tlayer = nn.Conv2d({}, {}, kernel_size={}, stride={}, padding={}, bias={})\n'.format(
                 name, in_chs, out_chs, kernel_size, stride, padding, bias)
+            ctx += '\t\tmodule_list.append(layer)\n'
         elif 'bn' in name:
             dims = list(param.shape)
             out_chs = str(dims[0])
             ctx += '\t\tlayer = nn.BatchNorm2d({})\n'.format(name, out_chs)
+            ctx += '\t\tmodule_list.append(layer)\n'
         else:
             print('\nelse: ',name)
 
-    # ctx += lyr.getModuleDef(module,param)
-    # ctx += '\t\tmodule_list.append(layer)\n'
+    ctx += '\t\tlayer = nn.AdaptiveAvgPool2d((1, 1))\n'
+    ctx += '\t\tmodule_list.append(layer)\n'
+    ctx += '\t\tlayer = nn.Linear(16, 10)\n'
+    ctx += '\t\tmodule_list.append(layer)\n'
 
     ctx += '\tdef forward(self,x):\n'
     ctx += '\t\todd = False\n'
