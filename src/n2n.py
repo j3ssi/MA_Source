@@ -27,7 +27,7 @@ class N2N(nn.Module):
                 self.module_list.append(bn3)
 
             # 18
-            conv1 = nn.Conv2d(3, 16, kernel_size=3, padding=1, bias=False, stride=1)
+            conv1 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
             self.module_list.append(conv1)
             bn1 = nn.BatchNorm2d(16)
             self.module_list.append(bn1)
