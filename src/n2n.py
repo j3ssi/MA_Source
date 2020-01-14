@@ -67,7 +67,7 @@ class N2N(nn.Module):
             for i in range(len(altList)):
                 name = altList[i]
                 param = paramList[i]
-                print("\nName: ", name)
+                #print("\nName: ", name)
                 if 'conv' in name:
                     dims = list(param.shape)
                     in_chs = dims[1]
@@ -87,7 +87,7 @@ class N2N(nn.Module):
                     module_list1.append(layer)
 
                 elif 'bn' in name and not 'bias' in name:
-                    if'conv' in (altList[i+1]):
+                    if'conv' in (altList[i+2]):
                         layer = nn.BatchNorm2d(paramList[i+1].shape[1])
                         print("\n>new Layer: ", layer)
                     else:
