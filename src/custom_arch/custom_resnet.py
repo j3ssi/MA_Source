@@ -6,7 +6,7 @@ from src.custom_arch import layerUtil
 def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
     ctx = 'import torch.nn as nn\n'
     ctx += 'import math'
-    ctx += '__all__ = [\'resnet\']\n'
+    ctx += '__all__ = [\'N2N\']\n'
     ctx += 'class N2N(nn.Module):\n'
     ctx += '\tdef __init__(self, num_classes=10):\n'
     ctx += '\t\tsuper(N2N, self).__init__()\n'
