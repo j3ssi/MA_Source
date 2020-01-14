@@ -37,7 +37,7 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
     moduleName = list(model.module_list.named_modules())
     i=1
     j=0
-    for i in range(2,len(moduleName)):
+    for i in range(1,len(moduleName)):
 
         print("\n Name: ", moduleName[i])
         i = i+1
