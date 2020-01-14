@@ -46,7 +46,8 @@ class N2N(nn.Module):
             altList = []
             paramList = []
             for name, param in self.named_parameters():
-                # print("\nName: {}", name)
+                print("\nName: {}", name)
+
                 i = int(name.split('.')[1])
                 if i % 2 == 0:
                     altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
