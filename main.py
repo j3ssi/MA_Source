@@ -171,7 +171,7 @@ def main():
                 if args.out_dir is not None:
                     _genDenseModel(model, dense_chs, optimizer, 'cifar')
                     model = n2n.N2N(num_classes, args.numOfResidualBlocks, False, model)
-
+                    model.cuda()
             best_acc = max(test_acc, best_acc)
         print('Best acc:')
         print(best_acc)
