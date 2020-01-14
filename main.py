@@ -142,7 +142,7 @@ def main():
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
     # Model
-    model = n2n.N2N(num_classes, args.numOfResidualBlocks)
+    model = n2n.N2N(num_classes, args.numOfResidualBlocks, True)
     model.cuda()
     print(model)
     cudnn.benchmark = True
@@ -170,8 +170,7 @@ def main():
                                                  is_gating=args.is_gating)
                 if args.out_dir is not None:
                     _genDenseModel(model, dense_chs, optimizer, 'cifar')
-                    _genDenseArch = custom_arch['resnet']
-                    _genDenseArch(model, args.out_dir, dense_chs, chs_map, num_classes)
+                    model =     model = n2n.N2N(num_classes, args.numOfResidualBlocks, False)
 
             best_acc = max(test_acc, best_acc)
         print('Best acc:')

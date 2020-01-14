@@ -7,42 +7,98 @@ import math
 
 class N2N(nn.Module):
 
-    def __init__(self, num_classes, num_residual_blocks):
+    def __init__(self, num_classes, num_residual_blocks, first):
         super(N2N, self).__init__()
-        self.module_list = nn.ModuleList()
-        conv1 = nn.Conv2d(3, 16, kernel_size=3, padding=1, bias=False, stride=1)
-        self.module_list.append(conv1)
-        bn1 = nn.BatchNorm2d(16)
-        self.module_list.append(bn1)
+        if first:
+            self.module_list = nn.ModuleList()
+            conv1 = nn.Conv2d(3, 16, kernel_size=3, padding=1, bias=False, stride=1)
+            self.module_list.append(conv1)
+            bn1 = nn.BatchNorm2d(16)
+            self.module_list.append(bn1)
 
-        for block in range(num_residual_blocks):
-            conv2 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-            self.module_list.append(conv2)
-            bn2 = nn.BatchNorm2d(16)
-            self.module_list.append(bn2)
-            conv3 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-            self.module_list.append(conv3)
-            bn3 = nn.BatchNorm2d(16)
-            self.module_list.append(bn3)
+            for block in range(num_residual_blocks):
+                conv2 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+                self.module_list.append(conv2)
+                bn2 = nn.BatchNorm2d(16)
+                self.module_list.append(bn2)
+                conv3 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+                self.module_list.append(conv3)
+                bn3 = nn.BatchNorm2d(16)
+                self.module_list.append(bn3)
+
+            # 18
+            avgpool = nn.AdaptiveAvgPool2d((1, 1))
+            self.module_list.append(avgpool)
+            # 19
+            fc = nn.Linear(16, num_classes)
+            self.module_list.append(fc)
+            self.relu = nn.ReLU(inplace=True)
+
+            for m in self.module_list:
+                if isinstance(m, nn.Conv2d):
+                    n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
+                    m.weight.data.normal_(0, math.sqrt(2. / n))
+                elif isinstance(m, nn.BatchNorm2d):
+                    m.weight.data.fill_(1)
+                    m.bias.data.zero_()
+
+        else:
+            altList = []
+            paramList = []
+            module_list1 = nn.ModuleList()
+            for name, param in self.named_parameters():
+                # print("\nName: {}", name)
+                i = int(name.split('.')[1])
+                if i % 2 == 0:
+                    altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
+
+                if (i % 2 == 1) and ('weight' in name) and (i < (len(self.module_list) - 2)):
+                    altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
+                elif (i % 2 == 1) and ('weight' in name) and (i > (len(self.module_list) - 3)):
+                    altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
+
+                if (i % 2 == 1) and ('bias' in name) and (i < (len(self.module_list) - 1)):
+                    altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
+                elif (i % 2 == 1) and ('bias' in name) and (i > (len(self.module_list) - 2)):
+                    altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
+
+            print(altList)
+            for name, param in self.named_parameters():
+                name = altList[i]
+                if 'conv' in name:
+                    dims = list(param.shape)
+                    in_chs = str(dims[1])
+                    out_chs = str(dims[0])
+                    # Search for the corresponding Conv Module in Module_list
+                    k = int(name.split('.')[1].split('v')[1])
+                    module = self.module_list[(k - 1) * 2]
+                    kernel_size = str(module.kernel_size)
+                    stride = str(module.stride)
+                    padding = str(module.padding)
+                    bias = module.bias if module.bias != None else True
+
+                    layer = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
+                                      bias=bias)
+                    layer.weight = module.weight
+                    module_list1.append(layer)
+
+                elif 'bn' in name and not 'bias' in name:
+                    dims = list(param.shape)
+                    out_chs = str(dims[0])
+                    layer = nn.BatchNorm2d(out_chs)
+                    module_list1.append(layer)
+                elif 'bn' in name and 'bias' in name:
+                    module_list1[-1].bias
+                else:
+                    print('\nelse: ', name)
+
+            avgpool = nn.AdaptiveAvgPool2d((1, 1))
+            self.module_list1.append(avgpool)
+            fc = nn.Linear(16, num_classes)
+            self.module_list1.append(fc)
+            self.relu = nn.ReLU(inplace=True)
 
 
-        # 18
-        avgpool = nn.AdaptiveAvgPool2d((1, 1))
-        self.module_list.append(avgpool)
-        # 19
-        fc = nn.Linear(16, num_classes)
-        self.module_list.append(fc)
-        self.relu = nn.ReLU(inplace=True)
-
-
-
-        for m in self.module_list:
-            if isinstance(m, nn.Conv2d):
-                n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
-                m.weight.data.normal_(0, math.sqrt(2. / n))
-            elif isinstance(m, nn.BatchNorm2d):
-                m.weight.data.fill_(1)
-                m.bias.data.zero_()
 
     def forward(self, x):
         odd = False
@@ -50,7 +106,7 @@ class N2N(nn.Module):
         bn = False
         _x = None
         printNet = False
-        i=0
+        i = 0
         for module in self.module_list:
             if isinstance(module, nn.AdaptiveAvgPool2d):
                 try:
@@ -74,28 +130,28 @@ class N2N(nn.Module):
                     bn = True
                     if printNet:
                         print("\nFirst conv", i)
-                        i = i+1
+                        i = i + 1
                 elif first and bn:
                     x = module(x)
                     _x = self.relu(x)
                     if printNet:
                         print("\nFirst bn", i)
-                        i = i+1
+                        i = i + 1
                     first = False
                     bn = False
                 else:
                     if not odd and not bn:
                         x = module(_x)
                         if printNet:
-                            print('\nconv',i)
-                            i=i+1
+                            print('\nconv', i)
+                            i = i + 1
                         bn = True
                     elif not odd and bn:
                         x = module(x)
                         x = self.relu(x)
                         if printNet:
-                            print("\nbn",i)
-                            i=i+1
+                            print("\nbn", i)
+                            i = i + 1
                         odd = True
                         bn = False
                     else:
@@ -103,8 +159,8 @@ class N2N(nn.Module):
                             x = module(x)
                             bn = True
                             if printNet:
-                                print('Odd conv',i)
-                                i=i+1
+                                print('Odd conv', i)
+                                i = i + 1
                         elif bn:
                             x = module(x)
                             _x = _x + x
@@ -112,8 +168,8 @@ class N2N(nn.Module):
                             odd = False
                             bn = False
                             if printNet:
-                                print('Odd bn',i)
-                                i=i+1
+                                print('Odd bn', i)
+                                i = i + 1
 
 
 def deeper(model, optimizer, positions):
@@ -190,9 +246,5 @@ def n(name):
         return 'module.' + name + '.weight'
 
 
-
 def getRmLayers(name, dataset):
     pass
-
-
-
