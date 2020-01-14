@@ -39,11 +39,11 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
         i = i + 1
         name = altList[i]
         if 'conv' in name:
-            print('\nconv', name)
+            print('\nconv: ', name)
         if 'bn' in name:
-            print('\nbn', name)
+            print('\nbn: ', name)
         else:
-            print('\n',name)
+            print('\nelse: ',name)
 
     # ctx += lyr.getModuleDef(module,param)
     # ctx += '\t\tmodule_list.append(layer)\n'
