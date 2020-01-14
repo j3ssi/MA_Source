@@ -33,7 +33,8 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
 
     moduleName = list(model.module_list.named_modules())
-    print(moduleName)
+    for i in range(len(model.module_list)):
+        print("\n Name: ", moduleName[i])
         # ctx += lyr.getModuleDef(module,param)
         # ctx += '\t\tmodule_list.append(layer)\n'
 
