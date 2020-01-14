@@ -39,8 +39,10 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
         i = i + 1
         name = altList[i]
         if 'conv' in name:
+            dims = list(param.shape)
+            print("\nDims: ", dims)
             print('\nconv: ', name)
-        if 'bn' in name:
+        elif 'bn' in name:
             print('\nbn: ', name)
         else:
             print('\nelse: ',name)
