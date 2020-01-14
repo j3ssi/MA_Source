@@ -33,11 +33,13 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
         elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
 
+    print(altList)
     moduleName = list(model.module_list.named_modules())
     i=1
+    j=0
     while i>0:
-
-        print("\n Name: ", moduleName[i])
+        if 'Conv2d' in moduleName[i]:         
+            print("\n Name: ", moduleName[i])
         i = i+1
         # ctx += lyr.getModuleDef(module,param)
         # ctx += '\t\tmodule_list.append(layer)\n'
