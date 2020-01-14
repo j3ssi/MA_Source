@@ -67,7 +67,7 @@ class N2N(nn.Module):
             for i in range(len(altList)):
                 name = altList[i]
                 param = paramList[i]
-                print("\nName: ", name)
+                #print("\nName: ", name)
                 if 'conv' in name:
                     dims = list(param.shape)
                     in_chs = dims[1]
