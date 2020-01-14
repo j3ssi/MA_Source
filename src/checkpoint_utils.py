@@ -336,7 +336,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             dense_out_ch_idxs = dense_chs[name]['out_chs']
             num_in_ch, num_out_ch = len(dense_in_ch_idxs), len(dense_out_ch_idxs)
 
-            # print("===> Dense inchs: [{}], outchs: [{}]".format(num_in_ch, num_out_ch))
+            print("===> Dense inchs: [{}], outchs: [{}]".format(num_in_ch, num_out_ch))
 
             # Enlist layers with zero channels for removal
             if num_in_ch == 0 or num_out_ch == 0:
