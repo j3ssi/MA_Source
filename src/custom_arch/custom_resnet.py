@@ -44,7 +44,7 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
             out_chs = str(dims[0])
             #Search for the corresponding Conv Module in Module_list
 
-                print("\nName module")
+            print("\nName module")
                 #kernel_size = str(module.kernel_size)
                 #stride = str(module.stride)
                 #    padding = str(module.padding)
