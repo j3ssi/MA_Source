@@ -45,7 +45,7 @@ class N2N(nn.Module):
         else:
             altList = []
             paramList = []
-            for name, param in self.named_parameters():
+            for name, param in model.named_parameters():
                 print("\nName: {}", name)
 
                 i = int(name.split('.')[1])
