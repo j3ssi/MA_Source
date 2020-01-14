@@ -148,5 +148,5 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
     f_out = open(os.path.join(out_dir, 'resnet_flat.py'), 'w')
     f_out.write(ctx)
 
-    newcode = compile(ctx)
+    newcode = compile(ctx, "", 'exec')
     eval(newcode)
