@@ -71,7 +71,7 @@ class N2N(nn.Module):
                 if 'conv' in name:
                     dims = list(param.shape)
                     in_chs = dims[1]
-                    if 'conv' altList[i+2] :
+                    if 'conv' in altList[i+2] :
                         out_chs = paramList[i+2].shape[1]
                     # Search for the corresponding Conv Module in Module_list
                     k = int(name.split('.')[1].split('v')[1])
@@ -148,6 +148,7 @@ class N2N(nn.Module):
                     bn = False
                 else:
                     if not odd and not bn:
+                        print("\n>_x.shape: ", _x.shape)
                         x = module(_x)
                         if printNet:
                             print('\nconv', i)
