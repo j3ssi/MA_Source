@@ -47,7 +47,7 @@ class N2N(nn.Module):
             paramList = []
             for name, param in model.named_parameters():
                 print("\nName: {}", name)
-
+                paramList.append(param)
                 i = int(name.split('.')[1])
                 if i % 2 == 0:
                     altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
@@ -64,17 +64,14 @@ class N2N(nn.Module):
 
             print("\naltList", altList)
             module_list1 = nn.ModuleList()
-            i = -1
-            for name, param in model.named_parameters():
-                i =i+1
-                print("\nName: ", name)
+            for i in range(len(altList)):
                 name = altList[i]
+                param = paramList[i]
                 print("\nName: ", name)
-
                 if 'conv' in name:
                     dims = list(param.shape)
                     in_chs = dims[1]
-                    out_chs = dims[0]
+                    out_chs = paramList[i+1].shape[1]
                     # Search for the corresponding Conv Module in Module_list
                     k = int(name.split('.')[1].split('v')[1])
                     module = model.module_list[(k - 1) * 2]
@@ -90,8 +87,7 @@ class N2N(nn.Module):
                     module_list1.append(layer)
 
                 elif 'bn' in name and not 'bias' in name:
-                    dims = list(param.shape)
-                    layer = nn.BatchNorm2d(dims[0])
+                    layer = nn.BatchNorm2d(paramList[i+1].shape[1])
                     module_list1.append(layer)
                 elif 'bn' in name and 'bias' in name:
                     module_list1[-1].bias
