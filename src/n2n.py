@@ -103,7 +103,7 @@ class N2N(nn.Module):
             fc = nn.Linear(16, num_classes)
             module_list1.append(fc)
             self.module_list = module_list1
-
+            self.relu = nn.ReLU(inplace=True)
 
 
     def forward(self, x):
