@@ -147,3 +147,6 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
     print("[INFO] Generating a new dense architecture...")
     f_out = open(os.path.join(out_dir, 'resnet_flat.py'), 'w')
     f_out.write(ctx)
+
+    newcode = compile(ctx)
+    eval(newcode)
