@@ -45,7 +45,6 @@ class N2N(nn.Module):
         else:
             altList = []
             paramList = []
-            module_list1 = nn.ModuleList()
             for name, param in self.named_parameters():
                 # print("\nName: {}", name)
                 i = int(name.split('.')[1])
@@ -63,6 +62,7 @@ class N2N(nn.Module):
                     altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
 
             print(altList)
+            module_list1 = nn.ModuleList()
             for name, param in self.named_parameters():
                 name = altList[i]
                 if 'conv' in name:
@@ -93,10 +93,10 @@ class N2N(nn.Module):
                     print('\nelse: ', name)
 
             avgpool = nn.AdaptiveAvgPool2d((1, 1))
-            self.module_list1.append(avgpool)
+            module_list1.append(avgpool)
             fc = nn.Linear(16, num_classes)
-            self.module_list1.append(fc)
-            self.relu = nn.ReLU(inplace=True)
+            module_list1.append(fc)
+            self.module_list = module_list1
 
 
 
