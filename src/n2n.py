@@ -148,7 +148,7 @@ class N2N(nn.Module):
                     bn = False
                 else:
                     if not odd and not bn:
-                        print("\n>_x.shape: ", _x.shape)
+                        if _x.shape[1] =! module
                         x = module(_x)
                         if printNet:
                             print('\nconv', i)
