@@ -34,12 +34,17 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
 
     print(altList)
-    j = 0
-    for name, module in model.module_list.named_modules():
-        print("\n Name: ", name)
-        i = i+1
-        # ctx += lyr.getModuleDef(module,param)
-        # ctx += '\t\tmodule_list.append(layer)\n'
+
+    for name, param in model.named_parameters():
+        if 'conv' in name:
+            print('\nconv', name)
+        if 'bn' in name:
+            print('\nbn', name)
+        else:
+            print('\n',name)
+
+    # ctx += lyr.getModuleDef(module,param)
+    # ctx += '\t\tmodule_list.append(layer)\n'
 
     ctx += '\tdef forward(self,x):\n'
     ctx += '\t\todd = False\n'
