@@ -66,8 +66,11 @@ class N2N(nn.Module):
             module_list1 = nn.ModuleList()
             i = -1
             for name, param in model.named_parameters():
-                print(name)
+                i =i+1
+                print("\nName: ", name)
                 name = altList[i]
+                print("\nName: ", name)
+
                 if 'conv' in name:
                     dims = list(param.shape)
                     in_chs = str(dims[1])
