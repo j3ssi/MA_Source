@@ -231,6 +231,7 @@ def getResidualPath(model):
             listI.append(n(j))
         else:
             listO.append(n(j))
+    listI.append(n('fc'))
     stages[0]['o'] = listO
     stages[0]['i'] = listI
     print(stages)
@@ -243,6 +244,7 @@ def getShareSameNodeLayers(model):
     for j in range(2, i):
         if j % 2 == 0:
             sameNode.append((n(j), n(j + 1)))
+    print(sameNode)
     return sameNode
 
 
