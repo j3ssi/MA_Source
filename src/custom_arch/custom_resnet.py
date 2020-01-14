@@ -54,7 +54,7 @@ def _genDenseArchResNet(model, out_dir, dense_chs, chs_map, num_classes):
             ctx += '\t\tlayer = nn.Conv2d({}, {}, kernel_size={}, stride={}, padding={}, bias={})\n'.format(
                 name, in_chs, out_chs, kernel_size, stride, padding, bias)
             ctx += '\t\tmodule_list.append(layer)\n'
-        elif 'bn' in name:
+        elif 'bn' in name and not 'bias' in name:
             dims = list(param.shape)
             out_chs = str(dims[0])
             ctx += '\t\tlayer = nn.BatchNorm2d({})\n'.format(name, out_chs)
