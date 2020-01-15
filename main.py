@@ -167,7 +167,7 @@ def main():
                 dense_chs, chs_map = _makeSparse(model, args.threshold,
                                                  is_gating=args.is_gating)
                 _genDenseModel(model, dense_chs, optimizer, 'cifar')
-                model = n2n.N2N(num_classes, args.num_residual_blocks, False, model)
+                model = n2n.N2N(num_classes, args.numOfResidualBlocks, False, model)
             best_acc = max(test_acc, best_acc)
             print(model)
         print('Best acc:')
@@ -176,11 +176,11 @@ def main():
             print("\n\nnow deeper")
             # deeper student training
             if best_acc < 50:
-                model, optimizer = model.deeper(model, optimizer, [2, 4, 6, 8])
+                model, optimizer = model.deeper(model, optimizer, [2, 4])
             elif best_acc < 75:
-                model, optimizer = model.deeper(model, optimizer, [2, 6])
+                model, optimizer = model.deeper(model, optimizer, [2])
             elif best_acc < 95:
-                model, optimizer = model.deeper(model, optimizer, [6])
+                model, optimizer = model.deeper(model, optimizer, [2])
             model.cuda()
 
 
