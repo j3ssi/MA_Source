@@ -99,13 +99,20 @@ class N2N(nn.Module):
                         layer = nn.BatchNorm2d(paramList[i].shape[0])
                     module_list1.append(layer)
                 elif 'bn' in name and 'bias' in name:
-                    module_list1[-1].bias=param.bias
+                    k = float(name.split('.')[1].split('n')[1])
+                    k1 = int((k-0.5)*2/3)
+                    print("\nk1: ", k1)
+                    module = model.module_list[k1]
+                    module_list1[-1].bias=module.bias
                 else:
                     print('\nelse: ', name)
 
             avgpool = nn.AdaptiveAvgPool2d((1, 1))
             module_list1.append(avgpool)
             fc = nn.Linear(16, num_classes)
+            module = model.module_list[-1]
+            fc.weight = module.weight
+            fc.bias = module.bias
             module_list1.append(fc)
             self.module_list = module_list1
             self.relu = nn.ReLU(inplace=True)
