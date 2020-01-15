@@ -122,7 +122,7 @@ class N2N(nn.Module):
         for module in self.module_list:
             if isinstance(module, nn.AdaptiveAvgPool2d):
                 try:
-                    x = module(_x)
+                    x = module(x)
                     x = x.view(-1, 16)
 
                     if printNet:
