@@ -79,7 +79,7 @@ class N2N(nn.Module):
                 if 'conv' in name:
                     dims = list(param.shape)
                     in_chs = dims[1]
-                    out_chs = paramList[i].shape[0]
+                    out_chs = dims[0]
                     # Search for the corresponding Conv Module in Module_list
                     k = int(name.split('.')[1].split('v')[1])
                     module = model.module_list[(k - 1) * 2]
@@ -88,18 +88,14 @@ class N2N(nn.Module):
                     padding = module.padding
                     bias = module.bias if module.bias != None else False
 
-                    layer = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
-                                      bias=bias)
+                    layer = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding, bias=bias)
                     print("\n>new Layer: ", layer, " ; ", param.shape)
                     layer.weight = module.weight
                     module_list1.append(layer)
 
                 elif 'bn' in name and not 'bias' in name:
-                    if 'conv' in (altList[i + 2]):
-                        layer = nn.BatchNorm2d(paramList[i].shape[0])
-                        print("\n>new Layer: ", layer)
-                    else:
-                        layer = nn.BatchNorm2d(paramList[i].shape[0])
+                    layer = nn.BatchNorm2d(paramList[i].shape[0])
+                    print("\n>new Layer: ", layer)
                     module_list1.append(layer)
                 elif 'bn' in name and 'bias' in name:
                     print("\n>Name: ", name, " ; ", k)
@@ -114,7 +110,6 @@ class N2N(nn.Module):
             avgpool = nn.AdaptiveAvgPool2d((1, 1))
             module_list1.append(avgpool)
             module = model.module_list[-1]
-
             self.sizeOfFC = paramList[-2].shape[1]
             fc = nn.Linear(paramList[-2].shape[1], num_classes)
             fc.weight = module.weight
