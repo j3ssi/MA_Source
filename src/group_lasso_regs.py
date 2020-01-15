@@ -53,7 +53,6 @@ def get_group_lasso_global(model):
         name = altList[j]
         # Lasso added to only the neuronal layers
         if ('weight' in name) and any([i for i in ['conv', 'fc'] if i in name]):
-            print("\nName in: ", name)
             if param.dim() == 4:
                 # Exclude depth-wise convolution layers from regularization
                 if 'conv1.' not in name:

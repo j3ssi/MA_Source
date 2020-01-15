@@ -168,6 +168,7 @@ def main():
                                                  is_gating=args.is_gating)
                 _genDenseModel(model, dense_chs, optimizer, 'cifar')
             best_acc = max(test_acc, best_acc)
+            print(model)
         print('Best acc:')
         print(best_acc)
         if (args.deeper):
