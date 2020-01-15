@@ -126,7 +126,7 @@ def main():
         transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
     ])
 
-    dataloader = datasets.CIFAR10
+    dataloader = datasets.CIFAR100
     num_classes = 100
 
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
