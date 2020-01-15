@@ -256,7 +256,7 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
     for name in dense_chs:
         print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
-    for idx in range(0, len(stages) - 1):
+    for idx in range(len(stages) ):
         print("\n> IDX: ", idx)
         edges = []
         # Find union of the channels sharing the same node
