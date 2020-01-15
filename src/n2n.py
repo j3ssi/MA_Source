@@ -115,8 +115,8 @@ class N2N(nn.Module):
             module_list1.append(avgpool)
             module = model.module_list[-1]
 
-            self.sizeOfFC = paramList[-1].shape[1]
-            fc = nn.Linear(paramList[-1].shape[1], num_classes)
+            self.sizeOfFC = paramList[-2].shape[1]
+            fc = nn.Linear(paramList[-2].shape[1], num_classes)
             fc.weight = module.weight
             fc.bias = module.bias
             module_list1.append(fc)
