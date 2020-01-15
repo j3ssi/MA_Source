@@ -69,7 +69,8 @@ class N2N(nn.Module):
                     altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
                 elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
                     altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-
+                else:
+                    assert True, print("Hier fehlt noch was!!")
             # print("\naltList", altList)
             module_list1 = nn.ModuleList()
             for i in range(len(altList)):
