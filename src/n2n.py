@@ -129,7 +129,7 @@ class N2N(nn.Module):
         first = True
         bn = False
         _x = None
-        printNet = False
+        printNet = True
         i = 0
         for module in self.module_list:
             if isinstance(module, nn.AdaptiveAvgPool2d):
