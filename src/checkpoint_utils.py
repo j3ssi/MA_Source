@@ -201,13 +201,6 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
                 for c in range(dims[1]):
                     if param[:, c].abs().max() > 0:
                         dense_in_chs.append(c)
-                # FC layer in the middle remove their output neurons
-                # if any(i for i in ['fc1', 'fc2'] if i in name):
-                #     for c in range(dims[0]):
-                #         if param[c, :].abs().max() > 0:
-                #             dense_out_chs.append(c)
-                # else:
-                # [fc, fc3] output channels (class probabilities) are all dense
                 dense_out_chs = [c for c in range(dims[0])]
 
             chs_temp[idx] = {'name': name, 'in_chs': dense_in_chs, 'out_chs': dense_out_chs}
@@ -309,15 +302,17 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
         if i % 2 == 0:
             altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
 
-        if (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
+        elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
             altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
         elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
 
-        if (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
+        elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
             altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
         elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
+        else:
+            assert "Hier fehlt was!! "
     # print("\n> altList: ", altList)
     i = -1
 
