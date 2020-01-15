@@ -126,7 +126,7 @@ class N2N(nn.Module):
         first = True
         bn = False
         _x = None
-        printNet = False
+        printNet = True
         i = 0
         for module in self.module_list:
             if isinstance(module, nn.AdaptiveAvgPool2d):
@@ -135,7 +135,7 @@ class N2N(nn.Module):
                     x = x.view(-1, self.sizeOfFC )
 
                     if printNet:
-                        print("\navgpool", i)
+                        print("\navgpool", i, " ; ", x.shape)
                         i = i + 1
                 except RuntimeError:
                     print("\n \n Oops!!!: ")
@@ -143,20 +143,20 @@ class N2N(nn.Module):
             elif isinstance(module, nn.Linear):
                 x = module(x)
                 if printNet:
-                    print("\nfc", i)
+                    print("\nfc", i, " ; ", x.shape)
                 return x
             else:
                 if first and not bn:
                     x = module(x)
                     bn = True
                     if printNet:
-                        print("\nFirst conv", i)
+                        print("\nFirst conv", i, " ; ", x.shape)
                         i = i + 1
                 elif first and bn:
                     x = module(x)
                     _x = self.relu(x)
                     if printNet:
-                        print("\nFirst bn", i)
+                        print("\nFirst bn", i, " ; ", x.shape)
                         i = i + 1
                     first = False
                     bn = False
@@ -164,14 +164,14 @@ class N2N(nn.Module):
                     if not odd and not bn:
                         x = module(_x)
                         if printNet:
-                            print('\nconv', i)
+                            print('\nconv', i, " ; ", x.shape)
                             i = i + 1
                         bn = True
                     elif not odd and bn:
                         x = module(x)
                         x = self.relu(x)
                         if printNet:
-                            print("\nbn", i)
+                            print("\nbn", i, " ; ", x.shape)
                             i = i + 1
                         odd = True
                         bn = False
@@ -180,7 +180,7 @@ class N2N(nn.Module):
                             x = module(x)
                             bn = True
                             if printNet:
-                                print('Odd conv', i)
+                                print('Odd conv', i, " ; ", x.shape)
                                 i = i + 1
                         elif bn:
                             x = module(x)
@@ -189,7 +189,7 @@ class N2N(nn.Module):
                             odd = False
                             bn = False
                             if printNet:
-                                print('Odd bn', i)
+                                print('Odd bn', i, " ; ", x.shape)
                                 i = i + 1
 
 

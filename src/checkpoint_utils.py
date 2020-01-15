@@ -18,16 +18,8 @@
 import sys
 import torch
 from torch.nn.parameter import Parameter
-import numpy as np
-import torch.nn as nn
 
 from src import n2n
-
-sys.path.append('..')
-
-WORD_SIZE = 4
-MFLOPS = 1000000 / 2
-
 
 
 """
@@ -56,6 +48,7 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
             altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
         elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
+
     i = -1
     for name, param in model.named_parameters():
         i = i + 1
