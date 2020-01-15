@@ -32,7 +32,7 @@ class N2N(nn.Module):
             bn1 = nn.BatchNorm2d(64)
             self.module_list.append(bn1)
 
-            avgpool = nn.AvgPool2d(8)
+            avgpool = nn.AvgPool2d(16)
             self.module_list.append(avgpool)
             # 19
             fc = nn.Linear(64, num_classes)
