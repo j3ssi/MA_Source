@@ -253,20 +253,20 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
                 #print("\n>Edge: ", edge)
                 dense_chs[adj_lyr[idx]]['out_chs'] = edge
                 dense_chs[adj_lyr[idx + 1]]['in_chs'] = edge
-    for name in dense_chs:
-        print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
+    #for name in dense_chs:
+        #print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
     for idx in range(len(stages) ):
-        print("\n> IDX: ", idx)
+        #print("\n> IDX: ", idx)
         edges = []
         # Find union of the channels sharing the same node
         for lyr_name in stages[idx]['i']:
-            print("\nLyr_name: ", lyr_name)
+            #print("\nLyr_name: ", lyr_name)
             if lyr_name in dense_chs:
                 edges = list(set().union(edges, dense_chs[lyr_name]['in_chs']))
         for lyr_name in stages[idx]['o']:
 
-            print("\nLyr_name: ", lyr_name)
+            #print("\nLyr_name: ", lyr_name)
             if lyr_name in dense_chs:
                 edges = list(set().union(edges, dense_chs[lyr_name]['out_chs']))
         # Maintain the dense channels at the shared node
@@ -278,8 +278,8 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
             if lyr_name in dense_chs:
                 # print ("Output_ch [{}]: {} => {}".format(lyr_name, len(dense_chs[lyr_name]['out_chs']), len(edges)))
                 dense_chs[lyr_name]['out_chs'] = edges
-    for name in dense_chs:
-        print("2: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
+    #for name in dense_chs:
+     #   print("2: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
     return dense_chs, None
 
@@ -327,7 +327,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
     for name, param in model.named_parameters():
         i = i + 1
         name = altList[i]
-        print("\nName: ", name)
+        #print("\nName: ", name)
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[param]['momentum_buffer']
 
@@ -340,7 +340,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             dense_out_ch_idxs = dense_chs[name]['out_chs']
             num_in_ch, num_out_ch = len(dense_in_ch_idxs), len(dense_out_ch_idxs)
 
-            print("===> Dense inchs: [{}], outchs: [{}]".format(num_in_ch, num_out_ch))
+            #print("===> Dense inchs: [{}], outchs: [{}]".format(num_in_ch, num_out_ch))
 
             # Enlist layers with zero channels for removal
             if num_in_ch == 0 or num_out_ch == 0:
