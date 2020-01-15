@@ -156,7 +156,7 @@ def main():
             adjust_learning_rate(optimizer, epoch)
 
             # print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
-
+            print(model)
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion, optimizer,
                                                                          epoch, use_cuda)
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
