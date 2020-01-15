@@ -171,6 +171,9 @@ def main():
                 _genDenseModel(model, dense_chs, optimizer, 'cifar')
                 model = n2n.N2N(num_classes, args.numOfResidualBlocks, False, model)
                 model.cuda()
+                optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+                                      weight_decay=args.weight_decay)
+
             best_acc = max(test_acc, best_acc)
             print(model)
         print('Best acc:')
