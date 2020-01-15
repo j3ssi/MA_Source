@@ -225,22 +225,22 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             else:
                 lasso_penalty = get_group_lasso_group(model)
 
-            # Auto-tune the group-lasso coefficient @first training iteration
-            coeff_dir = os.path.join(args.coeff_container)
-            if init_batch:
-                args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
+            # # Auto-tune the group-lasso coefficient @first training iteration
+            # coeff_dir = os.path.join(args.coeff_container)
+            # if init_batch:
+            args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
                         lasso_penalty * (1 - args.var_group_lasso_coeff))
-                grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
+            grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
 
-                if not os.path.exists(coeff_dir):
-                    os.makedirs(coeff_dir)
-                with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
-                    f_coeff.write(str(grp_lasso_coeff.item()))
-
-            else:
-                with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
-                    for line in f_coeff:
-                        grp_lasso_coeff = float(line)
+            #     if not os.path.exists(coeff_dir):
+            #         os.makedirs(coeff_dir)
+            #     with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
+            #         f_coeff.write(str(grp_lasso_coeff.item()))
+            #
+            # else:
+            #     with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
+            #         for line in f_coeff:
+            #             grp_lasso_coeff = float(line)
 
             lasso_penalty = lasso_penalty * grp_lasso_coeff
         else:
