@@ -168,6 +168,7 @@ def main():
                                                  is_gating=args.is_gating)
                 _genDenseModel(model, dense_chs, optimizer, 'cifar')
                 model = n2n.N2N(num_classes, args.numOfResidualBlocks, False, model)
+                model.cuda()
             best_acc = max(test_acc, best_acc)
             print(model)
         print('Best acc:')
@@ -181,7 +182,7 @@ def main():
                 model, optimizer = model.deeper(model, optimizer, [2])
             elif best_acc < 95:
                 model, optimizer = model.deeper(model, optimizer, [2])
-            model.cuda()
+            #model.cuda()
 
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
