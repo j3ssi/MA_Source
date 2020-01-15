@@ -99,7 +99,7 @@ class N2N(nn.Module):
                         layer = nn.BatchNorm2d(paramList[i].shape[0])
                     module_list1.append(layer)
                 elif 'bn' in name and 'bias' in name:
-                    print("\n>Name: ", name)
+                    print("\n>Name: ", name, " ; ", k)
                     k = float(name.split('.')[1].split('n')[1])
                     k1 = int((k-0.5)*2/3)
                     print("\nk1: ", k1)
