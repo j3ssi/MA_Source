@@ -260,7 +260,7 @@ def getShareSameNodeLayers(model):
     for j in range(2, i):
         if j % 2 == 0:
             sameNode.append((n(j), n(j + 1)))
-    sameNode.append(n(i-2), n('fc'))
+    sameNode.append((n(i-2), n('fc')))
     print("\nSame Node: ", sameNode)
     return sameNode
 
