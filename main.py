@@ -110,7 +110,6 @@ best_acc = 0  # best test accuracy
 def main():
     # use anomaly detection of torch
     torch.autograd.set_detect_anomaly(True)
-    pdb.set_trace()
 
     global best_acc
 
