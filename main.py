@@ -86,7 +86,7 @@ parser.add_argument('--print-freq', default=10, type=int,
                     metavar='N', help='print frequency (default: 10)')
 
 # N2N
-parser.add_argument('--deeper', default=False, action='store_true',
+parser.add_argument('--deeper', default=True, action='store_true',
                     help='Make network deeper')
 
 args = parser.parse_args()
