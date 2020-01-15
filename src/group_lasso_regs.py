@@ -63,9 +63,6 @@ def get_group_lasso_global(model):
                 lasso_out_ch.append( _out )
 
             elif param.dim() == 2:
-                # Multi-FC-layer based classifier (only fc or fc3 are the last layers)
-                if ('fc1' in name) or ('fc2' in name):
-                    lasso_out_ch.append( param.pow(2).sum(dim=[1]) )
                 lasso_in_ch.append( param.pow(2).sum(dim=[0]) )
 
     _lasso_in_ch         = torch.cat(lasso_in_ch).cuda()
