@@ -128,7 +128,7 @@ def main():
     ])
 
     dataloader = datasets.CIFAR10
-    num_classes = 10
+    num_classes = 100
 
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
     trainloader = data.DataLoader(trainset,
