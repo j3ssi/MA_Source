@@ -199,7 +199,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     top1 = AverageMeter()
     top5 = AverageMeter()
     lasso_ratio = AverageMeter()
-    grp_lasso_coeff = 0
+    #grp_lasso_coeff = 0
     end = time.time()
     input_size = 0
     for batch_idx, (inputs, targets) in enumerate(trainloader):
@@ -232,10 +232,10 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             # # Auto-tune the group-lasso coefficient @first training iteration
             # coeff_dir = os.path.join(args.coeff_container)
 
-            if init_batch:
-                args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
+            #if init_batch:
+            args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
                          lasso_penalty * (1 - args.var_group_lasso_coeff))
-                grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
+            grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
 
             #     if not os.path.exists(coeff_dir):
             #         os.makedirs(coeff_dir)
