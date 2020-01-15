@@ -47,17 +47,16 @@ def get_group_lasso_global(model):
         elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
         #print(altList[-1])
-
     j = -1
     for name, param in model.named_parameters():
         j = j + 1
         name = altList[j]
         # Lasso added to only the neuronal layers
         if ('weight' in name) and any([i for i in ['conv', 'fc'] if i in name]):
+            print("\nName in: ", name)
             if param.dim() == 4:
                 # Exclude depth-wise convolution layers from regularization
                 if 'conv1.' not in name:
-                    print("\Shape: ", param.shape)
                     _in = param.pow(2).sum(dim=[0,2,3])
                     lasso_in_ch.append( _in )
 
