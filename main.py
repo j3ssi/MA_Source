@@ -68,7 +68,7 @@ parser.add_argument('--threshold', default=0.0001, type=float,
                     help='Threshold to force weight to zero')
 parser.add_argument('--en_group_lasso', default=True, action='store_true',
                     help='Set the group-lasso coefficient')
-parser.add_argument('--global_group_lasso', default=False, action='store_true',
+parser.add_argument('--global_group_lasso', default=True, action='store_true',
                     help='True: use a global group lasso coefficient, '
                          'False: use sqrt(num_params) as a coefficient for each group')
 parser.add_argument('--var_group_lasso_coeff', default=0.1, type=float,
