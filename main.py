@@ -149,6 +149,8 @@ def main():
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     # Train and val
     # how many times N2N should make the network deeper
+
+    start = time.time()
     for epochNet2Net in range(1, 3):
 
         best_acc = 0
@@ -185,6 +187,8 @@ def main():
                 model, optimizer = model.deeper(model, optimizer, [2])
             #model.cuda()
 
+    ende = time.time()
+    print('{:5.3f}s'.format(ende - start), end='  ')
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     # switch to train mode
