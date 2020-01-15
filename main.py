@@ -102,7 +102,7 @@ if args.manualSeed is None:
 random.seed(args.manualSeed)
 torch.manual_seed(args.manualSeed)
 if use_cuda:
-    torch.cuda.manual_seed(args.manualSeed)
+    torch.manual_seed(args.manualSeed)
 
 best_acc = 0  # best test accuracy
 
