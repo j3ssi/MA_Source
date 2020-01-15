@@ -74,7 +74,7 @@ class N2N(nn.Module):
             # print("\naltList", altList)
             module_list1 = nn.ModuleList()
             for i in range(len(altList)):
-
+                print("\n>i: ", i)
                 name = altList[i]
                 param = paramList[i]
                 print("\nName: ", name)
