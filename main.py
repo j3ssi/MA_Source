@@ -167,7 +167,7 @@ def main():
                 dense_chs, chs_map = _makeSparse(model, args.threshold,
                                                  is_gating=args.is_gating)
                 _genDenseModel(model, dense_chs, optimizer, 'cifar')
-                model = n2n.N2N(args.num_classes, args.num_residual_blocks, False, model)
+                model = n2n.N2N(num_classes, args.num_residual_blocks, False, model)
             best_acc = max(test_acc, best_acc)
             print(model)
         print('Best acc:')
