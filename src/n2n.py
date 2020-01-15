@@ -27,15 +27,18 @@ class N2N(nn.Module):
                 self.module_list.append(bn3)
 
             # 18
-            conv1 = nn.Conv2d(16, 64, kernel_size=3, padding=1, bias=False, stride=1)
+            conv1 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
             self.module_list.append(conv1)
-            bn1 = nn.BatchNorm2d(64)
+            bn1 = nn.BatchNorm2d(16)
             self.module_list.append(bn1)
 
-            avgpool = nn.AvgPool2d(16)
+
+
+            avgpool = nn.AdaptiveAvgPool2d((1,1))
             self.module_list.append(avgpool)
             # 19
-            fc = nn.Linear(64, num_classes)
+            self.sizeOfFC =16
+            fc = nn.Linear(16, num_classes)
             self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
 
@@ -108,10 +111,12 @@ class N2N(nn.Module):
                     module_list1[-1].weight = module.weight
                 else:
                     print('\nelse: ', name)
-            avgpool = nn.AvgPool2d(8)
+            avgpool = nn.AdaptiveAvgPool2d((1, 1))
             module_list1.append(avgpool)
-            fc = nn.Linear(64, num_classes)
             module = model.module_list[-1]
+
+            self.sizeOfFC = paramList[-1].shape[1]
+            fc = nn.Linear(paramList[-1].shape[1], num_classes)
             fc.weight = module.weight
             fc.bias = module.bias
             module_list1.append(fc)
@@ -130,7 +135,7 @@ class N2N(nn.Module):
             if isinstance(module, nn.AdaptiveAvgPool2d):
                 try:
                     x = module(x)
-                    x = x.view(x.size(0)*4, -1)
+                    x = x.view(-1, self.sizeOfFC )
 
                     if printNet:
                         print("\navgpool", i)
