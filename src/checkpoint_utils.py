@@ -362,17 +362,10 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
                     new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
                     new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
 
-                    if ('fc1' in name) or ('fc2' in name):
-                        for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
-                            for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
-                                with torch.no_grad():
-                                    new_param[out_idx, in_idx] = param[out_ch, in_ch]
-                                    new_mom_param[out_idx, in_idx] = mom_param[out_ch, in_ch]
-                    else:
-                        for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
-                            with torch.no_grad():
-                                new_param[:, in_idx] = param[:, in_ch]
-                                new_mom_param[:, in_idx] = mom_param[:, in_ch]
+                    for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
+                        with torch.no_grad():
+                            new_param[:, in_idx] = param[:, in_ch]
+                            new_mom_param[:, in_idx] = mom_param[:, in_ch]
                 else:
                     assert True, "Wrong tensor dimension: {} at layer {}".format(dims, name)
 
