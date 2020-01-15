@@ -108,10 +108,9 @@ class N2N(nn.Module):
                     module_list1[-1].weight = module.weight
                 else:
                     print('\nelse: ', name)
-
-            avgpool = nn.AdaptiveAvgPool2d((1, 1))
+            avgpool = nn.AvgPool2d(8)
             module_list1.append(avgpool)
-            fc = nn.Linear(16, num_classes)
+            fc = nn.Linear(64, num_classes)
             module = model.module_list[-1]
             fc.weight = module.weight
             fc.bias = module.bias
