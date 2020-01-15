@@ -269,8 +269,8 @@ def getShareSameNodeLayers(model):
             j = int((i+1)/2)
     print(altList)
     sameNode = []
-    #i = int((len(model.module_list) - 2) / 2)
-    for i in range(2, j):
+    i = int((len(model.module_list) - 2) / 2)
+    for i in range(2, i):
         if i % 2 == 0:
             sameNode.append((n(i), n(i + 1)))
 
