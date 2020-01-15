@@ -179,11 +179,11 @@ def main():
             print("\n\nnow deeper")
             # deeper student training
             if best_acc < 50:
-                model = model.deeper(model, optimizer, [2, 4])
+                model = n2n.deeper(model, optimizer, [2, 4])
             elif best_acc < 75:
-                model = model.deeper(model, optimizer, [2])
+                model = n2n.deeper(model, optimizer, [2])
             elif best_acc < 95:
-                model = model.deeper(model, optimizer, [2])
+                model = n2n.deeper(model, optimizer, [2])
             model.cuda()
             optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                   weight_decay=args.weight_decay)
