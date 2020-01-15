@@ -276,7 +276,7 @@ def getShareSameNodeLayers(model):
 
     k = altList[-1].split('.')[1].split('c')[1]
     strFc = 'fc' + k
-    sameNode.append((n(i-2), n(strFc)))
+    sameNode.append((n(j-2), n(strFc)))
     print("\nSame Node: ", sameNode)
     return sameNode
 
