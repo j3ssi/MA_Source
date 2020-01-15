@@ -246,17 +246,18 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
         if any(i for i in adj_lyr if i not in dense_chs):
             """ not doing anything """
         else:
-            print("\n> Adj_lyr: ", adj_lyr)
+            #print("\n> Adj_lyr: ", adj_lyr)
             for idx in range(len(adj_lyr) - 1):
                 edge = list(set().union(dense_chs[adj_lyr[idx]]['out_chs'],
                                         dense_chs[adj_lyr[idx + 1]]['in_chs']))
-                print("\n>Edge: ", edge)
+                #print("\n>Edge: ", edge)
                 dense_chs[adj_lyr[idx]]['out_chs'] = edge
                 dense_chs[adj_lyr[idx + 1]]['in_chs'] = edge
     for name in dense_chs:
         print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
     for idx in range(0, len(stages) - 1):
+        print("\n> IDX: ", idx)
         edges = []
         # Find union of the channels sharing the same node
         for lyr_name in stages[idx]['i']:
