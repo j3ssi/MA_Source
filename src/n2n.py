@@ -266,17 +266,17 @@ def getShareSameNodeLayers(model):
             altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
         elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-            j = int((i+1)/2)
+            m = int((i+1)/2)
     print(altList)
     sameNode = []
     i = int((len(model.module_list) - 2) / 2)
-    for i in range(2, i):
-        if i % 2 == 0:
-            sameNode.append((n(i), n(i + 1)))
+    for j in range(2, i):
+        if j % 2 == 0:
+            sameNode.append((n(j), n(j + 1)))
 
     k = altList[-1].split('.')[1].split('c')[1]
     strFc = 'fc' + k
-    sameNode.append((n(j-1), n(strFc)))
+    sameNode.append((n(m-1), n(strFc)))
     print("\nSame Node: ", sameNode)
     return sameNode
 
