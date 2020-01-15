@@ -101,7 +101,7 @@ class N2N(nn.Module):
                 elif 'bn' in name and 'bias' in name:
                     print("\n>Name: ", name, " ; ", k)
                     k = int(name.split('.')[1].split('n')[1])
-                    k1 = 3*(k-1)+2
+                    k1 = 2*(k-1)+1
                     print("\nk1: ", k1)
                     module = model.module_list[k1]
                     module_list1[-1].bias = module.bias
