@@ -37,12 +37,12 @@ def get_group_lasso_global(model):
         if i % 2 == 0:
             altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
 
-        if (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
+        elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
             altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
         elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
 
-        if (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
+        elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
             altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
         elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")

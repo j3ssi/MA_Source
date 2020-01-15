@@ -180,12 +180,12 @@ def main():
             print("\n\nnow deeper")
             # deeper student training
             if best_acc < 50:
-                model, optimizer = model.deeper(model, optimizer, [2, 4])
+                model = model.deeper(model, optimizer, [2, 4])
             elif best_acc < 75:
-                model, optimizer = model.deeper(model, optimizer, [2])
+                model = model.deeper(model, optimizer, [2])
             elif best_acc < 95:
-                model, optimizer = model.deeper(model, optimizer, [2])
-            #model.cuda()
+                model = model.deeper(model, optimizer, [2])
+            model.cuda()
 
     ende = time.time()
     print('{:5.3f}s'.format(ende - start), end='  ')

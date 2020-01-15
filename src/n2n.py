@@ -60,12 +60,12 @@ class N2N(nn.Module):
                 if i % 2 == 0:
                     altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
 
-                if (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
+                elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
                     altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
                 elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
                     altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
 
-                if (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
+                elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
                     altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
                 elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
                     altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
@@ -73,9 +73,10 @@ class N2N(nn.Module):
             # print("\naltList", altList)
             module_list1 = nn.ModuleList()
             for i in range(len(altList)):
+
                 name = altList[i]
                 param = paramList[i]
-                # print("\nName: ", name)
+                print("\nName: ", name)
                 if 'conv' in name:
                     dims = list(param.shape)
                     in_chs = dims[1]
@@ -219,7 +220,7 @@ def deeper(model, optimizer, positions):
         # optimizer = optim.SGD(model.parameters(), get_lr(optimizer), get_momentum(optimizer),
         #                      get_weight_decay(optimizer))
 
-    return model, optimizer
+    return model
 
 
 def num_flat_features(x):
