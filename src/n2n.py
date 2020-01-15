@@ -104,7 +104,8 @@ class N2N(nn.Module):
                     k1 = int((k-0.5)*2/3)
                     print("\nk1: ", k1)
                     module = model.module_list[k1]
-                    module_list1[-1].bias=module.bias
+                    module_list1[-1].bias = module.bias
+                    module_list1[-1].weight = module.weight
                 else:
                     print('\nelse: ', name)
 
