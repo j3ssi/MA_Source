@@ -85,8 +85,6 @@ parser.add_argument('--global_coeff', default=True, action='store_true',
                     help='Use a global group lasso regularizaiton coefficient')
 parser.add_argument('--print-freq', default=10, type=int,
                     metavar='N', help='print frequency (default: 10)')
-parser.add_argument('--out_dir', default='out', type=str,
-                    help='directory to store the temporary architecture file')
 
 # N2N
 parser.add_argument('--deeper', default=False, action='store_true',
@@ -168,8 +166,7 @@ def main():
                 # Force weights under threshold to zero
                 dense_chs, chs_map = _makeSparse(model, args.threshold,
                                                  is_gating=args.is_gating)
-                if args.out_dir is not None:
-                    _genDenseModel(model, dense_chs, optimizer, 'cifar')
+                _genDenseModel(model, dense_chs, optimizer, 'cifar')
             best_acc = max(test_acc, best_acc)
         print('Best acc:')
         print(best_acc)
