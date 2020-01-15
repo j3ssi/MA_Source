@@ -150,7 +150,7 @@ def main():
     # how many times N2N should make the network deeper
 
     start = time.time()
-    for epochNet2Net in range(1, 3):
+    for epochNet2Net in range(1, 10):
 
         best_acc = 0
         for epoch in range(1, args.epochs + 1):
