@@ -27,15 +27,15 @@ class N2N(nn.Module):
                 self.module_list.append(bn3)
 
             # 18
-            conv1 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+            conv1 = nn.Conv2d(16, 64, kernel_size=3, padding=1, bias=False, stride=1)
             self.module_list.append(conv1)
-            bn1 = nn.BatchNorm2d(16)
+            bn1 = nn.BatchNorm2d(64)
             self.module_list.append(bn1)
 
-            avgpool = nn.AdaptiveAvgPool2d((1, 1))
+            avgpool = nn.AvgPool2d(8)
             self.module_list.append(avgpool)
             # 19
-            fc = nn.Linear(16, num_classes)
+            fc = nn.Linear(64, num_classes)
             self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
 
@@ -256,6 +256,7 @@ def getShareSameNodeLayers(model):
     for j in range(2, i):
         if j % 2 == 0:
             sameNode.append((n(j), n(j + 1)))
+    sameNode.append(n(i-2), n('fc'))
     print("\nSame Node: ", sameNode)
     return sameNode
 
