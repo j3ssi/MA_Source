@@ -100,8 +100,8 @@ class N2N(nn.Module):
                     module_list1.append(layer)
                 elif 'bn' in name and 'bias' in name:
                     print("\n>Name: ", name, " ; ", k)
-                    k = float(name.split('.')[1].split('n')[1])
-                    k1 = int((k-0.5)*2/3)
+                    k = int(name.split('.')[1].split('n')[1])
+                    k1 = 3*(k-1)+2
                     print("\nk1: ", k1)
                     module = model.module_list[k1]
                     module_list1[-1].bias = module.bias
