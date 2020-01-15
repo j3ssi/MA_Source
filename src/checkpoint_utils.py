@@ -24,7 +24,7 @@ import torch.nn as nn
 from src import n2n
 
 # Packages to calculate inference cost
-#from gitignore.src.scripts import cifar_feature_size, imagenet_feature_size
+# from gitignore.src.scripts import cifar_feature_size, imagenet_feature_size
 
 sys.path.append('..')
 
@@ -156,19 +156,19 @@ Make only the (conv, FC) layer parameters sparse
 def _makeSparse(model, threshold, is_gating=False, reconf=True):
     print("[INFO] Force the sparse filters to zero...")
     dense_chs, chs_temp, idx = {}, {}, 0
-    #alternative List to find the layers by name and not the stupid index of module_list
+    # alternative List to find the layers by name and not the stupid index of module_list
     altList = []
     for name, param in model.named_parameters():
         i = int(name.split('.')[1])
         if i % 2 == 0:
             altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
 
-        if (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
+        elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
             altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
         elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
 
-        if (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
+        elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
             altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
         elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
@@ -207,7 +207,7 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
                 #         if param[c, :].abs().max() > 0:
                 #             dense_out_chs.append(c)
                 # else:
-                    # [fc, fc3] output channels (class probabilities) are all dense
+                # [fc, fc3] output channels (class probabilities) are all dense
                 dense_out_chs = [c for c in range(dims[0])]
 
             chs_temp[idx] = {'name': name, 'in_chs': dense_in_chs, 'out_chs': dense_out_chs}
@@ -233,7 +233,7 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
     - Union: Maintain all dense channels on the shared nodes (No indexing)
     - Individual: Add gating layers >> Layers at the shared node skip more computation
     """
-    #get the residual Path of Resnet
+    # get the residual Path of Resnet
     stages = n2n.getResidualPath(model)
     ch_maps = []
 
@@ -242,31 +242,31 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
     adj_lyrs = n2n.getShareSameNodeLayers(model)
     # print(adj_lyrs)
     for adj_lyr in adj_lyrs:
-        #if i exists that is in adj_lyr and this i is not in dense_chs
+        # if i exists that is in adj_lyr and this i is not in dense_chs
         if any(i for i in adj_lyr if i not in dense_chs):
             """ not doing anything """
         else:
-            #print("\n> Adj_lyr: ", adj_lyr)
+            # print("\n> Adj_lyr: ", adj_lyr)
             for idx in range(len(adj_lyr) - 1):
                 edge = list(set().union(dense_chs[adj_lyr[idx]]['out_chs'],
                                         dense_chs[adj_lyr[idx + 1]]['in_chs']))
-                #print("\n>Edge: ", edge)
+                # print("\n>Edge: ", edge)
                 dense_chs[adj_lyr[idx]]['out_chs'] = edge
                 dense_chs[adj_lyr[idx + 1]]['in_chs'] = edge
-    #for name in dense_chs:
-        #print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
+    # for name in dense_chs:
+    # print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
-    for idx in range(len(stages) ):
-        #print("\n> IDX: ", idx)
+    for idx in range(len(stages)):
+        # print("\n> IDX: ", idx)
         edges = []
         # Find union of the channels sharing the same node
         for lyr_name in stages[idx]['i']:
-            #print("\nLyr_name: ", lyr_name)
+            # print("\nLyr_name: ", lyr_name)
             if lyr_name in dense_chs:
                 edges = list(set().union(edges, dense_chs[lyr_name]['in_chs']))
         for lyr_name in stages[idx]['o']:
 
-            #print("\nLyr_name: ", lyr_name)
+            # print("\nLyr_name: ", lyr_name)
             if lyr_name in dense_chs:
                 edges = list(set().union(edges, dense_chs[lyr_name]['out_chs']))
         # Maintain the dense channels at the shared node
@@ -278,8 +278,8 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
             if lyr_name in dense_chs:
                 # print ("Output_ch [{}]: {} => {}".format(lyr_name, len(dense_chs[lyr_name]['out_chs']), len(edges)))
                 dense_chs[lyr_name]['out_chs'] = edges
-    #for name in dense_chs:
-     #   print("2: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
+    # for name in dense_chs:
+    #   print("2: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
     return dense_chs, None
 
@@ -318,7 +318,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
         elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-    #print("\n> altList: ", altList)
+    # print("\n> altList: ", altList)
     i = -1
 
     # print("==================")
@@ -327,7 +327,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
     for name, param in model.named_parameters():
         i = i + 1
         name = altList[i]
-        #print("\nName: ", name)
+        # print("\nName: ", name)
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[param]['momentum_buffer']
 
@@ -340,7 +340,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             dense_out_ch_idxs = dense_chs[name]['out_chs']
             num_in_ch, num_out_ch = len(dense_in_ch_idxs), len(dense_out_ch_idxs)
 
-            #print("===> Dense inchs: [{}], outchs: [{}]".format(num_in_ch, num_out_ch))
+            # print("===> Dense inchs: [{}], outchs: [{}]".format(num_in_ch, num_out_ch))
 
             # Enlist layers with zero channels for removal
             if num_in_ch == 0 or num_out_ch == 0:
@@ -372,7 +372,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
                 param.data = new_param
                 optimizer.state[param]['momentum_buffer'].data = new_mom_param
 
-                #print("[{}]: {} >> {}".format(name, dims, list(new_param.shape)))
+                # print("[{}]: {} >> {}".format(name, dims, list(new_param.shape)))
 
         # Change parameters of non-neural computing layers (BN, biases)
         else:
@@ -391,9 +391,9 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             param.data = new_param
             optimizer.state[param]['momentum_buffer'].data = new_mom_param
 
-            #print("[{}]: {} >> {}".format(name, dims[0], num_out_ch))
+            # print("[{}]: {} >> {}".format(name, dims[0], num_out_ch))
 
-    #print(model)
+    # print(model)
     # Change moving_mean and moving_var of BN
     for name, buf in model.named_buffers():
         if 'running_mean' in name or 'running_var' in name:
@@ -449,7 +449,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
                     del optimizer.state[param]
                     print("\n Del", name)
         # Sanity check: Print out optimizer parameters before change
-        print ("[INFO] ==== Size of parameter group (Before)")
+        print("[INFO] ==== Size of parameter group (Before)")
         for g in optimizer.param_groups:
             for idx, g2 in enumerate(g['params']):
                 print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
@@ -461,7 +461,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             print("\n Del", name)
 
     # Sanity check => Print out optimizer parameters after change
-    print ("[INFO] ==== Size of parameter group (After)")
+    print("[INFO] ==== Size of parameter group (After)")
     for g in optimizer.param_groups:
         for idx, g2 in enumerate(g['params']):
             print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
