@@ -66,7 +66,7 @@ parser.add_argument('--sparse_interval', default=0, type=int,
                     help='Interval to force the value under threshold')
 parser.add_argument('--threshold', default=0.0001, type=float,
                     help='Threshold to force weight to zero')
-parser.add_argument('--en_group_lasso', default=True, action='store_true',
+parser.add_argument('--en_group_lasso', default=False, action='store_true',
                     help='Set the group-lasso coefficient')
 parser.add_argument('--global_group_lasso', default=True, action='store_true',
                     help='True: use a global group lasso coefficient, '
@@ -150,6 +150,7 @@ def main():
     # Train and val
     # how many times N2N should make the network deeper
     for epochNet2Net in range(1, 3):
+
         best_acc = 0
         for epoch in range(1, args.epochs + 1):
             # adjust learning rate when epoch is the scheduled epoch
