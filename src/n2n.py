@@ -74,10 +74,10 @@ class N2N(nn.Module):
             # print("\naltList", altList)
             module_list1 = nn.ModuleList()
             for i in range(len(altList)):
-                print("\n>i: ", i)
+                #print("\n>i: ", i)
                 name = altList[i]
                 param = paramList[i]
-                print("\nName: ", name)
+                #print("\nName: ", name)
                 if 'conv' in name:
                     dims = list(param.shape)
                     in_chs = dims[1]
@@ -125,8 +125,8 @@ class N2N(nn.Module):
         odd = False
         first = True
         bn = False
-        _x = None
-        printNet = True
+        #_x = None
+        printNet = False
         i = 0
         for module in self.module_list:
             if isinstance(module, nn.AdaptiveAvgPool2d):
