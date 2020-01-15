@@ -318,7 +318,7 @@ def _genDenseModel(model, dense_chs, optimizer, dataset):
             altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
         elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-    print("\n> altList: ", altList)
+    #print("\n> altList: ", altList)
     i = -1
 
     # print("==================")

@@ -89,24 +89,24 @@ class N2N(nn.Module):
                     bias = module.bias if module.bias != None else False
 
                     layer = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding, bias=bias)
-                    print("\n>new Layer: ", layer, " ; ", param.shape)
+                    #print("\n>new Layer: ", layer, " ; ", param.shape)
                     layer.weight = module.weight
                     module_list1.append(layer)
 
                 elif 'bn' in name and not 'bias' in name:
                     layer = nn.BatchNorm2d(paramList[i].shape[0])
-                    print("\n>new Layer: ", layer)
+                    #print("\n>new Layer: ", layer)
                     module_list1.append(layer)
                 elif 'bn' in name and 'bias' in name:
-                    print("\n>Name: ", name, " ; ", k)
+                    #print("\n>Name: ", name, " ; ", k)
                     k = int(name.split('.')[1].split('n')[1])
                     k1 = 2*(k-1)+1
-                    print("\nk1: ", k1)
+                    #print("\nk1: ", k1)
                     module = model.module_list[k1]
                     module_list1[-1].bias = module.bias
                     module_list1[-1].weight = module.weight
                 else:
-                    print('\nelse: ', name)
+                    #print('\nelse: ', name)
             avgpool = nn.AdaptiveAvgPool2d((1, 1))
             module_list1.append(avgpool)
             module = model.module_list[-1]
@@ -245,7 +245,7 @@ def getResidualPath(model):
             listO.append(n(j))
     stages[0]['o'] = listO
     stages[0]['i'] = listI
-    print(stages)
+    #print(stages)
     return stages
 
 
