@@ -25,6 +25,7 @@ class N2N(nn.Module):
             firstBlock = True
             for stage in range(0, numOfStages):
                 sizeOfLayer = pow(stage + 4, 2)
+                print("\nStage: ", stage, " ; ", sizeOfLayer)
                 for block in range(1, numOfBlocksinStage):
                     if firstLayerInStage and not firstBlock:
                         conv = nn.Conv2d(int(sizeOfLayer/2), sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
