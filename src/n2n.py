@@ -4,16 +4,16 @@ import torch
 import torch.nn as nn
 import math
 
-#stage0 -> 16
-#Stage1 -> 32
-#Stage2 -> 64
-#Stage3 -> 128
-#Stage4 -> 256
+
+# Stage0 -> 16
+# Stage1 -> 32
+# Stage2 -> 64
+# Stage3 -> 128
+# Stage4 -> 256
 class N2N(nn.Module):
 
-    def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock , first, model=None):
+    def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock, first, model=None):
         super(N2N, self).__init__()
-
 
         if first:
             self.module_list = nn.ModuleList()
@@ -21,14 +21,15 @@ class N2N(nn.Module):
             self.module_list.append(conv1)
             bn1 = nn.BatchNorm2d(16)
             self.module_list.append(bn1)
-            firstLayerInStage = True
             firstBlock = True
             for stage in range(0, numOfStages):
+                firstLayerInStage = True
                 sizeOfLayer = pow(2, stage + 4)
                 print("\nStage: ", stage, " ; ", sizeOfLayer)
                 for block in range(0, numOfBlocksinStage):
                     if firstLayerInStage and not firstBlock:
-                        conv = nn.Conv2d(int(sizeOfLayer/2), sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
+                        conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1, bias=False,
+                                         stride=1)
                         self.module_list.append(conv)
                         bn = nn.BatchNorm2d(sizeOfLayer)
                         self.module_list.append(bn)
@@ -36,7 +37,8 @@ class N2N(nn.Module):
                         self.module_list.append(conv)
                         bn = nn.BatchNorm2d(sizeOfLayer)
                         self.module_list.append(bn)
-                        conv = nn.Conv2d(int(sizeOfLayer/2), sizeOfLayer, kernel_size=1, padding=1, bias=False, stride=1)
+                        conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=1, padding=1, bias=False,
+                                         stride=1)
                         self.module_list.append(conv)
                         bn3 = nn.BatchNorm2d(sizeOfLayer)
                         self.module_list.append(bn)
@@ -51,11 +53,12 @@ class N2N(nn.Module):
                         bn3 = nn.BatchNorm2d(sizeOfLayer)
                         self.module_list.append(bn)
                         firstBlock = False
+                        firstLayerInStage = False
             # 18
-            avgpool = nn.AvgPool2d(numOfStages+4)
+            avgpool = nn.AvgPool2d(numOfStages + 4)
             self.module_list.append(avgpool)
             # 19
-            self.sizeOfFC =pow(numOfStages+4, 2)
+            self.sizeOfFC = pow(numOfStages + 4, 2)
             fc = nn.Linear(self.sizeOfFC, num_classes)
             self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
@@ -92,10 +95,10 @@ class N2N(nn.Module):
             # print("\naltList", altList)
             module_list1 = nn.ModuleList()
             for i in range(len(altList)):
-                #print("\n>i: ", i)
+                # print("\n>i: ", i)
                 name = altList[i]
                 param = paramList[i]
-                #print("\nName: ", name)
+                # print("\nName: ", name)
                 if 'conv' in name:
                     dims = list(param.shape)
                     in_chs = dims[1]
@@ -108,25 +111,26 @@ class N2N(nn.Module):
                     padding = module.padding
                     bias = module.bias if module.bias is not None else False
 
-                    layer = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding, bias=bias)
-                    #print("\n>new Layer: ", layer, " ; ", param.shape)
+                    layer = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
+                                      bias=bias)
+                    # print("\n>new Layer: ", layer, " ; ", param.shape)
                     layer.weight = module.weight
                     module_list1.append(layer)
 
                 elif 'bn' in name and not 'bias' in name:
                     layer = nn.BatchNorm2d(paramList[i].shape[0])
-                    #print("\n>new Layer: ", layer)
+                    # print("\n>new Layer: ", layer)
                     module_list1.append(layer)
                 elif 'bn' in name and 'bias' in name:
-                    #print("\n>Name: ", name, " ; ", k)
+                    # print("\n>Name: ", name, " ; ", k)
                     k = int(name.split('.')[1].split('n')[1])
-                    k1 = 2*(k-1)+1
-                    #print("\nk1: ", k1)
+                    k1 = 2 * (k - 1) + 1
+                    # print("\nk1: ", k1)
                     module = model.module_list[k1]
                     module_list1[-1].bias = module.bias
                     module_list1[-1].weight = module.weight
-                #else:
-                    #print('\nelse: ', name)
+                # else:
+                # print('\nelse: ', name)
             avgpool = nn.AdaptiveAvgPool2d((1, 1))
             module_list1.append(avgpool)
             module = model.module_list[-1]
@@ -137,20 +141,20 @@ class N2N(nn.Module):
             module_list1.append(fc)
             self.module_list = module_list1
             self.relu = nn.ReLU(inplace=True)
-            #print("\nnew Model: ", self)
+            # print("\nnew Model: ", self)
 
     def forward(self, x):
         odd = False
         first = True
         bn = False
-        #_x = None
+        # _x = None
         printNet = False
         i = 0
         for module in self.module_list:
             if isinstance(module, nn.AdaptiveAvgPool2d):
                 try:
                     x = module(x)
-                    x = x.view(-1, self.sizeOfFC )
+                    x = x.view(-1, self.sizeOfFC)
 
                     if printNet:
                         print("\navgpool", i, " ; ", x.shape)
@@ -265,7 +269,7 @@ def getResidualPath(model):
             listO.append(n(j))
     stages[0]['o'] = listO
     stages[0]['i'] = listI
-    #print(stages)
+    # print(stages)
     return stages
 
 
@@ -286,7 +290,7 @@ def getShareSameNodeLayers(model):
             altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
         elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-            m = int((i+1)/2)
+            m = int((i + 1) / 2)
     print(altList)
     sameNode = []
     i = int((len(model.module_list) - 4) / 2)
@@ -296,7 +300,7 @@ def getShareSameNodeLayers(model):
 
     k = altList[-1].split('.')[1].split('c')[1]
     strFc = 'fc' + k
-    sameNode.append((n(m-1), n(strFc)))
+    sameNode.append((n(m - 1), n(strFc)))
     print("\nSame Node: ", sameNode)
     return sameNode
 
