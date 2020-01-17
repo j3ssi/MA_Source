@@ -58,7 +58,7 @@ class N2N(nn.Module):
             avgpool = nn.AvgPool2d(numOfStages + 4)
             self.module_list.append(avgpool)
             # 19
-            self.sizeOfFC = pow(numOfStages + 4, 2)
+            self.sizeOfFC = pow(2, numOfStages + 4)
             fc = nn.Linear(self.sizeOfFC, num_classes)
             self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
