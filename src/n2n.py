@@ -4,41 +4,56 @@ import torch
 import torch.nn as nn
 import math
 
-
+#stage0 -> 16
+#Stage1 -> 32
+#Stage2 -> 64
+#Stage3 -> 128
+#Stage4 -> 256
 class N2N(nn.Module):
 
-    def __init__(self, num_classes, num_residual_blocks, first, model=None):
+    def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock , first, model=None):
         super(N2N, self).__init__()
+
+
         if first:
             self.module_list = nn.ModuleList()
             conv1 = nn.Conv2d(3, 16, kernel_size=3, padding=1, bias=False, stride=1)
             self.module_list.append(conv1)
             bn1 = nn.BatchNorm2d(16)
             self.module_list.append(bn1)
-
-            for block in range(num_residual_blocks):
-                conv2 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-                self.module_list.append(conv2)
-                bn2 = nn.BatchNorm2d(16)
-                self.module_list.append(bn2)
-                conv3 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-                self.module_list.append(conv3)
-                bn3 = nn.BatchNorm2d(16)
-                self.module_list.append(bn3)
-
+            firstLayerInStage = True
+            for stage in range(0, numOfStages):
+                sizeOfLayer = pow(stage + 4, 2)
+                for block in range(1, numOfBlocksinStage):
+                    if firstLayerInStage:
+                        conv = nn.Conv2d(sizeOfLayer/2, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
+                        self.module_list.append(conv)
+                        bn = nn.BatchNorm2d(sizeOfLayer)
+                        self.module_list.append(bn)
+                        conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
+                        self.module_list.append(conv)
+                        bn = nn.BatchNorm2d(sizeOfLayer)
+                        self.module_list.append(bn)
+                        conv = nn.Conv2d(sizeOfLayer/2, sizeOfLayer, kernel_size=1, padding=1, bias=False, stride=1)
+                        self.module_list.append(conv)
+                        bn3 = nn.BatchNorm2d(sizeOfLayer)
+                        self.module_list.append(bn)
+                        firstLayerInStage = False
+                    else:
+                        conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
+                        self.module_list.append(conv)
+                        bn = nn.BatchNorm2d(sizeOfLayer)
+                        self.module_list.append(bn)
+                        conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
+                        self.module_list.append(conv)
+                        bn3 = nn.BatchNorm2d(sizeOfLayer)
+                        self.module_list.append(bn)
             # 18
-            conv1 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
-            self.module_list.append(conv1)
-            bn1 = nn.BatchNorm2d(16)
-            self.module_list.append(bn1)
-
-
-
-            avgpool = nn.AdaptiveAvgPool2d((1,1))
+            avgpool = nn.AvgPool2d(numOfStages+4)
             self.module_list.append(avgpool)
             # 19
-            self.sizeOfFC =16
-            fc = nn.Linear(16, num_classes)
+            self.sizeOfFC =pow(numOfStages+4, 2)
+            fc = nn.Linear(self.sizeOfFC, num_classes)
             self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
 
@@ -49,7 +64,7 @@ class N2N(nn.Module):
                 elif isinstance(m, nn.BatchNorm2d):
                     m.weight.data.fill_(1)
                     m.bias.data.zero_()
-
+            print(self)
         else:
             altList = []
             paramList = []

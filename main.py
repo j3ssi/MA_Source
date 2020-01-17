@@ -37,7 +37,6 @@ from src.utils import AverageMeter, accuracy
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 
 # Baseline
-parser.add_argument('-d', '--dataset', default='cifar10', type=str)
 parser.add_argument('-j', '--workers', default=4, type=int, metavar='N',
                     help='number of data loading workers (default: 4)')
 parser.add_argument('--epochs', default=300, type=int, metavar='N',
@@ -57,8 +56,9 @@ parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')
 parser.add_argument('--manualSeed', type=int, help='manual seed')
 parser.add_argument('--gpu_id', default='2', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
-parser.add_argument('-r', '--numOfResidualBlocks', default=5, type=int, help='defines the number of residualblocks in '
-                                                                             'the baseline network')
+parser.add_argument('-s', '--numOfStages', default=3, type=int, help='defines the number of stages in the network')
+parser.add_argument('-n', '--numOfBlocksinStage', type =int, default=2, help='defines the number of Blocks per Stage' )
+parser.add_argument('-l', '--layersInBlock', type = int, default =3, help='defines the number of')
 # PruneTrain
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
 parser.add_argument('--sparse_interval', default=0, type=int,
@@ -126,8 +126,8 @@ def main():
         transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
     ])
 
-    dataloader = datasets.CIFAR100
-    num_classes = 100
+    dataloader = datasets.CIFAR10
+    num_classes = 10
 
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
     trainloader = data.DataLoader(trainset,
@@ -138,8 +138,9 @@ def main():
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
+
     # Model
-    model = n2n.N2N(num_classes, args.numOfResidualBlocks, True)
+    model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock , True)
     model.cuda()
     print(model)
     cudnn.benchmark = True
