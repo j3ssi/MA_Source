@@ -32,7 +32,7 @@ class N2N(nn.Module):
                 for block in range(0, numOfBlocksinStage):
                     if firstLayerInStage and not firstBlock:
                         conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1, bias=False,
-                                         stride=1)
+                                         stride=2)
                         self.module_list.append(conv)
                         bn = nn.BatchNorm2d(sizeOfLayer)
                         self.module_list.append(bn)
