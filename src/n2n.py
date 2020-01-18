@@ -186,6 +186,7 @@ class N2N(nn.Module):
                     _x = self.module_list[i](_x)
                     print("\nI: ", i, " ; ", self.module_list[i])
                     i = i + 1
+                    print("\n_x: ", _x.shape, " : x: ", x.shape)
                     _x = _x + x
                     _x = self.relu(_x)
                     first = False
