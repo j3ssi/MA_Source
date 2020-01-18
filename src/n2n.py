@@ -148,13 +148,16 @@ class N2N(nn.Module):
 
     def forward(self, x):
         first = True
+        printNet = False
         # conv1
         x = self.module_list[0](x)
-        print("\nI: 0 ; ", self.module_list[0])
+        if printNet:
+            print("\nI: 0 ; ", self.module_list[0])
 
         # bn1
         x = self.module_list[1](x)
-        print("\nI: 1 ; ", self.module_list[1])
+        if printNet:
+            print("\nI: 1 ; ", self.module_list[1])
 
         _x = self.relu(x)
         i = 2
@@ -163,63 +166,77 @@ class N2N(nn.Module):
                 if first and stage > 0:
                     # conv
                     x = self.module_list[i](_x)
-                    print("\nI: ", i ," ; ", self.module_list[i])
+                    if printNet:
+                        print("\nI: ", i ," ; ", self.module_list[i])
                     i = i + 1
                     # bn
                     x = self.module_list[i](x)
-                    print("\nI: ", i, " ; ", self.module_list[i])
+                    if printNet:
+                        print("\nI: ", i, " ; ", self.module_list[i])
                     i = i + 1
                     x = self.relu(x)
                     # conv
                     x = self.module_list[i](x)
-                    print("\nI: ", i, " ; ", self.module_list[i])
+                    if printNet:
+                        print("\nI: ", i, " ; ", self.module_list[i])
                     i = i + 1
                     # bn
                     x = self.module_list[i](x)
-                    print("\nI: ", i, " ; ", self.module_list[i])
+                    if printNet:
+                        print("\nI: ", i, " ; ", self.module_list[i])
                     i = i + 1
                     #conv
-                    print("\n_x: ", _x.shape)
+                    if printNet:
+                        print("\n_x: ", _x.shape)
                     _x = self.module_list[i](_x)
-                    print("\n_x: ", _x.shape)
-                    print("\nI: ", i, " ; ", self.module_list[i])
+                    if printNet:
+                        print("\n_x: ", _x.shape)
+                        print("\nI: ", i, " ; ", self.module_list[i])
                     i = i + 1
                     # bn
                     _x = self.module_list[i](_x)
-                    print("\nI: ", i, " ; ", self.module_list[i])
+                    if printNet:
+                        print("\nI: ", i, " ; ", self.module_list[i])
                     i = i + 1
-                    print("\n_x: ", _x.shape, " : x: ", x.shape)
+                    if printNet:
+                        print("\n_x: ", _x.shape, " : x: ", x.shape)
                     _x = _x + x
                     _x = self.relu(_x)
                     first = False
                 else:
                     # conv2
                     x = self.module_list[i](_x)
-                    print("\nI: ", i, " ; ", self.module_list[i])
+                    if printNet:
+                        print("\nI: ", i, " ; ", self.module_list[i])
                     i = i + 1
                     # bn2
                     x = self.module_list[i](x)
-                    print("\nI: ", i, " ; ", self.module_list[i])
+                    if printNet:
+                        print("\nI: ", i, " ; ", self.module_list[i])
                     i = i + 1
                     x = self.relu(x)
                     # conv3
                     x = self.module_list[i](x)
-                    print("\nI: ", i, " ; ", self.module_list[i])
+                    if printNet:
+                        print("\nI: ", i, " ; ", self.module_list[i])
                     i = i + 1
                     # bn3
                     x = self.module_list[i](x)
-                    print("\nI: ", i, " ; ", self.module_list[i])
+                    if printNet:
+                        print("\nI: ", i, " ; ", self.module_list[i])
                     i = i + 1
                     _x = _x + x
                     x = self.relu(_x)
                     first = False
             first = True
-        print("\nI: ", i, " ; ", self.module_list[i])
+        if printNet:
+            print("\nI: ", i, " ; ", self.module_list[i])
 
         if isinstance(self.module_list[i], nn.AdaptiveAvgPool2d):
             try:
                 x = self.module_list[i](x)
-                print("\nI: ", i, " ; ", self.module_list[i])
+                if printNet:
+                    print("\nI: ", i, " ; ", self.module_list[i])
                 x = x.view(-1, self.sizeOfFC)
                 i = i + 1
 
@@ -228,7 +245,8 @@ class N2N(nn.Module):
                 print("AvgPool")
         if isinstance(self.module_list[i], nn.Linear):
             x = self.module_list[i](x)
-            print("\nfc", i, " ; ", x.shape)
+            if printNet:
+                print("\nfc", i, " ; ", x.shape)
         return x
 
 
