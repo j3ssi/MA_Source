@@ -214,6 +214,7 @@ class N2N(nn.Module):
                     x = self.relu(_x)
                     first = False
             first = True
+        print("\nI: ", i, " ; ", self.module_list[i])
 
         if isinstance(self.module_list[i], nn.AdaptiveAvgPool2d):
             try:
