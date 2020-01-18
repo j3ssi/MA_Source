@@ -148,7 +148,6 @@ class N2N(nn.Module):
 
     def forward(self, x):
         first = True
-        printNet = False
         # conv1
         x = self.module_list[0](x)
         # bn1
@@ -160,18 +159,23 @@ class N2N(nn.Module):
                 if first and stage > 0:
                     # conv
                     x = self.module_list[i](_x)
+                    print("\nI: ", i ," ; ", self.module_list[i].type())
                     i = i + 1
                     # bn
                     x = self.module_list[i](x)
+                    print("\nI: ", i, " ; ", self.module_list[i].type())
                     i = i + 1
                     x = self.relu(x)
                     # conv
                     x = self.module_list[i](x)
+                    print("\nI: ", i, " ; ", self.module_list[i].type())
                     i = i + 1
                     # bn
                     x = self.module_list[i](x)
+                    print("\nI: ", i, " ; ", self.module_list[i].type())
                     i = i + 1
                     _x = self.module_list[i](_x)
+                    print("\nI: ", i, " ; ", self.module_list[i].type())
                     i = i + 1
                     _x = self.relu(_x)
                     _x = _x + x
@@ -180,88 +184,97 @@ class N2N(nn.Module):
                 else:
                     # conv2
                     x = self.module_list[i](_x)
+                    print("\nI: ", i, " ; ", self.module_list[i].type())
                     i = i + 1
                     # bn2
                     x = self.module_list[i](x)
+                    print("\nI: ", i, " ; ", self.module_list[i].type())
                     i = i + 1
                     x = self.relu(x)
                     # conv3
                     x = self.module_list[i](x)
+                    print("\nI: ", i, " ; ", self.module_list[i].type())
                     i = i + 1
                     # bn3
                     x = self.module_list[i](x)
+                    print("\nI: ", i, " ; ", self.module_list[i].type())
                     i = i + 1
                     _x = _x + x
                     x = self.relu(_x)
                     first = False
             first = True
-        odd = False
-        first = True
-        bn = False
-        # _x = None
-        for module in self.module_list:
-            if isinstance(module, nn.AdaptiveAvgPool2d):
-                try:
-                    x = module(x)
-                    x = x.view(-1, self.sizeOfFC)
 
-                    if printNet:
-                        print("\navgpool", i, " ; ", x.shape)
-                        i = i + 1
-                except RuntimeError:
-                    print("\n \n Oops!!!: ")
-                    print("AvgPool")
-            elif isinstance(module, nn.Linear):
-                x = module(x)
-                if printNet:
-                    print("\nfc", i, " ; ", x.shape)
-                return x
-            else:
-                if first and not bn:
-                    x = module(x)
-                    bn = True
-                    if printNet:
-                        print("\nFirst conv", i, " ; ", x.shape)
-                        i = i + 1
-                elif first and bn:
-                    x = module(x)
-                    _x = self.relu(x)
-                    if printNet:
-                        print("\nFirst bn", i, " ; ", x.shape)
-                        i = i + 1
-                    first = False
-                    bn = False
-                else:
-                    if not odd and not bn:
-                        x = module(_x)
-                        if printNet:
-                            print('\nconv', i, " ; ", x.shape)
-                            i = i + 1
-                        bn = True
-                    elif not odd and bn:
-                        x = module(x)
-                        x = self.relu(x)
-                        if printNet:
-                            print("\nbn", i, " ; ", x.shape)
-                            i = i + 1
-                        odd = True
-                        bn = False
-                    else:
-                        if not bn:
-                            x = module(x)
-                            bn = True
-                            if printNet:
-                                print('Odd conv', i, " ; ", x.shape)
-                                i = i + 1
-                        elif bn:
-                            x = module(x)
-                            _x = _x + x
-                            _x = self.relu(_x)
-                            odd = False
-                            bn = False
-                            if printNet:
-                                print('Odd bn', i, " ; ", x.shape)
-                                i = i + 1
+        if isinstance(self.module_list[i], nn.AdaptiveAvgPool2d):
+            try:
+                x = self.module_list[i](x)
+                print("\nI: ", i, " ; ", self.module_list[i].type())
+                x = x.view(-1, self.sizeOfFC)
+                i = i + 1
+
+            except RuntimeError:
+                print("\n \n Oops!!!: ")
+                print("AvgPool")
+        if isinstance(self.module_list[i], nn.Linear):
+            x = self.module_list[i](x)
+            print("\nfc", i, " ; ", x.shape)
+        return x
+
+
+
+
+
+        # odd = False
+        # first = True
+        # bn = False
+        # # _x = None
+        # for module in self.module_list:
+        #
+        #     else:
+        #         if first and not bn:
+        #             x = module(x)
+        #             bn = True
+        #             if printNet:
+        #                 print("\nFirst conv", i, " ; ", x.shape)
+        #                 i = i + 1
+        #         elif first and bn:
+        #             x = module(x)
+        #             _x = self.relu(x)
+        #             if printNet:
+        #                 print("\nFirst bn", i, " ; ", x.shape)
+        #                 i = i + 1
+        #             first = False
+        #             bn = False
+        #         else:
+        #             if not odd and not bn:
+        #                 x = module(_x)
+        #                 if printNet:
+        #                     print('\nconv', i, " ; ", x.shape)
+        #                     i = i + 1
+        #                 bn = True
+        #             elif not odd and bn:
+        #                 x = module(x)
+        #                 x = self.relu(x)
+        #                 if printNet:
+        #                     print("\nbn", i, " ; ", x.shape)
+        #                     i = i + 1
+        #                 odd = True
+        #                 bn = False
+        #             else:
+        #                 if not bn:
+        #                     x = module(x)
+        #                     bn = True
+        #                     if printNet:
+        #                         print('Odd conv', i, " ; ", x.shape)
+        #                         i = i + 1
+        #                 elif bn:
+        #                     x = module(x)
+        #                     _x = _x + x
+        #                     _x = self.relu(_x)
+        #                     odd = False
+        #                     bn = False
+        #                     if printNet:
+        #                         print('Odd bn', i, " ; ", x.shape)
+        #                         i = i + 1
 
 
 def deeper(model, optimizer, positions):
