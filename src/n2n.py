@@ -179,6 +179,7 @@ class N2N(nn.Module):
                     print("\nI: ", i, " ; ", self.module_list[i])
                     i = i + 1
                     #conv
+                    print("\n_x: ", _x.shape)
                     _x = self.module_list[i](_x)
                     print("\nI: ", i, " ; ", self.module_list[i])
                     i = i + 1
