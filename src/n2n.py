@@ -14,6 +14,9 @@ class N2N(nn.Module):
 
     def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock, first, model=None):
         super(N2N, self).__init__()
+        self.numOfStages = numOfStages
+        self.numOfBlocksinStage = numOfBlocksinStage
+        self.layersInBlock = layersInBlock
 
         if first:
             self.module_list = nn.ModuleList()
@@ -55,7 +58,7 @@ class N2N(nn.Module):
                         firstBlock = False
                         firstLayerInStage = False
             # 18
-            avgpool = nn.AvgPool2d(numOfStages + 5)
+            avgpool = nn.AvgPool2d(8)
             self.module_list.append(avgpool)
             # 19
             self.sizeOfFC = pow(2, numOfStages + 3)
@@ -144,12 +147,58 @@ class N2N(nn.Module):
             # print("\nnew Model: ", self)
 
     def forward(self, x):
+        first = True
+        printNet = False
+        # conv1
+        x = self.module_list[0](x)
+        # bn1
+        x = self.module_list[1](x)
+        _x = self.relu(x)
+        i = 2
+        for stage in range(0, self.numOfStages):
+            for block in range(0, self.numOfBlocksinStage):
+                if first and stage > 0:
+                    # conv
+                    x = self.module_list[i](_x)
+                    i = i + 1
+                    # bn
+                    x = self.module_list[i](x)
+                    i = i + 1
+                    x = self.relu(x)
+                    # conv
+                    x = self.module_list[i](x)
+                    i = i + 1
+                    # bn
+                    x = self.module_list[i](x)
+                    i = i + 1
+                    _x = self.module_list[i](_x)
+                    i = i + 1
+                    _x = self.relu(_x)
+                    _x = _x + x
+                    _x = _x + x
+                    first = False
+                else:
+                    # conv2
+                    x = self.module_list[i](_x)
+                    i = i + 1
+                    # bn2
+                    x = self.module_list[i](x)
+                    i = i + 1
+                    x = self.relu(x)
+                    # conv3
+                    x = self.module_list[i](x)
+                    i = i + 1
+                    # bn3
+                    x = self.module_list[i](x)
+                    i = i + 1
+                    _x = _x + x
+                    x = self.relu(_x)
+                    first = False
+            first = True
         odd = False
         first = True
         bn = False
         # _x = None
-        printNet = False
-        i = 0
         for module in self.module_list:
             if isinstance(module, nn.AdaptiveAvgPool2d):
                 try:
