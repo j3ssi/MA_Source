@@ -150,8 +150,12 @@ class N2N(nn.Module):
         first = True
         # conv1
         x = self.module_list[0](x)
+        print("\nI: 0 ; ", self.module_list[0])
+
         # bn1
         x = self.module_list[1](x)
+        print("\nI: 1 ; ", self.module_list[1])
+
         _x = self.relu(x)
         i = 2
         for stage in range(0, self.numOfStages):
@@ -174,12 +178,16 @@ class N2N(nn.Module):
                     x = self.module_list[i](x)
                     print("\nI: ", i, " ; ", self.module_list[i])
                     i = i + 1
+                    #conv
                     _x = self.module_list[i](_x)
                     print("\nI: ", i, " ; ", self.module_list[i])
                     i = i + 1
+                    # bn
+                    _x = self.module_list[i](_x)
+                    print("\nI: ", i, " ; ", self.module_list[i])
+                    i = i + 1
+                    _x = _x + x
                     _x = self.relu(_x)
-                    _x = _x + x
-                    _x = _x + x
                     first = False
                 else:
                     # conv2
