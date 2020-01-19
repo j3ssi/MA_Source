@@ -262,7 +262,7 @@ class N2N(nn.Module):
             stagesI[0].append(n(2))
             for block in range(0, self.numOfBlocksinStage):
                 if first and stage == 0:
-                    if i%2 == 1:
+                    if i%2 == 0:
                         stagesO[stage].append(n(int(i+2/2)))
                         i = i + 1
                     else:
@@ -276,7 +276,7 @@ class N2N(nn.Module):
                         stagesI[stage].append(n(int(i+2/2)))
                         i = i + 1
                 for layer in range(1, self.layersInBlock):
-                    if i%2 == 1:
+                    if i%2 == 0:
                         stagesO[stage].append(n(int(i+2/2)))
                         i = i + 1
                     else:
