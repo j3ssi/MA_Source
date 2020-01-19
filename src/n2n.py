@@ -81,6 +81,7 @@ class N2N(nn.Module):
             for name, param in model.named_parameters():
                 # print("\nName: {}", name)
                 paramList.append(param)
+                print("\nName: ", name)
                 i = int(name.split('.')[1])
                 print("\nI:", i)
                 if i % 2 == 0:
