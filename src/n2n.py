@@ -25,13 +25,13 @@ class N2N(nn.Module):
             # bn1
             bn1 = nn.BatchNorm2d(16)
             self.module_list.append(bn1)
-            firstBlock = True
+            firstLayer = True
             for stage in range(0, numOfStages):
                 firstLayerInStage = True
                 sizeOfLayer = pow(2, stage + 4)
                 print("\nStage: ", stage, " ; ", sizeOfLayer)
                 for block in range(0, numOfBlocksinStage):
-                    if firstLayerInStage and not firstBlock:
+                    if firstLayerInStage and not firstLayer:
                         conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1, bias=False,
                                          stride=2)
                         self.module_list.append(conv)
@@ -297,6 +297,7 @@ class N2N(nn.Module):
         for stage in range(0, self.numOfStages):
             for block in range(0, self.numOfBlocksinStage):
                 for layer in range(0, self.layersInBlock):
+                    print("\nI: ", i, " ; ", stage, " ; ", block, " ; ", layer)
                     if i%2 == 0:
                         sameNode.append((n(i), n(i+1)))
                         i = i+2
