@@ -254,7 +254,7 @@ class N2N(nn.Module):
         stagesI = []
         stagesO = []
         first = True
-        i = 0
+        i = 2
         for stage in range(0, self.numOfStages):
             stagesI.append([])
             stagesO.append([])
