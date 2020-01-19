@@ -104,7 +104,7 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
     - Individual: Add gating layers >> Layers at the shared node skip more computation
     """
     # get the residual Path of Resnet
-    stages = model.getResidualPath()
+    stagesI, stagesO = model.getResidualPath()
     ch_maps = []
 
     # Within a residual branch >> Union of adjacent pairs
@@ -126,25 +126,25 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
     # for name in dense_chs:
     # print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
-    for idx in range(len(stages)):
+    for idx in range(len(stagesI)):
         # print("\n> IDX: ", idx)
         edges = []
         # Find union of the channels sharing the same node
-        for lyr_name in stages[idx]['i']:
+        for lyr_name in stagesI[idx]:
             # print("\nLyr_name: ", lyr_name)
             if lyr_name in dense_chs:
                 edges = list(set().union(edges, dense_chs[lyr_name]['in_chs']))
-        for lyr_name in stages[idx]['o']:
+        for lyr_name in stagesO[idx]:
 
             # print("\nLyr_name: ", lyr_name)
             if lyr_name in dense_chs:
                 edges = list(set().union(edges, dense_chs[lyr_name]['out_chs']))
         # Maintain the dense channels at the shared node
-        for lyr_name in stages[idx]['i']:
+        for lyr_name in stagesI[idx]:
             if lyr_name in dense_chs:
                 # print ("Input_ch [{}]: {} => {}".format(lyr_name, len(dense_chs[lyr_name]['in_chs']), len(edges)))
                 dense_chs[lyr_name]['in_chs'] = edges
-        for lyr_name in stages[idx]['o']:
+        for lyr_name in stagesO[idx]:
             if lyr_name in dense_chs:
                 # print ("Output_ch [{}]: {} => {}".format(lyr_name, len(dense_chs[lyr_name]['out_chs']), len(edges)))
                 dense_chs[lyr_name]['out_chs'] = edges
