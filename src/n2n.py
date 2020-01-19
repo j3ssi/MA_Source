@@ -299,7 +299,7 @@ class N2N(nn.Module):
                 for layer in range(0, self.layersInBlock):
                     if i%2 == 1:
                         sameNode.append((n(i), n(i+1)))
-                        i = i+1
+                        i = i+2
 
 
         print("\nSame Node: ", sameNode)
