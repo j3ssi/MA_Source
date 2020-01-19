@@ -300,7 +300,9 @@ class N2N(nn.Module):
                     print("\nI: ", i, " ; ", stage, " ; ", block, " ; ", layer)
                     if i%2 == 0:
                         sameNode.append((n(i), n(i+1)))
-                        i = i+2
+                        i = i + 1
+                    else:
+                        i = i + 1
 
 
         print("\nSame Node: ", sameNode)
