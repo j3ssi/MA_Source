@@ -293,13 +293,13 @@ class N2N(nn.Module):
     def getShareSameNodeLayers(self):
         sameNode = []
         first = True
-        i = 0
+        i = 1
         for stage in range(0, self.numOfStages):
             for block in range(0, self.numOfBlocksinStage):
                 for layer in range(0, self.layersInBlock):
                     if i%2 == 0:
                         sameNode.append((n(i), n(i+1)))
-
+                        i = i+1
 
         print("\nSame Node: ", sameNode)
         return sameNode
