@@ -249,62 +249,25 @@ class N2N(nn.Module):
                 print("\nfc", i, " ; ", x.shape)
         return x
 
+    def getResidualPath(self, model):
+        stagesI = [[]]
+        stagesO = [[]]
+        first = True
+        i = 0
+        for stage in range(0, self.numOfStages):
+            for block in range(0, self.numOfBlocksinStage):
+                if first and stage == 0:
+                    if i%2 == 1:
+                        stagesO[stage].append(i)
+                        i = i + 1
+                    else:
+                        stagesI[stage].append(i)
+                        i = i + 1
+                elif first and stage > 0:
 
-
-
-
-        # odd = False
-        # first = True
-        # bn = False
-        # # _x = None
-        # for module in self.module_list:
-        #
-        #     else:
-        #         if first and not bn:
-        #             x = module(x)
-        #             bn = True
-        #             if printNet:
-        #                 print("\nFirst conv", i, " ; ", x.shape)
-        #                 i = i + 1
-        #         elif first and bn:
-        #             x = module(x)
-        #             _x = self.relu(x)
-        #             if printNet:
-        #                 print("\nFirst bn", i, " ; ", x.shape)
-        #                 i = i + 1
-        #             first = False
-        #             bn = False
-        #         else:
-        #             if not odd and not bn:
-        #                 x = module(_x)
-        #                 if printNet:
-        #                     print('\nconv', i, " ; ", x.shape)
-        #                     i = i + 1
-        #                 bn = True
-        #             elif not odd and bn:
-        #                 x = module(x)
-        #                 x = self.relu(x)
-        #                 if printNet:
-        #                     print("\nbn", i, " ; ", x.shape)
-        #                     i = i + 1
-        #                 odd = True
-        #                 bn = False
-        #             else:
-        #                 if not bn:
-        #                     x = module(x)
-        #                     bn = True
-        #                     if printNet:
-        #                         print('Odd conv', i, " ; ", x.shape)
-        #                         i = i + 1
-        #                 elif bn:
-        #                     x = module(x)
-        #                     _x = _x + x
-        #                     _x = self.relu(_x)
-        #                     odd = False
-        #                     bn = False
-        #                     if printNet:
-        #                         print('Odd bn', i, " ; ", x.shape)
-        #                         i = i + 1
+        print("\n StagesI: ", stagesI)
+        print("\nStagesO: ", stagesO)
+        return stagesI ,stagesO
 
 
 def deeper(model, optimizer, positions):
@@ -345,24 +308,6 @@ def num_flat_features(x):
         num_features *= s
     return num_features
 
-
-def getResidualPath(model):
-    stages = {0: {}}
-
-    stages[0]['i'] = []
-    stages[0]['o'] = []
-    i = int((len(model.module_list) - 1) / 2)
-    listI = []
-    listO = []
-    for j in range(1, i + 1):
-        if j % 2 == 0:
-            listI.append(n(j))
-        else:
-            listO.append(n(j))
-    stages[0]['o'] = listO
-    stages[0]['i'] = listI
-    # print(stages)
-    return stages
 
 
 def getShareSameNodeLayers(model):
