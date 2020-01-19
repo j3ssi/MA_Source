@@ -102,7 +102,7 @@ class N2N(nn.Module):
                     # print("\nI:", i, " ; ", altList[-1])
                 else:
                     assert True, print("Hier fehlt noch was!!")
-            print("\naltList", altList)
+            # print("\naltList", altList)
             module_list1 = nn.ModuleList()
             for i in range(len(altList)):
                 # print("\n>i: ", i)
@@ -123,16 +123,16 @@ class N2N(nn.Module):
 
                     layer = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
                                       bias=bias)
-                    # print("\n>new Layer: ", layer, " ; ", param.shape)
+                    print("\n>new Layer: ", layer, " ; ", param.shape)
                     layer.weight = module.weight
                     module_list1.append(layer)
 
                 elif 'bn' in name and not 'bias' in name:
                     layer = nn.BatchNorm2d(paramList[i].shape[0])
-                    # print("\n>new Layer: ", layer)
+                    print("\n>new Layer: ", layer)
                     module_list1.append(layer)
                 elif 'bn' in name and 'bias' in name:
-                    # print("\n>Name: ", name, " ; ", k)
+                    print("\n>Name: ", name, " ; ", k)
                     k = int(name.split('.')[1].split('n')[1])
                     k1 = 2 * (k - 1) + 1
                     # print("\nk1: ", k1)
@@ -145,6 +145,7 @@ class N2N(nn.Module):
             module_list1.append(avgpool)
             module = model.module_list[-1]
             self.sizeOfFC = paramList[-2].shape[1]
+            print("\n self sizeofFC: ", self.sizeOfFC)
             fc = nn.Linear(paramList[-2].shape[1], num_classes)
             fc.weight = module.weight
             fc.bias = module.bias
