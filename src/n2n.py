@@ -59,10 +59,16 @@ class N2N(nn.Module):
                         firstLayer = False
                         firstLayerInStage = False
             # 18
+            self.sizeOfFC = pow(2, numOfStages + 3)
+
+            conv = nn.Conv2d(self.sizeOfFC, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
+            self.module_list.append(conv)
+            bn = nn.BatchNorm2d(self.sizeOfFC)
+            self.module_list.append(bn)
+
             avgpool = nn.AdaptiveAvgPool2d((1,1))
             self.module_list.append(avgpool)
             # 19
-            self.sizeOfFC = pow(2, numOfStages + 3)
             fc = nn.Linear(self.sizeOfFC, num_classes)
             self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
@@ -308,7 +314,7 @@ class N2N(nn.Module):
                         i = i + 1
                     else:
                         i = i + 1
-
+        sameNode.append((n(i+1), n('fc')))
 
         print("\nSame Node: ", sameNode)
         return sameNode
