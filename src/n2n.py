@@ -266,7 +266,13 @@ class N2N(nn.Module):
                         stagesI[stage].append(n(int((i / 2) + 1)))
                         i = i + 1
                 elif first and stage > 0:
-                    pass
+                    if i % 2 == 1:
+                        stagesO[stage].append(n(int((i / 2) + 1)))
+                        i = i + 1
+                    else:
+                        stagesI[stage].append(n(int((i / 2) + 1)))
+                        i = i + 1
+
         print("\nStagesI: ", stagesI)
         print("\nStagesO: ", stagesO)
         return stagesI ,stagesO
