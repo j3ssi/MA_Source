@@ -277,7 +277,7 @@ class N2N(nn.Module):
                     else:
                         stagesI[stage].append(n(int(i+2/2)))
                         i = i + 1
-                for layer in range(1, self.layersInBlock-1):
+                for layer in range(1, self.layersInBlock):
                     if i%2 == 0:
                         stagesO[stage].append(n(int(i+2/2)))
                         print("\nI: ", i)
