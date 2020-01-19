@@ -83,10 +83,10 @@ class N2N(nn.Module):
                 paramList.append(param)
                 print("\nName: ", name)
                 i = int(name.split('.')[1])
-                print("\nI:", i)
+
                 if i % 2 == 0:
                     altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
-
+                    print("\nI:", i, " ; ", altList[-1])
                 elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
                     altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
                 elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
