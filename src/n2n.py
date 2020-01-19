@@ -56,7 +56,7 @@ class N2N(nn.Module):
                         self.module_list.append(conv)
                         bn3 = nn.BatchNorm2d(sizeOfLayer)
                         self.module_list.append(bn)
-                        firstBlock = False
+                        firstLayer = False
                         firstLayerInStage = False
             # 18
             avgpool = nn.AdaptiveAvgPool2d((1,1))
