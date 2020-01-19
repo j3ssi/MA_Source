@@ -60,12 +60,6 @@ class N2N(nn.Module):
                         firstLayerInStage = False
             # 18
             self.sizeOfFC = pow(2, numOfStages + 3)
-
-            conv = nn.Conv2d(self.sizeOfFC, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
-            self.module_list.append(conv)
-            bn = nn.BatchNorm2d(self.sizeOfFC)
-            self.module_list.append(bn)
-
             avgpool = nn.AdaptiveAvgPool2d((1,1))
             self.module_list.append(avgpool)
             # 19
@@ -296,7 +290,7 @@ class N2N(nn.Module):
                         stagesI[stage].append(n(int(i + 2 / 2)))
                         print("\nI: ", i)
                         i = i + 1
-
+        stagesI[-1].append(n('fc'))
         print("\nStagesI: ", stagesI)
         print("\nStagesO: ", stagesO)
         return stagesI ,stagesO
