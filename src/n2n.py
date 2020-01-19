@@ -297,9 +297,10 @@ class N2N(nn.Module):
         for stage in range(0, self.numOfStages):
             for block in range(0, self.numOfBlocksinStage):
                 for layer in range(0, self.layersInBlock):
-                    if i%2 == 0:
+                    if i%2 == 1:
                         sameNode.append((n(i), n(i+1)))
                         i = i+1
+
 
         print("\nSame Node: ", sameNode)
         return sameNode
