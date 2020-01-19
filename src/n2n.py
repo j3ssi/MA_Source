@@ -290,7 +290,7 @@ class N2N(nn.Module):
                         stagesI[stage].append(n(int(i + 2 / 2)))
                         # print("\nI: ", i)
                         i = i + 1
-        stageStr = 'fc' + str(i)
+        stageStr = 'fc' + str(i+1)
         stagesI[-1].append(n(stageStr))
         print("\nStagesI: ", stagesI)
         print("\nStagesO: ", stagesO)
@@ -309,7 +309,7 @@ class N2N(nn.Module):
                         i = i + 1
                     else:
                         i = i + 1
-        sameNode.append((n(i+1), n('fc')))
+        # sameNode.append((n(i+1), n('fc')))
 
         print("\nSame Node: ", sameNode)
         return sameNode
