@@ -57,8 +57,8 @@ parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
 parser.add_argument('--manualSeed', type=int, help='manual seed')
 parser.add_argument('--gpu_id', default='2', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
 parser.add_argument('-s', '--numOfStages', default=1, type=int, help='defines the number of stages in the network')
-parser.add_argument('-n', '--numOfBlocksinStage', type =int, default=2, help='defines the number of Blocks per Stage' )
-parser.add_argument('-l', '--layersInBlock', type = int, default =2, help='defines the number of')
+parser.add_argument('-n', '--numOfBlocksinStage', type=int, default=2, help='defines the number of Blocks per Stage')
+parser.add_argument('-l', '--layersInBlock', type=int, default=2, help='defines the number of')
 # PruneTrain
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
 parser.add_argument('--sparse_interval', default=0, type=int,
@@ -138,11 +138,10 @@ def main():
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
-
     # Model
-    model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock , True)
+    model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda()
-    #print(model)
+    # print(model)
     cudnn.benchmark = True
 
     criterion = nn.CrossEntropyLoss()
@@ -169,7 +168,8 @@ def main():
                 dense_chs, chs_map = _makeSparse(model, args.threshold,
                                                  is_gating=args.is_gating)
                 _genDenseModel(model, dense_chs, optimizer, 'cifar')
-                model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False, model)
+                model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False,
+                                model)
                 model.cuda()
 
             best_acc = max(test_acc, best_acc)
@@ -192,6 +192,7 @@ def main():
     ende = time.time()
     print('{:5.3f}s'.format(ende - start), end='  ')
 
+
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     # switch to train mode
     model.train()
@@ -202,7 +203,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     top1 = AverageMeter()
     top5 = AverageMeter()
     lasso_ratio = AverageMeter()
-    #grp_lasso_coeff = 0
+    # grp_lasso_coeff = 0
     end = time.time()
     input_size = 0
     for batch_idx, (inputs, targets) in enumerate(trainloader):
@@ -235,9 +236,9 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             # # Auto-tune the group-lasso coefficient @first training iteration
             # coeff_dir = os.path.join(args.coeff_container)
 
-            #if init_batch:
+            # if init_batch:
             args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
-                         lasso_penalty * (1 - args.var_group_lasso_coeff))
+                    lasso_penalty * (1 - args.var_group_lasso_coeff))
             grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
 
             #     if not os.path.exists(coeff_dir):
@@ -277,15 +278,15 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         batch_time.update(time.time() - end - data_load_time)
         end = time.time()
 
-        if batch_idx % args.print_freq == 0:
-            print('Epoch: [{0}][{1}/{2}]\t'
-                  'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-                  'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
-                  'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
-                  'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
-                  'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
-                epoch, batch_idx, len(trainloader), batch_time=batch_time,
-                data_time=data_time, loss=losses, top1=top1, top5=top5))
+        # if batch_idx % args.print_freq == 0:
+        #     print('Epoch: [{0}][{1}/{2}]\t'
+        #           'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
+        #           'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
+        #           'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
+        #           'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
+        #           'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
+        #         epoch, batch_idx, len(trainloader), batch_time=batch_time,
+        #         data_time=data_time, loss=losses, top1=top1, top5=top5))
 
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
     return (losses.avg, top1.avg, lasso_ratio.avg, epoch_time)
