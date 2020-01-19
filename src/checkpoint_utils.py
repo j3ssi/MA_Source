@@ -104,7 +104,7 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
     - Individual: Add gating layers >> Layers at the shared node skip more computation
     """
     # get the residual Path of Resnet
-    stages = n2n.getResidualPath(model)
+    stages = model.getResidualPath()
     ch_maps = []
 
     # Within a residual branch >> Union of adjacent pairs

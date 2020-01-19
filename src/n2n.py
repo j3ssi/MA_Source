@@ -249,7 +249,7 @@ class N2N(nn.Module):
                 print("\nfc", i, " ; ", x.shape)
         return x
 
-    def getResidualPath(self, model):
+    def getResidualPath(self):
         stagesI = [[]]
         stagesO = [[]]
         first = True
