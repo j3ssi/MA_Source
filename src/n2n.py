@@ -264,7 +264,7 @@ class N2N(nn.Module):
                         stagesI[stage].append(i)
                         i = i + 1
                 elif first and stage > 0:
-
+                    pass
         print("\n StagesI: ", stagesI)
         print("\nStagesO: ", stagesO)
         return stagesI ,stagesO
