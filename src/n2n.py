@@ -250,11 +250,13 @@ class N2N(nn.Module):
         return x
 
     def getResidualPath(self):
-        stagesI = [[]]
-        stagesO = [[]]
+        stagesI = []
+        stagesO = []
         first = True
         i = 0
         for stage in range(0, self.numOfStages):
+            stagesI.append([])
+            stagesO.append([])
             for block in range(0, self.numOfBlocksinStage):
                 if first and stage == 0:
                     if i%2 == 1:
