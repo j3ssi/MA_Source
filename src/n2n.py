@@ -266,11 +266,11 @@ class N2N(nn.Module):
             if first and stage == 0:
                 if i % 2 == 0:
                     stagesO[stage].append(n(int(i + 2 / 2)))
-                    print("\nI: ", i)
+                    # print("\nI: ", i)
                     i = i + 1
                 else:
                     stagesI[stage].append(n(int(i + 2 / 2)))
-                    print("\nI: ", i)
+                    # print("\nI: ", i)
                     i = i + 1
             elif first and stage > 0:
                 if i % 2 == 1:
@@ -284,11 +284,11 @@ class N2N(nn.Module):
                 for layer in range(0, self.layersInBlock):
                     if i%2 == 0:
                         stagesO[stage].append(n(int(i+2/2)))
-                        print("\nI: ", i)
+                        # print("\nI: ", i)
                         i = i + 1
                     else:
                         stagesI[stage].append(n(int(i + 2 / 2)))
-                        print("\nI: ", i)
+                        # print("\nI: ", i)
                         i = i + 1
         stageStr = 'fc' + str(i)
         stagesI[-1].append(n(stageStr))
@@ -303,7 +303,7 @@ class N2N(nn.Module):
         for stage in range(0, self.numOfStages):
             for block in range(0, self.numOfBlocksinStage):
                 for layer in range(0, self.layersInBlock):
-                    print("\nI: ", i, " ; ", stage, " ; ", block, " ; ", layer)
+                    # print("\nI: ", i, " ; ", stage, " ; ", block, " ; ", layer)
                     if i%2 == 0:
                         sameNode.append((n(i), n(i+1)))
                         i = i + 1
