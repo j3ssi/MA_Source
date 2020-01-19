@@ -290,6 +290,20 @@ class N2N(nn.Module):
         print("\nStagesO: ", stagesO)
         return stagesI ,stagesO
 
+    def getShareSameNodeLayers(self):
+        sameNode = []
+        first = True
+        i = 0
+        for stage in range(0, self.numOfStages):
+            for block in range(0, self.numOfBlocksinStage):
+                for layer in range(0, self.layersInBlock):
+                    if i%2 == 0:
+                        sameNode.append((n(i), n(i+1)))
+
+
+        print("\nSame Node: ", sameNode)
+        return sameNode
+
 
 def deeper(model, optimizer, positions):
     # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
@@ -330,37 +344,6 @@ def num_flat_features(x):
     return num_features
 
 
-
-def getShareSameNodeLayers(model):
-    altList = []
-    for name, param in model.named_parameters():
-        # print("\nName: {}", name)
-        i = int(name.split('.')[1])
-        if i % 2 == 0:
-            altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
-
-        if (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
-            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
-        elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
-            altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
-
-        if (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
-            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
-        elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
-            altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-            m = int((i + 1) / 2)
-    print(altList)
-    sameNode = []
-    i = int((len(model.module_list) - 4) / 2)
-    for j in range(2, i):
-        if j % 2 == 0:
-            sameNode.append((n(j), n(j + 1)))
-
-    k = altList[-1].split('.')[1].split('c')[1]
-    strFc = 'fc' + k
-    sameNode.append((n(m - 1), n(strFc)))
-    print("\nSame Node: ", sameNode)
-    return sameNode
 
 
 def n(name):
