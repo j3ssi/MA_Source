@@ -47,6 +47,8 @@ def get_group_lasso_global(model):
         elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
         #print(altList[-1])
+
+    print("\naktList: ", altList)
     j = -1
     for name, param in model.named_parameters():
         j = j + 1
