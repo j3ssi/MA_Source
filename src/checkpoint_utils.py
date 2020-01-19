@@ -109,7 +109,7 @@ def _makeSparse(model, threshold, is_gating=False, reconf=True):
 
     # Within a residual branch >> Union of adjacent pairs
     # get the Layers that share the same node
-    adj_lyrs = n2n.getShareSameNodeLayers(model)
+    adj_lyrs = model.getShareSameNodeLayers()
     # print(adj_lyrs)
     for adj_lyr in adj_lyrs:
         # if i exists that is in adj_lyr and this i is not in dense_chs
