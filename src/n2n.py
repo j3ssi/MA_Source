@@ -96,7 +96,7 @@ class N2N(nn.Module):
                     altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
                 else:
                     assert True, print("Hier fehlt noch was!!")
-            # print("\naltList", altList)
+            print("\naltList", altList)
             module_list1 = nn.ModuleList()
             for i in range(len(altList)):
                 # print("\n>i: ", i)
