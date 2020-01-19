@@ -258,14 +258,14 @@ class N2N(nn.Module):
             for block in range(0, self.numOfBlocksinStage):
                 if first and stage == 0:
                     if i%2 == 1:
-                        stagesO[stage].append(i)
+                        stagesO[stage].append(n(i))
                         i = i + 1
                     else:
-                        stagesI[stage].append(i)
+                        stagesI[stage].append(n(i))
                         i = i + 1
                 elif first and stage > 0:
                     pass
-        print("\n StagesI: ", stagesI)
+        print("\nStagesI: ", stagesI)
         print("\nStagesO: ", stagesO)
         return stagesI ,stagesO
 
