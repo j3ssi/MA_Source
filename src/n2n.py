@@ -101,7 +101,7 @@ class N2N(nn.Module):
                     # print("\nI:", i, " ; ", altList[-1])
                 else:
                     assert True, print("Hier fehlt noch was!!")
-            # print("\naltList", altList)
+            print("\naltList", altList)
             module_list1 = nn.ModuleList()
             for i in range(len(altList)):
                 # print("\n>i: ", i)
