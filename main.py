@@ -169,7 +169,7 @@ def main():
                 dense_chs, chs_map = _makeSparse(model, args.threshold,
                                                  is_gating=args.is_gating)
                 _genDenseModel(model, dense_chs, optimizer, 'cifar')
-                model = n2n.N2N(num_classes, args.numOfResidualBlocks, False, model)
+                model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False, model)
                 model.cuda()
 
             best_acc = max(test_acc, best_acc)
