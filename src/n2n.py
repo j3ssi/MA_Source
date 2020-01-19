@@ -81,27 +81,27 @@ class N2N(nn.Module):
             for name, param in model.named_parameters():
                 # print("\nName: {}", name)
                 paramList.append(param)
-                print("\nName: ", name)
+                # print("\nName: ", name)
                 i = int(name.split('.')[1])
 
                 if i % 2 == 0:
                     altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
-                    print("\nI:", i, " ; ", altList[-1])
+                    # print("\nI:", i, " ; ", altList[-1])
                 elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
                     altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
-                    print("\nI:", i, " ; ", altList[-1])
+                    # print("\nI:", i, " ; ", altList[-1])
                 elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
                     altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
-                    print("\nI:", i, " ; ", altList[-1])
+                    # print("\nI:", i, " ; ", altList[-1])
                 elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
                     altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
-                    print("\nI:", i, " ; ", altList[-1])
+                    # print("\nI:", i, " ; ", altList[-1])
                 elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
                     altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-                    print("\nI:", i, " ; ", altList[-1])
+                    # print("\nI:", i, " ; ", altList[-1])
                 else:
                     assert True, print("Hier fehlt noch was!!")
-            print("\naltList", altList)
+            # print("\naltList", altList)
             module_list1 = nn.ModuleList()
             for i in range(len(altList)):
                 # print("\n>i: ", i)
