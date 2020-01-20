@@ -253,10 +253,7 @@ class N2N(nn.Module):
                 print("\n \n Oops!!!: ")
                 print("AvgPool")
         if isinstance(self.module_list[i], nn.Linear):
-            print("\nShape x before: ", x.shape)
             x = self.module_list[i](x)
-            print("\nShape x after: ", x.shape)
-
             if printNet:
                 print("\nfc", i, " ; ", x.shape)
         return x
