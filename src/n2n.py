@@ -156,8 +156,8 @@ class N2N(nn.Module):
             # print("\nnew Model: ", self)
 
     def forward(self, x):
-        first = True
-        printNet = True
+        first = False
+        printNet = False
         # conv1
         x = self.module_list[0](x)
         if printNet:
@@ -239,7 +239,7 @@ class N2N(nn.Module):
                     x = self.relu(_x)
                     first = False
             first = True
-  
+
         if isinstance(self.module_list[i], nn.AdaptiveAvgPool2d):
             try:
                 x = self.module_list[i](x)
