@@ -173,6 +173,7 @@ class N2N(nn.Module):
         for stage in range(0, self.numOfStages):
             for block in range(0, self.numOfBlocksinStage):
                 if first and stage > 0:
+                    print("\n\n\nDRIN!!!!!")
                     # conv
                     x = self.module_list[i](_x)
                     if printNet:
