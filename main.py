@@ -142,7 +142,7 @@ def main():
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda()
     # print(model)
-    cudnn.benchmark = False
+    cudnn.benchmark = True
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
@@ -155,7 +155,7 @@ def main():
         best_acc = 0
         for epoch in range(1, args.epochs + 1):
             # adjust learning rate when epoch is the scheduled epoch
-            adjust_learning_rate(optimizer, epoch)
+            # adjust_learning_rate(optimizer, epoch)
 
             # print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion, optimizer,
