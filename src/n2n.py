@@ -104,7 +104,7 @@ class N2N(nn.Module):
                     assert True, print("Hier fehlt noch was!!")
             print("\naltList", altList)
             module_list1 = nn.ModuleList()
-            for i in range(len(altList)):
+            for i in range(0, len(altList)):
                 # print("\n>i: ", i)
                 name = altList[i]
                 param = paramList[i]
