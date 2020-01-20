@@ -246,9 +246,9 @@ class N2N(nn.Module):
                 x = self.module_list[i](x)
                 if printNet:
                     print("\nI: ", i, " ; ", self.module_list[i])
-                print("\nShape x before: " x.shape)
+                print("\nShape x before: ", x.shape)
                 x = x.view(-1, self.sizeOfFC)
-                print("\nShape x after: " x.shape)
+                print("\nShape x after: ", x.shape)
                 i = i + 1
 
             except RuntimeError:
