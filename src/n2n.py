@@ -105,10 +105,10 @@ class N2N(nn.Module):
             # print("\naltList", altList)
             module_list1 = nn.ModuleList()
             for i in range(len(altList)):
-                print("\n>i: ", i)
+                # print("\n>i: ", i)
                 name = altList[i]
                 param = paramList[i]
-                print("\nName: ", name)
+                # print("\nName: ", name)
                 if 'conv' in name:
                     dims = list(param.shape)
                     in_chs = dims[1]
@@ -246,7 +246,9 @@ class N2N(nn.Module):
                 x = self.module_list[i](x)
                 if printNet:
                     print("\nI: ", i, " ; ", self.module_list[i])
+                print("\nShape x before: " x.shape)
                 x = x.view(-1, self.sizeOfFC)
+                print("\nShape x after: " x.shape)
                 i = i + 1
 
             except RuntimeError:
