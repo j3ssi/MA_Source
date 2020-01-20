@@ -29,7 +29,7 @@ Make only the (conv, FC) layer parameters sparse
 """
 
 
-def _makeSparse(model, threshold, is_gating=False, reconf=True):
+def makeSparse(model, threshold, is_gating=False, reconf=True):
     print("[INFO] Force the sparse filters to zero...")
     dense_chs, chs_temp, idx = {}, {}, 0
     # alternative List to find the layers by name and not the stupid index of module_list
@@ -163,7 +163,7 @@ Generate a new dense network model
 """
 
 
-def _genDenseModel(model, dense_chs, optimizer, dataset):
+def genDenseModel(model, dense_chs, optimizer, dataset):
     print("[INFO] Squeezing the sparse model to dense one...")
 
     # Sanity check

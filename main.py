@@ -20,7 +20,7 @@ import os
 import time
 import random
 import torch
-import torch.nn as nn
+# import torch.nn as nn
 import torch.optim as optim
 import torch.utils.data as data
 import torchvision.transforms as transforms
@@ -30,7 +30,7 @@ from torch.backends import cudnn
 
 from src import n2n
 from src.custom_arch import *
-from src.checkpoint_utils import _makeSparse, _genDenseModel
+from src.checkpoint_utils import makeSparse, genDenseModel
 from src.group_lasso_regs import get_group_lasso_global, get_group_lasso_group
 from src.utils import AverageMeter, accuracy
 
@@ -142,8 +142,7 @@ def main():
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda()
     # print(model)
-    cudnn.benchmark = True
-
+    cudnn.benchmark = False
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     # Train and val
@@ -165,9 +164,9 @@ def main():
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):
                 # Force weights under threshold to zero
-                dense_chs, chs_map = _makeSparse(model, args.threshold,
-                                                 is_gating=args.is_gating)
-                _genDenseModel(model, dense_chs, optimizer, 'cifar')
+                dense_chs, chs_map = makeSparse(model, args.threshold,
+                                                is_gating=args.is_gating)
+                genDenseModel(model, dense_chs, optimizer, 'cifar')
                 model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False,
                                 model)
                 model.cuda()
@@ -223,7 +222,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
         # lasso penalty
         init_batch = batch_idx == 0 and epoch == 1
-
+        grp_lasso_coeff = 0
         if args.en_group_lasso:
             if args.global_group_lasso:
                 lasso_penalty = get_group_lasso_global(model)
@@ -233,16 +232,17 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             # Auto-tune the group-lasso coefficient @first training iteration
             coeff_dir = os.path.join(args.coeff_container, 'cifar')
             if init_batch:
-                args.grp_lasso_coeff = args.var_group_lasso_coeff *loss.item() / (lasso_penalty * (1-args.var_group_lasso_coeff))
+                args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
+                            lasso_penalty * (1 - args.var_group_lasso_coeff))
                 grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
 
-                if not os.path.exists( coeff_dir ):
-                    os.makedirs( coeff_dir )
-                with open( os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'w' ) as f_coeff:
-                    f_coeff.write( str(grp_lasso_coeff.item()) )
+                if not os.path.exists(coeff_dir):
+                    os.makedirs(coeff_dir)
+                with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
+                    f_coeff.write(str(grp_lasso_coeff.item()))
 
             else:
-                with open( os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'r' ) as f_coeff:
+                with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
                     for line in f_coeff:
                         grp_lasso_coeff = float(line)
 
@@ -252,7 +252,6 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
         # Group lasso calcution is not performance-optimized => Ignore from execution time
         loss += lasso_penalty
-
 
         # measure accuracy and record loss
         prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
@@ -285,7 +284,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         #         data_time=data_time, loss=losses, top1=top1, top5=top5))
 
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
-    return (losses.avg, top1.avg, lasso_ratio.avg, epoch_time)
+    return losses.avg, top1.avg, lasso_ratio.avg, epoch_time
 
 
 def test(testloader, model, criterion, epoch, use_cuda):

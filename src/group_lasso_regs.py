@@ -138,7 +138,6 @@ def get_group_lasso_group(model):
 
             elif param.dim() == 2:
                 w_num_i_ch = param.shape[0]
-                w_num_o_ch = param.shape[1]
                 lasso_in_ch.append(param.pow(2).sum(dim=[0]))
                 penalty_tensor = torch.Tensor(param.shape[1]).cuda()
                 lasso_in_ch_penalty.append(penalty_tensor.new_full([param.shape[1]], w_num_i_ch))
