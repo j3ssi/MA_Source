@@ -14,8 +14,10 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 """
-import argparse
 import os
+
+os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
+import argparse
 import time
 import random
 import torch
