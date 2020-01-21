@@ -30,7 +30,7 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 from torch.autograd import Variable
 from torch.backends import cudnn
-import torchviz
+import torchviz as tw
 
 from src import n2n
 from src.custom_arch import *
@@ -223,7 +223,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
         outputs = model.forward(inputs)
-        make_dot(outputs, params =dict(model.named_parameters()) )
+        tw.make_dot(outputs, params =dict(model.named_parameters()) )
         loss = criterion(outputs, targets)
 
         # lasso penalty
