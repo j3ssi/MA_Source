@@ -114,7 +114,7 @@ class N2N(nn.Module):
         else:
             module_list1 = nn.ModuleList()
             i = 0
-            # conv1
+            # conv0
             module = model.module_list[i]
             kernel_size = module.kernel_size
             stride = module.stride
@@ -351,26 +351,26 @@ class N2N(nn.Module):
                     _x = self.relu(_x)
                     first = False
                 else:
-                    # conv3
+                    # conv2
                     x = self.module_list[i](_x)
                     if printNet:
                         print("\nI: ", i, " ; ", self.module_list[i])
                         # print("\nX Shape: ", x.shape)
                     i = i + 1
-                    # bn4
+                    # bn2
                     x = self.module_list[i](x)
                     if printNet:
                         print("\nI: ", i, " ; ", self.module_list[i])
                         # print("\nX Shape: ", x.shape)
                     i = i + 1
                     x = self.relu(x)
-                    # conv5
+                    # conv3
                     x = self.module_list[i](x)
                     if printNet:
                         print("\nI: ", i, " ; ", self.module_list[i])
                         # print("\nX Shape: ", x.shape)
                     i = i + 1
-                    # bn6
+                    # bn3
                     x = self.module_list[i](x)
                     if printNet:
                         print("\nI: ", i, " ; ", self.module_list[i])
