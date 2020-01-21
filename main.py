@@ -16,6 +16,8 @@
 """
 import os
 
+import torchvision
+
 os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
 import argparse
 import time
@@ -34,6 +36,10 @@ from src.custom_arch import *
 from src.checkpoint_utils import makeSparse, genDenseModel
 from src.group_lasso_regs import get_group_lasso_global, get_group_lasso_group
 from src.utils import AverageMeter, accuracy
+from torch.utils.tensorboard import SummaryWriter
+import matplotlib.pyplot as plt
+
+writer = SummaryWriter('runs/cifar10_pruneTrain')
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 
@@ -139,6 +145,8 @@ def main():
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
+
+
     # Model
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda()
@@ -192,6 +200,15 @@ def main():
     ende = time.time()
     print('{:5.3f}s'.format(ende - start), end='  ')
 
+def matplotlib_imshow(img, one_channel=False):
+    if one_channel:
+        img = img.mean(dim=0)
+    img = img / 2 + 0.5  # unnormalize
+    npimg = img.numpy()
+    if one_channel:
+        plt.imshow(npimg, cmap="Greys")
+    else:
+        plt.imshow(np.transpose(npimg, (1, 2, 0)))
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     # switch to train mode
@@ -221,6 +238,17 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
         loss = criterion(outputs, targets)
 
+        # create grid of images
+        img_grid = torchvision.utils.make_grid(inputs)
+
+        # show images
+        matplotlib_imshow(img_grid, one_channel=True)
+
+        # write to tensorboard
+        writer.add_image('PruneTrain experiment', img_grid)
+
+        writer.add_graph(model, inputs)
+
         # lasso penalty
         init_batch = batch_idx == 0 and epoch == 1
 
@@ -234,7 +262,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             coeff_dir = os.path.join(args.coeff_container, 'cifar')
             if init_batch:
                 args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
-                            lasso_penalty * (1 - args.var_group_lasso_coeff))
+                        lasso_penalty * (1 - args.var_group_lasso_coeff))
                 grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
 
                 if not os.path.exists(coeff_dir):
