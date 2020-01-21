@@ -158,17 +158,17 @@ class N2N(nn.Module):
 
     def forward(self, x):
         first = False
-        printNet = False
+        printNet = True
         # conv1
         x = self.module_list[0](x)
         if printNet:
             print("\nI: 0 ; ", self.module_list[0])
-
+            print("\nX Shape: ", x.shape)
         # bn1
         x = self.module_list[1](x)
         if printNet:
             print("\nI: 1 ; ", self.module_list[1])
-
+            print("\nX Shape: ", x.shape)
         _x = self.relu(x)
         i = 2
         for stage in range(0, self.numOfStages):
@@ -219,22 +219,26 @@ class N2N(nn.Module):
                     x = self.module_list[i](_x)
                     if printNet:
                         print("\nI: ", i, " ; ", self.module_list[i])
+                        print("\nX Shape: ", x.shape)
                     i = i + 1
                     # bn2
                     x = self.module_list[i](x)
                     if printNet:
                         print("\nI: ", i, " ; ", self.module_list[i])
+                        print("\nX Shape: ", x.shape)
                     i = i + 1
                     x = self.relu(x)
                     # conv3
                     x = self.module_list[i](x)
                     if printNet:
                         print("\nI: ", i, " ; ", self.module_list[i])
+                        print("\nX Shape: ", x.shape)
                     i = i + 1
                     # bn3
                     x = self.module_list[i](x)
                     if printNet:
                         print("\nI: ", i, " ; ", self.module_list[i])
+                        print("\nX Shape: ", x.shape)
                     i = i + 1
                     _x = _x + x
                     x = self.relu(_x)
@@ -246,6 +250,7 @@ class N2N(nn.Module):
                 x = self.module_list[i](x)
                 if printNet:
                     print("\nI: ", i, " ; ", self.module_list[i])
+                    print("\nX Shape: ", x.shape)
                 # x = x.view(-1, self.sizeOfFC)
                 i = i + 1
 
@@ -256,6 +261,7 @@ class N2N(nn.Module):
             x = self.module_list[i](x)
             if printNet:
                 print("\nfc", i, " ; ", x.shape)
+                print("\nX Shape: ", x.shape)
         return x
 
     def getResidualPath(self):
