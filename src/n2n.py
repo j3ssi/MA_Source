@@ -246,7 +246,7 @@ class N2N(nn.Module):
                 x = self.module_list[i](x)
                 if printNet:
                     print("\nI: ", i, " ; ", self.module_list[i])
-                x = x.view(-1, self.sizeOfFC)
+                # x = x.view(-1, self.sizeOfFC)
                 i = i + 1
 
             except RuntimeError:
