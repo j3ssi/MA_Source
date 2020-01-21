@@ -115,6 +115,7 @@ class N2N(nn.Module):
                     out_chs = dims[0]
                     # Search for the corresponding Conv Module in Module_list
                     k = int(name.split('.')[1].split('v')[1])
+                    print("\nK: ", k)
                     module = model.module_list[(k - 1) * 2]
                     kernel_size = module.kernel_size
                     stride = module.stride

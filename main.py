@@ -203,14 +203,14 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     top1 = AverageMeter()
     top5 = AverageMeter()
     lasso_ratio = AverageMeter()
-    # grp_lasso_coeff = 0
+
     end = time.time()
-    input_size = 0
+
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         # measure data loading time
         data_time.update(time.time() - end)
         data_load_time = time.time() - end
-        input_size = inputs.size
+
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
 
@@ -223,7 +223,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
         # lasso penalty
         init_batch = batch_idx == 0 and epoch == 1
-        grp_lasso_coeff = 0
+
         if args.en_group_lasso:
             if args.global_group_lasso:
                 lasso_penalty = get_group_lasso_global(model)
