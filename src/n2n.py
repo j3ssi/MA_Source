@@ -120,8 +120,8 @@ class N2N(nn.Module):
             stride = module.stride
             padding = module.padding
             bias = module.bias if module.bias is not None else False
-            in_chs = module.weight.Size[1]
-            out_chs = module.weight.Size[0]
+            in_chs = module.weight.shape[1]
+            out_chs = module.weight.shape[0]
             conv0 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
                                       bias=bias)
             module_list1.append(conv0)
@@ -129,7 +129,7 @@ class N2N(nn.Module):
             # bn1
             i = i + 1
             module = model.module_list[i]
-            out_chs = module.weight.size[0]
+            out_chs = module.weight.shape[0]
             bn1 = nn.BatchNorm2d()
             module_list1.append(bn1)
 
@@ -140,8 +140,8 @@ class N2N(nn.Module):
             stride = module.stride
             padding = module.padding
             bias = module.bias if module.bias is not None else False
-            in_chs = module.weight.Size[1]
-            out_chs = module.weight.Size[0]
+            in_chs = module.weight.shape[1]
+            out_chs = module.weight.shape[0]
             conv2 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
                                       bias=bias)
             module_list1.append(conv2)
@@ -149,7 +149,7 @@ class N2N(nn.Module):
             # bn3
             i = i + 1
             module = model.module_list[i]
-            out_chs = module.weight.size[0]
+            out_chs = module.weight.shape[0]
             bn3 = nn.BatchNorm2d()
             module_list1.append(bn3)
 
@@ -160,8 +160,8 @@ class N2N(nn.Module):
             stride = module.stride
             padding = module.padding
             bias = module.bias if module.bias is not None else False
-            in_chs = module.weight.Size[1]
-            out_chs = module.weight.Size[0]
+            in_chs = module.weight.shape[1]
+            out_chs = module.weight.shape[0]
             conv4 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
                                       bias=bias)
             module_list1.append(conv4)
@@ -169,7 +169,7 @@ class N2N(nn.Module):
             # bn5
             i = i + 1
             module = model.module_list[i]
-            out_chs = module.weight.size[0]
+            out_chs = module.weight.shape[0]
             bn5 = nn.BatchNorm2d()
             module_list1.append(bn5)
 
@@ -180,8 +180,8 @@ class N2N(nn.Module):
             stride = module.stride
             padding = module.padding
             bias = module.bias if module.bias is not None else False
-            in_chs = module.weight.Size[1]
-            out_chs = module.weight.Size[0]
+            in_chs = module.weight.shape[1]
+            out_chs = module.weight.shape[0]
             conv6 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
                                       bias=bias)
             module_list1.append(conv6)
@@ -189,7 +189,7 @@ class N2N(nn.Module):
             # bn7
             i = i + 1
             module = model.module_list[i]
-            out_chs = module.weight.size[0]
+            out_chs = module.weight.shape[0]
             bn7 = nn.BatchNorm2d()
             module_list1.append(bn7)
 
@@ -200,8 +200,8 @@ class N2N(nn.Module):
             stride = module.stride
             padding = module.padding
             bias = module.bias if module.bias is not None else False
-            in_chs = module.weight.Size[1]
-            out_chs = module.weight.Size[0]
+            in_chs = module.weight.shape[1]
+            out_chs = module.weight.shape[0]
             conv8 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
                                       bias=bias)
             module_list1.append(conv8)
@@ -209,7 +209,7 @@ class N2N(nn.Module):
             # bn 9
             i = i + 1
             module = model.module_list[i]
-            out_chs = module.weight.size[0]
+            out_chs = module.weight.shape[0]
             bn9 = nn.BatchNorm2d()
             module_list1.append(bn9)
 
@@ -281,9 +281,9 @@ class N2N(nn.Module):
             avgpool = nn.AdaptiveAvgPool2d((1,1))
             module_list1.append(avgpool)
             module = model.module_list[-1]
-            self.sizeOfFC = module.weight.size[1]
+            self.sizeOfFC = module.weight.shape[1]
             # print("\n self sizeofFC: ", self.sizeOfFC)
-            fc = nn.Linear(module.weight.size[1], num_classes)
+            fc = nn.Linear(module.weight.shape[1], num_classes)
             # print("\nLinear: ", fc)
             fc.weight = module.weight
             fc.bias = module.bias
