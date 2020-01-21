@@ -36,6 +36,7 @@ from src.custom_arch import *
 from src.checkpoint_utils import makeSparse, genDenseModel
 from src.group_lasso_regs import get_group_lasso_global, get_group_lasso_group
 from src.utils import AverageMeter, accuracy
+
 from torch.utils.tensorboard import SummaryWriter
 import matplotlib.pyplot as plt
 
@@ -204,7 +205,8 @@ def matplotlib_imshow(img, one_channel=False):
     if one_channel:
         img = img.mean(dim=0)
     img = img / 2 + 0.5  # unnormalize
-    npimg = img.numpy()
+    npimg = img.cpu()
+    npimg = npimg.numpy()
     if one_channel:
         plt.imshow(npimg, cmap="Greys")
     else:
