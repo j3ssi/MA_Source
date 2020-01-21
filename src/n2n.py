@@ -130,7 +130,7 @@ class N2N(nn.Module):
             i = i + 1
             module = model.module_list[i]
             out_chs = module.weight.shape[0]
-            bn1 = nn.BatchNorm2d()
+            bn1 = nn.BatchNorm2d(out_chs)
             module_list1.append(bn1)
 
             # conv 2
@@ -150,7 +150,7 @@ class N2N(nn.Module):
             i = i + 1
             module = model.module_list[i]
             out_chs = module.weight.shape[0]
-            bn3 = nn.BatchNorm2d()
+            bn3 = nn.BatchNorm2d(out_chs)
             module_list1.append(bn3)
 
             # conv 4
@@ -170,7 +170,7 @@ class N2N(nn.Module):
             i = i + 1
             module = model.module_list[i]
             out_chs = module.weight.shape[0]
-            bn5 = nn.BatchNorm2d()
+            bn5 = nn.BatchNorm2d(out_chs)
             module_list1.append(bn5)
 
             # conv 6
@@ -190,7 +190,7 @@ class N2N(nn.Module):
             i = i + 1
             module = model.module_list[i]
             out_chs = module.weight.shape[0]
-            bn7 = nn.BatchNorm2d()
+            bn7 = nn.BatchNorm2d(out_chs)
             module_list1.append(bn7)
 
             # conv 8
@@ -210,7 +210,7 @@ class N2N(nn.Module):
             i = i + 1
             module = model.module_list[i]
             out_chs = module.weight.shape[0]
-            bn9 = nn.BatchNorm2d()
+            bn9 = nn.BatchNorm2d(out_chs)
             module_list1.append(bn9)
 
             # altList = []
