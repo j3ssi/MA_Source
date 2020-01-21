@@ -94,12 +94,12 @@ class N2N(nn.Module):
             #             firstLayer = False
             #             firstLayerInStage = False
             # # 18
-            # self.sizeOfFC = pow(2, numOfStages + 3)
+            self.sizeOfFC = 16
             # print("\n self sizeofFC: ",self.sizeOfFC)
             avgpool = nn.AdaptiveAvgPool2d((1,1))
             self.module_list.append(avgpool)
             # 19
-            fc = nn.Linear(16, num_classes)
+            fc = nn.Linear(self.sizeOfFC, num_classes)
             self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
 
@@ -281,6 +281,7 @@ class N2N(nn.Module):
             avgpool = nn.AdaptiveAvgPool2d((1,1))
             module_list1.append(avgpool)
             module = model.module_list[-1]
+            self.sizeOfFC = module.weight.size[1]
             # print("\n self sizeofFC: ", self.sizeOfFC)
             fc = nn.Linear(module.weight.size[1], num_classes)
             # print("\nLinear: ", fc)
