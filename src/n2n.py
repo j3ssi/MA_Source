@@ -281,9 +281,9 @@ class N2N(nn.Module):
             avgpool = nn.AdaptiveAvgPool2d((1,1))
             module_list1.append(avgpool)
             module = model.module_list[-1]
-            print("\n self sizeofFC: ", self.sizeOfFC)
+            # print("\n self sizeofFC: ", self.sizeOfFC)
             fc = nn.Linear(module.weight.size[1], num_classes)
-            print("\nLinear: ", fc)
+            # print("\nLinear: ", fc)
             fc.weight = module.weight
             fc.bias = module.bias
             module_list1.append(fc)
@@ -293,7 +293,7 @@ class N2N(nn.Module):
 
     def forward(self, x):
         first = False
-        printNet = True
+        printNet = False
         # conv1
         x = self.module_list[0](x)
         if printNet:
