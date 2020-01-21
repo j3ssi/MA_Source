@@ -223,7 +223,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
         outputs = model.forward(inputs)
-        tw.make_dot(outputs, params =dict(model.named_parameters()) )
+        dot = tw.make_dot(outputs, params =dict(model.named_parameters()) )
+        print(dot)
         loss = criterion(outputs, targets)
 
         # lasso penalty
