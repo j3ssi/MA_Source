@@ -20,47 +20,82 @@ class N2N(nn.Module):
         if first:
             self.module_list = nn.ModuleList()
             # conv1
-            conv1 = nn.Conv2d(3, 16, kernel_size=3, padding=1, bias=False, stride=1)
-            self.module_list.append(conv1)
+            conv0 = nn.Conv2d(3, 16, kernel_size=3, padding=1, bias=False, stride=1)
+            self.module_list.append(conv0)
             # bn1
             bn1 = nn.BatchNorm2d(16)
             self.module_list.append(bn1)
             firstLayer = True
-            for stage in range(0, numOfStages):
-                firstLayerInStage = True
-                sizeOfLayer = pow(2, stage + 4)
-                # print("\nStage: ", stage, " ; ", sizeOfLayer)
-                for block in range(0, numOfBlocksinStage):
-                    if firstLayerInStage and not firstLayer:
-                        conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1, bias=False,
-                                         stride=2)
-                        self.module_list.append(conv)
-                        bn = nn.BatchNorm2d(sizeOfLayer)
-                        self.module_list.append(bn)
-                        conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
-                        self.module_list.append(conv)
-                        bn = nn.BatchNorm2d(sizeOfLayer)
-                        self.module_list.append(bn)
-                        conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=1, padding=0, bias=False,
-                                         stride=2)
-                        self.module_list.append(conv)
-                        bn3 = nn.BatchNorm2d(sizeOfLayer)
-                        self.module_list.append(bn)
-                        firstLayerInStage = False
-                    else:
-                        conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
-                        self.module_list.append(conv)
-                        bn = nn.BatchNorm2d(sizeOfLayer)
-                        self.module_list.append(bn)
-                        conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
-                        self.module_list.append(conv)
-                        bn = nn.BatchNorm2d(sizeOfLayer)
-                        self.module_list.append(bn)
-                        firstLayer = False
-                        firstLayerInStage = False
-            # 18
-            self.sizeOfFC = pow(2, numOfStages + 3)
-            print("\n self sizeofFC: ",self.sizeOfFC)
+            # conv 2
+            conv2 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+            self.module_list.append(conv2)
+
+            # bn3
+            bn3 = nn.BatchNorm2d(16)
+            self.module_list.append(bn3)
+
+            # conv 4
+            conv4 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+            self.module_list.append(conv4)
+
+            # bn5
+            bn5 = nn.BatchNorm2d(16)
+            self.module_list.append(bn5)
+
+            # conv 6
+            conv6 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+            self.module_list.append(conv6)
+
+            # bn7
+            bn7 = nn.BatchNorm2d(16)
+            self.module_list.append(bn7)
+
+            # conv 8
+            conv8 = nn.Conv2d(16, 16, kernel_size=3, padding=1, bias=False, stride=1)
+            self.module_list.append(conv8)
+
+            # bn 9
+            bn9 = nn.BatchNorm2d(16)
+            self.module_list.append(bn9)
+
+
+
+
+            # for stage in range(0, numOfStages):
+            #     firstLayerInStage = True
+            #     sizeOfLayer = pow(2, stage + 4)
+            #     # print("\nStage: ", stage, " ; ", sizeOfLayer)
+            #     for block in range(0, numOfBlocksinStage):
+            #         if firstLayerInStage and not firstLayer:
+            #             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1, bias=False,
+            #                              stride=2)
+            #             self.module_list.append(conv)
+            #             bn = nn.BatchNorm2d(sizeOfLayer)
+            #             self.module_list.append(bn)
+            #             conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
+            #             self.module_list.append(conv)
+            #             bn = nn.BatchNorm2d(sizeOfLayer)
+            #             self.module_list.append(bn)
+            #             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=1, padding=0, bias=False,
+            #                              stride=2)
+            #             self.module_list.append(conv)
+            #             bn3 = nn.BatchNorm2d(sizeOfLayer)
+            #             self.module_list.append(bn)
+            #             firstLayerInStage = False
+            #         else:
+            #             conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
+            #             self.module_list.append(conv)
+            #             bn = nn.BatchNorm2d(sizeOfLayer)
+            #             self.module_list.append(bn)
+            #             conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
+            #             self.module_list.append(conv)
+            #             bn = nn.BatchNorm2d(sizeOfLayer)
+            #             self.module_list.append(bn)
+            #             firstLayer = False
+            #             firstLayerInStage = False
+            # # 18
+            # self.sizeOfFC = pow(2, numOfStages + 3)
+            # print("\n self sizeofFC: ",self.sizeOfFC)
             avgpool = nn.AdaptiveAvgPool2d((1,1))
             self.module_list.append(avgpool)
             # 19
@@ -77,77 +112,177 @@ class N2N(nn.Module):
                     m.bias.data.zero_()
             print(self)
         else:
-            altList = []
-            paramList = []
-            for name, param in model.named_parameters():
-                # print("\nName: {}", name)
-                paramList.append(param)
-                # print("\nName: ", name)
-                i = int(name.split('.')[1])
-
-                if i % 2 == 0:
-                    altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
-                    # print("\nI:", i, " ; ", altList[-1])
-                elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
-                    altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
-                    # print("\nI:", i, " ; ", altList[-1])
-                elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
-                    altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
-                    # print("\nI:", i, " ; ", altList[-1])
-                elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
-                    altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
-                    # print("\nI:", i, " ; ", altList[-1])
-                elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
-                    altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-                    # print("\nI:", i, " ; ", altList[-1])
-                else:
-                    assert True, print("Hier fehlt noch was!!")
-            print("\naltList", altList)
             module_list1 = nn.ModuleList()
-            for i in range(0, len(altList)):
-                # print("\n>i: ", i)
-                name = altList[i]
-                param = paramList[i]
-                # print("\nName: ", name)
-                if 'conv' in name:
-                    dims = list(param.shape)
-                    in_chs = dims[1]
-                    out_chs = dims[0]
-                    # Search for the corresponding Conv Module in Module_list
-                    k = int(name.split('.')[1].split('v')[1])
-                    module = model.module_list[(k - 1) * 2]
-                    kernel_size = module.kernel_size
-                    stride = module.stride
-                    padding = module.padding
-                    bias = module.bias if module.bias is not None else False
-
-                    layer = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
+            i = 0
+            # conv1
+            module = model.module_list[i]
+            kernel_size = module.kernel_size
+            stride = module.stride
+            padding = module.padding
+            bias = module.bias if module.bias is not None else False
+            in_chs = module.weight.Size[1]
+            out_chs = module.weight.Size[0]
+            conv0 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
                                       bias=bias)
-                    print("\n>new Layer: ", layer, " ; ", param.shape)
-                    print("\nWeight Shape: ", module.weight.shape)
-                    layer.weight = module.weight
-                    module_list1.append(layer)
+            module_list1.append(conv0)
 
-                elif 'bn' in name and not 'bias' in name:
-                    layer = nn.BatchNorm2d(paramList[i].shape[0])
-                    print("\n>new Layer: ", layer)
-                    module_list1.append(layer)
-                elif 'bn' in name and 'bias' in name:
-                    print("\n>Name: ", name, " ; ", k)
-                    k = int(name.split('.')[1].split('n')[1])
-                    k1 = 2 * (k - 1) + 1
-                    # print("\nk1: ", k1)
-                    module = model.module_list[k1]
-                    module_list1[-1].bias = module.bias
-                    module_list1[-1].weight = module.weight
-                # else:
-                # print('\nelse: ', name)
+            # bn1
+            i = i + 1
+            module = model.module_list[i]
+            out_chs = module.weight.size[0]
+            bn1 = nn.BatchNorm2d()
+            module_list1.append(bn1)
+
+            # conv 2
+            i = i + 1
+            module = model.module_list[i]
+            kernel_size = module.kernel_size
+            stride = module.stride
+            padding = module.padding
+            bias = module.bias if module.bias is not None else False
+            in_chs = module.weight.Size[1]
+            out_chs = module.weight.Size[0]
+            conv2 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
+                                      bias=bias)
+            module_list1.append(conv2)
+
+            # bn3
+            i = i + 1
+            module = model.module_list[i]
+            out_chs = module.weight.size[0]
+            bn3 = nn.BatchNorm2d()
+            module_list1.append(bn3)
+
+            # conv 4
+            i = i + 1
+            module = model.module_list[i]
+            kernel_size = module.kernel_size
+            stride = module.stride
+            padding = module.padding
+            bias = module.bias if module.bias is not None else False
+            in_chs = module.weight.Size[1]
+            out_chs = module.weight.Size[0]
+            conv4 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
+                                      bias=bias)
+            module_list1.append(conv4)
+
+            # bn5
+            i = i + 1
+            module = model.module_list[i]
+            out_chs = module.weight.size[0]
+            bn5 = nn.BatchNorm2d()
+            module_list1.append(bn5)
+
+            # conv 6
+            i = i + 1
+            module = model.module_list[i]
+            kernel_size = module.kernel_size
+            stride = module.stride
+            padding = module.padding
+            bias = module.bias if module.bias is not None else False
+            in_chs = module.weight.Size[1]
+            out_chs = module.weight.Size[0]
+            conv6 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
+                                      bias=bias)
+            module_list1.append(conv6)
+
+            # bn7
+            i = i + 1
+            module = model.module_list[i]
+            out_chs = module.weight.size[0]
+            bn7 = nn.BatchNorm2d()
+            module_list1.append(bn7)
+
+            # conv 8
+            i = i + 1
+            module = model.module_list[i]
+            kernel_size = module.kernel_size
+            stride = module.stride
+            padding = module.padding
+            bias = module.bias if module.bias is not None else False
+            in_chs = module.weight.Size[1]
+            out_chs = module.weight.Size[0]
+            conv8 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
+                                      bias=bias)
+            module_list1.append(conv8)
+
+            # bn 9
+            i = i + 1
+            module = model.module_list[i]
+            out_chs = module.weight.size[0]
+            bn9 = nn.BatchNorm2d()
+            module_list1.append(bn9)
+
+            # altList = []
+            # paramList = []
+            # for name, param in model.named_parameters():
+            #     # print("\nName: {}", name)
+            #     paramList.append(param)
+            #     # print("\nName: ", name)
+            #     i = int(name.split('.')[1])
+            #
+            #     if i % 2 == 0:
+            #         altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
+            #         # print("\nI:", i, " ; ", altList[-1])
+            #     elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
+            #         altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
+            #         # print("\nI:", i, " ; ", altList[-1])
+            #     elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
+            #         altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
+            #         # print("\nI:", i, " ; ", altList[-1])
+            #     elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
+            #         altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
+            #         # print("\nI:", i, " ; ", altList[-1])
+            #     elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
+            #         altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
+            #         # print("\nI:", i, " ; ", altList[-1])
+            #     else:
+            #         assert True, print("Hier fehlt noch was!!")
+            # print("\naltList", altList)
+            # module_list1 = nn.ModuleList()
+            # for i in range(0, len(altList)):
+            #     # print("\n>i: ", i)
+            #     name = altList[i]
+            #     param = paramList[i]
+            #     # print("\nName: ", name)
+            #     if 'conv' in name:
+            #         dims = list(param.shape)
+            #         in_chs = dims[1]
+            #         out_chs = dims[0]
+            #         # Search for the corresponding Conv Module in Module_list
+            #         k = int(name.split('.')[1].split('v')[1])
+            #         module = model.module_list[(k - 1) * 2]
+            #         kernel_size = module.kernel_size
+            #         stride = module.stride
+            #         padding = module.padding
+            #         bias = module.bias if module.bias is not None else False
+            #
+            #         layer = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
+            #                           bias=bias)
+            #         print("\n>new Layer: ", layer, " ; ", param.shape)
+            #         print("\nWeight Shape: ", module.weight.shape)
+            #         layer.weight = module.weight
+            #         module_list1.append(layer)
+            #
+            #     elif 'bn' in name and not 'bias' in name:
+            #         layer = nn.BatchNorm2d(paramList[i].shape[0])
+            #         print("\n>new Layer: ", layer)
+            #         module_list1.append(layer)
+            #     elif 'bn' in name and 'bias' in name:
+            #         print("\n>Name: ", name, " ; ", k)
+            #         k = int(name.split('.')[1].split('n')[1])
+            #         k1 = 2 * (k - 1) + 1
+            #         # print("\nk1: ", k1)
+            #         module = model.module_list[k1]
+            #         module_list1[-1].bias = module.bias
+            #         module_list1[-1].weight = module.weight
+            #     # else:
+            #     # print('\nelse: ', name)
             avgpool = nn.AdaptiveAvgPool2d((1,1))
             module_list1.append(avgpool)
             module = model.module_list[-1]
-            self.sizeOfFC = paramList[-2].shape[1]
             print("\n self sizeofFC: ", self.sizeOfFC)
-            fc = nn.Linear(paramList[-2].shape[1], num_classes)
+            fc = nn.Linear(module.weight.size[1], num_classes)
             print("\nLinear: ", fc)
             fc.weight = module.weight
             fc.bias = module.bias
