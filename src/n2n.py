@@ -350,7 +350,7 @@ class N2N(nn.Module):
                     # conv2
                     x = self.module_list[i](_x)
                     if printNet:
-                        print("\nI: ", (i-2)/2+1, " ; ", self.module_list[i])
+                        print("\nI: ", int((i-1)/2), " ; ", self.module_list[i])
                         print("\nX Shape: ", x.shape)
                     i = i + 1
                     # bn2
