@@ -1,5 +1,4 @@
 import copy
-
 import torch
 import torch.nn as nn
 import math
@@ -58,9 +57,6 @@ class N2N(nn.Module):
             bn9 = nn.BatchNorm2d(16)
             self.module_list.append(bn9)
 
-
-
-
             # for stage in range(0, numOfStages):
             #     firstLayerInStage = True
             #     sizeOfLayer = pow(2, stage + 4)
@@ -96,7 +92,7 @@ class N2N(nn.Module):
             # # 18
             self.sizeOfFC = 16
             # print("\n self sizeofFC: ",self.sizeOfFC)
-            avgpool = nn.AdaptiveAvgPool2d((1,1))
+            avgpool = nn.AdaptiveAvgPool2d((1, 1))
             self.module_list.append(avgpool)
             # 19
             fc = nn.Linear(self.sizeOfFC, num_classes)
@@ -123,7 +119,7 @@ class N2N(nn.Module):
             in_chs = module.weight.shape[1]
             out_chs = module.weight.shape[0]
             conv0 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
-                                      bias=bias)
+                              bias=bias)
             module_list1.append(conv0)
 
             # bn1
@@ -143,7 +139,7 @@ class N2N(nn.Module):
             in_chs = module.weight.shape[1]
             out_chs = module.weight.shape[0]
             conv2 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
-                                      bias=bias)
+                              bias=bias)
             module_list1.append(conv2)
 
             # bn3
@@ -163,7 +159,7 @@ class N2N(nn.Module):
             in_chs = module.weight.shape[1]
             out_chs = module.weight.shape[0]
             conv4 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
-                                      bias=bias)
+                              bias=bias)
             module_list1.append(conv4)
 
             # bn5
@@ -183,7 +179,7 @@ class N2N(nn.Module):
             in_chs = module.weight.shape[1]
             out_chs = module.weight.shape[0]
             conv6 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
-                                      bias=bias)
+                              bias=bias)
             module_list1.append(conv6)
 
             # bn7
@@ -203,7 +199,7 @@ class N2N(nn.Module):
             in_chs = module.weight.shape[1]
             out_chs = module.weight.shape[0]
             conv8 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
-                                      bias=bias)
+                              bias=bias)
             module_list1.append(conv8)
 
             # bn 9
@@ -278,7 +274,7 @@ class N2N(nn.Module):
             #         module_list1[-1].weight = module.weight
             #     # else:
             #     # print('\nelse: ', name)
-            avgpool = nn.AdaptiveAvgPool2d((1,1))
+            avgpool = nn.AdaptiveAvgPool2d((1, 1))
             module_list1.append(avgpool)
             module = model.module_list[-1]
             self.sizeOfFC = module.weight.shape[1]
@@ -298,7 +294,7 @@ class N2N(nn.Module):
         # conv1
         x = self.module_list[0](x)
         if printNet:
-            print("\nI: 0 ; ", self.module_list[0])
+            print("\nI: 1 ; ", self.module_list[0])
             print("\nX Shape: ", x.shape)
         # bn1
         x = self.module_list[1](x)
@@ -314,7 +310,7 @@ class N2N(nn.Module):
                     # conv3
                     x = self.module_list[i](_x)
                     if printNet:
-                        print("\nI: ", i ," ; ", self.module_list[i])
+                        print("\nI: ", i, " ; ", self.module_list[i])
                     i = i + 1
                     # bn4
                     x = self.module_list[i](x)
@@ -332,7 +328,7 @@ class N2N(nn.Module):
                     if printNet:
                         print("\nI: ", i, " ; ", self.module_list[i])
                     i = i + 1
-                    #conv7
+                    # conv7
                     if printNet:
                         print("\n_x: ", _x.shape)
                     _x = self.module_list[i](_x)
@@ -354,26 +350,26 @@ class N2N(nn.Module):
                     # conv2
                     x = self.module_list[i](_x)
                     if printNet:
-                        print("\nI: ", i, " ; ", self.module_list[i])
+                        print("\nI: ", (i-2)/2, " ; ", self.module_list[i])
                         print("\nX Shape: ", x.shape)
                     i = i + 1
                     # bn2
                     x = self.module_list[i](x)
                     if printNet:
-                        print("\nI: ", i, " ; ", self.module_list[i])
+                        print("\nI: ", (i-2)/2, " ; ", self.module_list[i])
                         print("\nX Shape: ", x.shape)
                     i = i + 1
                     x = self.relu(x)
                     # conv3
                     x = self.module_list[i](x)
                     if printNet:
-                        print("\nI: ", i, " ; ", self.module_list[i])
+                        print("\nI: ", (i-2)/2, " ; ", self.module_list[i])
                         print("\nX Shape: ", x.shape)
                     i = i + 1
                     # bn3
                     x = self.module_list[i](x)
                     if printNet:
-                        print("\nI: ", i, " ; ", self.module_list[i])
+                        print("\nI: ", (i-2)/2, " ; ", self.module_list[i])
                         print("\nX Shape: ", x.shape)
                     i = i + 1
                     _x = _x + x
@@ -427,19 +423,19 @@ class N2N(nn.Module):
 
             for block in range(0, self.numOfBlocksinStage):
                 for layer in range(0, self.layersInBlock):
-                    if i%2 == 0:
-                        stagesO[stage].append(n(int(i+2/2)))
+                    if i % 2 == 0:
+                        stagesO[stage].append(n(int(i + 2 / 2)))
                         # print("\nI: ", i)
                         i = i + 1
                     else:
                         stagesI[stage].append(n(int(i + 2 / 2)))
                         # print("\nI: ", i)
                         i = i + 1
-        stageStr = 'fc' + str(i+1)
+        stageStr = 'fc' + str(i + 1)
         stagesI[-1].append(n(stageStr))
         print("\nStagesI: ", stagesI)
         print("\nStagesO: ", stagesO)
-        return stagesI ,stagesO
+        return stagesI, stagesO
 
     def getShareSameNodeLayers(self):
         sameNode = []
@@ -449,8 +445,8 @@ class N2N(nn.Module):
             for block in range(0, self.numOfBlocksinStage):
                 for layer in range(0, self.layersInBlock):
                     # print("\nI: ", i, " ; ", stage, " ; ", block, " ; ", layer)
-                    if i%2 == 0:
-                        sameNode.append((n(i), n(i+1)))
+                    if i % 2 == 0:
+                        sameNode.append((n(i), n(i + 1)))
                         i = i + 1
                     else:
                         i = i + 1
@@ -497,8 +493,6 @@ def num_flat_features(x):
     for s in size:
         num_features *= s
     return num_features
-
-
 
 
 def n(name):
