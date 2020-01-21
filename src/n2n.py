@@ -241,7 +241,7 @@ class N2N(nn.Module):
                         print("\nX Shape: ", x.shape)
                     i = i + 1
                     _x = _x + x
-                    x = self.relu(_x)
+                    _x = self.relu(_x)
                     first = False
             first = True
 
