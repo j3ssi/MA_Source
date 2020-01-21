@@ -245,9 +245,9 @@ class N2N(nn.Module):
                     first = False
             first = True
 
-        if isinstance(self.module_list[i], nn.AdaptiveAvgPool2d):
+        if isinstance(self.module_list[i], nn.AvgPool2d):
             try:
-                x = self.module_list[i](x)
+                x = self.module_list[i](_x)
                 if printNet:
                     print("\nI: ", i, " ; ", self.module_list[i])
                     print("\nX Shape: ", x.shape)
