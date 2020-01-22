@@ -173,8 +173,10 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
     # List of layers to remove
     rm_list = []
     altList = []
+    paramList = []
     for name, param in model.named_parameters():
         # print("\nName: {}", name)
+        paramList.append(param)
         i = int(name.split('.')[1])
         if i % 2 == 0:
             altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
@@ -196,10 +198,11 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
     # print("==================")
     # for key in optimizer.state:
     #    print("==> {}, {}, {}".format(key, type(key), optimizer.state[key]))
-    for name, param in model.named_parameters():
-        i = i + 1
+    # for name, param in model.named_parameters():
+    for i in range(0, len(altList)):
         name = altList[i]
-        # print("\nName: ", name)
+        param = paramList[i]
+        print("\nName: ", name)
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[param]['momentum_buffer']
 
