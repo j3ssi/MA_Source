@@ -161,9 +161,10 @@ class N2N(nn.Module):
             bias = module.bias if module.bias is not None else False
             in_chs = module.weight.shape[1]
             out_chs = module.weight.shape[0]
-            print("\n>Conv4: ", conv4)
             conv4 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
                               bias=bias)
+            print("\n>Conv4: ", conv4)
+
             module_list1.append(conv4)
 
             # bn5
