@@ -190,7 +190,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
         else:
             assert True, "Hier fehlt was!! "
-    # print("\n> altList: ", altList)
+    print("\n> altList: ", altList)
     i = -1
 
     # print("==================")
