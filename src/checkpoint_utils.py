@@ -194,7 +194,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
             assert True, "Hier fehlt was!! "
     print("\n> altList: ", altList)
     i = -1
-    print("\nParam: ", paramList)
+    # print("\nParam: ", paramList)
     # print("==================")
     # for key in optimizer.state:
     #    print("==> {}, {}, {}".format(key, type(key), optimizer.state[key]))
