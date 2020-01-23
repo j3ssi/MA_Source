@@ -255,7 +255,8 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
                 # print("[{}]: {} >> {}".format(name, dims, list(new_param.shape)))
 
         # Change parameters of non-neural computing layers (BN, biases)
-        else:
+        elif 'fc' not in name:
+
             print("\n>Name: ", name)
             w_name = name.replace('bias', 'weight').replace('bn', 'conv')
             print("\n>WName: ", w_name)
