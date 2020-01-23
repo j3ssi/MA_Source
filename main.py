@@ -34,7 +34,7 @@ import torchviz as tw
 
 from src import n2n
 from src.custom_arch import *
-from src.checkpoint_utils import makeSparse, genDenseModel
+from src.checkpoint_utils import makeSparse, genDenseModel, genDense
 from src.group_lasso_regs import get_group_lasso_global, get_group_lasso_group
 from src.utils import AverageMeter, accuracy
 
