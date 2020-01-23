@@ -298,7 +298,7 @@ class N2N(nn.Module):
     def forward(self, x):
         first = False
         printNet = False
-        # conv0
+        # conv1
         x = self.module_list[0](x)
         if printNet:
             print("\nI: 1 ; ", self.module_list[0])
@@ -314,42 +314,41 @@ class N2N(nn.Module):
         x = self.module_list[2](_x)
         if printNet:
             print("\nI: 2 ; ", self.module_list[2])
-        # bn3
+        # bn2
         x = self.module_list[3](x)
         if printNet:
             print("\nI: 3 ; ", self.module_list[3])
         x = self.relu(x)
-        # conv4
+        # conv3
         x = self.module_list[4](x)
         if printNet:
             print("\nI: 4 ; ", self.module_list[4])
-        # bn5
+        # bn3
         x = self.module_list[5](x)
         if printNet:
             print("\nI: 5 ; ", self.module_list[5])
+        _x =_x + x
+        _x = self.relu(_x)
 
-
-        # conv6
+        # conv4
         x = self.module_list[6](_x)
         if printNet:
             print("\nI: 6 ; ", self.module_list[6])
-        # bn7
+        # bn4
         x = self.module_list[7](x)
         if printNet:
             print("\nI: 7 ; ", self.module_list[7])
         x = self.relu(x)
-        # conv8
+        # conv5
         x = self.module_list[8](x)
         if printNet:
             print("\nI: 8 ; ", self.module_list[8])
-        # bn9
+        # bn5
         x = self.module_list[9](x)
         if printNet:
             print("\nI: 9 ; ", self.module_list[9])
-
-
-
-
+        _x = _x + x
+        _x = self.relu(_x)
 
         # i = 2
         # for stage in range(0, self.numOfStages):
@@ -431,7 +430,8 @@ class N2N(nn.Module):
                 x = self.module_list[10](_x)
                 if printNet:
                     print("\nI: ", 10, " ; ", self.module_list[10])
-                    # print("\nX Shape: ", x.shape)
+
+         # print("\nX Shape: ", x.shape)
                 x = x.view(-1, self.sizeOfFC)
 
 
