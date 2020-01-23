@@ -202,9 +202,10 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
     # for key in optimizer.state:
     #    print("==> {}, {}, {}".format(key, type(key), optimizer.state[key]))
     # for name, param in model.named_parameters():
-    for i in range(0, len(altList)):
+    i = -1
+    for anem ,param in model.named_parameters():
+        i = i + 1
         name = altList[i]
-        param = paramList[i]
         print("\nName: ", name)
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[param]['momentum_buffer']
@@ -222,6 +223,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
 
             # Enlist layers with zero channels for removal
             if num_in_ch == 0 or num_out_ch == 0:
+                print("\n RM: ", name)
                 rm_list.append(name)
             else:
                 # Generate a new dense tensor and replace (Convolution layer)
@@ -248,13 +250,15 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
                     assert True, "Wrong tensor dimension: {} at layer {}".format(dims, name)
 
                 param.data = new_param
-                optimizer.state[param]['momentum_buffer'] = new_mom_param
+                optimizer.state[param]['momentum_buffer'].data = new_mom_param
 
                 # print("[{}]: {} >> {}".format(name, dims, list(new_param.shape)))
 
         # Change parameters of non-neural computing layers (BN, biases)
         else:
+            print("\n>Name: ", name)
             w_name = name.replace('bias', 'weight').replace('bn', 'conv')
+            print("\n>Name: ", w_name)
             dense_out_ch_idxs = dense_chs[w_name]['out_chs']
             num_out_ch = len(dense_out_ch_idxs)
 
@@ -274,6 +278,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
     # print(model)
     # Change moving_mean and moving_var of BN
     for name, buf in model.named_buffers():
+        print("\nBuffer Name: ", name)
         if 'running_mean' in name or 'running_var' in name:
             i = int(name.split('.')[1])
             w_name = 'module.conv' + str(int((i + 1) / 2)) + '.weight'
