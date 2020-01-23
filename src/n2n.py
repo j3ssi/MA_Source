@@ -432,17 +432,23 @@ class N2N(nn.Module):
                     print("\nI: ", 10, " ; ", self.module_list[10])
 
          # print("\nX Shape: ", x.shape)
-                x = x.view(-1, self.sizeOfFC)
+                x = x.view(-1, x.size(1))
 
 
             except RuntimeError:
                 print("\n \n Oops!!!: ")
                 print("AvgPool")
+        else:
+            print("\n \n Oops!!!: ")
+            print("AvgPool")
         if isinstance(self.module_list[11], nn.Linear):
             x = self.module_list[11](x)
             if printNet:
                 print("\nfc", 11, " ; ", x.shape)
                 # print("\nX Shape: ", x.shape)
+        else:
+            print("\n \n Oops!!!: ")
+            print("Linear")
         return x
 
     def getResidualPath(self):
