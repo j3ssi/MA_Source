@@ -298,7 +298,7 @@ class N2N(nn.Module):
     def forward(self, x):
         first = False
         printNet = False
-        # conv1
+        # conv0
         x = self.module_list[0](x)
         if printNet:
             print("\nI: 1 ; ", self.module_list[0])
@@ -309,97 +309,139 @@ class N2N(nn.Module):
             print("\nI: 1 ; ", self.module_list[1])
             print("\nX Shape: ", x.shape)
         _x = self.relu(x)
-        i = 2
-        for stage in range(0, self.numOfStages):
-            for block in range(0, self.numOfBlocksinStage):
-                if first and stage > 0:
-                    print("\n\n\nDRIN!!!!!")
-                    # conv3
-                    x = self.module_list[i](_x)
-                    if printNet:
-                        print("\nI: ", i, " ; ", self.module_list[i])
-                    i = i + 1
-                    # bn4
-                    x = self.module_list[i](x)
-                    if printNet:
-                        print("\nI: ", i, " ; ", self.module_list[i])
-                    i = i + 1
-                    x = self.relu(x)
-                    # conv5
-                    x = self.module_list[i](x)
-                    if printNet:
-                        print("\nI: ", i, " ; ", self.module_list[i])
-                    i = i + 1
-                    # bn6
-                    x = self.module_list[i](x)
-                    if printNet:
-                        print("\nI: ", i, " ; ", self.module_list[i])
-                    i = i + 1
-                    # conv7
-                    if printNet:
-                        print("\n_x: ", _x.shape)
-                    _x = self.module_list[i](_x)
-                    if printNet:
-                        print("\n_x: ", _x.shape)
-                        print("\nI: ", i, " ; ", self.module_list[i])
-                    i = i + 1
-                    # bn8
-                    _x = self.module_list[i](_x)
-                    if printNet:
-                        print("\nI: ", i, " ; ", self.module_list[i])
-                    i = i + 1
-                    if printNet:
-                        print("\n_x: ", _x.shape, " : x: ", x.shape)
-                    _x = _x + x
-                    _x = self.relu(_x)
-                    first = False
-                else:
-                    # conv2
-                    x = self.module_list[i](_x)
-                    if printNet:
-                        print("\nI: ", int((i-2)/2+2), " ; ", self.module_list[i])
-                        print("\nX Shape: ", x.shape)
-                    i = i + 1
-                    # bn2
-                    x = self.module_list[i](x)
-                    if printNet:
-                        print("\nI: ", int((i-2)/2)+2, " ; ", self.module_list[i])
-                        print("\nX Shape: ", x.shape)
-                    i = i + 1
-                    x = self.relu(x)
-                    # conv3
-                    x = self.module_list[i](x)
-                    if printNet:
-                        print("\nI: ", int((i-2)/2+2), " ; ", self.module_list[i])
-                        print("\nX Shape: ", x.shape)
-                    i = i + 1
-                    # bn3
-                    x = self.module_list[i](x)
-                    if printNet:
-                        print("\nI: ", int((i-2)/2)+2, " ; ", self.module_list[i])
-                        print("\nX Shape: ", x.shape)
-                    i = i + 1
-                    _x = _x + x
-                    _x = self.relu(_x)
-                    first = False
-            first = True
 
-        if isinstance(self.module_list[i], nn.AdaptiveAvgPool2d):
+        # conv2
+        x = self.module_list[2](_x)
+        if printNet:
+            print("\nI: 2 ; ", self.module_list[2])
+        # bn3
+        x = self.module_list[3](x)
+        if printNet:
+            print("\nI: 3 ; ", self.module_list[3])
+        x = self.relu(x)
+        # conv4
+        x = self.module_list[4](x)
+        if printNet:
+            print("\nI: 4 ; ", self.module_list[4])
+        # bn5
+        x = self.module_list[5](x)
+        if printNet:
+            print("\nI: 5 ; ", self.module_list[5])
+
+
+        # conv6
+        x = self.module_list[6](_x)
+        if printNet:
+            print("\nI: 6 ; ", self.module_list[6])
+        # bn7
+        x = self.module_list[7](x)
+        if printNet:
+            print("\nI: 7 ; ", self.module_list[7])
+        x = self.relu(x)
+        # conv8
+        x = self.module_list[8](x)
+        if printNet:
+            print("\nI: 8 ; ", self.module_list[8])
+        # bn9
+        x = self.module_list[9](x)
+        if printNet:
+            print("\nI: 9 ; ", self.module_list[9])
+
+
+
+
+
+        # i = 2
+        # for stage in range(0, self.numOfStages):
+        #     for block in range(0, self.numOfBlocksinStage):
+        #         if first and stage > 0:
+        #             print("\n\n\nDRIN!!!!!")
+        #             # conv3
+        #             x = self.module_list[i](_x)
+        #             if printNet:
+        #                 print("\nI: ", i, " ; ", self.module_list[i])
+        #             i = i + 1
+        #             # bn4
+        #             x = self.module_list[i](x)
+        #             if printNet:
+        #                 print("\nI: ", i, " ; ", self.module_list[i])
+        #             i = i + 1
+        #             x = self.relu(x)
+        #             # conv5
+        #             x = self.module_list[i](x)
+        #             if printNet:
+        #                 print("\nI: ", i, " ; ", self.module_list[i])
+        #             i = i + 1
+        #             # bn6
+        #             x = self.module_list[i](x)
+        #             if printNet:
+        #                 print("\nI: ", i, " ; ", self.module_list[i])
+        #             i = i + 1
+        #             # conv7
+        #             if printNet:
+        #                 print("\n_x: ", _x.shape)
+        #             _x = self.module_list[i](_x)
+        #             if printNet:
+        #                 print("\n_x: ", _x.shape)
+        #                 print("\nI: ", i, " ; ", self.module_list[i])
+        #             i = i + 1
+        #             # bn8
+        #             _x = self.module_list[i](_x)
+        #             if printNet:
+        #                 print("\nI: ", i, " ; ", self.module_list[i])
+        #             i = i + 1
+        #             if printNet:
+        #                 print("\n_x: ", _x.shape, " : x: ", x.shape)
+        #             _x = _x + x
+        #             _x = self.relu(_x)
+        #             first = False
+        #         else:
+        #             # conv2
+        #             x = self.module_list[i](_x)
+        #             if printNet:
+        #                 print("\nI: ", int((i-2)/2+2), " ; ", self.module_list[i])
+        #                 print("\nX Shape: ", x.shape)
+        #             i = i + 1
+        #             # bn2
+        #             x = self.module_list[i](x)
+        #             if printNet:
+        #                 print("\nI: ", int((i-2)/2)+2, " ; ", self.module_list[i])
+        #                 print("\nX Shape: ", x.shape)
+        #             i = i + 1
+        #             x = self.relu(x)
+        #             # conv3
+        #             x = self.module_list[i](x)
+        #             if printNet:
+        #                 print("\nI: ", int((i-2)/2+2), " ; ", self.module_list[i])
+        #                 print("\nX Shape: ", x.shape)
+        #             i = i + 1
+        #             # bn3
+        #             x = self.module_list[i](x)
+        #             if printNet:
+        #                 print("\nI: ", int((i-2)/2)+2, " ; ", self.module_list[i])
+        #                 print("\nX Shape: ", x.shape)
+        #             i = i + 1
+        #             _x = _x + x
+        #             _x = self.relu(_x)
+        #             first = False
+        #     first = True
+
+        if isinstance(self.module_list[10], nn.AdaptiveAvgPool2d):
             try:
-                x = self.module_list[i](_x)
+                x = self.module_list[10](_x)
                 if printNet:
-                    print("\nI: ", i, " ; ", self.module_list[i])
+                    print("\nI: ", 10, " ; ", self.module_list[10])
                     # print("\nX Shape: ", x.shape)
                 x = x.view(-1, self.sizeOfFC)
-                i = i + 1
+
 
             except RuntimeError:
                 print("\n \n Oops!!!: ")
                 print("AvgPool")
-        if isinstance(self.module_list[i], nn.Linear):
-            x = self.module_list[i](x)
+        if isinstance(self.module_list[11], nn.Linear):
+            x = self.module_list[11](x)
             if printNet:
-                print("\nfc", i, " ; ", x.shape)
+                print("\nfc", 11, " ; ", x.shape)
                 # print("\nX Shape: ", x.shape)
         return x
 
