@@ -248,7 +248,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
                     assert True, "Wrong tensor dimension: {} at layer {}".format(dims, name)
 
                 param.data = new_param
-                optimizer.state[param]['momentum_buffer'].data = new_mom_param
+                optimizer.state[param]['momentum_buffer'] = new_mom_param
 
                 # print("[{}]: {} >> {}".format(name, dims, list(new_param.shape)))
 
@@ -291,66 +291,66 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
     - Remove model parameters
     - Remove parameters/states in optimizer
     """
-#
-#     def getLayerIdx(lyr_name):
-#         if 'conv' in lyr_name:
-#             conv_id = dense_chs[lyr_name + '.weight']['idx']
-#             return [3 * (conv_id - 1)], [lyr_name + '.weight']
-#         elif 'bn' in lyr_name:
-#             conv_name = lyr_name.replace('bn', 'conv')
-#             conv_id = dense_chs[conv_name + '.weight']['idx']
-#             return [3 * conv_id - 1, 3 * conv_id - 2], [lyr_name + '.bias', lyr_name + '.weight']
-#
-#     if len(rm_list) > 0:
-#         print("\nRM RM\n")
-#         rm_lyrs = []
-#         for name in rm_list:
-#             print("\n>Name: ", name)
-#             rm_lyr = n2n.getRmLayers(name, model)
-#             if any(i for i in rm_lyr if i not in rm_lyrs):
-#                 rm_lyrs.extend(rm_lyr)
-#
-#         # Remove model parameters
-#         for rm_lyr in rm_lyrs:
-#             model.del_param_in_flat_arch(rm_lyr)
-#
-#         idxs, rm_params = [], []
-#         for rm_lyr in rm_lyrs:
-#             idx, rm_param = getLayerIdx(rm_lyr)
-#             idxs.extend(idx)
-#             rm_params.extend(rm_param)
-#
-#         # Remove optimizer states
-#         for name, param in model.named_parameters():
-#             for rm_param in rm_params:
-#                 if name == rm_param:
-#                     del optimizer.state[param]
-#                     print("\n Del", name)
-#         # Sanity check: Print out optimizer parameters before change
-#         print("[INFO] ==== Size of parameter group (Before)")
-#         for g in optimizer.param_groups:
-#             for idx, g2 in enumerate(g['params']):
-#                 print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
-#
-#         # Remove optimizer parameters
-#         # Adjuster: Absolute parameter location changes after each removal
-#         for idx_adjuster, idx in enumerate(sorted(idxs)):
-#             del optimizer.param_groups[0]['params'][idx - idx_adjuster]
-#             print("\n Del", name)
-#
-#     # Sanity check => Print out optimizer parameters after change
-#     print("[INFO] ==== Size of parameter group (After)")
-#     for g in optimizer.param_groups:
-#         for idx, g2 in enumerate(g['params']):
-#             print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
-#
-# # Sanity check => Check the changed parameters
-# # for name, param in model.named_parameters():
-# #  print("===>>> [{}]: {}".format(name, list(param.shape)))
-#
-# # Sanity check => Check the changed buffers
-# # for name, param in model.named_parameters():
-# #  print("===<<< [{}]: {}".format(name, optimizer.state[param]['momentum_buffer'].shape))
+
+    def getLayerIdx(lyr_name):
+        if 'conv' in lyr_name:
+            conv_id = dense_chs[lyr_name + '.weight']['idx']
+            return [3 * (conv_id - 1)], [lyr_name + '.weight']
+        elif 'bn' in lyr_name:
+            conv_name = lyr_name.replace('bn', 'conv')
+            conv_id = dense_chs[conv_name + '.weight']['idx']
+            return [3 * conv_id - 1, 3 * conv_id - 2], [lyr_name + '.bias', lyr_name + '.weight']
+
+    if len(rm_list) > 0:
+        print("\nRM RM\n")
+        rm_lyrs = []
+        for name in rm_list:
+            print("\n>Name: ", name)
+            rm_lyr = n2n.getRmLayers(name, model)
+            if any(i for i in rm_lyr if i not in rm_lyrs):
+                rm_lyrs.extend(rm_lyr)
+
+        # Remove model parameters
+        for rm_lyr in rm_lyrs:
+            model.del_param_in_flat_arch(rm_lyr)
+
+        idxs, rm_params = [], []
+        for rm_lyr in rm_lyrs:
+            idx, rm_param = getLayerIdx(rm_lyr)
+            idxs.extend(idx)
+            rm_params.extend(rm_param)
+
+        # Remove optimizer states
+        for name, param in model.named_parameters():
+            for rm_param in rm_params:
+                if name == rm_param:
+                    del optimizer.state[param]
+                    print("\n Del", name)
+        # Sanity check: Print out optimizer parameters before change
+        print("[INFO] ==== Size of parameter group (Before)")
+        for g in optimizer.param_groups:
+            for idx, g2 in enumerate(g['params']):
+                print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
+
+        # Remove optimizer parameters
+        # Adjuster: Absolute parameter location changes after each removal
+        for idx_adjuster, idx in enumerate(sorted(idxs)):
+            del optimizer.param_groups[0]['params'][idx - idx_adjuster]
+            print("\n Del", name)
+
+    # Sanity check => Print out optimizer parameters after change
+    print("[INFO] ==== Size of parameter group (After)")
+    for g in optimizer.param_groups:
+        for idx, g2 in enumerate(g['params']):
+            print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
+
+# Sanity check => Check the changed parameters
+# for name, param in model.named_parameters():
+#  print("===>>> [{}]: {}".format(name, list(param.shape)))
+
+# Sanity check => Check the changed buffers
+# for name, param in model.named_parameters():
+#  print("===<<< [{}]: {}".format(name, optimizer.state[param]['momentum_buffer'].shape))
 
 
 
