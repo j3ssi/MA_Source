@@ -171,7 +171,7 @@ def main():
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):
                 # Force weights under threshold to zero
-                dense_chs, chs_map = makeSparse(model, args.threshold,
+                dense_chs, chs_map = makeSparse(optimizer, model, args.threshold,
                                                 is_gating=args.is_gating)
                 genDenseModel(model, dense_chs, optimizer, 'cifar')
                 model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False,
