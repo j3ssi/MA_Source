@@ -108,10 +108,10 @@ class N2N(nn.Module):
                     m.bias.data.zero_()
             print(self)
         else:
-            module_list1 = nn.ModuleList()
-            i = 0
+            module_list = model.module_list
+            self.module_list = nn.ModuleList()
             # conv1
-            module = model.module_list[0]
+            module = module_list[0]
             kernel_size = module.kernel_size
             stride = module.stride
             padding = module.padding
@@ -121,19 +121,17 @@ class N2N(nn.Module):
             conv0 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
                               bias=bias)
             print("\n>Conv0: ", conv0)
-            module_list1.append(conv0)
+            self.module_list.append(conv0)
 
             # bn1
-            i = i + 1
-            module = model.module_list[1]
+            module = module_list[1]
             out_chs = module.weight.shape[0]
             bn1 = nn.BatchNorm2d(out_chs)
             print("\n>Bn1: ",bn1)
-            module_list1.append(bn1)
+            self.module_list.append(bn1)
 
             # conv 2
-            i = i + 1
-            module = model.module_list[2]
+            module = module_list[2]
             kernel_size = module.kernel_size
             stride = module.stride
             padding = module.padding
@@ -143,18 +141,16 @@ class N2N(nn.Module):
             conv2 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
                               bias=bias)
             print("\n>Conv2: ", conv2)
-            module_list1.append(conv2)
+            self.module_list.append(conv2)
             # bn2
-            i = i + 1
-            module = model.module_list[3]
+            module = module_list[3]
             out_chs = module.weight.shape[0]
             bn3 = nn.BatchNorm2d(out_chs)
             print("\nBn3: ", bn3)
-            module_list1.append(bn3)
+            self.module_list.append(bn3)
 
             # conv 3
-            i = i + 1
-            module = model.module_list[4]
+            module = module_list[4]
             kernel_size = module.kernel_size
             stride = module.stride
             padding = module.padding
@@ -165,18 +161,16 @@ class N2N(nn.Module):
                               bias=bias)
             print("\n>Conv4: ", conv4)
 
-            module_list1.append(conv4)
+            self.module_list.append(conv4)
 
             # bn3
-            i = i + 1
-            module = model.module_list[5]
+            module = module_list[5]
             out_chs = module.weight.shape[0]
             bn5 = nn.BatchNorm2d(out_chs)
-            module_list1.append(bn5)
+            self.module_list.append(bn5)
             print("\n>Bn5: ", bn5)
             # conv 4
-            i = i + 1
-            module = model.module_list[6]
+            module = module_list[6]
             kernel_size = module.kernel_size
             stride = module.stride
             padding = module.padding
@@ -186,18 +180,16 @@ class N2N(nn.Module):
             conv6 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
                               bias=bias)
             print("\n>Conv6: ", conv6)
-            module_list1.append(conv6)
+            self.module_list.append(conv6)
 
             # bn4
-            i = i + 1
-            module = model.module_list[7]
+            module = module_list[7]
             out_chs = module.weight.shape[0]
             bn7 = nn.BatchNorm2d(out_chs)
-            module_list1.append(bn7)
+            self.module_list.append(bn7)
             print("\n>Bn7: ", bn7)
             # conv 5
-            i = i + 1
-            module = model.module_list[8]
+            module = module_list[8]
             kernel_size = module.kernel_size
             stride = module.stride
             padding = module.padding
@@ -207,14 +199,13 @@ class N2N(nn.Module):
             conv8 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
                               bias=bias)
             print("\n>Conv8: ", conv8)
-            module_list1.append(conv8)
+            self.module_list.append(conv8)
 
             # bn 5
-            i = i + 1
-            module = model.module_list[9]
+            module = module_list[9]
             out_chs = module.weight.shape[0]
             bn9 = nn.BatchNorm2d(out_chs)
-            module_list1.append(bn9)
+            self.module_list.append(bn9)
             print("\n>Bn9: ", bn9)
             # altList = []
             # paramList = []
@@ -282,16 +273,15 @@ class N2N(nn.Module):
             #     # else:
             #     # print('\nelse: ', name)
             avgpool = nn.AdaptiveAvgPool2d((1, 1))
-            module_list1.append(avgpool)
-            module = model.module_list[-1]
+            self.module_list.append(avgpool)
+            module = module_list[-1]
             self.sizeOfFC = module.weight.shape[1]
             # print("\n self sizeofFC: ", self.sizeOfFC)
             fc = nn.Linear(module.weight.shape[1], num_classes)
             # print("\nLinear: ", fc)
             fc.weight = module.weight
             fc.bias = module.bias
-            module_list1.append(fc)
-            self.module_list = module_list1
+            self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
             # print("\nnew Model: ", self)
 

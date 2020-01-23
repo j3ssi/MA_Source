@@ -35,6 +35,7 @@ def makeSparse(optimizer, model, threshold, is_gating=False, reconf=True):
     # alternative List to find the layers by name and not the stupid index of module_list
     altList = []
     for name, param in model.named_parameters():
+
         mom_param = optimizer.state[param]['momentum_buffer']
 
         i = int(name.split('.')[1])
