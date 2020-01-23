@@ -258,7 +258,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
         else:
             print("\n>Name: ", name)
             w_name = name.replace('bias', 'weight').replace('bn', 'conv')
-            print("\n>Name: ", w_name)
+            print("\n>WName: ", w_name)
             dense_out_ch_idxs = dense_chs[w_name]['out_chs']
             num_out_ch = len(dense_out_ch_idxs)
 
