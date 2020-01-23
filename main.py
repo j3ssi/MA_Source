@@ -178,10 +178,10 @@ def main():
                                 model)
                 model.cuda()
 
-            best_acc = max(test_acc, best_acc)
+            # best_acc = max(test_acc, best_acc)
             print(model)
         print('Best acc:')
-        print(best_acc)
+        # print(best_acc)
         if (args.deeper):
             print("\n\nnow deeper")
             # deeper student training
