@@ -18,7 +18,7 @@ import os
 
 import torchvision
 
-os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
+# os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
 import argparse
 import time
 import random
