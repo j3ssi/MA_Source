@@ -15,15 +15,11 @@
  limitations under the License.
 """
 import os
-
-import torchvision
-
-# os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
 import argparse
 import time
 import random
 import torch
-# import torch.nn as nn
+import torch.nn as nn
 import torch.optim as optim
 import torch.utils.data as data
 import torchvision.transforms as transforms
@@ -44,7 +40,7 @@ parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 # Baseline
 parser.add_argument('-j', '--workers', default=4, type=int, metavar='N',
                     help='number of data loading workers (default: 4)')
-parser.add_argument('--epochs', default=300, type=int, metavar='N',
+parser.add_argument('--epochs', default=8, type=int, metavar='N',
                     help='number of total epochs to run')
 parser.add_argument('--train_batch', default=128, type=int, metavar='N',
                     help='train batchsize')
@@ -242,8 +238,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             # Auto-tune the group-lasso coefficient @first training iteration
             coeff_dir = os.path.join(args.coeff_container, 'cifar')
             if init_batch:
-                args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
-                        lasso_penalty * (1 - args.var_group_lasso_coeff))
+                args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (lasso_penalty *
+                                                                                   (1 - args.var_group_lasso_coeff))
                 grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
 
                 if not os.path.exists(coeff_dir):
