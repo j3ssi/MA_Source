@@ -109,6 +109,7 @@ class N2N(nn.Module):
         else:
             module_list = model.module_list
             self.module_list = nn.ModuleList()
+            print("\n\n>Module List: ", len(self.module_list))
             # conv1
             module = module_list[0]
             kernel_size = module.kernel_size
