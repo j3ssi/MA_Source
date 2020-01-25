@@ -172,6 +172,8 @@ def main():
                 genDenseModel(model, dense_chs, optimizer, 'cifar')
                 model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False,
                                 model)
+                optimizer = optim.SGD(model.parameters(), lr = get_lr(optimizer), momentum = get_momentum(optimizer),
+                                      weight_decay = get_weight_decay(optimizer))
                 model.cuda()
 
             best_acc = max(test_acc, best_acc)
@@ -339,15 +341,6 @@ def test(testloader, model, criterion, epoch, use_cuda):
 
     epoch_time = batch_time.avg * len(testloader)  # Time for total test dataset
     return (losses.avg, top1.avg, epoch_time)
-
-
-#
-# def save_checkpoint(state, is_best, checkpoint='checkpoint', filename='checkpoint.pth.tar'):
-#     filepath = os.path.join(checkpoint, filename)
-#     torch.save(state, filepath)
-#     if is_best:
-#         shutil.copyfile(filepath, os.path.join(checkpoint, 'model_best.pth.tar'))
-
 
 def adjust_learning_rate(optimizer, epoch):
     global state
