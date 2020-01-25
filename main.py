@@ -270,10 +270,10 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        # for name, param in model.named_parameters():
-        #     # Get Momentum parameters to adjust
-        #     print(name)
-        #     mom_param = optimizer.state[param]['momentum_buffer']
+        for name, param in model.named_parameters():
+            # Get Momentum parameters to adjust
+            print(name)
+            mom_param = optimizer.state[param]['momentum_buffer']
 
         # measure elapsed time
         batch_time.update(time.time() - end - data_load_time)

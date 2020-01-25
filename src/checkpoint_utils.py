@@ -136,7 +136,6 @@ def makeSparse(optimizer, model, threshold, is_gating=False, reconf=True):
             if lyr_name in dense_chs:
                 edges = list(set().union(edges, dense_chs[lyr_name]['in_chs']))
         for lyr_name in stagesO[idx]:
-
             # print("\nLyr_name: ", lyr_name)
             if lyr_name in dense_chs:
                 edges = list(set().union(edges, dense_chs[lyr_name]['out_chs']))
@@ -174,10 +173,8 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
     # List of layers to remove
     rm_list = []
     altList = []
-    paramList = []
     for name, param in model.named_parameters():
         # print("\nName: {}", name)
-        paramList.append(param)
         i = int(name.split('.')[1])
         if i % 2 == 0:
             altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
@@ -200,8 +197,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
     # for key in optimizer.state:
     #    print("==> {}, {}, {}".format(key, type(key), optimizer.state[key]))
     # for name, param in model.named_parameters():
-    i = -1
-    for name ,param in model.named_parameters():
+    for name, param in model.named_parameters():
         i = i + 1
         name = altList[i]
         # print("\nName: ", name)
