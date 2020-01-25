@@ -227,7 +227,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         loss = criterion(outputs, targets)
 
         # lasso penalty
-        init_batch = batch_idx == 0 and epoch == 1
+        init_batch = batch_idx == 0 # and epoch == 1
 
         if args.en_group_lasso:
             if args.global_group_lasso:
@@ -269,7 +269,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         # compute gradient and do SGD step
         optimizer.zero_grad()
         loss.backward()
-        if not init_batch:
+        if not init_batch and not :
             for name, param in model.named_parameters():
                 # Get Momentum parameters to adjust
                 print("\n\nNameBefore, Epoch, BatchIdx: ", name, epoch, batch_idx)
