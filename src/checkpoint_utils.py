@@ -29,7 +29,7 @@ Make only the (conv, FC) layer parameters sparse
 """
 
 
-def makeSparse(optimizer, model, threshold, is_gating=False, reconf=False):
+def makeSparse(optimizer, model, threshold, is_gating=False, reconf=True):
     print("[INFO] Force the sparse filters to zero...")
     dense_chs, chs_temp, idx = {}, {}, 0
     # alternative List to find the layers by name and not the stupid index of module_list
@@ -85,7 +85,8 @@ def makeSparse(optimizer, model, threshold, is_gating=False, reconf=False):
             dense_chs[name] = {'in_chs': dense_in_chs, 'out_chs': dense_out_chs, 'idx': idx}
 
             # print the inter-layer tensor dim [out_ch, in_ch, feature_h, feature_w]
-            if not reconf:
+            if reconf:
+                print("\n\n Reconf: ")
                 if 'fc' in name:
                     print("[{}]: [{}, {}]".format(name,
                                                   len(dense_chs[name]['out_chs']),
@@ -192,7 +193,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
         else:
             assert True, "Hier fehlt was!! "
-    print("\n> altList: ", altList)
+    # print("\n> altList: ", altList)
     i = -1
     # print("\nParam: ", paramList)
     # print("==================")
@@ -203,7 +204,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
     for anem ,param in model.named_parameters():
         i = i + 1
         name = altList[i]
-        print("\nName: ", name)
+        # print("\nName: ", name)
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[param]['momentum_buffer']
 
