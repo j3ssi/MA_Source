@@ -107,171 +107,172 @@ class N2N(nn.Module):
                     m.bias.data.zero_()
             print(self)
         else:
-            module_list = model.module_list
-            self.module_list = nn.ModuleList()
-            print("\n\n>Module List: ", len(self.module_list))
-            # conv1
-            module = module_list[0]
-            kernel_size = module.kernel_size
-            stride = module.stride
-            padding = module.padding
-            bias = module.bias if module.bias is not None else False
-            in_chs = module.weight.shape[1]
-            out_chs = module.weight.shape[0]
-            conv0 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
-                              bias=bias)
-            print("\n>Conv0: ", conv0)
-            self.module_list.append(conv0)
-
-            # bn1
-            module = module_list[1]
-            out_chs = module.weight.shape[0]
-            bn1 = nn.BatchNorm2d(out_chs)
-            print("\n>Bn1: ",bn1)
-            self.module_list.append(bn1)
-
-            # conv 2
-            module = module_list[2]
-            kernel_size = module.kernel_size
-            stride = module.stride
-            padding = module.padding
-            bias = module.bias if module.bias is not None else False
-            in_chs = module.weight.shape[1]
-            out_chs = module.weight.shape[0]
-            conv2 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
-                              bias=bias)
-            print("\n>Conv2: ", conv2)
-            self.module_list.append(conv2)
-            # bn2
-            module = module_list[3]
-            out_chs = module.weight.shape[0]
-            bn3 = nn.BatchNorm2d(out_chs)
-            print("\nBn3: ", bn3)
-            self.module_list.append(bn3)
-
-            # conv 3
-            module = module_list[4]
-            kernel_size = module.kernel_size
-            stride = module.stride
-            padding = module.padding
-            bias = module.bias if module.bias is not None else False
-            in_chs = module.weight.shape[1]
-            out_chs = module.weight.shape[0]
-            conv4 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
-                              bias=bias)
-            print("\n>Conv4: ", conv4)
-
-            self.module_list.append(conv4)
-
-            # bn3
-            module = module_list[5]
-            out_chs = module.weight.shape[0]
-            bn5 = nn.BatchNorm2d(out_chs)
-            self.module_list.append(bn5)
-            print("\n>Bn5: ", bn5)
-            # conv 4
-            module = module_list[6]
-            kernel_size = module.kernel_size
-            stride = module.stride
-            padding = module.padding
-            bias = module.bias if module.bias is not None else False
-            in_chs = module.weight.shape[1]
-            out_chs = module.weight.shape[0]
-            conv6 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
-                              bias=bias)
-            print("\n>Conv6: ", conv6)
-            self.module_list.append(conv6)
-
-            # bn4
-            module = module_list[7]
-            out_chs = module.weight.shape[0]
-            bn7 = nn.BatchNorm2d(out_chs)
-            self.module_list.append(bn7)
-            print("\n>Bn7: ", bn7)
-            # conv 5
-            module = module_list[8]
-            kernel_size = module.kernel_size
-            stride = module.stride
-            padding = module.padding
-            bias = module.bias if module.bias is not None else False
-            in_chs = module.weight.shape[1]
-            out_chs = module.weight.shape[0]
-            conv8 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
-                              bias=bias)
-            print("\n>Conv8: ", conv8)
-            self.module_list.append(conv8)
-
-            # bn 5
-            module = module_list[9]
-            out_chs = module.weight.shape[0]
-            bn9 = nn.BatchNorm2d(out_chs)
-            self.module_list.append(bn9)
-            print("\n>Bn9: ", bn9)
-            # altList = []
-            # paramList = []
-            # for name, param in model.named_parameters():
-            #     # print("\nName: {}", name)
-            #     paramList.append(param)
-            #     # print("\nName: ", name)
-            #     i = int(name.split('.')[1])
+            # module_list = model.module_list
+            # self.module_list = nn.ModuleList()
+            # print("\n\n>Module List: ", len(self.module_list))
+            # # conv1
+            # module = module_list[0]
+            # kernel_size = module.kernel_size
+            # stride = module.stride
+            # padding = module.padding
+            # bias = module.bias if module.bias is not None else False
+            # in_chs = module.weight.shape[1]
+            # out_chs = module.weight.shape[0]
+            # conv0 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
+            #                   bias=bias)
+            # print("\n>Conv0: ", conv0)
+            # self.module_list.append(conv0)
             #
-            #     if i % 2 == 0:
-            #         altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
-            #         # print("\nI:", i, " ; ", altList[-1])
-            #     elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
-            #         altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
-            #         # print("\nI:", i, " ; ", altList[-1])
-            #     elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
-            #         altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
-            #         # print("\nI:", i, " ; ", altList[-1])
-            #     elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
-            #         altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
-            #         # print("\nI:", i, " ; ", altList[-1])
-            #     elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
-            #         altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-            #         # print("\nI:", i, " ; ", altList[-1])
-            #     else:
-            #         assert True, print("Hier fehlt noch was!!")
-            # print("\naltList", altList)
-            # module_list1 = nn.ModuleList()
-            # for i in range(0, len(altList)):
-            #     # print("\n>i: ", i)
-            #     name = altList[i]
-            #     param = paramList[i]
-            #     # print("\nName: ", name)
-            #     if 'conv' in name:
-            #         dims = list(param.shape)
-            #         in_chs = dims[1]
-            #         out_chs = dims[0]
-            #         # Search for the corresponding Conv Module in Module_list
-            #         k = int(name.split('.')[1].split('v')[1])
-            #         module = model.module_list[(k - 1) * 2]
-            #         kernel_size = module.kernel_size
-            #         stride = module.stride
-            #         padding = module.padding
-            #         bias = module.bias if module.bias is not None else False
+            # # bn1
+            # module = module_list[1]
+            # out_chs = module.weight.shape[0]
+            # bn1 = nn.BatchNorm2d(out_chs)
+            # print("\n>Bn1: ",bn1)
+            # self.module_list.append(bn1)
             #
-            #         layer = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
-            #                           bias=bias)
-            #         print("\n>new Layer: ", layer, " ; ", param.shape)
-            #         print("\nWeight Shape: ", module.weight.shape)
-            #         layer.weight = module.weight
-            #         module_list1.append(layer)
+            # # conv 2
+            # module = module_list[2]
+            # kernel_size = module.kernel_size
+            # stride = module.stride
+            # padding = module.padding
+            # bias = module.bias if module.bias is not None else False
+            # in_chs = module.weight.shape[1]
+            # out_chs = module.weight.shape[0]
+            # conv2 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
+            #                   bias=bias)
+            # print("\n>Conv2: ", conv2)
+            # self.module_list.append(conv2)
+            # # bn2
+            # module = module_list[3]
+            # out_chs = module.weight.shape[0]
+            # bn3 = nn.BatchNorm2d(out_chs)
+            # print("\nBn3: ", bn3)
+            # self.module_list.append(bn3)
             #
-            #     elif 'bn' in name and not 'bias' in name:
-            #         layer = nn.BatchNorm2d(paramList[i].shape[0])
-            #         print("\n>new Layer: ", layer)
-            #         module_list1.append(layer)
-            #     elif 'bn' in name and 'bias' in name:
-            #         print("\n>Name: ", name, " ; ", k)
-            #         k = int(name.split('.')[1].split('n')[1])
-            #         k1 = 2 * (k - 1) + 1
-            #         # print("\nk1: ", k1)
-            #         module = model.module_list[k1]
-            #         module_list1[-1].bias = module.bias
-            #         module_list1[-1].weight = module.weight
-            #     # else:
-            #     # print('\nelse: ', name)
+            # # conv 3
+            # module = module_list[4]
+            # kernel_size = module.kernel_size
+            # stride = module.stride
+            # padding = module.padding
+            # bias = module.bias if module.bias is not None else False
+            # in_chs = module.weight.shape[1]
+            # out_chs = module.weight.shape[0]
+            # conv4 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
+            #                   bias=bias)
+            # print("\n>Conv4: ", conv4)
+            #
+            # self.module_list.append(conv4)
+            #
+            # # bn3
+            # module = module_list[5]
+            # out_chs = module.weight.shape[0]
+            # bn5 = nn.BatchNorm2d(out_chs)
+            # self.module_list.append(bn5)
+            # print("\n>Bn5: ", bn5)
+            # # conv 4
+            # module = module_list[6]
+            # kernel_size = module.kernel_size
+            # stride = module.stride
+            # padding = module.padding
+            # bias = module.bias if module.bias is not None else False
+            # in_chs = module.weight.shape[1]
+            # out_chs = module.weight.shape[0]
+            # conv6 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
+            #                   bias=bias)
+            # print("\n>Conv6: ", conv6)
+            # self.module_list.append(conv6)
+            #
+            # # bn4
+            # module = module_list[7]
+            # out_chs = module.weight.shape[0]
+            # bn7 = nn.BatchNorm2d(out_chs)
+            # self.module_list.append(bn7)
+            # print("\n>Bn7: ", bn7)
+            # # conv 5
+            # module = module_list[8]
+            # kernel_size = module.kernel_size
+            # stride = module.stride
+            # padding = module.padding
+            # bias = module.bias if module.bias is not None else False
+            # in_chs = module.weight.shape[1]
+            # out_chs = module.weight.shape[0]
+            # conv8 = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
+            #                   bias=bias)
+            # print("\n>Conv8: ", conv8)
+            # self.module_list.append(conv8)
+            #
+            # # bn 5
+            # module = module_list[9]
+            # out_chs = module.weight.shape[0]
+            # bn9 = nn.BatchNorm2d(out_chs)
+            # self.module_list.append(bn9)
+            # print("\n>Bn9: ", bn9)
+
+            altList = []
+            paramList = []
+            for name, param in model.named_parameters():
+                # print("\nName: {}", name)
+                paramList.append(param)
+                # print("\nName: ", name)
+                i = int(name.split('.')[1])
+
+                if i % 2 == 0:
+                    altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
+                    # print("\nI:", i, " ; ", altList[-1])
+                elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
+                    altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
+                    # print("\nI:", i, " ; ", altList[-1])
+                elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
+                    altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
+                    # print("\nI:", i, " ; ", altList[-1])
+                elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
+                    altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
+                    # print("\nI:", i, " ; ", altList[-1])
+                elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
+                    altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
+                    # print("\nI:", i, " ; ", altList[-1])
+                else:
+                    assert True, print("Hier fehlt noch was!!")
+            print("\naltList", altList)
+            module_list1 = nn.ModuleList()
+            for i in range(0, len(altList)):
+                # print("\n>i: ", i)
+                name = altList[i]
+                param = paramList[i]
+                # print("\nName: ", name)
+                if 'conv' in name:
+                    dims = list(param.shape)
+                    in_chs = dims[1]
+                    out_chs = dims[0]
+                    # Search for the corresponding Conv Module in Module_list
+                    k = int(name.split('.')[1].split('v')[1])
+                    module = model.module_list[(k - 1) * 2]
+                    kernel_size = module.kernel_size
+                    stride = module.stride
+                    padding = module.padding
+                    bias = module.bias if module.bias is not None else False
+
+                    layer = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
+                                      bias=bias)
+                    print("\n>new Layer: ", layer, " ; ", param.shape)
+                    print("\nWeight Shape: ", module.weight.shape)
+                    layer.weight = module.weight
+                    module_list1.append(layer)
+
+                elif 'bn' in name and not 'bias' in name:
+                    layer = nn.BatchNorm2d(paramList[i].shape[0])
+                    print("\n>new Layer: ", layer)
+                    module_list1.append(layer)
+                elif 'bn' in name and 'bias' in name:
+                    print("\n>Name: ", name, " ; ", k)
+                    k = int(name.split('.')[1].split('n')[1])
+                    k1 = 2 * (k - 1) + 1
+                    # print("\nk1: ", k1)
+                    module = model.module_list[k1]
+                    module_list1[-1].bias = module.bias
+                    module_list1[-1].weight = module.weight
+                # else:
+                # print('\nelse: ', name)
 
             avgpool = nn.AdaptiveAvgPool2d((1, 1))
             self.module_list.append(avgpool)
@@ -301,131 +302,127 @@ class N2N(nn.Module):
             print("\nX Shape: ", x.shape)
         _x = self.relu(x)
 
-        # conv2
-        x = self.module_list[2](_x)
-        if printNet:
-            print("\nI: 2 ; ", self.module_list[2])
-        # bn2
-        x = self.module_list[3](x)
-        if printNet:
-            print("\nI: 3 ; ", self.module_list[3])
-        x = self.relu(x)
-        # conv3
-        x = self.module_list[4](x)
-        if printNet:
-            print("\nI: 4 ; ", self.module_list[4])
-        # bn3
-        x = self.module_list[5](x)
-        if printNet:
-            print("\nI: 5 ; ", self.module_list[5])
-        _x =_x + x
-        _x = self.relu(_x)
+        # # conv2
+        # x = self.module_list[2](_x)
+        # if printNet:
+        #     print("\nI: 2 ; ", self.module_list[2])
+        # # bn2
+        # x = self.module_list[3](x)
+        # if printNet:
+        #     print("\nI: 3 ; ", self.module_list[3])
+        # x = self.relu(x)
+        # # conv3
+        # x = self.module_list[4](x)
+        # if printNet:
+        #     print("\nI: 4 ; ", self.module_list[4])
+        # # bn3
+        # x = self.module_list[5](x)
+        # if printNet:
+        #     print("\nI: 5 ; ", self.module_list[5])
+        # _x =_x + x
+        # _x = self.relu(_x)
+        #
+        # # conv4
+        # x = self.module_list[6](_x)
+        # if printNet:
+        #     print("\nI: 6 ; ", self.module_list[6])
+        # # bn4
+        # x = self.module_list[7](x)
+        # if printNet:
+        #     print("\nI: 7 ; ", self.module_list[7])
+        # x = self.relu(x)
+        # # conv5
+        # x = self.module_list[8](x)
+        # if printNet:
+        #     print("\nI: 8 ; ", self.module_list[8])
+        # # bn5
+        # x = self.module_list[9](x)
+        # if printNet:
+        #     print("\nI: 9 ; ", self.module_list[9])
+        # _x = _x + x
+        # _x = self.relu(_x)
 
-        # conv4
-        x = self.module_list[6](_x)
-        if printNet:
-            print("\nI: 6 ; ", self.module_list[6])
-        # bn4
-        x = self.module_list[7](x)
-        if printNet:
-            print("\nI: 7 ; ", self.module_list[7])
-        x = self.relu(x)
-        # conv5
-        x = self.module_list[8](x)
-        if printNet:
-            print("\nI: 8 ; ", self.module_list[8])
-        # bn5
-        x = self.module_list[9](x)
-        if printNet:
-            print("\nI: 9 ; ", self.module_list[9])
-        _x = _x + x
-        _x = self.relu(_x)
-
-        # i = 2
-        # for stage in range(0, self.numOfStages):
-        #     for block in range(0, self.numOfBlocksinStage):
-        #         if first and stage > 0:
-        #             print("\n\n\nDRIN!!!!!")
-        #             # conv3
-        #             x = self.module_list[i](_x)
-        #             if printNet:
-        #                 print("\nI: ", i, " ; ", self.module_list[i])
-        #             i = i + 1
-        #             # bn4
-        #             x = self.module_list[i](x)
-        #             if printNet:
-        #                 print("\nI: ", i, " ; ", self.module_list[i])
-        #             i = i + 1
-        #             x = self.relu(x)
-        #             # conv5
-        #             x = self.module_list[i](x)
-        #             if printNet:
-        #                 print("\nI: ", i, " ; ", self.module_list[i])
-        #             i = i + 1
-        #             # bn6
-        #             x = self.module_list[i](x)
-        #             if printNet:
-        #                 print("\nI: ", i, " ; ", self.module_list[i])
-        #             i = i + 1
-        #             # conv7
-        #             if printNet:
-        #                 print("\n_x: ", _x.shape)
-        #             _x = self.module_list[i](_x)
-        #             if printNet:
-        #                 print("\n_x: ", _x.shape)
-        #                 print("\nI: ", i, " ; ", self.module_list[i])
-        #             i = i + 1
-        #             # bn8
-        #             _x = self.module_list[i](_x)
-        #             if printNet:
-        #                 print("\nI: ", i, " ; ", self.module_list[i])
-        #             i = i + 1
-        #             if printNet:
-        #                 print("\n_x: ", _x.shape, " : x: ", x.shape)
-        #             _x = _x + x
-        #             _x = self.relu(_x)
-        #             first = False
-        #         else:
-        #             # conv2
-        #             x = self.module_list[i](_x)
-        #             if printNet:
-        #                 print("\nI: ", int((i-2)/2+2), " ; ", self.module_list[i])
-        #                 print("\nX Shape: ", x.shape)
-        #             i = i + 1
-        #             # bn2
-        #             x = self.module_list[i](x)
-        #             if printNet:
-        #                 print("\nI: ", int((i-2)/2)+2, " ; ", self.module_list[i])
-        #                 print("\nX Shape: ", x.shape)
-        #             i = i + 1
-        #             x = self.relu(x)
-        #             # conv3
-        #             x = self.module_list[i](x)
-        #             if printNet:
-        #                 print("\nI: ", int((i-2)/2+2), " ; ", self.module_list[i])
-        #                 print("\nX Shape: ", x.shape)
-        #             i = i + 1
-        #             # bn3
-        #             x = self.module_list[i](x)
-        #             if printNet:
-        #                 print("\nI: ", int((i-2)/2)+2, " ; ", self.module_list[i])
-        #                 print("\nX Shape: ", x.shape)
-        #             i = i + 1
-        #             _x = _x + x
-        #             _x = self.relu(_x)
-        #             first = False
-        #     first = True
+        i = 2
+        for stage in range(0, self.numOfStages):
+            for block in range(0, self.numOfBlocksinStage):
+                if first and stage > 0:
+                    print("\n\n\nDRIN!!!!!")
+                    # conv3
+                    x = self.module_list[i](_x)
+                    if printNet:
+                        print("\nI: ", i, " ; ", self.module_list[i])
+                    i = i + 1
+                    # bn4
+                    x = self.module_list[i](x)
+                    if printNet:
+                        print("\nI: ", i, " ; ", self.module_list[i])
+                    i = i + 1
+                    x = self.relu(x)
+                    # conv5
+                    x = self.module_list[i](x)
+                    if printNet:
+                        print("\nI: ", i, " ; ", self.module_list[i])
+                    i = i + 1
+                    # bn6
+                    x = self.module_list[i](x)
+                    if printNet:
+                        print("\nI: ", i, " ; ", self.module_list[i])
+                    i = i + 1
+                    # conv7
+                    if printNet:
+                        print("\n_x: ", _x.shape)
+                    _x = self.module_list[i](_x)
+                    if printNet:
+                        print("\n_x: ", _x.shape)
+                        print("\nI: ", i, " ; ", self.module_list[i])
+                    i = i + 1
+                    # bn8
+                    _x = self.module_list[i](_x)
+                    if printNet:
+                        print("\nI: ", i, " ; ", self.module_list[i])
+                    i = i + 1
+                    if printNet:
+                        print("\n_x: ", _x.shape, " : x: ", x.shape)
+                    _x = _x + x
+                    _x = self.relu(_x)
+                    first = False
+                else:
+                    # conv2
+                    x = self.module_list[i](_x)
+                    if printNet:
+                        print("\nI: ", int((i-2)/2+2), " ; ", self.module_list[i])
+                        print("\nX Shape: ", x.shape)
+                    i = i + 1
+                    # bn2
+                    x = self.module_list[i](x)
+                    if printNet:
+                        print("\nI: ", int((i-2)/2)+2, " ; ", self.module_list[i])
+                        print("\nX Shape: ", x.shape)
+                    i = i + 1
+                    x = self.relu(x)
+                    # conv3
+                    x = self.module_list[i](x)
+                    if printNet:
+                        print("\nI: ", int((i-2)/2+2), " ; ", self.module_list[i])
+                        print("\nX Shape: ", x.shape)
+                    i = i + 1
+                    # bn3
+                    x = self.module_list[i](x)
+                    if printNet:
+                        print("\nI: ", int((i-2)/2)+2, " ; ", self.module_list[i])
+                        print("\nX Shape: ", x.shape)
+                    i = i + 1
+                    _x = _x + x
+                    _x = self.relu(_x)
+                    first = False
+            first = True
 
         if isinstance(self.module_list[10], nn.AdaptiveAvgPool2d):
             try:
                 x = self.module_list[10](_x)
                 if printNet:
                     print("\nI: ", 10, " ; ", self.module_list[10])
-
-         # print("\nX Shape: ", x.shape)
                 x = x.view(-1, x.size(1))
-
-
             except RuntimeError:
                 print("\n \n Oops!!!: ")
                 print("AvgPool")

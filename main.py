@@ -222,7 +222,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         targets = torch.autograd.Variable(targets)
         outputs = model.forward(inputs)
 
-        if batch_idx % args.print_freq == 0:
+        if batch_idx == 0:
             dot = tw.make_dot(outputs, params =dict(model.named_parameters()) )
             filename = 'PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
             dot.render(filename = filename)
@@ -360,29 +360,15 @@ def adjust_learning_rate(optimizer, epoch):
             if epoch >= lr_decay:
                 set_lr *= args.gamma
         state['lr'] = set_lr
+        args.lr = set_lr
     else:
         # Exponential LR decay
         set_lr = args.lr
         exp = int((epoch - 1) / args.schedule_exp)
         state['lr'] = set_lr * (args.gamma ** exp)
-
+        args.lr = set_lr
     for param_group in optimizer.param_groups:
         param_group['lr'] = state['lr']
-
-
-def get_lr(optimizer):
-    for param_group in optimizer.param_groups:
-        return param_group['lr']
-
-
-def get_momentum(optimizer):
-    for param_group in optimizer.param_groups:
-        return param_group['momentum']
-
-
-def get_weight_decay(optimizer):
-    for param_group in optimizer.param_groups:
-        return param_group['weight_decay']
 
 
 if __name__ == '__main__':
