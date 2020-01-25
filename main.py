@@ -271,7 +271,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         # compute gradient and do SGD step
         optimizer.zero_grad()
         loss.backward()
-        if not init_batch:
+        # if not init_batch:
             # for name, param in model.named_parameters():
             #     # Get Momentum parameters to adjust
             #     print("\n\nNameBefore, Epoch, BatchIdx: ", name, epoch, batch_idx)
