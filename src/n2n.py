@@ -61,35 +61,60 @@ class N2N(nn.Module):
                 sizeOfLayer = pow(2, stage + 4)
                 # print("\nStage: ", stage, " ; ", sizeOfLayer)
                 for block in range(0, numOfBlocksinStage):
-                    if firstLayerInStage and not firstLayer:
-                        conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1, bias=False,
+                    i=0
+                    while i< self.layersInBlock:
+                        if firstLayerInStage and not firstLayer:
+                            if self.layersInBlock > 2:
+                                conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1, bias=False,
+                                                 stride=2)
+                                self.module_list.append(conv)
+                                bn = nn.BatchNorm2d(sizeOfLayer)
+                                self.module_list.append(bn)
+                                i = i + 1
+
+                                conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
+                                self.module_list.append(conv)
+                                bn = nn.BatchNorm2d(sizeOfLayer)
+                                self.module_list.append(bn)
+                                i = i + 1
+
+                                conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=1, padding=0, bias=False,
                                          stride=2)
-                        self.module_list.append(conv)
-                        bn = nn.BatchNorm2d(sizeOfLayer)
-                        self.module_list.append(bn)
-                        conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
-                        self.module_list.append(conv)
-                        bn = nn.BatchNorm2d(sizeOfLayer)
-                        self.module_list.append(bn)
-                        conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=1, padding=0, bias=False,
-                                         stride=2)
-                        self.module_list.append(conv)
-                        bn3 = nn.BatchNorm2d(sizeOfLayer)
-                        self.module_list.append(bn)
-                        firstLayerInStage = False
-                    else:
-                        conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
-                        self.module_list.append(conv)
-                        bn = nn.BatchNorm2d(sizeOfLayer)
-                        self.module_list.append(bn)
-                        conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
-                        self.module_list.append(conv)
-                        bn = nn.BatchNorm2d(sizeOfLayer)
-                        self.module_list.append(bn)
-                        firstLayer = False
-                        firstLayerInStage = False
+                                self.module_list.append(conv)
+                                bn3 = nn.BatchNorm2d(sizeOfLayer)
+                                self.module_list.append(bn)
+                                i = i + 1
+                            elif self.layersInBlock==2:
+                                conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1, bias=False,
+                                             stride=2)
+                                self.module_list.append(conv)
+                                bn = nn.BatchNorm2d(sizeOfLayer)
+                                self.module_list.append(bn)
+                                i = i + 1
+
+                                conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
+                                self.module_list.append(conv)
+                                bn = nn.BatchNorm2d(sizeOfLayer)
+                                self.module_list.append(bn)
+                                i = i + 1
+                            else:
+                                conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1, bias=False,
+                                             stride=2)
+                                self.module_list.append(conv)
+                                bn = nn.BatchNorm2d(sizeOfLayer)
+                                self.module_list.append(bn)
+                                i = i + 1
+                            firstLayerInStage = False
+
+                        else:
+                            conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
+                            self.module_list.append(conv)
+                            bn = nn.BatchNorm2d(sizeOfLayer)
+                            self.module_list.append(bn)
+                            i = i + 1
+                firstLayer = False
             # 18
-            self.sizeOfFC = 16
+            self.sizeOfFC = pow(2, stage + 3)
             # print("\n self sizeofFC: ",self.sizeOfFC)
             avgpool = nn.AdaptiveAvgPool2d((1, 1))
             self.module_list.append(avgpool)
@@ -439,41 +464,56 @@ class N2N(nn.Module):
             print("Linear")
         return x
 
+
+    # 2 -> 2    0 -> 2
+    # 4 -> 3    2 -> 1
+    # 6 -> 4    4 -> 2
+    # 8 -> 5    6 -> 3
     def getResidualPath(self):
         stagesI = []
         stagesO = []
-        first = True
-        i = 0
+        i = 1
+        stagesI.append([])
+        stagesO.append([])
+        stagesO[0].append(n(1))
+        firstBlock = False
+        printStages = True
         for stage in range(0, self.numOfStages):
-            stagesI.append([])
-            stagesO.append([])
-            if first and stage == 0:
-                if i % 2 == 0:
-                    stagesO[stage].append(n(int(i + 2 / 2)))
-                    # print("\nI: ", i)
-                    i = i + 1
-                else:
-                    stagesI[stage].append(n(int(i + 2 / 2)))
-                    # print("\nI: ", i)
-                    i = i + 1
-            elif first and stage > 0:
-                if i % 2 == 1:
-                    stagesO[stage].append(n(int(i + 2 / 2)))
-                    i = i + 1
-                else:
-                    stagesI[stage].append(n(int(i + 2 / 2)))
-                    i = i + 1
-
             for block in range(0, self.numOfBlocksinStage):
                 for layer in range(0, self.layersInBlock):
-                    if i % 2 == 0:
-                        stagesO[stage].append(n(int(i + 2 / 2)))
-                        # print("\nI: ", i)
-                        i = i + 1
+                    if not firstBlock:
+                        if (i-1) % self.layersInBlock  == 0:
+                            stagesI[stage].append(n(int(i - 2 / 2)))
+                            i = i + 1
+                            if printStages:
+                                print("\nI: ", i)
+                        if (i-1) % self.layersInBlock == self.layersInBlock -1:
+                            stagesO[stage].append(n(int(i - 2 / 2)))
+                            i = i + 1
+                            if printStages:
+                                print("\nI: ", i)
+                        else:
+                            i = i + 1
                     else:
-                        stagesI[stage].append(n(int(i + 2 / 2)))
-                        # print("\nI: ", i)
-                        i = i + 1
+                        if (i-1) % self.layersInBlock == self.layersInBlock -1:
+                            stagesO[stage].append(n(int(i - 2 / 2)))
+                            i = i + 1
+                            firstBlock = False
+                            if printStages:
+                                print("\nI: ", i)
+
+                        else:
+                            i = i + 1
+            if self.layersInBlock > 2:
+                stagesI[stage].append(n(int(i - 2 / 2)))
+                i = i + 1
+                stagesI[stage].append(n(int(i - 2 / 2)))
+                i = i + 1
+            else:
+                stagesI[stage].append(n(int(i + 2 / 2)))
+                print("\nI: ", i)
+                i = i + 1
+
         stageStr = 'fc' + str(i + 1)
         stagesI[-1].append(n(stageStr))
         print("\nStagesI: ", stagesI)
