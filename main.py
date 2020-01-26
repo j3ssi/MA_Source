@@ -59,7 +59,7 @@ parser.add_argument('--manualSeed', type=int, help='manual seed')
 parser.add_argument('--gpu_id', default='2', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
 parser.add_argument('-s', '--numOfStages', default=1, type=int, help='defines the number of stages in the network')
 parser.add_argument('-n', '--numOfBlocksinStage', type=int, default=2, help='defines the number of Blocks per Stage')
-parser.add_argument('-l', '--layersInBlock', type=int, default=2, help='defines the number of')
+parser.add_argument('-l', '--layersInBlock', type=int, default=3, help='defines the number of')
 # PruneTrain
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
 parser.add_argument('--sparse_interval', default=0, type=int,
