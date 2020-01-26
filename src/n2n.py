@@ -114,7 +114,7 @@ class N2N(nn.Module):
                             i = i + 1
                 firstLayer = False
             # 18
-            self.sizeOfFC = pow(2, stage + 3)
+            self.sizeOfFC = pow(2, self.numOfStages + 4)
             # print("\n self sizeofFC: ",self.sizeOfFC)
             avgpool = nn.AdaptiveAvgPool2d((1, 1))
             self.module_list.append(avgpool)
