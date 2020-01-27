@@ -197,6 +197,22 @@ class N2N(nn.Module):
                         firstLayerInBlock = False
 
 
+                    elif i % (self.layersInBlock - 1) == 0:
+                        # conv
+                        x = self.module_list[j](x)
+                        if printNet:
+                            print("\nJ: ", j, " ; ", self.module_list[j])
+                            print("\nX Shape: ", x.shape)
+                        j = j + 1
+
+                        # bn
+                        x = self.module_list[j](x)
+                        if printNet:
+                            print("\nJ: ", j, " ; ", self.module_list[j])
+                        j = j + 1
+                        i = i + 1
+                        _x = self.relu(x)
+
                     elif i % (self.layersInBlock - 1) == 0 and block > 0:
                         # conv
                         x = self.module_list[j](x)
