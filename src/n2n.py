@@ -65,6 +65,7 @@ class N2N(nn.Module):
                     m.bias.data.zero_()
             print(self)
         else:
+            self.module_list = nn.ModuleList()
             altList = []
             paramList = []
             printName = True
