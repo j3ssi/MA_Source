@@ -166,13 +166,14 @@ class N2N(nn.Module):
         for stage in range(0, self.numOfStages):
             if printNet:
                 print("\n\nStage: ", stage)
-            firstLayerInStage = True
+
             for block in range(0, self.numOfBlocksinStage):
+                firstLayerInBlock = True
                 if printNet:
                     print("\n\n\tBlock: ", block)
                 i=0
                 while i < self.layersInBlock:
-                    if firstLayerInStage:
+                    if firstLayerInBlock:
                         # conv
                         x = self.module_list[j](_x)
                         if printNet:
@@ -190,6 +191,7 @@ class N2N(nn.Module):
                         x = self.relu(x)
 
                         firstLayerInStage = False
+
 
                     elif i % (self.layersInBlock - 1):
                         # conv
@@ -223,7 +225,7 @@ class N2N(nn.Module):
                         j = j + 1
                         x = self.relu(x)
                         i = i + 1
-                firstLayerInStage = False
+                    firstLayerInBlock = False
 
         if isinstance(self.module_list[j], nn.AdaptiveAvgPool2d):
             try:
