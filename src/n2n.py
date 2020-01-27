@@ -109,7 +109,7 @@ class N2N(nn.Module):
                     out_chs = dims[0]
                     # Search for the corresponding Conv Module in Module_list
                     k = int(name.split('.')[1].split('v')[1])
-                    module = model.module_list[(k - 1) * 2]
+                    module = module_list[(k - 1) * 2]
                     kernel_size = module.kernel_size
                     stride = module.stride
                     padding = module.padding
@@ -120,20 +120,20 @@ class N2N(nn.Module):
                     print("\n>new Layer: ", layer, " ; ", param.shape)
                     print("\nWeight Shape: ", module.weight.shape)
                     layer.weight = module.weight
-                    module_list1.append(layer)
+                    self.module_list.append(layer)
 
                 elif 'bn' in name and not 'bias' in name:
                     layer = nn.BatchNorm2d(paramList[i].shape[0])
                     print("\n>new Layer: ", layer)
-                    module_list1.append(layer)
+                    self.module_list.append(layer)
                 elif 'bn' in name and 'bias' in name:
                     print("\n>Name: ", name, " ; ", k)
                     k = int(name.split('.')[1].split('n')[1])
                     k1 = 2 * (k - 1) + 1
                     # print("\nk1: ", k1)
-                    module = model.module_list[k1]
-                    module_list1[-1].bias = module.bias
-                    module_list1[-1].weight = module.weight
+                    module = module_list[k1]
+                    self.module_list[-1].bias = module.bias
+                    self.module_list[-1].weight = module.weight
                 # else:
                 # print('\nelse: ', name)
 
