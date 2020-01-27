@@ -197,7 +197,7 @@ class N2N(nn.Module):
                         firstLayerInBlock = False
 
 
-                    elif i % (self.layersInBlock - 1):
+                    elif i % (self.layersInBlock - 1) == 0:
                         # conv
                         x = self.module_list[j](x)
                         if printNet:
@@ -229,7 +229,6 @@ class N2N(nn.Module):
                         j = j + 1
                         x = self.relu(x)
                         i = i + 1
-                    firstLayerInBlock = False
 
         if isinstance(self.module_list[j], nn.AdaptiveAvgPool2d):
             try:
