@@ -197,7 +197,7 @@ class N2N(nn.Module):
                         firstLayerInBlock = False
 
 
-                    elif i % (self.layersInBlock - 1) == 0:
+                    elif i % (self.layersInBlock - 1) == 0 and block > 0:
                         # conv
                         x = self.module_list[j](x)
                         if printNet:
