@@ -4,11 +4,6 @@ import torch.nn as nn
 import math
 
 
-# Stage0 -> 16
-# Stage1 -> 32
-# Stage2 -> 64
-# Stage3 -> 128
-# Stage4 -> 256
 class N2N(nn.Module):
 
     def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock, first, model=None):
@@ -155,7 +150,7 @@ class N2N(nn.Module):
 
     def forward(self, x):
         # First layer
-        printNet = False
+        printNet = True
         # conv1
         x = self.module_list[0](x)
         if printNet:
