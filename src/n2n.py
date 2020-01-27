@@ -48,6 +48,7 @@ class N2N(nn.Module):
                             self.module_list.append(bn)
                             i = i + 1
                     firstLayer = False
+                    firstLayerInStage = False
             # 18
             self.sizeOfFC = pow(2, self.numOfStages + 2)
             print("\n self sizeofFC: ",self.sizeOfFC)
