@@ -38,7 +38,7 @@ class N2N(nn.Module):
                             firstLayerInStage = False
 
                         else:
-                            conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
+                            conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=2)
                             self.module_list.append(conv)
                             bn = nn.BatchNorm2d(sizeOfLayer)
                             self.module_list.append(bn)
