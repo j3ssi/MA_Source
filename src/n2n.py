@@ -204,12 +204,13 @@ class N2N(nn.Module):
 
                         # bn
                         x = self.module_list[j](x)
-                        _x = _x + x
-                        _x = self.relu(_x)
                         if printNet:
                             print("\nJ: ", j, " ; ", self.module_list[j])
                         j = j + 1
                         i = i + 1
+
+                        _x = _x + x
+                        _x = self.relu(_x)
                     else:
                         # conv
                         x = self.module_list[j](x)
