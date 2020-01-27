@@ -17,6 +17,7 @@ class N2N(nn.Module):
         self.numOfBlocksinStage = numOfBlocksinStage
         self.layersInBlock = layersInBlock
         if first:
+            # first Layer
             self.module_list = nn.ModuleList()
             # conv1
             conv0 = nn.Conv2d(3, 16, kernel_size=3, padding=1, bias=False, stride=1)
@@ -32,7 +33,7 @@ class N2N(nn.Module):
                 for block in range(0, numOfBlocksinStage):
                     i = 0
                     while i < self.layersInBlock:
-                        if firstLayerInStage and not firstLayer:
+                        if firstLayerInStage:
                             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1, bias=False,
                                              stride=2)
                             self.module_list.append(conv)
