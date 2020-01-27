@@ -155,7 +155,7 @@ class N2N(nn.Module):
 
     def forward(self, x):
         # First layer
-        printNet = True
+        printNet = False
         # conv1
         x = self.module_list[0](x)
         if printNet:
@@ -235,7 +235,6 @@ class N2N(nn.Module):
                     print("\nJ: ", j, " ; ", self.module_list[j])
                     print("\n\n X Shape 1: ", x.shape)
                 x = x.view(-1, int(self.sizeOfFC/2))
-                print("\n\n X Shape 2: ", x.shape)
             except RuntimeError:
                 print("\n \n Oops!!!: ")
                 print("AvgPool")
