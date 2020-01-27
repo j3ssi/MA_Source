@@ -281,33 +281,35 @@ class N2N(nn.Module):
     def getResidualPath(self):
         stagesI = []
         stagesO = []
-        i = 2
+        j = 2
         stagesI.append([])
         stagesO.append([])
         stagesO[0].append(n(1))
-        firstBlock = False
         printStages = True
         for stage in range(0, self.numOfStages):
             for block in range(0, self.numOfBlocksinStage):
                 i = 0
                 while i < self.layersInBlock:
                     if i == 0 and stage > 0 and block == 0:
-                        stagesI[stage - 1].append(n(int(i - 2 / 2)))
+                        stagesI[stage - 1].append(n(int(j - 2 / 2)))
                         if printStages:
-                            print("\nI: ", i)
+                            print("\nJ: ", j)
+                        j = j + 1
                         i = i + 1
                     else:
                         if (i-1) % self.layersInBlock == 1:
-                            stagesI[stage].append(n(int(i - 2 / 2)))
+                            stagesI[stage].append(n(int(j - 2 / 2)))
                             if printStages:
-                                print("\nI: ", i)
+                                print("\nJ: ", j)
                             i = i + 1
+                            j = j + 1
 
                         elif (i -1) % self.layersInBlock == 0:
-                            stagesO[stage].append(n(int(i - 2 / 2)))
+                            stagesO[stage].append(n(int(j - 2 / 2)))
                             if printStages:
-                                print("\nI: ", i)
+                                print("\nJ: ", j)
                             i = i + 1
+                            j = j + 1
                         else:
                             i = i + 1
             stagesI.append([])
@@ -315,8 +317,8 @@ class N2N(nn.Module):
 
         stageStr = 'fc' + str(i + 1)
         stagesI[-1].append(n(stageStr))
-        # print("\nStagesI: ", stagesI)
-        # print("\nStagesO: ", stagesO)
+        print("\nStagesI: ", stagesI)
+        print("\nStagesO: ", stagesO)
         return stagesI, stagesO
 
     def getShareSameNodeLayers(self):
