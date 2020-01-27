@@ -306,7 +306,7 @@ class N2N(nn.Module):
                             if printStages:
                                 print("\nI: ", i)
                             i = i + 1
-                            else:
+                        else:
                             i = i + 1
 
         stageStr = 'fc' + str(i + 1)
