@@ -179,7 +179,7 @@ class N2N(nn.Module):
                         x = self.module_list[j](_x)
                         j = j + 1
                         if printNet:
-                            print("\nI: ", i, " ; ", self.module_list[i])
+                            print("\nJ: ", j, " ; ", self.module_list[j])
                             print("\nX Shape: ", x.shape)
 
                         # bn
@@ -187,7 +187,7 @@ class N2N(nn.Module):
                         j = j + 1
                         i = i + 1
                         if printNet:
-                            print("\nI: ", i, " ; ", self.module_list[i])
+                            print("\nJ: ", j, " ; ", self.module_list[i])
 
                         x = self.relu(x)
 
@@ -198,7 +198,7 @@ class N2N(nn.Module):
                         x = self.module_list[j](x)
                         j = j + 1
                         if printNet:
-                            print("\nI: ", i, " ; ", self.module_list[i])
+                            print("\nJ: ", j, " ; ", self.module_list[i])
                             print("\nX Shape: ", x.shape)
 
                         # bn
@@ -207,14 +207,14 @@ class N2N(nn.Module):
                         _x = self.relu(_x)
                         i = i + 1
                         if printNet:
-                            print("\nI: ", i, " ; ", self.module_list[i])
+                            print("\nJ: ", j, " ; ", self.module_list[i])
 
                     else:
                         # conv
                         x = self.module_list[j](x)
                         j = j + 1
                         if printNet:
-                            print("\nI: ", i, " ; ", self.module_list[i])
+                            print("\nJ: ", j, " ; ", self.module_list[i])
                             print("\nX Shape: ", x.shape)
 
                         # bn
@@ -224,11 +224,11 @@ class N2N(nn.Module):
                         i = i + 1
                 firstLayerInStage = False
 
-        if isinstance(self.module_list[10], nn.AdaptiveAvgPool2d):
+        if isinstance(self.module_list[j], nn.AdaptiveAvgPool2d):
             try:
-                x = self.module_list[10](_x)
+                x = self.module_list[j](_x)
                 if printNet:
-                    print("\nI: ", 10, " ; ", self.module_list[10])
+                    print("\nJ: ", j, " ; ", self.module_list[10])
                 x = x.view(-1, x.size(1))
             except RuntimeError:
                 print("\n \n Oops!!!: ")
@@ -236,10 +236,12 @@ class N2N(nn.Module):
         else:
             print("\n \n Oops!!!: ")
             print("AvgPool")
-        if isinstance(self.module_list[11], nn.Linear):
-            x = self.module_list[11](x)
+
+        j = j + 1
+        if isinstance(self.module_list[j], nn.Linear):
+            x = self.module_list[j](x)
             if printNet:
-                print("\nfc", 11, " ; ", x.shape)
+                print("\nfc", j, " ; ", x.shape)
                 # print("\nX Shape: ", x.shape)
         else:
             print("\n \n Oops!!!: ")
