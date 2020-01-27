@@ -190,7 +190,7 @@ class N2N(nn.Module):
 
                         x = self.relu(x)
 
-                        firstLayerInStage = False
+                        firstLayerInBlock = False
 
 
                     elif i % (self.layersInBlock - 1):
