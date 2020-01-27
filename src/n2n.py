@@ -164,10 +164,12 @@ class N2N(nn.Module):
         _x = self.relu(x)
         j = 2
         for stage in range(0, self.numOfStages):
-            print("\n\nStage: ", stage)
+            if printNet:
+                print("\n\nStage: ", stage)
             firstLayerInStage = True
             for block in range(0, self.numOfBlocksinStage):
-                print("\n\n\tBlock: ", block)
+                if printNet:
+                    print("\n\n\tBlock: ", block)
                 i=0
                 while i < self.layersInBlock:
                     if firstLayerInStage:
@@ -242,7 +244,7 @@ class N2N(nn.Module):
             x = self.module_list[j](x)
             if printNet:
                 print("\nJ: ", j, " ; ", self.module_list[j])
-                print("\nfc", j, " ; ", x.shape)
+                print("\nfc: ", x.shape)
         else:
             print("\n \n Oops!!!: ")
             print("Linear")
