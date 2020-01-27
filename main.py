@@ -222,7 +222,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
         outputs = model.forward(inputs)
-        print("\n\nOutput Shape: ", outputs)
+        print("\n\nOutput Shape: ", outputs.shape)
         # if batch_idx == 0:
         #     dot = tw.make_dot(outputs, params =dict(model.named_parameters()) )
         #     filename = 'PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
