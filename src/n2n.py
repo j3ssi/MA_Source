@@ -169,6 +169,7 @@ class N2N(nn.Module):
 
         i = 2
         for stage in range(0, self.numOfStages):
+            print("\n\nStage: ", stage)
             firstLayerInStage = True
             for block in range(0, self.numOfBlocksinStage):
                 while i < self.layersInBlock:
