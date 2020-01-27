@@ -246,8 +246,8 @@ class N2N(nn.Module):
         if isinstance(self.module_list[j], nn.Linear):
             x = self.module_list[j](x)
             if printNet:
+                print("\nJ: ", j, " ; ", self.module_list[j])
                 print("\nfc", j, " ; ", x.shape)
-                # print("\nX Shape: ", x.shape)
         else:
             print("\n \n Oops!!!: ")
             print("Linear")
