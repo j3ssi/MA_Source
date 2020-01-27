@@ -261,7 +261,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
         # Group lasso calcution is not performance-optimized => Ignore from execution time
         loss += lasso_penalty
-
+        print("Loss: ", loss)
         # measure accuracy and record loss
         prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
         losses.update(loss.item(), inputs.size(0))
