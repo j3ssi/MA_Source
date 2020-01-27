@@ -303,10 +303,10 @@ class N2N(nn.Module):
 
                         elif (i -1) % self.layersInBlock == 0:
                             stagesO[stage].append(n(int(i - 2 / 2)))
-                            i = i + 1
                             if printStages:
                                 print("\nI: ", i)
-                        else:
+                            i = i + 1
+                            else:
                             i = i + 1
 
         stageStr = 'fc' + str(i + 1)
