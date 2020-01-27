@@ -193,7 +193,7 @@ class N2N(nn.Module):
 
                         firstLayerInStage = False
 
-                    elif i % (self.layersInBlock - 1) and block % ( self.numOfBlocksinStage - 1):
+                    elif i % (self.layersInBlock - 1):
                         # conv
                         x = self.module_list[i](x)
                         i = i + 1
@@ -225,8 +225,8 @@ class N2N(nn.Module):
 
                         x = self.relu(x)
 
-                    first = False
-            first = True
+                    firstLayer = False
+                    firstLayerInStage = False
 
         if isinstance(self.module_list[10], nn.AdaptiveAvgPool2d):
             try:
