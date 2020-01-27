@@ -171,7 +171,6 @@ class N2N(nn.Module):
         for stage in range(0, self.numOfStages):
             firstLayerInStage = True
             for block in range(0, self.numOfBlocksinStage):
-                i = 0
                 while i < self.layersInBlock:
                     if firstLayerInStage:
                         # conv
