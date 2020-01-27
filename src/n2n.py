@@ -47,7 +47,7 @@ class N2N(nn.Module):
                 firstLayer = False
 
             # 18
-            self.sizeOfFC = pow(2, self.numOfStages + 2)
+            self.sizeOfFC = pow(2, self.numOfStages + 3)
             print("\n self sizeofFC: ",self.sizeOfFC)
             avgpool = nn.AdaptiveAvgPool2d((1, 1))
             self.module_list.append(avgpool)
@@ -97,7 +97,7 @@ class N2N(nn.Module):
                 else:
                     assert True, print("Hier fehlt noch was!!")
             # print("\naltList", altList)
-            module_list1 = nn.ModuleList()
+            module_list = self.module_list
             for i in range(0, len(altList)):
                 # print("\n>i: ", i)
                 name = altList[i]
@@ -252,7 +252,7 @@ class N2N(nn.Module):
                 if printNet:
                     print("\nJ: ", j, " ; ", self.module_list[j])
                     print("\n\n X Shape 1: ", x.shape)
-                x = x.view(128, 2*self.sizeOfFC)
+                x = x.view(128, self.sizeOfFC)
                 print("\n\n X Shape 2: ", x.shape)
             except RuntimeError:
                 print("\n \n Oops!!!: ")
