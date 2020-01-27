@@ -153,6 +153,7 @@ class N2N(nn.Module):
             # print("\nnew Model: ", self)
 
     def forward(self, x):
+        # First layer
         first = False
         printNet = False
         # conv1
@@ -192,7 +193,7 @@ class N2N(nn.Module):
 
                         firstLayerInStage = False
 
-                    elif i % (self.layersInBlock - 1):
+                    elif i % (self.layersInBlock - 1) and block % ( self.numOfBlocksinStage - 1):
                         # conv
                         x = self.module_list[i](x)
                         i = i + 1
@@ -204,7 +205,9 @@ class N2N(nn.Module):
                         x = self.module_list[i](x)
                         i = i + 1
                         _x = _x + x
+
                         _x = self.relu(_x)
+
                         if printNet:
                             print("\nI: ", i, " ; ", self.module_list[i])
 
