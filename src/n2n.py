@@ -232,7 +232,7 @@ class N2N(nn.Module):
             try:
                 x = self.module_list[j](_x)
                 if printNet:
-                    print("\nJ: ", j, " ; ", self.module_list[10])
+                    print("\nJ: ", j, " ; ", self.module_list[j])
                     print("\n\n X Shape: ", x.shape)
                 x = x.view(-1, x.size(1))
             except RuntimeError:
