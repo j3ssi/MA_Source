@@ -45,7 +45,7 @@ class N2N(nn.Module):
                             bn = nn.BatchNorm2d(sizeOfLayer)
                             self.module_list.append(bn)
                             i = i + 1
-                firstLayer = False
+                    firstLayer = False
             # 18
             self.sizeOfFC = pow(2, self.numOfStages + 2)
             print("\n self sizeofFC: ",self.sizeOfFC)
