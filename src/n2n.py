@@ -326,9 +326,12 @@ class N2N(nn.Module):
             for block in range(0, self.numOfBlocksinStage):
                 for layer in range(0, self.layersInBlock):
                     # print("\nI: ", i, " ; ", stage, " ; ", block, " ; ", layer)
-                    if i % 2 == 0:
-                        sameNode.append((n(i), n(i + 1)))
+                    if (i-1) % self.layersInBlock == 1:
+                        str = n(i)
                         i = i + 1
+                    elif (i-1) % self.layersInBlock == 0:
+                        str = str + ', ' + n(i)
+                        sameNode.append(str)
                     else:
                         i = i + 1
 
