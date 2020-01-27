@@ -34,7 +34,6 @@ from src.checkpoint_utils import makeSparse, genDenseModel, genDense
 from src.group_lasso_regs import get_group_lasso_global, get_group_lasso_group
 from src.utils import AverageMeter, accuracy
 
-
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 
 # Baseline
@@ -139,8 +138,6 @@ def main():
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
-
-
     # Model
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda()
@@ -172,10 +169,12 @@ def main():
                 genDenseModel(model, dense_chs, optimizer, 'cifar')
                 model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False,
                                 model)
+
                 model.cuda()
+                criterion = nn.CrossEntropyLoss()
+
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
-
 
             best_acc = max(test_acc, best_acc)
             # print(model)
@@ -196,6 +195,7 @@ def main():
 
     ende = time.time()
     print('{:5.3f}s'.format(ende - start), end='  ')
+
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     # switch to train mode
@@ -273,10 +273,10 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         optimizer.zero_grad()
         loss.backward()
         # if not init_batch:
-            # for name, param in model.named_parameters():
-            #     # Get Momentum parameters to adjust
-            #     print("\n\nNameBefore, Epoch, BatchIdx: ", name, epoch, batch_idx)
-            #     mom_param = optimizer.state[param]['momentum_buffer']
+        # for name, param in model.named_parameters():
+        #     # Get Momentum parameters to adjust
+        #     print("\n\nNameBefore, Epoch, BatchIdx: ", name, epoch, batch_idx)
+        #     mom_param = optimizer.state[param]['momentum_buffer']
 
         optimizer.step()
         # for name, param in model.named_parameters():
