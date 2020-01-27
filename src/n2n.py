@@ -287,7 +287,8 @@ class N2N(nn.Module):
         printStages = True
         for stage in range(0, self.numOfStages):
             for block in range(0, self.numOfBlocksinStage):
-                for layer in range(0, self.layersInBlock):
+                i = 0
+                while i < self.layersInBlock:
                     if layer == 0 and stage > 0 and block == 0:
                         stagesI[stage - 1].append(n(int(i - 2 / 2)))
                         if printStages:
@@ -307,7 +308,7 @@ class N2N(nn.Module):
                                 print("\nI: ", i)
                         else:
                             i = i + 1
-                    
+
         stageStr = 'fc' + str(i + 1)
         stagesI[-1].append(n(stageStr))
         print("\nStagesI: ", stagesI)
