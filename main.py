@@ -195,7 +195,7 @@ def main():
 
     ende = time.time()
     print('{:5.3f}s'.format(ende - start), end='  ')
-
+    print("\n")
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     # switch to train mode
