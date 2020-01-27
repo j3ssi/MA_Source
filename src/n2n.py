@@ -174,7 +174,6 @@ class N2N(nn.Module):
                 print("\n\n\tBlock: ", block)
                 i=0
                 while i < self.layersInBlock:
-                    print("\n\n\tBlock: ", block)
                     if firstLayerInStage:
                         # conv
                         x = self.module_list[i](_x)
