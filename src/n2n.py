@@ -253,6 +253,7 @@ class N2N(nn.Module):
                     print("\nJ: ", j, " ; ", self.module_list[j])
                     print("\n\n X Shape 1: ", x.shape)
                 x = x.view(-1, self.sizeOfFC)
+                print("\n\n X Shape 2: ", x.shape)
             except RuntimeError:
                 print("\n \n Oops!!!: ")
                 print("AvgPool")
