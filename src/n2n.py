@@ -166,7 +166,7 @@ class N2N(nn.Module):
             print("\nI: 1 ; ", self.module_list[1])
             print("\nX Shape: ", x.shape)
         _x = self.relu(x)
-
+        j = 2
         for stage in range(0, self.numOfStages):
             print("\n\nStage: ", stage)
             firstLayerInStage = True
@@ -176,14 +176,15 @@ class N2N(nn.Module):
                 while i < self.layersInBlock:
                     if firstLayerInStage:
                         # conv
-                        x = self.module_list[i](_x)
-                        i = i + 1
+                        x = self.module_list[j](_x)
+                        j = j + 1
                         if printNet:
                             print("\nI: ", i, " ; ", self.module_list[i])
                             print("\nX Shape: ", x.shape)
 
                         # bn
-                        x = self.module_list[i](x)
+                        x = self.module_list[j](x)
+                        j = j + 1
                         i = i + 1
                         if printNet:
                             print("\nI: ", i, " ; ", self.module_list[i])
@@ -194,35 +195,33 @@ class N2N(nn.Module):
 
                     elif i % (self.layersInBlock - 1):
                         # conv
-                        x = self.module_list[i](x)
-                        i = i + 1
+                        x = self.module_list[j](x)
+                        j = j + 1
                         if printNet:
                             print("\nI: ", i, " ; ", self.module_list[i])
                             print("\nX Shape: ", x.shape)
 
                         # bn
-                        x = self.module_list[i](x)
-                        i = i + 1
+                        x = self.module_list[j](x)
                         _x = _x + x
-
                         _x = self.relu(_x)
-
+                        i = i + 1
                         if printNet:
                             print("\nI: ", i, " ; ", self.module_list[i])
 
                     else:
                         # conv
-                        x = self.module_list[i](x)
-                        i = i + 1
+                        x = self.module_list[j](x)
+                        j = j + 1
                         if printNet:
                             print("\nI: ", i, " ; ", self.module_list[i])
                             print("\nX Shape: ", x.shape)
 
                         # bn
-                        x = self.module_list[i](x)
-                        i = i + 1
-
+                        x = self.module_list[j](x)
+                        j = j + 1
                         x = self.relu(x)
+                        i = i + 1
                 firstLayerInStage = False
 
         if isinstance(self.module_list[10], nn.AdaptiveAvgPool2d):
