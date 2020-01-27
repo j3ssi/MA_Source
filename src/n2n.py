@@ -153,7 +153,7 @@ class N2N(nn.Module):
 
     def forward(self, x):
         # First layer
-        printNet = True
+        printNet = False
         if printNet:
             print("\nX Shape: ", x.shape)
         # conv1
@@ -314,8 +314,8 @@ class N2N(nn.Module):
 
         stageStr = 'fc' + str(i + 1)
         stagesI[-1].append(n(stageStr))
-        print("\nStagesI: ", stagesI)
-        print("\nStagesO: ", stagesO)
+        # print("\nStagesI: ", stagesI)
+        # print("\nStagesO: ", stagesO)
         return stagesI, stagesO
 
     def getShareSameNodeLayers(self):
@@ -338,7 +338,7 @@ class N2N(nn.Module):
                         i = i + 1
                 sameNode.append(block)
 
-        print("\nSame Node: ", sameNode)
+        # print("\nSame Node: ", sameNode)
         return sameNode
 
 
