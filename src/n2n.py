@@ -155,7 +155,7 @@ class N2N(nn.Module):
 
     def forward(self, x):
         # First layer
-        printNet = True
+        printNet = False
         # conv1
         x = self.module_list[0](x)
         if printNet:
