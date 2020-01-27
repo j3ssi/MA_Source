@@ -234,7 +234,7 @@ class N2N(nn.Module):
                 if printNet:
                     print("\nJ: ", j, " ; ", self.module_list[j])
                     print("\n\n X Shape 1: ", x.shape)
-                x = x.view(-1, x.size(0))
+                x = x.view(-1, self.sizeOfFC)
             except RuntimeError:
                 print("\n \n Oops!!!: ")
                 print("AvgPool")
