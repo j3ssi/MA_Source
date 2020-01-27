@@ -97,7 +97,7 @@ class N2N(nn.Module):
                 else:
                     assert True, print("Hier fehlt noch was!!")
             print("\naltList", altList)
-            module_list = self.module_list
+            module_list = model.module_list
             for i in range(0, len(altList)):
                 # print("\n>i: ", i)
                 name = altList[i]
