@@ -158,7 +158,7 @@ class N2N(nn.Module):
         # conv1
         x = self.module_list[0](x)
         if printNet:
-            print("\nI: 1 ; ", self.module_list[0])
+            print("\nI: 0 ; ", self.module_list[0])
             print("\nX Shape: ", x.shape)
         # bn1
         x = self.module_list[1](x)
