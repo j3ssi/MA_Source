@@ -218,9 +218,9 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
 
-        # with torch.no_grad():
-        # inputs = Variable(inputs)
-        # targets = torch.autograd.Variable(targets)
+        with torch.no_grad():
+            inputs = Variable(inputs)
+        targets = torch.autograd.Variable(targets)
         outputs = model.forward(inputs)
         # print("\n\nOutput Shape: ", outputs.shape)
         # if batch_idx == 0:
@@ -271,7 +271,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
         # compute gradient and do SGD step
         optimizer.zero_grad()
-        loss.backward()
+        loss.backward(retain_graph = False)
         # if not init_batch:
         # for name, param in model.named_parameters():
         #     # Get Momentum parameters to adjust
