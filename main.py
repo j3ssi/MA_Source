@@ -29,7 +29,7 @@ import torchvision.datasets as datasets
 from torch.autograd import Variable
 from torch.backends import cudnn
 import torchviz as tw
-from matplotlib.pyplot import * as plt
+import matplotlib.pyplot as plt
 from src import n2n
 from src.custom_arch import *
 from src.checkpoint_utils import makeSparse, genDenseModel
