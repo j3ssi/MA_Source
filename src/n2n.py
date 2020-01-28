@@ -314,6 +314,8 @@ class N2N(nn.Module):
                         i = i + 1
                         j = j + 1
                     else:
+                        if printStages:
+                            print("\nstagesI: ", j, " ; ", i)
                         i = i + 1
                         j = j + 1
             stagesI.append([])
