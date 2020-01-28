@@ -349,10 +349,10 @@ class N2N(nn.Module):
 
             stagesI.append([])
             stagesO.append([])
+        stagesI[-1].append(n(j))
         if printStages:
             print("\nStagesI: ", stagesI)
             print("\nStagesO: ", stagesO)
-        stagesI[-1].append(n(j))
         return stagesI, stagesO
 
     def getShareSameNodeLayers(self):
