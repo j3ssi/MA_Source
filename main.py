@@ -108,7 +108,7 @@ if use_cuda:
 best_acc = 0  # best test accuracy
 
 
-def visualizePruneTrain(tmp_model, model):
+def visualizePruneTrain(tmp_parameters, model):
     altList= []
     paramList = []
     printName = False
@@ -142,50 +142,18 @@ def visualizePruneTrain(tmp_model, model):
             assert True, print("Hier fehlt noch was!!")
     # print("\naltList", altList)
 
-    altListTmp= []
-    paramListTmp = []
-    for name, param in model.named_parameters():
-        # print("\nName: {}", name)
-        paramListTmp.append(param)
-        # print("\nName: ", name)
-        i = int(name.split('.')[1])
-
-        if i % 2 == 0:
-            altListTmp.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
-            if printName:
-                print("\nI:", i, " ; ", altListTmp[-1])
-        elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
-            altListTmp.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
-            if printName:
-                print("\nI:", i, " ; ", altListTmp[-1])
-        elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
-            altListTmp.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
-            if printName:
-                print("\nI:", i, " ; ", altListTmp[-1])
-        elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
-            altListTmp.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
-            if printName:
-                print("\nI:", i, " ; ", altList[-1])
-        elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
-            altListTmp.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-            if printName:
-                print("\nI:", i, " ; ", altList[-1])
-        else:
-            assert True, print("Hier fehlt noch was!!")
-    # print("\naltList", altList)
-
 
 
     for i in range(0,len(altList)):
-        if 'conv' in  altListTmp[i]:
-            if(paramList[i].shape == paramListTmp[i].shape):
+        if 'conv' in  altList[i]:
+            if(paramList[i].shape == tmp_parameters[i].shape):
                 print("\nShape: ",paramList[i].shape , " ; ", paramListTmp[i].shape )
 
             else:
                 print("\nDrin!!!")
-                weight = paramListTmp[i].data.numpy()
+                weight = tmp_parameters[i].data.numpy()
                 plt.show(  weight[0, ...]    )
-                fileName = altListTmp[i] + '_tmp.png'
+                fileName = altList[i] + '_tmp.png'
                 plt.savefig(fileName)
                 weight = paramList[i].data.numpy()
                 plt.show(  weight[0, ...]    )
@@ -247,7 +215,7 @@ def main():
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion, optimizer,
                                                                          epoch, use_cuda)
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
-            tmp_model = deepcopy(model)
+            tmp_parameters = model.parameters()
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):
                 # Force weights under threshold to zero
@@ -260,7 +228,7 @@ def main():
                 model.cuda()
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
-            visualizePruneTrain(tmp_model, model)
+            visualizePruneTrain(tmp_parameters, model)
             best_acc = max(test_acc, best_acc)
             # print(model)
         print('Best acc:')
