@@ -267,6 +267,9 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
     end = time.time()
 
+    for param in model.parameters():
+        param.grad = None
+
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         # measure data loading time
         data_time.update(time.time() - end)
