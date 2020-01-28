@@ -377,7 +377,7 @@ class N2N(nn.Module):
                 sameNode.append(block)
 
         fcStr = 'fc' + str(i+1)
-        sameNode.append(n(i),n(fcStr))
+        sameNode.append((n(i),n(fcStr)))
         # print("\nSame Node: ", sameNode)
         return sameNode
 
