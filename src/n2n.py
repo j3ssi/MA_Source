@@ -272,7 +272,7 @@ class N2N(nn.Module):
             print("\nX Shape: ", x.shape)
         j = j + 1
         # bn
-        x = self.module_list[1](x)
+        x = self.module_list[j](x)
         if printNet:
             print("\nI: j ; ", self.module_list[j])
             print("\nX Shape: ", x.shape)
