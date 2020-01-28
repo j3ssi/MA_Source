@@ -178,7 +178,7 @@ def visualizePruneTrain(tmp_model, model):
         if(paramList[i].weight.size() == paramListTmp[i].weight.size())
             'do nothing'
         else:
-            paramListTmp[i].weight.data.numpy()
+            weight = paramListTmp[i].weight.data.numpy()
             plt.imshow(  weight[0, ...]    )
 
 
