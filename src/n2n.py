@@ -46,8 +46,17 @@ class N2N(nn.Module):
 
                 firstLayer = False
 
+
             # 18
             self.sizeOfFC = pow(2, self.numOfStages + 3)
+
+            conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
+                             stride=1)
+            self.module_list.append(conv)
+            bn = nn.BatchNorm2d(sizeOfLayer)
+            self.module_list.append(bn)
+            i = i + 1
+
             # print("\n self sizeofFC: ",self.sizeOfFC)
             avgpool = nn.AdaptiveAvgPool2d((1, 1))
             self.module_list.append(avgpool)
@@ -254,6 +263,21 @@ class N2N(nn.Module):
                         x = self.relu(x)
                         i = i + 1
 
+        if printNet:
+            print("\nX Shape: ", x.shape)
+        # conv
+        x = self.module_list[j](x)
+        if printNet:
+            print("\nI: j ; ", self.module_list[j])
+            print("\nX Shape: ", x.shape)
+        j = j + 1
+        # bn
+        x = self.module_list[1](x)
+        if printNet:
+            print("\nI: j ; ", self.module_list[j])
+            print("\nX Shape: ", x.shape)
+        _x = self.relu(x)
+        j = j + 1
         if isinstance(self.module_list[j], nn.AdaptiveAvgPool2d):
             try:
                 x = self.module_list[j](_x)
@@ -327,9 +351,6 @@ class N2N(nn.Module):
                 break
             stagesI.append([])
             stagesO.append([])
-
-        stageStr = 'fc' + str(j + 1)
-        stagesI[-1].append(n(stageStr))
         if printStages:
             print("\nStagesI: ", stagesI)
             print("\nStagesO: ", stagesO)
@@ -355,6 +376,8 @@ class N2N(nn.Module):
                         i = i + 1
                 sameNode.append(block)
 
+        fcStr = 'fc' + str(i+1)
+        sameNode.append(n(i),n(fcStr))
         # print("\nSame Node: ", sameNode)
         return sameNode
 
