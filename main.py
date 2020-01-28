@@ -175,7 +175,7 @@ def visualizePruneTrain(tmp_model, model):
 
 
     for i in range(0,len(altList)):
-        if 'conv' in  altListTmp[i]
+        if 'conv' in  altListTmp[i]:
             if(paramList[i].weight.shape() == paramListTmp[i].weight.shape()):
                 'do nothing'
             else:
