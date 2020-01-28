@@ -230,7 +230,7 @@ class N2N(nn.Module):
                         i = i + 1
                         _x = self.relu(x)
 
-                    elif i % (self.layersInBlock - 1) == 0 and block > 0:
+                    elif (i-1) % (self.layersInBlock) == 0 and (block > 0 or stage == 0):
                         print("\n\n\n DRIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
                         # conv
                         x = self.module_list[j](x)
