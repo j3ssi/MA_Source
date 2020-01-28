@@ -181,11 +181,11 @@ def visualizePruneTrain(tmp_model, model):
             else:
                 print("\nDrin!!!")
                 weight = paramListTmp[i].data.numpy()
-                plt.plot(  weight[0, ...]    )
+                plt.show(  weight[0, ...]    )
                 fileName = altListTmp[i] + '_tmp.png'
                 plt.savefig(fileName)
                 weight = paramList[i].data.numpy()
-                plt.plot(  weight[0, ...]    )
+                plt.show(  weight[0, ...]    )
                 fileName = altList[i]+ '.png'
                 plt.savefig(fileName)
 
