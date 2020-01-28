@@ -18,8 +18,11 @@ import os
 import argparse
 import time
 import random
-from copy import deepcopy
+import numpy as np
 
+
+from copy import deepcopy
+from mpl_toolkits.mplot3d import Axes3D
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -149,7 +152,13 @@ def visualizePruneTrain(model, epoch):
             paramList[i]=paramList[i].view(paramList[i].shape[0],paramList[i].shape[1],-1)
             weight = paramList[i].cpu()
             weight = weight.detach().numpy()
-            plt.plot(  weight[0, ...]    )
+            fig = plt.figure()
+            ax = fig.add_subplot(111, projection='3d')
+
+            n = 100
+            ax.scatter(weight[0], weight[1], weight[2], marker=m)
+
+
             fileName = altList[i]+'_' + str(epoch)+ '.png'
             plt.savefig(fileName)
 
