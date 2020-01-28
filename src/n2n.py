@@ -65,6 +65,7 @@ class N2N(nn.Module):
                     m.bias.data.zero_()
             print(self)
         else:
+            module_list = model.module_list
             self.module_list = nn.ModuleList()
             altList = []
             paramList = []
@@ -98,7 +99,6 @@ class N2N(nn.Module):
                 else:
                     assert True, print("Hier fehlt noch was!!")
             # print("\naltList", altList)
-            module_list = model.module_list
             for i in range(0, len(altList)):
                 # print("\n>i: ", i)
                 name = altList[i]
@@ -110,6 +110,7 @@ class N2N(nn.Module):
                     out_chs = dims[0]
                     # Search for the corresponding Conv Module in Module_list
                     k = int(name.split('.')[1].split('v')[1])
+                    print("\nK: ", k)
                     module = module_list[(k - 1) * 2]
                     kernel_size = module.kernel_size
                     stride = module.stride
@@ -159,7 +160,7 @@ class N2N(nn.Module):
 
     def forward(self, x):
         # First layer
-        printNet = False
+        printNet = True
         if printNet:
             print("\nX Shape: ", x.shape)
         # conv1
