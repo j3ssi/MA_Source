@@ -150,7 +150,7 @@ def visualizePruneTrain(model, epoch):
             weight = paramList[i].cpu()
             weight = weight.detach().numpy()
             plt.plot(  weight[0, ...]    )
-            fileName = altList[i]+'_' + epoch+ '.png'
+            fileName = altList[i]+'_' + str(epoch)+ '.png'
             plt.savefig(fileName)
 
 
