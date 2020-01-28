@@ -54,7 +54,6 @@ class N2N(nn.Module):
             self.module_list.append(conv)
             bn = nn.BatchNorm2d(sizeOfLayer)
             self.module_list.append(bn)
-            i = i + 1
 
             # print("\n self sizeofFC: ",self.sizeOfFC)
             avgpool = nn.AdaptiveAvgPool2d((1, 1))
@@ -266,13 +265,13 @@ class N2N(nn.Module):
         # conv
         x = self.module_list[j](_x)
         if printNet:
-            print("\nI: j ; ", self.module_list[j])
+            print("\nI: ", j ," ; ", self.module_list[j])
             print("\nX Shape: ", x.shape)
         j = j + 1
         # bn
         x = self.module_list[j](x)
         if printNet:
-            print("\nI: j ; ", self.module_list[j])
+            print("\nI: ", j, " ; ", self.module_list[j])
             print("\nX Shape: ", x.shape)
         _x = self.relu(x)
         j = j + 1
