@@ -167,7 +167,7 @@ class N2N(nn.Module):
 
     def forward(self, x):
         # First layer
-        printNet = True
+        printNet = False
         if printNet:
             print("\nX Shape: ", x.shape)
         # conv1
@@ -265,7 +265,7 @@ class N2N(nn.Module):
         # conv
         x = self.module_list[j](_x)
         if printNet:
-            print("\nI: ", j ," ; ", self.module_list[j])
+            print("\nI: ", j, " ; ", self.module_list[j])
             print("\nX Shape: ", x.shape)
         j = j + 1
         # bn
@@ -314,7 +314,7 @@ class N2N(nn.Module):
         stagesO.append([])
         stagesO[0].append(n(1))
         # print("\nstagesO:  1")
-        printStages = False
+        printStages = True
         for stage in range(0, self.numOfStages):
             for block in range(0, self.numOfBlocksinStage):
                 i = 0
@@ -377,7 +377,7 @@ class N2N(nn.Module):
 
         fcStr = 'fc' + str(i + 1)
         sameNode.append((n(i), n(fcStr)))
-        # print("\nSame Node: ", sameNode)
+        print("\nSame Node: ", sameNode)
         return sameNode
 
 
