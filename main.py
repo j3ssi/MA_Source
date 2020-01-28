@@ -147,7 +147,7 @@ def visualizePruneTrain(tmp_parameters, model):
     for i in range(0,len(altList)):
         if 'conv' in  altList[i]:
             if(paramList[i].shape == tmp_parameters[i].shape):
-                print("\nShape: ",paramList[i].shape , " ; ", paramListTmp[i].shape )
+                print("\nShape: ",paramList[i].shape , " ; ", tmp_parameters[i].shape )
 
             else:
                 print("\nDrin!!!")
