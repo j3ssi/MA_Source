@@ -117,7 +117,7 @@ class N2N(nn.Module):
                     padding = module.padding
                     bias = module.bias if module.bias is not None else False
 
-                    layer = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
+                    layer = nn.Conv2d(in_chs=in_chs, out_chs=out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
                                       bias=bias)
                     if printName:
                         print("\n>new Layer: ", layer, " ; ", param.shape)
