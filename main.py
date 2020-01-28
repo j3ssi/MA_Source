@@ -108,7 +108,7 @@ if use_cuda:
 best_acc = 0  # best test accuracy
 
 
-def visualizePruneTrain(tmp_parameters, model):
+def visualizePruneTrain(model, epoch):
     altList= []
     paramList = []
     printName = False
@@ -146,16 +146,9 @@ def visualizePruneTrain(tmp_parameters, model):
 
     for i in range(0,len(altList)):
         if 'conv' in  altList[i]:
-#            if(paramList[i].shape == tmp_parameters[i].shape):
-            print("\nShape: ",paramList[i].shape , " ; ", tmp_parameters[i].shape )
-
-            weight = tmp_parameters[i].data.numpy()
+            weight = paramList[i].cpu().numpy()
             plt.show(  weight[0, ...]    )
-            fileName = altList[i] + '_tmp.png'
-            plt.savefig(fileName)
-            weight = paramList[i].data.numpy()
-            plt.show(  weight[0, ...]    )
-            fileName = altList[i]+ '.png'
+            fileName = altList[i]+'_' + epoch+ '.png'
             plt.savefig(fileName)
 
 
@@ -226,7 +219,7 @@ def main():
                 model.cuda()
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
-            visualizePruneTrain(tmp_parameters, model)
+            visualizePruneTrain(model, epoch)
             best_acc = max(test_acc, best_acc)
             # print(model)
         print('Best acc:')
