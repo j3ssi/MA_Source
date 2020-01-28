@@ -27,7 +27,7 @@ import torchvision.datasets as datasets
 from torch.autograd import Variable
 from torch.backends import cudnn
 import torchviz as tw
-
+import matplotlib as plt
 from src import n2n
 from src.custom_arch import *
 from src.checkpoint_utils import makeSparse, genDenseModel
@@ -106,6 +106,84 @@ if use_cuda:
 best_acc = 0  # best test accuracy
 
 
+def visualizePruneTrain(tmp_model, model):
+    altList= []
+    paramList = []
+    printName = False
+    for name, param in model.named_parameters():
+        # print("\nName: {}", name)
+        paramList.append(param)
+        # print("\nName: ", name)
+        i = int(name.split('.')[1])
+
+        if i % 2 == 0:
+            altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
+            if printName:
+                print("\nI:", i, " ; ", altList[-1])
+        elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
+            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
+            if printName:
+                print("\nI:", i, " ; ", altList[-1])
+        elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
+            altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
+            if printName:
+                print("\nI:", i, " ; ", altList[-1])
+        elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
+            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
+            if printName:
+                print("\nI:", i, " ; ", altList[-1])
+        elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
+            altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
+            if printName:
+                print("\nI:", i, " ; ", altList[-1])
+        else:
+            assert True, print("Hier fehlt noch was!!")
+    # print("\naltList", altList)
+
+    altListTmp= []
+    paramListTmp = []
+    for name, param in model.named_parameters():
+        # print("\nName: {}", name)
+        paramListTmp.append(param)
+        # print("\nName: ", name)
+        i = int(name.split('.')[1])
+
+        if i % 2 == 0:
+            altListTmp.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
+            if printName:
+                print("\nI:", i, " ; ", altListTmp[-1])
+        elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
+            altListTmp.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
+            if printName:
+                print("\nI:", i, " ; ", altListTmp[-1])
+        elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
+            altListTmp.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
+            if printName:
+                print("\nI:", i, " ; ", altListTmp[-1])
+        elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
+            altListTmp.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
+            if printName:
+                print("\nI:", i, " ; ", altList[-1])
+        elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
+            altListTmp.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
+            if printName:
+                print("\nI:", i, " ; ", altList[-1])
+        else:
+            assert True, print("Hier fehlt noch was!!")
+    # print("\naltList", altList)
+
+
+
+    for i in range(0,len(altList)):
+        if(paramList[i].weight.size == paramListTmp[i].weight.size)
+            'do nothing'
+        else:
+            paramListTmp[i].weight.data.numpy()
+            plt.imshow(   )
+
+
+
+
 def main():
     # use anomaly detection of torch
     torch.autograd.set_detect_anomaly(True)
@@ -160,7 +238,7 @@ def main():
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion, optimizer,
                                                                          epoch, use_cuda)
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
-
+            tmp_model = model
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):
                 # Force weights under threshold to zero
@@ -171,11 +249,9 @@ def main():
                                 model)
 
                 model.cuda()
-                criterion = nn.CrossEntropyLoss()
-
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
-
+            visualizePruneTrain(tmp_model, model)
             best_acc = max(test_acc, best_acc)
             # print(model)
         print('Best acc:')
@@ -196,6 +272,7 @@ def main():
     ende = time.time()
     print('{:5.3f}s'.format(ende - start), end='  ')
     print("\n")
+
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     # switch to train mode
@@ -224,9 +301,9 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         outputs = model.forward(inputs)
         # print("\n\nOutput Shape: ", outputs.shape)
         if batch_idx == 0:
-            dot = tw.make_dot(outputs, params =dict(model.named_parameters()) )
+            dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
             filename = 'PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
-            dot.render(filename = filename)
+            dot.render(filename=filename)
         loss = criterion(outputs, targets)
 
         # lasso penalty
@@ -333,14 +410,6 @@ def test(testloader, model, criterion, epoch, use_cuda):
 
     epoch_time = batch_time.avg * len(testloader)  # Time for total test dataset
     return (losses.avg, top1.avg, epoch_time)
-
-
-#
-# def save_checkpoint(state, is_best, checkpoint='checkpoint', filename='checkpoint.pth.tar'):
-#     filepath = os.path.join(checkpoint, filename)
-#     torch.save(state, filepath)
-#     if is_best:
-#         shutil.copyfile(filepath, os.path.join(checkpoint, 'model_best.pth.tar'))
 
 
 def adjust_learning_rate(optimizer, epoch):
