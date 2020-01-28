@@ -175,11 +175,12 @@ def visualizePruneTrain(tmp_model, model):
 
 
     for i in range(0,len(altList)):
-        if(paramList[i].weight.size() == paramListTmp[i].weight.size()):
-            'do nothing'
-        else:
-            weight = paramListTmp[i].weight.data.numpy()
-            plt.imshow(  weight[0, ...]    )
+        if 'conv' altListTmp[i]
+            if(paramList[i].weight.shape() == paramListTmp[i].weight.shape()):
+                'do nothing'
+            else:
+                weight = paramListTmp[i].weight.data.numpy()
+                plt.imshow(  weight[0, ...]    )
 
 
 
