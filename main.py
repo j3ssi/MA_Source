@@ -146,7 +146,7 @@ def visualizePruneTrain(model, epoch):
 
     for i in range(0,len(altList)):
         if 'conv' in  altList[i]:
-            paramList[i]=paramList[i].view(64,-1)
+            paramList[i]=paramList[i].view(216,-1)
             weight = paramList[i].cpu()
             weight = weight.detach().numpy()
             plt.plot(  weight[0, ...]    )
