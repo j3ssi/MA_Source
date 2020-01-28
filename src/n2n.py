@@ -188,12 +188,11 @@ class N2N(nn.Module):
                 print("\n\nStage: ", stage)
 
             for block in range(0, self.numOfBlocksinStage):
-                firstLayerInBlock = True
                 if printNet:
                     print("\n\n\tBlock: ", block)
                 i = 0
                 while i < self.layersInBlock:
-                    if firstLayerInBlock:
+                    if i == 0:
                         # conv
                         x = self.module_list[j](_x)
                         if printNet:
@@ -209,8 +208,6 @@ class N2N(nn.Module):
                         i = i + 1
 
                         x = self.relu(x)
-
-                        firstLayerInBlock = False
 
                     elif ((i + 1) % self.layersInBlock) == 0 and (block > 0 or stage == 0):
                         # conv
