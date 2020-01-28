@@ -218,8 +218,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
 
-        with torch.no_grad():
-            inputs = Variable(inputs)
+        # with torch.no_grad():
+        inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
         outputs = model.forward(inputs)
         # print("\n\nOutput Shape: ", outputs.shape)

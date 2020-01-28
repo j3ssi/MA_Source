@@ -151,8 +151,8 @@ class N2N(nn.Module):
             fc = nn.Linear(module.weight.shape[1], num_classes)
             if printName:
                 print("\nLinear: ", fc)
-            # fc.weight = module.weight
-            # fc.bias = module.bias
+            fc.weight = module.weight
+            fc.bias = module.bias
             self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
             if printName:
