@@ -151,10 +151,11 @@ def visualizePruneTrain(model, epoch):
         if 'conv' in  altList[i]:
             paramList[i]=paramList[i].view(paramList[i].shape[0],paramList[i].shape[1],-1)
             weight = paramList[i].cpu()
+
             weight = weight.detach().numpy()
             fig = plt.figure()
             ax = fig.add_subplot(111, projection='3d')
-
+            weight = weight[1:]
             n = 100
             ax.scatter(weight[0], weight[1], weight[2])
 
