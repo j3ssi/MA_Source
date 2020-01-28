@@ -246,6 +246,7 @@ def main():
             elif best_acc < 95:
                 model = n2n.deeper(model, optimizer, [2])
             model.cuda()
+            criterion = nn.CrossEntropyLoss()
             optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                   weight_decay=args.weight_decay)
 
