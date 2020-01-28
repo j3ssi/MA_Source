@@ -294,7 +294,7 @@ class N2N(nn.Module):
                     if i == 0 and stage > 0 and block == 0:
                         stagesI[stage - 1].append(n(j))
                         if printStages:
-                            print("\nstagesI: ", j)
+                            print("\nstagesI: ", j, " ; ", i)
                         j = j + 1
                         i = i + 1
                     elif (i-1) % self.layersInBlock == 1:
@@ -302,14 +302,14 @@ class N2N(nn.Module):
                         print("\nJ: ", k)
                         stagesI[stage].append(n(j))
                         if printStages:
-                            print("\nstagesI: ", j)
+                            print("\nstagesI: ", j, " ; ", i)
                         i = i + 1
                         j = j + 1
 
                     elif ((i -1) % self.layersInBlock) == (self.layersInBlock-1):
                         stagesO[stage].append(n(j))
                         if printStages:
-                            print("\nstagesO: ", j)
+                            print("\nstagesO: ", j, " ; ", i)
                         i = i + 1
                         j = j + 1
                     else:
