@@ -68,7 +68,7 @@ class N2N(nn.Module):
             self.module_list = nn.ModuleList()
             altList = []
             paramList = []
-            printName = True
+            printName = False
             for name, param in model.named_parameters():
                 # print("\nName: {}", name)
                 paramList.append(param)
@@ -286,7 +286,7 @@ class N2N(nn.Module):
         stagesO.append([])
         stagesO[0].append(n(1))
         print("\nstagesO:  1")
-        printStages = True
+        printStages = False
         for stage in range(0, self.numOfStages):
             for block in range(0, self.numOfBlocksinStage):
                 i = 0
