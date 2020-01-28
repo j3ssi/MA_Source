@@ -46,7 +46,6 @@ class N2N(nn.Module):
 
                 firstLayer = False
 
-
             # 18
             self.sizeOfFC = pow(2, self.numOfStages + 3)
 
@@ -119,7 +118,7 @@ class N2N(nn.Module):
                     out_chs = dims[0]
                     # Search for the corresponding Conv Module in Module_list
                     k = int(name.split('.')[1].split('v')[1])
-                    print("\nK: ", k, " ; ", (k - 1) * 2, "; in,out: ", in_chs," ; " ,out_chs)
+                    print("\nK: ", k, " ; ", (k - 1) * 2, "; in,out: ", in_chs, " ; ", out_chs)
                     module = module_list[(k - 1) * 2]
                     kernel_size = module.kernel_size
                     stride = module.stride
@@ -192,7 +191,7 @@ class N2N(nn.Module):
                 firstLayerInBlock = True
                 if printNet:
                     print("\n\n\tBlock: ", block)
-                i=0
+                i = 0
                 while i < self.layersInBlock:
                     if firstLayerInBlock:
                         # conv
@@ -214,7 +213,9 @@ class N2N(nn.Module):
                         firstLayerInBlock = False
 
 
-                    elif (i+1) % (self.layersInBlock) == 0:
+                    elif ((i + 1) % self.layersInBlock) == 0:
+                        print("\n\n\n DRIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
                         # conv
                         x = self.module_list[j](x)
                         if printNet:
@@ -230,7 +231,7 @@ class N2N(nn.Module):
                         i = i + 1
                         _x = self.relu(x)
 
-                    elif ((i+1) % (self.layersInBlock)) == 0 and (block > 0 or stage == 0):
+                    elif ((i + 1) % (self.layersInBlock)) == 0 and (block > 0 or stage == 0):
                         print("\n\n\n DRIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
                         # conv
                         x = self.module_list[j](x)
@@ -336,8 +337,8 @@ class N2N(nn.Module):
                         i = i + 1
                         j = j + 1
 
-                    elif (i % self.layersInBlock) == (self.layersInBlock-1):
-                        k = (i-1) % self.layersInBlock
+                    elif (i % self.layersInBlock) == (self.layersInBlock - 1):
+                        k = (i - 1) % self.layersInBlock
                         stagesO[stage].append(n(j))
                         if printStages:
                             print("\nstagesO: ", j, " ; ", i)
@@ -348,7 +349,7 @@ class N2N(nn.Module):
                             print("\nstagesI: ", j, " ; ", i)
                         i = i + 1
                         j = j + 1
-            if stage == (self.numOfStages-1):
+            if stage == (self.numOfStages - 1):
                 break
 
             stagesI.append([])
@@ -368,10 +369,10 @@ class N2N(nn.Module):
                 block = []
                 for layer in range(0, self.layersInBlock):
                     # print("\nI: ", i, " ; ", stage, " ; ", block, " ; ", layer)
-                    if (i-1) % self.layersInBlock == 1:
+                    if (i - 1) % self.layersInBlock == 1:
                         block.append(n(i))
                         i = i + 1
-                    elif (i-1) % self.layersInBlock == 0:
+                    elif (i - 1) % self.layersInBlock == 0:
                         block.append(n(i))
                         i = i + 1
                     else:
@@ -379,8 +380,8 @@ class N2N(nn.Module):
                         i = i + 1
                 sameNode.append(block)
 
-        fcStr = 'fc' + str(i+1)
-        sameNode.append((n(i),n(fcStr)))
+        fcStr = 'fc' + str(i + 1)
+        sameNode.append((n(i), n(fcStr)))
         # print("\nSame Node: ", sameNode)
         return sameNode
 
