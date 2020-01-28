@@ -118,17 +118,20 @@ class N2N(nn.Module):
 
                     layer = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
                                       bias=bias)
-                    print("\n>new Layer: ", layer, " ; ", param.shape)
-                    print("\nWeight Shape: ", module.weight.shape)
+                    if printName:
+                        print("\n>new Layer: ", layer, " ; ", param.shape)
+                        print("\nWeight Shape: ", module.weight.shape)
                     layer.weight = module.weight
                     self.module_list.append(layer)
 
                 elif 'bn' in name and not 'bias' in name:
                     layer = nn.BatchNorm2d(paramList[i].shape[0])
-                    print("\n>new Layer: ", layer)
+                    if printName:
+                        print("\n>new Layer: ", layer)
                     self.module_list.append(layer)
                 elif 'bn' in name and 'bias' in name:
-                    print("\n>Name: ", name, " ; ", k)
+                    if printName:
+                        print("\n>Name: ", name, " ; ", k)
                     k = int(name.split('.')[1].split('n')[1])
                     k1 = 2 * (k - 1) + 1
                     # print("\nk1: ", k1)
@@ -142,14 +145,17 @@ class N2N(nn.Module):
             self.module_list.append(avgpool)
             module = module_list[-1]
             self.sizeOfFC = module.weight.shape[1]
-            # print("\n self sizeofFC: ", self.sizeOfFC)
+            if printName:
+                print("\n self sizeofFC: ", self.sizeOfFC)
             fc = nn.Linear(module.weight.shape[1], num_classes)
-            # print("\nLinear: ", fc)
+            if printName:
+                print("\nLinear: ", fc)
             fc.weight = module.weight
             fc.bias = module.bias
             self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
-            # print("\nnew Model: ", self)
+            if printName:
+                print("\nnew Model: ", self)
 
     def forward(self, x):
         # First layer
