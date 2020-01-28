@@ -318,6 +318,8 @@ class N2N(nn.Module):
                             print("\nstagesI: ", j, " ; ", i)
                         i = i + 1
                         j = j + 1
+            if stage == self.numOfStages:
+                break
             stagesI.append([])
             stagesO.append([])
 
