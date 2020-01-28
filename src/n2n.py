@@ -213,8 +213,7 @@ class N2N(nn.Module):
                         firstLayerInBlock = False
 
                     elif ((i + 1) % self.layersInBlock) == 0 and (block > 0 or stage == 0):
-                        print("\n\n\n DRIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-                        # conv
+                       # conv
                         x = self.module_list[j](x)
                         if printNet:
                             print("\nJ: ", j, " ; ", self.module_list[j])
