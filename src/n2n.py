@@ -122,7 +122,7 @@ class N2N(nn.Module):
                     if printName:
                         print("\n>new Layer: ", layer, " ; ", param.shape)
                         print("\nWeight Shape: ", module.weight.shape)
-                    layer.weight = module.weight
+                    # layer.weight = module.weight
                     self.module_list.append(layer)
 
                 elif 'bn' in name and not 'bias' in name:
@@ -137,8 +137,8 @@ class N2N(nn.Module):
                     k1 = 2 * (k - 1) + 1
                     # print("\nk1: ", k1)
                     module = module_list[k1]
-                    self.module_list[-1].bias = module.bias
-                    self.module_list[-1].weight = module.weight
+                    # self.module_list[-1].bias = module.bias
+                    # self.module_list[-1].weight = module.weight
                 # else:
                 # print('\nelse: ', name)
 
@@ -151,8 +151,8 @@ class N2N(nn.Module):
             fc = nn.Linear(module.weight.shape[1], num_classes)
             if printName:
                 print("\nLinear: ", fc)
-            fc.weight = module.weight
-            fc.bias = module.bias
+            # fc.weight = module.weight
+            # fc.bias = module.bias
             self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
             if printName:
