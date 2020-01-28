@@ -231,6 +231,7 @@ class N2N(nn.Module):
                         _x = self.relu(x)
 
                     elif i % (self.layersInBlock - 1) == 0 and block > 0:
+                        print("\n\n\n DRIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
                         # conv
                         x = self.module_list[j](x)
                         if printNet:
