@@ -177,7 +177,8 @@ def visualizePruneTrain(tmp_model, model):
     for i in range(0,len(altList)):
         if 'conv' in  altListTmp[i]:
             if(paramList[i].shape == paramListTmp[i].shape):
-                'do nothing'
+                print("\nShape: ",paramList[i].shape , " ; ", paramListTmp[i].shape )
+
             else:
                 print("\nDrin!!!")
                 weight = paramListTmp[i].data.numpy()
