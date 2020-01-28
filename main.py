@@ -156,7 +156,7 @@ def visualizePruneTrain(model, epoch):
             ax = fig.add_subplot(111, projection='3d')
 
             n = 100
-            ax.scatter(weight[0], weight[1], weight[2], marker=m)
+            ax.scatter(weight[0], weight[1], weight[2])
 
 
             fileName = altList[i]+'_' + str(epoch)+ '.png'
