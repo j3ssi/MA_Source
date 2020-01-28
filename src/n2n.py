@@ -69,7 +69,7 @@ class N2N(nn.Module):
             self.module_list = nn.ModuleList()
             altList = []
             paramList = []
-            printName = False
+            printName = True
             for name, param in model.named_parameters():
                 # print("\nName: {}", name)
                 paramList.append(param)
@@ -160,7 +160,7 @@ class N2N(nn.Module):
 
     def forward(self, x):
         # First layer
-        printNet = True
+        printNet = False
         if printNet:
             print("\nX Shape: ", x.shape)
         # conv1
