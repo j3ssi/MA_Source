@@ -146,19 +146,17 @@ def visualizePruneTrain(tmp_parameters, model):
 
     for i in range(0,len(altList)):
         if 'conv' in  altList[i]:
-            if(paramList[i].shape == tmp_parameters[i].shape):
-                print("\nShape: ",paramList[i].shape , " ; ", tmp_parameters[i].shape )
+#            if(paramList[i].shape == tmp_parameters[i].shape):
+            print("\nShape: ",paramList[i].shape , " ; ", tmp_parameters[i].shape )
 
-            else:
-                print("\nDrin!!!")
-                weight = tmp_parameters[i].data.numpy()
-                plt.show(  weight[0, ...]    )
-                fileName = altList[i] + '_tmp.png'
-                plt.savefig(fileName)
-                weight = paramList[i].data.numpy()
-                plt.show(  weight[0, ...]    )
-                fileName = altList[i]+ '.png'
-                plt.savefig(fileName)
+            weight = tmp_parameters[i].data.numpy()
+            plt.show(  weight[0, ...]    )
+            fileName = altList[i] + '_tmp.png'
+            plt.savefig(fileName)
+            weight = paramList[i].data.numpy()
+            plt.show(  weight[0, ...]    )
+            fileName = altList[i]+ '.png'
+            plt.savefig(fileName)
 
 
 def main():
