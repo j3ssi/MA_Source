@@ -323,7 +323,7 @@ class N2N(nn.Module):
             stagesI.append([])
             stagesO.append([])
 
-        stageStr = 'fc' + str(i + 1)
+        stageStr = 'fc' + str(j + 1)
         stagesI[-1].append(n(stageStr))
         print("\nStagesI: ", stagesI)
         print("\nStagesO: ", stagesO)
