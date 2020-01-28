@@ -146,7 +146,8 @@ def visualizePruneTrain(model, epoch):
 
     for i in range(0,len(altList)):
         if 'conv' in  altList[i]:
-            weight = paramList[i].cpu().numpy()
+            weight = paramList[i].cpu()
+            weight = weight.numpy()
             plt.show(  weight[0, ...]    )
             fileName = altList[i]+'_' + epoch+ '.png'
             plt.savefig(fileName)
