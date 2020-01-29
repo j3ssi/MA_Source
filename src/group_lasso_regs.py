@@ -57,7 +57,7 @@ def get_group_lasso_global(model):
         if ('weight' in name) and any([i for i in ['conv', 'fc'] if i in name]):
             # print("\nName: ", name)
             if param.dim() == 4:
-                # print("\nName: ", name)
+
                 # Exclude depth-wise convolution layers from regularization
                 if 'conv1.' not in name:
                     _in = param.pow(2).sum(dim=[0,2,3])
@@ -65,7 +65,7 @@ def get_group_lasso_global(model):
 
                 _out = param.pow(2).sum(dim=[1,2,3])
                 lasso_out_ch.append( _out )
-
+                print("\n\n>Name,lasso_ch: ", name, " ; ", lasso_in_ch, " ;", lasso_out_ch)
             elif param.dim() == 2:
                 lasso_in_ch.append( param.pow(2).sum(dim=[0]) )
 
