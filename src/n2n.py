@@ -106,7 +106,6 @@ class N2N(nn.Module):
                     assert True, print("Hier fehlt noch was!!")
 
             del model
-            del self
             self.module_list = nn.ModuleList()
 
             # print("\naltList", altList)
@@ -117,6 +116,7 @@ class N2N(nn.Module):
                 # print("\nName: ", name)
                 if 'conv' in name:
                     dims = list(param.shape)
+                    print("Name, Dims: ", name, " ; ", dims)
                     in_chs = dims[1]
                     out_chs = dims[0]
                     # Search for the corresponding Conv Module in Module_list
