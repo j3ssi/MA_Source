@@ -73,8 +73,6 @@ class N2N(nn.Module):
             print(self)
         else:
             module_list = model.module_list
-            del model
-            self.module_list = nn.ModuleList()
             altList = []
             paramList = []
             printName = True
@@ -106,6 +104,10 @@ class N2N(nn.Module):
                         print("\nI:", i, " ; ", altList[-1])
                 else:
                     assert True, print("Hier fehlt noch was!!")
+
+            del model
+            self.module_list = nn.ModuleList()
+
             # print("\naltList", altList)
             for i in range(0, len(altList)):
                 # print("\n>i: ", i)
