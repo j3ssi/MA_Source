@@ -70,7 +70,7 @@ parser.add_argument('--sparse_interval', default=0, type=int,
                     help='Interval to force the value under threshold')
 parser.add_argument('--threshold', default=0.0001, type=float,
                     help='Threshold to force weight to zero')
-parser.add_argument('--en_group_lasso', default=False, action='store_true',
+parser.add_argument('--en_group_lasso', default=True, action='store_true',
                     help='Set the group-lasso coefficient')
 parser.add_argument('--global_group_lasso', default=False, action='store_true',
                     help='True: use a global group lasso coefficient, '
@@ -294,10 +294,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
         if args.en_group_lasso:
             if args.global_group_lasso:
-                print("\n\nepoche: ", epoch)
                 lasso_penalty = get_group_lasso_global(model)
             else:
-                print("\n\nepoche: ", epoch)
                 lasso_penalty = get_group_lasso_group(model)
 
             # Auto-tune the group-lasso coefficient @first training iteration
