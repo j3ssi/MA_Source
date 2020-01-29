@@ -297,6 +297,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 print("\n\nepoche: ", epoch)
                 lasso_penalty = get_group_lasso_global(model)
             else:
+                print("\n\nepoche: ", epoch)
                 lasso_penalty = get_group_lasso_group(model)
 
             # Auto-tune the group-lasso coefficient @first training iteration
