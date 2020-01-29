@@ -73,6 +73,7 @@ class N2N(nn.Module):
             print(self)
         else:
             module_list = model.module_list
+            del model
             self.module_list = nn.ModuleList()
             altList = []
             paramList = []
