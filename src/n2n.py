@@ -70,12 +70,12 @@ class N2N(nn.Module):
                 elif isinstance(m, nn.BatchNorm2d):
                     m.weight.data.fill_(1)
                     m.bias.data.zero_()
-            print(self)
+            # print(self)
         else:
             module_list = model.module_list
             altList = []
             paramList = []
-            printName = True
+            printName = False
             for name, param in model.named_parameters():
                 # print("\nName: {}", name)
                 paramList.append(param)
@@ -116,12 +116,12 @@ class N2N(nn.Module):
                 # print("\nName: ", name)
                 if 'conv' in name:
                     dims = list(param.shape)
-                    print("Name, Dims: ", name, " ; ", dims)
+                    # print("Name, Dims: ", name, " ; ", dims)
                     in_chs = dims[1]
                     out_chs = dims[0]
                     # Search for the corresponding Conv Module in Module_list
                     k = int(name.split('.')[1].split('v')[1])
-                    print("\nK: ", k, " ; ", (k - 1) * 2, "; in,out: ", in_chs, " ; ", out_chs)
+                    # print("\nK: ", k, " ; ", (k - 1) * 2, "; in,out: ", in_chs, " ; ", out_chs)
                     module = module_list[(k - 1) * 2]
                     kernel_size = module.kernel_size
                     stride = module.stride
@@ -318,7 +318,7 @@ class N2N(nn.Module):
         stagesO.append([])
         stagesO[0].append(n(1))
         # print("\nstagesO:  1")
-        printStages = True
+        printStages = False
         for stage in range(0, self.numOfStages):
             for block in range(0, self.numOfBlocksinStage):
                 i = 0
@@ -384,7 +384,7 @@ class N2N(nn.Module):
         block.append(n(i))
         block.append(n(fcStr))
         sameNode.append(block)
-        print("\nSame Node: ", sameNode)
+        # print("\nSame Node: ", sameNode)
         return sameNode
 
 
