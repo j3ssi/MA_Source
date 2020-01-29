@@ -106,6 +106,7 @@ class N2N(nn.Module):
                     assert True, print("Hier fehlt noch was!!")
 
             del model
+            del self
             self.module_list = nn.ModuleList()
 
             # print("\naltList", altList)
