@@ -304,7 +304,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (lasso_penalty *
                                                                                    (1 - args.var_group_lasso_coeff))
             grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
-            print("\nGRP Lasso Coeff: ", str(grp_lasso_coeff.item()))
+            # print("\nGRP Lasso Coeff: ", str(grp_lasso_coeff.item()))
                 #if not os.path.exists(coeff_dir):
                 #    os.makedirs(coeff_dir)
                 #with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
