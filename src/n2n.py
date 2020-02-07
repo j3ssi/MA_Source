@@ -126,14 +126,14 @@ class N2N(nn.Module):
                     kernel_size = module.kernel_size
                     stride = module.stride
                     padding = module.padding
-                    bias = module.bias.__deepcopy__() if module.bias is not None else False
+                    bias = module.bias if module.bias is not None else False
 
                     layer = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
                                       bias=bias)
                     if printName:
                         print("\n>new Layer: ", layer, " ; ", param.shape)
                         print("\nWeight Shape: ", module.weight.shape)
-                    layer.weight = module.weight.__deepcopy__()
+                    layer.weight.data = module.weight.data
                     self.module_list.append(layer)
 
                 elif 'bn' in name and not 'bias' in name:
@@ -148,8 +148,8 @@ class N2N(nn.Module):
                     k1 = 2 * (k - 1) + 1
                     # print("\nk1: ", k1)
                     module = module_list[k1]
-                    self.module_list[-1].bias = module.bias.__deepcopy__()
-                    self.module_list[-1].weight = module.weight.__deepcopy__()
+                    self.module_list[-1].bias.data = module.bias.data
+                    self.module_list[-1].weight.data = module.weight.data
                 # else:
                 # print('\nelse: ', name)
 
@@ -162,8 +162,8 @@ class N2N(nn.Module):
             fc = nn.Linear(module.weight.shape[1], num_classes)
             if printName:
                 print("\nLinear: ", fc)
-            fc.weight = module.weight.__deepcopy__()
-            fc.bias = module.bias.__deepcopy__()
+            fc.weight.data = module.weight.data
+            fc.bias.data = module.bias.data
             self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
             # if printName:
