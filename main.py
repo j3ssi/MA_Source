@@ -312,7 +312,10 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
             else:
                 with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
+                    a=0
                     for line in f_coeff:
+                        a = a + 1
+                        print("\nA: ",a)
                         grp_lasso_coeff = float(line)
 
             lasso_penalty = lasso_penalty * grp_lasso_coeff

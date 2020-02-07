@@ -65,7 +65,7 @@ def get_group_lasso_global(model):
 
                 _out = param.pow(2).sum(dim=[1,2,3])
                 lasso_out_ch.append( _out )
-                print("\n\n>Name,lasso_ch: ", name, " ; ", lasso_in_ch, " ;", lasso_out_ch)
+                # print("\n\n>Name,lasso_ch: ", name, " ; ", lasso_in_ch, " ;", lasso_out_ch)
             elif param.dim() == 2:
                 lasso_in_ch.append( param.pow(2).sum(dim=[0]) )
 
