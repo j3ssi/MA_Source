@@ -166,8 +166,8 @@ class N2N(nn.Module):
             fc.bias = module.bias
             self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
-            if printName:
-                print("\nnew Model: ", self)
+            # if printName:
+            print("\nnew Model: ", self)
 
     def forward(self, x):
         # First layer
