@@ -231,7 +231,7 @@ def main():
                 model.cuda()
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
-            # visualizePruneTrain(model, epoch)
+            visualizePruneTrain(model, epoch)
             best_acc = max(test_acc, best_acc)
             # print(model)
         print('Best acc:')
