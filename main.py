@@ -164,11 +164,11 @@ def visualizePruneTrain(model, epoch):
                 m = i % 3
                 n = int(i/3)
                 weightList.append( weight[:,:,m,n] )
-                print("\nWeight: ", weight[:,:,m,n])
                 for k in range(0,j):
                     m1 = i % 3
                     n1 = int(i/3)
                     weightList3d.append((m1, n1, weight[m1,n1]))
+                    print("\nWeight: ", weightList3d[-1])
 
                     fig = plt.figure()
                     ax = fig.add_subplot(111, projection='3d')
