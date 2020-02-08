@@ -149,7 +149,8 @@ def visualizePruneTrain(model, epoch):
 
     for i in range(0,len(altList)):
         if 'conv' in  altList[i]:
-            paramList[i]=paramList[i].view(paramList[i].shape[0],paramList[i].shape[1],-1)
+            print("\nParamListShape: ", paramList[i].shape)
+
             weight = paramList[i].cpu()
 
             weight = weight.detach().numpy()
@@ -162,7 +163,7 @@ def visualizePruneTrain(model, epoch):
 
             fileName = altList[i]+'_' + str(epoch)+ '.png'
             plt.savefig(fileName)
-
+            plt.close(fig)
 
 def main():
     # use anomaly detection of torch
@@ -250,6 +251,7 @@ def main():
                                   weight_decay=args.weight_decay)
 
     ende = time.time()
+
     print('{:5.3f}s'.format(ende - start), end='  ')
     print("\n")
 
