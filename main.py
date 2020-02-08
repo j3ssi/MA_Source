@@ -150,7 +150,7 @@ def visualizePruneTrain(model, epoch):
 
     for i in range(0,len(altList)):
         if 'conv' in  altList[i]:
-            dims = paramList[i]
+            dims = paramList[i].shape
             print("\nParamListShape: ", paramList[i].shape)
             weight = copy.deepcopy(paramList[i])
             weight = weight.cpu()
