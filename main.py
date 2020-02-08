@@ -153,6 +153,7 @@ def visualizePruneTrain(model, epoch):
             weight = paramList[i].cpu()
             weight = weight.detach().numpy()
             weight=weight[1:]
+            print("\nParamListShape: ", weight.shape)
             weight=weight[1:]
             print("\n weight: ", weight)
             fig = plt.figure()
