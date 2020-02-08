@@ -158,7 +158,7 @@ def visualizePruneTrain(model, epoch):
             weightList = [[]]
             weightList3d =[[[]]]
             print("\nDims: ", dims)
-            j = dims[2]*dims[3]
+            j = dims[0]*dims[1]
 
             for i in range(0,9):
                 m = i % 3
@@ -171,7 +171,7 @@ def visualizePruneTrain(model, epoch):
 
                     fig = plt.figure()
                     ax = fig.add_subplot(111, projection='3d')
-                    ax.scatter(weightList3d[-1])
+                    ax.scatter(weightList3d[-1][0],weightList3d[-1][1], weightList3d[-1][2])
                     fileName = altList[i]+'_' + str(epoch)+'_'+m1 +'_'+ n1 + '.png'
                     plt.savefig(fileName)
                     plt.close(fig)
