@@ -164,6 +164,7 @@ def visualizePruneTrain(model, epoch):
                 m = i % 3
                 n = int(i/3)
                 weightList.append( weight[:,:,m,n] )
+                print("\nShape: ",weightList[-1].shape)
                 for k in range(0,j):
                     m1 = i % 3
                     n1 = int(i/3)
