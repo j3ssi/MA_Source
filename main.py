@@ -14,6 +14,7 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 """
+import copy
 import os
 import argparse
 import time
@@ -150,9 +151,15 @@ def visualizePruneTrain(model, epoch):
     for i in range(0,len(altList)):
         if 'conv' in  altList[i]:
             print("\nParamListShape: ", paramList[i].shape)
-            weight = paramList[i].cpu()
+            weight = copy.deepcopy(paramList[i])
+            weight = weight.cpu()
             weight = weight.detach().numpy()
-            weight=weight[0]
+            weightList = [[]]
+            for i in range(0,9):
+                m = i % 3
+                n = i-(i%3)
+                print("\nM: ", m , " N: ", n)
+                weight=weight[:,:,]
             print("\nParamListShape: ", weight.shape)
             weight=weight[1:]
             print("\n weight: ", weight)
