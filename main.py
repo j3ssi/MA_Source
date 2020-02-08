@@ -157,7 +157,7 @@ def visualizePruneTrain(model, epoch):
             weightList = [[]]
             for i in range(0,9):
                 m = i % 3
-                n = i-(i%3)
+                n = int(i/3)
                 print("\nM: ", m , " N: ", n)
                 weight=weight[:,:,]
             print("\nParamListShape: ", weight.shape)
