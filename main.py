@@ -158,20 +158,17 @@ def visualizePruneTrain(model, epoch):
             for i in range(0,9):
                 m = i % 3
                 n = int(i/3)
-                print("\nM: ", m , " N: ", n)
-                weight=weight[:,:,]
-            print("\nParamListShape: ", weight.shape)
-            weight=weight[1:]
-            print("\n weight: ", weight)
-            fig = plt.figure()
-            ax = fig.add_subplot(111, projection='3d')
-            n = 100
-            ax.scatter(weight[0], weight[1], weight[2])
+                #print("\nM: ", m , " N: ", n)
+                weightList.append( weight[:,:,m,n] )
+                print("\nWeightList: ", i, "\n",weightList[-1] )
+            #fig = plt.figure()
+            #ax = fig.add_subplot(111, projection='3d')
+            #ax.scatter(weight[0], weight[1], weight[2])
 
 
-            fileName = altList[i]+'_' + str(epoch)+ '.png'
-            plt.savefig(fileName)
-            plt.close(fig)
+            #fileName = altList[i]+'_' + str(epoch)+ '.png'
+            #plt.savefig(fileName)
+            #plt.close(fig)
 
 def main():
     # use anomaly detection of torch
