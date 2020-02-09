@@ -173,7 +173,6 @@ def visualizePruneTrain(model, epoch, threshold):
                 # color = [[[]]]
                 filtermap3d = weight[i,:,:,:]
                 # print("\nShape FilterMap: ", filtermap3d.shape)
-                fig = plt.figure()
                 for j in range(0, dims[1]): # in channels
                     filterMaps = filtermap3d[j,:,:]
 
@@ -184,14 +183,14 @@ def visualizePruneTrain(model, epoch, threshold):
                     ax = pyplot.subplot(i+1,j+1,ix)
                     ax.set_xticks([])
                     ax.set_yticks([])
-                    fig.imshow(filterMaps[:,:],cmap='gray')
+                    pyplot.imshow(filterMaps[:,:],cmap='gray')
                     ix += 1
                 # printWeights = weightList3d[-j:]
                 # ax = fig.add_subplot(111, projection='3d')
                 # ax.scatter(printWeights[0], printWeights[1], printWeights[2])
             fileName = altList[a] + '_' + str(epoch) + '.png'
-            plt.savefig(fileName)
-            plt.close(fig)
+            pyplot.savefig(fileName)
+            plt.close(pyplot)
 
 
 def main():
