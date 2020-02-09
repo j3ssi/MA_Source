@@ -249,7 +249,8 @@ def main():
         best_acc = 0
         for epoch in range(1, args.epochs + 1):
             # adjust learning rate when epoch is the scheduled epoch
-            adjust_learning_rate(optimizer, epoch)
+            if epoch in args.schedule:
+                adjust_learning_rate(optimizer, epoch)
 
             print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion, optimizer,
