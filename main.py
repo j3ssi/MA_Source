@@ -149,23 +149,20 @@ def visualizePruneTrain(model, epoch, threshold):
     if printName:
         print("\naltList", altList)
 
-    printParam = True
+    printParam = False
     for a in range(0, len(altList)):
 
         f_min, f_max = paramList[a].min(), paramList[a].max()
         paramList[a]=(paramList[a]-f_min)/(f_max-f_min)
 
         if 'conv' in altList[a]:
-            print("\naltList[", a, "]: ", altList[a])
+            # print("\naltList[", a, "]: ", altList[a])
             dims = paramList[a].shape
             if printParam:
                 print("\nParamListShape: ", paramList[a].shape)
             # weight = copy.deepcopy(paramList[a])
             weight = paramList[a].cpu()
             weight = weight.detach().numpy()
-            weightList = [[]]
-            weightList3d = [[[]]]
-
             if printParam:
                 print("\nDims: ", dims)
             ix = 1
