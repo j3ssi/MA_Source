@@ -163,7 +163,7 @@ def visualizePruneTrain(model, epoch, threshold):
             if printParam:
                 print("\nDims: ", dims)
 
-            for i in range(0, dims[0]):
+            for i in range(0, dims[1]):
                 filtermap3d = weight[i,:,:]
                 print("\nShape FilterMap: ", filtermap3d.shape)
 
