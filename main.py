@@ -181,7 +181,7 @@ def visualizePruneTrain(model, epoch, threshold):
                         # print("\nShape: ", weightList[-1].shape)
                         print("\nWeight: ", filterMaps)
 
-                    ax = pyplot.subplot(i,j,ix)
+                    ax = pyplot.subplot(i,j)
                     ax.set_xticks([])
                     ax.set_yticks([])
                     fig.imshow(filterMaps[:,:],cmap='gray')
