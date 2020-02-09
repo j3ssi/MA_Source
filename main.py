@@ -19,6 +19,8 @@ import os
 import argparse
 import time
 import random
+
+import matplotlib
 import numpy as np
 
 from copy import deepcopy
@@ -150,6 +152,8 @@ def visualizePruneTrain(model, epoch, threshold, when):
         print("\naltList", altList)
 
     printParam = False
+    my_cmap = matplotlib.cm.get_cmap('gray')
+    my_cmap.set_under('red')
     for a in range(0, len(altList)):
 
         f_min, f_max = paramList[a].min(), paramList[a].max()
@@ -168,6 +172,7 @@ def visualizePruneTrain(model, epoch, threshold, when):
             ix = 1
             for i in range(0, dims[0]): # out channels
                 # color = [[[]]]
+                ax = None
                 filtermap3d = weight[i,:,:,:]
                 # print("\nShape FilterMap: ", filtermap3d.shape)
                 for j in range(0, dims[1]): # in channels
@@ -180,7 +185,7 @@ def visualizePruneTrain(model, epoch, threshold, when):
                     ax = pyplot.subplot(dims[0],dims[1],ix)
                     ax.set_xticks([])
                     ax.set_yticks([])
-                    pyplot.imshow(filterMaps[:,:],cmap='gray')
+                    pyplot.imshow(filterMaps[:,:],cmap=my_cmap)
                     ix += 1
                 # printWeights = weightList3d[-j:]
                 # ax = fig.add_subplot(111, projection='3d')
