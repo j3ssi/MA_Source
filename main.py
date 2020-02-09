@@ -306,10 +306,10 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         targets = torch.autograd.Variable(targets)
         outputs = model.forward(inputs)
         # print("\n\nOutput Shape: ", outputs.shape)
-        if batch_idx == 0:
-            dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
-            filename = 'PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
-            dot.render(filename=filename)
+        # if batch_idx == 0:
+        #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
+        #     filename = 'PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
+        #     dot.render(filename=filename)
         loss = criterion(outputs, targets)
 
         # lasso penalty
