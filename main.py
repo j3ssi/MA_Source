@@ -178,7 +178,7 @@ def visualizePruneTrain(model, epoch, threshold):
                     filterMaps = filtermap3d[j,:,:]
 
                     if printParam:
-                        print("\nShape: ", weightList[-1].shape)
+                        # print("\nShape: ", weightList[-1].shape)
                         print("\nWeight: ", weightList3d[-1])
 
                     ax = pyplot.subplot(i,j,ix)
