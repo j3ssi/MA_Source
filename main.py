@@ -157,7 +157,7 @@ def visualizePruneTrain(model, epoch):
             weight = weight.detach().numpy()
             weightList = [[]]
             weightList3d =[[[]]]
-            print("\nDims: ", dims)
+            # print("\nDims: ", dims)
             j = dims[0]*dims[1]
 
             for i in range(0,9):
@@ -166,8 +166,8 @@ def visualizePruneTrain(model, epoch):
                 weightList.append( weight[:,:,m,n] )
                 print("\nShape: ",weightList[-1].shape)
                 for k in range(0,j):
-                    m1 = i % 3
-                    n1 = int(i/3)
+                    m1 = j % 3
+                    n1 = int(j/3)
                     weightList3d.append((m1, n1, weight[m1,n1]))
                     print("\nWeight: ", weightList3d[-1])
 
