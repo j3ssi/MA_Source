@@ -160,7 +160,7 @@ def visualizePruneTrain(model, epoch, threshold, when):
         paramList[a]=(paramList[a]-f_min)/(f_max-f_min)
 
         if 'conv' in altList[a]:
-            # print("\naltList[", a, "]: ", altList[a])
+            print("\naltList[", a, "]: ", altList[a])
             dims = paramList[a].shape
             if printParam:
                 print("\nParamListShape: ", paramList[a].shape)
@@ -193,7 +193,9 @@ def visualizePruneTrain(model, epoch, threshold, when):
             fileName = altList[a] + when + '_' + str(epoch) + '.png'
             pyplot.savefig(fileName)
 
-#        elif 'bn' in altList[a]:
+        elif 'bn' in altList[a]:
+            print("\naltList[", a, "]: ", altList[a])
+            dims = paramList[a].shape
 
  #       elif 'fc' in altList[a]
     pyplot.close('all')
