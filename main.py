@@ -232,7 +232,7 @@ def visualizePruneTrain(model, epoch, threshold):
                 ax = pyplot.subplot(dims[0], 1, ix)
                 ax.set_xticks([])
                 ax.set_yticks([])
-                pyplot.imshow(weight[i, ], cmap=my_cmap, vmin=threshold)
+                pyplot.imshow(weight[i, ], cmap=my_cmap, vmin=threshold, vmax=1)
                 ix += 1
             fileName = altList[a] + '_' + str(epoch) + '.png'
             pyplot.savefig(fileName)
