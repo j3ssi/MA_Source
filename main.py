@@ -22,6 +22,8 @@ import random
 import numpy as np
 
 from copy import deepcopy
+
+from matplotlib import pyplot
 from mpl_toolkits.mplot3d import Axes3D
 import torch
 import torch.nn as nn
@@ -148,8 +150,11 @@ def visualizePruneTrain(model, epoch, threshold):
         print("\naltList", altList)
 
     printParam = True
-
     for a in range(0, len(altList)):
+
+        f_min, f_max = paramList[a].min(), paramList[a].max()
+        paramList[a]=(paramList[a]-f_min)/(f_max-f_min)
+
         if 'conv' in altList[a]:
             print("\naltList[", a, "]: ", altList[a])
             dims = paramList[a].shape
@@ -160,33 +165,33 @@ def visualizePruneTrain(model, epoch, threshold):
             weight = weight.detach().numpy()
             weightList = [[]]
             weightList3d = [[[]]]
+
             if printParam:
                 print("\nDims: ", dims)
+            ix = 1
+            for i in range(0, dims[0]): # out channels
+                # color = [[[]]]
+                filtermap3d = weight[i,:,:,:]
+                # print("\nShape FilterMap: ", filtermap3d.shape)
+                fig = plt.figure()
+                for j in range(0, dims[1]): # in channels
+                    filterMaps = filtermap3d[j,:,:]
 
-            for i in range(0, dims[1]):
-                filtermap3d = weight[i,:,:]
-                print("\nShape FilterMap: ", filtermap3d.shape)
+                    if printParam:
+                        print("\nShape: ", weightList[-1].shape)
+                        print("\nWeight: ", weightList3d[-1])
 
-
-                # m = i % 3
-                # n = int(i / 3)
-                # weightList.append(weight[:, :, m, n])
-                # # if printParam:
-                # #     print("\nShape: ", weightList[-1].shape)
-                # for k in range(0, j):
-                #     m1 = k % dims[0]
-                #     n1 = int(k / dims[0])
-                #     weightList3d.append((m1, n1, weightList[-1][m1, n1]))
-                #     # if printParam:
-                #     #     print("\nWeight: ", weightList3d[-1])
-                #
-                # fig = plt.figure()
+                    ax = pyplot.subplot(i,j,ix)
+                    ax.set_xticks([])
+                    ax.set_yticks([])
+                    fig.imshow(filterMaps[:,:],cmap='gray')
+                    ix += 1
                 # printWeights = weightList3d[-j:]
                 # ax = fig.add_subplot(111, projection='3d')
                 # ax.scatter(printWeights[0], printWeights[1], printWeights[2])
-                # fileName = altList[a] + '_' + str(epoch) + '_' + str(i) + '_' + str(m1) + '_' + str(n1) + '.png'
-                # plt.savefig(fileName)
-                # plt.close(fig)
+            fileName = altList[a] + '_' + str(epoch) + '.png'
+            plt.savefig(fileName)
+            plt.close(fig)
 
 
 def main():
