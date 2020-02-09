@@ -160,7 +160,7 @@ def visualizePruneTrain(model, epoch, threshold):
             dims = paramList[a].shape
             if printParam:
                 print("\nParamListShape: ", paramList[a].shape)
-            weight = copy.deepcopy(paramList[a])
+            # weight = copy.deepcopy(paramList[a])
             weight = weight.cpu()
             weight = weight.detach().numpy()
             weightList = [[]]
