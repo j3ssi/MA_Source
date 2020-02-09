@@ -113,7 +113,7 @@ if use_cuda:
 best_acc = 0  # best test accuracy
 
 
-def visualizePruneTrain(model, epoch, threshold):
+def visualizePruneTrain(model, epoch, threshold, when):
     altList = []
     paramList = []
     printName = False
@@ -185,7 +185,7 @@ def visualizePruneTrain(model, epoch, threshold):
                 # printWeights = weightList3d[-j:]
                 # ax = fig.add_subplot(111, projection='3d')
                 # ax.scatter(printWeights[0], printWeights[1], printWeights[2])
-            fileName = altList[a] + '_' + str(epoch) + '.png'
+            fileName = altList[a] + when + '_' + str(epoch) + '.png'
             pyplot.savefig(fileName)
     pyplot.close('all')
 
@@ -246,10 +246,12 @@ def main():
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):
-                visualizePruneTrain(model, epoch, args.threshold)
+                visualizePruneTrain(model, epoch, args.threshold, 'before')
                 # Force weights under threshold to zero
                 dense_chs, chs_map = makeSparse(optimizer, model, args.threshold,
                                                 is_gating=args.is_gating)
+                visualizePruneTrain(model, epoch, args.threshold, 'after')
+
                 genDenseModel(model, dense_chs, optimizer, 'cifar')
                 model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False,
                                 model)
