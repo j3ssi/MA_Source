@@ -199,20 +199,20 @@ def visualizePruneTrain(model, epoch, threshold):
             dims = paramList[a].shape
             if printParam:
                 print("\nParamListShape: ", paramList[a].shape)
-            weight = paramList[a].cpu()
-            weight = weight.detach().numpy()
-            if printParam:
-                print("\nDims: ", dims)
-            ix = 1
-            if printParam:
-                print("\nWeight: ", weight)
-                ax = pyplot.subplot(dims[0],1,ix)
-            ax.set_xticks([])
-            ax.set_yticks([])
-            pyplot.imshow(weight[:,0],cmap=my_cmap,vmin=threshold)
-            ix += 1
-            fileName = altList[a] + '_' + str(epoch) + '.png'
-            pyplot.savefig(fileName)
+            # weight = paramList[a].cpu()
+            # weight = weight.detach().numpy()
+            # if printParam:
+            #     print("\nDims: ", dims)
+            # ix = 1
+            # if printParam:
+            #     print("\nWeight: ", weight)
+            #     ax = pyplot.subplot(dims[0],1,ix)
+            # ax.set_xticks([])
+            # ax.set_yticks([])
+            # pyplot.imshow(weight[:,0],cmap=my_cmap,vmin=threshold)
+            # ix += 1
+            # fileName = altList[a] + '_' + str(epoch) + '.png'
+            # pyplot.savefig(fileName)
 
         elif 'fc' in altList[a]:
             print("\naltList[", a, "]: ", altList[a])
