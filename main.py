@@ -146,30 +146,34 @@ def visualizePruneTrain(model, epoch):
             assert True, print("Hier fehlt noch was!!")
     # print("\naltList", altList)
 
-
+    printParam = False
 
     for i in range(0,len(altList)):
         if 'conv' in  altList[i]:
             dims = paramList[i].shape
-            print("\nParamListShape: ", paramList[i].shape)
+            if printParam:
+                print("\nParamListShape: ", paramList[i].shape)
             weight = copy.deepcopy(paramList[i])
             weight = weight.cpu()
             weight = weight.detach().numpy()
             weightList = [[]]
             weightList3d =[[[]]]
-            # print("\nDims: ", dims)
+            if printParam:
+                print("\nDims: ", dims)
             j = dims[0]*dims[1]
 
             for i in range(0,9):
                 m = i % 3
                 n = int(i/3)
                 weightList.append( weight[:,:,m,n] )
-                print("\nShape: ",weightList[-1].shape)
+                if printParam:
+                    print("\nShape: ",weightList[-1].shape)
                 for k in range(0,j):
                     m1 = k % dims[0]
                     n1 = int(k/dims[0])
                     weightList3d.append((m1, n1, weightList[-1][m1,n1]))
-                    print("\nWeight: ", weightList3d[-1])
+                    if printParam:
+                        print("\nWeight: ", weightList3d[-1])
 
                     fig = plt.figure()
                     ax = fig.add_subplot(111, projection='3d')
@@ -233,6 +237,9 @@ def main():
                                                                          epoch, use_cuda)
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
             # SparseTrain routine
+            if args.en_group_lasse and ((epoch+1)% args.sparse_interval ==0):
+                visualizePruneTrain(model, epoch)
+
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):
                 # Force weights under threshold to zero
                 dense_chs, chs_map = makeSparse(optimizer, model, args.threshold,
@@ -244,7 +251,7 @@ def main():
                 model.cuda()
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
-            visualizePruneTrain(model, epoch)
+                visualizePruneTrain(model, epoch)
             best_acc = max(test_acc, best_acc)
             # print(model)
         print('Best acc:')
