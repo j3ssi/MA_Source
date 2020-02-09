@@ -144,7 +144,7 @@ def visualizePruneTrain(model, epoch):
                 print("\nI:", i, " ; ", altList[-1])
         else:
             assert True, print("Hier fehlt noch was!!")
-    # print("\naltList", altList)
+    print("\naltList", altList)
 
     printParam = False
 
