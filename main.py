@@ -153,7 +153,7 @@ def visualizePruneTrain(model, epoch, threshold, when):
 
     printParam = False
     my_cmap = matplotlib.cm.get_cmap('gray')
-    my_cmap.set_under('red')
+    print("\nColorMap: ", my_cmap)
     for a in range(0, len(altList)):
 
         f_min, f_max = paramList[a].min(), paramList[a].max()
@@ -192,6 +192,10 @@ def visualizePruneTrain(model, epoch, threshold, when):
                 # ax.scatter(printWeights[0], printWeights[1], printWeights[2])
             fileName = altList[a] + when + '_' + str(epoch) + '.png'
             pyplot.savefig(fileName)
+
+        elif 'bn' in altList[a]:
+
+        elif 'fc' in altList[a]
     pyplot.close('all')
 
 
