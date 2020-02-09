@@ -190,7 +190,7 @@ def visualizePruneTrain(model, epoch, threshold):
                 # ax.scatter(printWeights[0], printWeights[1], printWeights[2])
             fileName = altList[a] + '_' + str(epoch) + '.png'
             pyplot.savefig(fileName)
-            plt.close(pyplot)
+            pyplot.close(ax)
 
 
 def main():
