@@ -148,13 +148,13 @@ def visualizePruneTrain(model, epoch):
 
     printParam = False
 
-    for i in range(0,len(altList)):
+    for a in range(0,len(altList)):
         if 'conv' in  altList[i]:
-            print("\naltList[", i, "]: ", altList[i] )
-            dims = paramList[i].shape
+            print("\naltList[", a, "]: ", altList[a] )
+            dims = paramList[a].shape
             if printParam:
-                print("\nParamListShape: ", paramList[i].shape)
-            weight = copy.deepcopy(paramList[i])
+                print("\nParamListShape: ", paramList[a].shape)
+            weight = copy.deepcopy(paramList[a])
             weight = weight.cpu()
             weight = weight.detach().numpy()
             weightList = [[]]
