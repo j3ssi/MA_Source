@@ -149,7 +149,7 @@ def visualizePruneTrain(model, epoch):
     printParam = False
 
     for a in range(0,len(altList)):
-        if 'conv' in  altList[i]:
+        if 'conv' in  altList[a]:
             print("\naltList[", a, "]: ", altList[a] )
             dims = paramList[a].shape
             if printParam:
