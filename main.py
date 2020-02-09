@@ -21,7 +21,6 @@ import time
 import random
 import numpy as np
 
-
 from copy import deepcopy
 from mpl_toolkits.mplot3d import Axes3D
 import torch
@@ -113,7 +112,7 @@ best_acc = 0  # best test accuracy
 
 
 def visualizePruneTrain(model, epoch):
-    altList= []
+    altList = []
     paramList = []
     printName = False
     for name, param in model.named_parameters():
@@ -144,13 +143,15 @@ def visualizePruneTrain(model, epoch):
                 print("\nI:", i, " ; ", altList[-1])
         else:
             assert True, print("Hier fehlt noch was!!")
-    print("\naltList", altList)
 
-    printParam = False
+    if printName:
+        print("\naltList", altList)
 
-    for a in range(0,len(altList)):
-        if 'conv' in  altList[a]:
-            print("\naltList[", a, "]: ", altList[a] )
+    printParam = True
+
+    for a in range(0, len(altList)):
+        if 'conv' in altList[a]:
+            print("\naltList[", a, "]: ", altList[a])
             dims = paramList[a].shape
             if printParam:
                 print("\nParamListShape: ", paramList[a].shape)
@@ -158,31 +159,32 @@ def visualizePruneTrain(model, epoch):
             weight = weight.cpu()
             weight = weight.detach().numpy()
             weightList = [[]]
-            weightList3d =[[[]]]
+            weightList3d = [[[]]]
             if printParam:
                 print("\nDims: ", dims)
-            j = dims[0]*dims[1]
+            j = dims[0] * dims[1]
 
-            for i in range(0,9):
+            for i in range(0, 9):
                 m = i % 3
-                n = int(i/3)
-                weightList.append( weight[:,:,m,n] )
+                n = int(i / 3)
+                weightList.append(weight[:, :, m, n])
                 if printParam:
-                    print("\nShape: ",weightList[-1].shape)
-                for k in range(0,j):
+                    print("\nShape: ", weightList[-1].shape)
+                for k in range(0, j):
                     m1 = k % dims[0]
-                    n1 = int(k/dims[0])
-                    weightList3d.append((m1, n1, weightList[-1][m1,n1]))
+                    n1 = int(k / dims[0])
+                    weightList3d.append((m1, n1, weightList[-1][m1, n1]))
                     if printParam:
                         print("\nWeight: ", weightList3d[-1])
 
                 fig = plt.figure()
                 printWeights = weightList3d[-j:]
                 ax = fig.add_subplot(111, projection='3d')
-                ax.scatter(printWeights[0],printWeights[1], printWeights[2])
-                fileName = altList[a]+'_' + str(epoch)+'_'+str(i)+'_'+str(m1) +'_'+ str(n1) + '.png'
+                ax.scatter(printWeights[0], printWeights[1], printWeights[2])
+                fileName = altList[a] + '_' + str(epoch) + '_' + str(i) + '_' + str(m1) + '_' + str(n1) + '.png'
                 plt.savefig(fileName)
                 plt.close(fig)
+
 
 def main():
     # use anomaly detection of torch
@@ -239,14 +241,11 @@ def main():
                                                                          epoch, use_cuda)
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
             # SparseTrain routine
-            if args.en_group_lasso and ((epoch+1)% args.sparse_interval ==0):
-                visualizePruneTrain(model, epoch)
-
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):
+                visualizePruneTrain(model, epoch, args.treshold)
                 # Force weights under threshold to zero
                 dense_chs, chs_map = makeSparse(optimizer, model, args.threshold,
                                                 is_gating=args.is_gating)
-                visualizePruneTrain(model, epoch)
                 genDenseModel(model, dense_chs, optimizer, 'cifar')
                 model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False,
                                 model)
@@ -326,13 +325,13 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             coeff_dir = os.path.join(args.coeff_container, 'cifar')
             # if init_batch:
             args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (lasso_penalty *
-                                                                                   (1 - args.var_group_lasso_coeff))
+                                                                               (1 - args.var_group_lasso_coeff))
             grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
             # print("\nGRP Lasso Coeff: ", str(grp_lasso_coeff.item()))
-                #if not os.path.exists(coeff_dir):
-                #    os.makedirs(coeff_dir)
-                #with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
-                #    f_coeff.write(str(grp_lasso_coeff.item()))
+            # if not os.path.exists(coeff_dir):
+            #    os.makedirs(coeff_dir)
+            # with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
+            #    f_coeff.write(str(grp_lasso_coeff.item()))
 
             # else:
             #     with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
