@@ -185,7 +185,7 @@ def visualizePruneTrain(model, epoch, threshold):
                     ax = pyplot.subplot(dims[0],dims[1],ix)
                     ax.set_xticks([])
                     ax.set_yticks([])
-                    pyplot.imshow(filterMaps[:,:],cmap=my_cmap,vmin=threshold)
+                    pyplot.imshow(filterMaps[:,:],cmap=my_cmap,vmin=threshold, vmax=1)
                     ix += 1
                 # printWeights = weightList3d[-j:]
                 # ax = fig.add_subplot(111, projection='3d')
