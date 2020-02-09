@@ -245,6 +245,7 @@ def main():
                 # Force weights under threshold to zero
                 dense_chs, chs_map = makeSparse(optimizer, model, args.threshold,
                                                 is_gating=args.is_gating)
+                visualizePruneTrain(model, epoch)
                 genDenseModel(model, dense_chs, optimizer, 'cifar')
                 model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False,
                                 model)
@@ -252,8 +253,7 @@ def main():
                 model.cuda()
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
-                visualizePruneTrain(model, epoch)
-            best_acc = max(test_acc, best_acc)
+                best_acc = max(test_acc, best_acc)
             # print(model)
         print('Best acc:')
         print(best_acc)
