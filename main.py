@@ -177,8 +177,9 @@ def visualizePruneTrain(model, epoch):
                         print("\nWeight: ", weightList3d[-1])
 
                 fig = plt.figure()
+                printWeights = weightList3d[-j:]
                 ax = fig.add_subplot(111, projection='3d')
-                ax.scatter(weightList3d[-1][0],weightList3d[-1][1], weightList3d[-1][2])
+                ax.scatter(printWeights[0],printWeights[1], printWeights[2])
                 fileName = altList[a]+'_' + str(epoch)+'_'+str(i)+'_'+str(m1) +'_'+ str(n1) + '.png'
                 plt.savefig(fileName)
                 plt.close(fig)
