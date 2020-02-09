@@ -62,10 +62,15 @@ def makeSparse(optimizer, model, threshold, is_gating=False, reconf=False):
             dense_in_chs, dense_out_chs = [], []
             # param din ==4 -> param is for conv Layer
             if param.dim() == 4:
+                if 'conv1.' in name:
+                    dense_in_chs.append('0')
+                    dense_in_chs.append('1')
+                    dense_in_chs.append('2')
                 # Forcing sparse input channels to zero
-                for c in range(dims[1]):
-                    if param[:, c, :, :].abs().max() > 0:
-                        dense_in_chs.append(c)
+                if 'conv1.' not in name:
+                    for c in range(dims[1]):
+                        if param[:, c, :, :].abs().max() > 0:
+                            dense_in_chs.append(c)
 
                 # Forcing sparse output channels to zero
                 for c in range(dims[0]):
