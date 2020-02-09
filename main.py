@@ -190,13 +190,13 @@ def visualizePruneTrain(model, epoch, threshold, when):
                 # printWeights = weightList3d[-j:]
                 # ax = fig.add_subplot(111, projection='3d')
                 # ax.scatter(printWeights[0], printWeights[1], printWeights[2])
-            fileName = altList[a] + when + '_' + str(epoch) + '.png'
+            fileName = altList[a] + '_' + str(epoch) + '.png'
             pyplot.savefig(fileName)
 
         elif 'bn' in altList[a]:
             print("\naltList[", a, "]: ", altList[a])
             dims = paramList[a].shape
-
+            print("\nDims: ", dims)
  #       elif 'fc' in altList[a]
     pyplot.close('all')
 
@@ -261,8 +261,7 @@ def main():
                 # Force weights under threshold to zero
                 dense_chs, chs_map = makeSparse(optimizer, model, args.threshold,
                                                 is_gating=args.is_gating)
-                visualizePruneTrain(model, epoch, args.threshold, 'after')
-
+                
                 genDenseModel(model, dense_chs, optimizer, 'cifar')
                 model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False,
                                 model)
