@@ -237,7 +237,7 @@ def main():
                                                                          epoch, use_cuda)
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
             # SparseTrain routine
-            if args.en_group_lasse and ((epoch+1)% args.sparse_interval ==0):
+            if args.en_group_lasso and ((epoch+1)% args.sparse_interval ==0):
                 visualizePruneTrain(model, epoch)
 
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):
