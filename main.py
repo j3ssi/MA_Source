@@ -111,7 +111,7 @@ if use_cuda:
 best_acc = 0  # best test accuracy
 
 
-def visualizePruneTrain(model, epoch):
+def visualizePruneTrain(model, epoch, threshold):
     altList = []
     paramList = []
     printName = False
@@ -242,7 +242,7 @@ def main():
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):
-                visualizePruneTrain(model, epoch, args.treshold)
+                visualizePruneTrain(model, epoch, args.threshold)
                 # Force weights under threshold to zero
                 dense_chs, chs_map = makeSparse(optimizer, model, args.threshold,
                                                 is_gating=args.is_gating)
