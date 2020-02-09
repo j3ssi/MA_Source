@@ -168,14 +168,14 @@ def visualizePruneTrain(model, epoch, threshold):
                 m = i % 3
                 n = int(i / 3)
                 weightList.append(weight[:, :, m, n])
-                if printParam:
-                    print("\nShape: ", weightList[-1].shape)
+                # if printParam:
+                #     print("\nShape: ", weightList[-1].shape)
                 for k in range(0, j):
                     m1 = k % dims[0]
                     n1 = int(k / dims[0])
                     weightList3d.append((m1, n1, weightList[-1][m1, n1]))
-                    if printParam:
-                        print("\nWeight: ", weightList3d[-1])
+                    # if printParam:
+                    #     print("\nWeight: ", weightList3d[-1])
 
                 fig = plt.figure()
                 printWeights = weightList3d[-j:]
