@@ -115,7 +115,7 @@ if use_cuda:
 best_acc = 0  # best test accuracy
 
 
-def visualizePruneTrain(model, epoch, threshold, when):
+def visualizePruneTrain(model, epoch, threshold):
     altList = []
     paramList = []
     printName = False
@@ -156,8 +156,8 @@ def visualizePruneTrain(model, epoch, threshold, when):
     my_cmap.set_under('red')
     for a in range(0, len(altList)):
 
-        f_min, f_max = paramList[a].min(), paramList[a].max()
-        paramList[a]=(paramList[a]-f_min)/(f_max-f_min)
+        # f_min, f_max = paramList[a].min(), paramList[a].max()
+        # paramList[a]=(paramList[a]-f_min)/(f_max-f_min)
 
         if 'conv' in altList[a]:
             print("\naltList[", a, "]: ", altList[a])
@@ -196,8 +196,46 @@ def visualizePruneTrain(model, epoch, threshold, when):
         elif 'bn' in altList[a]:
             print("\naltList[", a, "]: ", altList[a])
             dims = paramList[a].shape
-            print("\nDims: ", dims)
- #       elif 'fc' in altList[a]
+            if printParam:
+                print("\nParamListShape: ", paramList[a].shape)
+            weight = paramList[a].cpu()
+            weight = weight.detach().numpy()
+            if printParam:
+                print("\nDims: ", dims)
+            ix = 1
+            if printParam:
+                print("\nWeight: ", weight)
+                ax = pyplot.subplot(dims[0],1,ix)
+            ax.set_xticks([])
+            ax.set_yticks([])
+            pyplot.imshow(weight[:],cmap=my_cmap,vmin=threshold)
+            ix += 1
+            fileName = altList[a] + '_' + str(epoch) + '.png'
+            pyplot.savefig(fileName)
+
+        elif 'fc' in altList[a]:
+            print("\naltList[", a, "]: ", altList[a])
+            dims = paramList[a].shape
+            if printParam:
+                print("\nParamListShape: ", paramList[a].shape)
+            weight = paramList[a].cpu()
+            weight = weight.detach().numpy()
+            if printParam:
+                print("\nDims: ", dims)
+            ix = 1
+            for i in range(0, dims[0]):  # out channels
+                ax = None
+                if printParam:
+                    print("\nWeight: ", filterMaps)
+
+                ax = pyplot.subplot(dims[0], 1, ix)
+                ax.set_xticks([])
+                ax.set_yticks([])
+                pyplot.imshow(weight[i, ], cmap=my_cmap, vmin=threshold)
+                ix += 1
+            fileName = altList[a] + '_' + str(epoch) + '.png'
+            pyplot.savefig(fileName)
+
     pyplot.close('all')
 
 
@@ -242,7 +280,7 @@ def main():
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     # Train and val
     # how many times N2N should make the network deeper
-
+    visualize = True
     start = time.time()
     for epochNet2Net in range(1, 2):
 
@@ -258,7 +296,8 @@ def main():
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):
-                visualizePruneTrain(model, epoch, args.threshold, 'before')
+                if visualize:
+                    visualizePruneTrain(model, epoch, args.threshold)
                 # Force weights under threshold to zero
                 dense_chs, chs_map = makeSparse(optimizer, model, args.threshold,
                                                 is_gating=args.is_gating)
