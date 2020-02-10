@@ -158,6 +158,8 @@ def visualizePruneTrain(model, epoch, threshold):
     for a in range(0, len(altList)):
 
         f_min, f_max = paramList[a].min(), paramList[a].max()
+        if threshold<f_min:
+            f_min = threshold
         paramList[a]=(paramList[a]-f_min)/(f_max-f_min)
         threshold = (threshold-f_min)/(f_min-f_max)
         if 'conv' in altList[a]:
