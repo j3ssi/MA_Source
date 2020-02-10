@@ -156,11 +156,14 @@ def visualizePruneTrain(model, epoch, threshold):
     printParam = False
     my_cmap = matplotlib.cm.get_cmap('gray')
     my_cmap.set_under('red')
+
     # print("\ncmap: ", my_cmap(0))
     for a in range(0, len(altList)):
-
+        vmin = True
         f_min, f_max = paramList[a].min(), paramList[a].max()
-
+        # When threshold < f_min then no vmin
+        if threshold < f_min:
+            vmin = False
         paramList[a]=(paramList[a]-f_min)/(f_max-f_min)
         # threshold = (threshold-f_min)/(f_max-f_min)
         if 'conv' in altList[a]:
@@ -186,10 +189,15 @@ def visualizePruneTrain(model, epoch, threshold):
                         # print("\nShape: ", weightList[-1].shape)
                         print("\nWeight: ", filterMaps)
 
+
                     ax = pyplot.subplot(dims[0],dims[1],ix)
                     ax.set_xticks([])
                     ax.set_yticks([])
-                    pyplot.imshow(filterMaps[:,:],cmap=my_cmap,vmin=threshold, vmax=1)
+                    if vmin:
+                        pyplot.imshow(filterMaps[:,:],cmap=my_cmap,vmin=threshold, vmax=1)
+                    else:
+                        pyplot.imshow(filterMaps[:, :], cmap=my_cmap, vmin=0, vmax=1)
+
                     ix += 1
                 # printWeights = weightList3d[-j:]
                 # ax = fig.add_subplot(111, projection='3d')
