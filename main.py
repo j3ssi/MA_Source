@@ -97,6 +97,8 @@ parser.add_argument('--print-freq', default=10, type=int,
 # N2N
 parser.add_argument('--deeper', default=False, action='store_true',
                     help='Make network deeper')
+parser.add_argument('--visual', default=False, action='store_true',
+                    help='Set the visual')
 
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
@@ -284,7 +286,6 @@ def main():
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     # Train and val
     # how many times N2N should make the network deeper
-    visualize = True
     start = time.time()
     for epochNet2Net in range(1, 2):
 
@@ -300,7 +301,7 @@ def main():
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):
-                if visualize:
+                if args.visual:
                     visualizePruneTrain(model, epoch, args.threshold)
                 # Force weights under threshold to zero
                 dense_chs, chs_map = makeSparse(optimizer, model, args.threshold,
