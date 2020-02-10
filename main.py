@@ -117,6 +117,7 @@ if use_cuda:
 best_acc = 0  # best test accuracy
 grp_lasso_coeff = 0
 
+
 def visualizePruneTrain(model, epoch, threshold):
     altList = []
     paramList = []
@@ -159,15 +160,18 @@ def visualizePruneTrain(model, epoch, threshold):
 
     # print("\ncmap: ", my_cmap(0))
     for a in range(0, len(altList)):
+        weight = paramList[a].cpu()
+        weight = weight.detach().numpy()
+
         vmin = True
-        f_min, f_max = paramList[a].min(), paramList[a].max()
+        f_min, f_max = weight.min(), weight.max()
         # When threshold < f_min then no vmin
         if threshold < f_min:
             vmin = False
             print("\nTreshold < f_min")
         else:
-            threshold = (threshold-f_min)/(f_max-f_min)
-        paramList[a]=(paramList[a]-f_min)/(f_max-f_min)
+            threshold = (threshold - f_min) / (f_max - f_min)
+        weight = (weight - f_min) / (f_max - f_min)
         # threshold = (threshold-f_min)/(f_max-f_min)
         if 'conv' in altList[a]:
             print("\naltList[", a, "]: ", altList[a])
@@ -175,29 +179,26 @@ def visualizePruneTrain(model, epoch, threshold):
             if printParam:
                 print("\nParamListShape: ", paramList[a].shape)
             # weight = copy.deepcopy(paramList[a])
-            weight = paramList[a].cpu()
-            weight = weight.detach().numpy()
             if printParam:
                 print("\nDims: ", dims)
             ix = 1
-            for i in range(0, dims[0]): # out channels
+            for i in range(0, dims[0]):  # out channels
                 # color = [[[]]]
                 ax = None
-                filtermap3d = weight[i,:,:,:]
+                filtermap3d = weight[i, :, :, :]
                 # print("\nShape FilterMap: ", filtermap3d.shape)
-                for j in range(0, dims[1]): # in channels
-                    filterMaps = filtermap3d[j,:,:]
+                for j in range(0, dims[1]):  # in channels
+                    filterMaps = filtermap3d[j, :, :]
 
                     if printParam:
                         # print("\nShape: ", weightList[-1].shape)
                         print("\nWeight: ", filterMaps)
 
-
-                    ax = pyplot.subplot(dims[0],dims[1],ix)
+                    ax = pyplot.subplot(dims[0], dims[1], ix)
                     ax.set_xticks([])
                     ax.set_yticks([])
                     if vmin:
-                        pyplot.imshow(filterMaps[:,:],cmap=my_cmap,vmin=threshold, vmax=1)
+                        pyplot.imshow(filterMaps[:, :], cmap=my_cmap, vmin=threshold, vmax=1)
                     else:
                         pyplot.imshow(filterMaps[:, :], cmap=my_cmap, vmin=0, vmax=1)
 
@@ -242,15 +243,15 @@ def visualizePruneTrain(model, epoch, threshold):
             for i in range(0, dims[0]):  # out channels
                 ax = None
             #    if printParam:
-             #       print("\nWeight: ", filterMaps)
+            #       print("\nWeight: ", filterMaps)
 
-           #     ax = pyplot.subplot(dims[0], 1, ix)
-           #     ax.set_xticks([])
-           #     ax.set_yticks([])
-         #       pyplot.imshow(weight[i, ], cmap=my_cmap, vmin=threshold, vmax=1)
-          #      ix += 1
-          #  fileName = altList[a] + '_' + str(epoch) + '.png'
-           # pyplot.savefig(fileName)
+        #     ax = pyplot.subplot(dims[0], 1, ix)
+        #     ax.set_xticks([])
+        #     ax.set_yticks([])
+        #       pyplot.imshow(weight[i, ], cmap=my_cmap, vmin=threshold, vmax=1)
+        #      ix += 1
+        #  fileName = altList[a] + '_' + str(epoch) + '.png'
+        # pyplot.savefig(fileName)
 
     pyplot.close('all')
 
@@ -305,7 +306,7 @@ def main():
             if epoch in args.schedule:
                 adjust_learning_rate(optimizer, epoch)
 
-            #print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
+            # print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion, optimizer,
                                                                          epoch, use_cuda)
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
@@ -396,7 +397,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             # Auto-tune the group-lasso coefficient @first training iteration
             if init_batch:
                 args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (lasso_penalty *
-                                                                               (1 - args.var_group_lasso_coeff))
+                                                                                   (1 - args.var_group_lasso_coeff))
                 grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
             lasso_penalty = lasso_penalty * grp_lasso_coeff
         else:
