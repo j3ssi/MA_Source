@@ -215,7 +215,7 @@ def visualizePruneTrain(model, epoch, threshold):
             weight = weight.detach().numpy()
             if printParam:
                 print("\nDims: ", dims)
-            ax = pyplot.plot(weight)
+            bx = pyplot.plot(weight)
             # ax.set_xticks([])
             # ax.set_yticks([])
             # pyplot.imshow(weight[:,0],cmap=my_cmap,vmin=threshold)
