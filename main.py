@@ -26,6 +26,7 @@ import numpy as np
 from copy import deepcopy
 
 from matplotlib import pyplot
+from matplotlib.colors import ListedColormap
 from mpl_toolkits.mplot3d import Axes3D
 import torch
 import torch.nn as nn
@@ -155,26 +156,20 @@ def visualizePruneTrain(model, epoch, threshold):
         print("\naltList", altList)
 
     printParam = False
-    my_cmap = matplotlib.cm.get_cmap('gray')
-    my_cmap.set_under('red')
-
+    my_cmap = matplotlib.cm.get_cmap('gray',256)
+    newcolors = my_cmap(np.linspace(0, 1, 256))
+    pink = np.array([248/256, 24/256, 148/256, 1])
+    newcolors[:0, :] = pink
+    newcmp = ListedColormap(newcolors)
     # print("\ncmap: ", my_cmap(0))
     for a in range(0, len(altList)):
         weight = paramList[a].cpu()
         weight = weight.detach().numpy()
 
-        vmin = True
         f_min, f_max = np.min(weight), np.max(weight)
         print("\nf_min; f_max: ", f_min, " ; ", f_max)
         # When threshold < f_min then no vmin
-        if threshold < f_min:
-            vmin = False
-            print("\nTreshold < f_min")
-        else:
-            f_min = threshold
         weight = (weight - f_min) / (f_max - f_min)
-        f_min, f_max = np.min(weight), np.max(weight)
-        print("\nf_min2; f_max2, threshold: ", f_min, " ; ", f_max, " ; ", threshold)
 
         # threshold = (threshold-f_min)/(f_max-f_min)
         if 'conv' in altList[a]:
@@ -201,10 +196,7 @@ def visualizePruneTrain(model, epoch, threshold):
                     ax = pyplot.subplot(dims[0], dims[1], ix)
                     ax.set_xticks([])
                     ax.set_yticks([])
-                    if vmin:
-                        pyplot.imshow(filterMaps[:, :], cmap=my_cmap, vmin=threshold)
-                    else:
-                        pyplot.imshow(filterMaps[:, :], cmap='gray')
+                    pyplot.imshow(filterMaps[:, :], cmap=newcmp)
 
                     ix += 1
                 # printWeights = weightList3d[-j:]
