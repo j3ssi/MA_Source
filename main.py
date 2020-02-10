@@ -231,16 +231,16 @@ def visualizePruneTrain(model, epoch, threshold):
             ix = 1
             for i in range(0, dims[0]):  # out channels
                 ax = None
-                if printParam:
-                    print("\nWeight: ", filterMaps)
+            #    if printParam:
+             #       print("\nWeight: ", filterMaps)
 
            #     ax = pyplot.subplot(dims[0], 1, ix)
            #     ax.set_xticks([])
            #     ax.set_yticks([])
          #       pyplot.imshow(weight[i, ], cmap=my_cmap, vmin=threshold, vmax=1)
           #      ix += 1
-            fileName = altList[a] + '_' + str(epoch) + '.png'
-            pyplot.savefig(fileName)
+          #  fileName = altList[a] + '_' + str(epoch) + '.png'
+           # pyplot.savefig(fileName)
 
     pyplot.close('all')
 
