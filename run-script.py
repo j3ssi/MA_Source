@@ -7,7 +7,7 @@ def main():
     for i in s:
         for j in n:
             cmdLine = 'python3 main.py '
-            cmdLine = cmdLine + '--workers 4 --epochs 150 '
+            cmdLine = cmdLine + '--workers 4 --epochs 50 '
             cmdLine = cmdLine + '--learning-rate 0.1 --schedule 91 136 '
             cmdLine = cmdLine + '--gpu_id 2 --train_batch 1024 '
             cmdLine = cmdLine + '--test_batch 100 --sparse_interval 20'
