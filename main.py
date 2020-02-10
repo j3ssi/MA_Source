@@ -154,7 +154,7 @@ def visualizePruneTrain(model, epoch, threshold):
     printParam = False
     my_cmap = matplotlib.cm.get_cmap('gray')
     my_cmap.set_under('red')
-    print("\ncmap: ", my_cmap)
+    print("\ncmap: ", my_cmap(0))
     for a in range(0, len(altList)):
 
         f_min, f_max = paramList[a].min(), paramList[a].max()
