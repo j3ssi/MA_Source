@@ -164,6 +164,8 @@ def visualizePruneTrain(model, epoch, threshold):
         # When threshold < f_min then no vmin
         if threshold < f_min:
             vmin = False
+        else:
+            threshold = (threshold-f_min)/(f_max-f_min)
         paramList[a]=(paramList[a]-f_min)/(f_max-f_min)
         # threshold = (threshold-f_min)/(f_max-f_min)
         if 'conv' in altList[a]:
@@ -391,25 +393,10 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 lasso_penalty = get_group_lasso_group(model)
 
             # Auto-tune the group-lasso coefficient @first training iteration
-            coeff_dir = os.path.join(args.coeff_container, 'cifar')
             if init_batch:
                 args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (lasso_penalty *
                                                                                (1 - args.var_group_lasso_coeff))
-            grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
-            # print("\nGRP Lasso Coeff: ", str(grp_lasso_coeff.item()))
-            # if not os.path.exists(coeff_dir):
-            #    os.makedirs(coeff_dir)
-            # with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
-            #    f_coeff.write(str(grp_lasso_coeff.item()))
-
-            # else:
-            #     with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
-            #         a=0
-            #         for line in f_coeff:
-            #             a = a + 1
-            #             print("\nA: ",a)
-            #             grp_lasso_coeff = float(line)
-            #
+                grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
             lasso_penalty = lasso_penalty * grp_lasso_coeff
         else:
             lasso_penalty = 0.
