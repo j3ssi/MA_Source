@@ -174,7 +174,7 @@ def visualizePruneTrain(model, epoch, threshold):
             threshold = (threshold - f_min) / (f_max - f_min)
         weight = (weight - f_min) / (f_max - f_min)
         f_min, f_max = np.min(weight), np.max(weight)
-        print("\nf_min2; f_max2: ", f_min, " ; ", f_max)
+        print("\nf_min2; f_max2, threshold: ", f_min, " ; ", f_max, " ; ", threshold)
 
         # threshold = (threshold-f_min)/(f_max-f_min)
         if 'conv' in altList[a]:
