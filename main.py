@@ -156,14 +156,13 @@ def visualizePruneTrain(model, epoch, threshold):
     printParam = False
     my_cmap = matplotlib.cm.get_cmap('gray')
     my_cmap.set_under('red')
-    print("\ncmap: ", my_cmap(0))
+    # print("\ncmap: ", my_cmap(0))
     for a in range(0, len(altList)):
 
         f_min, f_max = paramList[a].min(), paramList[a].max()
-#        if threshold<f_min:
-#           f_min = threshold
+
         paramList[a]=(paramList[a]-f_min)/(f_max-f_min)
-        threshold = (threshold-f_min)/(f_max-f_min)
+        # threshold = (threshold-f_min)/(f_max-f_min)
         if 'conv' in altList[a]:
             print("\naltList[", a, "]: ", altList[a])
             dims = paramList[a].shape
