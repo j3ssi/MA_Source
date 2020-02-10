@@ -161,7 +161,7 @@ def visualizePruneTrain(model, epoch, threshold):
         if threshold<f_min:
             f_min = threshold
         paramList[a]=(paramList[a]-f_min)/(f_max-f_min)
-        threshold = (threshold-f_min)/(f_min-f_max)
+        threshold = (threshold-f_min)/(f_max-f_min)
         if 'conv' in altList[a]:
             print("\naltList[", a, "]: ", altList[a])
             dims = paramList[a].shape
@@ -284,7 +284,7 @@ def main():
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     # Train and val
     # how many times N2N should make the network deeper
-    visualize = False
+    visualize = True
     start = time.time()
     for epochNet2Net in range(1, 2):
 
