@@ -159,7 +159,7 @@ def visualizePruneTrain(model, epoch, threshold):
     my_cmap = matplotlib.cm.get_cmap('gray',256)
     newcolors = my_cmap(np.linspace(0, 1, 256))
     pink = np.array([248/256, 24/256, 148/256, 1])
-    newcolors[:1, :] = pink
+    newcolors[:2, :] = pink
     newcmp = ListedColormap(newcolors)
     # print("\ncmap: ", my_cmap(0))
     for a in range(0, len(altList)):
