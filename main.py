@@ -167,7 +167,7 @@ def visualizePruneTrain(model, epoch, threshold):
         weight = weight.detach().numpy()
 
         f_min, f_max = np.min(weight), np.max(weight)
-        print printParam
+        if printParam:
             print("\nf_min; f_max: ", f_min, " ; ", f_max)
         # When threshold < f_min then no vmin
         weight = (weight - f_min) / (f_max - f_min)
