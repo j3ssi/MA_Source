@@ -115,7 +115,7 @@ if use_cuda:
     torch.manual_seed(args.manualSeed)
 
 best_acc = 0  # best test accuracy
-
+group_lasso_coeff = 0
 
 def visualizePruneTrain(model, epoch, threshold):
     altList = []
@@ -259,7 +259,7 @@ def main():
     torch.autograd.set_detect_anomaly(True)
 
     global best_acc
-
+    global group_lasso_coeff
     # Data
     # print('==> Preparing dataset %s' % args.dataset)
     transform_train = transforms.Compose([
@@ -351,7 +351,7 @@ def main():
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     # switch to train mode
     model.train()
-
+    global group_lasso_coeff
     batch_time = AverageMeter()
     data_time = AverageMeter()
     losses = AverageMeter()
