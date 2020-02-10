@@ -167,13 +167,14 @@ def visualizePruneTrain(model, epoch, threshold):
         weight = weight.detach().numpy()
 
         f_min, f_max = np.min(weight), np.max(weight)
-        print("\nf_min; f_max: ", f_min, " ; ", f_max)
+        print printParam
+            print("\nf_min; f_max: ", f_min, " ; ", f_max)
         # When threshold < f_min then no vmin
         weight = (weight - f_min) / (f_max - f_min)
 
         # threshold = (threshold-f_min)/(f_max-f_min)
         if 'conv' in altList[a]:
-            print("\naltList[", a, "]: ", altList[a])
+            # print("\naltList[", a, "]: ", altList[a])
             dims = paramList[a].shape
             if printParam:
                 print("\nParamListShape: ", paramList[a].shape)
@@ -190,7 +191,6 @@ def visualizePruneTrain(model, epoch, threshold):
                     filterMaps = filtermap3d[j, :, :]
 
                     if printParam:
-                        # print("\nShape: ", weightList[-1].shape)
                         print("\nWeight: ", filterMaps)
 
                     ax = pyplot.subplot(dims[0], dims[1], ix)
@@ -211,20 +211,17 @@ def visualizePruneTrain(model, epoch, threshold):
             dims = paramList[a].shape
             if printParam:
                 print("\nParamListShape: ", paramList[a].shape)
-            # weight = paramList[a].cpu()
-            # weight = weight.detach().numpy()
-            # if printParam:
-            #     print("\nDims: ", dims)
-            # ix = 1
-            # if printParam:
-            #     print("\nWeight: ", weight)
-            #     ax = pyplot.subplot(dims[0],1,ix)
+            weight = paramList[a].cpu()
+            weight = weight.detach().numpy()
+            if printParam:
+                print("\nDims: ", dims)
+            ax = pyplot.plot(weight)
             # ax.set_xticks([])
             # ax.set_yticks([])
             # pyplot.imshow(weight[:,0],cmap=my_cmap,vmin=threshold)
             # ix += 1
-            # fileName = altList[a] + '_' + str(epoch) + '.png'
-            # pyplot.savefig(fileName)
+            fileName = altList[a] + '_' + str(epoch) + '.png'
+            pyplot.savefig(fileName)
 
         elif 'fc' in altList[a]:
             print("\naltList[", a, "]: ", altList[a])
@@ -294,6 +291,10 @@ def main():
     # Train and val
     # how many times N2N should make the network deeper
     start = time.time()
+    count0 = 0
+    for p in model.parameters():
+        count0 += p.data.nelement()
+
     for epochNet2Net in range(1, 2):
 
         best_acc = 0
@@ -322,6 +323,11 @@ def main():
                 model.cuda()
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
+
+            count = 0
+            for p in model.parameters():
+                count += p.data.nelement()
+            print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
             best_acc = max(test_acc, best_acc)
             # print(model)
         print('Best acc:')
@@ -340,6 +346,7 @@ def main():
             optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                   weight_decay=args.weight_decay)
 
+    print("\n Verhältnis Modell Größe: ", count/count0)
     ende = time.time()
     print("\n ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock, " ; ", args.epochs)
     print('{:5.3f}s'.format(ende - start), end='  ')
