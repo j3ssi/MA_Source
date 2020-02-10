@@ -210,7 +210,7 @@ def visualizePruneTrain(model, epoch, threshold):
                 # printWeights = weightList3d[-j:]
                 # ax = fig.add_subplot(111, projection='3d')
                 # ax.scatter(printWeights[0], printWeights[1], printWeights[2])
-            pyplot.legend(bbox_to_anchor=(0, -0.15, 1, 0), loc=2, ncol=2, mode="expand", borderaxespad=0)
+            # pyplot.legend(bbox_to_anchor=(0, -0.15, 1, 0), loc=2, ncol=2, mode="expand", borderaxespad=0)
             fileName = altList[a] + '_' + str(epoch) + '.png'
             pyplot.savefig(fileName)
 
