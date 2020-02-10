@@ -284,7 +284,7 @@ def main():
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     # Train and val
     # how many times N2N should make the network deeper
-    visualize = True
+    visualize = False
     start = time.time()
     for epochNet2Net in range(1, 2):
 
@@ -294,7 +294,7 @@ def main():
             if epoch in args.schedule:
                 adjust_learning_rate(optimizer, epoch)
 
-            print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
+            #print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion, optimizer,
                                                                          epoch, use_cuda)
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
@@ -332,7 +332,7 @@ def main():
                                   weight_decay=args.weight_decay)
 
     ende = time.time()
-
+    print("\n ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock, " ; ", args.epochs)
     print('{:5.3f}s'.format(ende - start), end='  ')
     print("\n")
 
