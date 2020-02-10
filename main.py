@@ -164,6 +164,7 @@ def visualizePruneTrain(model, epoch, threshold):
         # When threshold < f_min then no vmin
         if threshold < f_min:
             vmin = False
+            print("\nTreshold < f_min")
         else:
             threshold = (threshold-f_min)/(f_max-f_min)
         paramList[a]=(paramList[a]-f_min)/(f_max-f_min)
