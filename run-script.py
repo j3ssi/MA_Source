@@ -9,8 +9,8 @@ def main():
             cmdLine = 'python3 main.py '
             cmdLine = cmdLine + '--workers 4 --epochs 50 '
             cmdLine = cmdLine + '--learning-rate 0.1 --schedule 91 136 '
-            cmdLine = cmdLine + '--gpu_id 2 --train_batch 1024 '
-            cmdLine = cmdLine + '--test_batch 100 --sparse_interval 20'
+            cmdLine = cmdLine + '--gpu_id 2 --train_batch 128 '
+            cmdLine = cmdLine + '--en_group_lasso --test_batch 100 --sparse_interval 20'
             cmdLine = cmdLine + ' -s ' + str(i) + ' -n ' + str(j) +' -l 3'
             print (cmdLine)
             os.system(cmdLine)
