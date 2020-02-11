@@ -207,6 +207,7 @@ def visualizePruneTrain(model, epoch, threshold):
             pyplot.savefig(fileName)
 
         elif 'bn' in altList[a]:
+            ax = None
             print("\naltList[", a, "]: ", altList[a])
             dims = paramList[a].shape
             if printParam:
@@ -215,7 +216,7 @@ def visualizePruneTrain(model, epoch, threshold):
             weight = weight.detach().numpy()
             if printParam:
                 print("\nDims: ", dims)
-            bx = pyplot.plot(weight)
+            ax = pyplot.plot(weight)
             # ax.set_xticks([])
             # ax.set_yticks([])
             # pyplot.imshow(weight[:,0],cmap=my_cmap,vmin=threshold)
