@@ -313,12 +313,19 @@ def main():
 
 
     for epochNet2Net in range(1, 2):
+
         for epoch in range(1, args.epochs + 1):
-            print('\n')
-            print(f'GPU Id: {use_gpu}')
-            print(f'total    : {info.total}')
-            print(f'free     : {info.free}')
-            print(f'used     : {info.used}')
+
+            for gpu_id in range(0, 4):
+                h = nvmlDeviceGetHandleByIndex(gpu_id)
+                info = nvmlDeviceGetMemoryInfo(h)
+                if info.used == 0:
+                    use_gpu = gpu_id
+                    print('\n')
+                    print(f'GPU Id: {gpu_id}')
+                    print(f'total    : {info.total}')
+                    print(f'free     : {info.free}')
+                    print(f'used     : {info.used}')
 
             # adjust learning rate when epoch is the scheduled epoch
             if epoch in args.schedule:
