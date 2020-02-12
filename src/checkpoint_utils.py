@@ -307,41 +307,26 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
             return [3 * conv_id - 1, 3 * conv_id - 2], [lyr_name + '.bias', lyr_name + '.weight']
 
     if len(rm_list) > 0:
-        print("\nRM RM\n")
-        rm_lyrs = []
         for name in rm_list:
-            print("\n>Name: ", name)
-            rm_lyr = n2n.getRmLayers(name, model)
-            if any(i for i in rm_lyr if i not in rm_lyrs):
-                rm_lyrs.extend(rm_lyr)
-
-        # Remove model parameters
-        for rm_lyr in rm_lyrs:
-            model.del_param_in_flat_arch(rm_lyr)
-
-        idxs, rm_params = [], []
-        for rm_lyr in rm_lyrs:
-            idx, rm_param = getLayerIdx(rm_lyr)
-            idxs.extend(idx)
-            rm_params.extend(rm_param)
-
-        # Remove optimizer states
-        for name, param in model.named_parameters():
-            for rm_param in rm_params:
-                if name == rm_param:
-                    del optimizer.state[param]
-                    print("\n Del", name)
-        # Sanity check: Print out optimizer parameters before change
-        print("[INFO] ==== Size of parameter group (Before)")
-        for g in optimizer.param_groups:
-            for idx, g2 in enumerate(g['params']):
-                print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
-
-        # Remove optimizer parameters
-        # Adjuster: Absolute parameter location changes after each removal
-        for idx_adjuster, idx in enumerate(sorted(idxs)):
-            del optimizer.param_groups[0]['params'][idx - idx_adjuster]
-            print("\n Del", name)
+            # delete module from moduleList
+            index = int(name.split('.')[1].split('v')[1])
+            index = (index-1)*2
+            module = model.module_list[index]
+            print("\nModule List Length: ", len(model.module_list))
+            model.module_list.delete(module)
+            print("\nModule List Length After Delete: ", len(model.module_list))
+            i=0
+            for s in range(0, model.numOfStages):
+                blocks = model.archNums[s]
+                for b in range(0, model.numOfBlocksinStage):
+                    i = i + blocks[b]
+                    if(index == i):
+                        blocks[b] = blocks[b] - 1
+        # # Sanity check: Print out optimizer parameters before change
+        # print("[INFO] ==== Size of parameter group (Before)")
+        # for g in optimizer.param_groups:
+        #     for idx, g2 in enumerate(g['params']):
+        #         print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
 
     # Sanity check => Print out optimizer parameters after change
     # print("[INFO] ==== Size of parameter group (After)")
