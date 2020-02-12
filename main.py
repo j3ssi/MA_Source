@@ -106,17 +106,17 @@ state = {k: v for k, v in args._get_kwargs()}
 
 nvmlInit()
 use_gpu = 0
-for gpu_id in range(0, 3):
+for gpu_id in range(0, 4):
     h = nvmlDeviceGetHandleByIndex(gpu_id)
     info = nvmlDeviceGetMemoryInfo(h)
-    # if info.used == 0:
-    #     use_gpu = gpu_id
-    #     break
-    print('\n')
-    print(f'GPU Id: {gpu_id}')
-    print(f'total    : {info.total}')
-    print(f'free     : {info.free}')
-    print(f'used     : {info.used}')
+    if info.used == 0:
+        use_gpu = gpu_id
+        print('\n')
+        print(f'GPU Id: {gpu_id}')
+        print(f'total    : {info.total}')
+        print(f'free     : {info.free}')
+        print(f'used     : {info.used}')
+        break
 
 os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
 use_cuda = torch.cuda.is_available()
