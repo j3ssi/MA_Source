@@ -199,7 +199,7 @@ class N2N(nn.Module):
         for stage in range(0, self.numOfStages):
             if printNet:
                 print("\n\nStage: ", stage)
-            archNum = self.archNums[s]
+            archNum = self.archNums[stage]
             for block in range(0, len(archNum)):
                 if printNet:
                     print("\n\n\tBlock: ", block)
