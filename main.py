@@ -299,7 +299,7 @@ def main():
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda()
 
-    h = nvmlDeviceGetHandleByIndex(use_gpu)
+    h = nvmlDeviceGetHandleByIndex(args.gpu_id)
     info = nvmlDeviceGetMemoryInfo(h)
     if info.used == 0:
         args.gpu_id = gpu_id
