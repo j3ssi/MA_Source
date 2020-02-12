@@ -19,7 +19,7 @@ import os
 import argparse
 import time
 import random
-
+from pynvml import *
 import matplotlib
 import numpy as np
 
@@ -295,6 +295,15 @@ def main():
     count0 = 0
     for p in model.parameters():
         count0 += p.data.nelement()
+
+    nvmlInit()
+    h = nvmlDeviceGetHandleByIndex(args.gpu_id)
+    info = nvmlDeviceGetMemoryInfo(h)
+    print(f'total    : {info.total}')
+    print(f'free     : {info.free}')
+    print(f'used     : {info.used}')
+
+
 
     for epochNet2Net in range(1, 2):
 
