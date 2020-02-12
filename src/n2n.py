@@ -82,6 +82,8 @@ class N2N(nn.Module):
                     m.bias.data.zero_()
             print(self)
         else:
+            self.archNums = model.archNums
+
             module_list = model.module_list
             altList = []
             paramList = []
