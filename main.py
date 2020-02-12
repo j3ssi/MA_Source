@@ -103,14 +103,14 @@ parser.add_argument('--visual', default=False, action='store_true',
 
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
-
+info = None
 nvmlInit()
 use_gpu = 0
 for gpu_id in range(0, 4):
     h = nvmlDeviceGetHandleByIndex(gpu_id)
     info = nvmlDeviceGetMemoryInfo(h)
     if info.used == 0:
-        args.gpu_id = gpu_id
+        use_gpu = gpu_id
         print('\n')
         print(f'GPU Id: {gpu_id}')
         print(f'total    : {info.total}')
@@ -118,7 +118,7 @@ for gpu_id in range(0, 4):
         print(f'used     : {info.used}')
         break
 
-os.environ['CUDA_VISIBLE_DEVICES'] = str(args.gpu_id)
+os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu)
 use_cuda = torch.cuda.is_available()
 
 # Random seed
@@ -299,9 +299,6 @@ def main():
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda()
 
-
-
-
     cudnn.benchmark = True
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
@@ -316,13 +313,9 @@ def main():
 
 
     for epochNet2Net in range(1, 2):
-
-        best_acc = 0
         for epoch in range(1, args.epochs + 1):
-            h = nvmlDeviceGetHandleByIndex(int(args.gpu_id))
-            info = nvmlDeviceGetMemoryInfo(h)
             print('\n')
-            print(f'GPU Id: {gpu_id}')
+            print(f'GPU Id: {use_gpu}')
             print(f'total    : {info.total}')
             print(f'free     : {info.free}')
             print(f'used     : {info.used}')
