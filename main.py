@@ -106,11 +106,16 @@ state = {k: v for k, v in args._get_kwargs()}
 info = None
 nvmlInit()
 use_gpu = 0
+cuda = []
+cuda.append(torch.device('cuda:0'))
+cuda.append(torch.device('cuda:1'))
+cuda.append(torch.device('cuda:2'))
+cuda.append(torch.device('cuda:3'))
 for gpu_id in range(0, 4):
     h = nvmlDeviceGetHandleByIndex(gpu_id)
     info = nvmlDeviceGetMemoryInfo(h)
     if info.used == 0:
-        use_gpu = gpu_id
+        use_gpu = cuda[gpu_id]
         print('\n')
         print(f'GPU Id: {gpu_id}')
         print(f'total    : {info.total}')
@@ -118,7 +123,7 @@ for gpu_id in range(0, 4):
         print(f'used     : {info.used}')
         break
 
-os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu)
+# os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu)
 use_cuda = torch.cuda.is_available()
 
 # Random seed
@@ -297,7 +302,7 @@ def main():
 
     # Model
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
-    model.cuda()
+    model.cuda(use_gpu)
 
     cudnn.benchmark = True
     criterion = nn.CrossEntropyLoss()
@@ -320,7 +325,6 @@ def main():
                 h = nvmlDeviceGetHandleByIndex(gpu_id)
                 info = nvmlDeviceGetMemoryInfo(h)
                 if info.used == 0:
-                    use_gpu = gpu_id
                     print('\n')
                     print(f'GPU Id: {gpu_id}')
                     print(f'total    : {info.total}')
@@ -333,22 +337,21 @@ def main():
 
             print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion, optimizer,
-                                                                         epoch, use_cuda)
-            test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
+                                                                         epoch, use_cuda, use_gpu)
+            test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda, use_gpu)
 
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):
                 # Force weights under threshold to zero
-                dense_chs, chs_map = makeSparse(optimizer, model, args.threshold,
-                                                is_gating=args.is_gating)
+                dense_chs, chs_map = makeSparse(optimizer, model, args.threshold,use_gpu)
                 if args.visual:
                     visualizePruneTrain(model, epoch, args.threshold)
 
-                genDenseModel(model, dense_chs, optimizer, 'cifar')
+                genDenseModel(model, dense_chs, optimizer, 'cifar', use_gpu)
                 model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False,
                                 model)
 
-                model.cuda()
+                model.cuda(use_gpu)
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
 
@@ -368,7 +371,7 @@ def main():
                 model = n2n.deeper(model, optimizer, [2])
             elif best_acc < 95:
                 model = n2n.deeper(model, optimizer, [2])
-            model.cuda()
+            model.cuda(use_gpu)
             criterion = nn.CrossEntropyLoss()
             optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                   weight_decay=args.weight_decay)
@@ -380,7 +383,7 @@ def main():
     print("\n")
 
 
-def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
+def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu):
     # switch to train mode
     model.train()
     global grp_lasso_coeff
@@ -402,7 +405,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         data_load_time = time.time() - end
 
         if use_cuda:
-            inputs, targets = inputs.cuda(), targets.cuda()
+            inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
 
         with torch.no_grad():
             inputs = Variable(inputs)
@@ -468,7 +471,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     return losses.avg, top1.avg, lasso_ratio.avg, epoch_time
 
 
-def test(testloader, model, criterion, epoch, use_cuda):
+def test(testloader, model, criterion, epoch, use_cuda, use_gpu):
     global best_acc
 
     batch_time = AverageMeter()
@@ -487,7 +490,7 @@ def test(testloader, model, criterion, epoch, use_cuda):
         data_load_time = time.time() - end
 
         if use_cuda:
-            inputs, targets = inputs.cuda(), targets.cuda()
+            inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
         with torch.no_grad():
             inputs = Variable(inputs)
             # targets = Variable(targets)
