@@ -277,19 +277,19 @@ class N2N(nn.Module):
 
         if printNet:
             print("\nX Shape: ", x.shape)
-        # conv
-        x = self.module_list[j](_x)
-        if printNet:
-            print("\nI: ", j, " ; ", self.module_list[j])
-            print("\nX Shape: ", x.shape)
-        j = j + 1
-        # bn
-        x = self.module_list[j](x)
-        if printNet:
-            print("\nI: ", j, " ; ", self.module_list[j])
-            print("\nX Shape: ", x.shape)
-        _x = self.relu(x)
-        j = j + 1
+        # # conv
+        # x = self.module_list[j](_x)
+        # if printNet:
+        #     print("\nI: ", j, " ; ", self.module_list[j])
+        #     print("\nX Shape: ", x.shape)
+        # j = j + 1
+        # # bn
+        # x = self.module_list[j](x)
+        # if printNet:
+        #     print("\nI: ", j, " ; ", self.module_list[j])
+        #     print("\nX Shape: ", x.shape)
+        # _x = self.relu(x)
+        # j = j + 1
         if isinstance(self.module_list[j], nn.AdaptiveAvgPool2d):
             try:
                 x = self.module_list[j](_x)
