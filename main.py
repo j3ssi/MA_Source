@@ -104,6 +104,21 @@ parser.add_argument('--visual', default=False, action='store_true',
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
 
+nvmlInit()
+use_gpu = 0
+for gpu_id in range(0, 3):
+    h = nvmlDeviceGetHandleByIndex(gpu_id)
+    info = nvmlDeviceGetMemoryInfo(h)
+    if info.used == 0:
+        use_gpu = gpu_id
+        break
+    print(f'total    : {info.total}')
+    print(f'free     : {info.free}')
+    print(f'used     : {info.used}')
+
+os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
+use_cuda = torch.cuda.is_available()
+
 # Random seed
 if args.manualSeed is None:
     args.manualSeed = random.randint(1, 10000)
@@ -248,20 +263,6 @@ def visualizePruneTrain(model, epoch, threshold):
 
 
 def main():
-    nvmlInit()
-    use_gpu = 0
-    for gpu_id in range(0, 3):
-        h = nvmlDeviceGetHandleByIndex(gpu_id)
-        info = nvmlDeviceGetMemoryInfo(h)
-        if info.used == 0:
-            use_gpu = gpu_id
-            break
-        print(f'total    : {info.total}')
-        print(f'free     : {info.free}')
-        print(f'used     : {info.used}')
-
-    os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
-    use_cuda = torch.cuda.is_available()
 
     # use anomaly detection of torch
     torch.autograd.set_detect_anomaly(True)
