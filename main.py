@@ -107,7 +107,7 @@ state = {k: v for k, v in args._get_kwargs()}
 nvmlInit()
 use_gpu = 0
 for gpu_id in range(0, 4):
-    h = nvmlDeviceGetHandleByIndex(use_gpu)
+    h = nvmlDeviceGetHandleByIndex(gpu_id)
     info = nvmlDeviceGetMemoryInfo(h)
     if info.used == 0:
         args.gpu_id = gpu_id
@@ -355,11 +355,10 @@ def main():
             count = 0
             for p in model.parameters():
                 count += p.data.nelement()
+
             print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
-            best_acc = max(test_acc, best_acc)
-            # print(model)
-        print('Best acc:')
-        print(best_acc)
+            print('\nTest Acc: ', test_acc)
+
         if (args.deeper):
             print("\n\nnow deeper")
             # deeper student training
