@@ -112,6 +112,8 @@ for gpu_id in range(0, 3):
     # if info.used == 0:
     #     use_gpu = gpu_id
     #     break
+    print('\n')
+    print(f'GPU Id: {gpu_id}')
     print(f'total    : {info.total}')
     print(f'free     : {info.free}')
     print(f'used     : {info.used}')
