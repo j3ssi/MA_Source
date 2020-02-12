@@ -297,7 +297,7 @@ def main():
         count0 += p.data.nelement()
 
     nvmlInit()
-    h = nvmlDeviceGetHandleByIndex(args.gpu_id)
+    h = nvmlDeviceGetHandleByIndex(int(args.gpu_id))
     info = nvmlDeviceGetMemoryInfo(h)
     print(f'total    : {info.total}')
     print(f'free     : {info.free}')
