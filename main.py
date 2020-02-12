@@ -295,13 +295,17 @@ def main():
     count0 = 0
     for p in model.parameters():
         count0 += p.data.nelement()
-
     nvmlInit()
-    h = nvmlDeviceGetHandleByIndex(int(args.gpu_id))
-    info = nvmlDeviceGetMemoryInfo(h)
-    print(f'total    : {info.total}')
-    print(f'free     : {info.free}')
-    print(f'used     : {info.used}')
+    use_gpu=0
+    for gpu_id in range(0,3):
+        h = nvmlDeviceGetHandleByIndex(gpu_id)
+        info = nvmlDeviceGetMemoryInfo(h)
+        if info.used == 0:
+            use_gpu = gpu_id
+            break
+        print(f'total    : {info.total}')
+        print(f'free     : {info.free}')
+        print(f'used     : {info.used}')
 
 
 
