@@ -12,8 +12,16 @@ class N2N(nn.Module):
         self.numOfBlocksinStage = numOfBlocksinStage
         self.layersInBlock = layersInBlock
         if first:
-            # first Layer
+            self.archNums =[[]]
+            for s in range(0, self.numOfStages):
+                self.archNums.append([])
+                for b in range(0, self.numOfBlocksinStage):
+                    self.archNums[s].append(self.layersInBlock)
+            print("\nArch Num: ", self.archNums)
+
             self.module_list = nn.ModuleList()
+
+            # first Layer
             # conv1
             conv0 = nn.Conv2d(3, 16, kernel_size=3, padding=1, bias=False, stride=1)
             self.module_list.append(conv0)
