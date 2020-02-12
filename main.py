@@ -301,13 +301,11 @@ def main():
 
     h = nvmlDeviceGetHandleByIndex(int(args.gpu_id))
     info = nvmlDeviceGetMemoryInfo(h)
-    if info.used == 0:
-        args.gpu_id = gpu_id
-        print('\n')
-        print(f'GPU Id: {gpu_id}')
-        print(f'total    : {info.total}')
-        print(f'free     : {info.free}')
-        print(f'used     : {info.used}')
+    print('\n')
+    print(f'GPU Id: {gpu_id}')
+    print(f'total    : {info.total}')
+    print(f'free     : {info.free}')
+    print(f'used     : {info.used}')
 
 
     cudnn.benchmark = True
