@@ -118,7 +118,7 @@ for gpu_id in range(0, 4):
         print(f'used     : {info.used}')
         break
 
-os.environ['CUDA_VISIBLE_DEVICES'] = gpu_id
+os.environ['CUDA_VISIBLE_DEVICES'] = str(gpu_id)
 use_cuda = torch.cuda.is_available()
 
 # Random seed
@@ -308,7 +308,7 @@ def main():
         print(f'total    : {info.total}')
         print(f'free     : {info.free}')
         print(f'used     : {info.used}')
-        
+
 
     cudnn.benchmark = True
     criterion = nn.CrossEntropyLoss()
