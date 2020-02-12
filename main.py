@@ -299,15 +299,7 @@ def main():
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda()
 
-    nvmlInit()
 
-    h = nvmlDeviceGetHandleByIndex(int(args.gpu_id))
-    info = nvmlDeviceGetMemoryInfo(h)
-    print('\n')
-    print(f'GPU Id: {gpu_id}')
-    print(f'total    : {info.total}')
-    print(f'free     : {info.free}')
-    print(f'used     : {info.used}')
 
 
     cudnn.benchmark = True
@@ -324,6 +316,13 @@ def main():
 
 
     for epochNet2Net in range(1, 2):
+        h = nvmlDeviceGetHandleByIndex(int(args.gpu_id))
+        info = nvmlDeviceGetMemoryInfo(h)
+        print('\n')
+        print(f'GPU Id: {gpu_id}')
+        print(f'total    : {info.total}')
+        print(f'free     : {info.free}')
+        print(f'used     : {info.used}')
 
         best_acc = 0
         for epoch in range(1, args.epochs + 1):
