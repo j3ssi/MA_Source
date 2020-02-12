@@ -109,9 +109,9 @@ use_gpu = 0
 for gpu_id in range(0, 3):
     h = nvmlDeviceGetHandleByIndex(gpu_id)
     info = nvmlDeviceGetMemoryInfo(h)
-    if info.used == 0:
-        use_gpu = gpu_id
-        break
+    # if info.used == 0:
+    #     use_gpu = gpu_id
+    #     break
     print(f'total    : {info.total}')
     print(f'free     : {info.free}')
     print(f'used     : {info.used}')
