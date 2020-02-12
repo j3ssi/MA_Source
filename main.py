@@ -107,10 +107,10 @@ state = {k: v for k, v in args._get_kwargs()}
 nvmlInit()
 use_gpu = 0
 for gpu_id in range(0, 4):
-    h = nvmlDeviceGetHandleByIndex(gpu_id)
+    h = nvmlDeviceGetHandleByIndex(use_gpu)
     info = nvmlDeviceGetMemoryInfo(h)
     if info.used == 0:
-        use_gpu = gpu_id
+        args.gpu_id = gpu_id
         print('\n')
         print(f'GPU Id: {gpu_id}')
         print(f'total    : {info.total}')
@@ -118,7 +118,7 @@ for gpu_id in range(0, 4):
         print(f'used     : {info.used}')
         break
 
-os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
+os.environ['CUDA_VISIBLE_DEVICES'] = gpu_id
 use_cuda = torch.cuda.is_available()
 
 # Random seed
@@ -270,9 +270,7 @@ def main():
     torch.autograd.set_detect_anomaly(True)
 
     global best_acc
-    # global group_lasso_coeff
-    # Data
-    # print('==> Preparing dataset %s' % args.dataset)
+
     transform_train = transforms.Compose([
         transforms.RandomCrop(32, padding=4),
         transforms.RandomHorizontalFlip(),
@@ -300,7 +298,18 @@ def main():
     # Model
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda()
-    # print(model)
+
+    h = nvmlDeviceGetHandleByIndex(use_gpu)
+    info = nvmlDeviceGetMemoryInfo(h)
+    if info.used == 0:
+        args.gpu_id = gpu_id
+        print('\n')
+        print(f'GPU Id: {gpu_id}')
+        print(f'total    : {info.total}')
+        print(f'free     : {info.free}')
+        print(f'used     : {info.used}')
+        
+
     cudnn.benchmark = True
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
@@ -311,6 +320,8 @@ def main():
 
     for p in model.parameters():
         count0 += p.data.nelement()
+
+
 
     for epochNet2Net in range(1, 2):
 
