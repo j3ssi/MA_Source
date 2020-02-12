@@ -19,7 +19,7 @@ class N2N(nn.Module):
                     self.archNums[s].append(self.layersInBlock)
                 if s != (self.numOfStages-1):
                     self.archNums.append([])
-            print("\nArch Num: ", self.archNums)
+            # print("\nArch Num: ", self.archNums)
 
             self.module_list = nn.ModuleList()
 
@@ -59,11 +59,11 @@ class N2N(nn.Module):
             # 18
             self.sizeOfFC = pow(2, self.numOfStages + 3)
 
-            conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
-                             stride=1)
-            self.module_list.append(conv)
-            bn = nn.BatchNorm2d(sizeOfLayer)
-            self.module_list.append(bn)
+            # conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
+            #                  stride=1)
+            # self.module_list.append(conv)
+            # bn = nn.BatchNorm2d(sizeOfLayer)
+            # self.module_list.append(bn)
 
             # print("\n self sizeofFC: ",self.sizeOfFC)
             avgpool = nn.AdaptiveAvgPool2d((1, 1))
@@ -199,12 +199,13 @@ class N2N(nn.Module):
         for stage in range(0, self.numOfStages):
             if printNet:
                 print("\n\nStage: ", stage)
-
-            for block in range(0, self.numOfBlocksinStage):
+            archNum = self.archNums[s]
+            for block in range(0, len(archNum)):
                 if printNet:
                     print("\n\n\tBlock: ", block)
                 i = 0
-                while i < self.layersInBlock:
+                layerInThisBlock = archNum[block]
+                while i < layerInThisBlock:
                     if i == 0:
                         # conv
                         x = self.module_list[j](_x)
