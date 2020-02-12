@@ -324,12 +324,11 @@ def main():
             for gpu_id in range(0, 4):
                 h = nvmlDeviceGetHandleByIndex(gpu_id)
                 info = nvmlDeviceGetMemoryInfo(h)
-                if info.used == 0:
-                    print('\n')
-                    print(f'GPU Id: {gpu_id}')
-                    print(f'total    : {info.total}')
-                    print(f'free     : {info.free}')
-                    print(f'used     : {info.used}')
+                print('\n')
+                print(f'GPU Id: {gpu_id}')
+                print(f'total    : {info.total}')
+                print(f'free     : {info.free}')
+                print(f'used     : {info.used}')
 
             # adjust learning rate when epoch is the scheduled epoch
             if epoch in args.schedule:
