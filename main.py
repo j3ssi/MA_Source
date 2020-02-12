@@ -299,6 +299,8 @@ def main():
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda()
 
+    nvmlInit()
+
     h = nvmlDeviceGetHandleByIndex(int(args.gpu_id))
     info = nvmlDeviceGetMemoryInfo(h)
     print('\n')
