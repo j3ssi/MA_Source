@@ -423,9 +423,9 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu):
 
         if args.en_group_lasso:
             if args.global_group_lasso:
-                lasso_penalty = get_group_lasso_global(model)
+                lasso_penalty = get_group_lasso_global(model, use_gpu)
             else:
-                lasso_penalty = get_group_lasso_group(model)
+                lasso_penalty = get_group_lasso_group(model, use_gpu)
 
             # Auto-tune the group-lasso coefficient @first training iteration
             if init_batch:
