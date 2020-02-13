@@ -303,7 +303,6 @@ def main():
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
     # Model
-
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
 
@@ -319,12 +318,12 @@ def main():
 
     for gpu_id in range(0, 4):
         h = nvmlDeviceGetHandleByIndex(gpu_id)
-        info = nvmlDeviceGetMemoryInfo(h)
+        gpu_info = nvmlDeviceGetMemoryInfo(h)
         print('\n')
         print(f'GPU Id: {gpu_id}')
-        print(f'total    : {info.total}')
-        print(f'free     : {info.free}')
-        print(f'used     : {info.used}')
+        print(f'total    : {gpu_info.total}')
+        print(f'free     : {gpu_info.free}')
+        print(f'used     : {gpu_info.used}')
 
     # how many times N2N should make the network deeper
     trainloader = data.DataLoader(trainset, batch_size=1,
@@ -345,7 +344,7 @@ def main():
         print(f'total    : {info.total}')
         print(f'free     : {info.free}')
         print(f'used     : {info.used}')
-        
+
     for epochNet2Net in range(1, 2):
 
         for epoch in range(1, args.epochs + 1):
