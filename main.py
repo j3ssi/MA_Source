@@ -323,7 +323,7 @@ def main():
     print(f'used     : {gpu_info.used}')
     print(f'Memory Stats: {torch.cuda.memory_cached(use_gpu)}')
 
-    trainloader = data.DataLoader(trainset, batch_size=1000,
+    trainloader = data.DataLoader(trainset, batch_size=1,
                                   shuffle=True, num_workers=args.workers)
 
     for batch_idx, (inputs, targets) in enumerate(trainloader):
