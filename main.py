@@ -343,7 +343,7 @@ def main():
         print(f'total    : {info.total}')
         print(f'free     : {info.free}')
         print(f'used     : {info.used}')
-
+        break
     for epochNet2Net in range(1, 2):
 
         for epoch in range(1, args.epochs + 1):
