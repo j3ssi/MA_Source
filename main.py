@@ -333,8 +333,6 @@ def main():
             inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
         outputs = model.forward(inputs)
-        h = nvmlDeviceGetHandleByIndex(use_gpu_num)
-        info = nvmlDeviceGetMemoryInfo(h)
 
         loss = criterion(outputs, targets)
         optimizer.zero_grad()
@@ -342,6 +340,9 @@ def main():
         loss.backward()
 
         optimizer.step()
+        h = nvmlDeviceGetHandleByIndex(use_gpu_num)
+        info = nvmlDeviceGetMemoryInfo(h)
+
         print('\n')
         print(f'Batch IDx: {batch_idx}')
         print(f'GPU Id nach erstem Backward Durchgang: {use_gpu}')
