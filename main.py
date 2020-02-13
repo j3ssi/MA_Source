@@ -314,14 +314,14 @@ def main():
     for p in model.parameters():
         count0 += p.data.nelement()
 
-    for gpu_id in range(0, 4):
-        h = nvmlDeviceGetHandleByIndex(gpu_id)
-        gpu_info = nvmlDeviceGetMemoryInfo(h)
-        print('\n')
-        print(f'GPU Id: {gpu_id}')
-        print(f'total    : {gpu_info.total}')
-        print(f'free     : {gpu_info.free}')
-        print(f'used     : {gpu_info.used}')
+
+    h = nvmlDeviceGetHandleByIndex(use_gpu_num)
+    gpu_info = nvmlDeviceGetMemoryInfo(h)
+    print('\n')
+    print(f'GPU Id: {gpu_id}')
+    print(f'total    : {gpu_info.total}')
+    print(f'free     : {gpu_info.free}')
+    print(f'used     : {gpu_info.used}')
 
     # how many times N2N should make the network deeper
     trainloader = data.DataLoader(trainset, batch_size=1,
