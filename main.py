@@ -127,7 +127,6 @@ for gpu_id in range(0, 4):
         print(f'used     : {info.used}')
 print('\nUse Gpu with the ID: ', use_gpu)
 
-
 # os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu)
 use_cuda = torch.cuda.is_available()
 
@@ -296,14 +295,15 @@ def main():
     num_classes = 10
 
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
-    trainloader = data.DataLoader(trainset, num_workers=args.workers)
-#    batch_size = args.train_batch,
-#    shuffle = True,
+
+    adapt = True  # while this is true, the algorithm will perform batch adaptation
+    gpu_batch_size = 2  # initial gpu batch_size, it can be super small
 
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
     # Model
+
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
 
@@ -327,9 +327,31 @@ def main():
         print(f'used     : {info.used}')
 
     # how many times N2N should make the network deeper
+    trainloader = data.DataLoader(trainset, batch_size=1,
+                                  shuffle=True, num_workers=args.workers)
+
+    for batch_idx, (inputs, targets) in enumerate(trainloader):
+        if use_cuda:
+            inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
+
+        with torch.no_grad():
+            inputs = Variable(inputs)
+        targets = torch.autograd.Variable(targets)
+        outputs = model.forward(inputs)
+        h = nvmlDeviceGetHandleByIndex(use_gpu)
+        info = nvmlDeviceGetMemoryInfo(h)
+        print('\n')
+        print(f'GPU Id: {gpu_id}')
+        print(f'total    : {info.total}')
+        print(f'free     : {info.free}')
+        print(f'used     : {info.used}')
+
     for epochNet2Net in range(1, 2):
 
         for epoch in range(1, args.epochs + 1):
+            if (args.en_group_lasso and (epoch % args.sparse_interval == 0)) or (epoch == 1):
+                trainloader = data.DataLoader(trainset, batch_size = 1,
+                                          shuffle = True, num_workers=args.workers)
 
             # adjust learning rate when epoch is the scheduled epoch
             if epoch in args.schedule:
