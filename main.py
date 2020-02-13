@@ -125,6 +125,7 @@ for gpu_id in range(0, 4):
         print(f'total    : {info.total}')
         print(f'free     : {info.free}')
         print(f'used     : {info.used}')
+print('\nUse Gpu with the ID: ', use_gpu)
 
 
 # os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu)
