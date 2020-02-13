@@ -318,7 +318,7 @@ def main():
     h = nvmlDeviceGetHandleByIndex(use_gpu_num)
     gpu_info = nvmlDeviceGetMemoryInfo(h)
     print('\n')
-    print(f'GPU Id: {gpu_id}')
+    print(f'GPU Id: {use_gpu_num}')
     print(f'total    : {gpu_info.total}')
     print(f'free     : {gpu_info.free}')
     print(f'used     : {gpu_info.used}')
