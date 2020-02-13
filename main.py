@@ -341,11 +341,11 @@ def main():
         h = nvmlDeviceGetHandleByIndex(use_gpu)
         info = nvmlDeviceGetMemoryInfo(h)
         print('\n')
-        print(f'GPU Id nach erstem Durchgang: {gpu_id}')
+        print(f'GPU Id nach erstem Durchgang: {use_gpu}')
         print(f'total    : {info.total}')
         print(f'free     : {info.free}')
         print(f'used     : {info.used}')
-
+        
     for epochNet2Net in range(1, 2):
 
         for epoch in range(1, args.epochs + 1):
