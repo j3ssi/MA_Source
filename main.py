@@ -304,7 +304,7 @@ def main():
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
 
-    cudnn.benchmark = True
+    cudnn.benchmark = False
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     start = time.time()
