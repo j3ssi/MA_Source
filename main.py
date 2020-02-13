@@ -315,7 +315,7 @@ def main():
         count0 += p.data.nelement()
 
     for gpu_id in range(0, 4):
-        h = nvmlDeviceGetHandleByIndex(use_gpu_num)
+        h = nvmlDeviceGetHandleByIndex(gpu_id)
         gpu_info = nvmlDeviceGetMemoryInfo(h)
         print('\n')
         print(f'GPU Id: {gpu_id}')
@@ -335,7 +335,7 @@ def main():
             inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
         outputs = model.forward(inputs)
-        h = nvmlDeviceGetHandleByIndex(use_gpu)
+        h = nvmlDeviceGetHandleByIndex(use_gpu_num)
         info = nvmlDeviceGetMemoryInfo(h)
         print('\n')
         print(f'Batch IDx: {batch_idx}')
