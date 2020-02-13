@@ -296,9 +296,6 @@ def main():
 
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
 
-    adapt = True  # while this is true, the algorithm will perform batch adaptation
-    gpu_batch_size = 2  # initial gpu batch_size, it can be super small
-
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
@@ -340,6 +337,7 @@ def main():
         h = nvmlDeviceGetHandleByIndex(use_gpu)
         info = nvmlDeviceGetMemoryInfo(h)
         print('\n')
+        print(f'Batch IDx: {batch_idx}')
         print(f'GPU Id nach erstem Durchgang: {use_gpu}')
         print(f'total    : {info.total}')
         print(f'free     : {info.free}')
