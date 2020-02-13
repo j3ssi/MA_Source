@@ -324,7 +324,7 @@ def main():
     print(f'used     : {gpu_info.used}')
 
     # how many times N2N should make the network deeper
-    trainloader = data.DataLoader(trainset, batch_size=1,
+    trainloader = data.DataLoader(trainset, batch_size=2,
                                   shuffle=True, num_workers=args.workers)
 
     for batch_idx, (inputs, targets) in enumerate(trainloader):
