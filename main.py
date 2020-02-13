@@ -22,7 +22,7 @@ import random
 from pynvml import *
 import matplotlib
 import numpy as np
-
+from pytorch_memlab import profile, set_target_gpu
 from copy import deepcopy
 
 from matplotlib import pyplot
@@ -314,15 +314,10 @@ def main():
     for p in model.parameters():
         count0 += p.data.nelement()
 
-    h = nvmlDeviceGetHandleByIndex(use_gpu_num)
-    gpu_info = nvmlDeviceGetMemoryInfo(h)
-    print('\n')
-    print(f'GPU Id: {use_gpu_num}')
-    print(f'total    : {gpu_info.total}')
-    print(f'free     : {gpu_info.free}')
-    print(f'used     : {gpu_info.used}')
-    print(f'Memory Stats: {torch.cuda.memory_cached(use_gpu)}')
-    memory_before = torch.cuda.memory_cached(use_gpu)
+    reporter = MemReporter()
+    reporter.report()
+
+
     trainloader = data.DataLoader(trainset, batch_size=3,
                                   shuffle=True, num_workers=args.workers)
 
