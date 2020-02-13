@@ -321,8 +321,7 @@ def main():
     print(f'total    : {gpu_info.total}')
     print(f'free     : {gpu_info.free}')
     print(f'used     : {gpu_info.used}')
-    print(f'cached memory: {torch.cuda.memory_cached()}')
-    print(f'allocated memory: {torch.cuda.memory_allocated()}')
+    print(f'Memory Stats: {torch.cuda.memory_stats(use_gpu)}')
 
     trainloader = data.DataLoader(trainset, batch_size=1000,
                                   shuffle=True, num_workers=args.workers)
@@ -351,8 +350,7 @@ def main():
         print(f'total    : {info.total}')
         print(f'free     : {info.free}')
         print(f'used     : {info.used}')
-        print(f'cached memory: {torch.cuda.memory_cached()}')
-        print(f'allocated memory: {torch.cuda.memory_allocated()}')
+        print(f'Memory Stats: {torch.cuda.memory_stats(use_gpu)}')
 
         break
     for epochNet2Net in range(1, 2):
