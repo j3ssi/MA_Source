@@ -45,14 +45,11 @@ from src.group_lasso_regs import get_group_lasso_global, get_group_lasso_group
 from src.utils import AverageMeter, accuracy
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
-
 # Baseline
 parser.add_argument('-j', '--workers', default=4, type=int, metavar='N',
                     help='number of data loading workers (default: 4)')
 parser.add_argument('--epochs', default=8, type=int, metavar='N',
                     help='number of total epochs to run')
-parser.add_argument('--train_batch', default=128, type=int, metavar='N',
-                    help='train batchsize')
 parser.add_argument('--test_batch', default=100, type=int, metavar='N',
                     help='test batchsize')
 parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
@@ -103,20 +100,29 @@ parser.add_argument('--visual', default=False, action='store_true',
 
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
+
+# GPU selection
 info = None
 nvmlInit()
 use_gpu = 0
-cuda = []
-cuda.append(torch.device('cuda:0'))
-cuda.append(torch.device('cuda:1'))
-cuda.append(torch.device('cuda:2'))
-cuda.append(torch.device('cuda:3'))
+cuda = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
+
 for gpu_id in range(0, 4):
     h = nvmlDeviceGetHandleByIndex(gpu_id)
     info = nvmlDeviceGetMemoryInfo(h)
     if info.used == 0:
         use_gpu = cuda[gpu_id]
         print('\n')
+        print(f'This Gpu is free')
+        print(f'GPU Id: {gpu_id}')
+        print(f'total    : {info.total}')
+        print(f'free     : {info.free}')
+        print(f'used     : {info.used}')
+        break
+    else:
+        use_gpu = cuda[gpu_id]
+        print('\n')
+        print(f'This Gpu is used')
         print(f'GPU Id: {gpu_id}')
         print(f'total    : {info.total}')
         print(f'free     : {info.free}')
@@ -133,8 +139,6 @@ random.seed(args.manualSeed)
 torch.manual_seed(args.manualSeed)
 if use_cuda:
     torch.manual_seed(args.manualSeed)
-
-best_acc = 0  # best test accuracy
 grp_lasso_coeff = 0
 
 
@@ -270,11 +274,10 @@ def visualizePruneTrain(model, epoch, threshold):
 
 
 def main():
-
     # use anomaly detection of torch
     torch.autograd.set_detect_anomaly(True)
 
-    global best_acc
+    # Transform Train and Test data
 
     transform_train = transforms.Compose([
         transforms.RandomCrop(32, padding=4),
@@ -287,6 +290,8 @@ def main():
         transforms.ToTensor(),
         transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
     ])
+
+    # Load data
 
     dataloader = datasets.CIFAR10
     num_classes = 10
@@ -307,28 +312,26 @@ def main():
     cudnn.benchmark = True
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
-    # Train and val
-    # how many times N2N should make the network deeper
     start = time.time()
-    count0 = 0
 
+    # Count the parameters of the model and calculate training bacth size
+    count0 = 0
     for p in model.parameters():
         count0 += p.data.nelement()
 
+    for gpu_id in range(0, 4):
+        h = nvmlDeviceGetHandleByIndex(gpu_id)
+        info = nvmlDeviceGetMemoryInfo(h)
+        print('\n')
+        print(f'GPU Id: {gpu_id}')
+        print(f'total    : {info.total}')
+        print(f'free     : {info.free}')
+        print(f'used     : {info.used}')
 
-
+    # how many times N2N should make the network deeper
     for epochNet2Net in range(1, 2):
 
         for epoch in range(1, args.epochs + 1):
-
-            for gpu_id in range(0, 4):
-                h = nvmlDeviceGetHandleByIndex(gpu_id)
-                info = nvmlDeviceGetMemoryInfo(h)
-                print('\n')
-                print(f'GPU Id: {gpu_id}')
-                print(f'total    : {info.total}')
-                print(f'free     : {info.free}')
-                print(f'used     : {info.used}')
 
             # adjust learning rate when epoch is the scheduled epoch
             if epoch in args.schedule:
@@ -342,7 +345,7 @@ def main():
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):
                 # Force weights under threshold to zero
-                dense_chs, chs_map = makeSparse(optimizer, model, args.threshold,use_gpu)
+                dense_chs, chs_map = makeSparse(optimizer, model, args.threshold, use_gpu)
                 if args.visual:
                     visualizePruneTrain(model, epoch, args.threshold)
 
