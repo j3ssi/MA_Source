@@ -338,6 +338,7 @@ def main():
         optimizer.step()
         h = nvmlDeviceGetHandleByIndex(use_gpu_num)
         info = nvmlDeviceGetMemoryInfo(h)
+        print(f'Nachdem Backward Path')
         reporter.report()
 
         # print('\n')
