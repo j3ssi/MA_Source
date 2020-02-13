@@ -314,7 +314,6 @@ def main():
     for p in model.parameters():
         count0 += p.data.nelement()
 
-
     h = nvmlDeviceGetHandleByIndex(use_gpu_num)
     gpu_info = nvmlDeviceGetMemoryInfo(h)
     print('\n')
@@ -324,7 +323,7 @@ def main():
     print(f'used     : {gpu_info.used}')
 
     # how many times N2N should make the network deeper
-    trainloader = data.DataLoader(trainset, batch_size=2,
+    trainloader = data.DataLoader(trainset, batch_size=1,
                                   shuffle=True, num_workers=args.workers)
 
     for batch_idx, (inputs, targets) in enumerate(trainloader):
@@ -339,10 +338,19 @@ def main():
         info = nvmlDeviceGetMemoryInfo(h)
         print('\n')
         print(f'Batch IDx: {batch_idx}')
-        print(f'GPU Id nach erstem Durchgang: {use_gpu}')
+        print(f'GPU Id nach erstem Backward Durchgang: {use_gpu}')
         print(f'total    : {info.total}')
         print(f'free     : {info.free}')
         print(f'used     : {info.used}')
+
+        loss = criterion(outputs, targets)
+        optimizer.zero_grad()
+
+        loss.backward()
+
+        optimizer.step()
+
+
         break
     for epochNet2Net in range(1, 2):
 
