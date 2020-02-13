@@ -118,16 +118,14 @@ for gpu_id in range(0, 4):
         print(f'total    : {info.total}')
         print(f'free     : {info.free}')
         print(f'used     : {info.used}')
-        break
     else:
-        use_gpu = cuda[gpu_id]
         print('\n')
         print(f'This Gpu is used')
         print(f'GPU Id: {gpu_id}')
         print(f'total    : {info.total}')
         print(f'free     : {info.free}')
         print(f'used     : {info.used}')
-        break
+
 
 # os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu)
 use_cuda = torch.cuda.is_available()
