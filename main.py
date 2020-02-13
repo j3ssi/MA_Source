@@ -322,7 +322,7 @@ def main():
     print(f'free     : {gpu_info.free}')
     print(f'used     : {gpu_info.used}')
     print(f'Memory Stats: {torch.cuda.memory_cached(use_gpu)}')
-    print(f'Memory Stats: {torch.cuda.max_memory_allocated(use_gpu)}')
+    print(f'Max Memory Stats: {torch.cuda.max_memory_allocated(use_gpu)}')
 
     trainloader = data.DataLoader(trainset, batch_size=1,
                                   shuffle=True, num_workers=args.workers)
