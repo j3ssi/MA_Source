@@ -348,7 +348,7 @@ def main():
         # print(f'used     : {info.used}')
         # print(f'Memory Stats: {torch.cuda.memory_cached(use_gpu)}')
         # memory_after = -memory_before + torch.cuda.memory_cached(use_gpu)
-        print(f'memory use of 1 batch: {memory_after/3}')
+        print(f'memory use of 1 batch: {memory_usage}')
         break
     for epochNet2Net in range(1, 2):
 
