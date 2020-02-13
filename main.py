@@ -296,10 +296,9 @@ def main():
     num_classes = 10
 
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
-    trainloader = data.DataLoader(trainset,
-                                  batch_size=args.train_batch,
-                                  shuffle=True,
-                                  num_workers=args.workers)
+    trainloader = data.DataLoader(trainset, num_workers=args.workers)
+#    batch_size = args.train_batch,
+#    shuffle = True,
 
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
