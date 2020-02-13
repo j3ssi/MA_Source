@@ -112,6 +112,7 @@ for gpu_id in range(0, 4):
     info = nvmlDeviceGetMemoryInfo(h)
     if info.used == 0:
         use_gpu = cuda[gpu_id]
+        use_gpu_num = gpu_id
         print('\n')
         print(f'This Gpu is free')
         print(f'GPU Id: {gpu_id}')
@@ -314,7 +315,7 @@ def main():
         count0 += p.data.nelement()
 
     for gpu_id in range(0, 4):
-        h = nvmlDeviceGetHandleByIndex(gpu_id)
+        h = nvmlDeviceGetHandleByIndex(use_gpu_num)
         gpu_info = nvmlDeviceGetMemoryInfo(h)
         print('\n')
         print(f'GPU Id: {gpu_id}')
