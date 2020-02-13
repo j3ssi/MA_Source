@@ -22,7 +22,7 @@ import random
 from pynvml import *
 import matplotlib
 import numpy as np
-from pytorch_memlab import profile, set_target_gpu
+from pytorch_memlab import profile, set_target_gpu, MemReporter
 from copy import deepcopy
 
 from matplotlib import pyplot
