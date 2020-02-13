@@ -324,7 +324,7 @@ def main():
     print(f'cached memory: {torch.cuda.memory_cached()}')
     print(f'allocated memory: {torch.cuda.memory_allocated()}')
 
-    trainloader = data.DataLoader(trainset, batch_size=100,
+    trainloader = data.DataLoader(trainset, batch_size=1000,
                                   shuffle=True, num_workers=args.workers)
 
     for batch_idx, (inputs, targets) in enumerate(trainloader):
