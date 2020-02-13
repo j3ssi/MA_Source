@@ -335,12 +335,6 @@ def main():
         outputs = model.forward(inputs)
         h = nvmlDeviceGetHandleByIndex(use_gpu_num)
         info = nvmlDeviceGetMemoryInfo(h)
-        print('\n')
-        print(f'Batch IDx: {batch_idx}')
-        print(f'GPU Id nach erstem Backward Durchgang: {use_gpu}')
-        print(f'total    : {info.total}')
-        print(f'free     : {info.free}')
-        print(f'used     : {info.used}')
 
         loss = criterion(outputs, targets)
         optimizer.zero_grad()
@@ -348,7 +342,12 @@ def main():
         loss.backward()
 
         optimizer.step()
-
+        print('\n')
+        print(f'Batch IDx: {batch_idx}')
+        print(f'GPU Id nach erstem Backward Durchgang: {use_gpu}')
+        print(f'total    : {info.total}')
+        print(f'free     : {info.free}')
+        print(f'used     : {info.used}')
 
         break
     for epochNet2Net in range(1, 2):
