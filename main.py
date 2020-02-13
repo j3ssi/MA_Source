@@ -336,10 +336,9 @@ def main():
         loss.backward()
 
         optimizer.step()
-        h = nvmlDeviceGetHandleByIndex(use_gpu_num)
-        info = nvmlDeviceGetMemoryInfo(h)
+
         print(f'Nachdem Backward Path')
-        reporter.report()
+        memory_usage = reporter.report()
 
         # print('\n')
         # print(f'Batch IDx: {batch_idx}')
