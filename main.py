@@ -316,7 +316,7 @@ def main():
 
     reporter = MemReporter()
     reporter.report()
-    i = 1
+    i = 2
 
     batch_size = 1
     use_all_memory = False
