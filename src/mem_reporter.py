@@ -3,7 +3,7 @@ import gc
 from collections import defaultdict
 
 import torch
-from src.utils import readable_size
+from src.utils_reporter import readable_size
 
 LEN = 79
 
