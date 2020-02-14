@@ -362,8 +362,8 @@ def main():
 
         for epoch in range(1, args.epochs + 1):
             if (args.en_group_lasso and (epoch % args.sparse_interval == 0)) or (epoch == 1):
-                trainloader = data.DataLoader(trainset, batch_size = 1,
-                                          shuffle = True, num_workers=args.workers)
+                #trainloader = data.DataLoader(trainset, batch_size = 1,
+                #                          shuffle = True, num_workers=args.workers)
 
             # adjust learning rate when epoch is the scheduled epoch
             if epoch in args.schedule:
