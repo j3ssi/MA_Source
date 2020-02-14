@@ -297,7 +297,9 @@ def main():
 
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
 
-    testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
+    trainloader = data.DataLoader(trainset, batch_size=1024, shuffle=True, num_workers=args.workers)
+
+                                  testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
     # Model
@@ -314,48 +316,48 @@ def main():
     for p in model.parameters():
         count0 += p.data.nelement()
 
-    reporter = MemReporter()
-    reporter.report()
-    i = 2
-
-    batch_size = 1
-    use_all_memory = False
-    while not use_all_memory:
-        trainloader = data.DataLoader(trainset, batch_size=batch_size,
-                                      shuffle=True, num_workers=args.workers)
-
-        for batch_idx, (inputs, targets) in enumerate(trainloader):
-            try:
-                if use_cuda:
-                    inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
-
-                with torch.no_grad():
-                    inputs = Variable(inputs)
-                targets = torch.autograd.Variable(targets)
-                outputs = model.forward(inputs)
-
-                loss = criterion(outputs, targets)
-                optimizer.zero_grad()
-
-                loss.backward()
-
-                optimizer.step()
-
-                print(f'Batch Size: {batch_size}')
-                memory_usage = reporter.report()
-
-                print(f'memory use of batch: {memory_usage}')
-
-                batch_size = batch_size * i
-                batch_size = int(batch_size)
-                break
-
-            except RuntimeError:
-                i = 1.1
-                batch_size = batch_size/ 2
-                print(f'Batch Size {batch_size}')
-                batch_size = int(batch_size)
-                break
+    # reporter = MemReporter()
+    # reporter.report()
+    # i = 2
+    #
+    # batch_size = 1
+    # use_all_memory = False
+    # while not use_all_memory:
+    #     trainloader = data.DataLoader(trainset, batch_size=batch_size,
+    #                                   shuffle=True, num_workers=args.workers)
+    #
+    #     for batch_idx, (inputs, targets) in enumerate(trainloader):
+    #         try:
+    #             if use_cuda:
+    #                 inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
+    #
+    #             with torch.no_grad():
+    #                 inputs = Variable(inputs)
+    #             targets = torch.autograd.Variable(targets)
+    #             outputs = model.forward(inputs)
+    #
+    #             loss = criterion(outputs, targets)
+    #             optimizer.zero_grad()
+    #
+    #             loss.backward()
+    #
+    #             optimizer.step()
+    #
+    #             print(f'Batch Size: {batch_size}')
+    #             memory_usage = reporter.report()
+    #
+    #             print(f'memory use of batch: {memory_usage}')
+    #
+    #             batch_size = batch_size * i
+    #             batch_size = int(batch_size)
+    #             break
+    #
+    #         except RuntimeError:
+    #             i = 1.1
+    #             batch_size = batch_size/ 2
+    #             print(f'Batch Size {batch_size}')
+    #             batch_size = int(batch_size)
+    #             break
     for epochNet2Net in range(1, 2):
 
         for epoch in range(1, args.epochs + 1):
