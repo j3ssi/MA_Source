@@ -342,17 +342,11 @@ def main():
             print(f'Nachdem Backward Path')
             memory_usage = reporter.report()
 
+            print(f'memory use of 1 batch: {memory_usage}')
+            break
+
         batch_size = batch_size * 2
-        # print('\n')
-        # print(f'Batch IDx: {batch_idx}')
-        # print(f'GPU Id nach erstem Backward Durchgang: {use_gpu}')
-        # print(f'total    : {info.total}')
-        # print(f'free     : {info.free}')
-        # print(f'used     : {info.used}')
-        # print(f'Memory Stats: {torch.cuda.memory_cached(use_gpu)}')
-        # memory_after = -memory_before + torch.cuda.memory_cached(use_gpu)
-        print(f'memory use of 1 batch: {memory_usage}')
-        break
+
     for epochNet2Net in range(1, 2):
 
         for epoch in range(1, args.epochs + 1):
