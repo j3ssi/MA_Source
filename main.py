@@ -43,6 +43,9 @@ from src.custom_arch import *
 from src.checkpoint_utils import makeSparse, genDenseModel
 from src.group_lasso_regs import get_group_lasso_global, get_group_lasso_group
 from src.utils import AverageMeter, accuracy
+import pycuda.driver as cuda
+import pycuda.autoinit # Necessary for using its functions
+cuda.init() # Necesarry for using its functions
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 # Baseline
@@ -102,6 +105,10 @@ args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
 
 # GPU selection
+available, total = cuda.mem_get_info()
+print("Available: %.2f GB\nTotal:     %.2f GB"%(available/1e9, total/1e9))
+
+
 info = None
 nvmlInit()
 use_gpu = 0
