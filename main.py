@@ -354,6 +354,7 @@ def main():
                 i = 1.1
                 batch_size = batch_size/ 2
                 print(f'Batch Size {batch_size}')
+                batch_size = int(batch_size)
                 break
     for epochNet2Net in range(1, 2):
 
