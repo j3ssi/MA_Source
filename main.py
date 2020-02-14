@@ -346,13 +346,14 @@ def main():
 
                 print(f'memory use of batch: {memory_usage}')
 
+                batch_size = batch_size * i
+                batch_size = int(batch_size)
+                break
+
             except RuntimeError:
                 i = 1.1
                 batch_size = batch_size/ 2
 
-            batch_size = batch_size * i
-            batch_size = int(batch_size)
-            break
 
     for epochNet2Net in range(1, 2):
 
