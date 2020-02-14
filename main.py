@@ -353,7 +353,7 @@ def main():
             except RuntimeError:
                 i = 1.1
                 batch_size = batch_size/ 2
-
+                print(f'Batch Size {batch_size}')
 
     for epochNet2Net in range(1, 2):
 
