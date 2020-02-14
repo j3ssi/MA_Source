@@ -339,10 +339,10 @@ def main():
 
             optimizer.step()
 
-            print(f'Nachdem Backward Path')
+            print(f'Batch Size: {batch_size}')
             memory_usage = reporter.report()
 
-            print(f'memory use of 1 batch: {memory_usage}')
+            print(f'memory use of batch: {memory_usage}')
             break
 
         batch_size = batch_size * 2
