@@ -317,29 +317,32 @@ def main():
     reporter = MemReporter()
     reporter.report()
 
+    batch_size = 1
+    use_all_memory = False
+    while not use_all_memory:
+        trainloader = data.DataLoader(trainset, batch_size=batch_size,
+                                      shuffle=True, num_workers=args.workers)
 
-    trainloader = data.DataLoader(trainset, batch_size=3,
-                                  shuffle=True, num_workers=args.workers)
+        for batch_idx, (inputs, targets) in enumerate(trainloader):
+            if use_cuda:
+                inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
 
-    for batch_idx, (inputs, targets) in enumerate(trainloader):
-        if use_cuda:
-            inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
+            with torch.no_grad():
+                inputs = Variable(inputs)
+            targets = torch.autograd.Variable(targets)
+            outputs = model.forward(inputs)
 
-        with torch.no_grad():
-            inputs = Variable(inputs)
-        targets = torch.autograd.Variable(targets)
-        outputs = model.forward(inputs)
+            loss = criterion(outputs, targets)
+            optimizer.zero_grad()
 
-        loss = criterion(outputs, targets)
-        optimizer.zero_grad()
+            loss.backward()
 
-        loss.backward()
+            optimizer.step()
 
-        optimizer.step()
+            print(f'Nachdem Backward Path')
+            memory_usage = reporter.report()
 
-        print(f'Nachdem Backward Path')
-        memory_usage = reporter.report()
-
+        batch_size = batch_size * 2
         # print('\n')
         # print(f'Batch IDx: {batch_idx}')
         # print(f'GPU Id nach erstem Backward Durchgang: {use_gpu}')
