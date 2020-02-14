@@ -43,7 +43,7 @@ from src.custom_arch import *
 from src.checkpoint_utils import makeSparse, genDenseModel
 from src.group_lasso_regs import get_group_lasso_global, get_group_lasso_group
 from src.utils import AverageMeter, accuracy
-import pycuda.driver as cuda
+import pycuda.driver as cudaArray
 import pycuda.autoinit # Necessary for using its functions
 cuda.init() # Necesarry for using its functions
 
@@ -112,13 +112,13 @@ print("Available: %.2f GB\nTotal:     %.2f GB"%(available/1e9, total/1e9))
 info = None
 nvmlInit()
 use_gpu = 0
-cuda = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
+cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
 
 for gpu_id in range(0, 4):
     h = nvmlDeviceGetHandleByIndex(gpu_id)
     info = nvmlDeviceGetMemoryInfo(h)
     if info.used == 0:
-        use_gpu = cuda[gpu_id]
+        use_gpu = cudaArray[gpu_id]
         use_gpu_num = gpu_id
         print('\n')
         print(f'This Gpu is free')
