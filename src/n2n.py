@@ -80,7 +80,7 @@ class N2N(nn.Module):
                 elif isinstance(m, nn.BatchNorm2d):
                     m.weight.data.fill_(1)
                     m.bias.data.zero_()
-            print(self)
+            # print(self)
         else:
             self.archNums = model.archNums
 
