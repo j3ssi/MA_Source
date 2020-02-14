@@ -135,7 +135,7 @@ for gpu_id in range(0, 4):
         print(f'used     : {info.used}')
 print('\nUse Gpu with the ID: ', use_gpu)
 
-# os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu)
+os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu)
 use_cuda = torch.cuda.is_available()
 
 # Random seed
@@ -312,6 +312,9 @@ def main():
     # Model
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
+
+    available, total = cuda.mem_get_info()
+    print("Available: %.2f GB\nTotal:     %.2f GB" % (available / 1e9, total / 1e9))
 
     cudnn.benchmark = False
     criterion = nn.CrossEntropyLoss()
