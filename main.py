@@ -44,8 +44,9 @@ from src.checkpoint_utils import makeSparse, genDenseModel
 from src.group_lasso_regs import get_group_lasso_global, get_group_lasso_group
 from src.utils import AverageMeter, accuracy
 import pycuda.driver as cuda
-import pycuda.autoinit # Necessary for using its functions
-cuda.init() # Necesarry for using its functions
+import pycuda.autoinit  # Necessary for using its functions
+
+cuda.init()  # Necesarry for using its functions
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 # Baseline
@@ -275,41 +276,7 @@ def visualizePruneTrain(model, epoch, threshold):
     pyplot.close('all')
 
 
-def main():
-    # use anomaly detection of torch
-    torch.autograd.set_detect_anomaly(True)
-
-    # Transform Train and Test data
-
-    transform_train = transforms.Compose([
-        transforms.RandomCrop(32, padding=4),
-        transforms.RandomHorizontalFlip(),
-        transforms.ToTensor(),
-        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
-    ])
-
-    transform_test = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
-    ])
-
-    # Load data
-
-    dataloader = datasets.CIFAR10
-    num_classes = 10
-
-    trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
-
-    # trainloader = data.DataLoader(trainset, batch_size=512, shuffle=True, num_workers=args.workers)
-
-    testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
-    testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
-    torch.cuda.empty_cache()
-    available_before, total = cuda.mem_get_info()
-    print("Available before Model Creation: %.3f kB\nTotal:     %.3f kB" % (available_before / 1e3, total / 1e3))
-    # available_before = torch.cuda.getMemoryUsage(use_gpu_num)
-    # print("Available: %.3f kB\nTotal:     %.3f kB" % (available_before / 1e3, total / 1e3))
-
+def calculate_size():
     # dynmiac resnet modell
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
@@ -317,7 +284,7 @@ def main():
     available_after, total = cuda.mem_get_info()
     print("Available after model Creation: %.3f kB\nTotal:     %.3f kB" % (available_after / 1e3, total / 1e3))
 
-    print("\nSize of model: %.3f kB" % ((-available_after +available_before) / 1e3))
+    print("\nSize of model: %.3f kB" % ((-available_after + available_before) / 1e3))
 
     cudnn.benchmark = False
     criterion = nn.CrossEntropyLoss()
@@ -353,14 +320,56 @@ def main():
             print("Available after Backward Path: %.3f kB\nTotal:     %.3f kB" % (available_after2 / 1e3, total / 1e3))
             print("\nSize of first backward path: %.3f kB" % ((-available_after2 + available_after) / (1e3)))
 
-            batch_size = int(available_after2/(-available_after2 + available_after))
+            batch_size = int(available_after2 / (-available_after2 + available_after))
             print(f'Batch Size: {batch_size}')
             del inputs
             del targets
             del outputs
             break
 
+    return batch_size
+
+
+def main():
+    # use anomaly detection of torch
+    torch.autograd.set_detect_anomaly(True)
+
+    # Transform Train and Test data
+
+    transform_train = transforms.Compose([
+        transforms.RandomCrop(32, padding=4),
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor(),
+        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+    ])
+
+    transform_test = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+    ])
+
+    # Load data
+
+    dataloader = datasets.CIFAR10
+    num_classes = 10
+
+    trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
+
+    # trainloader = data.DataLoader(trainset, batch_size=512, shuffle=True, num_workers=args.workers)
+
+    testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
+    testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
     torch.cuda.empty_cache()
+    available_before, total = cuda.mem_get_info()
+    print("Available before Model Creation: %.3f kB\nTotal:     %.3f kB" % (available_before / 1e3, total / 1e3))
+    # available_before = torch.cuda.getMemoryUsage(use_gpu_num)
+    # print("Available: %.3f kB\nTotal:     %.3f kB" % (available_before / 1e3, total / 1e3))
+
+    batch_size = calculate_size()
+    # dynmiac resnet modell
+    model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
+    model.cuda(use_gpu)
+
     trainloader = data.DataLoader(trainset, batch_size=batch_size,
                                   shuffle=True, num_workers=args.workers)
 
@@ -376,13 +385,12 @@ def main():
             print("\nSize of full batch: %.3f kB" % ((-available_after1 + available_after) / (1e3)))
             print("Available: %.3f kB\nTotal:     %.3f kB" % (available_after1 / 1e3, total / 1e3))
 
-
     for epochNet2Net in range(1, 2):
 
         for epoch in range(1, args.epochs + 1):
             # if (args.en_group_lasso and (epoch % args.sparse_interval == 0)) or (epoch == 1):
-                #trainloader = data.DataLoader(trainset, batch_size = 1,
-                #                          shuffle = True, num_workers=args.workers)
+            # trainloader = data.DataLoader(trainset, batch_size = 1,
+            #                          shuffle = True, num_workers=args.workers)
 
             # adjust learning rate when epoch is the scheduled epoch
             if epoch in args.schedule:
