@@ -398,6 +398,9 @@ def main():
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
 
+    available_after, total = cuda.mem_get_info()
+    print("Available after model Creation: %.3f kB\nTotal:     %.3f kB" % (available_after / 1e3, total / 1e3))
+
     trainloader = data.DataLoader(trainset, batch_size=batch_size,
                                   shuffle=True, num_workers=args.workers)
 
