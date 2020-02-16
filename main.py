@@ -329,7 +329,7 @@ def main():
     for p in model.parameters():
         count0 += p.data.nelement()
 
-    batch_size = 10
+    batch_size = 1
     trainloader = data.DataLoader(trainset, batch_size=batch_size,
                                   shuffle=True, num_workers=args.workers)
 
@@ -342,7 +342,7 @@ def main():
             outputs = model.forward(inputs)
 
             available_after1, total = cuda.mem_get_info()
-            print("\nSize of 1 batch: %.3f kB" % ((-available_after1 + available_after) / (10*1e3)))
+            print("\nSize of 1 batch: %.3f kB" % ((-available_after1 + available_after) / (1e3)))
             print("Available: %.3f kB\nTotal:     %.3f kB" % (available_after1 / 1e3, total / 1e3))
 
 
