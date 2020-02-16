@@ -346,7 +346,7 @@ def main():
             print("\nSize of 1 batch: %.3f kB" % ((-available_after1 + available_after) / 1e3))
             print("Available: %.3f kB\nTotal:     %.3f kB" % (available_after1 / 1e3, total / 1e3))
 
-            batch_size = int((-available_after1 + available_after)/available_after1)
+            batch_size = int(available_after1/(-available_after1 + available_after))
             print(f'Batch Size: {batch_size}')
             break
 
