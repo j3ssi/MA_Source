@@ -349,12 +349,9 @@ def calculate_sizeOfBatch():
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-            available_after2, total = cuda.mem_get_info()
-            print("Available after Backward Path: %.3f kB\nTotal:     %.3f kB" % (available_after2 / 1e3, total / 1e3))
-            print("\nSize of first backward path: %.3f kB" % ((-available_after2 + available_after) / (1e3)))
 
             total, use_after_backward = checkmem()
-            print(f'Available after Model Creation: {use_after_backward}')
+            print(f'Available after Backward Path: {total - use_after_backward}')
 
             print(f'Size of Forward+ Backward: {use_after_model - use_after_backward}')
             batch_size = int(use_after_backward / (use_after_model - use_after_backward))
