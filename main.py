@@ -353,7 +353,7 @@ def main():
             print("Available after Backward Path: %.3f kB\nTotal:     %.3f kB" % (available_after2 / 1e3, total / 1e3))
             print("\nSize of first backward path: %.3f kB" % ((-available_after2 + available_after) / (1e3)))
 
-            batch_size = int(available_after2/(-available_after2 + available_after))
+            batch_size = int(available_after2/(-available_after2 + available_after))-1
             print(f'Batch Size: {batch_size}')
             break
 
