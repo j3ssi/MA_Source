@@ -247,7 +247,7 @@ def checkmem(use_gpu):
     return total, used, free
 
 
-def calculate_sizeOfBatch():
+def calculate_sizeOfBatch(use_gpu):
     transform_train = transforms.Compose([
         transforms.RandomCrop(32, padding=4),
         transforms.RandomHorizontalFlip(),
@@ -267,7 +267,7 @@ def calculate_sizeOfBatch():
 
     trainloader = data.DataLoader(trainset, batch_size=1, shuffle=True, num_workers=args.workers)
 
-    total, use_before_model,free = checkmem()
+    total, use_before_model,free = checkmem(use_gpu)
     print(f'Available before Model Creation: {free}' )
 
     print(f'Use before Model Creation: {use_before_model}' )
@@ -278,7 +278,7 @@ def calculate_sizeOfBatch():
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
 
-    total, use_after_model,free = checkmem()
+    total, use_after_model,free = checkmem(use_gpu)
     print(f'Available after Model Creation: {free}' )
 
     print(f'Size of Model: {-use_before_model+use_after_model}')
@@ -293,37 +293,33 @@ def calculate_sizeOfBatch():
         count0 += p.data.nelement()
 
     for batch_idx, (inputs, targets) in enumerate(trainloader):
-        if use_cuda:
-            inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
-            with torch.no_grad():
-                inputs = Variable(inputs)
-            targets = torch.autograd.Variable(targets)
-            outputs = model.forward(inputs)
+        inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
+        with torch.no_grad():
+            inputs = Variable(inputs)
+        targets = torch.autograd.Variable(targets)
+        outputs = model.forward(inputs)
 
-            total, use_after_forward, free = checkmem()
-            print(f'Available after Model Creation: {free}')
+        total, use_after_forward, free = checkmem(use_gpu)
+        print(f'Available after Model Creation: {free}')
 
-            print(f'Size of Forward Path: {-use_after_model + use_after_forward}')
+        print(f'Size of Forward Path: {-use_after_model + use_after_forward}')
 
-            loss = criterion(outputs, targets)
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
+        loss = criterion(outputs, targets)
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
 
-            total, use_after_backward, free = checkmem()
-            print(f'Available after Backward Path: {total - use_after_backward}')
+        total, use_after_backward, free = checkmem(use_gpu)
+        print(f'Available after Backward Path: {total - use_after_backward}')
 
-            print(f'Size of Forward+ Backward: {-use_after_model + use_after_backward}')
+        print(f'Size of Forward+ Backward: {-use_after_model + use_after_backward}')
 
-
-
-
-            batch_size = int(free/ (-use_after_model + use_after_backward))
-            print(f'Batch Size: {batch_size}')
-            del inputs
-            del targets
-            del outputs
-            break
+        batch_size = int(free/ (-use_after_model + use_after_backward))
+        print(f'Batch Size: {batch_size}')
+        del inputs
+        del targets
+        del outputs
+        break
 
     del model
     return batch_size-30
