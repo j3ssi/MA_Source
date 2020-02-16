@@ -343,7 +343,7 @@ def main():
             loss.backward()
             optimizer.step()
             available_after1, total = cuda.mem_get_info()
-            print("Avnailable: %.3f kB\nTotal:     %.3f kB" % ((available_after - available_after1) / 1e3, total / 1e3))
+            print("\nSize of model: %.3f kB" % ((-available_after1 + available_after) / 1e3))
 
             break
 
