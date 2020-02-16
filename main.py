@@ -331,8 +331,6 @@ def calculate_sizeOfBatch():
 
 def main():
     # GPU selection
-    info = None
-    nvmlInit()
     use_gpu = 0
     cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
 
@@ -344,16 +342,16 @@ def main():
             print('\n')
             print(f'This Gpu is free')
             print(f'GPU Id: {gpu_id}')
-            print(f'total    : {info.total}')
-            print(f'free     : {info.free}')
-            print(f'used     : {info.used}')
+            print(f'total    : {total}')
+            print(f'free     : {free}')
+            print(f'used     : {used}')
         else:
             print('\n')
             print(f'This Gpu is used')
             print(f'GPU Id: {gpu_id}')
-            print(f'total    : {info.total}')
-            print(f'free     : {info.free}')
-            print(f'used     : {info.used}')
+            print(f'total    : {total}')
+            print(f'free     : {free}')
+            print(f'used     : {used}')
     print('\nUse Gpu with the ID: ', use_gpu)
 
     os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu)
