@@ -393,7 +393,7 @@ def main():
     total = int(total)
     used = int(used)
 
-    print(deviceid, 'Total GPU mem:', total, 'used:', used)
+    print(use_gpu, 'Total GPU mem:', total, 'used:', used)
 
     torch.cuda.empty_cache()
     available_before, total = cuda.mem_get_info()
