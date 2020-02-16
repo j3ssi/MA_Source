@@ -374,11 +374,7 @@ def main():
     # use anomaly detection of torch
     torch.autograd.set_detect_anomaly(True)
     total, used,free = checkmem()
-
-    total = int(total)
-    used = int(used)
-    max_mem = int(total * 0.8)
-    block_mem = max_mem - used
+    block_mem =free * 0.8
     x = torch.rand((256, 1024, block_mem)).cuda()
     x = torch.rand((2, 2)).cuda()
 
