@@ -134,14 +134,6 @@ print('\nUse Gpu with the ID: ', use_gpu)
 
 os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu)
 use_cuda = torch.cuda.is_available()
-total, used = check_mem()
-
-total = int(total)
-used = int(used)
-max_mem = int(total * 0.99)
-block_mem = max_mem - used
-x = torch.rand((256,1024,block_mem)).cuda()
-x = torch.rand((2,2)).cuda()
 
 
 # Random seed
@@ -381,6 +373,14 @@ def calculate_sizeOfBatch():
 def main():
     # use anomaly detection of torch
     torch.autograd.set_detect_anomaly(True)
+    total, used,free = check_mem()
+
+    total = int(total)
+    used = int(used)
+    max_mem = int(total * 0.99)
+    block_mem = max_mem - used
+    x = torch.rand((256, 1024, block_mem)).cuda()
+    x = torch.rand((2, 2)).cuda()
 
     # Transform Train and Test data
 
