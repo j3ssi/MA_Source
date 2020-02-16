@@ -105,47 +105,6 @@ parser.add_argument('--visual', default=False, action='store_true',
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
 
-# GPU selection
-info = None
-nvmlInit()
-use_gpu = 1
-cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
-
-for gpu_id in range(0, 4):
-    h = nvmlDeviceGetHandleByIndex(gpu_id)
-    info = nvmlDeviceGetMemoryInfo(h)
-    if info.used == 0:
-        use_gpu = cudaArray[gpu_id]
-        use_gpu_num = gpu_id
-        print('\n')
-        print(f'This Gpu is free')
-        print(f'GPU Id: {gpu_id}')
-        print(f'total    : {info.total}')
-        print(f'free     : {info.free}')
-        print(f'used     : {info.used}')
-    else:
-        print('\n')
-        print(f'This Gpu is used')
-        print(f'GPU Id: {gpu_id}')
-        print(f'total    : {info.total}')
-        print(f'free     : {info.free}')
-        print(f'used     : {info.used}')
-print('\nUse Gpu with the ID: ', use_gpu)
-
-os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu)
-use_cuda = torch.cuda.is_available()
-
-
-# Random seed
-if args.manualSeed is None:
-    args.manualSeed = random.randint(1, 10000)
-random.seed(args.manualSeed)
-torch.manual_seed(args.manualSeed)
-if use_cuda:
-    torch.manual_seed(args.manualSeed)
-grp_lasso_coeff = 0
-
-
 def visualizePruneTrain(model, epoch, threshold):
     altList = []
     paramList = []
@@ -277,7 +236,7 @@ def visualizePruneTrain(model, epoch, threshold):
     pyplot.close('all')
 
 
-def checkmem():
+def checkmem(use_gpu):
     total, used, free = os.popen(
         '"nvidia-smi" --query-gpu=memory.total,memory.used,memory.free --format=csv,nounits,noheader'
     ).read().split('\n')[use_gpu].split(',')
@@ -371,12 +330,46 @@ def calculate_sizeOfBatch():
 
 
 def main():
+    # GPU selection
+    info = None
+    nvmlInit()
+    use_gpu = 0
+    cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
+
+    for gpu_id in range(0, 4):
+        total, used, free =checkmem(use_gpu)
+        if used < 0.02:
+            use_gpu = cudaArray[gpu_id]
+            use_gpu_num = gpu_id
+            print('\n')
+            print(f'This Gpu is free')
+            print(f'GPU Id: {gpu_id}')
+            print(f'total    : {info.total}')
+            print(f'free     : {info.free}')
+            print(f'used     : {info.used}')
+        else:
+            print('\n')
+            print(f'This Gpu is used')
+            print(f'GPU Id: {gpu_id}')
+            print(f'total    : {info.total}')
+            print(f'free     : {info.free}')
+            print(f'used     : {info.used}')
+    print('\nUse Gpu with the ID: ', use_gpu)
+
+    os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu)
+    use_cuda = torch.cuda.is_available()
+
+    # Random seed
+    if args.manualSeed is None:
+        args.manualSeed = random.randint(1, 10000)
+    random.seed(args.manualSeed)
+    torch.manual_seed(args.manualSeed)
+    if use_cuda:
+        torch.manual_seed(args.manualSeed)
+    grp_lasso_coeff = 0
+
     # use anomaly detection of torch
     torch.autograd.set_detect_anomaly(True)
-    total, used,free = checkmem()
-    block_mem =int(free * 0.8)
-    x = torch.rand((256, 1024, block_mem)).cuda()
-    x = torch.rand((2, 2)).cuda()
 
     # Transform Train and Test data
 
