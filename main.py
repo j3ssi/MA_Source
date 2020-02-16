@@ -401,7 +401,7 @@ def main():
     # available_before = torch.cuda.getMemoryUsage(use_gpu_num)
     # print("Available: %.3f kB\nTotal:     %.3f kB" % (available_before / 1e3, total / 1e3))
 
-    batch_size = calculate_size()
+    batch_size = calculate_sizeOfBatch()
     # dynmiac resnet modell
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
