@@ -355,6 +355,9 @@ def main():
 
             batch_size = int(available_after2/(-available_after2 + available_after))-10
             print(f'Batch Size: {batch_size}')
+            del inputs
+            del targets
+            del outputs
             break
 
     torch.cuda.empty_cache()
