@@ -315,7 +315,7 @@ def main():
     available_after, total = cuda.mem_get_info()
     print("Avnailable: %.3f kB\nTotal:     %.3f kB" % (available_after / 1e3, total / 1e3))
 
-    print("\Size of model: %.3f kB" % ((available_after -available_before) / 1e3))
+    print("\Size of model: %.3f kB" % ((-available_after +available_before) / 1e3))
 
     cudnn.benchmark = False
     criterion = nn.CrossEntropyLoss()
