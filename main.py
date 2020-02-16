@@ -277,14 +277,14 @@ def visualizePruneTrain(model, epoch, threshold):
 
 
 def checkmem():
-    total, used = os.popen(
-        '"nvidia-smi" --query-gpu=memory.total,memory.used --format=csv,nounits,noheader'
+    total, used, free = os.popen(
+        '"nvidia-smi" --query-gpu=memory.total,memory.used,memory.free --format=csv,nounits,noheader'
     ).read().split('\n')[use_gpu].split(',')
     total = int(total)/1e3
     used = int(used)/1e3
-
+    free = int(free)/1e3
     # print(use_gpu, 'Total GPU mem:', total, 'used:', used)
-    return total, used
+    return total, used, free
 
 
 def calculate_sizeOfBatch():
@@ -307,8 +307,8 @@ def calculate_sizeOfBatch():
 
     trainloader = data.DataLoader(trainset, batch_size=1, shuffle=True, num_workers=args.workers)
 
-    total, use_before_model = checkmem()
-    print(f'Available before Model Creation: {total-use_before_model}' )
+    total, use_before_model,free = checkmem()
+    print(f'Available before Model Creation: {free}' )
 
     print(f'Use before Model Creation: {use_before_model}' )
     # available_before = torch.cuda.getMemoryUsage(use_gpu_num)
@@ -318,8 +318,8 @@ def calculate_sizeOfBatch():
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
 
-    total, use_after_model = checkmem()
-    print(f'Available after Model Creation: {total-use_after_model}' )
+    total, use_after_model,free = checkmem()
+    print(f'Available after Model Creation: {free}' )
 
     print(f'Size of Model: {-use_before_model+use_after_model}')
 
@@ -340,8 +340,8 @@ def calculate_sizeOfBatch():
             targets = torch.autograd.Variable(targets)
             outputs = model.forward(inputs)
 
-            total, use_after_forward = checkmem()
-            print(f'Available after Model Creation: {use_after_forward}')
+            total, use_after_forward, free = checkmem()
+            print(f'Available after Model Creation: {free}')
 
             print(f'Size of Forward Path: {-use_after_model + use_after_forward}')
 
@@ -353,8 +353,8 @@ def calculate_sizeOfBatch():
             total, use_after_backward = checkmem()
             print(f'Available after Backward Path: {total - use_after_backward}')
 
-            print(f'Size of Forward+ Backward: {use_after_model - use_after_backward}')
-            batch_size = int(use_after_backward / (use_after_model - use_after_backward))
+            print(f'Size of Forward+ Backward: {-use_after_model + use_after_backward}')
+            batch_size = int(free/ (-use_after_model + use_after_backward))
             print(f'Batch Size: {batch_size}')
             del inputs
             del targets
