@@ -315,7 +315,7 @@ def main():
     available_after, total = cuda.mem_get_info()
     print("Avnailable: %.3f kB\nTotal:     %.3f kB" % (available_after / 1e3, total / 1e3))
 
-    print("\Size of model: %.3f kB" % ((-available_after +available_before) / 1e3))
+    print("\nSize of model: %.3f kB" % ((-available_after +available_before) / 1e3))
 
     cudnn.benchmark = False
     criterion = nn.CrossEntropyLoss()
@@ -327,48 +327,28 @@ def main():
     for p in model.parameters():
         count0 += p.data.nelement()
 
-    # reporter = MemReporter()
-    # reporter.report()
-    # i = 2
-    #
-    # batch_size = 1
-    # use_all_memory = False
-    # while not use_all_memory:
-    #     trainloader = data.DataLoader(trainset, batch_size=batch_size,
-    #                                   shuffle=True, num_workers=args.workers)
-    #
-    #     for batch_idx, (inputs, targets) in enumerate(trainloader):
-    #         try:
-    #             if use_cuda:
-    #                 inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
-    #
-    #             with torch.no_grad():
-    #                 inputs = Variable(inputs)
-    #             targets = torch.autograd.Variable(targets)
-    #             outputs = model.forward(inputs)
-    #
-    #             loss = criterion(outputs, targets)
-    #             optimizer.zero_grad()
-    #
-    #             loss.backward()
-    #
-    #             optimizer.step()
-    #
-    #             print(f'Batch Size: {batch_size}')
-    #             memory_usage = reporter.report()
-    #
-    #             print(f'memory use of batch: {memory_usage}')
-    #
-    #             batch_size = batch_size * i
-    #             batch_size = int(batch_size)
-    #             break
-    #
-    #         except RuntimeError:
-    #             i = 1.1
-    #             batch_size = batch_size/ 2
-    #             print(f'Batch Size {batch_size}')
-    #             batch_size = int(batch_size)
-    #             break
+    batch_size = 1
+    trainloader = data.DataLoader(trainset, batch_size=batch_size,
+                                  shuffle=True, num_workers=args.workers)
+
+    for batch_idx, (inputs, targets) in enumerate(trainloader):
+        if use_cuda:
+            inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
+            with torch.no_grad():
+                inputs = Variable(inputs)
+            targets = torch.autograd.Variable(targets)
+            outputs = model.forward(inputs)
+            loss = criterion(outputs, targets)
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            available_after1, total = cuda.mem_get_info()
+            print("Avnailable: %.3f kB\nTotal:     %.3f kB" % ((available_after - available_after1) / 1e3, total / 1e3))
+
+            break
+
+
+
     for epochNet2Net in range(1, 2):
 
         for epoch in range(1, args.epochs + 1):
