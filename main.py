@@ -377,7 +377,7 @@ def main():
 
     total = int(total)
     used = int(used)
-    max_mem = int(total * 0.9)
+    max_mem = int(total * 0.85)
     block_mem = max_mem - used
     x = torch.rand((256, 1024, block_mem)).cuda()
     x = torch.rand((2, 2)).cuda()
