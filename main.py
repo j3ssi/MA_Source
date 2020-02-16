@@ -106,7 +106,7 @@ state = {k: v for k, v in args._get_kwargs()}
 
 # GPU selection
 available, total = cuda.mem_get_info()
-print("Available: %.2f kB\nTotal:     %.2f GB"%(available/1e3, total/1e3))
+print("Available: %.3f kB\nTotal:     %.3f kB"%(available/1e3, total/1e3))
 
 
 info = None
@@ -120,20 +120,20 @@ for gpu_id in range(0, 4):
     if info.used == 0:
         use_gpu = cudaArray[gpu_id]
         use_gpu_num = gpu_id
-        print('\n')
-        print(f'This Gpu is free')
-        print(f'GPU Id: {gpu_id}')
-        print(f'total    : {info.total}')
-        print(f'free     : {info.free}')
-        print(f'used     : {info.used}')
-    else:
-        print('\n')
-        print(f'This Gpu is used')
-        print(f'GPU Id: {gpu_id}')
-        print(f'total    : {info.total}')
-        print(f'free     : {info.free}')
-        print(f'used     : {info.used}')
-print('\nUse Gpu with the ID: ', use_gpu)
+        # print('\n')
+        # print(f'This Gpu is free')
+        # print(f'GPU Id: {gpu_id}')
+        # print(f'total    : {info.total}')
+        # print(f'free     : {info.free}')
+        # print(f'used     : {info.used}')
+    # else:
+#         print('\n')
+#         print(f'This Gpu is used')
+#         print(f'GPU Id: {gpu_id}')
+#         print(f'total    : {info.total}')
+#         print(f'free     : {info.free}')
+#         print(f'used     : {info.used}')
+# print('\nUse Gpu with the ID: ', use_gpu)
 
 os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu)
 use_cuda = torch.cuda.is_available()
@@ -312,6 +312,9 @@ def main():
     # Model
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
+
+    available, total = cuda.mem_get_info()
+    print("Available: %.3f kB\nTotal:     %.3f kB" % (available / 1e3, total / 1e3))
 
     available, total = cuda.mem_get_info()
     print("Available: %.2f GB\nTotal:     %.2f GB" % (available / 1e9, total / 1e9))
