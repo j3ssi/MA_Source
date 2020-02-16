@@ -355,6 +355,8 @@ def main():
             print(f'Batch Size: {batch_size}')
             break
 
+    inputs.cpu()
+    targets.cpu()
 
     trainloader = data.DataLoader(trainset, batch_size=batch_size,
                                   shuffle=True, num_workers=args.workers)
