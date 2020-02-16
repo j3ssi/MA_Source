@@ -276,7 +276,18 @@ def visualizePruneTrain(model, epoch, threshold):
     pyplot.close('all')
 
 
-def calculate_size():
+def checkmem():
+    total, used = os.popen(
+        '"nvidia-smi" --query-gpu=memory.total,memory.used --format=csv,nounits,noheader'
+    ).read().split('\n')[use_gpu].split(',')
+    total = int(total)/1e3
+    used = int(used)/1e3
+
+    print(use_gpu, 'Total GPU mem:', total, 'used:', used)
+    return total, used
+
+
+def calculate_sizeOfBatch():
     transform_train = transforms.Compose([
         transforms.RandomCrop(32, padding=4),
         transforms.RandomHorizontalFlip(),
@@ -294,13 +305,10 @@ def calculate_size():
 
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
 
-    # trainloader = data.DataLoader(trainset, batch_size=512, shuffle=True, num_workers=args.workers)
+    trainloader = data.DataLoader(trainset, batch_size=1, shuffle=True, num_workers=args.workers)
 
-    testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
-    testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
-    torch.cuda.empty_cache()
-    available_before, total = cuda.mem_get_info()
-    print("Available before Model Creation: %.3f kB\nTotal:     %.3f kB" % (available_before / 1e3, total / 1e3))
+    total, use_before_model = checkmem()
+    print(f'Available before Model Creation: {total}, {use_before_model}' )
     # available_before = torch.cuda.getMemoryUsage(use_gpu_num)
     # print("Available: %.3f kB\nTotal:     %.3f kB" % (available_before / 1e3, total / 1e3))
 
@@ -308,12 +316,11 @@ def calculate_size():
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
 
-    available_after, total = cuda.mem_get_info()
-    print("Available after model Creation: %.3f kB\nTotal:     %.3f kB" % (available_after / 1e3, total / 1e3))
+    total, use_after_model = checkmem()
+    print(f'Available after Model Creation: {use_after_model}' )
 
-    print("\nSize of model: %.3f kB" % ((-available_after + available_before) / 1e3))
+    print(f'Size of Model: {use_before_model-use_after_model}')
 
-    cudnn.benchmark = False
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     start = time.time()
@@ -323,10 +330,6 @@ def calculate_size():
     for p in model.parameters():
         count0 += p.data.nelement()
 
-    batch_size = 1
-    trainloader = data.DataLoader(trainset, batch_size=batch_size,
-                                  shuffle=True, num_workers=args.workers)
-
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         if use_cuda:
             inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
@@ -335,9 +338,10 @@ def calculate_size():
             targets = torch.autograd.Variable(targets)
             outputs = model.forward(inputs)
 
-            available_after1, total = cuda.mem_get_info()
-            print("\nSize of 1 batch: %.3f kB" % ((-available_after1 + available_after) / (1e3)))
-            print("Available after forward path: %.3f kB\nTotal:     %.3f kB" % (available_after1 / 1e3, total / 1e3))
+            total, use_after_forward = checkmem()
+            print(f'Available after Model Creation: {use_after_forward}')
+
+            print(f'Size of Model: {use_after_model - use_after_forward}')
 
             loss = criterion(outputs, targets)
             optimizer.zero_grad()
@@ -347,7 +351,11 @@ def calculate_size():
             print("Available after Backward Path: %.3f kB\nTotal:     %.3f kB" % (available_after2 / 1e3, total / 1e3))
             print("\nSize of first backward path: %.3f kB" % ((-available_after2 + available_after) / (1e3)))
 
-            batch_size = int(available_after2 / (-available_after2 + available_after))
+            total, use_after_backward = checkmem()
+            print(f'Available after Model Creation: {use_after_backward}')
+
+            print(f'Size of Forward+ Backward: {use_after_model - use_after_backward}')
+            batch_size = int(use_after_backward / (use_after_model - use_after_backward))
             print(f'Batch Size: {batch_size}')
             del inputs
             del targets
@@ -386,14 +394,6 @@ def main():
     # trainloader = data.DataLoader(trainset, batch_size=512, shuffle=True, num_workers=args.workers)
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
-
-    total, used = os.popen(
-        '"nvidia-smi" --query-gpu=memory.total,memory.used --format=csv,nounits,noheader'
-    ).read().split('\n')[use_gpu].split(',')
-    total = int(total)
-    used = int(used)
-
-    print(use_gpu, 'Total GPU mem:', total, 'used:', used)
 
     torch.cuda.empty_cache()
     available_before, total = cuda.mem_get_info()
