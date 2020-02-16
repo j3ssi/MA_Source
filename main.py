@@ -343,7 +343,7 @@ def calculate_sizeOfBatch():
             total, use_after_forward = checkmem()
             print(f'Available after Model Creation: {use_after_forward}')
 
-            print(f'Size of Model: {use_after_model - use_after_forward}')
+            print(f'Size of Forward Path: {-use_after_model + use_after_forward}')
 
             loss = criterion(outputs, targets)
             optimizer.zero_grad()
