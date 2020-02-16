@@ -117,20 +117,20 @@ for gpu_id in range(0, 4):
     if info.used == 0:
         use_gpu = cudaArray[gpu_id]
         use_gpu_num = gpu_id
-        # print('\n')
-        # print(f'This Gpu is free')
-        # print(f'GPU Id: {gpu_id}')
-        # print(f'total    : {info.total}')
-        # print(f'free     : {info.free}')
-        # print(f'used     : {info.used}')
-    # else:
-#         print('\n')
-#         print(f'This Gpu is used')
-#         print(f'GPU Id: {gpu_id}')
-#         print(f'total    : {info.total}')
-#         print(f'free     : {info.free}')
-#         print(f'used     : {info.used}')
-# print('\nUse Gpu with the ID: ', use_gpu)
+        print('\n')
+        print(f'This Gpu is free')
+        print(f'GPU Id: {gpu_id}')
+        print(f'total    : {info.total}')
+        print(f'free     : {info.free}')
+        print(f'used     : {info.used}')
+    else:
+        print('\n')
+        print(f'This Gpu is used')
+        print(f'GPU Id: {gpu_id}')
+        print(f'total    : {info.total}')
+        print(f'free     : {info.free}')
+        print(f'used     : {info.used}')
+print('\nUse Gpu with the ID: ', use_gpu)
 
 os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu)
 use_cuda = torch.cuda.is_available()
