@@ -350,11 +350,11 @@ def main():
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-            available_after, total = cuda.mem_get_info()
-            print("Available after Backward Path: %.3f kB\nTotal:     %.3f kB" % (available_after / 1e3, total / 1e3))
-            print("\nSize of first backward path: %.3f kB" % ((-available_after + available_after1) / (1e3)))
+            available_after2, total = cuda.mem_get_info()
+            print("Available after Backward Path: %.3f kB\nTotal:     %.3f kB" % (available_after2 / 1e3, total / 1e3))
+            print("\nSize of first backward path: %.3f kB" % ((-available_after2 + available_after1) / (1e3)))
 
-            batch_size = int(available_after1/(-available_after1 + available_after))
+            batch_size = int(available_after2/(-available_after2 + available_after))
             print(f'Batch Size: {batch_size}')
             break
 
