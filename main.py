@@ -310,7 +310,7 @@ def main():
     # available_before = torch.cuda.getMemoryUsage(use_gpu_num)
     # print("Available: %.3f kB\nTotal:     %.3f kB" % (available_before / 1e3, total / 1e3))
 
-    # Model
+    # dynmiac resnet modell
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
 
@@ -345,14 +345,13 @@ def main():
             print("\nSize of 1 batch: %.3f kB" % ((-available_after1 + available_after) / (1e3)))
             print("Available after forward path: %.3f kB\nTotal:     %.3f kB" % (available_after1 / 1e3, total / 1e3))
 
-
             loss = criterion(outputs, targets)
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
             available_after2, total = cuda.mem_get_info()
             print("Available after Backward Path: %.3f kB\nTotal:     %.3f kB" % (available_after2 / 1e3, total / 1e3))
-            print("\nSize of first backward path: %.3f kB" % ((-available_after2 + available_after1) / (1e3)))
+            print("\nSize of first backward path: %.3f kB" % ((-available_after2 + available_after) / (1e3)))
 
             batch_size = int(available_after2/(-available_after2 + available_after))
             print(f'Batch Size: {batch_size}')
