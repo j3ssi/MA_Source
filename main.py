@@ -355,6 +355,7 @@ def calculate_size():
             del outputs
             break
 
+    del model
     return batch_size
 
 
