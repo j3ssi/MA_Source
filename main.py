@@ -108,7 +108,7 @@ state = {k: v for k, v in args._get_kwargs()}
 # GPU selection
 info = None
 nvmlInit()
-use_gpu = 0
+use_gpu = 1
 cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
 
 for gpu_id in range(0, 4):
