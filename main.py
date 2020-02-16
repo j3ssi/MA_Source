@@ -357,7 +357,7 @@ def main():
             print(f'Batch Size: {batch_size}')
             break
 
-
+    torch.cuda.empty_cache()
     trainloader = data.DataLoader(trainset, batch_size=batch_size,
                                   shuffle=True, num_workers=args.workers)
 
