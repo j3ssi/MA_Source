@@ -366,7 +366,7 @@ def calculate_sizeOfBatch():
             break
 
     del model
-    return batch_size-50
+    return batch_size-30
 
 
 def main():
