@@ -306,7 +306,8 @@ def main():
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
     available_before, total = cuda.mem_get_info()
-    available_before = cuda.getMemoryUsage(use_gpu_num)
+    print("Available: %.3f kB\nTotal:     %.3f kB" % (available_before / 1e3, total / 1e3))
+    available_before = torch.cuda.getMemoryUsage(use_gpu_num)
     print("Available: %.3f kB\nTotal:     %.3f kB" % (available_before / 1e3, total / 1e3))
 
     # Model
