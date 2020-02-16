@@ -343,7 +343,7 @@ def main():
             loss.backward()
             optimizer.step()
             available_after1, total = cuda.mem_get_info()
-            print("\nSize of model: %.3f kB" % ((-available_after1 + available_after) / 1e3))
+            print("\nSize of 1 batch: %.3f kB" % ((-available_after1 + available_after) / 1e3))
 
             break
 
