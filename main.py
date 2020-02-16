@@ -300,7 +300,7 @@ def main():
 
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
 
-    trainloader = data.DataLoader(trainset, batch_size=512, shuffle=True, num_workers=args.workers)
+    # trainloader = data.DataLoader(trainset, batch_size=512, shuffle=True, num_workers=args.workers)
 
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
