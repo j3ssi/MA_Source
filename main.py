@@ -354,6 +354,10 @@ def calculate_sizeOfBatch():
             print(f'Available after Backward Path: {total - use_after_backward}')
 
             print(f'Size of Forward+ Backward: {-use_after_model + use_after_backward}')
+
+
+
+
             batch_size = int(free/ (-use_after_model + use_after_backward))
             print(f'Batch Size: {batch_size}')
             del inputs
@@ -362,7 +366,7 @@ def calculate_sizeOfBatch():
             break
 
     del model
-    return batch_size
+    return batch_size-50
 
 
 def main():
