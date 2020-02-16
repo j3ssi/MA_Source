@@ -350,7 +350,7 @@ def calculate_sizeOfBatch():
             loss.backward()
             optimizer.step()
 
-            total, use_after_backward = checkmem()
+            total, use_after_backward, free = checkmem()
             print(f'Available after Backward Path: {total - use_after_backward}')
 
             print(f'Size of Forward+ Backward: {-use_after_model + use_after_backward}')
