@@ -283,7 +283,7 @@ def checkmem():
     total = int(total)/1e3
     used = int(used)/1e3
 
-    print(use_gpu, 'Total GPU mem:', total, 'used:', used)
+    # print(use_gpu, 'Total GPU mem:', total, 'used:', used)
     return total, used
 
 
@@ -317,7 +317,7 @@ def calculate_sizeOfBatch():
     model.cuda(use_gpu)
 
     total, use_after_model = checkmem()
-    print(f'Available after Model Creation: {use_after_model}' )
+    print(f'Available after Model Creation: {total-use_after_model}' )
 
     print(f'Size of Model: {use_before_model-use_after_model}')
 
