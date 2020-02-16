@@ -359,6 +359,13 @@ def calculate_size():
     return batch_size
 
 
+def check_mem():
+
+    mem = os.popen('"/usr/bin/nvidia-smi" --query-gpu=memory.total,memory.used --format=csv,nounits,noheader').read().split(",")
+
+    return mem
+
+
 def main():
     # use anomaly detection of torch
     torch.autograd.set_detect_anomaly(True)
@@ -385,7 +392,7 @@ def main():
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
 
     # trainloader = data.DataLoader(trainset, batch_size=512, shuffle=True, num_workers=args.workers)
-
+    print(f'Check Mem: {check_mem()}')
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
     torch.cuda.empty_cache()
