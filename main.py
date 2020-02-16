@@ -105,10 +105,6 @@ args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
 
 # GPU selection
-available, total = cuda.mem_get_info()
-print("Available: %.3f kB\nTotal:     %.3f kB"%(available/1e3, total/1e3))
-
-
 info = None
 nvmlInit()
 use_gpu = 0
@@ -309,15 +305,17 @@ def main():
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
+    available_before, total = cuda.mem_get_info()
+    print("Available: %.3f kB\nTotal:     %.3f kB" % (available_before / 1e3, total / 1e3))
+
     # Model
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
 
-    available, total = cuda.mem_get_info()
-    print("Available: %.3f kB\nTotal:     %.3f kB" % (available / 1e3, total / 1e3))
+    available_after, total = cuda.mem_get_info()
+    print("Avnailable: %.3f kB\nTotal:     %.3f kB" % (available_after / 1e3, total / 1e3))
 
-    available, total = cuda.mem_get_info()
-    print("Available: %.2f GB\nTotal:     %.2f GB" % (available / 1e9, total / 1e9))
+    print("\Size of model: %.3f kB" % ((available_after -available_before) / 1e3))
 
     cudnn.benchmark = False
     criterion = nn.CrossEntropyLoss()
