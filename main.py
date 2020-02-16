@@ -313,7 +313,7 @@ def main():
     model.cuda(use_gpu)
 
     available_after, total = cuda.mem_get_info()
-    print("Avnailable: %.3f kB\nTotal:     %.3f kB" % (available_after / 1e3, total / 1e3))
+    print("Available: %.3f kB\nTotal:     %.3f kB" % (available_after / 1e3, total / 1e3))
 
     print("\nSize of model: %.3f kB" % ((-available_after +available_before) / 1e3))
 
@@ -344,6 +344,8 @@ def main():
             optimizer.step()
             available_after1, total = cuda.mem_get_info()
             print("\nSize of 1 batch: %.3f kB" % ((-available_after1 + available_after) / 1e3))
+            print("Available: %.3f kB\nTotal:     %.3f kB" % (available_after1 / 1e3, total / 1e3))
+
             batch_size = int((-available_after1 + available_after)/available_after1)
             print(f'Batch Size: {batch_size}')
             break
