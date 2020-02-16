@@ -321,7 +321,7 @@ def calculate_sizeOfBatch():
     total, use_after_model = checkmem()
     print(f'Available after Model Creation: {total-use_after_model}' )
 
-    print(f'Size of Model: {use_before_model-use_after_model}')
+    print(f'Size of Model: {-use_before_model+use_after_model}')
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
