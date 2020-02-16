@@ -308,7 +308,7 @@ def calculate_sizeOfBatch():
     trainloader = data.DataLoader(trainset, batch_size=1, shuffle=True, num_workers=args.workers)
 
     total, use_before_model = checkmem()
-    print(f'Available before Model Creation: {total}, {use_before_model}' )
+    print(f'Available before Model Creation: {total-use_before_model}' )
     # available_before = torch.cuda.getMemoryUsage(use_gpu_num)
     # print("Available: %.3f kB\nTotal:     %.3f kB" % (available_before / 1e3, total / 1e3))
 
