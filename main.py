@@ -356,6 +356,21 @@ def main():
             break
 
 
+    trainloader = data.DataLoader(trainset, batch_size=batch_size,
+                                  shuffle=True, num_workers=args.workers)
+
+    for batch_idx, (inputs, targets) in enumerate(trainloader):
+        if use_cuda:
+            inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
+            with torch.no_grad():
+                inputs = Variable(inputs)
+            targets = torch.autograd.Variable(targets)
+            outputs = model.forward(inputs)
+
+            available_after1, total = cuda.mem_get_info()
+            print("\nSize of full batch: %.3f kB" % ((-available_after1 + available_after) / (1e3)))
+            print("Available: %.3f kB\nTotal:     %.3f kB" % (available_after1 / 1e3, total / 1e3))
+
 
     for epochNet2Net in range(1, 2):
 
