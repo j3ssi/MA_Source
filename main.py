@@ -309,6 +309,8 @@ def calculate_sizeOfBatch():
 
     total, use_before_model = checkmem()
     print(f'Available before Model Creation: {total-use_before_model}' )
+
+    print(f'Use before Model Creation: {use_before_model}' )
     # available_before = torch.cuda.getMemoryUsage(use_gpu_num)
     # print("Available: %.3f kB\nTotal:     %.3f kB" % (available_before / 1e3, total / 1e3))
 
