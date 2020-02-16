@@ -106,7 +106,7 @@ state = {k: v for k, v in args._get_kwargs()}
 
 # GPU selection
 available, total = cuda.mem_get_info()
-print("Available: %f kB\nTotal:     %f kB"%(available, total))
+print("Available: %.2f kB\nTotal:     %f.2 kB"%(available/1e-3, total/1e-3))
 
 
 info = None
