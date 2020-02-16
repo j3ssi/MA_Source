@@ -340,13 +340,16 @@ def main():
                 inputs = Variable(inputs)
             targets = torch.autograd.Variable(targets)
             outputs = model.forward(inputs)
+
+            available_after1, total = cuda.mem_get_info()
+            print("\nSize of 1 batch: %.3f kB" % ((-available_after1 + available_after) / (10*1e3)))
+            print("Available: %.3f kB\nTotal:     %.3f kB" % (available_after1 / 1e3, total / 1e3))
+
+
             loss = criterion(outputs, targets)
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-            available_after1, total = cuda.mem_get_info()
-            print("\nSize of 1 batch: %.3f kB" % ((-available_after1 + available_after) / (10*1e3)))
-            print("Available: %.3f kB\nTotal:     %.3f kB" % (available_after1 / 1e3, total / 1e3))
 
             batch_size = int(available_after1/(-available_after1 + available_after))
             print(f'Batch Size: {batch_size}')
