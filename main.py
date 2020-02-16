@@ -344,7 +344,7 @@ def main():
             optimizer.step()
             available_after1, total = cuda.mem_get_info()
             print("\nSize of 1 batch: %.3f kB" % ((-available_after1 + available_after) / 1e3))
-            batchsize = int((-available_after1 + available_after)/available_after1)
+            batch_size = int((-available_after1 + available_after)/available_after1)
             print(f'Batch Size: {batch_size}')
             break
 
