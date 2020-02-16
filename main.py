@@ -373,7 +373,7 @@ def calculate_sizeOfBatch():
 def main():
     # use anomaly detection of torch
     torch.autograd.set_detect_anomaly(True)
-    total, used,free = check_mem()
+    total, used,free = checkmem()
 
     total = int(total)
     used = int(used)
