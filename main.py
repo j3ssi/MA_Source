@@ -277,6 +277,21 @@ def visualizePruneTrain(model, epoch, threshold):
 
 
 def calculate_size():
+    dataloader = datasets.CIFAR10
+    num_classes = 10
+
+    trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
+
+    # trainloader = data.DataLoader(trainset, batch_size=512, shuffle=True, num_workers=args.workers)
+
+    testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
+    testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
+    torch.cuda.empty_cache()
+    available_before, total = cuda.mem_get_info()
+    print("Available before Model Creation: %.3f kB\nTotal:     %.3f kB" % (available_before / 1e3, total / 1e3))
+    # available_before = torch.cuda.getMemoryUsage(use_gpu_num)
+    # print("Available: %.3f kB\nTotal:     %.3f kB" % (available_before / 1e3, total / 1e3))
+
     # dynmiac resnet modell
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
