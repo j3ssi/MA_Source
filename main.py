@@ -332,7 +332,7 @@ def main():
 
     for gpu_id in range(0, 4):
         total, used, free =checkmem(gpu_id)
-        if used < 0.02:
+        if used < 20:
             use_gpu = cudaArray[gpu_id]
             use_gpu_num = gpu_id
             print('\n')
