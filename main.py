@@ -359,7 +359,7 @@ def main():
 
         print(f'Size of Forward+ Backward: {-use_after_model + use_after_backward}')
 
-        batch_size = int(free / (-use_after_forward + use_after_backward))
+        batch_size = int(free / (-use_after_forward + use_after_backward))*0.9
         print(f'Batch Size: {batch_size}')
         del inputs
         del outputs
