@@ -101,7 +101,7 @@ parser.add_argument('--visual', default=False, action='store_true',
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
 
-
+grp_lasso_coeff = 0
 def visualizePruneTrain(model, epoch, threshold):
     altList = []
     paramList = []
@@ -467,6 +467,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
         # switch to train mode
         model.train()
 
+        global grp_lasso_coeff
         # Measure time
         batch_time = AverageMeter()
         data_time = AverageMeter()
