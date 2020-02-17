@@ -350,7 +350,7 @@ def main():
             print(f'used     : {used}')
     print('\nUse Gpu with the ID: ', use_gpu)
 
-    os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu)
+    os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu_num)
     use_cuda = torch.cuda.is_available()
 
     # Random seed
@@ -391,18 +391,11 @@ def main():
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
     torch.cuda.empty_cache()
-    # available_before, total = cuda.mem_get_info()
-    #print("Available before Model Creation: %.3f kB\nTotal:     %.3f kB" % (available_before / 1e3, total / 1e3))
-    # available_before = torch.cuda.getMemoryUsage(use_gpu_num)
-    # print("Available: %.3f kB\nTotal:     %.3f kB" % (available_before / 1e3, total / 1e3))
 
-    batch_size = calculate_sizeOfBatch(use_gpu)
+    batch_size = calculate_sizeOfBatch(use_gpu_num)
     # dynmiac resnet modell
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
-
-    available_after, total = cuda.mem_get_info()
-    print("Available after model Creation: %.3f kB\nTotal:     %.3f kB" % (available_after / 1e3, total / 1e3))
 
     trainloader = data.DataLoader(trainset, batch_size=batch_size,
                                   shuffle=True, num_workers=args.workers)
