@@ -247,7 +247,7 @@ def checkmem(use_gpu):
     return total, used, free
 
 
-def calculate_sizeOfBatch(use_gpu):
+def calculate_sizeOfBatch(use_gpu_num, use_gpu):
     transform_train = transforms.Compose([
         transforms.RandomCrop(32, padding=4),
         transforms.RandomHorizontalFlip(),
@@ -267,7 +267,7 @@ def calculate_sizeOfBatch(use_gpu):
 
     trainloader = data.DataLoader(trainset, batch_size=1, shuffle=True, num_workers=args.workers)
 
-    total, use_before_model,free = checkmem(use_gpu)
+    total, use_before_model,free = checkmem(use_gpu_num)
     print(f'Available before Model Creation: {free}' )
 
     print(f'Use before Model Creation: {use_before_model}' )
@@ -278,7 +278,7 @@ def calculate_sizeOfBatch(use_gpu):
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
 
-    total, use_after_model,free = checkmem(use_gpu)
+    total, use_after_model,free = checkmem(use_gpu_num)
     print(f'Available after Model Creation: {free}' )
 
     print(f'Size of Model: {-use_before_model+use_after_model}')
@@ -299,7 +299,7 @@ def calculate_sizeOfBatch(use_gpu):
         targets = torch.autograd.Variable(targets)
         outputs = model.forward(inputs)
 
-        total, use_after_forward, free = checkmem(use_gpu)
+        total, use_after_forward, free = checkmem(use_gpu_num)
         print(f'Available after Model Creation: {free}')
 
         print(f'Size of Forward Path: {-use_after_model + use_after_forward}')
@@ -309,7 +309,7 @@ def calculate_sizeOfBatch(use_gpu):
         loss.backward()
         optimizer.step()
 
-        total, use_after_backward, free = checkmem(use_gpu)
+        total, use_after_backward, free = checkmem(use_gpu_num)
         print(f'Available after Backward Path: {total - use_after_backward}')
 
         print(f'Size of Forward+ Backward: {-use_after_model + use_after_backward}')
@@ -392,7 +392,7 @@ def main():
 
     torch.cuda.empty_cache()
 
-    batch_size = calculate_sizeOfBatch(use_gpu_num)
+    batch_size = calculate_sizeOfBatch(use_gpu_num,use_gpu)
     # dynmiac resnet modell
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
