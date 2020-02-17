@@ -369,7 +369,7 @@ def main():
     trainloader = data.DataLoader(trainset, batch_size=batch_size,
                                   shuffle=True, num_workers=args.workers)
 
-    torch.cuda.clear_memory_allocated()
+    torch.cuda.empty_cache()
     gc.collect()
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         if use_cuda:
