@@ -325,7 +325,7 @@ def main():
 
     # dynamic resnet modell
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
-    model.cuda(use_gpu)
+    model.cuda()
     total, use_after_model,free = checkmem(use_gpu_num)
     print(f'Available after Model Creation: {free}' )
 
@@ -345,7 +345,7 @@ def main():
                                   shuffle=True, num_workers=args.workers)
 
     for batch_idx, (inputs, targets) in enumerate(trainloader):
-        inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
+        inputs, targets = inputs.cuda(), targets.cuda()
         with torch.no_grad():
             inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
