@@ -274,7 +274,7 @@ def main():
             print('\n')
     print('\nUse Gpu with the ID: ', use_gpu)
 
-    os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu_num)
+    # os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu_num)
     use_cuda = torch.cuda.is_available()
 
     # Random seed
@@ -322,7 +322,7 @@ def main():
 
     # dynamic resnet modell
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
-    model.cuda()
+    model.cuda(use_gpu)
     total, use_after_model, free = checkmem(use_gpu_num)
     print(f'Available after Model Creation: {free}')
 
@@ -341,7 +341,7 @@ def main():
                                   shuffle=True, num_workers=args.workers)
 
     for batch_idx, (inputs, targets) in enumerate(trainloader):
-        inputs, targets = inputs.cuda(), targets.cuda()
+        inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
         with torch.no_grad():
             inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
