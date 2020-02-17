@@ -340,13 +340,14 @@ def main():
             print(f'total    : {total}')
             print(f'free     : {free}')
             print(f'used     : {used}')
-        else:
             print('\n')
+        else:
             print(f'This Gpu is used')
             print(f'GPU Id: {gpu_id}')
             print(f'total    : {total}')
             print(f'free     : {free}')
             print(f'used     : {used}')
+            print('\n')
     print('\nUse Gpu with the ID: ', use_gpu)
 
     # os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu_num)
