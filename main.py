@@ -350,7 +350,7 @@ def main():
             print(f'used     : {used}')
     print('\nUse Gpu with the ID: ', use_gpu)
 
-    os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu_num)
+    # os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu_num)
     use_cuda = torch.cuda.is_available()
 
     # Random seed
