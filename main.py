@@ -317,8 +317,7 @@ def main():
 
     # dynamic resnet modell
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
-    print(f'model: {model}')
-    model.cuda(use_gpu)
+    model.to(use_gpu)
     total, use_after_model, free = checkmem(use_gpu_num)
     print(f'Available after Model Creation: {free}')
 
