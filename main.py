@@ -374,6 +374,22 @@ def main():
             targets = torch.autograd.Variable(targets)
             outputs = model.forward(inputs)
 
+            total, use_after_forward, free = checkmem(use_gpu_num)
+            print(f'Available after Model Creation: {free}')
+
+            print(f'Size of Forward Path: {-use_after_model + use_after_forward}')
+
+            loss = criterion(outputs, targets)
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+
+            total, use_after_backward, free = checkmem(use_gpu_num)
+            print(f'Available after Backward Path: {total - use_after_backward}')
+
+            print(f'Size of Forward+ Backward: {-use_after_model + use_after_backward}')
+
+            break
     # for epochNet2Net in range(1, 2):
     #
     #     for epoch in range(1, args.epochs + 1):
