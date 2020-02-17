@@ -335,7 +335,6 @@ def main():
         if used < 20:
             use_gpu = cudaArray[gpu_id]
             use_gpu_num = gpu_id
-            print('\n')
             print(f'This Gpu is free')
             print(f'GPU Id: {gpu_id}')
             print(f'total    : {total}')
