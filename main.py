@@ -357,7 +357,7 @@ def main():
         print(f'Available after Backward Path: {total - use_after_backward}')
 
         print(f'Size of Forward+ Backward: {-use_after_model + use_after_backward}')
-
+        memoryPerBatch = -use_after_forward + use_after_backward
         batch_size = int((free / (-use_after_forward + use_after_backward)) * 0.4)
         print(f'Batch Size: {batch_size}')
         del inputs
@@ -416,7 +416,7 @@ def main():
             train_loss, train_acc, lasso_ratio, train_epoch_time, batch_size = train(trainloader, model, criterion,
                                                                                      optimizer,
                                                                                      epoch, use_cuda, use_gpu,
-                                                                                     use_gpu_num, batch_size)
+                                                                                     use_gpu_num, batch_size, memoryPerBatch)
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda, use_gpu)
 
             # SparseTrain routine
@@ -462,94 +462,98 @@ def main():
     print("\n")
 
 
-def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, use_gpu_num, batch_size):
-    # switch to train mode
-    model.train()
+def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, use_gpu_num, batch_size, memoryPerBatch):
+    if args.en_group_lasso and ((epoch-1) % args.sparse_interval == 0):
+        # switch to train mode
+        model.train()
 
-    # Measure time
-    batch_time = AverageMeter()
-    data_time = AverageMeter()
-    losses = AverageMeter()
-    top1 = AverageMeter()
-    top5 = AverageMeter()
-    lasso_ratio = AverageMeter()
+        # Measure time
+        batch_time = AverageMeter()
+        data_time = AverageMeter()
+        losses = AverageMeter()
+        top1 = AverageMeter()
+        top5 = AverageMeter()
+        lasso_ratio = AverageMeter()
 
-    end = time.time()
+        end = time.time()
 
-    memoryPerBatch = 0
-    for param in model.parameters():
-        param.grad = None
+        for param in model.parameters():
+            param.grad = None
 
-    for batch_idx, (inputs, targets) in enumerate(trainloader):
+        for batch_idx, (inputs, targets) in enumerate(trainloader):
 
-        # measure data loading time
-        data_time.update(time.time() - end)
-        data_load_time = time.time() - end
+            # measure data loading time
+            data_time.update(time.time() - end)
+            data_load_time = time.time() - end
 
-        total, use_before_forward, free = checkmem(use_gpu_num)
-        print(f'Available after Model Creation: {free}')
+            total, use_before_forward, free = checkmem(use_gpu_num)
+            print(f'Available after Model Creation: {free}')
 
-        if use_cuda:
-            inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
+            if use_cuda:
+                inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
 
-        with torch.no_grad():
-            inputs = Variable(inputs)
-        targets = torch.autograd.Variable(targets)
-        outputs = model.forward(inputs)
+            with torch.no_grad():
+                inputs = Variable(inputs)
+            targets = torch.autograd.Variable(targets)
+            outputs = model.forward(inputs)
 
-        total, use_after_forward, free = checkmem(use_gpu_num)
-        print(f'Available after Model Creation: {free}')
+            total, use_after_forward, free = checkmem(use_gpu_num)
+            print(f'Available after Model Creation: {free}')
 
-        print(f'Size of Forward Path: {-use_before_forward + use_after_forward}')
+            print(f'Size of Forward Path: {-use_before_forward + use_after_forward}')
 
-        # Print model Structure
+            # Print model Structure
         # print("\n\nOutput Shape: ", outputs.shape)
         # if batch_idx == 0:
         #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
         #     filename = 'PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
         #     dot.render(filename=filename)
-        loss = criterion(outputs, targets)
+            loss = criterion(outputs, targets)
 
-        # lasso penalty
-        init_batch = batch_idx == 0 and epoch == 1
+            # lasso penalty
+            init_batch = batch_idx == 0 and epoch == 1
 
-        if args.en_group_lasso:
-            if args.global_group_lasso:
-                lasso_penalty = get_group_lasso_global(model, use_gpu)
-            else:
-                lasso_penalty = get_group_lasso_group(model, use_gpu)
+            if args.en_group_lasso:
+                if args.global_group_lasso:
+                    lasso_penalty = get_group_lasso_global(model, use_gpu)
+                else:
+                    lasso_penalty = get_group_lasso_group(model, use_gpu)
 
-            # Auto-tune the group-lasso coefficient @first training iteration
-            if init_batch:
-                args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (lasso_penalty *
+                # Auto-tune the group-lasso coefficient @first training iteration
+                if init_batch:
+                    args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (lasso_penalty *
                                                                                    (1 - args.var_group_lasso_coeff))
-                grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
-            lasso_penalty = lasso_penalty * grp_lasso_coeff
-        else:
-            lasso_penalty = 0.
+                    grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
+                lasso_penalty = lasso_penalty * grp_lasso_coeff
+            else:
+                lasso_penalty = 0.
 
-        # Group lasso calcution is not performance-optimized => Ignore from execution time
-        loss += lasso_penalty
-        # print("Loss: ", loss)
-        # measure accuracy and record loss
-        prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
-        losses.update(loss.item(), inputs.size(0))
-        top1.update(prec1.item(), inputs.size(0))
-        top5.update(prec5.item(), inputs.size(0))
-        lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
+            # Group lasso calcution is not performance-optimized => Ignore from execution time
+            loss += lasso_penalty
+            # print("Loss: ", loss)
+            # measure accuracy and record loss
+            prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
+            losses.update(loss.item(), inputs.size(0))
+            top1.update(prec1.item(), inputs.size(0))
+            top5.update(prec5.item(), inputs.size(0))
+            lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
 
-        # compute gradient and do SGD step
-        optimizer.zero_grad()
+            # compute gradient and do SGD step
+            optimizer.zero_grad()
 
-        loss.backward()
+            loss.backward()
 
-        optimizer.step()
+            optimizer.step()
 
-        # measure elapsed time
-        batch_time.update(time.time() - end - data_load_time)
-        end = time.time()
+            total, use_after_backward, free = checkmem(use_gpu_num)
+            print(f'Available after Backward Path: {total - use_after_backward}')
+            if (total - use_after_backward) > memoryPerBatch:
+                batch_size = batch_size + int(free*0.4/memoryPerBatch)
+            # measure elapsed time
+            batch_time.update(time.time() - end - data_load_time)
+            end = time.time()
 
-        if batch_idx % args.print_freq == 0:
+            if batch_idx % args.print_freq == 0:
             print('Epoch: [{0}][{1}/{2}]\t'
                   'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
                   'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
@@ -559,7 +563,105 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
                 epoch, batch_idx, len(trainloader), batch_time=batch_time,
                 data_time=data_time, loss=losses, top1=top1, top5=top5))
 
-    epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
+        epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
+    else:
+        # switch to train mode
+        model.train()
+
+        # Measure time
+        batch_time = AverageMeter()
+        data_time = AverageMeter()
+        losses = AverageMeter()
+        top1 = AverageMeter()
+        top5 = AverageMeter()
+        lasso_ratio = AverageMeter()
+
+        end = time.time()
+
+        for param in model.parameters():
+            param.grad = None
+
+        for batch_idx, (inputs, targets) in enumerate(trainloader):
+
+            # measure data loading time
+            data_time.update(time.time() - end)
+            data_load_time = time.time() - end
+
+            total, use_before_forward, free = checkmem(use_gpu_num)
+            print(f'Available after Model Creation: {free}')
+
+            if use_cuda:
+                inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
+
+            with torch.no_grad():
+                inputs = Variable(inputs)
+            targets = torch.autograd.Variable(targets)
+            outputs = model.forward(inputs)
+
+            total, use_after_forward, free = checkmem(use_gpu_num)
+            print(f'Available after Model Creation: {free}')
+
+            print(f'Size of Forward Path: {-use_before_forward + use_after_forward}')
+
+            # Print model Structure
+            # print("\n\nOutput Shape: ", outputs.shape)
+            # if batch_idx == 0:
+            #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
+            #     filename = 'PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
+            #     dot.render(filename=filename)
+            loss = criterion(outputs, targets)
+
+            # lasso penalty
+            init_batch = batch_idx == 0 and epoch == 1
+
+            if args.en_group_lasso:
+                if args.global_group_lasso:
+                    lasso_penalty = get_group_lasso_global(model, use_gpu)
+                else:
+                    lasso_penalty = get_group_lasso_group(model, use_gpu)
+
+                # Auto-tune the group-lasso coefficient @first training iteration
+                if init_batch:
+                    args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (lasso_penalty *
+                                                                               (1 - args.var_group_lasso_coeff))
+                    grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
+                lasso_penalty = lasso_penalty * grp_lasso_coeff
+            else:
+                lasso_penalty = 0.
+
+            # Group lasso calcution is not performance-optimized => Ignore from execution time
+            loss += lasso_penalty
+            # print("Loss: ", loss)
+            # measure accuracy and record loss
+            prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
+            losses.update(loss.item(), inputs.size(0))
+            top1.update(prec1.item(), inputs.size(0))
+            top5.update(prec5.item(), inputs.size(0))
+            lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
+
+            # compute gradient and do SGD step
+            optimizer.zero_grad()
+
+            loss.backward()
+
+            optimizer.step()
+
+            # measure elapsed time
+            batch_time.update(time.time() - end - data_load_time)
+            end = time.time()
+
+            if batch_idx % args.print_freq == 0:
+                print('Epoch: [{0}][{1}/{2}]\t'
+                      'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
+                      'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
+                      'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
+                      'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
+                      'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
+                      epoch, batch_idx, len(trainloader), batch_time=batch_time,
+                      data_time=data_time, loss=losses, top1=top1, top5=top5))
+
+            epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
+
     return losses.avg, top1.avg, lasso_ratio.avg, epoch_time, batch_size
 
 
