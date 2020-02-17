@@ -249,6 +249,7 @@ def main():
     # GPU selection
     use_gpu = 0
     cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
+    os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
     for gpu_id in range(0, 4):
         total, used, free = checkmem(gpu_id)
         if used < 20:
@@ -318,6 +319,7 @@ def main():
     # dynamic resnet modell
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
+
     total, use_after_model, free = checkmem(use_gpu_num)
     print(f'Available after Model Creation: {free}')
 
