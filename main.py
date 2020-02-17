@@ -317,7 +317,7 @@ def main():
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
-    #memory usage before model creation
+    # memory usage before model creation
     total, use_before_model,free = checkmem(use_gpu_num)
     print(f'Available before Model Creation: {free}' )
 
@@ -339,6 +339,10 @@ def main():
     count0 = 0
     for p in model.parameters():
         count0 += p.data.nelement()
+
+        
+    trainloader = data.DataLoader(trainset, batch_size=1,
+                                  shuffle=True, num_workers=args.workers)
 
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
