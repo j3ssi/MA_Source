@@ -339,9 +339,9 @@ def main():
 
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
-        # with torch.no_grad():
-        #     inputs = Variable(inputs)
-        # targets = torch.autograd.Variable(targets)
+        with torch.no_grad():
+            inputs = Variable(inputs)
+        targets = torch.autograd.Variable(targets)
         outputs = model.forward(inputs)
 
         total, use_after_forward, free = checkmem(use_gpu_num)
@@ -359,7 +359,8 @@ def main():
 
         print(f'Size of Forward+ Backward: {-use_after_model + use_after_backward}')
         memoryPerBatch = -use_after_forward + use_after_backward
-        batch_size = int((free / (-use_after_forward + use_after_backward)) * 0.4)
+        free = free + torch.cuda.memory_cached()-torch.cuda.memory_allocated()
+        batch_size = int((free / (-use_after_model + use_after_backward)) * 0.95)
         print(f'Batch Size: {batch_size}')
         del inputs
         del outputs
