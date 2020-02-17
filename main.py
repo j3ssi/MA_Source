@@ -247,6 +247,7 @@ def checkmem(use_gpu):
 def main():
     # GPU selection
     use_gpu = 0
+
     cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
     for gpu_id in range(0, 4):
@@ -338,9 +339,9 @@ def main():
 
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
-        with torch.no_grad():
-            inputs = Variable(inputs)
-        targets = torch.autograd.Variable(targets)
+        # with torch.no_grad():
+        #     inputs = Variable(inputs)
+        # targets = torch.autograd.Variable(targets)
         outputs = model.forward(inputs)
 
         total, use_after_forward, free = checkmem(use_gpu_num)
@@ -669,7 +670,6 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
 
 
 def test(testloader, model, criterion, epoch, use_cuda, use_gpu):
-    global best_acc
 
     batch_time = AverageMeter()
     data_time = AverageMeter()
