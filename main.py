@@ -359,8 +359,9 @@ def main():
 
         print(f'Size of Forward+ Backward: {-use_after_model + use_after_backward}')
         memoryPerBatch = -use_after_forward + use_after_backward
+        print(f'free cached memory: {torch.cuda.memory_cached()-torch.cuda.memory_allocated()}')
         free = free + torch.cuda.memory_cached()-torch.cuda.memory_allocated()
-        batch_size = int((free / (-use_after_model + use_after_backward)) * 0.95)
+        batch_size = int((free / (-use_after_model + use_after_backward)) )
         print(f'Batch Size: {batch_size}')
         del inputs
         del outputs
