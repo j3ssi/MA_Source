@@ -43,10 +43,7 @@ from src.custom_arch import *
 from src.checkpoint_utils import makeSparse, genDenseModel
 from src.group_lasso_regs import get_group_lasso_global, get_group_lasso_group
 from src.utils import AverageMeter, accuracy
-import pycuda.driver as cuda
-import pycuda.autoinit  # Necessary for using its functions
 
-cuda.init()  # Necesarry for using its functions
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 # Baseline
