@@ -341,6 +341,7 @@ def main():
             print(f'free     : {free}')
             print(f'used     : {used}')
             print('\n')
+            break
         else:
             print(f'This Gpu is used')
             print(f'GPU Id: {gpu_id}')
