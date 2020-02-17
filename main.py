@@ -361,10 +361,15 @@ def main():
 
         batch_size = int(free / (-use_after_forward + use_after_backward))
         print(f'Batch Size: {batch_size}')
+        del inputs
+        del outputs
+        del targets
         break
 
     trainloader = data.DataLoader(trainset, batch_size=batch_size,
                                   shuffle=True, num_workers=args.workers)
+
+    torch.cuda.clear_memory_allocated()
     gc.collect()
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         if use_cuda:
