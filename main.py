@@ -247,82 +247,8 @@ def checkmem(use_gpu):
     return total, used, free
 
 
-def calculate_sizeOfBatch(use_gpu_num, use_gpu):
-    transform_train = transforms.Compose([
-        transforms.RandomCrop(32, padding=4),
-        transforms.RandomHorizontalFlip(),
-        transforms.ToTensor(),
-        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
-    ])
 
-    transform_test = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
-    ])
 
-    dataloader = datasets.CIFAR10
-    num_classes = 10
-
-    trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
-
-    trainloader = data.DataLoader(trainset, batch_size=1, shuffle=True, num_workers=args.workers)
-
-    total, use_before_model,free = checkmem(use_gpu_num)
-    print(f'Available before Model Creation: {free}' )
-
-    print(f'Use before Model Creation: {use_before_model}' )
-    # available_before = torch.cuda.getMemoryUsage(use_gpu_num)
-    # print("Available: %.3f kB\nTotal:     %.3f kB" % (available_before / 1e3, total / 1e3))
-
-    # dynmiac resnet modell
-    model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
-    model.cuda(use_gpu)
-
-    total, use_after_model,free = checkmem(use_gpu_num)
-    print(f'Available after Model Creation: {free}' )
-
-    print(f'Size of Model: {-use_before_model+use_after_model}')
-
-    criterion = nn.CrossEntropyLoss()
-    optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
-    start = time.time()
-
-    # Count the parameters of the model and calculate training bacth size
-    count0 = 0
-    for p in model.parameters():
-        count0 += p.data.nelement()
-
-    for batch_idx, (inputs, targets) in enumerate(trainloader):
-        inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
-        with torch.no_grad():
-            inputs = Variable(inputs)
-        targets = torch.autograd.Variable(targets)
-        outputs = model.forward(inputs)
-
-        total, use_after_forward, free = checkmem(use_gpu_num)
-        print(f'Available after Model Creation: {free}')
-
-        print(f'Size of Forward Path: {-use_after_model + use_after_forward}')
-
-        loss = criterion(outputs, targets)
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
-
-        total, use_after_backward, free = checkmem(use_gpu_num)
-        print(f'Available after Backward Path: {total - use_after_backward}')
-
-        print(f'Size of Forward+ Backward: {-use_after_model + use_after_backward}')
-
-        batch_size = int(free/ (-use_after_model + use_after_backward))
-        print(f'Batch Size: {batch_size}')
-        del inputs
-        del targets
-        del outputs
-        break
-
-    del model
-    return batch_size-30
 
 
 def main():
@@ -391,12 +317,57 @@ def main():
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
-    torch.cuda.empty_cache()
+    #memory usage before model creation
+    total, use_before_model,free = checkmem(use_gpu_num)
+    print(f'Available before Model Creation: {free}' )
 
-    batch_size = calculate_sizeOfBatch(use_gpu_num,use_gpu)
-    # dynmiac resnet modell
+    print(f'Use before Model Creation: {use_before_model}' )
+
+    # dynamic resnet modell
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
+    total, use_after_model,free = checkmem(use_gpu_num)
+    print(f'Available after Model Creation: {free}' )
+
+    print(f'Size of Model: {-use_before_model+use_after_model}')
+
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+    start = time.time()
+
+    # Count the parameters of the model and calculate training bacth size
+    count0 = 0
+    for p in model.parameters():
+        count0 += p.data.nelement()
+
+    for batch_idx, (inputs, targets) in enumerate(trainloader):
+        inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
+        with torch.no_grad():
+            inputs = Variable(inputs)
+        targets = torch.autograd.Variable(targets)
+        outputs = model.forward(inputs)
+
+        total, use_after_forward, free = checkmem(use_gpu_num)
+        print(f'Available after Model Creation: {free}')
+
+        print(f'Size of Forward Path: {-use_after_model + use_after_forward}')
+
+        loss = criterion(outputs, targets)
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+
+        total, use_after_backward, free = checkmem(use_gpu_num)
+        print(f'Available after Backward Path: {total - use_after_backward}')
+
+        print(f'Size of Forward+ Backward: {-use_after_model + use_after_backward}')
+
+        batch_size = int(free/ (-use_after_model + use_after_backward))
+        print(f'Batch Size: {batch_size}')
+        del inputs
+        del targets
+        del outputs
+        break
 
     trainloader = data.DataLoader(trainset, batch_size=batch_size,
                                   shuffle=True, num_workers=args.workers)
