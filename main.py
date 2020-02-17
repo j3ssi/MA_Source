@@ -105,6 +105,7 @@ parser.add_argument('--visual', default=False, action='store_true',
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
 
+
 def visualizePruneTrain(model, epoch, threshold):
     altList = []
     paramList = []
@@ -247,17 +248,13 @@ def checkmem(use_gpu):
     return total, used, free
 
 
-
-
-
-
 def main():
     # GPU selection
     use_gpu = 0
     cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
 
     for gpu_id in range(0, 4):
-        total, used, free =checkmem(gpu_id)
+        total, used, free = checkmem(gpu_id)
         if used < 20:
             use_gpu = cudaArray[gpu_id]
             use_gpu_num = gpu_id
@@ -318,18 +315,18 @@ def main():
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
     # memory usage before model creation
-    total, use_before_model,free = checkmem(use_gpu_num)
-    print(f'Available before Model Creation: {free}' )
+    total, use_before_model, free = checkmem(use_gpu_num)
+    print(f'Available before Model Creation: {free}')
 
-    print(f'Use before Model Creation: {use_before_model}' )
+    print(f'Use before Model Creation: {use_before_model}')
 
     # dynamic resnet modell
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda()
-    total, use_after_model,free = checkmem(use_gpu_num)
-    print(f'Available after Model Creation: {free}' )
+    total, use_after_model, free = checkmem(use_gpu_num)
+    print(f'Available after Model Creation: {free}')
 
-    print(f'Size of Model: {-use_before_model+use_after_model}')
+    print(f'Size of Model: {-use_before_model + use_after_model}')
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
@@ -340,8 +337,7 @@ def main():
     for p in model.parameters():
         count0 += p.data.nelement()
 
-
-    trainloader = data.DataLoader(trainset, batch_size=1,
+    trainloader = data.DataLoader(trainset, batch_size=1,pin_memory=True,
                                   shuffle=True, num_workers=args.workers)
 
     for batch_idx, (inputs, targets) in enumerate(trainloader):
@@ -366,7 +362,7 @@ def main():
 
         print(f'Size of Forward+ Backward: {-use_after_model + use_after_backward}')
 
-        batch_size = int(free/ (-use_after_model + use_after_backward))
+        batch_size = int(free / (-use_after_model + use_after_backward))
         print(f'Batch Size: {batch_size}')
         del inputs
         del targets
@@ -383,7 +379,6 @@ def main():
                 inputs = Variable(inputs)
             targets = torch.autograd.Variable(targets)
             outputs = model.forward(inputs)
-
 
     for epochNet2Net in range(1, 2):
 
