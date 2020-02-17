@@ -277,7 +277,7 @@ def main():
             print('\n')
     print('\nUse Gpu with the ID: ', use_gpu)
 
-    # os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu_num)
+    os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu_num)
     use_cuda = torch.cuda.is_available()
 
     # Random seed
@@ -340,7 +340,7 @@ def main():
     for p in model.parameters():
         count0 += p.data.nelement()
 
-        
+
     trainloader = data.DataLoader(trainset, batch_size=1,
                                   shuffle=True, num_workers=args.workers)
 
