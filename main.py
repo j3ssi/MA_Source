@@ -102,6 +102,8 @@ args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
 
 grp_lasso_coeff = 0
+
+
 def visualizePruneTrain(model, epoch, threshold):
     altList = []
     paramList = []
@@ -312,16 +314,18 @@ def main():
 
     # memory usage before model creation
     total, use_before_model, free = checkmem(use_gpu_num)
-    print(f'Available before Model Creation: {free}')
+    # print(f'Available before Model Creation: {free}')
 
-    print(f'Use before Model Creation: {use_before_model}')
-
+    # print(f'Use before Model Creation: {use_before_model}')
+    print(f'Max memory before modell creation {torch.cuda.max_memory_allocated(use_gpu)}')
     # dynamic resnet modell
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
 
     total, use_after_model, free = checkmem(use_gpu_num)
-    print(f'Available after Model Creation: {free}')
+
+    print(f'Max memory after modell creation {torch.cuda.max_memory_allocated(use_gpu)}')
+    # print(f'Available after Model Creation: {free}')
 
     print(f'Size of Model: {-use_before_model + use_after_model}')
 
@@ -342,21 +346,26 @@ def main():
         with torch.no_grad():
             inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
+        print(f'Max memory after inputs, targets to gpu {torch.cuda.max_memory_allocated(use_gpu)}')
+
         outputs = model.forward(inputs)
 
+        print(f'Max memory after forward {torch.cuda.max_memory_allocated(use_gpu)}')
         total, use_after_forward, free = checkmem(use_gpu_num)
-        print(f'Available after Model Creation: {free}')
+        # print(f'Available after Model Creation: {free}')
 
-        print(f'Size of Forward Path: {-use_after_model + use_after_forward}')
+        # print(f'Size of Forward Path: {-use_after_model + use_after_forward}')
 
         loss = criterion(outputs, targets)
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+        print(f'Max memory after step{torch.cuda.max_memory_allocated(use_gpu)}')
 
         total, use_after_backward, free = checkmem(use_gpu_num)
-        print(f'Available after Backward Path: {total - use_after_backward}')
+        # print(f'Available after Backward Path: {total - use_after_backward}')
 
+        print(f'Max memory after modell creation {torch.cuda.max_memory_allocated(use_gpu)}')
         print(f'Size of Forward+ Backward: {-use_after_model + use_after_backward}')
         memoryPerBatch = -use_after_forward + use_after_backward
         print(f'free cached memory: {torch.cuda.memory_cached()-torch.cuda.memory_allocated()}')
