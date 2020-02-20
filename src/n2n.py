@@ -14,7 +14,7 @@ class N2N(nn.Module):
         if first:
             self.archNums =[[]]
             for s in range(0, self.numOfStages):
-                print("\nS: ", s, " ; ", self.numOfStages)
+                # print("\nS: ", s, " ; ", self.numOfStages)
                 for b in range(0, self.numOfBlocksinStage):
                     self.archNums[s].append(self.layersInBlock)
                 if s != (self.numOfStages-1):

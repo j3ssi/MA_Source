@@ -242,7 +242,7 @@ def checkmem(use_gpu):
     total = int(total)
     used = int(used)
     free = int(free)
-    print(use_gpu, 'Total GPU mem:', total, 'used:', used)
+    # print(use_gpu, 'Total GPU mem:', total, 'used:', used)
     return total, used, free
 
 
@@ -273,7 +273,6 @@ def main():
             print('\n')
     print('\nUse Gpu with the ID: ', use_gpu)
 
-    # os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu_num)
     use_cuda = torch.cuda.is_available()
 
     # Random seed
@@ -314,20 +313,22 @@ def main():
 
     # memory usage before model creation
     total, use_before_model, free = checkmem(use_gpu_num)
-    # print(f'Available before Model Creation: {free}')
+    print(f'Available before Model Creation: {free}')
 
-    # print(f'Use before Model Creation: {use_before_model}')
-    print(f'Max memory before modell creation {torch.cuda.max_memory_allocated(use_gpu)}')
+    print(f'Use before Model Creation: {use_before_model}')
+    print(f'Max memory before modell creation: {torch.cuda.max_memory_allocated(use_gpu)}')
     # dynamic resnet modell
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
 
     total, use_after_model, free = checkmem(use_gpu_num)
 
-    print(f'Max memory after modell creation {torch.cuda.max_memory_allocated(use_gpu)}')
-    # print(f'Available after Model Creation: {free}')
+    print(f'Available after Model Creation: {free}')
+    print(f'Use after modell creation: {use_before_model}')
 
-    print(f'Size of Model: {-use_before_model + use_after_model}')
+    print(f'Max memory after modell creation {torch.cuda.max_memory_allocated(use_gpu)}')
+
+    # print(f'Size of Model: {-use_before_model + use_after_model}')
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
@@ -346,28 +347,32 @@ def main():
         with torch.no_grad():
             inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
+        total, use_after_variables, free = checkmem(use_gpu_num)
+
+        print(f'Available after variables: {free}')
+        print(f'Use after variables: {use_after_variables}')
         print(f'Max memory after inputs, targets to gpu {torch.cuda.max_memory_allocated(use_gpu)}')
 
         outputs = model.forward(inputs)
 
-        print(f'Max memory after forward {torch.cuda.max_memory_allocated(use_gpu)}')
         total, use_after_forward, free = checkmem(use_gpu_num)
-        # print(f'Available after Model Creation: {free}')
-
-        # print(f'Size of Forward Path: {-use_after_model + use_after_forward}')
+        print(f'Available after forward: {free}')
+        print(f'Use after forward: {use_after_forward}')
+        print(f'Max memory after forward {torch.cuda.max_memory_allocated(use_gpu)}')
 
         loss = criterion(outputs, targets)
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        print(f'Max memory after step{torch.cuda.max_memory_allocated(use_gpu)}')
 
         total, use_after_backward, free = checkmem(use_gpu_num)
-        # print(f'Available after Backward Path: {total - use_after_backward}')
+        print(f'Available after Backward Path: {free}')
+        print(f'Use after backward: {use_after_backward}')
 
-        print(f'Max memory after modell creation {torch.cuda.max_memory_allocated(use_gpu)}')
-        print(f'Size of Forward+ Backward: {-use_after_model + use_after_backward}')
+        print(f'Max memory after step{torch.cuda.max_memory_allocated(use_gpu)}')
+
         memoryPerBatch = -use_after_forward + use_after_backward
+
         print(f'free cached memory: {torch.cuda.memory_cached()-torch.cuda.memory_allocated()}')
         free = free + torch.cuda.memory_cached()-torch.cuda.memory_allocated()
         batch_size = int((free / (-use_after_model + use_after_backward)) )
