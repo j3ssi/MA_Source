@@ -324,7 +324,7 @@ def main():
     total, use_after_model, free = checkmem(use_gpu_num)
 
     print(f'Available after Model Creation: {free}')
-    print(f'Use after modell creation: {use_before_model}')
+    print(f'Use after modell creation: {use_after_model}')
 
     print(f'Max memory after modell creation {torch.cuda.max_memory_allocated(use_gpu)}')
 
