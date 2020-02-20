@@ -506,6 +506,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
 
             total, use_before_forward, free = checkmem(use_gpu_num)
             print(f'Available after Model Creation: {free}')
+            optimizer.zero_grad()
 
             if use_cuda:
                 inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
@@ -557,7 +558,6 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
             lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
 
             # compute gradient and do SGD step
-            optimizer.zero_grad()
 
             loss.backward()
 
