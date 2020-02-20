@@ -239,6 +239,11 @@ def checkmem(use_gpu):
     total, used, free = os.popen(
         '"nvidia-smi" --query-gpu=memory.total,memory.used,memory.free --format=csv,nounits,noheader'
     ).read().split('\n')[use_gpu].split(',')
+    printSmi = os.popen(
+        '"nvidia-smi" --query-gpu=memory.total,memory.used,memory.free --format=csv,noheader'
+    ).read()
+    print(f'Nvidia-smi Ausgabe: {printSmi}')
+
     total = int(total)
     used = int(used)
     free = int(free)
@@ -369,7 +374,7 @@ def main():
         print(f'Available after Backward Path: {free}')
         print(f'Use after backward: {use_after_backward}')
         max_memory_after_step = torch.cuda.max_memory_allocated(use_gpu)/ (1.049*pow(10,6))
-        print(f'Max memory after step{torch.cuda.max_memory_allocated(use_gpu)}')
+        print(f'Max memory after step: {torch.cuda.max_memory_allocated(use_gpu)}')
 
         memoryPerBatch = -use_after_forward + use_after_backward
 
