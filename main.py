@@ -368,14 +368,14 @@ def main():
         total, use_after_backward, free = checkmem(use_gpu_num)
         print(f'Available after Backward Path: {free}')
         print(f'Use after backward: {use_after_backward}')
-        max_memory_after_step = torch.cuda.max_memory_allocated(use_gpu)
+        max_memory_after_step = torch.cuda.max_memory_allocated(use_gpu)/ (1.049*pow(10,6))
         print(f'Max memory after step{torch.cuda.max_memory_allocated(use_gpu)}')
 
         memoryPerBatch = -use_after_forward + use_after_backward
 
         print(f'free cached memory: {torch.cuda.memory_cached()-torch.cuda.memory_allocated()}')
         free = free + torch.cuda.memory_cached()-torch.cuda.memory_allocated()
-        batch_size = int(free_after_model /(1.049*pow(10,6)*max_memory_after_step - use_after_model))
+        batch_size = int(free_after_model /(max_memory_after_step - use_after_model))
         print(f'Batch Size: {batch_size}')
         del inputs
         del outputs
