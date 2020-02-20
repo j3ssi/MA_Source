@@ -239,11 +239,6 @@ def checkmem(use_gpu):
     total, used, free = os.popen(
         '"nvidia-smi" --query-gpu=memory.total,memory.used,memory.free --format=csv,nounits,noheader'
     ).read().split('\n')[use_gpu].split(',')
-    printSmi = os.popen(
-        '"nvidia-smi" --query-gpu=memory.total,memory.used,memory.free --format=csv,noheader'
-    ).read()
-    print(f'Nvidia-smi Ausgabe: {printSmi}')
-
     total = int(total)
     used = int(used)
     free = int(free)
