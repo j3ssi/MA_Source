@@ -365,6 +365,8 @@ def main():
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+        del outputs
+        del targets
 
         total, use_after_backward, free = checkmem(use_gpu_num)
         print(f'Available after Backward Path: {free}')
@@ -378,8 +380,6 @@ def main():
 
         # int(0.85*1447) #
         print(f'Batch Size: {batch_size}')
-        del outputs
-        del targets
         break
 
     trainloader = data.DataLoader(trainset, batch_size=batch_size,
