@@ -393,10 +393,14 @@ def main():
             with torch.no_grad():
                 inputs = Variable(inputs)
             targets = torch.autograd.Variable(targets)
+            print(f'Max memory after inputs, targets to gpu {torch.cuda.max_memory_allocated(use_gpu)}')
+
             outputs = model.forward(inputs)
 
+            print(f'Max memory after forward {torch.cuda.max_memory_allocated(use_gpu)}')
+
             total, use_after_forward, free = checkmem(use_gpu_num)
-            print(f'Available after Model Creation: {free}')
+            # print(f'Available after Model Creation: {free}')
 
             print(f'Size of Forward Path: {-use_after_model + use_after_forward}')
 
@@ -404,11 +408,11 @@ def main():
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
+            print(f'Max memory after step: {torch.cuda.max_memory_allocated(use_gpu)}')
 
             total, use_after_backward, free = checkmem(use_gpu_num)
-            print(f'Available after Backward Path: {total - use_after_backward}')
+            # print(f'Available after Backward Path: {total - use_after_backward}')
 
-            print(f'Size of Forward+ Backward: {-use_after_model + use_after_backward}')
             del inputs
             del outputs
             del targets
@@ -417,66 +421,66 @@ def main():
 
     torch.cuda.empty_cache()
     gc.collect()
-
-    for epochNet2Net in range(1, 2):
-
-        for epoch in range(1, args.epochs + 1):
-            # if (args.en_group_lasso and (epoch % args.sparse_interval == 0)) or (epoch == 1):
-            # trainloader = data.DataLoader(trainset, batch_size = 1,
-            #                          shuffle = True, num_workers=args.workers)
-
-            # adjust learning rate when epoch is the scheduled epoch
-            if epoch in args.schedule:
-                adjust_learning_rate(optimizer, epoch)
-
-            print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
-            train_loss, train_acc, lasso_ratio, train_epoch_time, batch_size = train(trainloader, model, criterion,
-                                                                                     optimizer,
-                                                                                     epoch, use_cuda, use_gpu,
-                                                                                     use_gpu_num, batch_size, memoryPerBatch)
-            test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda, use_gpu)
-
-            # SparseTrain routine
-            if args.en_group_lasso and (epoch % args.sparse_interval == 0):
-                # Force weights under threshold to zero
-                dense_chs, chs_map = makeSparse(optimizer, model, args.threshold, use_gpu)
-                if args.visual:
-                    visualizePruneTrain(model, epoch, args.threshold)
-
-                genDenseModel(model, dense_chs, optimizer, 'cifar', use_gpu)
-                model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False,
-                                model)
-
-                model.cuda(use_gpu)
-                optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-                                      weight_decay=args.weight_decay)
-
-            count = 0
-            for p in model.parameters():
-                count += p.data.nelement()
-
-            print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
-            print('\nTest Acc: ', test_acc)
-
-        if (args.deeper):
-            print("\n\nnow deeper")
-            # deeper student training
-            if best_acc < 50:
-                model = n2n.deeper(model, optimizer, [2, 4])
-            elif best_acc < 75:
-                model = n2n.deeper(model, optimizer, [2])
-            elif best_acc < 95:
-                model = n2n.deeper(model, optimizer, [2])
-            model.cuda(use_gpu)
-            criterion = nn.CrossEntropyLoss()
-            optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-                                  weight_decay=args.weight_decay)
-
-    print("\n Verhältnis Modell Größe: ", count / count0)
-    ende = time.time()
-    print("\n ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock, " ; ", args.epochs)
-    print('{:5.3f}s'.format(ende - start), end='  ')
-    print("\n")
+    #
+    # for epochNet2Net in range(1, 2):
+    #
+    #     for epoch in range(1, args.epochs + 1):
+    #         # if (args.en_group_lasso and (epoch % args.sparse_interval == 0)) or (epoch == 1):
+    #         # trainloader = data.DataLoader(trainset, batch_size = 1,
+    #         #                          shuffle = True, num_workers=args.workers)
+    #
+    #         # adjust learning rate when epoch is the scheduled epoch
+    #         if epoch in args.schedule:
+    #             adjust_learning_rate(optimizer, epoch)
+    #
+    #         print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
+    #         train_loss, train_acc, lasso_ratio, train_epoch_time, batch_size = train(trainloader, model, criterion,
+    #                                                                                  optimizer,
+    #                                                                                  epoch, use_cuda, use_gpu,
+    #                                                                                  use_gpu_num, batch_size, memoryPerBatch)
+    #         test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda, use_gpu)
+    #
+    #         # SparseTrain routine
+    #         if args.en_group_lasso and (epoch % args.sparse_interval == 0):
+    #             # Force weights under threshold to zero
+    #             dense_chs, chs_map = makeSparse(optimizer, model, args.threshold, use_gpu)
+    #             if args.visual:
+    #                 visualizePruneTrain(model, epoch, args.threshold)
+    #
+    #             genDenseModel(model, dense_chs, optimizer, 'cifar', use_gpu)
+    #             model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False,
+    #                             model)
+    #
+    #             model.cuda(use_gpu)
+    #             optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+    #                                   weight_decay=args.weight_decay)
+    #
+    #         count = 0
+    #         for p in model.parameters():
+    #             count += p.data.nelement()
+    #
+    #         print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
+    #         print('\nTest Acc: ', test_acc)
+    #
+    #     if (args.deeper):
+    #         print("\n\nnow deeper")
+    #         # deeper student training
+    #         if best_acc < 50:
+    #             model = n2n.deeper(model, optimizer, [2, 4])
+    #         elif best_acc < 75:
+    #             model = n2n.deeper(model, optimizer, [2])
+    #         elif best_acc < 95:
+    #             model = n2n.deeper(model, optimizer, [2])
+    #         model.cuda(use_gpu)
+    #         criterion = nn.CrossEntropyLoss()
+    #         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+    #                               weight_decay=args.weight_decay)
+    #
+    # print("\n Verhältnis Modell Größe: ", count / count0)
+    # ende = time.time()
+    # print("\n ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock, " ; ", args.epochs)
+    # print('{:5.3f}s'.format(ende - start), end='  ')
+    # print("\n")
 
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, use_gpu_num, batch_size, memoryPerBatch):
