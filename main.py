@@ -375,7 +375,7 @@ def main():
 
         print(f'free cached memory: {torch.cuda.memory_cached()-torch.cuda.memory_allocated()}')
         free = free + torch.cuda.memory_cached()-torch.cuda.memory_allocated()
-        batch_size = int(0.88*1447) # int(free_after_model /(max_memory_after_step - use_after_model))
+        batch_size = int(0.87*1447) # int(free_after_model /(max_memory_after_step - use_after_model))
         print(f'Batch Size: {batch_size}')
         del inputs
         del outputs
