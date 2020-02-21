@@ -354,6 +354,7 @@ def main():
         print(f'Max memory after inputs, targets to gpu {torch.cuda.max_memory_allocated(use_gpu)}')
 
         outputs = model.forward(inputs)
+        del inputs
 
         total, use_after_forward, free = checkmem(use_gpu_num)
         print(f'Available after forward: {free}')
@@ -371,15 +372,12 @@ def main():
         max_memory_after_step = torch.cuda.max_memory_allocated(use_gpu)/ (1.049*pow(10,6))
         print(f'Max memory after step: {torch.cuda.max_memory_allocated(use_gpu)}')
 
-        memoryPerBatch = -use_after_forward + use_after_backward
-
         print(f'free cached memory: {torch.cuda.memory_cached()-torch.cuda.memory_allocated()}')
         free = free + torch.cuda.memory_cached()-torch.cuda.memory_allocated()
         batch_size = int(free_after_model /((max_memory_after_step/(1.049*pow(10,6))) - use_after_model))
 
         # int(0.85*1447) #
         print(f'Batch Size: {batch_size}')
-        del inputs
         del outputs
         del targets
         break
