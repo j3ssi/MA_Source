@@ -417,7 +417,7 @@ def main():
 
             break
 
-    torch.cuda.empty_cache()
+    # torch.cuda.empty_cache()
     gc.collect()
 
     for epochNet2Net in range(1, 2):
