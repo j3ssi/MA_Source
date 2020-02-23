@@ -338,7 +338,7 @@ def main():
     count0 = 0
     for p in model.parameters():
         count0 += p.data.nelement()
-
+    print(f'count0: {count0}')
     trainloader = data.DataLoader(trainset, batch_size=1, pin_memory=True,
                                   shuffle=True, num_workers=args.workers)
 
