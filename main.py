@@ -320,7 +320,7 @@ def main():
     # dynamic resnet modell
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
-
+    use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
     total, use_after_model, free_after_model = checkmem(use_gpu_num)
 
     print(f'Available after Model Creation: {free_after_model}')
@@ -354,7 +354,7 @@ def main():
         print(f'Max memory after inputs, targets to gpu {torch.cuda.max_memory_allocated(use_gpu)}')
 
         outputs = model.forward(inputs)
-        del inputs
+
 
         total, use_after_forward, free = checkmem(use_gpu_num)
         print(f'Available after forward: {free}')
@@ -367,18 +367,16 @@ def main():
         optimizer.step()
         del outputs
         del targets
-
+        del inputs
         total, use_after_backward, free = checkmem(use_gpu_num)
         print(f'Available after Backward Path: {free}')
         print(f'Use after backward: smi {use_after_backward} torch {torch.cuda.memory_allocated(use_gpu)}')
-        max_memory_after_step = torch.cuda.max_memory_allocated(use_gpu)/ (1.049*pow(10,6))
+        max_memory_after_step = torch.cuda.max_memory_allocated(use_gpu)
         print(f'Max memory after step: {torch.cuda.max_memory_allocated(use_gpu)}')
 
         print(f'free cached memory: {torch.cuda.memory_cached()-torch.cuda.memory_allocated()}')
-        free = free + torch.cuda.memory_cached()-torch.cuda.memory_allocated()
-        batch_size = 1232 #int(free_after_model /(max_memory_after_step - use_after_model))
-
-        # int(0.85*1447) #
+        batch_size = int((9223302144- use_after_model_creation)/(max_memory_after_step*0.8874))
+        # 1232
         print(f'Batch Size: {batch_size}')
         break
 
