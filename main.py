@@ -91,6 +91,10 @@ parser.add_argument('--global_coeff', default=True, action='store_true',
                     help='Use a global group lasso regularizaiton coefficient')
 parser.add_argument('--print-freq', default=10, type=int,
                     metavar='N', help='print frequency (default: 10)')
+parser.add_argument('--batchTrue', default=False, action='store_true',
+                    help='Set the batchsize')
+parser.add_argument('--batch_size', default=1000, type=int,
+                    metavar='N', help='batch size')
 
 # N2N
 parser.add_argument('--deeper', default=False, action='store_true',
@@ -375,7 +379,10 @@ def main():
         print(f'Max memory after step: {torch.cuda.max_memory_allocated(use_gpu)}')
 
         print(f'free cached memory: {torch.cuda.memory_cached()-torch.cuda.memory_allocated()}')
-        batch_size = int((9223302144- use_after_model_creation)/(max_memory_after_step*0.8874))
+        if args.batchTrue == False:
+            batch_size = int((9223302144- use_after_model_creation)/(max_memory_after_step*0.8874))
+        else:
+            batch_size = args.batch_size
         # 1232
         print(f'Batch Size: {batch_size}')
         break
