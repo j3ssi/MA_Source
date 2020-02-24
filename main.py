@@ -595,7 +595,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
         optimizer.step()
 
         total, use_after_backward, free = checkmem(use_gpu_num)
-        print(f'Available after Backward Path: {total - use_after_backward}')
+        # print(f'Available after Backward Path: {total - use_after_backward}')
         # measure elapsed time
         batch_time.update(time.time() - end - data_load_time)
         end = time.time()
