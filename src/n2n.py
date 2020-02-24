@@ -338,7 +338,7 @@ class N2N(nn.Module):
                     stagesO[-1].append(n(i))
                 elif block == 0:
                     layerInThisBlock = archNum[block]
-                    i = i + layerInThisBlock
+                    i = i + layerInThisBlock -1
                     stagesO[-1].append(n(i))
 
         # print("\nstagesO:  1")
