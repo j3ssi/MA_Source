@@ -44,6 +44,7 @@ from src.checkpoint_utils import makeSparse, genDenseModel
 from src.group_lasso_regs import get_group_lasso_global, get_group_lasso_group
 from src.utils import AverageMeter, accuracy
 
+# Parser
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 # Baseline
 parser.add_argument('-j', '--workers', default=4, type=int, metavar='N',
@@ -343,6 +344,18 @@ def main():
     for p in model.parameters():
         count0 += p.data.nelement()
     print(f'count0: {count0}')
+
+    # Calculate Size of Trainings Batch size
+    stages = [14272, 5856, 2704, 1344, 641, 304, 145]
+    s = stages[args.numOfStages]
+    model_sizes = [41472, 141824, 519168, 2003968, 7921152, 32467968, 126910976 ]
+    m = model_sizes[args.numOfStages]
+    x = m/args.numOfStages/m
+    gerade = [0.16, 1.30, 2.28, 3.23 ]
+    g = gerade[args.numOfStages]
+    batch_size = g*(args.numOfBlocksinStage-1)+s
+    print(f'Batch Size: {batch_size}')
+
     trainloader = data.DataLoader(trainset, batch_size=1, pin_memory=True,
                                   shuffle=True, num_workers=args.workers)
 
