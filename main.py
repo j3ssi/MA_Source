@@ -251,6 +251,10 @@ def checkmem(use_gpu):
     return total, used, free
 
 
+def calculateNewBatchSize():
+    pass
+
+
 def main():
     # GPU selection
     use_gpu = 0
@@ -345,97 +349,98 @@ def main():
         count0 += p.data.nelement()
     print(f'count0: {count0}')
 
-    # Calculate Size of Trainings Batch size
-    stages = [2.91, 24.22, 192, 1491.05]
-    s = stages[args.numOfStages-1]
-    model_sizes = [41472, 141824, 519168, 2003968]
-    m = model_sizes[args.numOfStages-1]
-    gerade = [1.44, 20.16, 189.39, 1694.55 ]
-    g = gerade[args.numOfStages-1]
-    x = use_after_model_creation / args.numOfBlocksinStage
-    batch_size = int(x/(g*(args.numOfBlocksinStage-1)+s*0.98))
+    if not args.batchTrue:
+        # Calculate Size of Trainings Batch size
+        stages = [2.91, 24.22, 192, 1491.05]
+        s = stages[args.numOfStages-1]
+        model_sizes = [41472, 141824, 519168, 2003968]
+        m = model_sizes[args.numOfStages-1]
+        gerade = [1.44, 20.16, 189.39, 1694.55 ]
+        g = gerade[args.numOfStages-1]
+        x = use_after_model_creation / args.numOfBlocksinStage
+        batch_size = int(x/(g*(args.numOfBlocksinStage-1)+s*0.98))
+    else:
+        batch_size = args.batch_size
+
     print(f'Batch Size: {batch_size}')
 
-    trainloader = data.DataLoader(trainset, batch_size=1, pin_memory=True,
-                                  shuffle=True, num_workers=args.workers)
+    # trainloader = data.DataLoader(trainset, batch_size=1, pin_memory=True,
+    #                               shuffle=True, num_workers=args.workers)
 
-    for batch_idx, (inputs, targets) in enumerate(trainloader):
-        inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
-        with torch.no_grad():
-            inputs = Variable(inputs)
-        targets = torch.autograd.Variable(targets)
-        total, use_after_variables, free = checkmem(use_gpu_num)
-
-        print(f'Available after variables: {free}')
-        print(f'Use after variables: smi {use_after_variables} torch {torch.cuda.memory_allocated(use_gpu)}')
-        print(f'Max memory after inputs, targets to gpu {torch.cuda.max_memory_allocated(use_gpu)}')
-
-        outputs = model.forward(inputs)
-
-
-        total, use_after_forward, free = checkmem(use_gpu_num)
-        print(f'Available after forward: {free}')
-        print(f'Use after forward: smi {use_after_forward} torch {torch.cuda.memory_allocated(use_gpu)}')
-        print(f'Max memory after forward {torch.cuda.max_memory_allocated(use_gpu)}')
-
-        loss = criterion(outputs, targets)
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
-        del outputs
-        del targets
-        del inputs
-        total, use_after_backward, free = checkmem(use_gpu_num)
-        print(f'Available after Backward Path: {free}')
-        print(f'Use after backward: smi {use_after_backward} torch {torch.cuda.memory_allocated(use_gpu)}')
-        max_memory_after_step = torch.cuda.max_memory_allocated(use_gpu)
-        print(f'Max memory after step: {torch.cuda.max_memory_allocated(use_gpu)}')
-
-        print(f'free cached memory: {torch.cuda.memory_cached()-torch.cuda.memory_allocated()}')
-        if args.batchTrue == False:
-            batch_size = int((9223302144- use_after_model_creation)/(max_memory_after_step*0.8874))
-        else:
-            batch_size = args.batch_size
-        # 1232
-        print(f'Batch Size: {batch_size}')
-        break
+    # for batch_idx, (inputs, targets) in enumerate(trainloader):
+    #     inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
+    #     with torch.no_grad():
+    #         inputs = Variable(inputs)
+    #     targets = torch.autograd.Variable(targets)
+    #     total, use_after_variables, free = checkmem(use_gpu_num)
+    #
+    #     print(f'Available after variables: {free}')
+    #     print(f'Use after variables: smi {use_after_variables} torch {torch.cuda.memory_allocated(use_gpu)}')
+    #     print(f'Max memory after inputs, targets to gpu {torch.cuda.max_memory_allocated(use_gpu)}')
+    #
+    #     outputs = model.forward(inputs)
+    #
+    #
+    #     total, use_after_forward, free = checkmem(use_gpu_num)
+    #     print(f'Available after forward: {free}')
+    #     print(f'Use after forward: smi {use_after_forward} torch {torch.cuda.memory_allocated(use_gpu)}')
+    #     print(f'Max memory after forward {torch.cuda.max_memory_allocated(use_gpu)}')
+    #
+    #     loss = criterion(outputs, targets)
+    #     optimizer.zero_grad()
+    #     loss.backward()
+    #     optimizer.step()
+    #     del outputs
+    #     del targets
+    #     del inputs
+    #     total, use_after_backward, free = checkmem(use_gpu_num)
+    #     print(f'Available after Backward Path: {free}')
+    #     print(f'Use after backward: smi {use_after_backward} torch {torch.cuda.memory_allocated(use_gpu)}')
+    #     max_memory_after_step = torch.cuda.max_memory_allocated(use_gpu)
+    #     print(f'Max memory after step: {torch.cuda.max_memory_allocated(use_gpu)}')
+    #
+    #     print(f'free cached memory: {torch.cuda.memory_cached()-torch.cuda.memory_allocated()}')
+    #
+    #     # 1232
+    #     print(f'Batch Size: {batch_size}')
+    #     break
 
     trainloader = data.DataLoader(trainset, batch_size=batch_size,
                                   shuffle=True, num_workers=args.workers)
 
     # torch.cuda.empty_cache()
-    gc.collect()
-    for batch_idx, (inputs, targets) in enumerate(trainloader):
-        if use_cuda:
-            inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
-            with torch.no_grad():
-                inputs = Variable(inputs)
-            targets = torch.autograd.Variable(targets)
-            print(f'Max memory after inputs, targets to gpu {torch.cuda.max_memory_allocated(use_gpu)}')
-
-            outputs = model.forward(inputs)
-
-            print(f'Max memory after forward {torch.cuda.max_memory_allocated(use_gpu)}')
-
-            total, use_after_forward, free = checkmem(use_gpu_num)
-            # print(f'Available after Model Creation: {free}')
-
-            print(f'Size of Forward Path: {-use_after_model + use_after_forward}')
-
-            loss = criterion(outputs, targets)
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
-            print(f'Max memory after step: {torch.cuda.max_memory_allocated(use_gpu)}')
-
-            total, use_after_backward, free = checkmem(use_gpu_num)
-            # print(f'Available after Backward Path: {total - use_after_backward}')
-
-            del inputs
-            del outputs
-            del targets
-
-            break
+    # gc.collect()
+    # for batch_idx, (inputs, targets) in enumerate(trainloader):
+    #     if use_cuda:
+    #         inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
+    #         with torch.no_grad():
+    #             inputs = Variable(inputs)
+    #         targets = torch.autograd.Variable(targets)
+    #         print(f'Max memory after inputs, targets to gpu {torch.cuda.max_memory_allocated(use_gpu)}')
+    #
+    #         outputs = model.forward(inputs)
+    #
+    #         print(f'Max memory after forward {torch.cuda.max_memory_allocated(use_gpu)}')
+    #
+    #         total, use_after_forward, free = checkmem(use_gpu_num)
+    #         # print(f'Available after Model Creation: {free}')
+    #
+    #         print(f'Size of Forward Path: {-use_after_model + use_after_forward}')
+    #
+    #         loss = criterion(outputs, targets)
+    #         optimizer.zero_grad()
+    #         loss.backward()
+    #         optimizer.step()
+    #         print(f'Max memory after step: {torch.cuda.max_memory_allocated(use_gpu)}')
+    #
+    #         total, use_after_backward, free = checkmem(use_gpu_num)
+    #         # print(f'Available after Backward Path: {total - use_after_backward}')
+    #
+    #         del inputs
+    #         del outputs
+    #         del targets
+    #
+    #         break
 
     # torch.cuda.empty_cache()
     gc.collect()
@@ -466,33 +471,38 @@ def main():
                     visualizePruneTrain(model, epoch, args.threshold)
 
                 genDenseModel(model, dense_chs, optimizer, 'cifar', use_gpu)
+                gc.collect()
                 model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False,
                                 model)
-
+                use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
+                print(f'use after new Model Creation')
                 model.cuda(use_gpu)
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
 
-            count = 0
-            for p in model.parameters():
-                count += p.data.nelement()
-
+                count = 0
+                for p in model.parameters():
+                    count += p.data.nelement()
+                if count < count0:
+                    count0 = count
+                    print(f'Count: {count}')
+                    # batch_size = calculateNewBatchSize()
             print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
             print('\nTest Acc: ', test_acc)
 
-        if (args.deeper):
-            print("\n\nnow deeper")
-            # deeper student training
-            if best_acc < 50:
-                model = n2n.deeper(model, optimizer, [2, 4])
-            elif best_acc < 75:
-                model = n2n.deeper(model, optimizer, [2])
-            elif best_acc < 95:
-                model = n2n.deeper(model, optimizer, [2])
-            model.cuda(use_gpu)
-            criterion = nn.CrossEntropyLoss()
-            optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-                                  weight_decay=args.weight_decay)
+        # if (args.deeper):
+        #     print("\n\nnow deeper")
+        #     # deeper student training
+        #     if best_acc < 50:
+        #         model = n2n.deeper(model, optimizer, [2, 4])
+        #     elif best_acc < 75:
+        #         model = n2n.deeper(model, optimizer, [2])
+        #     elif best_acc < 95:
+        #         model = n2n.deeper(model, optimizer, [2])
+        #     model.cuda(use_gpu)
+        #     criterion = nn.CrossEntropyLoss()
+        #     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+        #                           weight_decay=args.weight_decay)
 
     print("\n Verhältnis Modell Größe: ", count / count0)
     ende = time.time()
@@ -502,208 +512,105 @@ def main():
 
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, use_gpu_num, batch_size, memoryPerBatch):
-    if args.en_group_lasso and ((epoch-1) % args.sparse_interval == 0):
-        # switch to train mode
-        model.train()
+    # switch to train mode
+    model.train()
 
-        global grp_lasso_coeff
-        # Measure time
-        batch_time = AverageMeter()
-        data_time = AverageMeter()
-        losses = AverageMeter()
-        top1 = AverageMeter()
-        top5 = AverageMeter()
-        lasso_ratio = AverageMeter()
+    global grp_lasso_coeff
+    # Measure time
+    batch_time = AverageMeter()
+    data_time = AverageMeter()
+    losses = AverageMeter()
+    top1 = AverageMeter()
+    top5 = AverageMeter()
+    lasso_ratio = AverageMeter()
 
-        end = time.time()
+    end = time.time()
 
-        for param in model.parameters():
-            param.grad = None
+    for param in model.parameters():
+        param.grad = None
 
-        for batch_idx, (inputs, targets) in enumerate(trainloader):
+    for batch_idx, (inputs, targets) in enumerate(trainloader):
 
-            # measure data loading time
-            data_time.update(time.time() - end)
-            data_load_time = time.time() - end
+        # measure data loading time
+        data_time.update(time.time() - end)
+        data_load_time = time.time() - end
 
-            total, use_before_forward, free = checkmem(use_gpu_num)
-            print(f'Available after Model Creation: {free}')
-            optimizer.zero_grad()
+        total, use_before_forward, free = checkmem(use_gpu_num)
+        # print(f'Available after Model Creation: {free}')
+        optimizer.zero_grad()
 
-            if use_cuda:
-                inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
+        if use_cuda:
+            inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
 
-            with torch.no_grad():
-                inputs = Variable(inputs)
-            targets = torch.autograd.Variable(targets)
-            outputs = model.forward(inputs)
+        with torch.no_grad():
+            inputs = Variable(inputs)
+        targets = torch.autograd.Variable(targets)
+        outputs = model.forward(inputs)
 
-            total, use_after_forward, free = checkmem(use_gpu_num)
-            print(f'Available after Model Creation: {free}')
+        total, use_after_forward, free = checkmem(use_gpu_num)
+        print(f'Available after Model Creation: {free}')
 
-            print(f'Size of Forward Path: {-use_before_forward + use_after_forward}')
+        print(f'Size of Forward Path: {-use_before_forward + use_after_forward}')
 
-            # Print model Structure
-        # print("\n\nOutput Shape: ", outputs.shape)
-        # if batch_idx == 0:
-        #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
-        #     filename = 'PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
-        #     dot.render(filename=filename)
-            loss = criterion(outputs, targets)
-
-            # lasso penalty
-            init_batch = batch_idx == 0 and epoch == 1
-
-            if args.en_group_lasso:
-                if args.global_group_lasso:
-                    lasso_penalty = get_group_lasso_global(model, use_gpu)
-                else:
-                    lasso_penalty = get_group_lasso_group(model, use_gpu)
-
-                # Auto-tune the group-lasso coefficient @first training iteration
-                if init_batch:
-                    args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (lasso_penalty *
-                                                                                   (1 - args.var_group_lasso_coeff))
-                    grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
-                lasso_penalty = lasso_penalty * grp_lasso_coeff
-            else:
-                lasso_penalty = 0.
-
-            # Group lasso calcution is not performance-optimized => Ignore from execution time
-            loss += lasso_penalty
-            # print("Loss: ", loss)
-            # measure accuracy and record loss
-            prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
-            losses.update(loss.item(), inputs.size(0))
-            top1.update(prec1.item(), inputs.size(0))
-            top5.update(prec5.item(), inputs.size(0))
-            lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
-
-            # compute gradient and do SGD step
-
-            loss.backward()
-
-            optimizer.step()
-
-            total, use_after_backward, free = checkmem(use_gpu_num)
-            print(f'Available after Backward Path: {total - use_after_backward}')
-            if (total - use_after_backward) > memoryPerBatch:
-                batch_size = batch_size + int(free*0.4/memoryPerBatch)
-            # measure elapsed time
-            batch_time.update(time.time() - end - data_load_time)
-            end = time.time()
-
-            if batch_idx % args.print_freq == 0:
-                print('Epoch: [{0}][{1}/{2}]\t'
-                      'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-                      'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
-                      'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
-                      'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
-                      'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
-                      epoch, batch_idx, len(trainloader), batch_time=batch_time,
-                      data_time=data_time, loss=losses, top1=top1, top5=top5))
-
-        epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
-    else:
-        # switch to train mode
-        model.train()
-
-        # Measure time
-        batch_time = AverageMeter()
-        data_time = AverageMeter()
-        losses = AverageMeter()
-        top1 = AverageMeter()
-        top5 = AverageMeter()
-        lasso_ratio = AverageMeter()
-
-        end = time.time()
-
-        for param in model.parameters():
-            param.grad = None
-
-        for batch_idx, (inputs, targets) in enumerate(trainloader):
-
-            # measure data loading time
-            data_time.update(time.time() - end)
-            data_load_time = time.time() - end
-
-            total, use_before_forward, free = checkmem(use_gpu_num)
-            print(f'Available after Model Creation: {free}')
-
-            if use_cuda:
-                inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
-
-            with torch.no_grad():
-                inputs = Variable(inputs)
-            targets = torch.autograd.Variable(targets)
-            outputs = model.forward(inputs)
-
-            total, use_after_forward, free = checkmem(use_gpu_num)
-            print(f'Available after Model Creation: {free}')
-
-            print(f'Size of Forward Path: {-use_before_forward + use_after_forward}')
-
-            # Print model Structure
+        # Print model Structure
             # print("\n\nOutput Shape: ", outputs.shape)
             # if batch_idx == 0:
             #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
             #     filename = 'PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
             #     dot.render(filename=filename)
-            loss = criterion(outputs, targets)
+        loss = criterion(outputs, targets)
 
-            # lasso penalty
-            init_batch = batch_idx == 0 and epoch == 1
+        # lasso penalty
+        init_batch = batch_idx == 0 and epoch == 1
 
-            if args.en_group_lasso:
-                if args.global_group_lasso:
-                    lasso_penalty = get_group_lasso_global(model, use_gpu)
-                else:
-                    lasso_penalty = get_group_lasso_group(model, use_gpu)
-
-                # Auto-tune the group-lasso coefficient @first training iteration
-                if init_batch:
-                    args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (lasso_penalty *
-                                                                               (1 - args.var_group_lasso_coeff))
-                    grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
-                lasso_penalty = lasso_penalty * grp_lasso_coeff
+        if args.en_group_lasso:
+            if args.global_group_lasso:
+                lasso_penalty = get_group_lasso_global(model, use_gpu)
             else:
-                lasso_penalty = 0.
+                lasso_penalty = get_group_lasso_group(model, use_gpu)
 
-            # Group lasso calcution is not performance-optimized => Ignore from execution time
-            loss += lasso_penalty
-            # print("Loss: ", loss)
-            # measure accuracy and record loss
-            prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
-            losses.update(loss.item(), inputs.size(0))
-            top1.update(prec1.item(), inputs.size(0))
-            top5.update(prec5.item(), inputs.size(0))
-            lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
+            # Auto-tune the group-lasso coefficient @first training iteration
+            if init_batch:
+                args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (lasso_penalty *
+                                                                                       (1 - args.var_group_lasso_coeff))
+                grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
+            lasso_penalty = lasso_penalty * grp_lasso_coeff
+        else:
+            lasso_penalty = 0.
 
-            # compute gradient and do SGD step
-            optimizer.zero_grad()
+        # Group lasso calcution is not performance-optimized => Ignore from execution time
+        loss += lasso_penalty
+        # print("Loss: ", loss)
+        # measure accuracy and record loss
+        prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
+        losses.update(loss.item(), inputs.size(0))
+        top1.update(prec1.item(), inputs.size(0))
+        top5.update(prec5.item(), inputs.size(0))
+        lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
 
-            loss.backward()
+        # compute gradient and do SGD step
 
-            optimizer.step()
-            total, use_after_backward, free = checkmem(use_gpu_num)
-            print(f'Available after Backward Path: {total - use_after_backward}')
+        loss.backward()
 
-            # measure elapsed time
-            batch_time.update(time.time() - end - data_load_time)
-            end = time.time()
+        optimizer.step()
 
-            if batch_idx % args.print_freq == 0:
-                print('Epoch: [{0}][{1}/{2}]\t'
-                      'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-                      'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
-                      'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
-                      'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
-                      'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
-                      epoch, batch_idx, len(trainloader), batch_time=batch_time,
-                      data_time=data_time, loss=losses, top1=top1, top5=top5))
+        total, use_after_backward, free = checkmem(use_gpu_num)
+        print(f'Available after Backward Path: {total - use_after_backward}')
+        # measure elapsed time
+        batch_time.update(time.time() - end - data_load_time)
+        end = time.time()
 
-            epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
+        if batch_idx % args.print_freq == 0:
+            print('Epoch: [{0}][{1}/{2}]\t'
+                  'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
+                  'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
+                  'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
+                  'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
+                  'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
+                  epoch, batch_idx, len(trainloader), batch_time=batch_time,
+                  data_time=data_time, loss=losses, top1=top1, top5=top5))
 
+    epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
     return losses.avg, top1.avg, lasso_ratio.avg, epoch_time, batch_size
 
 
