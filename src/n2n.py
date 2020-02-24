@@ -311,47 +311,36 @@ class N2N(nn.Module):
     def getResidualPath(self):
         stagesI = []
         stagesO = []
-        j = 2
+        i = 2
+        printStages = False
         stagesI.append([])
         stagesO.append([])
-        stagesO[0].append(n(1))
+        stagesO[0].append(n(2))
+        for stage in range(0, self.numOfStages):
+            if stage < self.numOfStages-1:
+                i = i + 1
+                stagesI[-1].append(n(i))
+                stagesI.append([])
+                stagesO.append([])
+            if printStages:
+                print("\n\nStage: ", stage)
+            archNum = self.archNums[stage]
+            for block in range(0, len(archNum)):
+                if printStages:
+                    print("\n\n\tBlock: ", block)
+                if 0 < block < len(archNum):
+                    i = i + 1
+                    stagesI[-1].append(n(i))
+                    layerInThisBlock = archNum[block]
+                    i = i +layerInThisBlock - 1
+                    stagesO[-1].append(n(i))
+                elif block == 0:
+                    layerInThisBlock = archNum[block]
+                    i = i + layerInThisBlock - 1
+                    stagesO[-1].append(n(i))
+
         # print("\nstagesO:  1")
         printStages = False
-        for stage in range(0, self.numOfStages):
-            for block in range(0, self.numOfBlocksinStage):
-                i = 0
-                while i < self.layersInBlock:
-                    if i == 0 and stage > 0 and block == 0:
-                        stagesI[stage - 1].append(n(j))
-                        if printStages:
-                            print("\nstagesI: ", j, " ; ", i)
-                        j = j + 1
-                        i = i + 1
-                    elif (i % self.layersInBlock) == 0:
-                        stagesI[stage].append(n(j))
-                        if printStages:
-                            print("\nstagesI: ", j, " ; ", i)
-                        i = i + 1
-                        j = j + 1
-
-                    elif (i % self.layersInBlock) == (self.layersInBlock - 1):
-                        k = (i - 1) % self.layersInBlock
-                        stagesO[stage].append(n(j))
-                        if printStages:
-                            print("\nstagesO: ", j, " ; ", i)
-                        i = i + 1
-                        j = j + 1
-                    else:
-                        if printStages:
-                            print("\nstagesI: ", j, " ; ", i)
-                        i = i + 1
-                        j = j + 1
-            if stage == (self.numOfStages - 1):
-                break
-
-            stagesI.append([])
-            stagesO.append([])
-        stagesI[-1].append(n(j))
         fcStr = 'fc' + str(j + 3)
         stagesI[-1].append(n(fcStr))
 
