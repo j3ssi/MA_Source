@@ -347,12 +347,12 @@ def main():
 
     # Calculate Size of Trainings Batch size
     stages = [14272, 5856, 2704, 1344, 641, 304, 145]
-    s = stages[args.numOfStages]
+    s = stages[args.numOfStages-1]
     model_sizes = [41472, 141824, 519168, 2003968, 7921152, 32467968, 126910976 ]
-    m = model_sizes[args.numOfStages]
+    m = model_sizes[args.numOfStages-1]
     x = m/args.numOfStages/m
     gerade = [0.16, 1.30, 2.28, 3.23 ]
-    g = gerade[args.numOfStages]
+    g = gerade[args.numOfStages-1]
     batch_size = g*(args.numOfBlocksinStage-1)+s
     print(f'Batch Size: {batch_size}')
 
