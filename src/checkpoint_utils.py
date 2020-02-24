@@ -129,8 +129,8 @@ def makeSparse(optimizer, model, threshold, use_gpu, reconf=False ):
                 # print("\n>Edge: ", edge)
                 dense_chs[adj_lyr[idx]]['out_chs'] = edge
                 dense_chs[adj_lyr[idx + 1]]['in_chs'] = edge
-    for name in dense_chs:
-        print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
+    # for name in dense_chs:
+    #     print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
     for idx in range(len(stagesI)):
         # print("\n> IDX: ", idx)
