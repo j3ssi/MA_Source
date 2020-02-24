@@ -358,7 +358,7 @@ def main():
         gerade = [1.44, 20.16, 189.39, 1694.55 ]
         g = gerade[args.numOfStages-1]
         x = use_after_model_creation / args.numOfBlocksinStage
-        batch_size = int(x/(g*(args.numOfBlocksinStage-1)+s*0.97))
+        batch_size = int(x*0.98/(g*(args.numOfBlocksinStage-1)+s))
     else:
         batch_size = args.batch_size
 
