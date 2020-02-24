@@ -311,11 +311,11 @@ class N2N(nn.Module):
     def getResidualPath(self):
         stagesI = []
         stagesO = []
-        i = 2
+        i = 1
         printStages = False
         stagesI.append([])
         stagesO.append([])
-        stagesO[0].append(n(2))
+        stagesO[0].append(n(1))
         for stage in range(0, self.numOfStages):
             if stage < self.numOfStages:
                 i = i + 1
