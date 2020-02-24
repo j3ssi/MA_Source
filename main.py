@@ -346,9 +346,9 @@ def main():
     print(f'count0: {count0}')
 
     # Calculate Size of Trainings Batch size
-    stages = [14272, 5856, 2704, 1344, 641, 304, 145]
+    stages = [2.91, 24.22, 192, 1491.05]
     s = stages[args.numOfStages-1]
-    model_sizes = [41472, 141824, 519168, 2003968, 7921152, 32467968, 126910976 ]
+    model_sizes = [41472, 141824, 519168, 2003968]
     m = model_sizes[args.numOfStages-1]
     x = m/args.numOfStages/m
     gerade = [1.44, 20.16, 189.39, 1694.55 ]
