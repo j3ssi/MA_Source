@@ -350,10 +350,10 @@ def main():
     s = stages[args.numOfStages-1]
     model_sizes = [41472, 141824, 519168, 2003968]
     m = model_sizes[args.numOfStages-1]
-    x = m/args.numOfStages/m
     gerade = [1.44, 20.16, 189.39, 1694.55 ]
     g = gerade[args.numOfStages-1]
-    batch_size = g*(args.numOfBlocksinStage-1)+s
+    x = use_after_model_creation / args.numOfBlocksinStage
+    batch_size = int(x/(g*(args.numOfBlocksinStage-1)+s*0.98))
     print(f'Batch Size: {batch_size}')
 
     trainloader = data.DataLoader(trainset, batch_size=1, pin_memory=True,
