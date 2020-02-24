@@ -341,7 +341,7 @@ class N2N(nn.Module):
 
         # print("\nstagesO:  1")
         printStages = False
-        fcStr = 'fc' + str(j + 3)
+        fcStr = 'fc' + str(i+1)
         stagesI[-1].append(n(fcStr))
 
         # if printStages:
