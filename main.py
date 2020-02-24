@@ -480,12 +480,12 @@ def main():
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
 
-                count = 0
-                for p in model.parameters():
-                    count += p.data.nelement()
-                if count < count0:
-                    print(f'Count: {count} ; {count0} ; {count/count0}')
-                    count0 = count
+            count = 0
+            for p in model.parameters():
+                count += p.data.nelement()
+            if count < count0:
+                print(f'Count: {count} ; {count0} ; {count/count0}')
+                count0 = count
 
                     # batch_size = calculateNewBatchSize()
             print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
