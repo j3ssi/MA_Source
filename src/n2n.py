@@ -319,6 +319,7 @@ class N2N(nn.Module):
         for stage in range(0, self.numOfStages):
             if stage < self.numOfStages-1:
                 i = i + 1
+                print(f'I: {i} ; {stage}')
                 stagesI[-1].append(n(i))
             if stage > 0:
                 stagesI.append([])
