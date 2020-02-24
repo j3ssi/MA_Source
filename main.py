@@ -460,7 +460,7 @@ def main():
             train_loss, train_acc, lasso_ratio, train_epoch_time, batch_size = train(trainloader, model, criterion,
                                                                                      optimizer,
                                                                                      epoch, use_cuda, use_gpu,
-                                                                                     use_gpu_num, batch_size, memoryPerBatch)
+                                                                                     use_gpu_num, batch_size)
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda, use_gpu)
 
             # SparseTrain routine
@@ -511,7 +511,7 @@ def main():
     print("\n")
 
 
-def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, use_gpu_num, batch_size, memoryPerBatch):
+def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, use_gpu_num, batch_size):
     # switch to train mode
     model.train()
 
