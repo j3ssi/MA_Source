@@ -554,11 +554,11 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
         # print(f'Size of Forward Path: {-use_before_forward + use_after_forward}')
 
         # Print model Structure
-        print("\n\nOutput Shape: ", outputs.shape)
-        if batch_idx == 0:
-            dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
-            filename = 'PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
-            dot.render(filename=filename)
+        # print("\n\nOutput Shape: ", outputs.shape)
+        # if batch_idx == 0:
+        #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
+        #     filename = 'PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
+        #     dot.render(filename=filename)
         loss = criterion(outputs, targets)
 
         # lasso penalty
