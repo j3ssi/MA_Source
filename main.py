@@ -475,7 +475,7 @@ def main():
                 model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False,
                                 model)
                 use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
-                print(f'use after new Model Creation')
+                # print(f'use after new Model Creation')
                 model.cuda(use_gpu)
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
@@ -548,9 +548,9 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
         outputs = model.forward(inputs)
 
         total, use_after_forward, free = checkmem(use_gpu_num)
-        print(f'Available after Model Creation: {free}')
+        # print(f'Available after Model Creation: {free}')
 
-        print(f'Size of Forward Path: {-use_before_forward + use_after_forward}')
+        # print(f'Size of Forward Path: {-use_before_forward + use_after_forward}')
 
         # Print model Structure
             # print("\n\nOutput Shape: ", outputs.shape)
