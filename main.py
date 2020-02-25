@@ -452,8 +452,6 @@ def main():
 
         for epoch in range(1, args.epochs + 1):
             # if (args.en_group_lasso and (epoch % args.sparse_interval == 0)) or (epoch == 1):
-            # trainloader = data.DataLoader(trainset, batch_size = 1,
-            #                          shuffle = True, num_workers=args.workers)
 
             # adjust learning rate when epoch is the scheduled epoch
             if epoch in args.schedule:
@@ -487,9 +485,12 @@ def main():
             for p in model.parameters():
                 count += p.data.nelement()
             if count < count1:
-                print(f'Count: {count} ; {count0} ; {count/count0}')
+                print(f'Count: {count} ; {count0} ; {count/14272}')
                 count1 = count
                 batch_size = int(count /14272 * b + (1-count /14272)*batch_size0)
+                trainloader = data.DataLoader(trainset, batch_size=batch_size,
+                                              shuffle=True, num_workers=args.workers)
+
                 print(f'new batch_size: {batch_size}')
             print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
             print('\nTest Acc: ', test_acc)
