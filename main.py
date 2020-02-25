@@ -487,9 +487,9 @@ def main():
             for p in model.parameters():
                 count += p.data.nelement()
             if count < count1:
-                # print(f'Count: {count} ; {count0} ; {count/count0}')
-                count1 =count
-                batch_size = int(count /count0 * b + (1-count /count0)*batch_size0)
+                print(f'Count: {count} ; {count0} ; {count/count0}')
+                count1 = count
+                batch_size = int(count /14272 * b + (1-count /14272)*batch_size0)
                 print(f'new batch_size: {batch_size}')
             print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
             print('\nTest Acc: ', test_acc)
