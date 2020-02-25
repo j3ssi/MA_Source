@@ -485,9 +485,9 @@ def main():
             for p in model.parameters():
                 count += p.data.nelement()
             if count < count1:
-                print(f'Count: {count} ; {count0} ; {count/41472}')
+                print(f'Count: {count} ; {count0} ; {count/2003968}')
                 count1 = count
-                batch_size = int(1/count /41472 * b + (1-1/count /41472)*batch_size0)
+                batch_size = int(count /count0 * 14272 + (1-count/count0)*batch_size0)
                 trainloader = data.DataLoader(trainset, batch_size=batch_size,
                                               shuffle=True, num_workers=args.workers)
 
