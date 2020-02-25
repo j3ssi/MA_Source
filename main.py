@@ -348,7 +348,7 @@ def main():
     for p in model.parameters():
         count0 += p.data.nelement()
     print(f'count0: {count0}')
-
+    count1 = count0
     if not args.batchTrue:
         # Calculate Size of Trainings Batch size
         stages = [2.91, 24.22, 192, 1491.05]
@@ -356,9 +356,12 @@ def main():
         model_sizes = [41472, 141824, 519168, 2003968]
         m = model_sizes[args.numOfStages-1]
         gerade = [1.44, 20.16, 189.39, 1694.55 ]
+        bs = [14727,5856, 2704, 1344]
+        b = bs[args.numOfStages -1]
         g = gerade[args.numOfStages-1]
         x = use_after_model_creation / args.numOfBlocksinStage
         batch_size = int(x*0.97/(g*(args.numOfBlocksinStage-1)+s))
+        batch_size0 = batch_size
     else:
         batch_size = args.batch_size
 
@@ -483,11 +486,11 @@ def main():
             count = 0
             for p in model.parameters():
                 count += p.data.nelement()
-            if count < count0:
-                print(f'Count: {count} ; {count0} ; {count/count0}')
-                count0 = count
-
-                    # batch_size = calculateNewBatchSize()
+            if count < count1:
+                # print(f'Count: {count} ; {count0} ; {count/count0}')
+                count1 =count
+                batch_size = int(count /count0 * b + (1-count /count0)*batch_size0)
+                print(f'new batch_size: {batch_size}')
             print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
             print('\nTest Acc: ', test_acc)
 
