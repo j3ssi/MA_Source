@@ -354,7 +354,7 @@ class N2N(nn.Module):
     def getShareSameNodeLayers(self):
         sameNode = []
         first = True
-        i = 3
+        i = 2
         for stage in range(0, self.numOfStages):
             for block in range(0, self.numOfBlocksinStage):
                 block = []
