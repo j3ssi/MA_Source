@@ -487,7 +487,7 @@ def main():
             if count < count1:
                 print(f'Count: {count} ; {count0} ; {count/count0}')
                 count1 = count
-                batch_size = int((1-count /count0) * 1200 + count/count0*batch_size0)
+                batch_size = int((1-count /count0) * 900 + count/count0*batch_size0)
                 trainloader = data.DataLoader(trainset, batch_size=batch_size,
                                               shuffle=True, num_workers=args.workers)
 
