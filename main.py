@@ -63,7 +63,7 @@ parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
 parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')
 parser.add_argument('--manualSeed', type=int, help='manual seed')
-parser.add_argument('--gpu_id', default='2', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
+parser.add_argument('--gpu_id', default='0', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
 parser.add_argument('-s', '--numOfStages', default=3, type=int, help='defines the number of stages in the network')
 parser.add_argument('-n', '--numOfBlocksinStage', type=int, default=5, help='defines the number of Blocks per Stage')
 parser.add_argument('-l', '--layersInBlock', type=int, default=3, help='defines the number of')
@@ -251,28 +251,24 @@ def checkmem(use_gpu):
     return total, used, free
 
 
-def calculateNewBatchSize():
-    pass
-
-
 def main():
     # GPU selection
-    use_gpu = 0
+    use_gpu ='cuda:0'
     use_gpu_num=0
     cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
     for gpu_id in range(0, 4):
         total, used, free = checkmem(gpu_id)
-        if used < 20:
-            use_gpu = cudaArray[gpu_id]
-            use_gpu_num = gpu_id
-            # print(f'This Gpu is free')
-            # print(f'GPU Id: {gpu_id}')
-            # print(f'total    : {total}')
-            # print(f'free     : {free}')
-            # print(f'used     : {used}')
-            # print('\n')
-            break
+        # if used < 20:
+        #     use_gpu = cudaArray[gpu_id]
+        #     use_gpu_num = gpu_id
+        #     # print(f'This Gpu is free')
+        #     # print(f'GPU Id: {gpu_id}')
+        #     # print(f'total    : {total}')
+        #     # print(f'free     : {free}')
+        #     # print(f'used     : {used}')
+        #     # print('\n')
+        #     break
     #    else:
     #         print(f'This Gpu is used')
     #         print(f'GPU Id: {gpu_id}')
