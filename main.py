@@ -266,21 +266,21 @@ def main():
         if used < 20:
             use_gpu = cudaArray[gpu_id]
             use_gpu_num = gpu_id
-            print(f'This Gpu is free')
-            print(f'GPU Id: {gpu_id}')
-            print(f'total    : {total}')
-            print(f'free     : {free}')
-            print(f'used     : {used}')
-            print('\n')
+            # print(f'This Gpu is free')
+            # print(f'GPU Id: {gpu_id}')
+            # print(f'total    : {total}')
+            # print(f'free     : {free}')
+            # print(f'used     : {used}')
+            # print('\n')
             break
         else:
-            print(f'This Gpu is used')
-            print(f'GPU Id: {gpu_id}')
-            print(f'total    : {total}')
-            print(f'free     : {free}')
-            print(f'used     : {used}')
-            print('\n')
-    print('\nUse Gpu with the ID: ', use_gpu)
+    #         print(f'This Gpu is used')
+    #         print(f'GPU Id: {gpu_id}')
+    #         print(f'total    : {total}')
+    #         print(f'free     : {free}')
+    #         print(f'used     : {used}')
+    #         print('\n')
+    # print('\nUse Gpu with the ID: ', use_gpu)
 
     use_cuda = torch.cuda.is_available()
 
@@ -322,20 +322,20 @@ def main():
 
     # memory usage before model creation
     total, use_before_model, free = checkmem(use_gpu_num)
-    print(f'Available before Model Creation: {free}')
+    # print(f'Available before Model Creation: {free}')
 
-    print(f'Use before Model Creation: smi {use_before_model} torch {torch.cuda.memory_allocated(use_gpu)}')
-    print(f'Max memory before modell creation: {torch.cuda.max_memory_allocated(use_gpu)}')
+    # print(f'Use before Model Creation: smi {use_before_model} torch {torch.cuda.memory_allocated(use_gpu)}')
+    # print(f'Max memory before modell creation: {torch.cuda.max_memory_allocated(use_gpu)}')
     # dynamic resnet modell
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
     use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
     total, use_after_model, free_after_model = checkmem(use_gpu_num)
 
-    print(f'Available after Model Creation: {free_after_model}')
-    print(f'Use after modell creation: smi {use_after_model} torch {torch.cuda.memory_allocated(use_gpu)}')
+    # print(f'Available after Model Creation: {free_after_model}')
+    # print(f'Use after modell creation: smi {use_after_model} torch {torch.cuda.memory_allocated(use_gpu)}')
 
-    print(f'Max memory after modell creation {torch.cuda.max_memory_allocated(use_gpu)}')
+    # print(f'Max memory after modell creation {torch.cuda.max_memory_allocated(use_gpu)}')
 
     # print(f'Size of Model: {-use_before_model + use_after_model}')
 
@@ -347,7 +347,7 @@ def main():
     count0 = 0
     for p in model.parameters():
         count0 += p.data.nelement()
-    print(f'count0: {count0}')
+    # print(f'count0: {count0}')
     count1 = count0
     if not args.batchTrue:
         # Calculate Size of Trainings Batch size
@@ -365,7 +365,7 @@ def main():
     else:
         batch_size = args.batch_size
 
-    print(f'Batch Size: {batch_size}')
+    # print(f'Batch Size: {batch_size}')
 
     # trainloader = data.DataLoader(trainset, batch_size=1, pin_memory=True,
     #                               shuffle=True, num_workers=args.workers)
