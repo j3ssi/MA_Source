@@ -518,14 +518,14 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
     # switch to train mode
     model.train()
 
-    global grp_lasso_coeff
+    # global grp_lasso_coeff
     # Measure time
-    batch_time = AverageMeter()
-    data_time = AverageMeter()
-    losses = AverageMeter()
-    top1 = AverageMeter()
-    top5 = AverageMeter()
-    lasso_ratio = AverageMeter()
+    # batch_time = AverageMeter()
+    # data_time = AverageMeter()
+    # losses = AverageMeter()
+    # top1 = AverageMeter()
+    # top5 = AverageMeter()
+    # lasso_ratio = AverageMeter()
 
     end = time.time()
 
@@ -535,8 +535,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
     for batch_idx, (inputs, targets) in enumerate(trainloader):
 
         # measure data loading time
-        data_time.update(time.time() - end)
-        data_load_time = time.time() - end
+        # data_time.update(time.time() - end)
+        # data_load_time = time.time() - end
 
         total, use_before_forward, free = checkmem(use_gpu_num)
         # print(f'Available after Model Creation: {free}')
