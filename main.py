@@ -455,7 +455,7 @@ def main():
 
             print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
             start = time.time()
-            train(trainloader, model, criterion,
+            train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion,
                                                                                      optimizer,
                                                                                      epoch, use_cuda, use_gpu,
                                                                                      use_gpu_num, batch_size)
@@ -520,12 +520,12 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
 
     # global grp_lasso_coeff
     # Measure time
-    # batch_time = AverageMeter()
-    # data_time = AverageMeter()
-    # losses = AverageMeter()
-    # top1 = AverageMeter()
-    # top5 = AverageMeter()
-    # lasso_ratio = AverageMeter()
+    batch_time = AverageMeter()
+    data_time = AverageMeter()
+    losses = AverageMeter()
+    top1 = AverageMeter()
+    top5 = AverageMeter()
+    lasso_ratio = AverageMeter()
 
     end = time.time()
 
@@ -535,8 +535,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
     for batch_idx, (inputs, targets) in enumerate(trainloader):
 
         # measure data loading time
-        # data_time.update(time.time() - end)
-        # data_load_time = time.time() - end
+        data_time.update(time.time() - end)
+        data_load_time = time.time() - end
 
         total, use_before_forward, free = checkmem(use_gpu_num)
         # print(f'Available after Model Creation: {free}')
@@ -585,11 +585,11 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
         loss += lasso_penalty
         # print("Loss: ", loss)
         # measure accuracy and record loss
-        # prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
-        # losses.update(loss.item(), inputs.size(0))
-        # top1.update(prec1.item(), inputs.size(0))
-        # top5.update(prec5.item(), inputs.size(0))
-        # lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
+        prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
+        losses.update(loss.item(), inputs.size(0))
+        top1.update(prec1.item(), inputs.size(0))
+        top5.update(prec5.item(), inputs.size(0))
+        lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
 
         # compute gradient and do SGD step
 
@@ -600,21 +600,21 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
         total, use_after_backward, free = checkmem(use_gpu_num)
         # print(f'Available after Backward Path: {total - use_after_backward}')
         # measure elapsed time
-        #batch_time.update(time.time() - end - data_load_time)
-        #end = time.time()
+        batch_time.update(time.time() - end - data_load_time)
+        end = time.time()
 
-        # if batch_idx % args.print_freq == 0:
-        #     print('Epoch: [{0}][{1}/{2}]\t'
-        #           'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-        #           'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
-        #           'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
-        #           'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
-        #           'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
-        #           epoch, batch_idx, len(trainloader), batch_time=batch_time,
-        #           data_time=data_time, loss=losses, top1=top1, top5=top5))
+        if batch_idx % args.print_freq == 0:
+            print('Epoch: [{0}][{1}/{2}]\t'
+                  'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
+                  'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
+                  'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
+                  'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
+                  'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
+                  epoch, batch_idx, len(trainloader), batch_time=batch_time,
+                  data_time=data_time, loss=losses, top1=top1, top5=top5))
 
-    # epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
-    #return losses.avg, top1.avg, lasso_ratio.avg, epoch_time, batch_size
+    epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
+    return losses.avg, top1.avg, lasso_ratio.avg, epoch_time, batch_size
 
 
 def test(testloader, model, criterion, epoch, use_cuda, use_gpu):
