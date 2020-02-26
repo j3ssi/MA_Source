@@ -273,7 +273,7 @@ def main():
             # print(f'used     : {used}')
             # print('\n')
             break
-        else:
+    #    else:
     #         print(f'This Gpu is used')
     #         print(f'GPU Id: {gpu_id}')
     #         print(f'total    : {total}')
