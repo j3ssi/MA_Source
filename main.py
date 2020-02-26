@@ -455,7 +455,7 @@ def main():
 
             print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
             start = time.time()
-            train_loss, train_acc, lasso_ratio, train_epoch_time, batch_size = train(trainloader, model, criterion,
+            train(trainloader, model, criterion,
                                                                                      optimizer,
                                                                                      epoch, use_cuda, use_gpu,
                                                                                      use_gpu_num, batch_size)
@@ -600,8 +600,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
         total, use_after_backward, free = checkmem(use_gpu_num)
         # print(f'Available after Backward Path: {total - use_after_backward}')
         # measure elapsed time
-        batch_time.update(time.time() - end - data_load_time)
-        end = time.time()
+        #batch_time.update(time.time() - end - data_load_time)
+        #end = time.time()
 
         if batch_idx % args.print_freq == 0:
             print('Epoch: [{0}][{1}/{2}]\t'
@@ -613,8 +613,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
                   epoch, batch_idx, len(trainloader), batch_time=batch_time,
                   data_time=data_time, loss=losses, top1=top1, top5=top5))
 
-    epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
-    return losses.avg, top1.avg, lasso_ratio.avg, epoch_time, batch_size
+    # epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
+    #return losses.avg, top1.avg, lasso_ratio.avg, epoch_time, batch_size
 
 
 def test(testloader, model, criterion, epoch, use_cuda, use_gpu):
