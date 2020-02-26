@@ -258,7 +258,7 @@ def calculateNewBatchSize():
 def main():
     # GPU selection
     use_gpu = 0
-
+    use_gpu_num=0
     cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
     for gpu_id in range(0, 4):
