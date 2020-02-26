@@ -516,6 +516,8 @@ def main():
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, use_gpu_num, batch_size):
     # switch to train mode
+
+    print(f'Train')
     model.train()
 
     # global grp_lasso_coeff
