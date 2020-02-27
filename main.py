@@ -445,7 +445,7 @@ def main():
     gc.collect()
 
     # for epochNet2Net in range(1, 2):
-    while True
+    while True:
         for epoch in range(1, args.epochs + 1):
             # if (args.en_group_lasso and (epoch % args.sparse_interval == 0)) or (epoch == 1):
 
