@@ -444,8 +444,8 @@ def main():
     # torch.cuda.empty_cache()
     gc.collect()
 
-    for epochNet2Net in range(1, 2):
-
+    # for epochNet2Net in range(1, 2):
+    while True
         for epoch in range(1, args.epochs + 1):
             # if (args.en_group_lasso and (epoch % args.sparse_interval == 0)) or (epoch == 1):
 
@@ -506,7 +506,7 @@ def main():
         #     criterion = nn.CrossEntropyLoss()
         #     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
         #                           weight_decay=args.weight_decay)
-
+        break
     # print("\n Verhältnis Modell Größe: ", count / count0)
 
     print("\n ",args.batch_size, " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock, " ; ", args.epochs)
@@ -517,7 +517,6 @@ def main():
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, use_gpu_num, batch_size):
     # switch to train mode
 
-    print(f'Train')
     model.train()
 
     # global grp_lasso_coeff
