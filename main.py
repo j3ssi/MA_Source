@@ -615,7 +615,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
                   data_time=data_time, loss=losses, top1=top1, top5=top5))
 
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
-    return losses.avg, top1.avg, lasso_ratio.avg, epoch_time, batch_size
+    return losses.avg, top1.avg, lasso_ratio.avg, epoch_time
 
 
 def test(testloader, model, criterion, epoch, use_cuda, use_gpu):
