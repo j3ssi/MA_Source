@@ -442,7 +442,7 @@ def main():
     #         break
 
     # torch.cuda.empty_cache()
-    gc.collect()
+    # gc.collect()
     i = 1
     # for epochNet2Net in range(1, 2):
     while i == 1:
@@ -458,7 +458,7 @@ def main():
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion,
                                                                                      optimizer,
                                                                                      epoch, use_cuda, use_gpu,
-                                                                                     use_gpu_num, batch_size)
+                                                                                     use_gpu_num)
             ende = time.time()
             # test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda, use_gpu)
 
@@ -514,7 +514,7 @@ def main():
     print("\n")
 
 
-def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, use_gpu_num, batch_size):
+def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, use_gpu_num):
     # switch to train mode
 
     model.train()
@@ -530,8 +530,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
 
     end = time.time()
 
-    for param in model.parameters():
-        param.grad = None
+    #for param in model.parameters():
+    #    param.grad = None
 
     for batch_idx, (inputs, targets) in enumerate(trainloader):
 
