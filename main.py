@@ -443,9 +443,9 @@ def main():
 
     # torch.cuda.empty_cache()
     gc.collect()
-
+    i = 1
     # for epochNet2Net in range(1, 2):
-    while True:
+    while i == 1:
         for epoch in range(1, args.epochs + 1):
             # if (args.en_group_lasso and (epoch % args.sparse_interval == 0)) or (epoch == 1):
 
@@ -506,8 +506,8 @@ def main():
         #     criterion = nn.CrossEntropyLoss()
         #     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
         #                           weight_decay=args.weight_decay)
-        break
-    # print("\n Verhältnis Modell Größe: ", count / count0)
+        i = 0
+            # print("\n Verhältnis Modell Größe: ", count / count0)
 
     print("\n ",args.batch_size, " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock, " ; ", args.epochs)
     print('{:5.3f}s'.format(ende - start), end='  ')
@@ -567,20 +567,20 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
         # lasso penalty
         init_batch = batch_idx == 0 and epoch == 1
 
-        if args.en_group_lasso:
-            if args.global_group_lasso:
-                lasso_penalty = get_group_lasso_global(model, use_gpu)
-            else:
-                lasso_penalty = get_group_lasso_group(model, use_gpu)
-
-            # Auto-tune the group-lasso coefficient @first training iteration
-            if init_batch:
-                args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (lasso_penalty *
-                                                                                       (1 - args.var_group_lasso_coeff))
-                grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
-            lasso_penalty = lasso_penalty * grp_lasso_coeff
-        else:
-            lasso_penalty = 0.
+        # if args.en_group_lasso:
+        #     if args.global_group_lasso:
+        #         lasso_penalty = get_group_lasso_global(model, use_gpu)
+        #     else:
+        #         lasso_penalty = get_group_lasso_group(model, use_gpu)
+        #
+        #     # Auto-tune the group-lasso coefficient @first training iteration
+        #     if init_batch:
+        #         args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (lasso_penalty *
+        #                                                                                (1 - args.var_group_lasso_coeff))
+        #         grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
+        #     lasso_penalty = lasso_penalty * grp_lasso_coeff
+        # else:
+        lasso_penalty = 0.
 
         # Group lasso calcution is not performance-optimized => Ignore from execution time
         loss += lasso_penalty
