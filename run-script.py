@@ -2,10 +2,10 @@ import os
 
 
 def main():
-    s = 1
-    n = 2
+    s = 3
+    n = 3
 
-    for batch_size in range(1, 881):
+    for batch_size in range(1, 102):
         cmdLine = 'python3 main.py '
         cmdLine = cmdLine + '--workers 4 --epochs 1 '
         cmdLine = cmdLine + '--learning-rate 0.1 --schedule 91 136 '
@@ -14,10 +14,10 @@ def main():
         print(cmdLine)
         os.system(cmdLine)
 
-    s = 2
-    n = 3
+    s = 4
+    n = 2
 
-    for batch_size in range(1, 236):
+    for batch_size in range(1, 68):
         cmdLine = 'python3 main.py '
         cmdLine = cmdLine + '--workers 4 --epochs 1 '
         cmdLine = cmdLine + '--learning-rate 0.1 --schedule 91 136 '
