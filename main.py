@@ -47,6 +47,7 @@ from apex.apex.parallel import DistributedDataParallel as DDP
 from apex.apex.fp16_utils import *
 from apex.apex import amp, optimizers
 from apex.apex.multi_tensor_apply import multi_tensor_applier
+import platform,psutil
 # Parser
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 # Baseline
@@ -255,6 +256,18 @@ def checkmem(use_gpu):
 
 
 def main():
+    device_name=str(torch.cuda.get_device_name(0))
+    device_name="".join((device_name, '_',str(args.NUM_GPU),'_gpus_'))
+    system_configs=str(platform.uname())
+    system_configs='\n'.join((system_configs,str(psutil.cpu_freq()),'cpu_count: '+str(psutil.cpu_count()),'memory_available: '+str(psutil.virtual_memory().available)))
+    gpu_configs=[torch.cuda.device_count(),torch.version.cuda,torch.backends.cudnn.version(),torch.cuda.get_device_name(0)]
+    gpu_configs=list(map(str,gpu_configs))
+    temp=['Number of GPUs on current device : ','CUDA Version : ','Cudnn Version : ','Device Name : ']
+
+    for idx,value in enumerate(zip(temp,gpu_configs)):
+        gpu_configs[idx]=''.join(value)
+        print(gpu_configs[idx])
+    print(system_configs)
     # GPU selection
     use_gpu ='cuda:0'
     use_gpu_num=0
