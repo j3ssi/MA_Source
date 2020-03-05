@@ -256,8 +256,6 @@ def checkmem(use_gpu):
 
 
 def main():
-    device_name=str(torch.cuda.get_device_name(0))
-    device_name="".join((device_name, '_',str(args.NUM_GPU),'_gpus_'))
     system_configs=str(platform.uname())
     system_configs='\n'.join((system_configs,str(psutil.cpu_freq()),'cpu_count: '+str(psutil.cpu_count()),'memory_available: '+str(psutil.virtual_memory().available)))
     gpu_configs=[torch.cuda.device_count(),torch.version.cuda,torch.backends.cudnn.version(),torch.cuda.get_device_name(0)]
