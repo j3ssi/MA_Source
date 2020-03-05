@@ -43,7 +43,10 @@ from src.custom_arch import *
 from src.checkpoint_utils import makeSparse, genDenseModel
 from src.group_lasso_regs import get_group_lasso_global, get_group_lasso_group
 from src.utils import AverageMeter, accuracy
-
+from apex.apex.parallel import DistributedDataParallel as DDP
+from apex.apex.fp16_utils import *
+from apex.apex import amp, optimizers
+from apex.apex.multi_tensor_apply import multi_tensor_applier
 # Parser
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 # Baseline
@@ -337,6 +340,8 @@ def main():
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+    model, optimizer = amp.initialize(model, optimizer)
+
     start = time.time()
 
     # Count the parameters of the model and calculate training bacth size
@@ -594,8 +599,9 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
 
         # compute gradient and do SGD step
 
-        loss.backward()
-
+        # loss.backward()
+        with amp.scale_loss(loss, optimizer) as scaled_loss:
+            scaled_loss.backward()
         optimizer.step()
 
         total, use_after_backward, free = checkmem(use_gpu_num)
