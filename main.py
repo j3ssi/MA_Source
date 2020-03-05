@@ -43,10 +43,10 @@ from src.custom_arch import *
 from src.checkpoint_utils import makeSparse, genDenseModel
 from src.group_lasso_regs import get_group_lasso_global, get_group_lasso_group
 from src.utils import AverageMeter, accuracy
-from apex.apex.parallel import DistributedDataParallel as DDP
-from apex.apex.fp16_utils import *
+# from apex.apex.parallel import DistributedDataParallel as DDP
+# from apex.apex.fp16_utils import *
 from apex.apex import amp, optimizers
-from apex.apex.multi_tensor_apply import multi_tensor_applier
+# from apex.apex.multi_tensor_apply import multi_tensor_applier
 import platform,psutil
 # Parser
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
