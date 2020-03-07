@@ -267,31 +267,40 @@ def main():
         print(gpu_configs[idx])
     print(system_configs)
     # GPU selection
+    not_enough_memory =True
     use_gpu ='cuda:0'
     use_gpu_num=0
     cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-    for gpu_id in range(0, 4):
+    while not_enough_memory:
+        gpu_id = 0
         total, used, free = checkmem(gpu_id)
-        # if used < 20:
-        #     use_gpu = cudaArray[gpu_id]
-        #     use_gpu_num = gpu_id
-        #     # print(f'This Gpu is free')
-        #     # print(f'GPU Id: {gpu_id}')
-        #     # print(f'total    : {total}')
-        #     # print(f'free     : {free}')
-        #     # print(f'used     : {used}')
-        #     # print('\n')
-        #     break
-    #    else:
-    #         print(f'This Gpu is used')
-    #         print(f'GPU Id: {gpu_id}')
-    #         print(f'total    : {total}')
-    #         print(f'free     : {free}')
-    #         print(f'used     : {used}')
-    #         print('\n')
-    # print('\nUse Gpu with the ID: ', use_gpu)
-
+        if used < 20:
+            use_gpu = cudaArray[gpu_id]
+            use_gpu_num = gpu_id
+            print(f'This Gpu is free')
+            print(f'GPU Id: {gpu_id}')
+            print(f'total    : {total}')
+            print(f'free     : {free}')
+            print(f'used     : {used}')
+            print('\n')
+            not_enough_memory = False
+            break
+        gpu_id = 2
+        total, used, free = checkmem(gpu_id)
+        if used < 20:
+            use_gpu = cudaArray[gpu_id]
+            use_gpu_num = gpu_id
+            print(f'This Gpu is free')
+            print(f'GPU Id: {gpu_id}')
+            print(f'total    : {total}')
+            print(f'free     : {free}')
+            print(f'used     : {used}')
+            print('\n')
+            not_enough_memory = False
+            break
+        if not_enough_memory:
+            time.sleep(600)
     use_cuda = torch.cuda.is_available()
 
     # Random seed
