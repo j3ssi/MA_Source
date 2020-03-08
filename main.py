@@ -106,6 +106,8 @@ parser.add_argument('--deeper', default=False, action='store_true',
                     help='Make network deeper')
 parser.add_argument('--visual', default=False, action='store_true',
                     help='Set the visual')
+parser.add_argument('--fp16', default=False, action='store_true',
+                    help='Use half precision apex methods')
 
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
@@ -360,7 +362,8 @@ def main():
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
-    model, optimizer = amp.initialize(model, optimizer)
+    if args.fp16:
+        model, optimizer = amp.initialize(model, optimizer)
 
     start = time.time()
 
@@ -503,6 +506,8 @@ def main():
                 model.cuda(use_gpu)
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
+                if args.fp16:
+                    model, optimizer = amp.initialize(model, optimizer)
 
             count = 0
             for p in model.parameters():
@@ -618,10 +623,11 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
         lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
 
         # compute gradient and do SGD step
-
-        # loss.backward()
-        with amp.scale_loss(loss, optimizer) as scaled_loss:
-            scaled_loss.backward()
+        if args.fp16:
+            with amp.scale_loss(loss, optimizer) as scaled_loss:
+                scaled_loss.backward()
+        else:
+            loss.backward()
         optimizer.step()
 
         total, use_after_backward, free = checkmem(use_gpu_num)

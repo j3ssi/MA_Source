@@ -5,7 +5,7 @@ def main():
     s = 3
     n = 3
 
-    for batch_size in range(102, 204):
+    for batch_size in range(1, 102):
         cmdLine = 'python3 main.py '
         cmdLine = cmdLine + '--workers 4 --epochs 1 '
         cmdLine = cmdLine + '--learning-rate 0.1 --schedule 91 136 '
@@ -17,7 +17,7 @@ def main():
     s = 4
     n = 2
 
-    for batch_size in range(1, 140):
+    for batch_size in range(1, 70):
         cmdLine = 'python3 main.py '
         cmdLine = cmdLine + '--workers 4 --epochs 1 '
         cmdLine = cmdLine + '--learning-rate 0.1 --schedule 91 136 '
