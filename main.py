@@ -290,7 +290,7 @@ def main():
             not_enough_memory = False
             break
         gpu_id = 2
-        print(f'Device Name: {torch.cuda.get_device_name(0)}')
+        print(f'Device Name: {torch.cuda.get_device_name(2)}')
         total, used, free = checkmem(gpu_id)
         if used < 20:
             use_gpu = cudaArray[gpu_id]
