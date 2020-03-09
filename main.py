@@ -275,8 +275,8 @@ def main():
     cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
     while not_enough_memory:
-        gpu_id = 0
-        print(f'Device Name: {torch.cuda.get_device_name(0)}')
+        gpu_id =1
+        print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
         total, used, free = checkmem(gpu_id)
         if used < 20:
             use_gpu = cudaArray[gpu_id]
@@ -289,8 +289,8 @@ def main():
             print('\n')
             not_enough_memory = False
             break
-        gpu_id = 2
-        print(f'Device Name: {torch.cuda.get_device_name(2)}')
+        gpu_id = 3
+        print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
         total, used, free = checkmem(gpu_id)
         if used < 20:
             use_gpu = cudaArray[gpu_id]
