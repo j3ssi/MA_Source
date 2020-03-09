@@ -258,16 +258,16 @@ def checkmem(use_gpu):
 
 
 def main():
-    system_configs=str(platform.uname())
-    system_configs='\n'.join((system_configs,str(psutil.cpu_freq()),'cpu_count: '+str(psutil.cpu_count()),'memory_available: '+str(psutil.virtual_memory().available)))
-    gpu_configs=[torch.cuda.device_count(),torch.version.cuda,torch.backends.cudnn.version(),torch.cuda.get_device_name(0)]
-    gpu_configs=list(map(str,gpu_configs))
-    temp=['Number of GPUs on current device : ','CUDA Version : ','Cudnn Version : ','Device Name : ']
+    # system_configs=str(platform.uname())
+    # system_configs='\n'.join((system_configs,str(psutil.cpu_freq()),'cpu_count: '+str(psutil.cpu_count()),'memory_available: '+str(psutil.virtual_memory().available)))
+    # gpu_configs=[torch.cuda.device_count(),torch.version.cuda,torch.backends.cudnn.version(),torch.cuda.get_device_name(0)]
+    # gpu_configs=list(map(str,gpu_configs))
+    # temp=['Number of GPUs on current device : ','CUDA Version : ','Cudnn Version : ','Device Name : ']
 
-    for idx,value in enumerate(zip(temp,gpu_configs)):
-        gpu_configs[idx]=''.join(value)
-        print(gpu_configs[idx])
-    print(system_configs)
+    # for idx,value in enumerate(zip(temp,gpu_configs)):
+    #     gpu_configs[idx]=''.join(value)
+    #     print(gpu_configs[idx])
+    # print(system_configs)
     # GPU selection
     not_enough_memory =True
     use_gpu ='cuda:0'
@@ -276,6 +276,7 @@ def main():
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
     while not_enough_memory:
         gpu_id = 0
+        print(f'Device Name: {torch.cuda.get_device_name(0)}')
         total, used, free = checkmem(gpu_id)
         if used < 20:
             use_gpu = cudaArray[gpu_id]
@@ -289,6 +290,7 @@ def main():
             not_enough_memory = False
             break
         gpu_id = 2
+        print(f'Device Name: {torch.cuda.get_device_name(0)}')
         total, used, free = checkmem(gpu_id)
         if used < 20:
             use_gpu = cudaArray[gpu_id]
