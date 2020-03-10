@@ -47,7 +47,8 @@ from src.utils import AverageMeter, accuracy
 # from apex.apex.fp16_utils import *
 from apex import amp, optimizers
 # from apex.apex.multi_tensor_apply import multi_tensor_applier
-import platform,psutil
+import platform, psutil
+
 # Parser
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 # Baseline
@@ -258,24 +259,13 @@ def checkmem(use_gpu):
 
 
 def main():
-    # system_configs=str(platform.uname())
-    # system_configs='\n'.join((system_configs,str(psutil.cpu_freq()),'cpu_count: '+str(psutil.cpu_count()),'memory_available: '+str(psutil.virtual_memory().available)))
-    # gpu_configs=[torch.cuda.device_count(),torch.version.cuda,torch.backends.cudnn.version(),torch.cuda.get_device_name(0)]
-    # gpu_configs=list(map(str,gpu_configs))
-    # temp=['Number of GPUs on current device : ','CUDA Version : ','Cudnn Version : ','Device Name : ']
-
-    # for idx,value in enumerate(zip(temp,gpu_configs)):
-    #     gpu_configs[idx]=''.join(value)
-    #     print(gpu_configs[idx])
-    # print(system_configs)
-    # GPU selection
-    not_enough_memory =True
-    use_gpu ='cuda:0'
-    use_gpu_num=0
+    not_enough_memory = True
+    use_gpu = 'cuda:0'
+    use_gpu_num = 0
     cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
     while not_enough_memory:
-        gpu_id =1
+        gpu_id = 0
         print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
         total, used, free = checkmem(gpu_id)
         if used < 20:
@@ -289,7 +279,7 @@ def main():
             print('\n')
             not_enough_memory = False
             break
-        gpu_id = 3
+        gpu_id = 2
         print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
         total, used, free = checkmem(gpu_id)
         if used < 20:
@@ -343,17 +333,11 @@ def main():
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
-    # memory usage before model creation
-    total, use_before_model, free = checkmem(use_gpu_num)
-    # print(f'Available before Model Creation: {free}')
-
-    # print(f'Use before Model Creation: smi {use_before_model} torch {torch.cuda.memory_allocated(use_gpu)}')
-    # print(f'Max memory before modell creation: {torch.cuda.max_memory_allocated(use_gpu)}')
     # dynamic resnet modell
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda(use_gpu)
-    use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
-    total, use_after_model, free_after_model = checkmem(use_gpu_num)
+    # use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
+    # total, use_after_model, free_after_model = checkmem(use_gpu_num)
 
     # print(f'Available after Model Creation: {free_after_model}')
     # print(f'Use after modell creation: smi {use_after_model} torch {torch.cuda.memory_allocated(use_gpu)}')
@@ -377,17 +361,22 @@ def main():
     count1 = count0
     if not args.batchTrue:
         # Calculate Size of Trainings Batch size
-        stages = [2.91, 24.22, 192, 1491.05]
-        s = stages[args.numOfStages-1]
-        model_sizes = [41472, 141824, 519168, 2003968]
-        m = model_sizes[args.numOfStages-1]
-        gerade = [1.44, 20.16, 189.39, 1694.55 ]
-        bs = [14727,5856, 2704, 1344]
-        b = bs[args.numOfStages -1]
-        g = gerade[args.numOfStages-1]
-        x = use_after_model_creation / args.numOfBlocksinStage
-        batch_size = int(x*0.97/(g*(args.numOfBlocksinStage-1)+s))
-        batch_size0 = batch_size
+        # stages = [2.91, 24.22, 192, 1491.05]
+        # s = stages[args.numOfStages - 1]
+        model_count = [7642, 31034, 123898, 493946, 1971322, 7875194, 31479418]
+        m = model_count[args.numOfStages - 1]
+        # gerade = [1.44, 20.16, 189.39, 1694.55]
+        # bs = [14727, 5856, 2704, 1344]
+        # b = bs[args.numOfStages - 1]
+        # g = gerade[args.numOfStages - 1]
+        # x = count0/ args.numOfBlocksinStage
+        # batch_size = int(x * 0.97 / (g * (args.numOfBlocksinStage - 1) + s))
+        # batch_size0 = batch_size
+        ms = [0.2926, 4.4695, 45.0126, 406.9735]
+        m = ms[args.numOfStages - 1]
+        y0s = [0.2392, 0.7999, -0.2135, -51.4890]
+        y0 = y0s[args.numOfStages - 1]
+        batch_size = m*args.numOfBlocksinStage +y0
     else:
         batch_size = args.batch_size
 
@@ -486,9 +475,9 @@ def main():
             # print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
             start = time.time()
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion,
-                                                                                     optimizer,
-                                                                                     epoch, use_cuda, use_gpu,
-                                                                                     use_gpu_num)
+                                                                         optimizer,
+                                                                         epoch, use_cuda, use_gpu,
+                                                                         use_gpu_num)
             ende = time.time()
             # test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda, use_gpu)
 
@@ -517,9 +506,10 @@ def main():
             if count < count1:
                 # print(f'Count: {count} ; {count0} ; {count/count0}')
                 count1 = count
-                # batch_size = int((1-count /count0) * 680 + count/count0*batch_size0)
-                # trainloader = data.DataLoader(trainset, batch_size=batch_size,
-                #                              shuffle=True, num_workers=args.workers)
+                batch_size = int(0.97 * m * args.numOfBlocksinStage*(count - m)/(count0 - m)+y0)
+
+                trainloader = data.DataLoader(trainset, batch_size=batch_size,
+                                             shuffle=True, num_workers=args.workers)
 
                 # print(f'new batch_size: {batch_size}')
             # print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
@@ -539,9 +529,10 @@ def main():
         #     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
         #                           weight_decay=args.weight_decay)
         i = 0
-            # print("\n Verhältnis Modell Größe: ", count / count0)
+        # print("\n Verhältnis Modell Größe: ", count / count0)
 
-    print("\n ",args.batch_size, " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock, " ; ", args.epochs)
+    print("\n ", args.batch_size, " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock,
+          " ; ", args.epochs)
     print('{:5.3f}s'.format(ende - start), end='  ')
     print("\n")
 
@@ -562,7 +553,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
 
     end = time.time()
 
-    #for param in model.parameters():
+    # for param in model.parameters():
     #    param.grad = None
 
     for batch_idx, (inputs, targets) in enumerate(trainloader):
@@ -653,7 +644,6 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
 
 
 def test(testloader, model, criterion, epoch, use_cuda, use_gpu):
-
     batch_time = AverageMeter()
     data_time = AverageMeter()
     losses = AverageMeter()
