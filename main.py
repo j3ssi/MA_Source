@@ -525,7 +525,7 @@ def main():
 
                 print(f'new batch_size: {batch_size}')
             # print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
-            # print('\nTest Acc: ', test_acc)
+            print('\nTest Acc: ', test_acc)
 
         # if (args.deeper):
         #     print("\n\nnow deeper")
