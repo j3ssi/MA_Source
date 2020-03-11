@@ -377,6 +377,8 @@ def main():
         y0s = [0.2392, 0.7999, -0.2135, -51.4890]
         y0 = y0s[args.numOfStages - 1]
         batch_size = m*args.numOfBlocksinStage +y0
+        print(f'batch_size: {batch_size}')
+
     else:
         batch_size = args.batch_size
 
@@ -511,7 +513,7 @@ def main():
                 trainloader = data.DataLoader(trainset, batch_size=batch_size,
                                              shuffle=True, num_workers=args.workers)
 
-                # print(f'new batch_size: {batch_size}')
+                print(f'new batch_size: {batch_size}')
             # print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
             # print('\nTest Acc: ', test_acc)
 

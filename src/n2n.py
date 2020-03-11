@@ -416,5 +416,3 @@ def n(name):
         return 'module.' + name + '.weight'
 
 
-def getRmLayers(name, dataset):
-    pass
