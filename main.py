@@ -378,7 +378,7 @@ def main():
         y0 = y0s[args.numOfStages - 1]
         y = m*args.numOfBlocksinStage +y0
         batch_size = int(count0/args.numOfBlocksinStage*1/y)
-        print(f'batch_size: {batch_size}')
+        print(f'batch_size: {batch_size} ; {y}')
 
     else:
         batch_size = args.batch_size
