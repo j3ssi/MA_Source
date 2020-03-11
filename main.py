@@ -482,7 +482,7 @@ def main():
                                                                          epoch, use_cuda, use_gpu,
                                                                          use_gpu_num)
             ende = time.time()
-            # test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda, use_gpu)
+            test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda, use_gpu)
 
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0):
