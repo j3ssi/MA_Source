@@ -509,9 +509,15 @@ def main():
             if count < count1:
                 print(f'Count: {count} ; {count0} ; {count/count0}')
                 count1 = count
+                if (count/count0) > 0.9:
+                    a = 0.9
+                elif (count/count0) > 0.7:
+                    a=0.8
+                else:
+                    a= 0.7
                 y = int(m * args.numOfBlocksinStage*(count - m)/(count0 - m)+y0)
                 print(f'Y: {y}')
-                batch_size = int(0.80 * count0 / args.numOfBlocksinStage * 1 / y)
+                batch_size = int(a * count0 / args.numOfBlocksinStage * 1 / y)
 
                 trainloader = data.DataLoader(trainset, batch_size=batch_size,
                                              shuffle=True, num_workers=args.workers)
