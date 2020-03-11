@@ -510,7 +510,7 @@ def main():
                 print(f'Count: {count} ; {count0} ; {count/count0}')
                 count1 = count
                 y = int(m * args.numOfBlocksinStage*(count - m)/(count0 - m)+y0)
-
+                print(f'Y: {y}')
                 batch_size = int(0.85 * count0 / args.numOfBlocksinStage * 1 / y)
 
                 trainloader = data.DataLoader(trainset, batch_size=batch_size,
