@@ -511,7 +511,7 @@ def main():
                 count1 = count
                 y = int(m * args.numOfBlocksinStage*(count - m)/(count0 - m)+y0)
 
-                batch_size = int(0.90 * count0 / args.numOfBlocksinStage * 1 / y)
+                batch_size = int(0.85 * count0 / args.numOfBlocksinStage * 1 / y)
 
                 trainloader = data.DataLoader(trainset, batch_size=batch_size,
                                              shuffle=True, num_workers=args.workers)
