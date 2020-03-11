@@ -507,7 +507,7 @@ def main():
             for p in model.parameters():
                 count += p.data.nelement()
             if count < count1:
-                # print(f'Count: {count} ; {count0} ; {count/count0}')
+                print(f'Count: {count} ; {count0} ; {count/count0}')
                 count1 = count
                 batch_size = int(0.97 * m * args.numOfBlocksinStage*(count - m)/(count0 - m)+y0)
 
