@@ -109,6 +109,8 @@ parser.add_argument('--visual', default=False, action='store_true',
                     help='Set the visual')
 parser.add_argument('--fp16', default=False, action='store_true',
                     help='Use half precision apex methods')
+parser.add_argument('--gpu1080', default=False, action='store_true',
+                    help='Use Geforce 1080 instea of geforce 2080')
 
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
@@ -265,7 +267,10 @@ def main():
     cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
     while not_enough_memory:
-        gpu_id = 0
+        if args.gpu1080:
+            gpu_id = 1
+        else:
+            gpu_id = 0
         print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
         total, used, free = checkmem(gpu_id)
         if used < 20:
@@ -279,7 +284,10 @@ def main():
             print('\n')
             not_enough_memory = False
             break
-        gpu_id = 2
+        if args.gpu1080:
+            gpu_id = 3
+        else:
+            gpu_id = 2
         print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
         total, used, free = checkmem(gpu_id)
         if used < 20:

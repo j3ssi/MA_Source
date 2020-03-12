@@ -32,7 +32,7 @@ def main():
 
     for batch_size in range(1, 70):
         cmdLine = 'python3 main.py '
-        cmdLine = cmdLine + '--workers 4 --epochs 1 '
+        cmdLine = cmdLine + '--workers 4 --epochs 1 --gpu1080'
         cmdLine = cmdLine + '--learning-rate 0.1 --schedule 91 136 '
         cmdLine = cmdLine + '--batchTrue --batch_size ' + str(batch_size * 10)
         cmdLine = cmdLine + ' --test_batch 100 -s ' + str(s) + ' -n ' + str(n) + ' -l 3'
@@ -43,7 +43,7 @@ def main():
 
     for batch_size in range(1, 70):
         cmdLine = 'python3 main.py '
-        cmdLine = cmdLine + '--workers 4 --epochs 1 --fp16'
+        cmdLine = cmdLine + '--workers 4 --epochs 1 --fp16 --gpu1080'
         cmdLine = cmdLine + ' --learning-rate 0.1 --schedule 91 136 '
         cmdLine = cmdLine + '--batchTrue --batch_size ' + str(batch_size * 10)
         cmdLine = cmdLine + ' --test_batch 100 -s ' + str(s) + ' -n ' + str(n) + ' -l 3'
