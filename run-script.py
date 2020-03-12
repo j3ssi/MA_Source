@@ -41,7 +41,7 @@ def main():
     s = 4
     n = 2
 
-    for batch_size in range(1, 70):
+    for batch_size in range(1, 80):
         cmdLine = 'python3 main.py '
         cmdLine = cmdLine + '--workers 4 --epochs 1 --fp16 --gpu1080'
         cmdLine = cmdLine + ' --learning-rate 0.1 --schedule 91 136 '

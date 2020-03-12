@@ -268,6 +268,7 @@ def main():
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
     while not_enough_memory:
         if args.gpu1080:
+            print(f'Nutze Geforce 1080')
             gpu_id = 1
         else:
             gpu_id = 0
