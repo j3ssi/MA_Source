@@ -285,9 +285,10 @@ def main():
             print('\n')
             not_enough_memory = False
             break
-        if args.gpu1080:
+
+        if args.gpu1080 and not_enough_memory:
             gpu_id = 3
-        else:
+        elif not_enough_memory:
             gpu_id = 2
         print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
         total, used, free = checkmem(gpu_id)
