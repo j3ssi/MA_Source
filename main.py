@@ -262,49 +262,49 @@ def checkmem(use_gpu):
 
 def main():
     not_enough_memory = True
-    use_gpu = 'cuda:0'
-    use_gpu_num = 0
+    use_gpu = 'cuda:1'
+    use_gpu_num = 1
     cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-    while not_enough_memory:
-        if args.gpu1080:
-            print(f'Nutze Geforce 1080')
-            gpu_id = 1
-        else:
-            gpu_id = 0
-        print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
-        total, used, free = checkmem(gpu_id)
-        if used < 20:
-            use_gpu = cudaArray[gpu_id]
-            use_gpu_num = gpu_id
-            print(f'This Gpu is free')
-            print(f'GPU Id: {gpu_id}')
-            print(f'total    : {total}')
-            print(f'free     : {free}')
-            print(f'used     : {used}')
-            print('\n')
-            not_enough_memory = False
-            break
-
-        if args.gpu1080 and not_enough_memory:
-            gpu_id = 3
-        elif not_enough_memory:
-            gpu_id = 2
-        print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
-        total, used, free = checkmem(gpu_id)
-        if used < 20:
-            use_gpu = cudaArray[gpu_id]
-            use_gpu_num = gpu_id
-            print(f'This Gpu is free')
-            print(f'GPU Id: {gpu_id}')
-            print(f'total    : {total}')
-            print(f'free     : {free}')
-            print(f'used     : {used}')
-            print('\n')
-            not_enough_memory = False
-            break
-        if not_enough_memory:
-            time.sleep(600)
+    # while not_enough_memory:
+    #     if args.gpu1080:
+    #         print(f'Nutze Geforce 1080')
+    #         gpu_id = 1
+    #     else:
+    #         gpu_id = 0
+    #     print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
+    #     total, used, free = checkmem(gpu_id)
+    #     if used < 20:
+    #         use_gpu = cudaArray[gpu_id]
+    #         use_gpu_num = gpu_id
+    #         print(f'This Gpu is free')
+    #         print(f'GPU Id: {gpu_id}')
+    #         print(f'total    : {total}')
+    #         print(f'free     : {free}')
+    #         print(f'used     : {used}')
+    #         print('\n')
+    #         not_enough_memory = False
+    #         break
+    #
+    #     if args.gpu1080 and not_enough_memory:
+    #         gpu_id = 3
+    #     elif not_enough_memory:
+    #         gpu_id = 2
+    #     print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
+    #     total, used, free = checkmem(gpu_id)
+    #     if used < 20:
+    #         use_gpu = cudaArray[gpu_id]
+    #         use_gpu_num = gpu_id
+    #         print(f'This Gpu is free')
+    #         print(f'GPU Id: {gpu_id}')
+    #         print(f'total    : {total}')
+    #         print(f'free     : {free}')
+    #         print(f'used     : {used}')
+    #         print('\n')
+    #         not_enough_memory = False
+    #         break
+    #     if not_enough_memory:
+    #         time.sleep(600)
     use_cuda = torch.cuda.is_available()
 
     # Random seed
@@ -476,66 +476,70 @@ def main():
     # torch.cuda.empty_cache()
     # gc.collect()
     i = 1
+    hasRun =False
     # for epochNet2Net in range(1, 2):
-    while i == 1:
-        for epoch in range(1, args.epochs + 1):
-            # if (args.en_group_lasso and (epoch % args.sparse_interval == 0)) or (epoch == 1):
+    while hasRun ==False:
+        try:
+            while i == 1:
+                for epoch in range(1, args.epochs + 1):
+                    # if (args.en_group_lasso and (epoch % args.sparse_interval == 0)) or (epoch == 1):
 
-            # adjust learning rate when epoch is the scheduled epoch
-            if epoch in args.schedule:
-                adjust_learning_rate(optimizer, epoch)
+                    # adjust learning rate when epoch is the scheduled epoch
+                    if epoch in args.schedule:
+                        adjust_learning_rate(optimizer, epoch)
 
-            # print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
-            start = time.time()
-            train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion,
+                    # print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
+                    start = time.time()
+                    train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion,
                                                                          optimizer,
                                                                          epoch, use_cuda, use_gpu,
                                                                          use_gpu_num)
-            ende = time.time()
-            test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda, use_gpu)
+                    ende = time.time()
+                    #test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda, use_gpu)
 
-            # SparseTrain routine
-            if args.en_group_lasso and (epoch % args.sparse_interval == 0):
-                # Force weights under threshold to zero
-                dense_chs, chs_map = makeSparse(optimizer, model, args.threshold, use_gpu)
-                if args.visual:
-                    visualizePruneTrain(model, epoch, args.threshold)
-
-                genDenseModel(model, dense_chs, optimizer, 'cifar', use_gpu)
-                gc.collect()
-                model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False,
-                                model)
-                use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
-                # print(f'use after new Model Creation')
-                model.cuda(use_gpu)
-                optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-                                      weight_decay=args.weight_decay)
-                if args.fp16:
-                    model, optimizer = amp.initialize(model, optimizer)
-
-            count = 0
-            for p in model.parameters():
-                count += p.data.nelement()
-            if count < count1:
-                print(f'Count: {count} ; {count0} ; {count/count0}')
-                count1 = count
-                if (count/count0) > 0.9:
-                    a = 0.9
-                elif (count/count0) > 0.7:
-                    a=0.8
-
-                else:
-                    a= 0.6
-                y = int(m * args.numOfBlocksinStage*(count - m)/(count0 - m)+y0)
-                print(f'Y: {y}')
-                batch_size = int(count/ args.numOfBlocksinStage * 1 / y)
-
-                trainloader = data.DataLoader(trainset, batch_size=batch_size,
-                                             shuffle=True, num_workers=args.workers)
-
-                print(f'new batch_size: {batch_size}')
-            # print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
-            print('\nTest Acc: ', test_acc)
+            #         # SparseTrain routine
+            # if args.en_group_lasso and (epoch % args.sparse_interval == 0):
+            #     # Force weights under threshold to zero
+            #     dense_chs, chs_map = makeSparse(optimizer, model, args.threshold, use_gpu)
+            #     if args.visual:
+            #         visualizePruneTrain(model, epoch, args.threshold)
+            #
+            #     genDenseModel(model, dense_chs, optimizer, 'cifar', use_gpu)
+            #     gc.collect()
+            #     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False,
+            #                     model)
+            #     use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
+            #     # print(f'use after new Model Creation')
+            #     model.cuda(use_gpu)
+            #     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+            #                           weight_decay=args.weight_decay)
+            #     if args.fp16:
+            #         model, optimizer = amp.initialize(model, optimizer)
+            #
+            # count = 0
+            # for p in model.parameters():
+            #     count += p.data.nelement()
+            # if count < count1:
+            #     print(f'Count: {count} ; {count0} ; {count/count0}')
+            #     count1 = count
+            #     if (count/count0) > 0.9:
+            #         a = 0.9
+            #     elif (count/count0) > 0.7:
+            #         a=0.8
+            #
+            #     else:
+            #         a= 0.6
+            #     y = int(m * args.numOfBlocksinStage*(count - m)/(count0 - m)+y0)
+            #     print(f'Y: {y}')
+            #     batch_size = int(count/ args.numOfBlocksinStage * 1 / y)
+            #
+            #     trainloader = data.DataLoader(trainset, batch_size=batch_size,
+            #                                  shuffle=True, num_workers=args.workers)
+            #
+            #     print(f'new batch_size: {batch_size}')
+            # # print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
+            #print('\nTest Acc: ', test_acc)
+            hasRun =True
 
         # if (args.deeper):
         #     print("\n\nnow deeper")
@@ -550,13 +554,15 @@ def main():
         #     criterion = nn.CrossEntropyLoss()
         #     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
         #                           weight_decay=args.weight_decay)
-        i = 0
+        #i = 0
         # print("\n Verhältnis Modell Größe: ", count / count0)
 
-    print("\n ", args.batch_size, " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock,
-          " ; ", args.epochs)
-    print('{:5.3f}s'.format(ende - start), end='  ')
-    print("\n")
+        except RuntimeError as e:
+            time.sleep(600)
+
+    print("\n ", args.batch_size )#, " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
+    print(' {:5.3f}s'.format(ende - start), end='  ')
+
 
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, use_gpu_num):
