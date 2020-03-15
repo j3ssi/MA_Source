@@ -478,7 +478,7 @@ def main():
     i = 1
     hasRun =False
     # for epochNet2Net in range(1, 2):
-    while hasRun ==False:
+    while hasRun == False:
         try:
             while i == 1:
                 for epoch in range(1, args.epochs + 1):
@@ -497,6 +497,7 @@ def main():
                     ende = time.time()
                     #test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda, use_gpu)
 
+                i=2
             #         # SparseTrain routine
             # if args.en_group_lasso and (epoch % args.sparse_interval == 0):
             #     # Force weights under threshold to zero
@@ -541,7 +542,7 @@ def main():
             #print('\nTest Acc: ', test_acc)
             hasRun =True
 
-        # if (args.deeper):
+                    # if (args.deeper):
         #     print("\n\nnow deeper")
         #     # deeper student training
         #     if best_acc < 50:
@@ -558,6 +559,7 @@ def main():
         # print("\n Verhältnis Modell Größe: ", count / count0)
 
         except RuntimeError as e:
+            
             time.sleep(600)
 
     print("\n ", args.batch_size )#, " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
