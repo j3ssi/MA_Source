@@ -503,7 +503,6 @@ def main():
             if args.test:
                 test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda,
                                                                          use_gpu)
-                print('\nTest Acc: ', test_acc)
             i = 2
             #         # SparseTrain routine
             # if args.en_group_lasso and (epoch % args.sparse_interval == 0):
@@ -566,6 +565,8 @@ def main():
 
 
     print("\n ", args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
+    print(" " ,test_acc)
+
     print(' {:5.3f}s'.format(ende - start), end='  ')
 
 
