@@ -648,7 +648,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
         lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
 
         # compute gradient and do SGD step
-        if args.fp16:
+        if args.O1 or args.O2:
             with amp.scale_loss(loss, optimizer) as scaled_loss:
                 scaled_loss.backward()
         else:
