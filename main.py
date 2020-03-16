@@ -107,10 +107,14 @@ parser.add_argument('--deeper', default=False, action='store_true',
                     help='Make network deeper')
 parser.add_argument('--visual', default=False, action='store_true',
                     help='Set the visual')
-parser.add_argument('--fp16', default=False, action='store_true',
-                    help='Use half precision apex methods')
+parser.add_argument('--O1', default=False, action='store_true',
+                    help='Use half precision apex methods O1')
+parser.add_argument('--O2', default=False, action='store_true',
+                    help='Use half precision apex methods O2')
 parser.add_argument('--gpu1080', default=False, action='store_true',
-                    help='Use Geforce 1080 instea of geforce 2080')
+                    help='Use Geforce 1080 instead of geforce 2080')
+parser.add_argument('--test', default=False, action='store_true',
+                    help='Should the Test run?')
 
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
@@ -266,45 +270,45 @@ def main():
     use_gpu_num = 1
     cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-    # while not_enough_memory:
-    #     if args.gpu1080:
-    #         print(f'Nutze Geforce 1080')
-    #         gpu_id = 1
-    #     else:
-    #         gpu_id = 0
-    #     print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
-    #     total, used, free = checkmem(gpu_id)
-    #     if used < 20:
-    #         use_gpu = cudaArray[gpu_id]
-    #         use_gpu_num = gpu_id
-    #         print(f'This Gpu is free')
-    #         print(f'GPU Id: {gpu_id}')
-    #         print(f'total    : {total}')
-    #         print(f'free     : {free}')
-    #         print(f'used     : {used}')
-    #         print('\n')
-    #         not_enough_memory = False
-    #         break
-    #
-    #     if args.gpu1080 and not_enough_memory:
-    #         gpu_id = 3
-    #     elif not_enough_memory:
-    #         gpu_id = 2
-    #     print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
-    #     total, used, free = checkmem(gpu_id)
-    #     if used < 20:
-    #         use_gpu = cudaArray[gpu_id]
-    #         use_gpu_num = gpu_id
-    #         print(f'This Gpu is free')
-    #         print(f'GPU Id: {gpu_id}')
-    #         print(f'total    : {total}')
-    #         print(f'free     : {free}')
-    #         print(f'used     : {used}')
-    #         print('\n')
-    #         not_enough_memory = False
-    #         break
-    #     if not_enough_memory:
-    #         time.sleep(600)
+    while not_enough_memory:
+        if args.gpu1080:
+            print(f'Nutze Geforce 1080')
+            gpu_id = 1
+        else:
+            gpu_id = 0
+        print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
+        total, used, free = checkmem(gpu_id)
+        if used < 20:
+            use_gpu = cudaArray[gpu_id]
+            use_gpu_num = gpu_id
+            print(f'This Gpu is free')
+            print(f'GPU Id: {gpu_id}')
+            print(f'total    : {total}')
+            print(f'free     : {free}')
+            print(f'used     : {used}')
+            print('\n')
+            not_enough_memory = False
+            break
+
+        if args.gpu1080 and not_enough_memory:
+            gpu_id = 3
+        elif not_enough_memory:
+            gpu_id = 2
+        print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
+        total, used, free = checkmem(gpu_id)
+        if used < 20:
+            use_gpu = cudaArray[gpu_id]
+            use_gpu_num = gpu_id
+            print(f'This Gpu is free')
+            print(f'GPU Id: {gpu_id}')
+            print(f'total    : {total}')
+            print(f'free     : {free}')
+            print(f'used     : {used}')
+            print('\n')
+            not_enough_memory = False
+            break
+        if not_enough_memory:
+            time.sleep(600)
     use_cuda = torch.cuda.is_available()
 
     # Random seed
@@ -339,7 +343,7 @@ def main():
 
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
 
-    # trainloader = data.DataLoader(trainset, batch_size=512, shuffle=True, num_workers=args.workers)
+    #trainloader = data.DataLoader(trainset, batch_size=args.batch_size, shuffle=True, num_workers=args.workers)
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
@@ -358,8 +362,10 @@ def main():
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
-    if args.fp16:
-        model, optimizer = amp.initialize(model, optimizer)
+    if args.O1:
+        model, optimizer = amp.initialize(model, optimizer, opt_level="O1")
+    if args.O2:
+        model, optimizer = amp.initialize(model, optimizer, opt_level="O2")
 
     start = time.time()
 
@@ -475,29 +481,30 @@ def main():
 
     # torch.cuda.empty_cache()
     # gc.collect()
+
     i = 1
-    hasRun =False
     # for epochNet2Net in range(1, 2):
-    while hasRun == False:
-        try:
-            while i == 1:
-                for epoch in range(1, args.epochs + 1):
+    while i == 1:
+        for epoch in range(1, args.epochs + 1):
                     # if (args.en_group_lasso and (epoch % args.sparse_interval == 0)) or (epoch == 1):
 
                     # adjust learning rate when epoch is the scheduled epoch
-                    if epoch in args.schedule:
-                        adjust_learning_rate(optimizer, epoch)
+                    # if epoch in args.schedule:
+                    #     adjust_learning_rate(optimizer, epoch)
 
                     # print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
-                    start = time.time()
-                    train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion,
-                                                                         optimizer,
-                                                                         epoch, use_cuda, use_gpu,
-                                                                         use_gpu_num)
-                    ende = time.time()
-                    #test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda, use_gpu)
+            start = time.time()
+            train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion,
+                                                                                 optimizer,
+                                                                                 epoch, use_cuda, use_gpu,
+                                                                                 use_gpu_num)
+            ende = time.time()
 
-                i=2
+            if args.test:
+                test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda,
+                                                                         use_gpu)
+                print('\nTest Acc: ', test_acc)
+            i = 2
             #         # SparseTrain routine
             # if args.en_group_lasso and (epoch % args.sparse_interval == 0):
             #     # Force weights under threshold to zero
@@ -539,32 +546,27 @@ def main():
             #
             #     print(f'new batch_size: {batch_size}')
             # # print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
-            #print('\nTest Acc: ', test_acc)
-            hasRun =True
+            #
 
-                    # if (args.deeper):
-        #     print("\n\nnow deeper")
-        #     # deeper student training
-        #     if best_acc < 50:
-        #         model = n2n.deeper(model, optimizer, [2, 4])
-        #     elif best_acc < 75:
-        #         model = n2n.deeper(model, optimizer, [2])
-        #     elif best_acc < 95:
-        #         model = n2n.deeper(model, optimizer, [2])
-        #     model.cuda(use_gpu)
-        #     criterion = nn.CrossEntropyLoss()
-        #     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-        #                           weight_decay=args.weight_decay)
-        #i = 0
-        # print("\n Verhältnis Modell Größe: ", count / count0)
+            # if (args.deeper):
+            #     print("\n\nnow deeper")
+            #     # deeper student training
+            #     if best_acc < 50:
+            #         model = n2n.deeper(model, optimizer, [2, 4])
+            #     elif best_acc < 75:
+            #         model = n2n.deeper(model, optimizer, [2])
+            #     elif best_acc < 95:
+            #         model = n2n.deeper(model, optimizer, [2])
+            #     model.cuda(use_gpu)
+            #     criterion = nn.CrossEntropyLoss()
+            #     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+            #                           weight_decay=args.weight_decay)
+            # i = 0
+            # print("\n Verhältnis Modell Größe: ", count / count0)
 
-        except RuntimeError as e:
-            
-            time.sleep(600)
 
-    print("\n ", args.batch_size )#, " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
+    print("\n ", args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
     print(' {:5.3f}s'.format(ende - start), end='  ')
-
 
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, use_gpu_num):

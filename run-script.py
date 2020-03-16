@@ -2,14 +2,15 @@ import os
 
 
 def main():
+    # Test, wie wie sich die Accuracy in den verschiedenen Optimierungsstufen verhält
     s = 3
     n = 3
 
-    for batch_size in range(1, 102):
+    for batch_size in range(1, 10):
         cmdLine = 'python3 main.py '
-        cmdLine = cmdLine + '--workers 4 --epochs 1 --gpu1080 '
-        cmdLine = cmdLine + ' --learning-rate 0.1 --schedule 91 136 '
-        cmdLine = cmdLine + '--batchTrue --batch_size ' + str(batch_size * 10)
+        cmdLine = cmdLine + '--workers 4 --epochs 50 --test'
+        cmdLine = cmdLine + ' --learning-rate 0.1 '
+        cmdLine = cmdLine + '--batchTrue --batch_size ' + str(batch_size * 100)
         cmdLine = cmdLine + ' --test_batch 100 -s ' + str(s) + ' -n ' + str(n) + ' -l 3'
         print(cmdLine)
         os.system(cmdLine)
@@ -17,39 +18,26 @@ def main():
     s = 3
     n = 3
 
-    for batch_size in range(1, 102):
+    for batch_size in range(1, 20):
         cmdLine = 'python3 main.py '
-        cmdLine = cmdLine + '--workers 4 --epochs 1 --fp16 --gpu1080'
-        cmdLine = cmdLine + ' --learning-rate 0.1 --schedule 91 136 '
-        cmdLine = cmdLine + '--batchTrue --batch_size ' + str(batch_size * 10)
+        cmdLine = cmdLine + '--workers 4 --epochs 50 --O1 --test '
+        cmdLine = cmdLine + ' --learning-rate 0.1 '
+        cmdLine = cmdLine + '--batchTrue --batch_size ' + str(batch_size * 100)
         cmdLine = cmdLine + ' --test_batch 100 -s ' + str(s) + ' -n ' + str(n) + ' -l 3'
         print(cmdLine)
         os.system(cmdLine)
 
+    s = 3
+    n = 3
 
-    s = 4
-    n = 2
-
-    for batch_size in range(1, 70):
+    for batch_size in range(1, 20):
         cmdLine = 'python3 main.py '
-        cmdLine = cmdLine + '--workers 4 --epochs 1 --gpu1080'
-        cmdLine = cmdLine + ' --learning-rate 0.1 --schedule 91 136 '
-        cmdLine = cmdLine + '--batchTrue --batch_size ' + str(batch_size * 10)
+        cmdLine = cmdLine + '--workers 4 --epochs 50 --O2'
+        cmdLine = cmdLine + ' --learning-rate 0.1 '
+        cmdLine = cmdLine + '--batchTrue --batch_size ' + str(batch_size * 100)
         cmdLine = cmdLine + ' --test_batch 100 -s ' + str(s) + ' -n ' + str(n) + ' -l 3'
         print(cmdLine)
         os.system(cmdLine)
-    s = 4
-    n = 2
-
-    for batch_size in range(1, 80):
-        cmdLine = 'python3 main.py '
-        cmdLine = cmdLine + '--workers 4 --epochs 1 --fp16 --gpu1080'
-        cmdLine = cmdLine + ' --learning-rate 0.1 --schedule 91 136 '
-        cmdLine = cmdLine + '--batchTrue --batch_size ' + str(batch_size * 10)
-        cmdLine = cmdLine + ' --test_batch 100 -s ' + str(s) + ' -n ' + str(n) + ' -l 3'
-        print(cmdLine)
-        os.system(cmdLine)
-
 
 if __name__ == '__main__':
     main()
