@@ -259,7 +259,7 @@ def checkmem(use_gpu):
     total = int(total)
     used = int(used)
     free = int(free)
-    # print(use_gpu, 'Total GPU mem:', total, 'used:', used)
+    print(use_gpu, 'Total GPU mem:', total, 'used:', used)
     return total, used, free
 
 
