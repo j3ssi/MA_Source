@@ -274,6 +274,7 @@ def main():
             print(f'Nutze Geforce 1080')
             gpu_id = 1
         else:
+            print(f'gpu id:0')
             gpu_id = 0
         print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
         total, used, free = checkmem(gpu_id)
