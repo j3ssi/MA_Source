@@ -290,6 +290,8 @@ def main():
             break
 
         if args.gpu1080 and not_enough_memory:
+            print(f'GPU1080 id 3')
+
             gpu_id = 3
         elif not_enough_memory:
             gpu_id = 2
