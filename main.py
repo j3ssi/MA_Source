@@ -266,8 +266,8 @@ def checkmem(use_gpu):
 
 def main():
     not_enough_memory = True
-    use_gpu = 'cuda:1'
-    use_gpu_num = 1
+    use_gpu = 'cuda:0'
+    use_gpu_num = 0
     cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
     while not_enough_memory:
@@ -656,7 +656,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
             loss.backward()
         optimizer.step()
 
-        total, use_after_backward, free = checkmem(use_gpu_num)
+        # total, use_after_backward, free = checkmem(use_gpu_num)
         # print(f'Available after Backward Path: {total - use_after_backward}')
         # measure elapsed time
         batch_time.update(time.time() - end - data_load_time)
