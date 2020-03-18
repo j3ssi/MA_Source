@@ -280,6 +280,7 @@ def main():
         total, used, free = checkmem(gpu_id)
         if used < 20:
             use_gpu = cudaArray[gpu_id]
+            torch.cuda.set_device(gpu_id)
             use_gpu_num = gpu_id
             print(f'This Gpu is free')
             print(f'GPU Id: {gpu_id}')
@@ -301,6 +302,7 @@ def main():
         if used < 20:
             use_gpu = cudaArray[gpu_id]
             use_gpu_num = gpu_id
+            torch.cuda.set_device(gpu_id)
             print(f'This Gpu is free')
             print(f'GPU Id: {gpu_id}')
             print(f'total    : {total}')
@@ -351,7 +353,7 @@ def main():
 
     # dynamic resnet modell
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
-    model.cuda(use_gpu)
+    model.cuda()
     # use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
     # total, use_after_model, free_after_model = checkmem(use_gpu_num)
 
@@ -397,7 +399,6 @@ def main():
         y = m*args.numOfBlocksinStage +y0
         batch_size = int(0.99*count0/args.numOfBlocksinStage*1/y)
         print(f'batch_size: {batch_size} ; {y}')
-
     else:
         batch_size = args.batch_size
 
@@ -602,7 +603,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
         optimizer.zero_grad()
 
         if use_cuda:
-            inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
+            inputs, targets = inputs.cuda(), targets.cuda()
 
         with torch.no_grad():
             inputs = Variable(inputs)
