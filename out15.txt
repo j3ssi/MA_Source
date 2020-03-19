@@ -11,24 +11,24 @@ used     : 10
 
 
 Files already downloaded and verified
-Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
 
 Defaults for this optimization level are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 Processing user overrides (additional kwargs that are not None)...
 After processing overrides, optimization options are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
@@ -65,9 +65,9 @@ Epoch: [15 | 50] LR: 0.100000
 Epoch: [16 | 50] LR: 0.100000
 
 Epoch: [17 | 50] LR: 0.100000
-Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
 Epoch: [18 | 50] LR: 0.100000
+Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
 Epoch: [19 | 50] LR: 0.100000
 
@@ -78,20 +78,20 @@ Epoch: [21 | 50] LR: 0.100000
 Epoch: [22 | 50] LR: 0.100000
 
 Epoch: [23 | 50] LR: 0.100000
-Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
 Epoch: [24 | 50] LR: 0.100000
+Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
 Epoch: [25 | 50] LR: 0.100000
 
 Epoch: [26 | 50] LR: 0.100000
 
 Epoch: [27 | 50] LR: 0.100000
-Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
 Epoch: [28 | 50] LR: 0.100000
 
 Epoch: [29 | 50] LR: 0.100000
+Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
 Epoch: [30 | 50] LR: 0.100000
 
@@ -100,7 +100,6 @@ Epoch: [31 | 50] LR: 0.100000
 Epoch: [32 | 50] LR: 0.100000
 
 Epoch: [33 | 50] LR: 0.100000
-Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
 Epoch: [34 | 50] LR: 0.100000
 
@@ -109,20 +108,20 @@ Epoch: [35 | 50] LR: 0.100000
 Epoch: [36 | 50] LR: 0.100000
 
 Epoch: [37 | 50] LR: 0.100000
-Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
+Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 524288.0
 
 Epoch: [38 | 50] LR: 0.100000
 
 Epoch: [39 | 50] LR: 0.100000
 
 Epoch: [40 | 50] LR: 0.100000
+Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
 Epoch: [41 | 50] LR: 0.100000
 
 Epoch: [42 | 50] LR: 0.100000
 
 Epoch: [43 | 50] LR: 0.100000
-Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
 Epoch: [44 | 50] LR: 0.100000
 
@@ -133,15 +132,15 @@ Epoch: [46 | 50] LR: 0.100000
 Epoch: [47 | 50] LR: 0.100000
 
 Epoch: [48 | 50] LR: 0.100000
+Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
 Epoch: [49 | 50] LR: 0.100000
-Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
 Epoch: [50 | 50] LR: 0.100000
 
   100
-  64.5
- 132.512s  no display found. Using non-interactive Agg backend
+  59.88
+ 176.867s  no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
 GPU id:2
@@ -154,24 +153,24 @@ used     : 10
 
 
 Files already downloaded and verified
-Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
 
 Defaults for this optimization level are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 Processing user overrides (additional kwargs that are not None)...
 After processing overrides, optimization options are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
@@ -278,8 +277,8 @@ Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 524288.0
 Epoch: [50 | 50] LR: 0.100000
 
   200
-  70.81
- 72.942s  no display found. Using non-interactive Agg backend
+  78.33
+ 98.245s  no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
 GPU id:2
@@ -292,24 +291,24 @@ used     : 10
 
 
 Files already downloaded and verified
-Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
 
 Defaults for this optimization level are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 Processing user overrides (additional kwargs that are not None)...
 After processing overrides, optimization options are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
@@ -407,15 +406,15 @@ Epoch: [46 | 50] LR: 0.100000
 Epoch: [47 | 50] LR: 0.100000
 
 Epoch: [48 | 50] LR: 0.100000
+Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 524288.0
 
 Epoch: [49 | 50] LR: 0.100000
-Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 524288.0
 
 Epoch: [50 | 50] LR: 0.100000
 
   300
-  71.36
- 57.749s  no display found. Using non-interactive Agg backend
+  77.96
+ 70.578s  no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
 GPU id:2
@@ -428,24 +427,24 @@ used     : 10
 
 
 Files already downloaded and verified
-Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
 
 Defaults for this optimization level are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 Processing user overrides (additional kwargs that are not None)...
 After processing overrides, optimization options are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
@@ -549,8 +548,8 @@ Epoch: [49 | 50] LR: 0.100000
 Epoch: [50 | 50] LR: 0.100000
 
   400
-  68.39
- 47.320s  no display found. Using non-interactive Agg backend
+  78.8
+ 57.555s  no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
 GPU id:2
@@ -563,24 +562,24 @@ used     : 10
 
 
 Files already downloaded and verified
-Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
 
 Defaults for this optimization level are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 Processing user overrides (additional kwargs that are not None)...
 After processing overrides, optimization options are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
@@ -684,8 +683,8 @@ Epoch: [49 | 50] LR: 0.100000
 Epoch: [50 | 50] LR: 0.100000
 
   500
-  77.8
- 42.501s  no display found. Using non-interactive Agg backend
+  74.97
+ 50.617s  no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
 GPU id:2
@@ -698,24 +697,24 @@ used     : 10
 
 
 Files already downloaded and verified
-Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
 
 Defaults for this optimization level are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 Processing user overrides (additional kwargs that are not None)...
 After processing overrides, optimization options are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
@@ -819,8 +818,8 @@ Epoch: [49 | 50] LR: 0.100000
 Epoch: [50 | 50] LR: 0.100000
 
   600
-  77.55
- 39.439s  no display found. Using non-interactive Agg backend
+  79.27
+ 46.088s  no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
 GPU id:2
@@ -833,24 +832,24 @@ used     : 10
 
 
 Files already downloaded and verified
-Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
 
 Defaults for this optimization level are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 Processing user overrides (additional kwargs that are not None)...
 After processing overrides, optimization options are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
@@ -954,8 +953,8 @@ Epoch: [49 | 50] LR: 0.100000
 Epoch: [50 | 50] LR: 0.100000
 
   700
-  77.83
- 36.678s  no display found. Using non-interactive Agg backend
+  73.02
+ 41.117s  no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
 GPU id:2
@@ -968,24 +967,24 @@ used     : 10
 
 
 Files already downloaded and verified
-Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
 
 Defaults for this optimization level are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 Processing user overrides (additional kwargs that are not None)...
 After processing overrides, optimization options are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
@@ -1089,8 +1088,8 @@ Epoch: [49 | 50] LR: 0.100000
 Epoch: [50 | 50] LR: 0.100000
 
   800
-  71.33
- 34.907s  no display found. Using non-interactive Agg backend
+  76.83
+ 38.989s  no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
 GPU id:2
@@ -1103,24 +1102,24 @@ used     : 10
 
 
 Files already downloaded and verified
-Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
 
 Defaults for this optimization level are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 Processing user overrides (additional kwargs that are not None)...
 After processing overrides, optimization options are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
@@ -1224,8 +1223,8 @@ Epoch: [49 | 50] LR: 0.100000
 Epoch: [50 | 50] LR: 0.100000
 
   900
-  74.34
- 33.765s  no display found. Using non-interactive Agg backend
+  63.79
+ 37.384s  no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
 GPU id:2
@@ -1238,24 +1237,24 @@ used     : 10
 
 
 Files already downloaded and verified
-Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
 
 Defaults for this optimization level are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 Processing user overrides (additional kwargs that are not None)...
 After processing overrides, optimization options are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
@@ -1359,8 +1358,8 @@ Epoch: [49 | 50] LR: 0.100000
 Epoch: [50 | 50] LR: 0.100000
 
   1000
-  75.71
- 34.757s  no display found. Using non-interactive Agg backend
+  75.13
+ 35.375s  no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
 GPU id:2
@@ -1373,24 +1372,24 @@ used     : 10
 
 
 Files already downloaded and verified
-Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
 
 Defaults for this optimization level are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 Processing user overrides (additional kwargs that are not None)...
 After processing overrides, optimization options are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
@@ -1494,8 +1493,8 @@ Epoch: [49 | 50] LR: 0.100000
 Epoch: [50 | 50] LR: 0.100000
 
   1100
-  62.71
- 33.633s  no display found. Using non-interactive Agg backend
+  69.72
+ 34.412s  no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
 GPU id:2
@@ -1508,24 +1507,24 @@ used     : 10
 
 
 Files already downloaded and verified
-Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
 
 Defaults for this optimization level are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 Processing user overrides (additional kwargs that are not None)...
 After processing overrides, optimization options are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
@@ -1629,8 +1628,8 @@ Epoch: [49 | 50] LR: 0.100000
 Epoch: [50 | 50] LR: 0.100000
 
   1200
-  78.05
- 32.416s  no display found. Using non-interactive Agg backend
+  71.81
+ 33.245s  no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
 GPU id:2
@@ -1643,24 +1642,24 @@ used     : 10
 
 
 Files already downloaded and verified
-Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
 
 Defaults for this optimization level are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 Processing user overrides (additional kwargs that are not None)...
 After processing overrides, optimization options are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
@@ -1764,8 +1763,8 @@ Epoch: [49 | 50] LR: 0.100000
 Epoch: [50 | 50] LR: 0.100000
 
   1300
-  70.12
- 31.313s  no display found. Using non-interactive Agg backend
+  74.9
+ 32.371s  no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
 GPU id:2
@@ -1778,24 +1777,24 @@ used     : 10
 
 
 Files already downloaded and verified
-Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
 
 Defaults for this optimization level are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 Processing user overrides (additional kwargs that are not None)...
 After processing overrides, optimization options are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
@@ -1899,8 +1898,8 @@ Epoch: [49 | 50] LR: 0.100000
 Epoch: [50 | 50] LR: 0.100000
 
   1400
-  68.2
- 30.716s  no display found. Using non-interactive Agg backend
+  75.18
+ 31.651s  no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
 GPU id:2
@@ -1913,24 +1912,24 @@ used     : 10
 
 
 Files already downloaded and verified
-Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
 
 Defaults for this optimization level are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 Processing user overrides (additional kwargs that are not None)...
 After processing overrides, optimization options are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
@@ -2034,8 +2033,8 @@ Epoch: [49 | 50] LR: 0.100000
 Epoch: [50 | 50] LR: 0.100000
 
   1500
-  79.23
- 30.006s  no display found. Using non-interactive Agg backend
+  78.96
+ 30.941s  no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
 GPU id:2
@@ -2048,24 +2047,24 @@ used     : 10
 
 
 Files already downloaded and verified
-Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
 
 Defaults for this optimization level are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 Processing user overrides (additional kwargs that are not None)...
 After processing overrides, optimization options are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
@@ -2169,8 +2168,8 @@ Epoch: [49 | 50] LR: 0.100000
 Epoch: [50 | 50] LR: 0.100000
 
   1600
-  71.73
- 29.659s  no display found. Using non-interactive Agg backend
+  79.75
+ 30.329s  no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
 GPU id:2
@@ -2183,24 +2182,24 @@ used     : 10
 
 
 Files already downloaded and verified
-Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
 
 Defaults for this optimization level are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 Processing user overrides (additional kwargs that are not None)...
 After processing overrides, optimization options are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
@@ -2304,8 +2303,8 @@ Epoch: [49 | 50] LR: 0.100000
 Epoch: [50 | 50] LR: 0.100000
 
   1700
-  75.26
- 29.136s  no display found. Using non-interactive Agg backend
+  73.52
+ 30.438s  no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
 GPU id:2
@@ -2318,24 +2317,24 @@ used     : 10
 
 
 Files already downloaded and verified
-Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
 
 Defaults for this optimization level are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 Processing user overrides (additional kwargs that are not None)...
 After processing overrides, optimization options are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
@@ -2439,8 +2438,8 @@ Epoch: [49 | 50] LR: 0.100000
 Epoch: [50 | 50] LR: 0.100000
 
   1800
-  71.36
- 28.537s  no display found. Using non-interactive Agg backend
+  70.35
+ 29.832s  no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
 GPU id:2
@@ -2453,24 +2452,24 @@ used     : 10
 
 
 Files already downloaded and verified
-Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
 
 Defaults for this optimization level are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 Processing user overrides (additional kwargs that are not None)...
 After processing overrides, optimization options are:
 enabled                : True
-opt_level              : O1
-cast_model_type        : None
-patch_torch_functions  : True
-keep_batchnorm_fp32    : None
-master_weights         : None
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
@@ -2574,8 +2573,8 @@ Epoch: [49 | 50] LR: 0.100000
 Epoch: [50 | 50] LR: 0.100000
 
   1900
-  66.54
- 28.304s  no display found. Using non-interactive Agg backend
+  80.01
+ 29.076s  no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
 GPU id:2
@@ -2633,7 +2632,6 @@ Epoch: [11 | 50] LR: 0.100000
 Epoch: [12 | 50] LR: 0.100000
 
 Epoch: [13 | 50] LR: 0.100000
-Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
 Epoch: [14 | 50] LR: 0.100000
 
@@ -2644,7 +2642,6 @@ Epoch: [16 | 50] LR: 0.100000
 Epoch: [17 | 50] LR: 0.100000
 
 Epoch: [18 | 50] LR: 0.100000
-Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
 Epoch: [19 | 50] LR: 0.100000
 
@@ -2655,7 +2652,6 @@ Epoch: [21 | 50] LR: 0.100000
 Epoch: [22 | 50] LR: 0.100000
 
 Epoch: [23 | 50] LR: 0.100000
-Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
 Epoch: [24 | 50] LR: 0.100000
 
@@ -2666,7 +2662,6 @@ Epoch: [26 | 50] LR: 0.100000
 Epoch: [27 | 50] LR: 0.100000
 
 Epoch: [28 | 50] LR: 0.100000
-Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
 Epoch: [29 | 50] LR: 0.100000
 
@@ -2677,7 +2672,6 @@ Epoch: [31 | 50] LR: 0.100000
 Epoch: [32 | 50] LR: 0.100000
 
 Epoch: [33 | 50] LR: 0.100000
-Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
 Epoch: [34 | 50] LR: 0.100000
 
@@ -2694,12 +2688,10 @@ Epoch: [39 | 50] LR: 0.100000
 Epoch: [40 | 50] LR: 0.100000
 
 Epoch: [41 | 50] LR: 0.100000
-Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 524288.0
 
 Epoch: [42 | 50] LR: 0.100000
 
 Epoch: [43 | 50] LR: 0.100000
-Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
 Epoch: [44 | 50] LR: 0.100000
 
@@ -2708,7 +2700,6 @@ Epoch: [45 | 50] LR: 0.100000
 Epoch: [46 | 50] LR: 0.100000
 
 Epoch: [47 | 50] LR: 0.100000
-Gradient overflow.  Skipping step, loss scaler 0 reducing loss scale to 262144.0
 
 Epoch: [48 | 50] LR: 0.100000
 
@@ -2716,13 +2707,72 @@ Epoch: [49 | 50] LR: 0.100000
 
 Epoch: [50 | 50] LR: 0.100000
 
-  100
+  2000
+  75.96
+ 28.851s  no display found. Using non-interactive Agg backend
+gpu id:0
+Device Name: GeForce RTX 2080 Ti
+GPU id:2
+Device Name: GeForce RTX 2080 Ti
+This Gpu is free
+GPU Id: 2
+total    : 11019
+free     : 11009
+used     : 10
+
+
+Files already downloaded and verified
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
+
+Defaults for this optimization level are:
+enabled                : True
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
+loss_scale             : dynamic
+Processing user overrides (additional kwargs that are not None)...
+After processing overrides, optimization options are:
+enabled                : True
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
+loss_scale             : dynamic
+
+Epoch: [1 | 50] LR: 0.100000
+Warning: Traceback of forward call that caused the error:
+  File "main.py", line 743, in <module>
+    main()
+  File "main.py", line 503, in main
+    use_gpu_num)
+  File "main.py", line 611, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/apex/amp/_initialize.py", line 197, in new_fwd
+    **applier(kwargs, input_caster))
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 230, in forward
+    x = self.module_list[j](x)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 532, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 345, in forward
+    return self.conv2d_forward(input, self.weight)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 342, in conv2d_forward
+    self.padding, self.dilation, self.groups)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:57)
 Traceback (most recent call last):
   File "main.py", line 743, in <module>
     main()
-  File "main.py", line 571, in main
-    print(" " ,test_acc)
-UnboundLocalError: local variable 'test_acc' referenced before assignment
+  File "main.py", line 503, in main
+    use_gpu_num)
+  File "main.py", line 657, in train
+    scaled_loss.backward()
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/tensor.py", line 195, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/autograd/__init__.py", line 99, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: CUDA out of memory. Tried to allocate 788.00 MiB (GPU 2; 10.76 GiB total capacity; 8.51 GiB already allocated; 513.56 MiB free; 9.40 GiB reserved in total by PyTorch)
 no display found. Using non-interactive Agg backend
 gpu id:0
 Device Name: GeForce RTX 2080 Ti
@@ -2757,341 +2807,426 @@ master_weights         : True
 loss_scale             : dynamic
 
 Epoch: [1 | 50] LR: 0.100000
-
-Epoch: [2 | 50] LR: 0.100000
-
-Epoch: [3 | 50] LR: 0.100000
-
-Epoch: [4 | 50] LR: 0.100000
-
-Epoch: [5 | 50] LR: 0.100000
-
-Epoch: [6 | 50] LR: 0.100000
-
-Epoch: [7 | 50] LR: 0.100000
-
-Epoch: [8 | 50] LR: 0.100000
-
-Epoch: [9 | 50] LR: 0.100000
-
-Epoch: [10 | 50] LR: 0.100000
-
-Epoch: [11 | 50] LR: 0.100000
+Warning: Traceback of forward call that caused the error:
+  File "main.py", line 743, in <module>
+    main()
+  File "main.py", line 503, in main
+    use_gpu_num)
+  File "main.py", line 611, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/apex/amp/_initialize.py", line 197, in new_fwd
+    **applier(kwargs, input_caster))
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 230, in forward
+    x = self.module_list[j](x)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 532, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 345, in forward
+    return self.conv2d_forward(input, self.weight)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 342, in conv2d_forward
+    self.padding, self.dilation, self.groups)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:57)
 Traceback (most recent call last):
   File "main.py", line 743, in <module>
     main()
   File "main.py", line 503, in main
     use_gpu_num)
-  File "main.py", line 613, in train
-    total, use_after_forward, free = checkmem(use_gpu_num)
-  File "main.py", line 257, in checkmem
-    total, used, free = os.popen('"nvidia-smi" --query-gpu=memory.total,memory.used,memory.free --format=csv,nounits,noheader'
-KeyboardInterrupt
-Failed to import the site module
+  File "main.py", line 657, in train
+    scaled_loss.backward()
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/tensor.py", line 195, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/autograd/__init__.py", line 99, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: CUDA out of memory. Tried to allocate 826.00 MiB (GPU 2; 10.76 GiB total capacity; 8.92 GiB already allocated; 55.56 MiB free; 9.85 GiB reserved in total by PyTorch)
+no display found. Using non-interactive Agg backend
+gpu id:0
+Device Name: GeForce RTX 2080 Ti
+GPU id:2
+Device Name: GeForce RTX 2080 Ti
+This Gpu is free
+GPU Id: 2
+total    : 11019
+free     : 11009
+used     : 10
+
+
+Files already downloaded and verified
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
+
+Defaults for this optimization level are:
+enabled                : True
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
+loss_scale             : dynamic
+Processing user overrides (additional kwargs that are not None)...
+After processing overrides, optimization options are:
+enabled                : True
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
+loss_scale             : dynamic
+
+Epoch: [1 | 50] LR: 0.100000
 Traceback (most recent call last):
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 703, in <module>
+  File "main.py", line 743, in <module>
     main()
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 683, in main
-    paths_in_sys = addsitepackages(paths_in_sys)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 282, in addsitepackages
-    addsitedir(sitedir, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 204, in addsitedir
-    addpackage(sitedir, name, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 165, in addpackage
-    f = open(fullname, "rU")
-  File "/home/jessica.buehler/env/lib/python3.6/_bootlocale.py", line 23, in getpreferredencoding
-    def getpreferredencoding(do_setlocale=True):
-KeyboardInterrupt
-Failed to import the site module
+  File "main.py", line 503, in main
+    use_gpu_num)
+  File "main.py", line 611, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/apex/amp/_initialize.py", line 197, in new_fwd
+    **applier(kwargs, input_caster))
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 230, in forward
+    x = self.module_list[j](x)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 532, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 345, in forward
+    return self.conv2d_forward(input, self.weight)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 342, in conv2d_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 576.00 MiB (GPU 2; 10.76 GiB total capacity; 8.76 GiB already allocated; 199.56 MiB free; 9.71 GiB reserved in total by PyTorch)
+no display found. Using non-interactive Agg backend
+gpu id:0
+Device Name: GeForce RTX 2080 Ti
+GPU id:2
+Device Name: GeForce RTX 2080 Ti
+This Gpu is free
+GPU Id: 2
+total    : 11019
+free     : 11009
+used     : 10
+
+
+Files already downloaded and verified
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
+
+Defaults for this optimization level are:
+enabled                : True
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
+loss_scale             : dynamic
+Processing user overrides (additional kwargs that are not None)...
+After processing overrides, optimization options are:
+enabled                : True
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
+loss_scale             : dynamic
+
+Epoch: [1 | 50] LR: 0.100000
 Traceback (most recent call last):
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 703, in <module>
+  File "main.py", line 743, in <module>
     main()
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 683, in main
-    paths_in_sys = addsitepackages(paths_in_sys)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 282, in addsitepackages
-    addsitedir(sitedir, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 204, in addsitedir
-    addpackage(sitedir, name, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 173, in addpackage
-    exec(line)
-  File "<string>", line 1, in <module>
-  File "/home/jessica.buehler/env/lib/python3.6/types.py", line 171, in <module>
-    import functools as _functools
-  File "/home/jessica.buehler/env/lib/python3.6/functools.py", line 21, in <module>
-    from collections import namedtuple
-  File "/home/jessica.buehler/env/lib/python3.6/collections/__init__.py", line 26, in <module>
-    from operator import itemgetter as _itemgetter, eq as _eq
-  File "/home/jessica.buehler/env/lib/python3.6/operator.py", line 412, in <module>
-    from _operator import *
-KeyboardInterrupt
+  File "main.py", line 503, in main
+    use_gpu_num)
+  File "main.py", line 611, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/apex/amp/_initialize.py", line 197, in new_fwd
+    **applier(kwargs, input_caster))
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 266, in forward
+    x = self.module_list[j](x)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 532, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 345, in forward
+    return self.conv2d_forward(input, self.weight)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 342, in conv2d_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 602.00 MiB (GPU 2; 10.76 GiB total capacity; 8.54 GiB already allocated; 329.56 MiB free; 9.59 GiB reserved in total by PyTorch)
+no display found. Using non-interactive Agg backend
+gpu id:0
+Device Name: GeForce RTX 2080 Ti
+GPU id:2
+Device Name: GeForce RTX 2080 Ti
+This Gpu is free
+GPU Id: 2
+total    : 11019
+free     : 11009
+used     : 10
+
+
+Files already downloaded and verified
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
+
+Defaults for this optimization level are:
+enabled                : True
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
+loss_scale             : dynamic
+Processing user overrides (additional kwargs that are not None)...
+After processing overrides, optimization options are:
+enabled                : True
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
+loss_scale             : dynamic
+
+Epoch: [1 | 50] LR: 0.100000
 Traceback (most recent call last):
-  File "main.py", line 19, in <module>
-    import argparse
-  File "/usr/lib/python3.6/argparse.py", line 91, in <module>
-    import textwrap as _textwrap
-  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
-  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
-  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
-  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
-  File "<frozen importlib._bootstrap_external>", line 779, in get_code
-  File "<frozen importlib._bootstrap_external>", line 487, in _compile_bytecode
-KeyboardInterrupt
-Traceback (most recent call last):
-  File "main.py", line 19, in <module>
-    import argparse
-  File "/usr/lib/python3.6/argparse.py", line 91, in <module>
-    import textwrap as _textwrap
-  File "/usr/lib/python3.6/textwrap.py", line 17, in <module>
-    class TextWrapper:
-  File "/usr/lib/python3.6/textwrap.py", line 98, in TextWrapper
-    re.VERBOSE)
-  File "/home/jessica.buehler/env/lib/python3.6/re.py", line 233, in compile
-    return _compile(pattern, flags)
-  File "/home/jessica.buehler/env/lib/python3.6/re.py", line 301, in _compile
-    p = sre_compile.compile(pattern, flags)
-  File "/home/jessica.buehler/env/lib/python3.6/sre_compile.py", line 562, in compile
-    p = sre_parse.parse(p, flags)
-  File "/home/jessica.buehler/env/lib/python3.6/sre_parse.py", line 855, in parse
-    p = _parse_sub(source, pattern, flags & SRE_FLAG_VERBOSE, 0)
-  File "/home/jessica.buehler/env/lib/python3.6/sre_parse.py", line 416, in _parse_sub
-    not nested and not items))
-  File "/home/jessica.buehler/env/lib/python3.6/sre_parse.py", line 765, in _parse
-    p = _parse_sub(source, state, sub_verbose, nested + 1)
-  File "/home/jessica.buehler/env/lib/python3.6/sre_parse.py", line 416, in _parse_sub
-    not nested and not items))
-  File "/home/jessica.buehler/env/lib/python3.6/sre_parse.py", line 488, in _parse
-    sourceget()
-  File "/home/jessica.buehler/env/lib/python3.6/sre_parse.py", line 255, in get
-    self.__next()
-  File "/home/jessica.buehler/env/lib/python3.6/sre_parse.py", line 239, in __next
-    if char == "\\":
-KeyboardInterrupt
-Traceback (most recent call last):
-  File "main.py", line 19, in <module>
-    import argparse
-  File "/usr/lib/python3.6/argparse.py", line 94, in <module>
-    from gettext import gettext as _, ngettext
-  File "/usr/lib/python3.6/gettext.py", line 82, in <module>
-    """, re.VERBOSE|re.DOTALL)
-  File "/home/jessica.buehler/env/lib/python3.6/re.py", line 233, in compile
-    return _compile(pattern, flags)
-  File "/home/jessica.buehler/env/lib/python3.6/re.py", line 301, in _compile
-    p = sre_compile.compile(pattern, flags)
-  File "/home/jessica.buehler/env/lib/python3.6/sre_compile.py", line 562, in compile
-    p = sre_parse.parse(p, flags)
-  File "/home/jessica.buehler/env/lib/python3.6/sre_parse.py", line 855, in parse
-    p = _parse_sub(source, pattern, flags & SRE_FLAG_VERBOSE, 0)
-  File "/home/jessica.buehler/env/lib/python3.6/sre_parse.py", line 416, in _parse_sub
-    not nested and not items))
-  File "/home/jessica.buehler/env/lib/python3.6/sre_parse.py", line 644, in _parse
-    name = source.getuntil(">")
-  File "/home/jessica.buehler/env/lib/python3.6/sre_parse.py", line 270, in getuntil
-    self.__next()
-  File "/home/jessica.buehler/env/lib/python3.6/sre_parse.py", line 232, in __next
-    def __next(self):
-KeyboardInterrupt
-Failed to import the site module
-Traceback (most recent call last):
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 703, in <module>
+  File "main.py", line 743, in <module>
     main()
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 683, in main
-    paths_in_sys = addsitepackages(paths_in_sys)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 282, in addsitepackages
-    addsitedir(sitedir, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 204, in addsitedir
-    addpackage(sitedir, name, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 173, in addpackage
-    exec(line)
-  File "<string>", line 1, in <module>
-KeyboardInterrupt
+  File "main.py", line 503, in main
+    use_gpu_num)
+  File "main.py", line 611, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/apex/amp/_initialize.py", line 197, in new_fwd
+    **applier(kwargs, input_caster))
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 213, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 532, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 345, in forward
+    return self.conv2d_forward(input, self.weight)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 342, in conv2d_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 626.00 MiB (GPU 2; 10.76 GiB total capacity; 8.60 GiB already allocated; 551.56 MiB free; 9.37 GiB reserved in total by PyTorch)
+no display found. Using non-interactive Agg backend
+gpu id:0
+Device Name: GeForce RTX 2080 Ti
+GPU id:2
+Device Name: GeForce RTX 2080 Ti
+This Gpu is free
+GPU Id: 2
+total    : 11019
+free     : 11009
+used     : 10
+
+
+Files already downloaded and verified
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
+
+Defaults for this optimization level are:
+enabled                : True
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
+loss_scale             : dynamic
+Processing user overrides (additional kwargs that are not None)...
+After processing overrides, optimization options are:
+enabled                : True
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
+loss_scale             : dynamic
+
+Epoch: [1 | 50] LR: 0.100000
 Traceback (most recent call last):
-  File "main.py", line 19, in <module>
-    import argparse
-  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
-  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
-  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
-  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
-KeyboardInterrupt
-Failed to import the site module
-Traceback (most recent call last):
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 703, in <module>
+  File "main.py", line 743, in <module>
     main()
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 683, in main
-    paths_in_sys = addsitepackages(paths_in_sys)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 282, in addsitepackages
-    addsitedir(sitedir, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 198, in addsitedir
-    names = os.listdir(sitedir)
-KeyboardInterrupt
+  File "main.py", line 503, in main
+    use_gpu_num)
+  File "main.py", line 611, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/apex/amp/_initialize.py", line 197, in new_fwd
+    **applier(kwargs, input_caster))
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 213, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 532, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 345, in forward
+    return self.conv2d_forward(input, self.weight)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 342, in conv2d_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 652.00 MiB (GPU 2; 10.76 GiB total capacity; 8.95 GiB already allocated; 179.56 MiB free; 9.73 GiB reserved in total by PyTorch)
+no display found. Using non-interactive Agg backend
+gpu id:0
+Device Name: GeForce RTX 2080 Ti
+GPU id:2
+Device Name: GeForce RTX 2080 Ti
+This Gpu is free
+GPU Id: 2
+total    : 11019
+free     : 11009
+used     : 10
+
+
+Files already downloaded and verified
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
+
+Defaults for this optimization level are:
+enabled                : True
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
+loss_scale             : dynamic
+Processing user overrides (additional kwargs that are not None)...
+After processing overrides, optimization options are:
+enabled                : True
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
+loss_scale             : dynamic
+
+Epoch: [1 | 50] LR: 0.100000
 Traceback (most recent call last):
-  File "main.py", line 19, in <module>
-    import argparse
-  File "/usr/lib/python3.6/argparse.py", line 91, in <module>
-    import textwrap as _textwrap
-  File "/usr/lib/python3.6/textwrap.py", line 412, in <module>
-    _leading_whitespace_re = re.compile('(^[ \t]*)(?:[^ \t\n])', re.MULTILINE)
-  File "/home/jessica.buehler/env/lib/python3.6/re.py", line 233, in compile
-    return _compile(pattern, flags)
-  File "/home/jessica.buehler/env/lib/python3.6/re.py", line 301, in _compile
-    p = sre_compile.compile(pattern, flags)
-  File "/home/jessica.buehler/env/lib/python3.6/sre_compile.py", line 562, in compile
-    p = sre_parse.parse(p, flags)
-  File "/home/jessica.buehler/env/lib/python3.6/sre_parse.py", line 847, in parse
-    source = Tokenizer(str)
-  File "/home/jessica.buehler/env/lib/python3.6/sre_parse.py", line 223, in __init__
-    def __init__(self, string):
-KeyboardInterrupt
-Failed to import the site module
-Traceback (most recent call last):
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 703, in <module>
+  File "main.py", line 743, in <module>
     main()
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 683, in main
-    paths_in_sys = addsitepackages(paths_in_sys)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 282, in addsitepackages
-    addsitedir(sitedir, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 204, in addsitedir
-    addpackage(sitedir, name, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 165, in addpackage
-    f = open(fullname, "rU")
-  File "/home/jessica.buehler/env/lib/python3.6/_bootlocale.py", line 23, in getpreferredencoding
-    def getpreferredencoding(do_setlocale=True):
-KeyboardInterrupt
+  File "main.py", line 503, in main
+    use_gpu_num)
+  File "main.py", line 611, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/apex/amp/_initialize.py", line 197, in new_fwd
+    **applier(kwargs, input_caster))
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 213, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 532, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 345, in forward
+    return self.conv2d_forward(input, self.weight)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 342, in conv2d_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 338.00 MiB (GPU 2; 10.76 GiB total capacity; 8.96 GiB already allocated; 145.56 MiB free; 9.77 GiB reserved in total by PyTorch)
+no display found. Using non-interactive Agg backend
+gpu id:0
+Device Name: GeForce RTX 2080 Ti
+GPU id:2
+Device Name: GeForce RTX 2080 Ti
+This Gpu is free
+GPU Id: 2
+total    : 11019
+free     : 11009
+used     : 10
+
+
+Files already downloaded and verified
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
+
+Defaults for this optimization level are:
+enabled                : True
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
+loss_scale             : dynamic
+Processing user overrides (additional kwargs that are not None)...
+After processing overrides, optimization options are:
+enabled                : True
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
+loss_scale             : dynamic
+
+Epoch: [1 | 50] LR: 0.100000
 Traceback (most recent call last):
-  File "main.py", line 17, in <module>
-    import copy
-  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
-  File "<frozen importlib._bootstrap>", line 951, in _find_and_load_unlocked
-  File "<frozen importlib._bootstrap>", line 894, in _find_spec
-  File "<frozen importlib._bootstrap_external>", line 1157, in find_spec
-KeyboardInterrupt
-Failed to import the site module
-Traceback (most recent call last):
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 703, in <module>
+  File "main.py", line 743, in <module>
     main()
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 683, in main
-    paths_in_sys = addsitepackages(paths_in_sys)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 282, in addsitepackages
-    addsitedir(sitedir, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 198, in addsitedir
-    names = os.listdir(sitedir)
-KeyboardInterrupt
-Failed to import the site module
+  File "main.py", line 503, in main
+    use_gpu_num)
+  File "main.py", line 611, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/apex/amp/_initialize.py", line 197, in new_fwd
+    **applier(kwargs, input_caster))
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 230, in forward
+    x = self.module_list[j](x)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 532, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 345, in forward
+    return self.conv2d_forward(input, self.weight)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 342, in conv2d_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 702.00 MiB (GPU 2; 10.76 GiB total capacity; 8.61 GiB already allocated; 467.56 MiB free; 9.45 GiB reserved in total by PyTorch)
+no display found. Using non-interactive Agg backend
+gpu id:0
+Device Name: GeForce RTX 2080 Ti
+GPU id:2
+Device Name: GeForce RTX 2080 Ti
+This Gpu is free
+GPU Id: 2
+total    : 11019
+free     : 11009
+used     : 10
+
+
+Files already downloaded and verified
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
+
+Defaults for this optimization level are:
+enabled                : True
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
+loss_scale             : dynamic
+Processing user overrides (additional kwargs that are not None)...
+After processing overrides, optimization options are:
+enabled                : True
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
+loss_scale             : dynamic
+
+Epoch: [1 | 50] LR: 0.100000
 Traceback (most recent call last):
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 703, in <module>
+  File "main.py", line 743, in <module>
     main()
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 683, in main
-    paths_in_sys = addsitepackages(paths_in_sys)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 282, in addsitepackages
-    addsitedir(sitedir, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 204, in addsitedir
-    addpackage(sitedir, name, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 173, in addpackage
-    exec(line)
-  File "<string>", line 1, in <module>
-  File "<frozen importlib._bootstrap_external>", line 1157, in find_spec
-  File "<frozen importlib._bootstrap_external>", line 1129, in _get_spec
-  File "<frozen importlib._bootstrap_external>", line 1241, in find_spec
-KeyboardInterrupt
-Failed to import the site module
-Traceback (most recent call last):
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 703, in <module>
-    main()
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 683, in main
-    paths_in_sys = addsitepackages(paths_in_sys)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 282, in addsitepackages
-    addsitedir(sitedir, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 204, in addsitedir
-    addpackage(sitedir, name, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 173, in addpackage
-    exec(line)
-  File "<string>", line 1, in <module>
-  File "<frozen importlib._bootstrap_external>", line 1157, in find_spec
-  File "<frozen importlib._bootstrap_external>", line 1129, in _get_spec
-  File "<frozen importlib._bootstrap_external>", line 1241, in find_spec
-  File "<frozen importlib._bootstrap_external>", line 82, in _path_stat
-KeyboardInterrupt
-Failed to import the site module
-Traceback (most recent call last):
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 703, in <module>
-    main()
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 683, in main
-    paths_in_sys = addsitepackages(paths_in_sys)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 282, in addsitepackages
-    addsitedir(sitedir, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 204, in addsitedir
-    addpackage(sitedir, name, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 173, in addpackage
-    exec(line)
-  File "<string>", line 1, in <module>
-  File "<frozen importlib._bootstrap_external>", line 1157, in find_spec
-  File "<frozen importlib._bootstrap_external>", line 1129, in _get_spec
-  File "<frozen importlib._bootstrap_external>", line 1260, in find_spec
-  File "<frozen importlib._bootstrap_external>", line 96, in _path_isfile
-KeyboardInterrupt
-Failed to import the site module
-Traceback (most recent call last):
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 703, in <module>
-    main()
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 683, in main
-    paths_in_sys = addsitepackages(paths_in_sys)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 282, in addsitepackages
-    addsitedir(sitedir, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 204, in addsitedir
-    addpackage(sitedir, name, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 165, in addpackage
-    f = open(fullname, "rU")
-  File "/home/jessica.buehler/env/lib/python3.6/_bootlocale.py", line 23, in getpreferredencoding
-    def getpreferredencoding(do_setlocale=True):
-KeyboardInterrupt
-Failed to import the site module
-Traceback (most recent call last):
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 703, in <module>
-    main()
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 683, in main
-    paths_in_sys = addsitepackages(paths_in_sys)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 282, in addsitepackages
-    addsitedir(sitedir, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 204, in addsitedir
-    addpackage(sitedir, name, known_paths)
-  File "/home/jessica.buehler/env/lib/python3.6/site.py", line 173, in addpackage
-    exec(line)
-  File "<string>", line 1, in <module>
-KeyboardInterrupt
-python3 main.py --workers 4 --epochs 50 --O1 --test  --learning-rate 0.1 --batchTrue --batch_size 100 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O1 --test  --learning-rate 0.1 --batchTrue --batch_size 200 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O1 --test  --learning-rate 0.1 --batchTrue --batch_size 300 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O1 --test  --learning-rate 0.1 --batchTrue --batch_size 400 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O1 --test  --learning-rate 0.1 --batchTrue --batch_size 500 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O1 --test  --learning-rate 0.1 --batchTrue --batch_size 600 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O1 --test  --learning-rate 0.1 --batchTrue --batch_size 700 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O1 --test  --learning-rate 0.1 --batchTrue --batch_size 800 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O1 --test  --learning-rate 0.1 --batchTrue --batch_size 900 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O1 --test  --learning-rate 0.1 --batchTrue --batch_size 1000 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O1 --test  --learning-rate 0.1 --batchTrue --batch_size 1100 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O1 --test  --learning-rate 0.1 --batchTrue --batch_size 1200 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O1 --test  --learning-rate 0.1 --batchTrue --batch_size 1300 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O1 --test  --learning-rate 0.1 --batchTrue --batch_size 1400 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O1 --test  --learning-rate 0.1 --batchTrue --batch_size 1500 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O1 --test  --learning-rate 0.1 --batchTrue --batch_size 1600 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O1 --test  --learning-rate 0.1 --batchTrue --batch_size 1700 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O1 --test  --learning-rate 0.1 --batchTrue --batch_size 1800 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O1 --test  --learning-rate 0.1 --batchTrue --batch_size 1900 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O2 --learning-rate 0.1 --batchTrue --batch_size 100 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O2 --learning-rate 0.1 --batchTrue --batch_size 200 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O2 --learning-rate 0.1 --batchTrue --batch_size 300 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O2 --learning-rate 0.1 --batchTrue --batch_size 400 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O2 --learning-rate 0.1 --batchTrue --batch_size 500 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O2 --learning-rate 0.1 --batchTrue --batch_size 600 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O2 --learning-rate 0.1 --batchTrue --batch_size 700 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O2 --learning-rate 0.1 --batchTrue --batch_size 800 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O2 --learning-rate 0.1 --batchTrue --batch_size 900 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O2 --learning-rate 0.1 --batchTrue --batch_size 1000 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O2 --learning-rate 0.1 --batchTrue --batch_size 1100 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O2 --learning-rate 0.1 --batchTrue --batch_size 1200 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O2 --learning-rate 0.1 --batchTrue --batch_size 1300 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O2 --learning-rate 0.1 --batchTrue --batch_size 1400 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O2 --learning-rate 0.1 --batchTrue --batch_size 1500 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O2 --learning-rate 0.1 --batchTrue --batch_size 1600 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O2 --learning-rate 0.1 --batchTrue --batch_size 1700 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O2 --learning-rate 0.1 --batchTrue --batch_size 1800 --test_batch 100 -s 3 -n 3 -l 3
-python3 main.py --workers 4 --epochs 50 --O2 --learning-rate 0.1 --batchTrue --batch_size 1900 --test_batch 100 -s 3 -n 3 -l 3
+  File "main.py", line 503, in main
+    use_gpu_num)
+  File "main.py", line 611, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/apex/amp/_initialize.py", line 197, in new_fwd
+    **applier(kwargs, input_caster))
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 230, in forward
+    x = self.module_list[j](x)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 532, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 345, in forward
+    return self.conv2d_forward(input, self.weight)
+  File "/home/jessica.buehler/env/local/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 342, in conv2d_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 726.00 MiB (GPU 2; 10.76 GiB total capacity; 8.91 GiB already allocated; 133.56 MiB free; 9.78 GiB reserved in total by PyTorch)
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 100 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 200 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 300 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 400 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 500 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 600 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 700 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 800 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 900 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 1000 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 1100 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 1200 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 1300 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 1400 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 1500 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 1600 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 1700 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 1800 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 1900 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 2000 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 2100 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 2200 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 2300 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 2400 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 2500 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 2600 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 2700 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 2800 --test_batch 100 -s 3 -n 3 -l 3
+python3 main.py --workers 4 --epochs 50 --O2 --test --learning-rate 0.1 --batchTrue --batch_size 2900 --test_batch 100 -s 3 -n 3 -l 3
