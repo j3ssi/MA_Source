@@ -111,6 +111,9 @@ parser.add_argument('--O1', default=False, action='store_true',
                     help='Use half precision apex methods O1')
 parser.add_argument('--O2', default=False, action='store_true',
                     help='Use half precision apex methods O2')
+parser.add_argument('--O3', default=False, action='store_true',
+                    help='Use half precision apex methods O3')
+
 parser.add_argument('--gpu1080', default=False, action='store_true',
                     help='Use Geforce 1080 instead of geforce 2080')
 parser.add_argument('--test', default=False, action='store_true',
@@ -370,6 +373,8 @@ def main():
         model, optimizer = amp.initialize(model, optimizer, opt_level="O1")
     if args.O2:
         model, optimizer = amp.initialize(model, optimizer, opt_level="O2")
+    if args.O3:
+        model, optimizer = amp.initialize(model, optimizer, opt_level="O3")
 
     start = time.time()
 
@@ -652,7 +657,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
         lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
 
         # compute gradient and do SGD step
-        if args.O1 or args.O2:
+        if args.O1 or args.O2 or args.O3:
             with amp.scale_loss(loss, optimizer) as scaled_loss:
                 scaled_loss.backward()
         else:
