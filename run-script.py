@@ -27,17 +27,17 @@ def main():
     #     print(cmdLine)
     #     os.system(cmdLine)
 
-    s = 3
-    n = 3
-
-    for batch_size in range(1, 30):
-        cmdLine = 'python3 main.py '
-        cmdLine = cmdLine + '--workers 4 --epochs 50 --O3 --test'
-        cmdLine = cmdLine + ' --learning-rate 0.1 '
-        cmdLine = cmdLine + '--batchTrue --batch_size ' + str(batch_size * 100)
-        cmdLine = cmdLine + ' --test_batch 100 -s ' + str(s) + ' -n ' + str(n) + ' -l 3'
-        print(cmdLine)
-        os.system(cmdLine)
+    # s = 3
+    # n = 3
+    #
+    # for batch_size in range(1, 30):
+    #     cmdLine = 'python3 main.py '
+    #     cmdLine = cmdLine + '--workers 4 --epochs 50 --O3 --test'
+    #     cmdLine = cmdLine + ' --learning-rate 0.1 '
+    #     cmdLine = cmdLine + '--batchTrue --batch_size ' + str(batch_size * 100)
+    #     cmdLine = cmdLine + ' --test_batch 100 -s ' + str(s) + ' -n ' + str(n) + ' -l 3'
+    #     print(cmdLine)
+    #     os.system(cmdLine)
 
 
     s = 3
@@ -47,7 +47,7 @@ def main():
         cmdLine = 'python3 main.py '
         cmdLine = cmdLine + '--workers 4 --epochs 50 --test'
         cmdLine = cmdLine + ' --learning-rate ' + str(0.01*lr)
-        cmdLine = cmdLine + '--batchTrue --batch_size 1024 '
+        cmdLine = cmdLine + ' --batchTrue --batch_size 1024 '
         cmdLine = cmdLine + ' --test_batch 100 -s ' + str(s) + ' -n ' + str(n) + ' -l 3'
         print(cmdLine)
         os.system(cmdLine)
