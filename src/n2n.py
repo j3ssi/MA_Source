@@ -36,7 +36,7 @@ class N2N(nn.Module):
                 firstLayerInStage = True
                 sizeOfLayer = pow(2, stage + 4)
                 # print("\nStage: ", stage, " ; ", sizeOfLayer)
-                for block in range(0, numOfBlocksinStage):
+                for block in range(0, numOfBlocksinStage[stage]):
                     i = 0
                     while i < self.layersInBlock:
                         if firstLayerInStage and not firstLayer:
