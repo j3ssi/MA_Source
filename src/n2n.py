@@ -16,11 +16,11 @@ class N2N(nn.Module):
             self.archNums =[[]]
             for s in range(0, self.numOfStages):
                 # print("\nS: ", s, " ; ", self.numOfStages)
-                for b in range(0, self.numOfBlocksinStage):
+                for b in range(0, self.numOfBlocksinStage[s]):
                     self.archNums[s].append(self.layersInBlock)
                 if s != (self.numOfStages-1):
                     self.archNums.append([])
-            # print("\nArch Num: ", self.archNums)
+            print("\nArch Num: ", self.archNums)
 
             self.module_list = nn.ModuleList()
 
