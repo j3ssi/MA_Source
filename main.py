@@ -130,7 +130,7 @@ parser.add_argument('--test', default=False, action='store_true',
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
 listofBlocks = args.n.split(',')
-print(listofBlocks)
+# print(listofBlocks)
 grp_lasso_coeff = 0
 
 
@@ -276,6 +276,8 @@ def checkmem(use_gpu):
 
 
 def main():
+    print(listofBlocks[1]/2)
+    # choose which gpu to use
     not_enough_memory = True
     use_gpu = 'cuda:0'
     use_gpu_num = 0
@@ -371,16 +373,6 @@ def main():
     # dynamic resnet modell
     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
     model.cuda()
-    # use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
-    # total, use_after_model, free_after_model = checkmem(use_gpu_num)
-
-    # print(f'Available after Model Creation: {free_after_model}')
-    # print(f'Use after modell creation: smi {use_after_model} torch {torch.cuda.memory_allocated(use_gpu)}')
-
-    # print(f'Max memory after modell creation {torch.cuda.max_memory_allocated(use_gpu)}')
-
-    # print(f'Size of Model: {-use_before_model + use_after_model}')
-
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     if args.O1:
