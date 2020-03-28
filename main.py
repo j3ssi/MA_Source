@@ -70,8 +70,11 @@ parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
 parser.add_argument('--manualSeed', type=int, help='manual seed')
 parser.add_argument('--gpu_id', default='0', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
 parser.add_argument('-s', '--numOfStages', default=3, type=int, help='defines the number of stages in the network')
-parser.add_argument('-n', '--numOfBlocksinStage', type=int, default=5, help='defines the number of Blocks per Stage')
+# parser.add_argument('-n', '--numOfBlocksinStage', type=int, default=5, help='defines the number of Blocks per Stage')
 parser.add_argument('-l', '--layersInBlock', type=int, default=3, help='defines the number of')
+parser.add_argument('-n', type=str, help="#stage numbers separated by commas")
+
+
 # PruneTrain
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
 parser.add_argument('--sparse_interval', default=0, type=int,
@@ -101,10 +104,15 @@ parser.add_argument('--batchTrue', default=False, action='store_true',
                     help='Set the batchsize')
 parser.add_argument('--batch_size', default=1000, type=int,
                     metavar='N', help='batch size')
+parser.add_argument('--cifar10', default=False, action='store_true',
+                    help='Set the batchsize')
+parser.add_argument('--cifar100', default=False, action='store_true',
+                    help='Set the batchsize')
 
 # N2N
 parser.add_argument('--deeper', default=False, action='store_true',
                     help='Make network deeper')
+
 parser.add_argument('--visual', default=False, action='store_true',
                     help='Set the visual')
 parser.add_argument('--O1', default=False, action='store_true',
@@ -121,7 +129,8 @@ parser.add_argument('--test', default=False, action='store_true',
 
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
-
+listofBlocks = args.n.split(',')
+print(listofBlocks)
 grp_lasso_coeff = 0
 
 
@@ -344,10 +353,14 @@ def main():
     ])
 
     # Load data
-
-    dataloader = datasets.CIFAR10
-    num_classes = 10
-
+    if args.cifar10 and not args.cifar100:
+        dataloader = datasets.CIFAR10
+        num_classes = 10
+    elif args.cifar100 and not args.cifar10:
+        dataloader = datasets.CIFAR100
+        num_classes = 100
+    else:
+        print(f'Fehler kein gültiger Datensatz gewählt')
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
 
     #trainloader = data.DataLoader(trainset, batch_size=args.batch_size, shuffle=True, num_workers=args.workers)
@@ -491,47 +504,45 @@ def main():
     # gc.collect()
 
     i = 1
-    # for epochNet2Net in range(1, 2):
-    while i == 1:
+    for epochNet2Net in range(1, 4):
+    # while i == 1:
         for epoch in range(1, args.epochs + 1):
-                    # if (args.en_group_lasso and (epoch % args.sparse_interval == 0)) or (epoch == 1):
-
-                    # adjust learning rate when epoch is the scheduled epoch
-                    # if epoch in args.schedule:
-                    #     adjust_learning_rate(optimizer, epoch)
+            # adjust learning rate when epoch is the scheduled epoch
+            if epoch in args.schedule:
+                adjust_learning_rate(optimizer, epoch)
 
             print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
-            start = time.time()
+            # start = time.time()
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion,
                                                                                  optimizer,
                                                                                  epoch, use_cuda, use_gpu,
                                                                                  use_gpu_num)
-            ende = time.time()
+            # ende = time.time()
 
             if args.test:
                 test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda,
                                                                          use_gpu)
-            i = 2
-            #         # SparseTrain routine
-            # if args.en_group_lasso and (epoch % args.sparse_interval == 0):
-            #     # Force weights under threshold to zero
-            #     dense_chs, chs_map = makeSparse(optimizer, model, args.threshold, use_gpu)
-            #     if args.visual:
-            #         visualizePruneTrain(model, epoch, args.threshold)
-            #
-            #     genDenseModel(model, dense_chs, optimizer, 'cifar', use_gpu)
-            #     gc.collect()
-            #     model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False,
-            #                     model)
-            #     use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
-            #     # print(f'use after new Model Creation')
-            #     model.cuda(use_gpu)
-            #     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-            #                           weight_decay=args.weight_decay)
+            # i = 2
+            # SparseTrain routine
+            if args.en_group_lasso and (epoch % args.sparse_interval == 0):
+                 # Force weights under threshold to zero
+                 dense_chs, chs_map = makeSparse(optimizer, model, args.threshold, use_gpu)
+                 if args.visual:
+                     visualizePruneTrain(model, epoch, args.threshold)
+
+                 genDenseModel(model, dense_chs, optimizer, 'cifar', use_gpu)
+                 gc.collect()
+                 model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, False,
+                                 model)
+                 use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
+                 # print(f'use after new Model Creation')
+                 model.cuda(use_gpu)
+                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+                                       weight_decay=args.weight_decay)
             #     if args.fp16:
             #         model, optimizer = amp.initialize(model, optimizer)
             #
-            # count = 0
+            #count = 0
             # for p in model.parameters():
             #     count += p.data.nelement()
             # if count < count1:
@@ -555,20 +566,14 @@ def main():
             # # print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
             #
 
-            # if (args.deeper):
-            #     print("\n\nnow deeper")
-            #     # deeper student training
-            #     if best_acc < 50:
-            #         model = n2n.deeper(model, optimizer, [2, 4])
-            #     elif best_acc < 75:
-            #         model = n2n.deeper(model, optimizer, [2])
-            #     elif best_acc < 95:
-            #         model = n2n.deeper(model, optimizer, [2])
-            #     model.cuda(use_gpu)
-            #     criterion = nn.CrossEntropyLoss()
-            #     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-            #                           weight_decay=args.weight_decay)
-            # i = 0
+            if (args.deeper):
+                print("\n\nnow deeper")
+                # deeper student training
+                model = n2n.deeper(model, optimizer, [2, 4])
+                model.cuda(use_gpu)
+                criterion = nn.CrossEntropyLoss()
+                optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+                                     weight_decay=args.weight_decay)
             # print("\n Verhältnis Modell Größe: ", count / count0)
 
 
