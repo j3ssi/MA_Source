@@ -129,7 +129,7 @@ parser.add_argument('--test', default=False, action='store_true',
 
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
-listofBlocks = args.n.split(',')
+listofBlocks = [int(i) for i in args.n.split(',')]
 print(listofBlocks)
 grp_lasso_coeff = 0
 
