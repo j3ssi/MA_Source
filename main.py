@@ -362,7 +362,7 @@ def main():
     elif args.cifar100 and not args.cifar10:
         dataloader = datasets.CIFAR100
         num_classes = 100
-    dataset = (not args.cifar10 and not args.cifar100) or (args.cifar10 and args.cifar100)
+    dataset = not((not args.cifar10 and not args.cifar100) or (args.cifar10 and args.cifar100))
     print(f'{not args.cifar10 and not args.cifar100}' or {args.cifar10 and args.cifar100})
     assert dataset , "kein gültiger Datensatz angegeben"
 
