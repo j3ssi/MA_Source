@@ -363,7 +363,7 @@ def main():
         dataloader = datasets.CIFAR100
         num_classes = 100
     dataset = (not args.cifar10 and not args.cifar100) or (args.cifar10 and args.cifar100)
-    
+    print(f'{not args.cifar10 and not args.cifar100}' or {args.cifar10 and args.cifar100})
     assert dataset , "kein gültiger Datensatz angegeben"
 
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
