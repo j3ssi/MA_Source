@@ -72,7 +72,7 @@ parser.add_argument('--gpu_id', default='0', type=str, help='id(s) for CUDA_VISI
 parser.add_argument('-s', '--numOfStages', default=3, type=int, help='defines the number of stages in the network')
 # parser.add_argument('-n', '--numOfBlocksinStage', type=int, default=5, help='defines the number of Blocks per Stage')
 parser.add_argument('-l', '--layersInBlock', type=int, default=3, help='defines the number of')
-parser.add_argument('-n', type=str, help="#stage numbers separated by commas")
+parser.add_argument('-n',type=str, help="#stage numbers separated by commas")
 
 
 # PruneTrain
@@ -361,8 +361,8 @@ def main():
     elif args.cifar100 and not args.cifar10:
         dataloader = datasets.CIFAR100
         num_classes = 100
-    else:
-        assert( True, "kein gültiger Datensatz angegeben")
+    dataset = (not args.cifar10 and not args.cifar100) or (args.cifar10 and args.cifar100)
+    assert(dataset , "kein gültiger Datensatz angegeben")
 
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
 
@@ -371,7 +371,7 @@ def main():
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
     # dynamic resnet modell
-    model = n2n.N2N(num_classes, args.numOfStages, args.numOfBlocksinStage, args.layersInBlock, True)
+    model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True)
     model.cuda()
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
