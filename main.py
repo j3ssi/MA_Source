@@ -355,6 +355,7 @@ def main():
     ])
 
     # Load data
+    print(f'Cifar10: {args.cifar10}; cifar100: {args.cifar100}')
     if args.cifar10 and not args.cifar100:
         dataloader = datasets.CIFAR10
         num_classes = 10
