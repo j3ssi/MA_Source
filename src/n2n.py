@@ -10,6 +10,7 @@ class N2N(nn.Module):
         super(N2N, self).__init__()
         self.numOfStages = numOfStages
         self.numOfBlocksinStage = numOfBlocksinStage
+
         self.layersInBlock = layersInBlock
         if first:
             self.archNums =[[]]
