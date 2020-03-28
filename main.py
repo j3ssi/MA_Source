@@ -276,7 +276,6 @@ def checkmem(use_gpu):
 
 
 def main():
-    print(f'l: {listofBlocks[1]/2}')
     # choose which gpu to use
     not_enough_memory = True
     use_gpu = 'cuda:0'
