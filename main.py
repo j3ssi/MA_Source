@@ -394,17 +394,6 @@ def main():
     count1 = count0
     if not args.batchTrue:
         # Calculate Size of Trainings Batch size
-        # stages = [2.91, 24.22, 192, 1491.05]
-        # s = stages[args.numOfStages - 1]
-        model_count = [7642, 31034, 123898, 493946, 1971322, 7875194, 31479418]
-        m = model_count[args.numOfStages - 1]
-        # gerade = [1.44, 20.16, 189.39, 1694.55]
-        # bs = [14727, 5856, 2704, 1344]
-        # b = bs[args.numOfStages - 1]
-        # g = gerade[args.numOfStages - 1]
-        # x = count0/ args.numOfBlocksinStage
-        # batch_size = int(x * 0.97 / (g * (args.numOfBlocksinStage - 1) + s))
-        # batch_size0 = batch_size
         ms = [0.2926, 4.4695, 45.0126, 406.9735]
         m = ms[args.numOfStages - 1]
         y0s = [0.2392, 0.7999, -0.2135, -51.4890]
