@@ -48,7 +48,7 @@ def main():
     cmdLine = cmdLine + '--workers 4 --epochs 50 --test --cifar100'
     cmdLine = cmdLine + ' --learning-rate 0.1 '
     cmdLine = cmdLine + ' --batchTrue --batch_size 1024 '
-    cmdLine = cmdLine + ' --test_batch 100 -s ' + str(s) + ' -n 1,2,3,4 -l 3'
+    cmdLine = cmdLine + ' --test_batch 100 -s ' + str(s) + ' -n 2,3,4 -l 3'
     print(cmdLine)
     os.system(cmdLine)
 
