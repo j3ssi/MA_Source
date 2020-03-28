@@ -373,7 +373,7 @@ def main():
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
     # dynamic resnet modell
-    assert args.numOfStages =! len(listofBlocks), "Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!"
+    assert args.numOfStages =! len(listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
     model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True)
     model.cuda()
     criterion = nn.CrossEntropyLoss()
