@@ -359,8 +359,8 @@ def main():
     elif args.cifar100 and not args.cifar10:
         dataloader = datasets.CIFAR100
         num_classes = 100
-    else:
-        print(f'Fehler kein gültiger Datensatz gewählt')
+    assert not(args.cifar10 and args.cifar100), "kein gültiger Datensatz angegeben"
+
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
 
     #trainloader = data.DataLoader(trainset, batch_size=args.batch_size, shuffle=True, num_workers=args.workers)
