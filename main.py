@@ -130,7 +130,7 @@ parser.add_argument('--test', default=False, action='store_true',
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
 listofBlocks = args.n.split(',')
-# print(listofBlocks)
+print(listofBlocks)
 grp_lasso_coeff = 0
 
 
@@ -276,7 +276,7 @@ def checkmem(use_gpu):
 
 
 def main():
-    print(listofBlocks[1]/2)
+    print(f'l: {listofBlocks[1]/2}')
     # choose which gpu to use
     not_enough_memory = True
     use_gpu = 'cuda:0'
