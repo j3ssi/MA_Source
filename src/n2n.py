@@ -197,17 +197,18 @@ class N2N(nn.Module):
             print("\nX Shape: ", x.shape)
         # bn1
         x = self.module_list[1](x)
+        if printNet:
+            print("\nI: 1 ; ", self.module_list[1])
+            print("\nX Shape: ", x.shape)
+
         # maxpool1
         x = self.module_list[2](x)
         if printNet:
             print("\nI: 2 ; ", self.module_list[2])
             print("\nX Shape: ", x.shape)
 
-        if printNet:
-            print("\nI: 1 ; ", self.module_list[1])
-            print("\nX Shape: ", x.shape)
         _x = self.relu(x)
-        j = 2
+        j = 3
         for stage in range(0, self.numOfStages):
             if printNet:
                 print("\n\nStage: ", stage)
