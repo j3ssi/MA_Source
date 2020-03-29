@@ -252,7 +252,7 @@ def main():
     count0 = 0
     for p in model.parameters():
         count0 += p.data.nelement()
-    # print(f'count0: {count0}')
+    print(f'count0: {count0}')
     count1 = count0
     if not args.batchTrue:
         # Calculate Size of Trainings Batch size
