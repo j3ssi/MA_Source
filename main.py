@@ -73,7 +73,7 @@ parser.add_argument('-s', '--numOfStages', default=3, type=int, help='defines th
 # parser.add_argument('-n', '--numOfBlocksinStage', type=int, default=5, help='defines the number of Blocks per Stage')
 parser.add_argument('-l', '--layersInBlock', type=int, default=3, help='defines the number of')
 parser.add_argument('-n',type=str, help="#stage numbers separated by commas")
-parser.add_argument('-b', '--bootleneck',default=False, action='store_true',
+parser.add_argument('-b', '--bottleneck',default=False, action='store_true',
                     help='Set the bootleneck parameter')
 
 
