@@ -29,7 +29,7 @@ class N2N(nn.Module):
             conv0 = nn.Conv2d(3, 64, kernel_size=7, padding=1, bias=False, stride=2)
             self.module_list.append(conv0)
             # bn1
-            bn1 = nn.BatchNorm2d(16)
+            bn1 = nn.BatchNorm2d(64)
             self.module_list.append(bn1)
             maxpool1 = nn.MaxPool2d(3,stride=2)
 
