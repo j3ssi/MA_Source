@@ -197,6 +197,9 @@ class N2N(nn.Module):
             print("\nX Shape: ", x.shape)
         # bn1
         x = self.module_list[1](x)
+        # maxpool1
+        x = self.module_list[1](x)
+
         if printNet:
             print("\nI: 1 ; ", self.module_list[1])
             print("\nX Shape: ", x.shape)
