@@ -445,7 +445,7 @@ class N2N(nn.Module):
                 print("\n \n Oops!!!: ")
                 print("AvgPool")
         else:
-            print("\n \n Oops!!!: ")
+            print("\n \nElse Oops!!!: ")
             print("AvgPool")
 
         j = j + 1
