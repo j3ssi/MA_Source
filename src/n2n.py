@@ -6,7 +6,7 @@ import math
 
 class N2N(nn.Module):
 
-    def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock, first, model=None):
+    def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock, first, bottleneck, model=None):
         super(N2N, self).__init__()
         self.numOfStages = numOfStages
         self.numOfBlocksinStage = numOfBlocksinStage
@@ -26,15 +26,17 @@ class N2N(nn.Module):
 
             # first Layer
             # conv1
-            conv0 = nn.Conv2d(3, 16, kernel_size=3, padding=1, bias=False, stride=1)
+            conv0 = nn.Conv2d(3, 64, kernel_size=7, padding=1, bias=False, stride=2)
             self.module_list.append(conv0)
             # bn1
             bn1 = nn.BatchNorm2d(16)
             self.module_list.append(bn1)
+            maxpool1 = nn.MaxPool2d(3,stride=2)
+
             firstLayer = True
             for stage in range(0, numOfStages):
                 firstLayerInStage = True
-                sizeOfLayer = pow(2, stage + 4)
+                sizeOfLayer = pow(2, stage + 6)
                 # print("\nStage: ", stage, " ; ", sizeOfLayer)
                 for block in range(0, numOfBlocksinStage[stage]):
 
