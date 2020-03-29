@@ -136,146 +136,6 @@ print(listofBlocks)
 grp_lasso_coeff = 0
 
 
-def visualizePruneTrain(model, epoch, threshold):
-    altList = []
-    paramList = []
-    printName = False
-    for name, param in model.named_parameters():
-        # print("\nName: {}", name)
-        paramList.append(param)
-        # print("\nName: ", name)
-        i = int(name.split('.')[1])
-
-        if i % 2 == 0:
-            altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
-            if printName:
-                print("\nI:", i, " ; ", altList[-1])
-        elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
-            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
-            if printName:
-                print("\nI:", i, " ; ", altList[-1])
-        elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
-            altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
-            if printName:
-                print("\nI:", i, " ; ", altList[-1])
-        elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
-            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
-            if printName:
-                print("\nI:", i, " ; ", altList[-1])
-        elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
-            altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-            if printName:
-                print("\nI:", i, " ; ", altList[-1])
-        else:
-            assert True, print("Hier fehlt noch was!!")
-
-    if printName:
-        print("\naltList", altList)
-
-    printParam = False
-    my_cmap = matplotlib.cm.get_cmap('gray', 256)
-    newcolors = my_cmap(np.linspace(0, 1, 256))
-    pink = np.array([248 / 256, 24 / 256, 148 / 256, 1])
-    newcolors[:2, :] = pink
-    newcmp = ListedColormap(newcolors)
-    # print("\ncmap: ", my_cmap(0))
-    for a in range(0, len(altList)):
-        weight = paramList[a].cpu()
-        weight = weight.detach().numpy()
-
-        f_min, f_max = np.min(weight), np.max(weight)
-        if printParam:
-            print("\nf_min; f_max: ", f_min, " ; ", f_max)
-        # When threshold < f_min then no vmin
-        weight = (weight - f_min) / (f_max - f_min)
-
-        # threshold = (threshold-f_min)/(f_max-f_min)
-        if 'conv' in altList[a]:
-            # print("\naltList[", a, "]: ", altList[a])
-            dims = paramList[a].shape
-            if printParam:
-                print("\nParamListShape: ", paramList[a].shape)
-            # weight = copy.deepcopy(paramList[a])
-            if printParam:
-                print("\nDims: ", dims)
-            ix = 1
-            for i in range(0, dims[0]):  # out channels
-                # color = [[[]]]
-                ax = None
-                filtermap3d = weight[i, :, :, :]
-                # print("\nShape FilterMap: ", filtermap3d.shape)
-                for j in range(0, dims[1]):  # in channels
-                    filterMaps = filtermap3d[j, :, :]
-
-                    if printParam:
-                        print("\nWeight: ", filterMaps)
-
-                    ax = pyplot.subplot(dims[0], dims[1], ix)
-                    ax.set_xticks([])
-                    ax.set_yticks([])
-                    pyplot.imshow(filterMaps[:, :], cmap=newcmp)
-
-                    ix += 1
-                # printWeights = weightList3d[-j:]
-                # ax = fig.add_subplot(111, projection='3d')
-                # ax.scatter(printWeights[0], printWeights[1], printWeights[2])
-            # pyplot.legend(bbox_to_anchor=(0, -0.15, 1, 0), loc=2, ncol=2, mode="expand", borderaxespad=0)
-            fileName = altList[a] + '_' + str(epoch) + '.png'
-            pyplot.savefig(fileName)
-
-        elif 'bn' in altList[a]:
-            ax = None
-            # print("\naltList[", a, "]: ", altList[a])
-            dims = paramList[a].shape
-            if printParam:
-                print("\nParamListShape: ", paramList[a].shape)
-            weight = paramList[a].cpu()
-            weight = weight.detach().numpy()
-            if printParam:
-                print("\nDims: ", dims)
-            ax = pyplot.plot(weight)
-            # ax.set_xticks([])
-            # ax.set_yticks([])
-            # pyplot.imshow(weight[:,0],cmap=my_cmap,vmin=threshold)
-            # ix += 1
-            fileName = altList[a] + '_' + str(epoch) + '.png'
-            pyplot.savefig(fileName)
-
-        elif 'fc' in altList[a]:
-            print("\naltList[", a, "]: ", altList[a])
-            dims = paramList[a].shape
-            if printParam:
-                print("\nParamListShape: ", paramList[a].shape)
-            weight = paramList[a].cpu()
-            weight = weight.detach().numpy()
-            if printParam:
-                print("\nDims: ", dims)
-            ix = 1
-            for i in range(0, dims[0]):  # out channels
-                ax = None
-            #    if printParam:
-            #       print("\nWeight: ", filterMaps)
-
-        #     ax = pyplot.subplot(dims[0], 1, ix)
-        #     ax.set_xticks([])
-        #     ax.set_yticks([])
-        #       pyplot.imshow(weight[i, ], cmap=my_cmap, vmin=threshold, vmax=1)
-        #      ix += 1
-        #  fileName = altList[a] + '_' + str(epoch) + '.png'
-        # pyplot.savefig(fileName)
-
-    pyplot.close('all')
-
-
-def checkmem(use_gpu):
-    total, used, free = os.popen('"nvidia-smi" --query-gpu=memory.total,memory.used,memory.free --format=csv,nounits,noheader'
-    ).read().split('\n')[use_gpu].split(',')
-    total = int(total)
-    used = int(used)
-    free = int(free)
-    # print(use_gpu, 'Total GPU mem:', total, 'used:', used)
-    return total, used, free
-
 
 def main():
     # choose which gpu to use
@@ -375,7 +235,7 @@ def main():
 
     # dynamic resnet modell
     assert args.numOfStages == len(listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
-    model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, args.bottleneck, True)
+    model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock,True, args.bottleneck)
     model.cuda()
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
@@ -570,6 +430,7 @@ def main():
     print(' {:5.3f}s'.format(ende - start), end='  ')
 
 
+
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, use_gpu_num):
     # switch to train mode
 
@@ -734,6 +595,148 @@ def adjust_learning_rate(optimizer, epoch):
         args.lr = set_lr
     for param_group in optimizer.param_groups:
         param_group['lr'] = state['lr']
+
+def visualizePruneTrain(model, epoch, threshold):
+    altList = []
+    paramList = []
+    printName = False
+    for name, param in model.named_parameters():
+        # print("\nName: {}", name)
+        paramList.append(param)
+        # print("\nName: ", name)
+        i = int(name.split('.')[1])
+
+        if i % 2 == 0:
+            altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
+            if printName:
+                print("\nI:", i, " ; ", altList[-1])
+        elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
+            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
+            if printName:
+                print("\nI:", i, " ; ", altList[-1])
+        elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
+            altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
+            if printName:
+                print("\nI:", i, " ; ", altList[-1])
+        elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
+            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
+            if printName:
+                print("\nI:", i, " ; ", altList[-1])
+        elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
+            altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
+            if printName:
+                print("\nI:", i, " ; ", altList[-1])
+        else:
+            assert True, print("Hier fehlt noch was!!")
+
+    if printName:
+        print("\naltList", altList)
+
+    printParam = False
+    my_cmap = matplotlib.cm.get_cmap('gray', 256)
+    newcolors = my_cmap(np.linspace(0, 1, 256))
+    pink = np.array([248 / 256, 24 / 256, 148 / 256, 1])
+    newcolors[:2, :] = pink
+    newcmp = ListedColormap(newcolors)
+    # print("\ncmap: ", my_cmap(0))
+    for a in range(0, len(altList)):
+        weight = paramList[a].cpu()
+        weight = weight.detach().numpy()
+
+        f_min, f_max = np.min(weight), np.max(weight)
+        if printParam:
+            print("\nf_min; f_max: ", f_min, " ; ", f_max)
+        # When threshold < f_min then no vmin
+        weight = (weight - f_min) / (f_max - f_min)
+
+        # threshold = (threshold-f_min)/(f_max-f_min)
+        if 'conv' in altList[a]:
+            # print("\naltList[", a, "]: ", altList[a])
+            dims = paramList[a].shape
+            if printParam:
+                print("\nParamListShape: ", paramList[a].shape)
+            # weight = copy.deepcopy(paramList[a])
+            if printParam:
+                print("\nDims: ", dims)
+            ix = 1
+            for i in range(0, dims[0]):  # out channels
+                # color = [[[]]]
+                ax = None
+                filtermap3d = weight[i, :, :, :]
+                # print("\nShape FilterMap: ", filtermap3d.shape)
+                for j in range(0, dims[1]):  # in channels
+                    filterMaps = filtermap3d[j, :, :]
+
+                    if printParam:
+                        print("\nWeight: ", filterMaps)
+
+                    ax = pyplot.subplot(dims[0], dims[1], ix)
+                    ax.set_xticks([])
+                    ax.set_yticks([])
+                    pyplot.imshow(filterMaps[:, :], cmap=newcmp)
+
+                    ix += 1
+                # printWeights = weightList3d[-j:]
+                # ax = fig.add_subplot(111, projection='3d')
+                # ax.scatter(printWeights[0], printWeights[1], printWeights[2])
+            # pyplot.legend(bbox_to_anchor=(0, -0.15, 1, 0), loc=2, ncol=2, mode="expand", borderaxespad=0)
+            fileName = altList[a] + '_' + str(epoch) + '.png'
+            pyplot.savefig(fileName)
+
+        elif 'bn' in altList[a]:
+            ax = None
+            # print("\naltList[", a, "]: ", altList[a])
+            dims = paramList[a].shape
+            if printParam:
+                print("\nParamListShape: ", paramList[a].shape)
+            weight = paramList[a].cpu()
+            weight = weight.detach().numpy()
+            if printParam:
+                print("\nDims: ", dims)
+            ax = pyplot.plot(weight)
+            # ax.set_xticks([])
+            # ax.set_yticks([])
+            # pyplot.imshow(weight[:,0],cmap=my_cmap,vmin=threshold)
+            # ix += 1
+            fileName = altList[a] + '_' + str(epoch) + '.png'
+            pyplot.savefig(fileName)
+
+        elif 'fc' in altList[a]:
+            print("\naltList[", a, "]: ", altList[a])
+            dims = paramList[a].shape
+            if printParam:
+                print("\nParamListShape: ", paramList[a].shape)
+            weight = paramList[a].cpu()
+            weight = weight.detach().numpy()
+            if printParam:
+                print("\nDims: ", dims)
+            ix = 1
+            for i in range(0, dims[0]):  # out channels
+                ax = None
+            #    if printParam:
+            #       print("\nWeight: ", filterMaps)
+
+        #     ax = pyplot.subplot(dims[0], 1, ix)
+        #     ax.set_xticks([])
+        #     ax.set_yticks([])
+        #       pyplot.imshow(weight[i, ], cmap=my_cmap, vmin=threshold, vmax=1)
+        #      ix += 1
+        #  fileName = altList[a] + '_' + str(epoch) + '.png'
+        # pyplot.savefig(fileName)
+
+    pyplot.close('all')
+
+
+def checkmem(use_gpu):
+    total, used, free = os.popen('"nvidia-smi" --query-gpu=memory.total,memory.used,memory.free --format=csv,nounits,noheader'
+    ).read().split('\n')[use_gpu].split(',')
+    total = int(total)
+    used = int(used)
+    free = int(free)
+    # print(use_gpu, 'Total GPU mem:', total, 'used:', used)
+    return total, used, free
+
+
 
 
 if __name__ == '__main__':
