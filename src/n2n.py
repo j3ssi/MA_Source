@@ -198,7 +198,10 @@ class N2N(nn.Module):
         # bn1
         x = self.module_list[1](x)
         # maxpool1
-        x = self.module_list[1](x)
+        x = self.module_list[2](x)
+        if printNet:
+            print("\nI: 2 ; ", self.module_list[2])
+            print("\nX Shape: ", x.shape)
 
         if printNet:
             print("\nI: 1 ; ", self.module_list[1])
