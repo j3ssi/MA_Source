@@ -32,7 +32,7 @@ class N2N(nn.Module):
             bn1 = nn.BatchNorm2d(64)
             self.module_list.append(bn1)
             maxpool1 = nn.MaxPool2d(3,stride=2)
-
+            self.module_list.append(maxpool1)
             firstLayer = True
             for stage in range(0, numOfStages):
                 firstLayerInStage = True
