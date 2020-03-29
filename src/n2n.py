@@ -44,7 +44,7 @@ class N2N(nn.Module):
                         if firstLayerInStage and not firstLayer:
                             if bottleneck:
                                 if(j==0):
-                                    conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=1, padding=1,
+                                    conv = nn.Conv2d(int(sizeOfLayer/2), sizeOfLayer, kernel_size=1, padding=1,
                                                      bias=False,
                                                      stride=1)
                                     self.module_list.append(conv)
