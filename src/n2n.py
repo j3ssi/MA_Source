@@ -26,17 +26,15 @@ class N2N(nn.Module):
 
             # first Layer
             # conv1
-            conv0 = nn.Conv2d(3, 64, kernel_size=7, padding=1, bias=False, stride=2)
+            conv0 = nn.Conv2d(3, 16, kernel_size=3, padding=1, bias=False, stride=1)
             self.module_list.append(conv0)
             # bn1
-            bn1 = nn.BatchNorm2d(64)
+            bn1 = nn.BatchNorm2d(16)
             self.module_list.append(bn1)
-            maxpool1 = nn.MaxPool2d(3,stride=2)
-            self.module_list.append(maxpool1)
             firstLayer = True
             for stage in range(0, numOfStages):
                 firstLayerInStage = True
-                sizeOfLayer = pow(2, stage + 6)
+                sizeOfLayer = pow(2, stage + 4)
                 # print("\nStage: ", stage, " ; ", sizeOfLayer)
                 for i in self.archNums[stage-1]:
 
@@ -44,12 +42,19 @@ class N2N(nn.Module):
                         if firstLayerInStage and not firstLayer:
                             if bottleneck:
                                 if(j==0):
-                                    conv = nn.Conv2d(int(sizeOfLayer/2), sizeOfLayer, kernel_size=1, padding=1,
+                                    conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=1, padding=0,
                                                      bias=False,
                                                      stride=1)
                                     self.module_list.append(conv)
-                                    bn = nn.BatchNorm2d(sizeOfLayer)
+                                    bn = nn.BatchNorm2d(16)
                                     self.module_list.append(bn)
+                                    conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1,
+                                                     bias=False,
+                                                     stride=1)
+                                    self.module_list.append(conv)
+                                    bn = nn.BatchNorm2d(16)
+                                    self.module_list.append(bn)
+
                                     firstLayerInStage = False
 
 
@@ -64,21 +69,21 @@ class N2N(nn.Module):
                         else:
                             if bottleneck:
                                 if(j==0):
-                                    conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=1, padding=1,
+                                    conv = nn.Conv2d(sizeOfLayer*4, sizeOfLayer, kernel_size=1, padding=0,
                                                      bias=False,
                                                      stride=1)
                                     self.module_list.append(conv)
                                     bn = nn.BatchNorm2d(sizeOfLayer)
                                     self.module_list.append(bn)
                                 elif(j+1==i):
-                                    conv = nn.Conv2d(sizeOfLayer*4, sizeOfLayer, kernel_size=1, padding=1,
+                                    conv = nn.Conv2d(sizeOfLayer, sizeOfLayer*4, kernel_size=1, padding=0,
                                                      bias=False,
                                                      stride=1)
                                     self.module_list.append(conv)
-                                    bn = nn.BatchNorm2d(sizeOfLayer)
+                                    bn = nn.BatchNorm2d(4*sizeOfLayer)
                                     self.module_list.append(bn)
                                 else:
-                                    conv = nn.Conv2d(sizeOfLayer, sizeOfLayer*4, kernel_size=3, padding=1,
+                                    conv = nn.Conv2d(sizeOfLayer, sizeOfLayer*4, kernel_size=1, padding=0,
                                                      bias=False,
                                                      stride=1)
                                     self.module_list.append(conv)
