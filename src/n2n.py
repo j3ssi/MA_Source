@@ -38,25 +38,61 @@ class N2N(nn.Module):
                 firstLayerInStage = True
                 sizeOfLayer = pow(2, stage + 6)
                 # print("\nStage: ", stage, " ; ", sizeOfLayer)
-                for block in range(0, numOfBlocksinStage[stage]):
+                for i in numOfBlocksinStage[stage]:
 
-                    i = 0
-                    while i < self.layersInBlock:
+                    for j in range(0,i):
                         if firstLayerInStage and not firstLayer:
-                            conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1, bias=False,
-                                             stride=1)
-                            self.module_list.append(conv)
-                            bn = nn.BatchNorm2d(sizeOfLayer)
-                            self.module_list.append(bn)
-                            i = i + 1
-                            firstLayerInStage = False
+                            if bottleneck:
+                                if(j==0):
+                                    conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=1, padding=1,
+                                                     bias=False,
+                                                     stride=1)
+                                    self.module_list.append(conv)
+                                    bn = nn.BatchNorm2d(sizeOfLayer)
+                                    self.module_list.append(bn)
+                                    firstLayerInStage = False
+
+
+                            else:
+                                conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1, bias=False,
+                                                 stride=1)
+                                self.module_list.append(conv)
+                                bn = nn.BatchNorm2d(sizeOfLayer)
+                                self.module_list.append(bn)
+                                firstLayerInStage = False
 
                         else:
-                            conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
-                            self.module_list.append(conv)
-                            bn = nn.BatchNorm2d(sizeOfLayer)
-                            self.module_list.append(bn)
-                            i = i + 1
+                            if bottleneck:
+                                if(j==0):
+                                    conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=1, padding=1,
+                                                     bias=False,
+                                                     stride=1)
+                                    self.module_list.append(conv)
+                                    bn = nn.BatchNorm2d(sizeOfLayer)
+                                    self.module_list.append(bn)
+                                elif(j+1==i):
+                                    conv = nn.Conv2d(sizeOfLayer*4, sizeOfLayer, kernel_size=1, padding=1,
+                                                     bias=False,
+                                                     stride=1)
+                                    self.module_list.append(conv)
+                                    bn = nn.BatchNorm2d(sizeOfLayer)
+                                    self.module_list.append(bn)
+                                else:
+                                    conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1,
+                                                     bias=False,
+                                                     stride=1)
+                                    self.module_list.append(conv)
+                                    bn = nn.BatchNorm2d(sizeOfLayer)
+                                    self.module_list.append(bn)
+
+
+
+                            else:
+                                conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False, stride=1)
+                                self.module_list.append(conv)
+                                bn = nn.BatchNorm2d(sizeOfLayer)
+                                self.module_list.append(bn)
+                                i = i + 1
 
                 firstLayer = False
 
