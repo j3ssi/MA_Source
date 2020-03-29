@@ -242,11 +242,6 @@ class N2N(nn.Module):
             print("\nI: 1 ; ", self.module_list[1])
             print("\nX Shape: ", x.shape)
 
-        # maxpool1
-        x = self.module_list[2](x)
-        if printNet:
-            print("\nI: 2 ; ", self.module_list[2])
-            print("\nX Shape: ", x.shape)
 
         _x = self.relu(x)
         j = 3
