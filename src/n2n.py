@@ -61,7 +61,7 @@ class N2N(nn.Module):
                 firstLayer = False
 
             # 18
-            self.sizeOfFC = pow(2, self.numOfStages + 3)
+            self.sizeOfFC = pow(2, self.numOfStages + 5)
 
             # conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
             #                  stride=1)
