@@ -265,6 +265,40 @@ class N2N(nn.Module):
                             print("\nJ: ", j, " ; ", self.module_list[j])
                             print("\nX Shape: ", x.shape)
                         j = j + 1
+                        # conv
+                        x = self.module_list[j](_x)
+                        if printNet:
+                            print("\nJ: ", j, " ; ", self.module_list[j])
+                            print("\nX Shape: ", x.shape)
+                        j = j + 1
+
+                        # bn
+                        x = self.module_list[j](x)
+                        if printNet:
+                            print(f'J:  {j}; {self.module_list[j]}')
+                        j = j + 1
+                        x = self.module_list[j](_x)
+                        if printNet:
+                            print("\nJ: ", j, " ; ", self.module_list[j])
+                            print("\nX Shape: ", x.shape)
+                        j = j + 1
+                        # conv
+                        x = self.module_list[j](_x)
+                        if printNet:
+                            print("\nJ: ", j, " ; ", self.module_list[j])
+                            print("\nX Shape: ", x.shape)
+                        j = j + 1
+
+                        # bn
+                        x = self.module_list[j](x)
+                        if printNet:
+                            print(f'J:  {j}; {self.module_list[j]}')
+                        j = j + 1
+                        x = self.module_list[j](_x)
+                        if printNet:
+                            print("\nJ: ", j, " ; ", self.module_list[j])
+                            print("\nX Shape: ", x.shape)
+                        j = j + 1
 
                         # bn
                         x = self.module_list[j](x)
