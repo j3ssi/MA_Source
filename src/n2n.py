@@ -262,7 +262,6 @@ class N2N(nn.Module):
                                 if printNet:
                                     print("\nJ: ", j, " ; ", self.module_list[j])
                                 j = j + 1
-                                i = i + 1
                                 x = self.module_list[j](_x)
                                 if printNet:
                                     print("\nJ: ", j, " ; ", self.module_list[j])
