@@ -53,9 +53,14 @@ class N2N(nn.Module):
                                     self.module_list.append(conv)
                                     bn = nn.BatchNorm2d(sizeOfLayer)
                                     self.module_list.append(bn)
-                                    conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1,
-                                                     bias=False,
-                                                     stride=1)
+                                    if stage == 0:
+                                        conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1,
+                                                         bias=False,
+                                                         stride=1)
+                                    else:
+                                        conv = nn.Conv2d(sizeOfLayer*2, sizeOfLayer, kernel_size=3, padding=1,
+                                                         bias=False,
+                                                         stride=1)
                                     self.module_list.append(conv)
                                     bn = nn.BatchNorm2d(sizeOfLayer)
                                     self.module_list.append(bn)
@@ -297,7 +302,7 @@ class N2N(nn.Module):
                             print("\nX Shape: ", x.shape)
                         j = j + 1
 
-                        # con8 (5)
+                        # conv8 (5)
                         _x = self.module_list[j](_x)
                         if printNet:
                             print("\nJ: ", j, " ; ", self.module_list[j])
