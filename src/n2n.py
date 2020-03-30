@@ -51,7 +51,7 @@ class N2N(nn.Module):
                                                      bias=False,
                                                      stride=1)
                                     self.module_list.append(conv)
-                                    bn = nn.BatchNorm2d(16)
+                                    bn = nn.BatchNorm2d(sizeOfLayer)
                                     self.module_list.append(bn)
                                     firstLayerInStage = False
                             else:
