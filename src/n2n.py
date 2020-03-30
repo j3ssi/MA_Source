@@ -283,7 +283,7 @@ class N2N(nn.Module):
                             print("\nX Shape: ", x.shape)
                         j = j + 1
                         # conv6
-                        x = self.module_list[j](_x)
+                        x = self.module_list[j](x)
                         if printNet:
                             print("\nJ: ", j, " ; ", self.module_list[j])
                             print("\nX Shape: ", x.shape)
