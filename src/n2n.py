@@ -33,6 +33,7 @@ class N2N(nn.Module):
             self.module_list.append(bn1)
             if self.bottleneck:
                 for stage in range(0, numOfStages):
+                    first = True
                     sizeOfLayer = pow(2, stage + 4)
                     # print("\nStage: ", stage, " ; ", sizeOfLayer)
                     if stage == 0:
@@ -72,9 +73,10 @@ class N2N(nn.Module):
                     bn = nn.BatchNorm2d(sizeOfLayer*4)
                     self.module_list.append(bn)
 
-                    first=True
 
                     for i in self.archNums[stage - 1]:
+                        print(f'first I:,{i}')
+
                         if first:
                             print(f'I:,{i}')
                             continue
