@@ -76,6 +76,7 @@ class N2N(nn.Module):
 
                     for i in self.archNums[stage - 1]:
                         if first:
+                            print(f'I:,{i}')
                             continue
                             first = False
                         for j in range(1, i):
