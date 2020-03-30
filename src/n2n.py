@@ -35,7 +35,7 @@ class N2N(nn.Module):
                 for stage in range(0, numOfStages):
                     first = True
                     sizeOfLayer = pow(2, stage + 4)
-                    # print("\nStage: ", stage, " ; ", sizeOfLayer)
+                    print("\nStage: ", stage, " ; ", sizeOfLayer)
                     if stage == 0:
                         conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=1, padding=0,
                                          bias=False,
