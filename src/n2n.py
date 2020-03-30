@@ -73,7 +73,7 @@ class N2N(nn.Module):
                     bn = nn.BatchNorm2d(sizeOfLayer*4)
                     self.module_list.append(bn)
 
-                    print(f'archNums: {self.archNums[stages-1]}')
+                    print(f'archNums: {self.archNums[stage-1]}')
                     for i in self.archNums[stage - 1]:
                         print(f'first I:,{i}')
 
