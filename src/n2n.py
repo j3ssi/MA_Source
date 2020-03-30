@@ -312,12 +312,10 @@ class N2N(nn.Module):
                         i = i + 1
                         _x = x + _x
                         _x = self.relu(_x)
-
+                        firstLayerInStage = False
                     else:
                         if printNet:
                             print("\n\n\tBlock: ", block)
-                        if firstLayerInStage == True:
-                            firstLayerInStage = False
                         else:
                             i = 0
                         layerInThisBlock = archNum[block]
