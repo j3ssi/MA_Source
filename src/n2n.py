@@ -60,7 +60,7 @@ class N2N(nn.Module):
                     bn = nn.BatchNorm2d(sizeOfLayer)
                     self.module_list.append(bn)
 
-                    conv = nn.Conv2d(sizeOfLayer, sizeOfLayer*4, kernel_size=1, padding=1,
+                    conv = nn.Conv2d(sizeOfLayer, sizeOfLayer*4, kernel_size=1, padding=0,
                                      bias=False,
                                      stride=1)
                     self.module_list.append(conv)
