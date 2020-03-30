@@ -316,12 +316,15 @@ class N2N(nn.Module):
                     else:
                         if printNet:
                             print("\n\n\tBlock: ", block)
-                        else:
-                            i = 0
+
+                        i = 0
                         layerInThisBlock = archNum[block]
                         while i < layerInThisBlock:
                             # conv
-                            x = self.module_list[j](_x)
+                            if i == 0:
+                                x = self.module_list[j](_x)
+                            else:
+                                x = self.module_list[j](x)
                             if printNet:
                                 print("\nJ: ", j, " ; ", self.module_list[j])
                                 print("\nX Shape: ", x.shape)
@@ -336,15 +339,7 @@ class N2N(nn.Module):
                             x = self.relu(x)
 
                             if ((i + 1) % self.layersInBlock) == 0:
-                                # conv
-                                x = self.module_list[j](x)
-                                if printNet:
-                                    print("\n J: ", j, " ; ", self.module_list[j])
-                                    print("\nX Shape: ", x.shape)
-                                j = j + 1
 
-                                # bn
-                                x = self.module_list[j](x)
                                 if printNet:
                                     print("\nShortcutLayer J: ", j, " ; ", self.module_list[j])
                                 j = j + 1
