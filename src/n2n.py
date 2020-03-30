@@ -75,7 +75,8 @@ class N2N(nn.Module):
 
                     print(f'archNums: {len(self.archNums[stage-1])}')
                     for i in range(0, len(self.archNums[stage-1])-1):
-                        for j in range(0, self.archNums[stage-1][i+1]):
+                        j=0
+                        while j< self.archNums[stage-1][i+1]:
                             print(f'first I:,{i}')
                             if (j == 0):
                                 conv = nn.Conv2d(sizeOfLayer * 4, sizeOfLayer, kernel_size=1, padding=0,
@@ -84,13 +85,15 @@ class N2N(nn.Module):
                                 self.module_list.append(conv)
                                 bn = nn.BatchNorm2d(sizeOfLayer)
                                 self.module_list.append(bn)
-                            elif (j + 1 % self.archNums[stage-1][i+1] != 0):
+                                j=j+2
+                            elif (j + 2 % self.archNums[stage-1][i+1] != 0):
                                 conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1,
                                                  bias=False,
                                                  stride=1)
                                 self.module_list.append(conv)
                                 bn = nn.BatchNorm2d(sizeOfLayer)
                                 self.module_list.append(bn)
+                                j=j+2
                             else:
                                 conv = nn.Conv2d(sizeOfLayer, sizeOfLayer * 4, kernel_size=1, padding=0,
                                                  bias=False,
@@ -98,7 +101,7 @@ class N2N(nn.Module):
                                 self.module_list.append(conv)
                                 bn = nn.BatchNorm2d(4 * sizeOfLayer)
                                 self.module_list.append(bn)
-
+                                j=j+2
 
                 # 18
                 self.sizeOfFC = pow(2, self.numOfStages + 5)
