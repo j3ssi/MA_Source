@@ -344,7 +344,7 @@ class N2N(nn.Module):
                             if printNet:
                                 print("\nJ: ", j, " ; ", self.module_list[j])
                             j = j + 1
-                            i=i+1
+
                             x = self.relu(x)
 
                             if ((i + 1) % self.layersInBlock) == 0:
@@ -356,7 +356,7 @@ class N2N(nn.Module):
                                 _x = _x + x
                                 _x = self.relu(_x)
 
-
+                            i = i + 1
                             # elif ((i + 1) % self.layersInBlock) == 0:
                             #
                             #     # conv
