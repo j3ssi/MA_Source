@@ -84,7 +84,7 @@ class N2N(nn.Module):
                                 self.module_list.append(conv)
                                 bn = nn.BatchNorm2d(sizeOfLayer)
                                 self.module_list.append(bn)
-                            elif (j + 1 == i):
+                            elif (j + 1 % self.archNums[stage-1][i+1] != 0):
                                 conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1,
                                                  bias=False,
                                                  stride=1)
