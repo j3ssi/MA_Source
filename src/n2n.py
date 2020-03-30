@@ -74,13 +74,10 @@ class N2N(nn.Module):
                     self.module_list.append(bn)
 
                     print(f'archNums: {self.archNums[stage-1]}')
-                    for i in self.archNums[stage - 1]:
+                    blocks =self.archNums[stage-1]-1
+                    for i in range(0, blocks):
                         print(f'first I:,{i}')
 
-                        if first:
-                            print(f'I:,{i}')
-                            continue
-                            first = False
                         for j in range(1, i):
                             if (j == 0):
                                 conv = nn.Conv2d(sizeOfLayer * 4, sizeOfLayer, kernel_size=1, padding=0,
