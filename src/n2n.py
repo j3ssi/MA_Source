@@ -31,17 +31,15 @@ class N2N(nn.Module):
             # bn1
             bn1 = nn.BatchNorm2d(16)
             self.module_list.append(bn1)
-            for stage in range(0, numOfStages):
-                firstLayerInStage = True
-                sizeOfLayer = pow(2, stage + 4)
-                # print("\nStage: ", stage, " ; ", sizeOfLayer)
-                for i in self.archNums[stage - 1]:
+            if self.bottleneck:
+                for stage in range(0, numOfStages):
+                    sizeOfLayer = pow(2, stage + 4)
+                    # print("\nStage: ", stage, " ; ", sizeOfLayer)
                     if stage == 0:
                         conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=1, padding=0,
                                          bias=False,
                                          stride=1)
                     else:
-
                         conv = nn.Conv2d(sizeOfLayer * 2, sizeOfLayer, kernel_size=1, padding=0,
                                          bias=False,
                                          stride=1)
@@ -74,62 +72,58 @@ class N2N(nn.Module):
                     bn = nn.BatchNorm2d(sizeOfLayer)
                     self.module_list.append(bn)
 
-                    for j in range(1, i):
-                        if True:
-                            if bottleneck:
-                                if (j == 0):
-                                    conv = nn.Conv2d(sizeOfLayer * 4, sizeOfLayer, kernel_size=1, padding=0,
-                                                     bias=False,
-                                                     stride=1)
-                                    self.module_list.append(conv)
-                                    bn = nn.BatchNorm2d(sizeOfLayer)
-                                    self.module_list.append(bn)
-                                elif (j + 1 == i):
-                                    conv = nn.Conv2d(sizeOfLayer, sizeOfLayer * 4, kernel_size=1, padding=0,
-                                                     bias=False,
-                                                     stride=1)
-                                    self.module_list.append(conv)
-                                    bn = nn.BatchNorm2d(4 * sizeOfLayer)
-                                    self.module_list.append(bn)
-                                else:
-                                    conv = nn.Conv2d(sizeOfLayer, sizeOfLayer * 4, kernel_size=1, padding=0,
-                                                     bias=False,
-                                                     stride=1)
-                                    self.module_list.append(conv)
-                                    bn = nn.BatchNorm2d(4 * sizeOfLayer)
-                                    self.module_list.append(bn)
-                            else:
-                                conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
+
+
+                    for i in self.archNums[stage - 1]:
+
+                        for j in range(1, i):
+                            if (j == 0):
+                                conv = nn.Conv2d(sizeOfLayer * 4, sizeOfLayer, kernel_size=1, padding=0,
+                                                 bias=False,
                                                  stride=1)
                                 self.module_list.append(conv)
                                 bn = nn.BatchNorm2d(sizeOfLayer)
                                 self.module_list.append(bn)
-                firstLayer = False
+                            elif (j + 1 == i):
+                                conv = nn.Conv2d(sizeOfLayer, sizeOfLayer * 4, kernel_size=1, padding=0,
+                                                 bias=False,
+                                                 stride=1)
+                                self.module_list.append(conv)
+                                bn = nn.BatchNorm2d(4 * sizeOfLayer)
+                                self.module_list.append(bn)
+                            else:
+                                conv = nn.Conv2d(sizeOfLayer, sizeOfLayer * 4, kernel_size=1, padding=0,
+                                                 bias=False,
+                                                 stride=1)
+                                self.module_list.append(conv)
+                                bn = nn.BatchNorm2d(4 * sizeOfLayer)
+                                self.module_list.append(bn)
 
-            # 18
-            self.sizeOfFC = pow(2, self.numOfStages + 5)
 
-            # conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
-            #                  stride=1)
-            # self.module_list.append(conv)
-            # bn = nn.BatchNorm2d(sizeOfLayer)
-            # self.module_list.append(bn)
+                # 18
+                self.sizeOfFC = pow(2, self.numOfStages + 5)
 
-            # print("\n self sizeofFC: ",self.sizeOfFC)
-            avgpool = nn.AdaptiveAvgPool2d((1, 1))
-            self.module_list.append(avgpool)
-            # 19
-            fc = nn.Linear(self.sizeOfFC, num_classes)
-            self.module_list.append(fc)
-            self.relu = nn.ReLU(inplace=True)
+                # conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
+                #                  stride=1)
+                # self.module_list.append(conv)
+                # bn = nn.BatchNorm2d(sizeOfLayer)
+                # self.module_list.append(bn)
 
-            for m in self.module_list:
-                if isinstance(m, nn.Conv2d):
-                    n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
-                    m.weight.data.normal_(0, math.sqrt(2. / n))
-                elif isinstance(m, nn.BatchNorm2d):
-                    m.weight.data.fill_(1)
-                    m.bias.data.zero_()
+                # print("\n self sizeofFC: ",self.sizeOfFC)
+                avgpool = nn.AdaptiveAvgPool2d((1, 1))
+                self.module_list.append(avgpool)
+                # 19
+                fc = nn.Linear(self.sizeOfFC, num_classes)
+                self.module_list.append(fc)
+                self.relu = nn.ReLU(inplace=True)
+
+                for m in self.module_list:
+                    if isinstance(m, nn.Conv2d):
+                        n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
+                        m.weight.data.normal_(0, math.sqrt(2. / n))
+                    elif isinstance(m, nn.BatchNorm2d):
+                        m.weight.data.fill_(1)
+                        m.bias.data.zero_()
             print(self)
         else:
             self.archNums = model.archNums
