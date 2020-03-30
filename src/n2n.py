@@ -348,11 +348,6 @@ class N2N(nn.Module):
                             x = self.relu(x)
 
                             if ((i + 1) % self.layersInBlock) == 0:
-
-                                if printNet:
-                                    print("\nShortcutLayer J: ", j, " ; ", self.module_list[j])
-                                j = j + 1
-
                                 _x = _x + x
                                 _x = self.relu(_x)
 
