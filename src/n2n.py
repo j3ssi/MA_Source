@@ -248,14 +248,14 @@ class N2N(nn.Module):
                             print("\n\n\tBlock: ", block)
                         i = 0
                         layerInThisBlock = archNum[block]
-                        # conv
+                        # conv2
                         x = self.module_list[j](_x)
                         if printNet:
                             print("\nJ: ", j, " ; ", self.module_list[j])
                             print("\nX Shape: ", x.shape)
                         j = j + 1
 
-                        # bn
+                        # bn3
                         x = self.module_list[j](x)
                         if printNet:
                             print(f'J:  {j}; {self.module_list[j]}')
@@ -265,14 +265,14 @@ class N2N(nn.Module):
                             print("\nJ: ", j, " ; ", self.module_list[j])
                             print("\nX Shape: ", x.shape)
                         j = j + 1
-                        # conv
+                        # conv4
                         x = self.module_list[j](_x)
                         if printNet:
                             print("\nJ: ", j, " ; ", self.module_list[j])
                             print("\nX Shape: ", x.shape)
                         j = j + 1
 
-                        # bn
+                        # bn5
                         x = self.module_list[j](x)
                         if printNet:
                             print(f'J:  {j}; {self.module_list[j]}')
@@ -282,32 +282,33 @@ class N2N(nn.Module):
                             print("\nJ: ", j, " ; ", self.module_list[j])
                             print("\nX Shape: ", x.shape)
                         j = j + 1
-                        # conv
+                        # conv6
                         x = self.module_list[j](_x)
                         if printNet:
                             print("\nJ: ", j, " ; ", self.module_list[j])
                             print("\nX Shape: ", x.shape)
                         j = j + 1
 
-                        # bn
+                        # bn7
                         x = self.module_list[j](x)
                         if printNet:
                             print(f'J:  {j}; {self.module_list[j]}')
                         j = j + 1
+                        #conv8
                         x = self.module_list[j](_x)
                         if printNet:
                             print("\nJ: ", j, " ; ", self.module_list[j])
                             print("\nX Shape: ", x.shape)
                         j = j + 1
 
-                        # bn
+                        # bn9
                         x = self.module_list[j](x)
                         if printNet:
                             print("\nJ: ", j, " ; ", self.module_list[j])
                         j = j + 1
                         i = i + 1
-
-                        x = self.relu(x)
+                        _x =x +_x
+                        _x = self.relu(_x)
 
                     else:
                         if printNet:
