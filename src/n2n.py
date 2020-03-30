@@ -320,24 +320,22 @@ class N2N(nn.Module):
                             i = 0
                         layerInThisBlock = archNum[block]
                         while i < layerInThisBlock:
-                            if i == 0:
-                                # conv
-                                x = self.module_list[j](_x)
-                                if printNet:
-                                    print("\nJ: ", j, " ; ", self.module_list[j])
-                                    print("\nX Shape: ", x.shape)
-                                j = j + 1
+                            # conv
+                            x = self.module_list[j](_x)
+                            if printNet:
+                                print("\nJ: ", j, " ; ", self.module_list[j])
+                                print("\nX Shape: ", x.shape)
+                            j = j + 1
 
-                                # bn
-                                x = self.module_list[j](x)
-                                if printNet:
-                                    print("\nJ: ", j, " ; ", self.module_list[j])
-                                j = j + 1
-                                i = i + 1
+                            # bn
+                            x = self.module_list[j](x)
+                            if printNet:
+                                print("\nJ: ", j, " ; ", self.module_list[j])
+                            j = j + 1
+                            i=i+1
+                            x = self.relu(x)
 
-                                x = self.relu(x)
-
-                            elif ((i + 1) % self.layersInBlock) == 0 and (block > 0 or stage == 0):
+                            if ((i + 1) % self.layersInBlock) == 0:
                                 # conv
                                 x = self.module_list[j](x)
                                 if printNet:
