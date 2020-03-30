@@ -74,8 +74,7 @@ class N2N(nn.Module):
                     self.module_list.append(bn)
 
                     print(f'archNums: {self.archNums[stage-1]}')
-                    blocks =self.archNums[stage-1]-1
-                    for i in range(0, blocks):
+                    for i in range(0, len(self.archNums[stage-1]-1)):
                         print(f'first I:,{i}')
 
                         for j in range(1, i):
