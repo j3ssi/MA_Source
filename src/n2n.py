@@ -71,7 +71,7 @@ class N2N(nn.Module):
                                      bias=False,
                                      stride=1)
                     else:
-                        conv = nn.Conv2d(sizeOfLayer*2, sizeOfLayer*4, kernel_size=3, padding=1,
+                        conv = nn.Conv2d(sizeOfLayer*2, sizeOfLayer*4, kernel_size=1, padding=0,
                                          bias=False,
                                          stride=1)
 
