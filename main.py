@@ -351,8 +351,8 @@ def main():
     # gc.collect()
 
     i = 1
-    for epochNet2Net in range(1, 4):
-    # while i == 1:
+    # for epochNet2Net in range(1, 4):
+    while i == 1:
         for epoch in range(1, args.epochs + 1):
             # adjust learning rate when epoch is the scheduled epoch
             if epoch in args.schedule:
@@ -422,7 +422,7 @@ def main():
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                      weight_decay=args.weight_decay)
             # print("\n Verhältnis Modell Größe: ", count / count0)
-
+        i=2
 
     print("\n ", args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
     print(" " ,test_acc)
