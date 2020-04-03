@@ -146,11 +146,29 @@ class N2N(nn.Module):
                             if firstLayerInStage and not firstLayer:
                                 conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                                  bias=False,
+                                                 stride=2)
+                                self.module_list.append(conv)
+                                bn = nn.BatchNorm2d(sizeOfLayer)
+                                self.module_list.append(bn)
+                                i = i + 1
+
+                                conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1,
+                                                 bias=False,
                                                  stride=1)
                                 self.module_list.append(conv)
                                 bn = nn.BatchNorm2d(sizeOfLayer)
                                 self.module_list.append(bn)
                                 i = i + 1
+
+                                conv = nn.Conv2d(int(sizeOfLayer/2), sizeOfLayer, kernel_size=3, padding=1,
+                                                 bias=False,
+                                                 stride=2)
+                                self.module_list.append(conv)
+                                bn = nn.BatchNorm2d(sizeOfLayer)
+                                self.module_list.append(bn)
+                                i = i + 1
+
+
                                 firstLayerInStage = False
 
                             else:
@@ -446,7 +464,59 @@ class N2N(nn.Module):
                     i = 0
                     layerInThisBlock = archNum[block]
                     while i < layerInThisBlock:
-                        if i == 0:
+                        if i == 0 and block == 0 and stage > 0:
+                            # conv
+                            x = self.module_list[j](_x)
+                            if printNet:
+                                print("\nLayer of new Stage J: ", j, " ; ", self.module_list[j])
+                                print("\nX Shape: ", x.shape)
+                            j = j + 1
+
+                            # bn
+                            x = self.module_list[j](x)
+                            if printNet:
+                                print("\nJ: ", j, " ; ", self.module_list[j])
+                                print("\nX Shape: ", x.shape)
+                            j = j + 1
+                            i = i+1
+
+                            # relu
+                            x=self.relu(x)
+
+                            # conv
+                            x = self.module_list[j](x)
+                            if printNet:
+                                print("\nJ: ", j, " ; ", self.module_list[j])
+                                print("\nX Shape: ", x.shape)
+                            j = j + 1
+
+                            # bn
+                            x = self.module_list[j](x)
+                            if printNet:
+                                print("\nJ: ", j, " ; ", self.module_list[j])
+                                print("\nX Shape: ", x.shape)
+                            j = j + 1
+
+                            # conv
+                            _x = self.module_list[j](_x)
+                            if printNet:
+                                print("\nShortcut Layer J: ", j, " ; ", self.module_list[j])
+                                print("\nX Shape: ", x.shape)
+                            j = j + 1
+
+                            # bn
+                            _x = self.module_list[j](_x)
+                            if printNet:
+                                print("\nJ: ", j, " ; ", self.module_list[j])
+                                print("\nX Shape: ", x.shape)
+                            j = j + 1
+
+                            _x =_x + x
+
+                            # relu
+                            x=self.relu(x)
+
+                        elif i == 0:
                             # conv
                             x = self.module_list[j](_x)
                             if printNet:
@@ -462,6 +532,7 @@ class N2N(nn.Module):
                             i = i + 1
 
                             x = self.relu(x)
+
 
                         elif ((i + 1) % self.layersInBlock) == 0 and (block > 0 or stage == 0):
                             # conv
