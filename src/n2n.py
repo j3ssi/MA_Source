@@ -139,15 +139,15 @@ class N2N(nn.Module):
                         m.bias.data.zero_()
             else:
                 print(f'ohne Bottleneck!')
-                firstLayer =True
+                firstLayer = True
                 for stage in range(0, numOfStages):
-                    firstLayerInStage = True
+                    firstBlockInStage = True
                     sizeOfLayer = pow(2, stage + 4)
                     # print("\nStage: ", stage, " ; ", sizeOfLayer)
                     for block in range(0, numOfBlocksinStage[stage]):
                         i = 0
                         while i < self.layersInBlock:
-                            if firstLayerInStage and not firstLayer:
+                            if firstBlockInStage and not firstLayer and i==0:
                                 conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                                  bias=False,
                                                  stride=2)
@@ -156,13 +156,7 @@ class N2N(nn.Module):
                                 self.module_list.append(bn)
                                 i = i + 1
 
-                                conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1,
-                                                 bias=False,
-                                                 stride=1)
-                                self.module_list.append(conv)
-                                bn = nn.BatchNorm2d(sizeOfLayer)
-                                self.module_list.append(bn)
-                                i = i + 1
+                            elif firstBlockInStage and not firstLayer and (i +1) % numOfBlocksinStage[stage] ==0:
 
                                 conv = nn.Conv2d(int(sizeOfLayer/2), sizeOfLayer, kernel_size=3, padding=1,
                                                  bias=False,
@@ -173,7 +167,18 @@ class N2N(nn.Module):
                                 i = i + 1
 
 
-                                firstLayerInStage = False
+                                firstBlockInStage = False
+
+
+
+                            elif firstBlockInStage and not firstLayer :
+                                conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1,
+                                                 bias=False,
+                                                 stride=1)
+                                self.module_list.append(conv)
+                                bn = nn.BatchNorm2d(sizeOfLayer)
+                                self.module_list.append(bn)
+                                i = i + 1
 
                             else:
                                 conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
