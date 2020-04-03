@@ -35,7 +35,7 @@ import torch.utils.data as data
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 from torch.autograd import Variable
-from torch.backends import cudnn
+# from torch.backends import cudnn
 import torchviz as tw
 import matplotlib.pyplot as plt
 from src import n2n
@@ -134,7 +134,6 @@ state = {k: v for k, v in args._get_kwargs()}
 listofBlocks = [int(i) for i in args.n.split(',')]
 print(listofBlocks)
 grp_lasso_coeff = 0
-
 
 
 def main():
