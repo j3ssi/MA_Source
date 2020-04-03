@@ -134,6 +134,7 @@ class N2N(nn.Module):
                         m.weight.data.fill_(1)
                         m.bias.data.zero_()
             else:
+                print(f'Drin!!!')
                 for stage in range(0, numOfStages):
                     firstLayerInStage = True
                     sizeOfLayer = pow(2, stage + 4)
