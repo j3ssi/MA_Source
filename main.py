@@ -35,7 +35,7 @@ import torch.utils.data as data
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 from torch.autograd import Variable
-# from torch.backends import cudnn
+from torch.backends import cudnn
 import torchviz as tw
 import matplotlib.pyplot as plt
 from src import n2n
@@ -137,6 +137,9 @@ grp_lasso_coeff = 0
 
 
 def main():
+
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
     # choose which gpu to use
     not_enough_memory = True
     use_gpu = 'cuda:0'
