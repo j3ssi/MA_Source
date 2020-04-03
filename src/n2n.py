@@ -162,6 +162,7 @@ class N2N(nn.Module):
                                                  bias=False,
                                                  stride=2)
                                 self.module_list.append(conv)
+
                                 bn = nn.BatchNorm2d(sizeOfLayer)
                                 self.module_list.append(bn)
                                 i = i + 1
@@ -542,7 +543,7 @@ class N2N(nn.Module):
                             j = j + 1
                             x = self.relu(x)
                             i = i + 1
-
+                        firstLayer =False
         if printNet:
             print("\nX Shape: ", x.shape)
 
