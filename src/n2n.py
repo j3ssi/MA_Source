@@ -18,7 +18,7 @@ class N2N(nn.Module):
                 print("\nS: ", s, " ; ", self.numOfStages)
                 for b in range(0, self.numOfBlocksinStage[s]):
                     if b == 0:
-                        self.archNums[s].append(self.layersInBlock+1)
+                        self.archNums[s].append(self.layersInBlock + 1)
                     else:
                         self.archNums[s].append(self.layersInBlock)
 
@@ -40,7 +40,7 @@ class N2N(nn.Module):
                     first = True
                     sizeOfLayer = pow(2, stage + 4)
                     print("\nStage: ", stage, " ; ", sizeOfLayer)
-                    #CONV 1
+                    # CONV 1
                     if stage == 0:
                         conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=1, padding=0,
                                          bias=False,
@@ -52,7 +52,7 @@ class N2N(nn.Module):
                     print(f'list length: {len(self.module_list)}')
                     print(f'conv: {conv}')
                     self.module_list.append(conv)
-                    #bn1
+                    # bn1
                     bn = nn.BatchNorm2d(sizeOfLayer)
                     self.module_list.append(bn)
                     # conv2
@@ -64,30 +64,30 @@ class N2N(nn.Module):
                     bn = nn.BatchNorm2d(sizeOfLayer)
                     self.module_list.append(bn)
 
-                    conv = nn.Conv2d(sizeOfLayer, sizeOfLayer*4, kernel_size=1, padding=0,
+                    conv = nn.Conv2d(sizeOfLayer, sizeOfLayer * 4, kernel_size=1, padding=0,
                                      bias=False,
                                      stride=1)
                     self.module_list.append(conv)
-                    bn = nn.BatchNorm2d(sizeOfLayer*4)
+                    bn = nn.BatchNorm2d(sizeOfLayer * 4)
                     self.module_list.append(bn)
-                    if stage==0:
-                        conv = nn.Conv2d(sizeOfLayer, sizeOfLayer*4, kernel_size=3, padding=1,
-                                     bias=False,
-                                     stride=1)
+                    if stage == 0:
+                        conv = nn.Conv2d(sizeOfLayer, sizeOfLayer * 4, kernel_size=3, padding=1,
+                                         bias=False,
+                                         stride=1)
                     else:
-                        conv = nn.Conv2d(sizeOfLayer*2, sizeOfLayer*4, kernel_size=1, padding=0,
+                        conv = nn.Conv2d(sizeOfLayer * 2, sizeOfLayer * 4, kernel_size=1, padding=0,
                                          bias=False,
                                          stride=1)
 
                     self.module_list.append(conv)
-                    bn = nn.BatchNorm2d(sizeOfLayer*4)
+                    bn = nn.BatchNorm2d(sizeOfLayer * 4)
                     self.module_list.append(bn)
 
-                    print(f'archNums: {len(self.archNums[stage-1])}')
-                    for i in range(0, len(self.archNums[stage-1])-1):
-                        j=0
-                        while j< self.archNums[stage-1][i+1]:
-                            print(f'self.archNums[stage-1][i+1]:{self.archNums[stage-1][i+1]}')
+                    print(f'archNums: {len(self.archNums[stage - 1])}')
+                    for i in range(0, len(self.archNums[stage - 1]) - 1):
+                        j = 0
+                        while j < self.archNums[stage - 1][i + 1]:
+                            print(f'self.archNums[stage-1][i+1]:{self.archNums[stage - 1][i + 1]}')
                             if (j == 0):
                                 conv = nn.Conv2d(sizeOfLayer * 4, sizeOfLayer, kernel_size=1, padding=0,
                                                  bias=False,
@@ -95,7 +95,7 @@ class N2N(nn.Module):
                                 self.module_list.append(conv)
                                 bn = nn.BatchNorm2d(sizeOfLayer)
                                 self.module_list.append(bn)
-                                j=j+1
+                                j = j + 1
                             elif (j + 1) % self.archNums[stage - 1][i + 1] != 0:
                                 conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1,
                                                  bias=False,
@@ -103,7 +103,7 @@ class N2N(nn.Module):
                                 self.module_list.append(conv)
                                 bn = nn.BatchNorm2d(sizeOfLayer)
                                 self.module_list.append(bn)
-                                j=j+1
+                                j = j + 1
                             else:
                                 conv = nn.Conv2d(sizeOfLayer, sizeOfLayer * 4, kernel_size=1, padding=0,
                                                  bias=False,
@@ -111,7 +111,7 @@ class N2N(nn.Module):
                                 self.module_list.append(conv)
                                 bn = nn.BatchNorm2d(4 * sizeOfLayer)
                                 self.module_list.append(bn)
-                                j=j+1
+                                j = j + 1
 
                 # 18
                 self.sizeOfFC = pow(2, self.numOfStages + 5)
@@ -146,8 +146,8 @@ class N2N(nn.Module):
                     # print("\nStage: ", stage, " ; ", sizeOfLayer)
                     for block in range(0, numOfBlocksinStage[stage]):
                         i = 0
-                        while i < self.layersInBlock:
-                            if firstBlockInStage and not firstLayer and i==0:
+                        while i < numOfBlocksinStage[stage][block]:
+                            if firstBlockInStage and not firstLayer and i == 0:
                                 conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                                  bias=False,
                                                  stride=2)
@@ -156,9 +156,10 @@ class N2N(nn.Module):
                                 self.module_list.append(bn)
                                 i = i + 1
 
-                            elif firstBlockInStage and not firstLayer and (i +1) % numOfBlocksinStage[stage] ==0:
+                            elif firstBlockInStage and not firstLayer and (i + 1) % numOfBlocksinStage[stage][
+                                block] == 0:
 
-                                conv = nn.Conv2d(int(sizeOfLayer/2), sizeOfLayer, kernel_size=3, padding=1,
+                                conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                                  bias=False,
                                                  stride=2)
                                 self.module_list.append(conv)
@@ -166,12 +167,11 @@ class N2N(nn.Module):
                                 self.module_list.append(bn)
                                 i = i + 1
 
-
                                 firstBlockInStage = False
 
 
 
-                            elif firstBlockInStage and not firstLayer :
+                            elif firstBlockInStage and not firstLayer:
                                 conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1,
                                                  bias=False,
                                                  stride=1)
@@ -333,11 +333,12 @@ class N2N(nn.Module):
 
         _x = self.relu(x)
         j = 2
+        firstLayer = True
         for stage in range(0, self.numOfStages):
             if printNet:
                 print("\n\nStage: ", stage)
             archNum = self.archNums[stage - 1]
-            firstLayerInStage = True
+            firstBlockInStage = True
             for block in range(0, len(archNum)):
                 if self.bottleneck:
                     if firstLayerInStage:
@@ -357,7 +358,7 @@ class N2N(nn.Module):
                         if printNet:
                             print(f'J:  {j}; {self.module_list[j]}')
                         j = j + 1
-                        x=self.relu(x)
+                        x = self.relu(x)
 
                         # conv4 (3)
                         x = self.module_list[j](x)
@@ -372,7 +373,7 @@ class N2N(nn.Module):
                             print("\nJ: ", j, " ; ", self.module_list[j])
                             print("\nX Shape: ", x.shape)
                         j = j + 1
-                        x=self.relu(x)
+                        x = self.relu(x)
 
                         # conv6 (4)
                         x = self.module_list[j](x)
@@ -473,7 +474,7 @@ class N2N(nn.Module):
                     i = 0
                     layerInThisBlock = archNum[block]
                     while i < layerInThisBlock:
-                        if i == 0 and block == 0 and stage > 0:
+                        if i == 0:
                             # conv
                             x = self.module_list[j](_x)
                             if printNet:
@@ -487,45 +488,12 @@ class N2N(nn.Module):
                                 print("\ni: ", i, " ; ", self.module_list[j])
                                 print("\nX Shape: ", x.shape)
                             j = j + 1
-                            i = i+1
+                            i = i + 1
 
                             # relu
-                            x=self.relu(x)
+                            x = self.relu(x)
 
-                            # conv
-                            x = self.module_list[j](x)
-                            if printNet:
-                                print("\ni: ", i, " ; ", self.module_list[j])
-                                print("\nX Shape: ", x.shape)
-                            j = j + 1
-
-                            # bn
-                            x = self.module_list[j](x)
-                            if printNet:
-                                print("\ni: ", i, " ; ", self.module_list[j])
-                                print("\nX Shape: ", x.shape)
-                            j = j + 1
-
-                            # conv
-                            _x = self.module_list[j](_x)
-                            if printNet:
-                                print("\nShortcut Layer i: ", i, " ; ", self.module_list[j])
-                                print("\nX Shape: ", x.shape)
-                            j = j + 1
-
-                            # bn
-                            _x = self.module_list[j](_x)
-                            if printNet:
-                                print("\ni: ", i, " ; ", self.module_list[j])
-                                print("\nX Shape: ", x.shape)
-                            j = j + 1
-
-                            _x =_x + x
-
-                            # relu
-                            x=self.relu(x)
-
-                        elif i == 0:
+                        elif ((i + 1) % layerInThisBlock == 0) and firstBlockInStage and not firstLayer:
                             # conv
                             x = self.module_list[j](_x)
                             if printNet:
@@ -539,11 +507,10 @@ class N2N(nn.Module):
                                 print("\ni: ", i, " ; ", self.module_list[j])
                             j = j + 1
                             i = i + 1
-
+                            firstBlockInStage = False
                             x = self.relu(x)
 
-
-                        elif ((i + 1) % self.layersInBlock) == 0 and (block > 0 or stage == 0):
+                        elif ((i + 1) % self.layersInBlock) == 0 and (not firstBlockInStage or firstLayer):
                             # conv
                             x = self.module_list[j](x)
                             if printNet:
@@ -560,24 +527,6 @@ class N2N(nn.Module):
 
                             _x = _x + x
                             _x = self.relu(_x)
-
-
-                        elif ((i + 1) % self.layersInBlock) == 0:
-
-                            # conv
-                            x = self.module_list[j](x)
-                            if printNet:
-                                print("\ni: ", i, " ; ", self.module_list[j])
-                                print("\nX Shape: ", x.shape)
-                            j = j + 1
-
-                            # bn
-                            x = self.module_list[j](x)
-                            if printNet:
-                                print("\ni: ", i, " ; ", self.module_list[j])
-                            j = j + 1
-                            i = i + 1
-                            _x = self.relu(x)
 
                         else:
                             # conv
