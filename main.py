@@ -258,9 +258,9 @@ def main():
     count1 = count0
     if not args.batchTrue:
         # Calculate Size of Trainings Batch size
-        ms = [0.2926, 4.4695, 1.931, 406.9735]
+        ms = [0.2926, 4.4695, 0.884, 406.9735]
         m = ms[args.numOfStages - 1]
-        y0s = [0.2392, 0.7999, -0.389, -51.4890]
+        y0s = [0.2392, 0.7999, 3.90, -51.4890]
         y0 = y0s[args.numOfStages - 1]
         print(f'count0: {count0}')
         y = m*min(listofBlocks)+y0
