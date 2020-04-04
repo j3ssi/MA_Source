@@ -15,7 +15,7 @@ class N2N(nn.Module):
         if first:
             self.archNums = [[]]
             for s in range(0, self.numOfStages):
-                print("\nS: ", s, " ; ", self.numOfStages)
+                # print("\nS: ", s, " ; ", self.numOfStages)
                 for b in range(0, self.numOfBlocksinStage[s]):
                     if b == 0:
                         self.archNums[s].append(self.layersInBlock + 1)
@@ -24,7 +24,7 @@ class N2N(nn.Module):
 
                 if s != (self.numOfStages - 1):
                     self.archNums.append([])
-            print("\nArch Num: ", self.archNums)
+            # print("\nArch Num: ", self.archNums)
 
             self.module_list = nn.ModuleList()
 
@@ -39,7 +39,7 @@ class N2N(nn.Module):
                 for stage in range(0, numOfStages):
                     first = True
                     sizeOfLayer = pow(2, stage + 4)
-                    print("\nStage: ", stage, " ; ", sizeOfLayer)
+                    # print("\nStage: ", stage, " ; ", sizeOfLayer)
                     # CONV 1
                     if stage == 0:
                         conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=1, padding=0,
@@ -49,8 +49,8 @@ class N2N(nn.Module):
                         conv = nn.Conv2d(sizeOfLayer * 2, sizeOfLayer, kernel_size=1, padding=0,
                                          bias=False,
                                          stride=1)
-                    print(f'list length: {len(self.module_list)}')
-                    print(f'conv: {conv}')
+                    # print(f'list length: {len(self.module_list)}')
+                    # print(f'conv: {conv}')
                     self.module_list.append(conv)
                     # bn1
                     bn = nn.BatchNorm2d(sizeOfLayer)
@@ -83,11 +83,11 @@ class N2N(nn.Module):
                     bn = nn.BatchNorm2d(sizeOfLayer * 4)
                     self.module_list.append(bn)
 
-                    print(f'archNums: {len(self.archNums[stage - 1])}')
+                    # print(f'archNums: {len(self.archNums[stage - 1])}')
                     for i in range(0, len(self.archNums[stage - 1]) - 1):
                         j = 0
                         while j < self.archNums[stage - 1][i + 1]:
-                            print(f'self.archNums[stage-1][i+1]:{self.archNums[stage - 1][i + 1]}')
+                            # print(f'self.archNums[stage-1][i+1]:{self.archNums[stage - 1][i + 1]}')
                             if (j == 0):
                                 conv = nn.Conv2d(sizeOfLayer * 4, sizeOfLayer, kernel_size=1, padding=0,
                                                  bias=False,
@@ -138,7 +138,7 @@ class N2N(nn.Module):
                         m.weight.data.fill_(1)
                         m.bias.data.zero_()
             else:
-                print(f'ohne Bottleneck!')
+                # print(f'ohne Bottleneck!')
                 firstLayer = True
                 for stage in range(0, numOfStages):
                     firstBlockInStage = True
@@ -214,7 +214,7 @@ class N2N(nn.Module):
                     elif isinstance(m, nn.BatchNorm2d):
                         m.weight.data.fill_(1)
                         m.bias.data.zero_()
-            print(self)
+            # print(self)
         else:
             self.archNums = model.archNums
 

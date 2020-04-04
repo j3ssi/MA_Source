@@ -6,7 +6,7 @@ def main():
 
     s = 3
 
-    for i in range(0,10):
+    for i in range(0,20):
         cmdLine = 'python3 main.py '
         cmdLine = cmdLine + '--workers 4 --epochs 180 --test --cifar10'
         cmdLine = cmdLine + ' --learning-rate 0.1 '
