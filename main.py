@@ -155,7 +155,7 @@ def main():
             gpu_id = 0
         print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
         total, used, free = checkmem(gpu_id)
-        if used < 20:
+        if True:
             use_gpu = cudaArray[gpu_id]
             torch.cuda.set_device(gpu_id)
             use_gpu_num = gpu_id
