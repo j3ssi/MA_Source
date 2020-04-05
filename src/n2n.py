@@ -24,7 +24,7 @@ class N2N(nn.Module):
 
                 if s != (self.numOfStages - 1):
                     self.archNums.append([])
-            # print("\nArch Num: ", self.archNums)
+            print("\nArch Num: ", self.archNums)
 
             self.module_list = nn.ModuleList()
 
@@ -317,7 +317,7 @@ class N2N(nn.Module):
 
     def forward(self, x):
         # First layer
-        printNet = True
+        printNet = False
         if printNet:
             print("\nX Shape: ", x.shape)
         # conv1
