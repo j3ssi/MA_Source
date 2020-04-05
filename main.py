@@ -390,12 +390,12 @@ def main():
             #     if args.fp16:
             #         model, optimizer = amp.initialize(model, optimizer)
             #
-            #count = 0
-            # for p in model.parameters():
-            #     count += p.data.nelement()
-            # if count < count1:
-            #     print(f'Count: {count} ; {count0} ; {count/count0}')
-            #     count1 = count
+            count = 0
+            for p in model.parameters():
+                count += p.data.nelement()
+            if count < count1:
+                print(f'Count: {count} ; {count0} ; {count/count0}')
+                count1 = count
             #     if (count/count0) > 0.9:
             #         a = 0.9
             #     elif (count/count0) > 0.7:

@@ -17,7 +17,7 @@ class N2N(nn.Module):
             for s in range(0, self.numOfStages):
                 # print("\nS: ", s, " ; ", self.numOfStages)
                 for b in range(0, self.numOfBlocksinStage[s]):
-                    print(f'b: {b}')
+                    # print(f'b: {b}')
                     if b == 0 and s > 0:
                         self.archNums[s].append(self.layersInBlock + 1)
                     else:
@@ -148,7 +148,7 @@ class N2N(nn.Module):
                     for block in range(0, len(self.archNums[stage])):
                         i = 0
                         while i < self.archNums[stage][block]:
-                            print(f'i : {i}')
+                            # print(f'i : {i}')
                             if firstBlockInStage and not firstLayer and i == 0:
                                 conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                                  bias=False,
@@ -216,7 +216,7 @@ class N2N(nn.Module):
                     elif isinstance(m, nn.BatchNorm2d):
                         m.weight.data.fill_(1)
                         m.bias.data.zero_()
-            print(self)
+            # print(self)
         else:
             self.archNums = model.archNums
 
@@ -631,7 +631,7 @@ class N2N(nn.Module):
 
                 sameNode.append(block)
             firstStage = False
-        print("\nSame Node: ", sameNode)
+        # print("\nSame Node: ", sameNode)
         return sameNode
 
     def wider(model):
