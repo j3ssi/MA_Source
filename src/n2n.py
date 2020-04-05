@@ -548,7 +548,7 @@ class N2N(nn.Module):
         stagesO = []
         stages0I =[n(2),n(4),n(6),n(8),n(10),n(12), n(14)]
         stagesI.append(stages0I)
-        stage0O=[n(3),n(5),n(7),n(9),n(11)]
+        stage0O=[n(1), n(3),n(5),n(7),n(9),n(11)]
         stagesO.append(stage0O)
         stages1I =[n(15), n(17), n(19), n(21), n(23), n(25)]
         stagesI.append(stages1I)
