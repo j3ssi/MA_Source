@@ -17,7 +17,7 @@ class N2N(nn.Module):
             for s in range(0, self.numOfStages):
                 # print("\nS: ", s, " ; ", self.numOfStages)
                 for b in range(0, self.numOfBlocksinStage[s]):
-                    if b == 0:
+                    if b == 0 and stage > 0:
                         self.archNums[s].append(self.layersInBlock + 1)
                     else:
                         self.archNums[s].append(self.layersInBlock)
@@ -543,8 +543,9 @@ class N2N(nn.Module):
     def getResidualPath(self):
         stagesI = []
         stagesO = []
-        stage0O=[]
-
+        stages0I =[n(2),n(5),n(7),n(9),n(11)]
+        stage0O=[n(1),n(4),n(8),n(10)]
+        stages1O =[]
         # i = 1
         # printStages = False
         # stagesI.append([])
