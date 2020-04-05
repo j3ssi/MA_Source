@@ -512,7 +512,7 @@ class N2N(nn.Module):
                             j = j + 1
                             x = self.relu(x)
                             i = i + 1
-                        firstLayer = True
+                        notfirstLayer = True
         if printNet:
             print("\nX Shape: ", x.shape)
 
