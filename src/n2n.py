@@ -629,15 +629,16 @@ class N2N(nn.Module):
         sameNode = []
         first = True
         j = 2
+        k = 1
         for stage in range(0,self.numOfStages):
             for i in range(0, len(self.archNums[stage])):
                 block = []
                 for layer in range(0, self.archNums[stage][i]):
                     # print("\nI: ", i, " ; ", stage, " ; ", block, " ; ", layer)
                     if isinstance(self.module_list[j],nn.Conv2d):
-                        block.append(n(j))
+                        block.append(n(k))
                         j = j + 1
-
+                        k = k + 1
                     if isinstance(self.module_list[j],nn.BatchNorm2d):
                         j=j+1
 
