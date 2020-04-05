@@ -602,11 +602,17 @@ class N2N(nn.Module):
         first = True
         j = 2
         k = 2
+        firstStage = True
         for stage in range(0,self.numOfStages):
+            firstBlockInStage = True
             for i in range(0, len(self.archNums[stage])):
                 block = []
                 for layer in range(0, self.archNums[stage][i]):
                     # print("\nI: ", i, " ; ", stage, " ; ", block, " ; ", layer)
+                    if (layer + 1)%self.archNums[stage][i] == 0 and not firstStage and firstBlockInStage:
+                        j = j + 1
+                        k = k + 1
+                        firstBlockInStage =False
                     if isinstance(self.module_list[j],nn.Conv2d):
                         block.append(n(k))
                         j = j + 1
@@ -615,6 +621,7 @@ class N2N(nn.Module):
                         j=j+1
 
                 sameNode.append(block)
+            firstStage = False
         print("\nSame Node: ", sameNode)
         return sameNode
 
