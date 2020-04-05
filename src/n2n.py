@@ -148,6 +148,7 @@ class N2N(nn.Module):
                     for block in range(0, len(self.archNums[stage])):
                         i = 0
                         while i < self.archNums[stage][block]:
+                            print(f'i : {i}')
                             if firstBlockInStage and not firstLayer and i == 0:
                                 conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                                  bias=False,
