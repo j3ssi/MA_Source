@@ -582,6 +582,7 @@ class N2N(nn.Module):
         stagesI.append([])
         stagesO.append([])
         stagesO[0].append(n(1))
+        firstStage = True
         for stage in range(0, self.numOfStages):
             if stage < self.numOfStages:
                 i = i + 1
@@ -593,9 +594,16 @@ class N2N(nn.Module):
             if printStages:
                 print("\n\nStage: ", stage)
             archNum = self.archNums[stage]
+            firstBlockInStage = True
             for block in range(0, len(archNum)):
                 if printStages:
                     print("\n\n\tBlock: ", block)
+                for layer in range(0,archNum[block]):
+                    if printStages:
+                        print(f'Layer: {layer}')
+                    if layer == 0 and not
+                    if firstBlockInStage and not firstStage and (layer+1)%
+
                 if 0 < block < len(archNum):
                     i = i + 1
                     stagesI[-1].append(n(i))
@@ -628,7 +636,11 @@ class N2N(nn.Module):
                     # print("\nI: ", i, " ; ", stage, " ; ", block, " ; ", layer)
                     if isinstance(self.module_list[j],nn.Conv2d):
                         block.append(n(j))
-                        j = j + 2
+                        j = j + 1
+
+                    if isinstance(self.module_list[j],nn.BatchNorm2d):
+                        j=j+1
+
                 sameNode.append(block)
         print("\nSame Node: ", sameNode)
         return sameNode
