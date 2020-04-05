@@ -620,23 +620,15 @@ class N2N(nn.Module):
     def getShareSameNodeLayers(self):
         sameNode = []
         first = True
-        i = 2
-        for stage in range(0, self.numOfStages):
-            for block in range(0, self.numOfBlocksinStage):
+        j = 2
+        for stage in range(0,self.numOfStages):
+            for i in range(0, len(self.archNums[stage])):
                 block = []
-                for layer in range(0, self.layersInBlock):
+                for layer in range(0, self.archNums[stage][i]):
                     # print("\nI: ", i, " ; ", stage, " ; ", block, " ; ", layer)
-                    if (i - 1) % self.layersInBlock == 1:
+                    if isinstance(self.module_list[j],nn.Conv2d):
                         block.append(n(i))
-                        i = i + 1
-                    elif (i - 1) % self.layersInBlock == 0:
-                        block.append(n(i))
-                        i = i + 1
-                    else:
-                        block.append(n(i))
-                        i = i + 1
-                sameNode.append(block)
-
+                        i = i + 2
         print("\nSame Node: ", sameNode)
         return sameNode
 
