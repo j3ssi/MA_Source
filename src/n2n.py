@@ -476,7 +476,7 @@ class N2N(nn.Module):
                             _x = x+_x
                             _x = self.relu(_x)
 
-                        elif ((i + 1) % layerInThisBlock == 0) and not firstBlockInStage:
+                        elif ((i + 1) % layerInThisBlock == 0):
                             # conv
                             x = self.module_list[j](x)
                             j = j + 1
