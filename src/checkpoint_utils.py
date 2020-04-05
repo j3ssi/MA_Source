@@ -179,7 +179,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
     rm_list = []
     altList = []
     for name, param in model.named_parameters():
-        # print("\nName: {}", name)
+        print("\nName: {}", name)
         i = int(name.split('.')[1])
         if i % 2 == 0:
             altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
