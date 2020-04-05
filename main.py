@@ -422,7 +422,7 @@ def main():
                 criterion = nn.CrossEntropyLoss()
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                      weight_decay=args.weight_decay)
-            print("\n Verhältnis Modell Größe: ", count / count0)
+            # print("\n Verhältnis Modell Größe: ", count / count0)
         i=2
 
     print("\n ", args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
