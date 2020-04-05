@@ -555,7 +555,7 @@ class N2N(nn.Module):
         stages1O =[n(13), n(14), n(16), n(18), n(20), n(22) ]
         stagesO.append(stages1O)
         stages2I = [n(26), n(28), n(30), n(32), n('fc34')]
-        stagesI.apped(stages2I)
+        stagesI.append(stages2I)
         stages2O = [n(24), n(25), n(27), n(29), n(31), n(33)]
         stagesO.append(stages2O)
         # i = 1
