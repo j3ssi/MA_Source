@@ -629,6 +629,7 @@ class N2N(nn.Module):
                     if isinstance(self.module_list[j],nn.Conv2d):
                         block.append(n(i))
                         i = i + 2
+                sameNode.append(block)
         print("\nSame Node: ", sameNode)
         return sameNode
 
