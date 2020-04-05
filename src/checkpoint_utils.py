@@ -153,8 +153,8 @@ def makeSparse(optimizer, model, threshold, use_gpu, reconf=False ):
             if lyr_name in dense_chs:
                 # print ("Output_ch [{}]: {} => {}".format(lyr_name, len(dense_chs[lyr_name]['out_chs']), len(edges)))
                 dense_chs[lyr_name]['out_chs'] = edges
-    for name in dense_chs:
-        print("2: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
+    # for name in dense_chs:
+    #     print("2: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
     return dense_chs, None
 
@@ -179,7 +179,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
     rm_list = []
     altList = []
     for name, param in model.named_parameters():
-        print("\nName: {}", name)
+        # print("\nName: {}", name)
         i = int(name.split('.')[1])
         if i % 2 == 0:
             altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
@@ -195,7 +195,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
         else:
             assert True, "Hier fehlt was!! "
-        print("\n> altList: ", altList[-1])
+        # print("\n> altList: ", altList[-1])
     i = -1
     # print("\nParam: ", paramList)
     # print("==================")
@@ -205,7 +205,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
     for name, param in model.named_parameters():
         i = i + 1
         name = altList[i]
-        print("\nName: ", name)
+        # print("\nName: ", name)
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[param]['momentum_buffer']
 
