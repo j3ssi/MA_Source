@@ -458,7 +458,7 @@ class N2N(nn.Module):
                             # relu
                             x = self.relu(x)
 
-                        elif ((i + 1) % layerInThisBlock == 0) and firstBlockInStage and firstLayer:
+                        elif ((i + 1) % layerInThisBlock == 0) and firstBlockInStage and notfirstLayer:
                             # conv
                             _x = self.module_list[j](_x)
                             if printNet:
