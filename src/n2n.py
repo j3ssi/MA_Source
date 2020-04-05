@@ -601,8 +601,8 @@ class N2N(nn.Module):
                 for layer in range(0,archNum[block]):
                     if printStages:
                         print(f'Layer: {layer}')
-                    if layer == 0 and not
-                    if firstBlockInStage and not firstStage and (layer+1)%
+#                    if layer == 0 and not
+ #                   if firstBlockInStage and not firstStage and (layer+1)%
 
                 if 0 < block < len(archNum):
                     i = i + 1
