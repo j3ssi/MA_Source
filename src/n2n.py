@@ -543,59 +543,61 @@ class N2N(nn.Module):
     def getResidualPath(self):
         stagesI = []
         stagesO = []
-        i = 1
-        printStages = False
-        stagesI.append([])
-        stagesO.append([])
-        stagesO[0].append(n(1))
-        firstStage = True
-        for stage in range(0, self.numOfStages):
-            if stage < self.numOfStages:
-                i = i + 1
-                print(f'I: {i} ; {stage}')
-                stagesI[-1].append(n(i))
-            if stage > 0:
-                stagesI.append([])
-                stagesO.append([])
-            if printStages:
-                print("\n\nStage: ", stage)
-            archNum = self.archNums[stage]
-            firstBlockInStage = True
-            for block in range(0, len(archNum)):
-                if printStages:
-                    print("\n\n\tBlock: ", block)
-                for layer in range(0,archNum[block]):
-                    if printStages:
-                        print(f'Layer: {layer}')
-#                    if layer == 0 and not
- #                   if firstBlockInStage and not firstStage and (layer+1)%
+        stage0O=[]
 
-                if 0 < block < len(archNum):
-                    i = i + 1
-                    stagesI[-1].append(n(i))
-                    layerInThisBlock = archNum[block]
-                    i = i + layerInThisBlock - 1
-                    stagesO[-1].append(n(i))
-                elif block == 0:
-                    layerInThisBlock = archNum[block]
-                    i = i + layerInThisBlock - 1
-                    stagesO[-1].append(n(i))
-
-        # print("\nstagesO:  1")
-        printStages = False
-        fcStr = 'fc' + str(i + 1)
-        stagesI[-1].append(n(fcStr))
-
-        # if printStages:
-        print("\nStagesI: ", stagesI)
-        print("\nStagesO: ", stagesO)
+        # i = 1
+        # printStages = False
+        # stagesI.append([])
+        # stagesO.append([])
+        # stagesO[0].append(n(1))
+        # firstStage = True
+        # for stage in range(0, self.numOfStages):
+        #     if stage < self.numOfStages:
+        #         i = i + 1
+        #         print(f'I: {i} ; {stage}')
+        #         stagesI[-1].append(n(i))
+        #     if stage > 0:
+        #         stagesI.append([])
+        #         stagesO.append([])
+        #     if printStages:
+        #         print("\n\nStage: ", stage)
+        #     archNum = self.archNums[stage]
+        #     firstBlockInStage = True
+        #     for block in range(0, len(archNum)):
+        #         if printStages:
+        #             print("\n\n\tBlock: ", block)
+        #         for layer in range(0,archNum[block]):
+        #             if printStages:
+        #                 print(f'Layer: {layer}')
+        #             if layer == 0 and not
+        #             if firstBlockInStage and not firstStage and (layer+1)%
+        #
+        #         if 0 < block < len(archNum):
+        #             i = i + 1
+        #             stagesI[-1].append(n(i))
+        #             layerInThisBlock = archNum[block]
+        #             i = i + layerInThisBlock - 1
+        #             stagesO[-1].append(n(i))
+        #         elif block == 0:
+        #             layerInThisBlock = archNum[block]
+        #             i = i + layerInThisBlock - 1
+        #             stagesO[-1].append(n(i))
+        #
+        # # print("\nstagesO:  1")
+        # printStages = False
+        # fcStr = 'fc' + str(i + 1)
+        # stagesI[-1].append(n(fcStr))
+        #
+        # # if printStages:
+        # print("\nStagesI: ", stagesI)
+        # print("\nStagesO: ", stagesO)
         return stagesI, stagesO
 
     def getShareSameNodeLayers(self):
         sameNode = []
         first = True
         j = 2
-        k = 1
+        k = 2
         for stage in range(0,self.numOfStages):
             for i in range(0, len(self.archNums[stage])):
                 block = []
