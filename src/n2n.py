@@ -546,9 +546,18 @@ class N2N(nn.Module):
     def getResidualPath(self):
         stagesI = []
         stagesO = []
-        stages0I =[n(2),n(5),n(7),n(9),n(11)]
-        stage0O=[n(1),n(4),n(8),n(10)]
-        stages1O =[]
+        stages0I =[n(2),n(4),n(6),n(8),n(10),n(12), n(14)]
+        stagesI.append(stages0I)
+        stage0O=[n(3),n(5),n(7),n(9),n(11)]
+        stagesO.append(stage0O)
+        stages1I =[n(15), n(17), n(19), n(21), n(23), n(25)]
+        stagesI.append(stages1I)
+        stages1O =[n(13), n(14), n(16), n(18), n(20), n(22) ]
+        stagesO.append(stages1O)
+        stages2I = [n(26), n(28), n(30), n(32), n('fc34')]
+        stagesI.apped(stages2I)
+        stages2O = [n(24), n(25), n(27), n(29), n(31), n(33)]
+        stagesO.append(stages2O)
         # i = 1
         # printStages = False
         # stagesI.append([])
