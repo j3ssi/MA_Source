@@ -417,7 +417,7 @@ class N2N(nn.Module):
                             else:
                                 x = self.module_list[j](x)
                             if printNet:
-                                print("\convJ: ", j, " ; ", self.module_list[j])
+                                print("\n conv J: ", j, " ; ", self.module_list[j])
                                 print("\nX Shape: ", x.shape)
                             j = j + 1
 
@@ -429,44 +429,9 @@ class N2N(nn.Module):
 
                             x = self.relu(x)
 
-                            if ((i + 1) % self.layersInBlock) == 0:
+                            if ((i + 1) % layerInThisBlock) == 0:
                                 _x = _x + x
                                 _x = self.relu(_x)
-
-                            i = i + 1
-                            # elif ((i + 1) % self.layersInBlock) == 0:
-                            #
-                            #     # conv
-                            #     x = self.module_list[j](x)
-                            #     if printNet:
-                            #         print("\nJ: ", j, " ; ", self.module_list[j])
-                            #         print("\nX Shape: ", x.shape)
-                            #     j = j + 1
-                            #
-                            #     # bn
-                            #     x = self.module_list[j](x)
-                            #     if printNet:
-                            #         print("\nJ: ", j, " ; ", self.module_list[j])
-                            #     j = j + 1
-                            #     i = i + 1
-                            #     _x = self.relu(x)
-                            #
-                            # else:
-                            #     # conv
-                            #     x = self.module_list[j](x)
-                            #     if printNet:
-                            #         print("\nJ: ", j, " ; ", self.module_list[j])
-                            #         print("\nX Shape: ", x.shape)
-                            #     j = j + 1
-                            #     # bn
-                            #     x = self.module_list[j](x)
-                            #     if printNet:
-                            #         print("\nJ: ", j, " ; ", self.module_list[j])
-                            #         print("\nX Shape: ", x.shape)
-                            #     j = j + 1
-                            #     x = self.relu(x)
-                            #     i = i + 1
-
 
                 else:
                     if printNet:
@@ -508,6 +473,7 @@ class N2N(nn.Module):
                             j = j + 1
                             i = i + 1
                             firstBlockInStage = False
+                            _x = x+_x
                             _x = self.relu(_x)
 
                         elif ((i + 1) % self.layersInBlock) == 0 and (not firstBlockInStage or firstLayer):
