@@ -333,7 +333,7 @@ class N2N(nn.Module):
 
         _x = self.relu(x)
         j = 2
-        firstLayer = True
+        notfirstLayer = False
         for stage in range(0, self.numOfStages):
             if printNet:
                 print("\n\nStage: ", stage)
@@ -458,7 +458,7 @@ class N2N(nn.Module):
                             # relu
                             x = self.relu(x)
 
-                        elif ((i + 1) % layerInThisBlock == 0) and firstBlockInStage and not firstLayer:
+                        elif ((i + 1) % layerInThisBlock == 0) and firstBlockInStage and firstLayer:
                             # conv
                             _x = self.module_list[j](_x)
                             if printNet:
@@ -510,7 +510,7 @@ class N2N(nn.Module):
                             j = j + 1
                             x = self.relu(x)
                             i = i + 1
-                        firstLayer =False
+                        firstLayer = True
         if printNet:
             print("\nX Shape: ", x.shape)
 
