@@ -319,7 +319,7 @@ class N2N(nn.Module):
 
     def forward(self, x):
         # First layer
-        printNet = False
+        printNet = True
         if printNet:
             print("\nX Shape: ", x.shape)
         # conv1
@@ -639,173 +639,173 @@ class N2N(nn.Module):
     Convert all layers in layer to its wider version by adapting next weight layer and possible batch norm layer in btw.
     """
 
-    def wider(self, model, layers, delta_width, out_size =None):
-        altList = []
-        paramList = []
-        printName = False
-        for name, param in model.named_parameters():
-            # print("\nName: {}", name)
-            paramList.append(param)
-            # print("\nName: ", name)
-            i = int(name.split('.')[1])
-
-            if i % 2 == 0:
-                altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
-                if printName:
-                    print("\nI:", i, " ; ", altList[-1])
-            elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
-                altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
-                if printName:
-                    print("\nI:", i, " ; ", altList[-1])
-            elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
-                altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
-                if printName:
-                    print("\nI:", i, " ; ", altList[-1])
-            elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
-                altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
-                if printName:
-                    print("\nI:", i, " ; ", altList[-1])
-            elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
-                altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-                if printName:
-                    print("\nI:", i, " ; ", altList[-1])
-            else:
-                assert True, print("Hier fehlt noch was!!")
-        j = 0
-        residualPathI, residualPathO = model.getResidualPath()
-        sameNodes=model.getShareSameNodeLayers()
-        for name, param in model.named_parameters():
-            if name in residualPathO:
-                # Do nothing
-                continue
-            elif ('conv' in name)  and ('weight' in name):
-                w1 = param.data
-                i = int(name.split('.')[1].split('v')[1])
-                j = 2 * i
-                w2 = model.module_list[j]
-                if w1.dim() == 4:
-                    factor = int(np.sqrt(w2.size(1) // w1.size(0)))
-                    w2 = w2.view(w2.size(0), w2.size(1)//factor**2, factor, factor)
-                elif w1.dim() == 5:
-                    assert out_size is not None,\
-                           "For conv3d -> linear out_size is necessary"
-                    factor = out_size[0] * out_size[1] * out_size[2]
-                    w2 = w2.view(w2.size(0), w2.size(1)//factor, out_size[0],
-                                 out_size[1], out_size[2])
-            else:
-                assert w1.size(0) == w2.size(1), "Module weights are not compatible"
-            assert delta_width>0, "New size should be larger"
-
-            old_width = w1.size(0)
-            nw1 = w1.clone()
-            nw2 = w2.clone()
-
-            if nw1.dim() == 4:
-                nw1.resize_(nw1.size(0)+ delta_width, nw1.size(1), nw1.size(2), nw1.size(3))
-                nw2.resize_(nw2.size(0), nw1.size(0)+ delta_width, nw2.size(2), nw2.size(3))
-            elif nw1.dim() == 5:
-                nw1.resize_(nw1.size(0)+ delta_width, nw1.size(1), nw1.size(2), nw1.size(3), nw1.size(4))
-                nw2.resize_(nw2.size(0), nw1.size(0)+ delta_width, nw2.size(2), nw2.size(3), nw2.size(4))
-            else:
-                nw1.resize_(nw1.size(0)+ delta_width, nw1.size(1))
-                nw2.resize_(nw2.size(0), nw1.size(0)+ delta_width)
-
-            if isinstance(model.module_list[j-1],nn.BatchNorm2d):
-                nrunning_mean = model.module_list[j-1].running_mean.clone().resize(nw1.size(0)+delta_width)
-                nrunning_var = model.module_list[j-1].running_var.clone().resize_(nw1.size(0)+delta_width)
-                if model.module_list[j-1].affine:
-                    nweight = model.module_list[j-1].data.clone().resize_(nw1.size(0)+delta_width)
-                    nbias = bnorm.bias.data.clone().resize_(nw1.size(0)+delta_width)
-
-            w2 = w2.transpose(0, 1)
-            nw2 = nw2.transpose(0, 1)
-
-            nw1.narrow(0, 0, old_width).copy_(w1)
-            nw2.narrow(0, 0, old_width).copy_(w2)
-            if bnorm is not None:
-                nrunning_var.narrow(0, 0, old_width).copy_(bnorm.running_var)
-                nrunning_mean.narrow(0, 0, old_width).copy_(bnorm.running_mean)
-                if bnorm.affine:
-                    nweight.narrow(0, 0, old_width).copy_(bnorm.weight.data)
-                    nbias.narrow(0, 0, old_width).copy_(bnorm.bias.data)
-
-            # TEST:normalize weights
-            if weight_norm:
-                for i in range(old_width):
-                    norm = w1.select(0, i).norm()
-                    w1.select(0, i).div_(norm)
-
-            # select weights randomly
-            tracking = dict()
-            for i in range(old_width, new_width):
-                idx = np.random.randint(0, old_width)
-                try:
-                    tracking[idx].append(i)
-                except:
-                    tracking[idx] = [idx]
-                    tracking[idx].append(i)
-
-                # TEST:random init for new units
-                if random_init:
-                    n = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
-                    if m2.weight.dim() == 4:
-                        n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.out_channels
-                    elif m2.weight.dim() == 5:
-                        n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.kernel_size[2] * m2.out_channels
-                    elif m2.weight.dim() == 2:
-                        n2 = m2.out_features * m2.in_features
-                    nw1.select(0, i).normal_(0, np.sqrt(2./n))
-                    nw2.select(0, i).normal_(0, np.sqrt(2./n2))
-                else:
-                    nw1.select(0, i).copy_(w1.select(0, idx).clone())
-                    nw2.select(0, i).copy_(w2.select(0, idx).clone())
-                nb1[i] = b1[idx]
-
-            if bnorm is not None:
-                nrunning_mean[i] = bnorm.running_mean[idx]
-                nrunning_var[i] = bnorm.running_var[idx]
-                if bnorm.affine:
-                    nweight[i] = bnorm.weight.data[idx]
-                    nbias[i] = bnorm.bias.data[idx]
-                bnorm.num_features = new_width
-
-            if not random_init:
-                for idx, d in tracking.items():
-                    for item in d:
-                        nw2[item].div_(len(d))
-
-            w2.transpose_(0, 1)
-            nw2.transpose_(0, 1)
-
-            m1.out_channels = new_width
-            m2.in_channels = new_width
-
-            if noise:
-                noise = np.random.normal(scale=5e-2 * nw1.std(),
-                                         size=list(nw1.size()))
-                nw1 += th.FloatTensor(noise).type_as(nw1)
-
-            m1.weight.data = nw1
-
-            if "Conv" in m1.__class__.__name__ and "Linear" in m2.__class__.__name__:
-                if w1.dim() == 4:
-                    m2.weight.data = nw2.view(m2.weight.size(0), new_width*factor**2)
-                    m2.in_features = new_width*factor**2
-                elif w2.dim() == 5:
-                    m2.weight.data = nw2.view(m2.weight.size(0), new_width*factor)
-                    m2.in_features = new_width*factor
-            else:
-                m2.weight.data = nw2
-
-            m1.bias.data = nb1
-
-            if bnorm is not None:
-                bnorm.running_var = nrunning_var
-                bnorm.running_mean = nrunning_mean
-                if bnorm.affine:
-                    bnorm.weight.data = nweight
-                    bnorm.bias.data = nbias
-            return model
+    # def wider(self, model, layers, delta_width, out_size =None):
+    #     altList = []
+    #     paramList = []
+    #     printName = False
+    #     for name, param in model.named_parameters():
+    #         # print("\nName: {}", name)
+    #         paramList.append(param)
+    #         # print("\nName: ", name)
+    #         i = int(name.split('.')[1])
+    #
+    #         if i % 2 == 0:
+    #             altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
+    #             if printName:
+    #                 print("\nI:", i, " ; ", altList[-1])
+    #         elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
+    #             altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
+    #             if printName:
+    #                 print("\nI:", i, " ; ", altList[-1])
+    #         elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
+    #             altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
+    #             if printName:
+    #                 print("\nI:", i, " ; ", altList[-1])
+    #         elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
+    #             altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
+    #             if printName:
+    #                 print("\nI:", i, " ; ", altList[-1])
+    #         elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
+    #             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
+    #             if printName:
+    #                 print("\nI:", i, " ; ", altList[-1])
+    #         else:
+    #             assert True, print("Hier fehlt noch was!!")
+    #     j = 0
+    #     residualPathI, residualPathO = model.getResidualPath()
+    #     sameNodes=model.getShareSameNodeLayers()
+    #     for name, param in model.named_parameters():
+    #         if name in residualPathO:
+    #             # Do nothing
+    #             continue
+    #         elif ('conv' in name)  and ('weight' in name):
+    #             w1 = param.data
+    #             i = int(name.split('.')[1].split('v')[1])
+    #             j = 2 * i
+    #             w2 = model.module_list[j]
+    #             if w1.dim() == 4:
+    #                 factor = int(np.sqrt(w2.size(1) // w1.size(0)))
+    #                 w2 = w2.view(w2.size(0), w2.size(1)//factor**2, factor, factor)
+    #             elif w1.dim() == 5:
+    #                 assert out_size is not None,\
+    #                        "For conv3d -> linear out_size is necessary"
+    #                 factor = out_size[0] * out_size[1] * out_size[2]
+    #                 w2 = w2.view(w2.size(0), w2.size(1)//factor, out_size[0],
+    #                              out_size[1], out_size[2])
+    #         else:
+    #             assert w1.size(0) == w2.size(1), "Module weights are not compatible"
+    #         assert delta_width>0, "New size should be larger"
+    #
+    #         old_width = w1.size(0)
+    #         nw1 = w1.clone()
+    #         nw2 = w2.clone()
+    #
+    #         if nw1.dim() == 4:
+    #             nw1.resize_(nw1.size(0)+ delta_width, nw1.size(1), nw1.size(2), nw1.size(3))
+    #             nw2.resize_(nw2.size(0), nw1.size(0)+ delta_width, nw2.size(2), nw2.size(3))
+    #         elif nw1.dim() == 5:
+    #             nw1.resize_(nw1.size(0)+ delta_width, nw1.size(1), nw1.size(2), nw1.size(3), nw1.size(4))
+    #             nw2.resize_(nw2.size(0), nw1.size(0)+ delta_width, nw2.size(2), nw2.size(3), nw2.size(4))
+    #         else:
+    #             nw1.resize_(nw1.size(0)+ delta_width, nw1.size(1))
+    #             nw2.resize_(nw2.size(0), nw1.size(0)+ delta_width)
+    #
+    #         if isinstance(model.module_list[j-1],nn.BatchNorm2d):
+    #             nrunning_mean = model.module_list[j-1].running_mean.clone().resize(nw1.size(0)+delta_width)
+    #             nrunning_var = model.module_list[j-1].running_var.clone().resize_(nw1.size(0)+delta_width)
+    #             if model.module_list[j-1].affine:
+    #                 nweight = model.module_list[j-1].data.clone().resize_(nw1.size(0)+delta_width)
+    #                 nbias = bnorm.bias.data.clone().resize_(nw1.size(0)+delta_width)
+    #
+    #         w2 = w2.transpose(0, 1)
+    #         nw2 = nw2.transpose(0, 1)
+    #
+    #         nw1.narrow(0, 0, old_width).copy_(w1)
+    #         nw2.narrow(0, 0, old_width).copy_(w2)
+    #         if bnorm is not None:
+    #             nrunning_var.narrow(0, 0, old_width).copy_(bnorm.running_var)
+    #             nrunning_mean.narrow(0, 0, old_width).copy_(bnorm.running_mean)
+    #             if bnorm.affine:
+    #                 nweight.narrow(0, 0, old_width).copy_(bnorm.weight.data)
+    #                 nbias.narrow(0, 0, old_width).copy_(bnorm.bias.data)
+    #
+    #         # TEST:normalize weights
+    #         if weight_norm:
+    #             for i in range(old_width):
+    #                 norm = w1.select(0, i).norm()
+    #                 w1.select(0, i).div_(norm)
+    #
+    #         # select weights randomly
+    #         tracking = dict()
+    #         for i in range(old_width, new_width):
+    #             idx = np.random.randint(0, old_width)
+    #             try:
+    #                 tracking[idx].append(i)
+    #             except:
+    #                 tracking[idx] = [idx]
+    #                 tracking[idx].append(i)
+    #
+    #             # TEST:random init for new units
+    #             if random_init:
+    #                 n = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
+    #                 if m2.weight.dim() == 4:
+    #                     n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.out_channels
+    #                 elif m2.weight.dim() == 5:
+    #                     n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.kernel_size[2] * m2.out_channels
+    #                 elif m2.weight.dim() == 2:
+    #                     n2 = m2.out_features * m2.in_features
+    #                 nw1.select(0, i).normal_(0, np.sqrt(2./n))
+    #                 nw2.select(0, i).normal_(0, np.sqrt(2./n2))
+    #             else:
+    #                 nw1.select(0, i).copy_(w1.select(0, idx).clone())
+    #                 nw2.select(0, i).copy_(w2.select(0, idx).clone())
+    #             nb1[i] = b1[idx]
+    #
+    #         if bnorm is not None:
+    #             nrunning_mean[i] = bnorm.running_mean[idx]
+    #             nrunning_var[i] = bnorm.running_var[idx]
+    #             if bnorm.affine:
+    #                 nweight[i] = bnorm.weight.data[idx]
+    #                 nbias[i] = bnorm.bias.data[idx]
+    #             bnorm.num_features = new_width
+    #
+    #         if not random_init:
+    #             for idx, d in tracking.items():
+    #                 for item in d:
+    #                     nw2[item].div_(len(d))
+    #
+    #         w2.transpose_(0, 1)
+    #         nw2.transpose_(0, 1)
+    #
+    #         m1.out_channels = new_width
+    #         m2.in_channels = new_width
+    #
+    #         if noise:
+    #             noise = np.random.normal(scale=5e-2 * nw1.std(),
+    #                                      size=list(nw1.size()))
+    #             nw1 += th.FloatTensor(noise).type_as(nw1)
+    #
+    #         m1.weight.data = nw1
+    #
+    #         if "Conv" in m1.__class__.__name__ and "Linear" in m2.__class__.__name__:
+    #             if w1.dim() == 4:
+    #                 m2.weight.data = nw2.view(m2.weight.size(0), new_width*factor**2)
+    #                 m2.in_features = new_width*factor**2
+    #             elif w2.dim() == 5:
+    #                 m2.weight.data = nw2.view(m2.weight.size(0), new_width*factor)
+    #                 m2.in_features = new_width*factor
+    #         else:
+    #             m2.weight.data = nw2
+    #
+    #         m1.bias.data = nb1
+    #
+    #         if bnorm is not None:
+    #             bnorm.running_var = nrunning_var
+    #             bnorm.running_mean = nrunning_mean
+    #             if bnorm.affine:
+    #                 bnorm.weight.data = nweight
+    #                 bnorm.bias.data = nbias
+    #         return model
 
         # def deeper(self, model, optimizer):
         #     # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
@@ -830,7 +830,7 @@ class N2N(nn.Module):
         #     model.module_list.insert(pos * 2 + 4, conv3)
         #     model.module_list.insert(pos * 2 + 5, bn3)
 
-        return model
+        #return model
 
 
 def num_flat_features(x):
