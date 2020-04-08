@@ -297,15 +297,6 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
     - Remove parameters/states in optimizer
     """
 
-    def getLayerIdx(lyr_name):
-        if 'conv' in lyr_name:
-            conv_id = dense_chs[lyr_name + '.weight']['idx']
-            return [3 * (conv_id - 1)], [lyr_name + '.weight']
-        elif 'bn' in lyr_name:
-            conv_name = lyr_name.replace('bn', 'conv')
-            conv_id = dense_chs[conv_name + '.weight']['idx']
-            return [3 * conv_id - 1, 3 * conv_id - 2], [lyr_name + '.bias', lyr_name + '.weight']
-
     if len(rm_list) > 0:
         for name in rm_list:
             # delete module from moduleList
