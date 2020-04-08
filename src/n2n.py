@@ -537,7 +537,7 @@ class N2N(nn.Module):
                 print("\n \n Oops!!!: ")
                 print("AvgPool")
         elif isinstance(self.module_list[j], nn.Conv2d):
-            print(f'Sollte nicht Conv sondern AvgPool sein {j}; {archNum}')
+            print(f'Sollte nicht Conv sondern AvgPool sein {j}; {self.archNumsNum}')
         elif isinstance(self.module_list[j], nn.Linear):
             print(f'Sollte nicht Linear sondern AvgPool sein {j}')
         elif isinstance(self.module_list[j], nn.BatchNorm2d):
