@@ -216,7 +216,7 @@ class N2N(nn.Module):
                     elif isinstance(m, nn.BatchNorm2d):
                         m.weight.data.fill_(1)
                         m.bias.data.zero_()
-            # print(self)
+            print(self)
         else:
             self.archNums = model.archNums
 
@@ -537,11 +537,11 @@ class N2N(nn.Module):
                 print("\n \n Oops!!!: ")
                 print("AvgPool")
         elif isinstance(self.module_list[j], nn.Conv2d):
-            print(f'Sollte nicht Conv sondern AvgPool sein')
+            print(f'Sollte nicht Conv sondern AvgPool sein {j}')
         elif isinstance(self.module_list[j], nn.Linear):
-            print(f'Sollte nicht Linear sondern AvgPool sein')
+            print(f'Sollte nicht Linear sondern AvgPool sein {j}')
         elif isinstance(self.module_list[j], nn.BatchNorm2d):
-            print(f'Sollte nicht Bn sondern AvgPool sein')
+            print(f'Sollte nicht Bn sondern AvgPool sein {j}')
         else:
             print("\n \nElse Oops!!!: ")
             print("AvgPool")
@@ -645,7 +645,7 @@ class N2N(nn.Module):
 
                 sameNode.append(block)
             firstStage = False
-        # print("\nSame Node: ", sameNode)
+        print("\nSame Node: ", sameNode)
         return sameNode
 
 
