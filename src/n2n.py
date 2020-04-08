@@ -4,6 +4,7 @@ import torch.nn as nn
 import math
 import numpy as np
 
+
 class N2N(nn.Module):
 
     def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock, first, bottleneck, model=None):
@@ -476,7 +477,7 @@ class N2N(nn.Module):
                                 j = j + 1
                                 i = i + 1
                                 firstBlockInStage = False
-                                _x = x+_x
+                                _x = x + _x
                                 _x = self.relu(_x)
 
                             elif ((i + 1) % layerInThisBlock == 0):
@@ -515,11 +516,10 @@ class N2N(nn.Module):
                                 x = self.relu(x)
                                 i = i + 1
                             notfirstLayer = True
-        except:
-            if printNet:
-                print(f'Except')
-                print("\nJ: ", j, " ; ", self.module_list[j])
-                print("\nX Shape: ", x.shape)
+        except RuntimeError:
+            print(f'Except')
+            print("\nJ: ", j, " ; ", self.module_list[j])
+            print("\nX Shape: ", x.shape)
 
         if printNet:
             print("\nX Shape: ", x.shape)
@@ -537,7 +537,7 @@ class N2N(nn.Module):
                 print("\n \n Oops!!!: ")
                 print("AvgPool")
         elif isinstance(self.module_list[j], nn.Conv2d):
-            print(f'Sollte nicht Conv sondern AvgPool sein {j}')
+            print(f'Sollte nicht Conv sondern AvgPool sein {j}; {archNum}')
         elif isinstance(self.module_list[j], nn.Linear):
             print(f'Sollte nicht Linear sondern AvgPool sein {j}')
         elif isinstance(self.module_list[j], nn.BatchNorm2d):
@@ -560,13 +560,13 @@ class N2N(nn.Module):
     def getResidualPath(self):
         stagesI = []
         stagesO = []
-        stages0I =[n(2),n(4),n(6),n(8),n(10),n(12), n(14)]
+        stages0I = [n(2), n(4), n(6), n(8), n(10), n(12), n(14)]
         stagesI.append(stages0I)
-        stage0O=[n(1), n(3),n(5),n(7),n(9),n(11)]
+        stage0O = [n(1), n(3), n(5), n(7), n(9), n(11)]
         stagesO.append(stage0O)
-        stages1I =[n(15), n(17), n(19), n(21), n(23), n(25)]
+        stages1I = [n(15), n(17), n(19), n(21), n(23), n(25)]
         stagesI.append(stages1I)
-        stages1O =[n(13), n(14), n(16), n(18), n(20), n(22) ]
+        stages1O = [n(13), n(14), n(16), n(18), n(20), n(22)]
         stagesO.append(stages1O)
         stages2I = [n(26), n(28), n(30), n(32), n('fc34')]
         stagesI.append(stages2I)
@@ -626,35 +626,34 @@ class N2N(nn.Module):
         j = 2
         k = 2
         firstStage = True
-        for stage in range(0,self.numOfStages):
+        for stage in range(0, self.numOfStages):
             firstBlockInStage = True
             for i in range(0, len(self.archNums[stage])):
                 block = []
                 for layer in range(0, self.archNums[stage][i]):
                     # print("\nI: ", i, " ; ", stage, " ; ", block, " ; ", layer)
-                    if (layer + 1)%self.archNums[stage][i] == 0 and not firstStage and firstBlockInStage:
+                    if (layer + 1) % self.archNums[stage][i] == 0 and not firstStage and firstBlockInStage:
                         j = j + 1
                         k = k + 1
-                        firstBlockInStage =False
-                    if isinstance(self.module_list[j],nn.Conv2d):
+                        firstBlockInStage = False
+                    if isinstance(self.module_list[j], nn.Conv2d):
                         block.append(n(k))
                         j = j + 1
                         k = k + 1
-                    if isinstance(self.module_list[j],nn.BatchNorm2d):
-                        j=j+1
+                    if isinstance(self.module_list[j], nn.BatchNorm2d):
+                        j = j + 1
 
                 sameNode.append(block)
             firstStage = False
         print("\nSame Node: ", sameNode)
         return sameNode
 
-
     """
     Convert all layers in layer to its wider version by adapting next weight layer and possible batch norm layer in btw.
     layers = 'conv 3, conv6'
     """
 
-    def wider(self, model, layers, delta_width, out_size =None, weight_norm=True,random_init=True, noise=True):
+    def wider(self, model, layers, delta_width, out_size=None, weight_norm=True, random_init=True, noise=True):
         altList = []
         paramList = []
         printName = False
@@ -688,7 +687,7 @@ class N2N(nn.Module):
                 assert True, print("Hier fehlt noch was!!")
         j = 0
         residualPathI, residualPathO = model.getResidualPath()
-        sameNodes=model.getShareSameNodeLayers()
+        sameNodes = model.getShareSameNodeLayers()
         for layer in layers:
             if layer in residualPathO:
                 # Do nothing
@@ -697,40 +696,40 @@ class N2N(nn.Module):
                 j = int(name.split('.')[1].split('v')[1])
                 i = 2 * j - 2
                 m1 = model.module_list[j]
-                bn = model.module_list[j+1]
-                m2 = model.module_list[j+2]
+                bn = model.module_list[j + 1]
+                m2 = model.module_list[j + 2]
                 w1 = m1.weight.data
                 w2 = m2.weight.data
                 if w1.dim() == 4:
                     factor = int(np.sqrt(w2.size(1) // w1.size(0)))
-                    w2 = w2.view(w2.size(0), w2.size(1)//factor**2, factor, factor)
+                    w2 = w2.view(w2.size(0), w2.size(1) // factor ** 2, factor, factor)
                 elif w1.dim() == 5:
-                    assert out_size is not None,\
-                           "For conv3d -> linear out_size is necessary"
+                    assert out_size is not None, \
+                        "For conv3d -> linear out_size is necessary"
                     factor = out_size[0] * out_size[1] * out_size[2]
-                    w2 = w2.view(w2.size(0), w2.size(1)//factor, out_size[0],
+                    w2 = w2.view(w2.size(0), w2.size(1) // factor, out_size[0],
                                  out_size[1], out_size[2])
-                assert delta_width>0, "New size should be larger"
+                assert delta_width > 0, "New size should be larger"
 
                 old_width = w1.size(0)
                 nw1 = w1.clone()
                 nw2 = w2.clone()
 
                 if nw1.dim() == 4:
-                    nw1.resize_(nw1.size(0)+ delta_width, nw1.size(1), nw1.size(2), nw1.size(3))
-                    nw2.resize_(nw2.size(0), nw1.size(0)+ delta_width, nw2.size(2), nw2.size(3))
+                    nw1.resize_(nw1.size(0) + delta_width, nw1.size(1), nw1.size(2), nw1.size(3))
+                    nw2.resize_(nw2.size(0), nw1.size(0) + delta_width, nw2.size(2), nw2.size(3))
                 elif nw1.dim() == 5:
-                    nw1.resize_(nw1.size(0)+ delta_width, nw1.size(1), nw1.size(2), nw1.size(3), nw1.size(4))
-                    nw2.resize_(nw2.size(0), nw1.size(0)+ delta_width, nw2.size(2), nw2.size(3), nw2.size(4))
+                    nw1.resize_(nw1.size(0) + delta_width, nw1.size(1), nw1.size(2), nw1.size(3), nw1.size(4))
+                    nw2.resize_(nw2.size(0), nw1.size(0) + delta_width, nw2.size(2), nw2.size(3), nw2.size(4))
                 else:
-                    nw1.resize_(nw1.size(0)+ delta_width, nw1.size(1))
-                    nw2.resize_(nw2.size(0), nw1.size(0)+ delta_width)
+                    nw1.resize_(nw1.size(0) + delta_width, nw1.size(1))
+                    nw2.resize_(nw2.size(0), nw1.size(0) + delta_width)
 
-                nrunning_mean = bn.running_mean.clone().resize(nw1.size(0)+delta_width)
-                nrunning_var = bn.running_var.clone().resize_(nw1.size(0)+delta_width)
+                nrunning_mean = bn.running_mean.clone().resize(nw1.size(0) + delta_width)
+                nrunning_var = bn.running_var.clone().resize_(nw1.size(0) + delta_width)
                 if bn.affine:
-                    nweight = bn.data.clone().resize_(nw1.size(0)+delta_width)
-                    nbias = bn.bias.data.clone().resize_(nw1.size(0)+delta_width)
+                    nweight = bn.data.clone().resize_(nw1.size(0) + delta_width)
+                    nbias = bn.bias.data.clone().resize_(nw1.size(0) + delta_width)
 
                 w2 = w2.transpose(0, 1)
                 nw2 = nw2.transpose(0, 1)
@@ -752,7 +751,7 @@ class N2N(nn.Module):
 
                 # select weights randomly
                 tracking = dict()
-                for i in range(old_width, nw1.size(0)+ delta_width):
+                for i in range(old_width, nw1.size(0) + delta_width):
                     idx = np.random.randint(0, old_width)
                     try:
                         tracking[idx].append(i)
@@ -769,8 +768,8 @@ class N2N(nn.Module):
                             n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.kernel_size[2] * m2.out_channels
                         elif m2.weight.dim() == 2:
                             n2 = m2.out_features * m2.in_features
-                        nw1.select(0, i).normal_(0, np.sqrt(2./n))
-                        nw2.select(0, i).normal_(0, np.sqrt(2./n2))
+                        nw1.select(0, i).normal_(0, np.sqrt(2. / n))
+                        nw2.select(0, i).normal_(0, np.sqrt(2. / n2))
                     else:
                         nw1.select(0, i).copy_(w1.select(0, idx).clone())
                         nw2.select(0, i).copy_(w2.select(0, idx).clone())
@@ -781,7 +780,7 @@ class N2N(nn.Module):
                     if bn.affine:
                         nweight[i] = bn.weight.data[idx]
                         nbias[i] = bn.bias.data[idx]
-                    bn.num_features = nw1.size(0)+ delta_width
+                    bn.num_features = nw1.size(0) + delta_width
 
                 if not random_init:
                     for idx, d in tracking.items():
@@ -791,8 +790,8 @@ class N2N(nn.Module):
                 w2.transpose_(0, 1)
                 nw2.transpose_(0, 1)
 
-                m1.out_channels = nw1.size(0)+ delta_width
-                m2.in_channels = nw1.size(0)+ delta_width
+                m1.out_channels = nw1.size(0) + delta_width
+                m2.in_channels = nw1.size(0) + delta_width
 
                 if noise:
                     noise = np.random.normal(scale=5e-2 * nw1.std(),
@@ -833,8 +832,7 @@ class N2N(nn.Module):
         #     model.module_list.insert(pos * 2 + 4, conv3)
         #     model.module_list.insert(pos * 2 + 5, bn3)
 
-        #return model
-
+        # return model
 
 
 def n(name):
