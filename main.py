@@ -315,42 +315,6 @@ def main():
     trainloader = data.DataLoader(trainset, batch_size=batch_size,
                                   shuffle=True, num_workers=args.workers)
 
-    # torch.cuda.empty_cache()
-    # gc.collect()
-    # for batch_idx, (inputs, targets) in enumerate(trainloader):
-    #     if use_cuda:
-    #         inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
-    #         with torch.no_grad():
-    #             inputs = Variable(inputs)
-    #         targets = torch.autograd.Variable(targets)
-    #         print(f'Max memory after inputs, targets to gpu {torch.cuda.max_memory_allocated(use_gpu)}')
-    #
-    #         outputs = model.forward(inputs)
-    #
-    #         print(f'Max memory after forward {torch.cuda.max_memory_allocated(use_gpu)}')
-    #
-    #         total, use_after_forward, free = checkmem(use_gpu_num)
-    #         # print(f'Available after Model Creation: {free}')
-    #
-    #         print(f'Size of Forward Path: {-use_after_model + use_after_forward}')
-    #
-    #         loss = criterion(outputs, targets)
-    #         optimizer.zero_grad()
-    #         loss.backward()
-    #         optimizer.step()
-    #         print(f'Max memory after step: {torch.cuda.max_memory_allocated(use_gpu)}')
-    #
-    #         total, use_after_backward, free = checkmem(use_gpu_num)
-    #         # print(f'Available after Backward Path: {total - use_after_backward}')
-    #
-    #         del inputs
-    #         del outputs
-    #         del targets
-    #
-    #         break
-
-    # torch.cuda.empty_cache()
-    # gc.collect()
 
     i = 1
     # for epochNet2Net in range(1, 4):

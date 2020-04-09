@@ -220,7 +220,7 @@ class N2N(nn.Module):
             print(self)
         else:
             self.archNums = model.archNums
-
+            print(f'Archnums: {self.archNums}')
             module_list = model.module_list
             altList = []
             paramList = []
