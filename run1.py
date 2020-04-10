@@ -11,3 +11,8 @@ def main():
         cmdLine = cmdLine + ' --learning-rate 0.2 --batchTrue --batch_size 128 '
         cmdLine = cmdLine + '  --test_batch 100 -s ' + str(s) + ' -n 5,5,5 -l 2'
         os.system(cmdLine)
+
+
+
+if __name__ == '__main__':
+    main()
