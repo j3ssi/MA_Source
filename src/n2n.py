@@ -515,7 +515,7 @@ class N2N(nn.Module):
                                 j = j + 1
                                 x = self.relu(x)
                                 i = i + 1
-                            notfirstLayer = True
+                        notfirstLayer = True
         except RuntimeError:
             print(f'Except')
             print("\nJ: ", j, " ; ", self.module_list[j])

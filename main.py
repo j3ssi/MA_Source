@@ -256,6 +256,8 @@ def main():
         count0 += p.data.nelement()
     print(f'count0: {count0}')
     count1 = count0
+
+    # batch size
     if not args.batchTrue:
         # Calculate Size of Trainings Batch size
         ms = [0.2926, 4.4695, 3.899, 406.9735]
