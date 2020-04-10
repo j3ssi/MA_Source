@@ -152,7 +152,7 @@ def main():
             gpu_id = 1
         else:
             print(f'gpu id:0')
-            gpu_id = 0
+            gpu_id = 2
         print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
         total, used, free = checkmem(gpu_id)
         if True:
@@ -167,29 +167,29 @@ def main():
             print('\n')
             not_enough_memory = False
             break
-
-        if args.gpu1080 and not_enough_memory:
-            print(f'GPU1080 id 3')
-            gpu_id = 3
-        elif not_enough_memory:
-            print(f'GPU id:2')
-            gpu_id = 2
-        print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
-        total, used, free = checkmem(gpu_id)
-        if used < 20:
-            use_gpu = cudaArray[gpu_id]
-            use_gpu_num = gpu_id
-            torch.cuda.set_device(gpu_id)
-            print(f'This Gpu is free')
-            print(f'GPU Id: {gpu_id}')
-            print(f'total    : {total}')
-            print(f'free     : {free}')
-            print(f'used     : {used}')
-            print('\n')
-            not_enough_memory = False
-            break
-        if not_enough_memory:
-            time.sleep(600)
+        #
+        # if args.gpu1080 and not_enough_memory:
+        #     print(f'GPU1080 id 3')
+        #     gpu_id = 3
+        # elif not_enough_memory:
+        #     print(f'GPU id:2')
+        #     gpu_id = 2
+        # print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
+        # total, used, free = checkmem(gpu_id)
+        # if used < 20:
+        #     use_gpu = cudaArray[gpu_id]
+        #     use_gpu_num = gpu_id
+        #     torch.cuda.set_device(gpu_id)
+        #     print(f'This Gpu is free')
+        #     print(f'GPU Id: {gpu_id}')
+        #     print(f'total    : {total}')
+        #     print(f'free     : {free}')
+        #     print(f'used     : {used}')
+        #     print('\n')
+        #     not_enough_memory = False
+        #     break
+        # if not_enough_memory:
+        #     time.sleep(600)
     use_cuda = torch.cuda.is_available()
 
     # Random seed
@@ -268,49 +268,6 @@ def main():
         print(f'batch_size: {batch_size} ; {y}')
     else:
         batch_size = args.batch_size
-
-    # print(f'Batch Size: {batch_size}')
-
-    # trainloader = data.DataLoader(trainset, batch_size=1, pin_memory=True,
-    #                               shuffle=True, num_workers=args.workers)
-
-    # for batch_idx, (inputs, targets) in enumerate(trainloader):
-    #     inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
-    #     with torch.no_grad():
-    #         inputs = Variable(inputs)
-    #     targets = torch.autograd.Variable(targets)
-    #     total, use_after_variables, free = checkmem(use_gpu_num)
-    #
-    #     print(f'Available after variables: {free}')
-    #     print(f'Use after variables: smi {use_after_variables} torch {torch.cuda.memory_allocated(use_gpu)}')
-    #     print(f'Max memory after inputs, targets to gpu {torch.cuda.max_memory_allocated(use_gpu)}')
-    #
-    #     outputs = model.forward(inputs)
-    #
-    #
-    #     total, use_after_forward, free = checkmem(use_gpu_num)
-    #     print(f'Available after forward: {free}')
-    #     print(f'Use after forward: smi {use_after_forward} torch {torch.cuda.memory_allocated(use_gpu)}')
-    #     print(f'Max memory after forward {torch.cuda.max_memory_allocated(use_gpu)}')
-    #
-    #     loss = criterion(outputs, targets)
-    #     optimizer.zero_grad()
-    #     loss.backward()
-    #     optimizer.step()
-    #     del outputs
-    #     del targets
-    #     del inputs
-    #     total, use_after_backward, free = checkmem(use_gpu_num)
-    #     print(f'Available after Backward Path: {free}')
-    #     print(f'Use after backward: smi {use_after_backward} torch {torch.cuda.memory_allocated(use_gpu)}')
-    #     max_memory_after_step = torch.cuda.max_memory_allocated(use_gpu)
-    #     print(f'Max memory after step: {torch.cuda.max_memory_allocated(use_gpu)}')
-    #
-    #     print(f'free cached memory: {torch.cuda.memory_cached()-torch.cuda.memory_allocated()}')
-    #
-    #     # 1232
-    #     print(f'Batch Size: {batch_size}')
-    #     break
 
     trainloader = data.DataLoader(trainset, batch_size=batch_size,
                                   shuffle=True, num_workers=args.workers)
