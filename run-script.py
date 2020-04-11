@@ -7,8 +7,8 @@ def main():
     print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n ab hier mit pruneTrain")
     for i in range(0,4):
         cmdLine = 'python3 main.py '
-        cmdLine = cmdLine + '--workers 4 --epochs 90 --test --cifar10 --learning-rate 0.2 --sparse_interval 10 '
-        cmdLine = cmdLine + ' --threshold 0.05 --en_group_lasso --batchTrue --batch_size 128 '
+        cmdLine = cmdLine + '--workers 4 --epochs 180 --test --cifar10 --learning-rate 0.1 --sparse_interval 5 '
+        cmdLine = cmdLine + ' --threshold 0.001 --en_group_lasso --batchTrue --batch_size 128 '
         cmdLine = cmdLine + ' --var_group_lasso_coeff 0.2 --test_batch 100 -s ' + str(s) + ' -n 5,5,5 -l 2'
         os.system(cmdLine)
 
