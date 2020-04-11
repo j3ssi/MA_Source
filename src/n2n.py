@@ -231,7 +231,7 @@ class N2N(nn.Module):
                 # print("\nName: ", name)
                 i = int(name.split('.')[1])
 
-                if i % 2 == 0:
+                if i % 2 == 0 and 'conv' in name:
                     altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
                     if printName:
                         print("\nI:", i, " ; ", altList[-1])
@@ -285,7 +285,7 @@ class N2N(nn.Module):
                     layer.weight.data = module.weight.data
                     self.module_list.append(layer)
 
-                elif 'bn' in name and not 'bias' in name:
+                elif 'bn' in name and 'bias' not in name:
                     layer = nn.BatchNorm2d(paramList[i].shape[0])
                     if printName:
                         print("\n>new Layer: ", layer)
@@ -647,6 +647,32 @@ class N2N(nn.Module):
             firstStage = False
         print("\nSame Node: ", sameNode)
         return sameNode
+
+    def delete(self, model, name, index):
+        printNet = False
+
+        for stage in range(0, self.numOfStages):
+            j = 2
+            if printNet:
+                print("\n\nStage: ", stage)
+            archNum = self.archNums[stage]
+            firstBlockInStage = True
+            for block in range(0, len(archNum)):
+                if printNet:
+                    print("\n\n\tBlock: ", block)
+                i = 0
+                k = j
+                layerInThisBlock = archNum[block]
+                while i < layerInThisBlock:
+                    j = j + 1
+                    if (j == index) and not block == 0:
+                        numDelete = self.archnums[stage][block]
+                        self.archNums[stage].remove(block)
+            for layers in range(0, len(self.module_list) - k):
+                try:
+                    self.module_list[k + layers] = self.module_list[j + layers]
+                except IndexError:
+                    del self.module_list[k + layers]
 
     """
     Convert all layers in layer to its wider version by adapting next weight layer and possible batch norm layer in btw.
