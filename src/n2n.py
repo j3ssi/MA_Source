@@ -231,7 +231,7 @@ class N2N(nn.Module):
                 # print("\nName: ", name)
                 i = int(name.split('.')[1])
 
-                if i % 2 == 0 and 'conv' in name:
+                if i % 2 == 0:
                     altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
                     if printName:
                         print("\nI:", i, " ; ", altList[-1])
@@ -253,7 +253,7 @@ class N2N(nn.Module):
                         print("\nI:", i, " ; ", altList[-1])
                 else:
                     assert True, print("Hier fehlt noch was!!")
-
+            print(altList)
             del model
             self.module_list = nn.ModuleList()
 
