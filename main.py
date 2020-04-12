@@ -22,6 +22,8 @@ import random
 from pynvml import *
 import matplotlib
 import numpy as np
+from torch.nn.utils import clip_grad_norm_
+
 from src.mem_reporter import *
 from copy import deepcopy
 
@@ -123,11 +125,26 @@ parser.add_argument('--O2', default=False, action='store_true',
                     help='Use half precision apex methods O2')
 parser.add_argument('--O3', default=False, action='store_true',
                     help='Use half precision apex methods O3')
-
+# optimize
 parser.add_argument('--gpu1080', default=False, action='store_true',
                     help='Use Geforce 1080 instead of geforce 2080')
 parser.add_argument('--test', default=False, action='store_true',
                     help='Should the Test run?')
+parser.add_argument('--largeBatch', default=False, action='store_true',
+                    help='Use Large Batch Optimizing')
+
+parser.add_argument('-mb', '--mini-batch-size', default=128, type=int,
+                    help='mini-mini-batch size (default: 64)')
+parser.add_argument('--lr_bb_fix', dest='lr_bb_fix', action='store_true',
+                    help='learning rate fix for big batch lr =  lr0*(batch_size/128)**0.5')
+parser.add_argument('--no-lr_bb_fix', dest='lr_bb_fix', action='store_false',
+                    help='learning rate fix for big batch lr =  lr0*(batch_size/128)**0.5')
+parser.set_defaults(lr_bb_fix=True)
+parser.add_argument('--regime_bb_fix', dest='regime_bb_fix', action='store_true',
+                    help='regime fix for big batch e = e0*(batch_size/128)')
+parser.add_argument('--no-regime_bb_fix', dest='regime_bb_fix', action='store_false',
+                    help='regime fix for big batch e = e0*(batch_size/128)')
+
 
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
@@ -137,6 +154,15 @@ grp_lasso_coeff = 0
 
 
 def main():
+    # large batch
+    if args.regime_bb_fix:
+        args.epochs *= torch.ceil(args.batch_size / args.mini_batch_size)
+
+    if args.lr_bb_fix:
+        args.lr *= (args.batch_size / args.mini_batch_size) ** 0.5
+    if args.regime_bb_fix:
+        e *= torch.ceil(args.batch_size / args.mini_batch_size)
+
 
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
@@ -216,6 +242,7 @@ def main():
         transforms.ToTensor(),
         transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
     ])
+
 
     # Load data
     print(f'Cifar10: {args.cifar10}; cifar100: {args.cifar100}')
@@ -389,73 +416,93 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
 
         with torch.no_grad():
             inputs = Variable(inputs)
+
         targets = torch.autograd.Variable(targets)
-        outputs = model.forward(inputs)
+        if args.largeBatch:
+            mini_inputs = inputs.chunk(args.batch_size // args.mini_batch_size)
+            mini_targets = targets.chunk(args.batch_size // args.mini_batch_size)
+            for k, mini_input_var in enumerate(mini_inputs):
+                mini_target_var = mini_targets[k]
+                output = model(mini_input_var)
+                loss = criterion(output, mini_target_var)
 
-        total, use_after_forward, free = checkmem(use_gpu_num)
-        # print(f'Available after Model Creation: {free}')
+                prec1, prec5 = accuracy(output.data, mini_target_var.data, topk=(1, 5))
+                losses.update(loss.data[0], mini_input_var.size(0))
+                top1.update(prec1[0], mini_input_var.size(0))
+                top5.update(prec5[0], mini_input_var.size(0))
 
-        # print(f'Size of Forward Path: {-use_before_forward + use_after_forward}')
+                # compute gradient and do SGD step
+                loss.backward()
 
-        # Print model Structure
-        # print("\n\nOutput Shape: ", outputs.shape)
-        # if batch_idx == 0:
-        #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
-        #     filename = 'PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
-        #     dot.render(filename=filename)
-        loss = criterion(outputs, targets)
-
-        # lasso penalty
-        init_batch = batch_idx == 0 and epoch == 1
-
-        # if args.en_group_lasso:
-        #     if args.global_group_lasso:
-        #         lasso_penalty = get_group_lasso_global(model, use_gpu)
-        #     else:
-        #         lasso_penalty = get_group_lasso_group(model, use_gpu)
-        #
-        #     # Auto-tune the group-lasso coefficient @first training iteration
-        #     if init_batch:
-        #         args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (lasso_penalty *
-        #                                                                                (1 - args.var_group_lasso_coeff))
-        #         grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
-        #     lasso_penalty = lasso_penalty * grp_lasso_coeff
-        # else:
-        lasso_penalty = 0.
-
-        # Group lasso calcution is not performance-optimized => Ignore from execution time
-        loss += lasso_penalty
-        # print("Loss: ", loss)
-        # measure accuracy and record loss
-        prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
-        losses.update(loss.item(), inputs.size(0))
-        top1.update(prec1.item(), inputs.size(0))
-        top5.update(prec5.item(), inputs.size(0))
-        lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
-
-        # compute gradient and do SGD step
-        if args.O1 or args.O2 or args.O3:
-            with amp.scale_loss(loss, optimizer) as scaled_loss:
-                scaled_loss.backward()
+            for p in model.parameters():
+                p.grad.data.div_(len(mini_inputs))
+            clip_grad_norm_(model.parameters(), 5.)
+            optimizer.step()
         else:
-            loss.backward()
-        optimizer.step()
+            outputs = model.forward(inputs)
 
-        # total, use_after_backward, free = checkmem(use_gpu_num)
-        # print(f'Available after Backward Path: {total - use_after_backward}')
-        # measure elapsed time
-        batch_time.update(time.time() - end - data_load_time)
-        end = time.time()
 
-        # if batch_idx % args.print_freq == 0:
-        #     print('Epoch: [{0}][{1}/{2}]\t'
-        #           'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-        #           'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
-        #           'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
-        #           'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
-        #           'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
-        #           epoch, batch_idx, len(trainloader), batch_time=batch_time,
-        #           data_time=data_time, loss=losses, top1=top1, top5=top5))
+            # print(f'Size of Forward Path: {-use_before_forward + use_after_forward}')
+
+            # Print model Structure
+            # print("\n\nOutput Shape: ", outputs.shape)
+            # if batch_idx == 0:
+            #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
+            #     filename = 'PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
+            #     dot.render(filename=filename)
+            loss = criterion(outputs, targets)
+
+            # lasso penalty
+            init_batch = batch_idx == 0 and epoch == 1
+
+            # if args.en_group_lasso:
+            #     if args.global_group_lasso:
+            #         lasso_penalty = get_group_lasso_global(model, use_gpu)
+            #     else:
+            #         lasso_penalty = get_group_lasso_group(model, use_gpu)
+            #
+            #     # Auto-tune the group-lasso coefficient @first training iteration
+            #     if init_batch:
+           #         args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (lasso_penalty *
+            #                                                                                (1 - args.var_group_lasso_coeff))
+            #         grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
+            #     lasso_penalty = lasso_penalty * grp_lasso_coeff
+            # else:
+            lasso_penalty = 0.
+
+            # Group lasso calcution is not performance-optimized => Ignore from execution time
+            loss += lasso_penalty
+            # print("Loss: ", loss)
+            # measure accuracy and record loss
+            prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
+            losses.update(loss.item(), inputs.size(0))
+            top1.update(prec1.item(), inputs.size(0))
+            top5.update(prec5.item(), inputs.size(0))
+            lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
+
+            # compute gradient and do SGD step
+            if args.O1 or args.O2 or args.O3:
+                with amp.scale_loss(loss, optimizer) as scaled_loss:
+                    scaled_loss.backward()
+            else:
+                loss.backward()
+            optimizer.step()
+
+            # total, use_after_backward, free = checkmem(use_gpu_num)
+            # print(f'Available after Backward Path: {total - use_after_backward}')
+            # measure elapsed time
+            batch_time.update(time.time() - end - data_load_time)
+            end = time.time()
+
+            # if batch_idx % args.print_freq == 0:
+            #     print('Epoch: [{0}][{1}/{2}]\t'
+            #           'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
+            #           'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
+            #           'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
+            #           'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
+            #           'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
+            #           epoch, batch_idx, len(trainloader), batch_time=batch_time,
+            #           data_time=data_time, loss=losses, top1=top1, top5=top5))
 
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
     return losses.avg, top1.avg, lasso_ratio.avg, epoch_time
