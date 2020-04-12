@@ -450,20 +450,20 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
             # lasso penalty
             init_batch = batch_idx == 0 and epoch == 1
 
-            # if args.en_group_lasso:
-            #     if args.global_group_lasso:
-            #         lasso_penalty = get_group_lasso_global(model, use_gpu)
-            #     else:
-            #         lasso_penalty = get_group_lasso_group(model, use_gpu)
-            #
-            #     # Auto-tune the group-lasso coefficient @first training iteration
-            #     if init_batch:
-            #         args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (lasso_penalty *
-            #                                                                                (1 - args.var_group_lasso_coeff))
-            #         grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
-            #     lasso_penalty = lasso_penalty * grp_lasso_coeff
-            # else:
-            lasso_penalty = 0.
+            if args.en_group_lasso:
+                if args.global_group_lasso:
+                    lasso_penalty = get_group_lasso_global(model, use_gpu)
+                else:
+                    lasso_penalty = get_group_lasso_group(model, use_gpu)
+
+                # Auto-tune the group-lasso coefficient @first training iteration
+                if init_batch:
+                    args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (lasso_penalty *
+                                                                                           (1 - args.var_group_lasso_coeff))
+                    grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
+                lasso_penalty = lasso_penalty * grp_lasso_coeff
+            else:
+                lasso_penalty = 0.
 
             # Group lasso calcution is not performance-optimized => Ignore from execution time
             loss += lasso_penalty
@@ -489,15 +489,15 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
             batch_time.update(time.time() - end - data_load_time)
             end = time.time()
 
-            # if batch_idx % args.print_freq == 0:
-            #     print('Epoch: [{0}][{1}/{2}]\t'
-            #           'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-            #           'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
-            #           'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
-            #           'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
-            #           'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
-            #           epoch, batch_idx, len(trainloader), batch_time=batch_time,
-            #           data_time=data_time, loss=losses, top1=top1, top5=top5))
+            if batch_idx % args.print_freq == 0:
+                print('Epoch: [{0}][{1}/{2}]\t'
+                      'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
+                      'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
+                      'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
+                      'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
+                      'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
+                      epoch, batch_idx, len(trainloader), batch_time=batch_time,
+                      data_time=data_time, loss=losses, top1=top1, top5=top5))
 
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
     return losses.avg, top1.avg, lasso_ratio.avg, epoch_time
