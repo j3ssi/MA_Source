@@ -74,10 +74,9 @@ parser.add_argument('--gpu_id', default='0', type=str, help='id(s) for CUDA_VISI
 parser.add_argument('-s', '--numOfStages', default=3, type=int, help='defines the number of stages in the network')
 # parser.add_argument('-n', '--numOfBlocksinStage', type=int, default=5, help='defines the number of Blocks per Stage')
 parser.add_argument('-l', '--layersInBlock', type=int, default=3, help='defines the number of')
-parser.add_argument('-n',type=str, help="#stage numbers separated by commas")
-parser.add_argument('-b', '--bottleneck',default=False, action='store_true',
+parser.add_argument('-n', type=str, help="#stage numbers separated by commas")
+parser.add_argument('-b', '--bottleneck', default=False, action='store_true',
                     help='Set the bootleneck parameter')
-
 
 # PruneTrain
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
@@ -145,7 +144,6 @@ parser.add_argument('--regime_bb_fix', dest='regime_bb_fix', action='store_true'
 parser.add_argument('--no-regime_bb_fix', dest='regime_bb_fix', action='store_false',
                     help='regime fix for big batch e = e0*(batch_size/128)')
 
-
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
 listofBlocks = [int(i) for i in args.n.split(',')]
@@ -160,9 +158,8 @@ def main():
 
     if args.lr_bb_fix:
         args.lr *= (args.batch_size / args.mini_batch_size) ** 0.5
-    if args.regime_bb_fix:
-        e *= torch.ceil(args.batch_size / args.mini_batch_size)
-
+    # if args.regime_bb_fix:
+    #     e *= torch.ceil(args.batch_size / args.mini_batch_size)
 
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
@@ -243,7 +240,6 @@ def main():
         transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
     ])
 
-
     # Load data
     print(f'Cifar10: {args.cifar10}; cifar100: {args.cifar100}')
     if args.cifar10 and not args.cifar100:
@@ -252,19 +248,20 @@ def main():
     elif args.cifar100 and not args.cifar10:
         dataloader = datasets.CIFAR100
         num_classes = 100
-    dataset = not((not args.cifar10 and not args.cifar100) or (args.cifar10 and args.cifar100))
+    dataset = not ((not args.cifar10 and not args.cifar100) or (args.cifar10 and args.cifar100))
     print(f'{not args.cifar10 and not args.cifar100}' or {args.cifar10 and args.cifar100})
-    assert dataset , "kein gültiger Datensatz angegeben"
+    assert dataset, "kein gültiger Datensatz angegeben"
 
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
 
-    #trainloader = data.DataLoader(trainset, batch_size=args.batch_size, shuffle=True, num_workers=args.workers)
+    # trainloader = data.DataLoader(trainset, batch_size=args.batch_size, shuffle=True, num_workers=args.workers)
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
     # dynamic resnet modell
-    assert args.numOfStages == len(listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
-    model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock,True, args.bottleneck)
+    assert args.numOfStages == len(
+        listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
+    model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck)
     model.cuda()
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
@@ -292,15 +289,14 @@ def main():
         y0s = [0.2392, 0.7999, 0.889, -51.4890]
         y0 = y0s[args.numOfStages - 1]
         print(f'count0: {count0}')
-        y = m*min(listofBlocks)+y0
-        batch_size = int(0.98*count0/min(listofBlocks)*1/y)
+        y = m * min(listofBlocks) + y0
+        batch_size = int(0.98 * count0 / min(listofBlocks) * 1 / y)
         print(f'batch_size: {batch_size} ; {y}')
     else:
         batch_size = args.batch_size
 
     trainloader = data.DataLoader(trainset, batch_size=batch_size,
                                   shuffle=True, num_workers=args.workers)
-
 
     i = 1
     # for epochNet2Net in range(1, 4):
@@ -313,30 +309,30 @@ def main():
             print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
             start = time.time()
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion,
-                                                                                 optimizer,
-                                                                                 epoch, use_cuda, use_gpu,
-                                                                                 use_gpu_num)
+                                                                         optimizer,
+                                                                         epoch, use_cuda, use_gpu,
+                                                                         use_gpu_num)
             ende = time.time()
 
             if args.test:
                 test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda,
-                                                                         use_gpu)
+                                                            use_gpu)
             # i = 2
             # SparseTrain routine
-            if args.en_group_lasso and (epoch % args.sparse_interval == 0):
-                 # Force weights under threshold to zero
-                 dense_chs, chs_map = makeSparse(optimizer, model, args.threshold, use_gpu)
-                 if args.visual:
-                     visualizePruneTrain(model, epoch, args.threshold)
+            if args.en_group_lasso and (epoch % args.sparse_interval == 0) and not (epoch == args.epochs) :
+                # Force weights under threshold to zero
+                dense_chs, chs_map = makeSparse(optimizer, model, args.threshold, use_gpu)
+                if args.visual:
+                    visualizePruneTrain(model, epoch, args.threshold)
 
-                 genDenseModel(model, dense_chs, optimizer, 'cifar', use_gpu)
-                 gc.collect()
-                 model = n2n.N2N(num_classes, args.numOfStages, listofBlocks , args.layersInBlock, False,False,model)
-                 use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
-                 # print(f'use after new Model Creation')
-                 model.cuda(use_gpu)
-                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-                                       weight_decay=args.weight_decay)
+                genDenseModel(model, dense_chs, optimizer, 'cifar', use_gpu)
+                gc.collect()
+                model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, False, model)
+                use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
+                # print(f'use after new Model Creation')
+                model.cuda(use_gpu)
+                optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+                                      weight_decay=args.weight_decay)
             #     if args.fp16:
             #         model, optimizer = amp.initialize(model, optimizer)
             #
@@ -344,7 +340,7 @@ def main():
             for p in model.parameters():
                 count += p.data.nelement()
             if count < count1:
-                print(f'Count: {count} ; {count0} ; {count/count0}')
+                print(f'Count: {count} ; {count0} ; {count / count0}')
                 count1 = count
             #     if (count/count0) > 0.9:
             #         a = 0.9
@@ -371,15 +367,15 @@ def main():
                 model.cuda(use_gpu)
                 criterion = nn.CrossEntropyLoss()
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-                                     weight_decay=args.weight_decay)
+                                      weight_decay=args.weight_decay)
             # print("\n Verhältnis Modell Größe: ", count / count0)
-        i=2
+        i = 2
 
-    print("\n ", args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
-    print(" " ,test_acc)
+    print("\n ",
+          args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
+    print(" ", test_acc)
 
     print(' {:5.3f}s'.format(ende - start), end='  ')
-
 
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, use_gpu_num):
@@ -441,7 +437,6 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
         else:
             outputs = model.forward(inputs)
 
-
             # print(f'Size of Forward Path: {-use_before_forward + use_after_forward}')
 
             # Print model Structure
@@ -463,7 +458,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
             #
             #     # Auto-tune the group-lasso coefficient @first training iteration
             #     if init_batch:
-           #         args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (lasso_penalty *
+            #         args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (lasso_penalty *
             #                                                                                (1 - args.var_group_lasso_coeff))
             #         grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
             #     lasso_penalty = lasso_penalty * grp_lasso_coeff
@@ -566,6 +561,7 @@ def adjust_learning_rate(optimizer, epoch):
         args.lr = set_lr
     for param_group in optimizer.param_groups:
         param_group['lr'] = state['lr']
+
 
 def visualizePruneTrain(model, epoch, threshold):
     altList = []
@@ -699,15 +695,14 @@ def visualizePruneTrain(model, epoch, threshold):
 
 
 def checkmem(use_gpu):
-    total, used, free = os.popen('"nvidia-smi" --query-gpu=memory.total,memory.used,memory.free --format=csv,nounits,noheader'
-    ).read().split('\n')[use_gpu].split(',')
+    total, used, free = \
+    os.popen('"nvidia-smi" --query-gpu=memory.total,memory.used,memory.free --format=csv,nounits,noheader'
+             ).read().split('\n')[use_gpu].split(',')
     total = int(total)
     used = int(used)
     free = int(free)
     # print(use_gpu, 'Total GPU mem:', total, 'used:', used)
     return total, used, free
-
-
 
 
 if __name__ == '__main__':
