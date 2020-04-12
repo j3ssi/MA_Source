@@ -1,0 +1,1813 @@
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+gpu id:0
+Device Name: GeForce RTX 2080 Ti
+This Gpu is free
+GPU Id: 2
+total    : 11019
+free     : 4812
+used     : 6207
+
+
+Cifar10: True; cifar100: False
+False
+Files already downloaded and verified
+
+Arch Num:  [[2, 2, 2, 2, 2], [3, 2, 2, 2, 2], [3, 2, 2, 2, 2]]
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (59): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (60): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (61): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (62): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (63): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (64): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (65): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (66): AdaptiveAvgPool2d(output_size=(1, 1))
+    (67): Linear(in_features=64, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+count0: 487386
+
+Epoch: [1 | 180] LR: 0.100000
+
+Epoch: [2 | 180] LR: 0.100000
+
+Epoch: [3 | 180] LR: 0.100000
+
+Epoch: [4 | 180] LR: 0.100000
+
+Epoch: [5 | 180] LR: 0.100000
+
+Epoch: [6 | 180] LR: 0.100000
+
+Epoch: [7 | 180] LR: 0.100000
+
+Epoch: [8 | 180] LR: 0.100000
+
+Epoch: [9 | 180] LR: 0.100000
+
+Epoch: [10 | 180] LR: 0.100000
+
+Epoch: [11 | 180] LR: 0.100000
+
+Epoch: [12 | 180] LR: 0.100000
+
+Epoch: [13 | 180] LR: 0.100000
+
+Epoch: [14 | 180] LR: 0.100000
+
+Epoch: [15 | 180] LR: 0.100000
+
+Epoch: [16 | 180] LR: 0.100000
+
+Epoch: [17 | 180] LR: 0.100000
+
+Epoch: [18 | 180] LR: 0.100000
+
+Epoch: [19 | 180] LR: 0.100000
+
+Epoch: [20 | 180] LR: 0.100000
+
+Epoch: [21 | 180] LR: 0.100000
+
+Epoch: [22 | 180] LR: 0.100000
+
+Epoch: [23 | 180] LR: 0.100000
+
+Epoch: [24 | 180] LR: 0.100000
+
+Epoch: [25 | 180] LR: 0.100000
+
+Epoch: [26 | 180] LR: 0.100000
+
+Epoch: [27 | 180] LR: 0.100000
+
+Epoch: [28 | 180] LR: 0.100000
+
+Epoch: [29 | 180] LR: 0.100000
+
+Epoch: [30 | 180] LR: 0.100000
+
+Epoch: [31 | 180] LR: 0.100000
+
+Epoch: [32 | 180] LR: 0.100000
+
+Epoch: [33 | 180] LR: 0.100000
+
+Epoch: [34 | 180] LR: 0.100000
+
+Epoch: [35 | 180] LR: 0.100000
+
+Epoch: [36 | 180] LR: 0.100000
+
+Epoch: [37 | 180] LR: 0.100000
+
+Epoch: [38 | 180] LR: 0.100000
+
+Epoch: [39 | 180] LR: 0.100000
+
+Epoch: [40 | 180] LR: 0.100000
+
+Epoch: [41 | 180] LR: 0.100000
+
+Epoch: [42 | 180] LR: 0.100000
+
+Epoch: [43 | 180] LR: 0.100000
+
+Epoch: [44 | 180] LR: 0.100000
+
+Epoch: [45 | 180] LR: 0.100000
+
+Epoch: [46 | 180] LR: 0.100000
+
+Epoch: [47 | 180] LR: 0.100000
+
+Epoch: [48 | 180] LR: 0.100000
+
+Epoch: [49 | 180] LR: 0.100000
+
+Epoch: [50 | 180] LR: 0.100000
+
+Epoch: [51 | 180] LR: 0.100000
+
+Epoch: [52 | 180] LR: 0.100000
+
+Epoch: [53 | 180] LR: 0.100000
+
+Epoch: [54 | 180] LR: 0.100000
+
+Epoch: [55 | 180] LR: 0.100000
+
+Epoch: [56 | 180] LR: 0.100000
+
+Epoch: [57 | 180] LR: 0.100000
+
+Epoch: [58 | 180] LR: 0.100000
+
+Epoch: [59 | 180] LR: 0.100000
+
+Epoch: [60 | 180] LR: 0.100000
+
+Epoch: [61 | 180] LR: 0.100000
+
+Epoch: [62 | 180] LR: 0.100000
+
+Epoch: [63 | 180] LR: 0.100000
+
+Epoch: [64 | 180] LR: 0.100000
+
+Epoch: [65 | 180] LR: 0.100000
+
+Epoch: [66 | 180] LR: 0.100000
+
+Epoch: [67 | 180] LR: 0.100000
+
+Epoch: [68 | 180] LR: 0.100000
+
+Epoch: [69 | 180] LR: 0.100000
+
+Epoch: [70 | 180] LR: 0.100000
+
+Epoch: [71 | 180] LR: 0.100000
+
+Epoch: [72 | 180] LR: 0.100000
+
+Epoch: [73 | 180] LR: 0.100000
+
+Epoch: [74 | 180] LR: 0.100000
+
+Epoch: [75 | 180] LR: 0.100000
+
+Epoch: [76 | 180] LR: 0.100000
+
+Epoch: [77 | 180] LR: 0.100000
+
+Epoch: [78 | 180] LR: 0.100000
+
+Epoch: [79 | 180] LR: 0.100000
+
+Epoch: [80 | 180] LR: 0.100000
+
+Epoch: [81 | 180] LR: 0.100000
+
+Epoch: [82 | 180] LR: 0.100000
+
+Epoch: [83 | 180] LR: 0.100000
+
+Epoch: [84 | 180] LR: 0.100000
+
+Epoch: [85 | 180] LR: 0.100000
+
+Epoch: [86 | 180] LR: 0.100000
+
+Epoch: [87 | 180] LR: 0.100000
+
+Epoch: [88 | 180] LR: 0.100000
+
+Epoch: [89 | 180] LR: 0.100000
+
+Epoch: [90 | 180] LR: 0.100000
+
+Epoch: [91 | 180] LR: 0.100000
+
+Epoch: [92 | 180] LR: 0.100000
+
+Epoch: [93 | 180] LR: 0.010000
+
+Epoch: [94 | 180] LR: 0.010000
+
+Epoch: [95 | 180] LR: 0.010000
+
+Epoch: [96 | 180] LR: 0.010000
+
+Epoch: [97 | 180] LR: 0.010000
+
+Epoch: [98 | 180] LR: 0.010000
+
+Epoch: [99 | 180] LR: 0.010000
+
+Epoch: [100 | 180] LR: 0.010000
+
+Epoch: [101 | 180] LR: 0.010000
+
+Epoch: [102 | 180] LR: 0.010000
+
+Epoch: [103 | 180] LR: 0.010000
+
+Epoch: [104 | 180] LR: 0.010000
+
+Epoch: [105 | 180] LR: 0.010000
+
+Epoch: [106 | 180] LR: 0.010000
+
+Epoch: [107 | 180] LR: 0.010000
+
+Epoch: [108 | 180] LR: 0.010000
+
+Epoch: [109 | 180] LR: 0.010000
+
+Epoch: [110 | 180] LR: 0.010000
+
+Epoch: [111 | 180] LR: 0.010000
+
+Epoch: [112 | 180] LR: 0.010000
+
+Epoch: [113 | 180] LR: 0.010000
+
+Epoch: [114 | 180] LR: 0.010000
+
+Epoch: [115 | 180] LR: 0.010000
+
+Epoch: [116 | 180] LR: 0.010000
+
+Epoch: [117 | 180] LR: 0.010000
+
+Epoch: [118 | 180] LR: 0.010000
+
+Epoch: [119 | 180] LR: 0.010000
+
+Epoch: [120 | 180] LR: 0.010000
+
+Epoch: [121 | 180] LR: 0.010000
+
+Epoch: [122 | 180] LR: 0.010000
+
+Epoch: [123 | 180] LR: 0.010000
+
+Epoch: [124 | 180] LR: 0.010000
+
+Epoch: [125 | 180] LR: 0.010000
+
+Epoch: [126 | 180] LR: 0.010000
+
+Epoch: [127 | 180] LR: 0.010000
+
+Epoch: [128 | 180] LR: 0.010000
+
+Epoch: [129 | 180] LR: 0.010000
+
+Epoch: [130 | 180] LR: 0.010000
+
+Epoch: [131 | 180] LR: 0.010000
+
+Epoch: [132 | 180] LR: 0.010000
+
+Epoch: [133 | 180] LR: 0.010000
+
+Epoch: [134 | 180] LR: 0.010000
+
+Epoch: [135 | 180] LR: 0.010000
+
+Epoch: [136 | 180] LR: 0.010000
+
+Epoch: [137 | 180] LR: 0.010000
+
+Epoch: [138 | 180] LR: 0.010000
+
+Epoch: [139 | 180] LR: 0.010000
+
+Epoch: [140 | 180] LR: 0.010000
+
+Epoch: [141 | 180] LR: 0.010000
+
+Epoch: [142 | 180] LR: 0.010000
+
+Epoch: [143 | 180] LR: 0.010000
+
+Epoch: [144 | 180] LR: 0.010000
+
+Epoch: [145 | 180] LR: 0.010000
+
+Epoch: [146 | 180] LR: 0.010000
+
+Epoch: [147 | 180] LR: 0.010000
+
+Epoch: [148 | 180] LR: 0.010000
+
+Epoch: [149 | 180] LR: 0.010000
+
+Epoch: [150 | 180] LR: 0.000100
+
+Epoch: [151 | 180] LR: 0.000100
+
+Epoch: [152 | 180] LR: 0.000100
+
+Epoch: [153 | 180] LR: 0.000100
+
+Epoch: [154 | 180] LR: 0.000100
+
+Epoch: [155 | 180] LR: 0.000100
+
+Epoch: [156 | 180] LR: 0.000100
+
+Epoch: [157 | 180] LR: 0.000100
+
+Epoch: [158 | 180] LR: 0.000100
+
+Epoch: [159 | 180] LR: 0.000100
+
+Epoch: [160 | 180] LR: 0.000100
+
+Epoch: [161 | 180] LR: 0.000100
+
+Epoch: [162 | 180] LR: 0.000100
+
+Epoch: [163 | 180] LR: 0.000100
+
+Epoch: [164 | 180] LR: 0.000100
+
+Epoch: [165 | 180] LR: 0.000100
+
+Epoch: [166 | 180] LR: 0.000100
+
+Epoch: [167 | 180] LR: 0.000100
+
+Epoch: [168 | 180] LR: 0.000100
+
+Epoch: [169 | 180] LR: 0.000100
+
+Epoch: [170 | 180] LR: 0.000100
+
+Epoch: [171 | 180] LR: 0.000100
+
+Epoch: [172 | 180] LR: 0.000100
+
+Epoch: [173 | 180] LR: 0.000100
+
+Epoch: [174 | 180] LR: 0.000100
+
+Epoch: [175 | 180] LR: 0.000100
+
+Epoch: [176 | 180] LR: 0.000100
+
+Epoch: [177 | 180] LR: 0.000100
+
+Epoch: [178 | 180] LR: 0.000100
+
+Epoch: [179 | 180] LR: 0.000100
+
+Epoch: [180 | 180] LR: 0.000100
+
+  128
+  93.02
+ 126.704s  no display found. Using non-interactive Agg backend
+[5, 5, 5]
+gpu id:0
+Device Name: GeForce RTX 2080 Ti
+This Gpu is free
+GPU Id: 2
+total    : 11019
+free     : 3930
+used     : 7089
+
+
+Cifar10: True; cifar100: False
+False
+Files already downloaded and verified
+
+Arch Num:  [[2, 2, 2, 2, 2], [3, 2, 2, 2, 2], [3, 2, 2, 2, 2]]
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (59): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (60): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (61): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (62): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (63): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (64): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (65): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (66): AdaptiveAvgPool2d(output_size=(1, 1))
+    (67): Linear(in_features=64, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+count0: 487386
+
+Epoch: [1 | 180] LR: 0.100000
+
+Epoch: [2 | 180] LR: 0.100000
+
+Epoch: [3 | 180] LR: 0.100000
+
+Epoch: [4 | 180] LR: 0.100000
+
+Epoch: [5 | 180] LR: 0.100000
+
+Epoch: [6 | 180] LR: 0.100000
+
+Epoch: [7 | 180] LR: 0.100000
+
+Epoch: [8 | 180] LR: 0.100000
+
+Epoch: [9 | 180] LR: 0.100000
+
+Epoch: [10 | 180] LR: 0.100000
+
+Epoch: [11 | 180] LR: 0.100000
+
+Epoch: [12 | 180] LR: 0.100000
+
+Epoch: [13 | 180] LR: 0.100000
+
+Epoch: [14 | 180] LR: 0.100000
+
+Epoch: [15 | 180] LR: 0.100000
+
+Epoch: [16 | 180] LR: 0.100000
+
+Epoch: [17 | 180] LR: 0.100000
+
+Epoch: [18 | 180] LR: 0.100000
+
+Epoch: [19 | 180] LR: 0.100000
+
+Epoch: [20 | 180] LR: 0.100000
+
+Epoch: [21 | 180] LR: 0.100000
+
+Epoch: [22 | 180] LR: 0.100000
+
+Epoch: [23 | 180] LR: 0.100000
+
+Epoch: [24 | 180] LR: 0.100000
+
+Epoch: [25 | 180] LR: 0.100000
+
+Epoch: [26 | 180] LR: 0.100000
+
+Epoch: [27 | 180] LR: 0.100000
+
+Epoch: [28 | 180] LR: 0.100000
+
+Epoch: [29 | 180] LR: 0.100000
+
+Epoch: [30 | 180] LR: 0.100000
+
+Epoch: [31 | 180] LR: 0.100000
+
+Epoch: [32 | 180] LR: 0.100000
+
+Epoch: [33 | 180] LR: 0.100000
+
+Epoch: [34 | 180] LR: 0.100000
+
+Epoch: [35 | 180] LR: 0.100000
+
+Epoch: [36 | 180] LR: 0.100000
+
+Epoch: [37 | 180] LR: 0.100000
+
+Epoch: [38 | 180] LR: 0.100000
+
+Epoch: [39 | 180] LR: 0.100000
+
+Epoch: [40 | 180] LR: 0.100000
+
+Epoch: [41 | 180] LR: 0.100000
+
+Epoch: [42 | 180] LR: 0.100000
+
+Epoch: [43 | 180] LR: 0.100000
+
+Epoch: [44 | 180] LR: 0.100000
+
+Epoch: [45 | 180] LR: 0.100000
+
+Epoch: [46 | 180] LR: 0.100000
+
+Epoch: [47 | 180] LR: 0.100000
+
+Epoch: [48 | 180] LR: 0.100000
+
+Epoch: [49 | 180] LR: 0.100000
+
+Epoch: [50 | 180] LR: 0.100000
+
+Epoch: [51 | 180] LR: 0.100000
+
+Epoch: [52 | 180] LR: 0.100000
+
+Epoch: [53 | 180] LR: 0.100000
+
+Epoch: [54 | 180] LR: 0.100000
+
+Epoch: [55 | 180] LR: 0.100000
+
+Epoch: [56 | 180] LR: 0.100000
+
+Epoch: [57 | 180] LR: 0.100000
+
+Epoch: [58 | 180] LR: 0.100000
+
+Epoch: [59 | 180] LR: 0.100000
+
+Epoch: [60 | 180] LR: 0.100000
+
+Epoch: [61 | 180] LR: 0.100000
+
+Epoch: [62 | 180] LR: 0.100000
+
+Epoch: [63 | 180] LR: 0.100000
+
+Epoch: [64 | 180] LR: 0.100000
+
+Epoch: [65 | 180] LR: 0.100000
+
+Epoch: [66 | 180] LR: 0.100000
+
+Epoch: [67 | 180] LR: 0.100000
+
+Epoch: [68 | 180] LR: 0.100000
+
+Epoch: [69 | 180] LR: 0.100000
+
+Epoch: [70 | 180] LR: 0.100000
+
+Epoch: [71 | 180] LR: 0.100000
+
+Epoch: [72 | 180] LR: 0.100000
+
+Epoch: [73 | 180] LR: 0.100000
+
+Epoch: [74 | 180] LR: 0.100000
+
+Epoch: [75 | 180] LR: 0.100000
+
+Epoch: [76 | 180] LR: 0.100000
+
+Epoch: [77 | 180] LR: 0.100000
+
+Epoch: [78 | 180] LR: 0.100000
+
+Epoch: [79 | 180] LR: 0.100000
+
+Epoch: [80 | 180] LR: 0.100000
+
+Epoch: [81 | 180] LR: 0.100000
+
+Epoch: [82 | 180] LR: 0.100000
+
+Epoch: [83 | 180] LR: 0.100000
+
+Epoch: [84 | 180] LR: 0.100000
+
+Epoch: [85 | 180] LR: 0.100000
+
+Epoch: [86 | 180] LR: 0.100000
+
+Epoch: [87 | 180] LR: 0.100000
+
+Epoch: [88 | 180] LR: 0.100000
+
+Epoch: [89 | 180] LR: 0.100000
+
+Epoch: [90 | 180] LR: 0.100000
+
+Epoch: [91 | 180] LR: 0.100000
+
+Epoch: [92 | 180] LR: 0.100000
+
+Epoch: [93 | 180] LR: 0.010000
+
+Epoch: [94 | 180] LR: 0.010000
+
+Epoch: [95 | 180] LR: 0.010000
+
+Epoch: [96 | 180] LR: 0.010000
+
+Epoch: [97 | 180] LR: 0.010000
+
+Epoch: [98 | 180] LR: 0.010000
+
+Epoch: [99 | 180] LR: 0.010000
+
+Epoch: [100 | 180] LR: 0.010000
+
+Epoch: [101 | 180] LR: 0.010000
+
+Epoch: [102 | 180] LR: 0.010000
+
+Epoch: [103 | 180] LR: 0.010000
+
+Epoch: [104 | 180] LR: 0.010000
+
+Epoch: [105 | 180] LR: 0.010000
+
+Epoch: [106 | 180] LR: 0.010000
+
+Epoch: [107 | 180] LR: 0.010000
+
+Epoch: [108 | 180] LR: 0.010000
+
+Epoch: [109 | 180] LR: 0.010000
+
+Epoch: [110 | 180] LR: 0.010000
+
+Epoch: [111 | 180] LR: 0.010000
+
+Epoch: [112 | 180] LR: 0.010000
+
+Epoch: [113 | 180] LR: 0.010000
+
+Epoch: [114 | 180] LR: 0.010000
+
+Epoch: [115 | 180] LR: 0.010000
+
+Epoch: [116 | 180] LR: 0.010000
+
+Epoch: [117 | 180] LR: 0.010000
+
+Epoch: [118 | 180] LR: 0.010000
+
+Epoch: [119 | 180] LR: 0.010000
+
+Epoch: [120 | 180] LR: 0.010000
+
+Epoch: [121 | 180] LR: 0.010000
+
+Epoch: [122 | 180] LR: 0.010000
+
+Epoch: [123 | 180] LR: 0.010000
+
+Epoch: [124 | 180] LR: 0.010000
+
+Epoch: [125 | 180] LR: 0.010000
+
+Epoch: [126 | 180] LR: 0.010000
+
+Epoch: [127 | 180] LR: 0.010000
+
+Epoch: [128 | 180] LR: 0.010000
+
+Epoch: [129 | 180] LR: 0.010000
+
+Epoch: [130 | 180] LR: 0.010000
+
+Epoch: [131 | 180] LR: 0.010000
+
+Epoch: [132 | 180] LR: 0.010000
+
+Epoch: [133 | 180] LR: 0.010000
+
+Epoch: [134 | 180] LR: 0.010000
+
+Epoch: [135 | 180] LR: 0.010000
+
+Epoch: [136 | 180] LR: 0.010000
+
+Epoch: [137 | 180] LR: 0.010000
+
+Epoch: [138 | 180] LR: 0.010000
+
+Epoch: [139 | 180] LR: 0.010000
+
+Epoch: [140 | 180] LR: 0.010000
+
+Epoch: [141 | 180] LR: 0.010000
+
+Epoch: [142 | 180] LR: 0.010000
+
+Epoch: [143 | 180] LR: 0.010000
+
+Epoch: [144 | 180] LR: 0.010000
+
+Epoch: [145 | 180] LR: 0.010000
+
+Epoch: [146 | 180] LR: 0.010000
+
+Epoch: [147 | 180] LR: 0.010000
+
+Epoch: [148 | 180] LR: 0.010000
+
+Epoch: [149 | 180] LR: 0.010000
+
+Epoch: [150 | 180] LR: 0.000100
+
+Epoch: [151 | 180] LR: 0.000100
+
+Epoch: [152 | 180] LR: 0.000100
+
+Epoch: [153 | 180] LR: 0.000100
+
+Epoch: [154 | 180] LR: 0.000100
+
+Epoch: [155 | 180] LR: 0.000100
+
+Epoch: [156 | 180] LR: 0.000100
+
+Epoch: [157 | 180] LR: 0.000100
+
+Epoch: [158 | 180] LR: 0.000100
+
+Epoch: [159 | 180] LR: 0.000100
+
+Epoch: [160 | 180] LR: 0.000100
+
+Epoch: [161 | 180] LR: 0.000100
+
+Epoch: [162 | 180] LR: 0.000100
+
+Epoch: [163 | 180] LR: 0.000100
+
+Epoch: [164 | 180] LR: 0.000100
+
+Epoch: [165 | 180] LR: 0.000100
+
+Epoch: [166 | 180] LR: 0.000100
+
+Epoch: [167 | 180] LR: 0.000100
+
+Epoch: [168 | 180] LR: 0.000100
+
+Epoch: [169 | 180] LR: 0.000100
+
+Epoch: [170 | 180] LR: 0.000100
+
+Epoch: [171 | 180] LR: 0.000100
+
+Epoch: [172 | 180] LR: 0.000100
+
+Epoch: [173 | 180] LR: 0.000100
+
+Epoch: [174 | 180] LR: 0.000100
+
+Epoch: [175 | 180] LR: 0.000100
+
+Epoch: [176 | 180] LR: 0.000100
+
+Epoch: [177 | 180] LR: 0.000100
+
+Epoch: [178 | 180] LR: 0.000100
+
+Epoch: [179 | 180] LR: 0.000100
+
+Epoch: [180 | 180] LR: 0.000100
+
+  128
+  93.34
+ 138.716s  no display found. Using non-interactive Agg backend
+[5, 5, 5]
+gpu id:0
+Device Name: GeForce RTX 2080 Ti
+This Gpu is free
+GPU Id: 2
+total    : 11019
+free     : 3926
+used     : 7093
+
+
+Cifar10: True; cifar100: False
+False
+Files already downloaded and verified
+
+Arch Num:  [[2, 2, 2, 2, 2], [3, 2, 2, 2, 2], [3, 2, 2, 2, 2]]
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (59): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (60): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (61): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (62): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (63): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (64): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (65): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (66): AdaptiveAvgPool2d(output_size=(1, 1))
+    (67): Linear(in_features=64, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+count0: 487386
+
+Epoch: [1 | 180] LR: 0.100000
+
+Epoch: [2 | 180] LR: 0.100000
+
+Epoch: [3 | 180] LR: 0.100000
+
+Epoch: [4 | 180] LR: 0.100000
+
+Epoch: [5 | 180] LR: 0.100000
+
+Epoch: [6 | 180] LR: 0.100000
+
+Epoch: [7 | 180] LR: 0.100000
+
+Epoch: [8 | 180] LR: 0.100000
+
+Epoch: [9 | 180] LR: 0.100000
+
+Epoch: [10 | 180] LR: 0.100000
+
+Epoch: [11 | 180] LR: 0.100000
+
+Epoch: [12 | 180] LR: 0.100000
+
+Epoch: [13 | 180] LR: 0.100000
+
+Epoch: [14 | 180] LR: 0.100000
+
+Epoch: [15 | 180] LR: 0.100000
+
+Epoch: [16 | 180] LR: 0.100000
+
+Epoch: [17 | 180] LR: 0.100000
+
+Epoch: [18 | 180] LR: 0.100000
+
+Epoch: [19 | 180] LR: 0.100000
+
+Epoch: [20 | 180] LR: 0.100000
+
+Epoch: [21 | 180] LR: 0.100000
+
+Epoch: [22 | 180] LR: 0.100000
+
+Epoch: [23 | 180] LR: 0.100000
+
+Epoch: [24 | 180] LR: 0.100000
+
+Epoch: [25 | 180] LR: 0.100000
+
+Epoch: [26 | 180] LR: 0.100000
+
+Epoch: [27 | 180] LR: 0.100000
+
+Epoch: [28 | 180] LR: 0.100000
+
+Epoch: [29 | 180] LR: 0.100000
+
+Epoch: [30 | 180] LR: 0.100000
+
+Epoch: [31 | 180] LR: 0.100000
+
+Epoch: [32 | 180] LR: 0.100000
+
+Epoch: [33 | 180] LR: 0.100000
+
+Epoch: [34 | 180] LR: 0.100000
+
+Epoch: [35 | 180] LR: 0.100000
+
+Epoch: [36 | 180] LR: 0.100000
+
+Epoch: [37 | 180] LR: 0.100000
+
+Epoch: [38 | 180] LR: 0.100000
+
+Epoch: [39 | 180] LR: 0.100000
+
+Epoch: [40 | 180] LR: 0.100000
+
+Epoch: [41 | 180] LR: 0.100000
+
+Epoch: [42 | 180] LR: 0.100000
+
+Epoch: [43 | 180] LR: 0.100000
+
+Epoch: [44 | 180] LR: 0.100000
+
+Epoch: [45 | 180] LR: 0.100000
+
+Epoch: [46 | 180] LR: 0.100000
+
+Epoch: [47 | 180] LR: 0.100000
+
+Epoch: [48 | 180] LR: 0.100000
+
+Epoch: [49 | 180] LR: 0.100000
+
+Epoch: [50 | 180] LR: 0.100000
+
+Epoch: [51 | 180] LR: 0.100000
+
+Epoch: [52 | 180] LR: 0.100000
+
+Epoch: [53 | 180] LR: 0.100000
+
+Epoch: [54 | 180] LR: 0.100000
+
+Epoch: [55 | 180] LR: 0.100000
+
+Epoch: [56 | 180] LR: 0.100000
+
+Epoch: [57 | 180] LR: 0.100000
+
+Epoch: [58 | 180] LR: 0.100000
+
+Epoch: [59 | 180] LR: 0.100000
+
+Epoch: [60 | 180] LR: 0.100000
+
+Epoch: [61 | 180] LR: 0.100000
+
+Epoch: [62 | 180] LR: 0.100000
+
+Epoch: [63 | 180] LR: 0.100000
+
+Epoch: [64 | 180] LR: 0.100000
+
+Epoch: [65 | 180] LR: 0.100000
+
+Epoch: [66 | 180] LR: 0.100000
+
+Epoch: [67 | 180] LR: 0.100000
+
+Epoch: [68 | 180] LR: 0.100000
+
+Epoch: [69 | 180] LR: 0.100000
+
+Epoch: [70 | 180] LR: 0.100000
+
+Epoch: [71 | 180] LR: 0.100000
+
+Epoch: [72 | 180] LR: 0.100000
+
+Epoch: [73 | 180] LR: 0.100000
+
+Epoch: [74 | 180] LR: 0.100000
+
+Epoch: [75 | 180] LR: 0.100000
+
+Epoch: [76 | 180] LR: 0.100000
+
+Epoch: [77 | 180] LR: 0.100000
+
+Epoch: [78 | 180] LR: 0.100000
+
+Epoch: [79 | 180] LR: 0.100000
+
+Epoch: [80 | 180] LR: 0.100000
+
+Epoch: [81 | 180] LR: 0.100000
+
+Epoch: [82 | 180] LR: 0.100000
+
+Epoch: [83 | 180] LR: 0.100000
+
+Epoch: [84 | 180] LR: 0.100000
+
+Epoch: [85 | 180] LR: 0.100000
+
+Epoch: [86 | 180] LR: 0.100000
+
+Epoch: [87 | 180] LR: 0.100000
+
+Epoch: [88 | 180] LR: 0.100000
+
+Epoch: [89 | 180] LR: 0.100000
+
+Epoch: [90 | 180] LR: 0.100000
+
+Epoch: [91 | 180] LR: 0.100000
+
+Epoch: [92 | 180] LR: 0.100000
+
+Epoch: [93 | 180] LR: 0.010000
+
+Epoch: [94 | 180] LR: 0.010000
+
+Epoch: [95 | 180] LR: 0.010000
+
+Epoch: [96 | 180] LR: 0.010000
+
+Epoch: [97 | 180] LR: 0.010000
+
+Epoch: [98 | 180] LR: 0.010000
+
+Epoch: [99 | 180] LR: 0.010000
+
+Epoch: [100 | 180] LR: 0.010000
+
+Epoch: [101 | 180] LR: 0.010000
+
+Epoch: [102 | 180] LR: 0.010000
+
+Epoch: [103 | 180] LR: 0.010000
+
+Epoch: [104 | 180] LR: 0.010000
+
+Epoch: [105 | 180] LR: 0.010000
+
+Epoch: [106 | 180] LR: 0.010000
+
+Epoch: [107 | 180] LR: 0.010000
+
+Epoch: [108 | 180] LR: 0.010000
+
+Epoch: [109 | 180] LR: 0.010000
+
+Epoch: [110 | 180] LR: 0.010000
+
+Epoch: [111 | 180] LR: 0.010000
+
+Epoch: [112 | 180] LR: 0.010000
+
+Epoch: [113 | 180] LR: 0.010000
+
+Epoch: [114 | 180] LR: 0.010000
+
+Epoch: [115 | 180] LR: 0.010000
+
+Epoch: [116 | 180] LR: 0.010000
+
+Epoch: [117 | 180] LR: 0.010000
+
+Epoch: [118 | 180] LR: 0.010000
+
+Epoch: [119 | 180] LR: 0.010000
+
+Epoch: [120 | 180] LR: 0.010000
+
+Epoch: [121 | 180] LR: 0.010000
+
+Epoch: [122 | 180] LR: 0.010000
+
+Epoch: [123 | 180] LR: 0.010000
+
+Epoch: [124 | 180] LR: 0.010000
+
+Epoch: [125 | 180] LR: 0.010000
+
+Epoch: [126 | 180] LR: 0.010000
+
+Epoch: [127 | 180] LR: 0.010000
+
+Epoch: [128 | 180] LR: 0.010000
+
+Epoch: [129 | 180] LR: 0.010000
+
+Epoch: [130 | 180] LR: 0.010000
+
+Epoch: [131 | 180] LR: 0.010000
+
+Epoch: [132 | 180] LR: 0.010000
+
+Epoch: [133 | 180] LR: 0.010000
+
+Epoch: [134 | 180] LR: 0.010000
+
+Epoch: [135 | 180] LR: 0.010000
+
+Epoch: [136 | 180] LR: 0.010000
+
+Epoch: [137 | 180] LR: 0.010000
+
+Epoch: [138 | 180] LR: 0.010000
+
+Epoch: [139 | 180] LR: 0.010000
+
+Epoch: [140 | 180] LR: 0.010000
+
+Epoch: [141 | 180] LR: 0.010000
+
+Epoch: [142 | 180] LR: 0.010000
+
+Epoch: [143 | 180] LR: 0.010000
+
+Epoch: [144 | 180] LR: 0.010000
+
+Epoch: [145 | 180] LR: 0.010000
+
+Epoch: [146 | 180] LR: 0.010000
+
+Epoch: [147 | 180] LR: 0.010000
+
+Epoch: [148 | 180] LR: 0.010000
+
+Epoch: [149 | 180] LR: 0.010000
+
+Epoch: [150 | 180] LR: 0.000100
+
+Epoch: [151 | 180] LR: 0.000100
+
+Epoch: [152 | 180] LR: 0.000100
+
+Epoch: [153 | 180] LR: 0.000100
+
+Epoch: [154 | 180] LR: 0.000100
+
+Epoch: [155 | 180] LR: 0.000100
+
+Epoch: [156 | 180] LR: 0.000100
+
+Epoch: [157 | 180] LR: 0.000100
+
+Epoch: [158 | 180] LR: 0.000100
+
+Epoch: [159 | 180] LR: 0.000100
+
+Epoch: [160 | 180] LR: 0.000100
+
+Epoch: [161 | 180] LR: 0.000100
+
+Epoch: [162 | 180] LR: 0.000100
+
+Epoch: [163 | 180] LR: 0.000100
+
+Epoch: [164 | 180] LR: 0.000100
+
+Epoch: [165 | 180] LR: 0.000100
+
+Epoch: [166 | 180] LR: 0.000100
+
+Epoch: [167 | 180] LR: 0.000100
+
+Epoch: [168 | 180] LR: 0.000100
+
+Epoch: [169 | 180] LR: 0.000100
+
+Epoch: [170 | 180] LR: 0.000100
+
+Epoch: [171 | 180] LR: 0.000100
+
+Epoch: [172 | 180] LR: 0.000100
+
+Epoch: [173 | 180] LR: 0.000100
+
+Epoch: [174 | 180] LR: 0.000100
+
+Epoch: [175 | 180] LR: 0.000100
+
+Epoch: [176 | 180] LR: 0.000100
+
+Epoch: [177 | 180] LR: 0.000100
+
+Epoch: [178 | 180] LR: 0.000100
+
+Epoch: [179 | 180] LR: 0.000100
+
+Epoch: [180 | 180] LR: 0.000100
+
+  128
+  93.46
+ 139.114s  no display found. Using non-interactive Agg backend
+[5, 5, 5]
+gpu id:0
+Device Name: GeForce RTX 2080 Ti
+This Gpu is free
+GPU Id: 2
+total    : 11019
+free     : 4150
+used     : 6869
+
+
+Cifar10: True; cifar100: False
+False
+Files already downloaded and verified
+
+Arch Num:  [[2, 2, 2, 2, 2], [3, 2, 2, 2, 2], [3, 2, 2, 2, 2]]
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (59): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (60): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (61): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (62): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (63): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (64): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (65): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (66): AdaptiveAvgPool2d(output_size=(1, 1))
+    (67): Linear(in_features=64, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+count0: 487386
+
+Epoch: [1 | 180] LR: 0.100000
+
+Epoch: [2 | 180] LR: 0.100000
+
+Epoch: [3 | 180] LR: 0.100000
+
+Epoch: [4 | 180] LR: 0.100000
+
+Epoch: [5 | 180] LR: 0.100000
+
+Epoch: [6 | 180] LR: 0.100000
+
+Epoch: [7 | 180] LR: 0.100000
+
+Epoch: [8 | 180] LR: 0.100000
+
+Epoch: [9 | 180] LR: 0.100000
+
+Epoch: [10 | 180] LR: 0.100000
+
+Epoch: [11 | 180] LR: 0.100000
+
+Epoch: [12 | 180] LR: 0.100000
+
+Epoch: [13 | 180] LR: 0.100000
+
+Epoch: [14 | 180] LR: 0.100000
+
+Epoch: [15 | 180] LR: 0.100000
+
+Epoch: [16 | 180] LR: 0.100000
+
+Epoch: [17 | 180] LR: 0.100000
+
+Epoch: [18 | 180] LR: 0.100000
+
+Epoch: [19 | 180] LR: 0.100000
+
+Epoch: [20 | 180] LR: 0.100000
+
+Epoch: [21 | 180] LR: 0.100000
+
+Epoch: [22 | 180] LR: 0.100000
+
+Epoch: [23 | 180] LR: 0.100000
+
+Epoch: [24 | 180] LR: 0.100000
+
+Epoch: [25 | 180] LR: 0.100000
+
+Epoch: [26 | 180] LR: 0.100000
+
+Epoch: [27 | 180] LR: 0.100000
+
+Epoch: [28 | 180] LR: 0.100000
+
+Epoch: [29 | 180] LR: 0.100000
+
+Epoch: [30 | 180] LR: 0.100000
+
+Epoch: [31 | 180] LR: 0.100000
+
+Epoch: [32 | 180] LR: 0.100000
+
+Epoch: [33 | 180] LR: 0.100000
+
+Epoch: [34 | 180] LR: 0.100000
+
+Epoch: [35 | 180] LR: 0.100000
+
+Epoch: [36 | 180] LR: 0.100000
+
+Epoch: [37 | 180] LR: 0.100000
+
+Epoch: [38 | 180] LR: 0.100000
+
+Epoch: [39 | 180] LR: 0.100000
+
+Epoch: [40 | 180] LR: 0.100000
+
+Epoch: [41 | 180] LR: 0.100000
+
+Epoch: [42 | 180] LR: 0.100000
+
+Epoch: [43 | 180] LR: 0.100000
+
+Epoch: [44 | 180] LR: 0.100000
+
+Epoch: [45 | 180] LR: 0.100000
+
+Epoch: [46 | 180] LR: 0.100000
+
+Epoch: [47 | 180] LR: 0.100000
+
+Epoch: [48 | 180] LR: 0.100000
+
+Epoch: [49 | 180] LR: 0.100000
+
+Epoch: [50 | 180] LR: 0.100000
+
+Epoch: [51 | 180] LR: 0.100000
+
+Epoch: [52 | 180] LR: 0.100000
+
+Epoch: [53 | 180] LR: 0.100000
+
+Epoch: [54 | 180] LR: 0.100000
+
+Epoch: [55 | 180] LR: 0.100000
+
+Epoch: [56 | 180] LR: 0.100000
+
+Epoch: [57 | 180] LR: 0.100000
+
+Epoch: [58 | 180] LR: 0.100000
+
+Epoch: [59 | 180] LR: 0.100000
+
+Epoch: [60 | 180] LR: 0.100000
+
+Epoch: [61 | 180] LR: 0.100000
+
+Epoch: [62 | 180] LR: 0.100000
+
+Epoch: [63 | 180] LR: 0.100000
+
+Epoch: [64 | 180] LR: 0.100000
+
+Epoch: [65 | 180] LR: 0.100000
+
+Epoch: [66 | 180] LR: 0.100000
+
+Epoch: [67 | 180] LR: 0.100000
+
+Epoch: [68 | 180] LR: 0.100000
+
+Epoch: [69 | 180] LR: 0.100000
+
+Epoch: [70 | 180] LR: 0.100000
+
+Epoch: [71 | 180] LR: 0.100000
+
+Epoch: [72 | 180] LR: 0.100000
+
+Epoch: [73 | 180] LR: 0.100000
+
+Epoch: [74 | 180] LR: 0.100000
+
+Epoch: [75 | 180] LR: 0.100000
+
+Epoch: [76 | 180] LR: 0.100000
+
+Epoch: [77 | 180] LR: 0.100000
+
+Epoch: [78 | 180] LR: 0.100000
+
+Epoch: [79 | 180] LR: 0.100000
+
+Epoch: [80 | 180] LR: 0.100000
+
+Epoch: [81 | 180] LR: 0.100000
+
+Epoch: [82 | 180] LR: 0.100000
+
+Epoch: [83 | 180] LR: 0.100000
+
+Epoch: [84 | 180] LR: 0.100000
+
+Epoch: [85 | 180] LR: 0.100000
+
+Epoch: [86 | 180] LR: 0.100000
+
+Epoch: [87 | 180] LR: 0.100000
+
+Epoch: [88 | 180] LR: 0.100000
+
+Epoch: [89 | 180] LR: 0.100000
+
+Epoch: [90 | 180] LR: 0.100000
+
+Epoch: [91 | 180] LR: 0.100000
+
+Epoch: [92 | 180] LR: 0.100000
+
+Epoch: [93 | 180] LR: 0.010000
+
+Epoch: [94 | 180] LR: 0.010000
+
+Epoch: [95 | 180] LR: 0.010000
+
+Epoch: [96 | 180] LR: 0.010000
+
+Epoch: [97 | 180] LR: 0.010000
+
+Epoch: [98 | 180] LR: 0.010000
+
+Epoch: [99 | 180] LR: 0.010000
+
+Epoch: [100 | 180] LR: 0.010000
+
+Epoch: [101 | 180] LR: 0.010000
+
+Epoch: [102 | 180] LR: 0.010000
+
+Epoch: [103 | 180] LR: 0.010000
+
+Epoch: [104 | 180] LR: 0.010000
+
+Epoch: [105 | 180] LR: 0.010000
+
+Epoch: [106 | 180] LR: 0.010000
+
+Epoch: [107 | 180] LR: 0.010000
+
+Epoch: [108 | 180] LR: 0.010000
+
+Epoch: [109 | 180] LR: 0.010000
+
+Epoch: [110 | 180] LR: 0.010000
+
+Epoch: [111 | 180] LR: 0.010000
+
+Epoch: [112 | 180] LR: 0.010000
+
+Epoch: [113 | 180] LR: 0.010000
+
+Epoch: [114 | 180] LR: 0.010000
+
+Epoch: [115 | 180] LR: 0.010000
+
+Epoch: [116 | 180] LR: 0.010000
+
+Epoch: [117 | 180] LR: 0.010000
+
+Epoch: [118 | 180] LR: 0.010000
+
+Epoch: [119 | 180] LR: 0.010000
+
+Epoch: [120 | 180] LR: 0.010000
+
+Epoch: [121 | 180] LR: 0.010000
+
+Epoch: [122 | 180] LR: 0.010000
+
+Epoch: [123 | 180] LR: 0.010000
+
+Epoch: [124 | 180] LR: 0.010000
+
+Epoch: [125 | 180] LR: 0.010000
+
+Epoch: [126 | 180] LR: 0.010000
+
+Epoch: [127 | 180] LR: 0.010000
+
+Epoch: [128 | 180] LR: 0.010000
+
+Epoch: [129 | 180] LR: 0.010000
+
+Epoch: [130 | 180] LR: 0.010000
+
+Epoch: [131 | 180] LR: 0.010000
+
+Epoch: [132 | 180] LR: 0.010000
+
+Epoch: [133 | 180] LR: 0.010000
+
+Epoch: [134 | 180] LR: 0.010000
+
+Epoch: [135 | 180] LR: 0.010000
+
+Epoch: [136 | 180] LR: 0.010000
+
+Epoch: [137 | 180] LR: 0.010000
+
+Epoch: [138 | 180] LR: 0.010000
+
+Epoch: [139 | 180] LR: 0.010000
+
+Epoch: [140 | 180] LR: 0.010000
+
+Epoch: [141 | 180] LR: 0.010000
+
+Epoch: [142 | 180] LR: 0.010000
+
+Epoch: [143 | 180] LR: 0.010000
+
+Epoch: [144 | 180] LR: 0.010000
+
+Epoch: [145 | 180] LR: 0.010000
+
+Epoch: [146 | 180] LR: 0.010000
+
+Epoch: [147 | 180] LR: 0.010000
+
+Epoch: [148 | 180] LR: 0.010000
+
+Epoch: [149 | 180] LR: 0.010000
+
+Epoch: [150 | 180] LR: 0.000100
+
+Epoch: [151 | 180] LR: 0.000100
+
+Epoch: [152 | 180] LR: 0.000100
+
+Epoch: [153 | 180] LR: 0.000100
+
+Epoch: [154 | 180] LR: 0.000100
+
+Epoch: [155 | 180] LR: 0.000100
+
+Epoch: [156 | 180] LR: 0.000100
+
+Epoch: [157 | 180] LR: 0.000100
+
+Epoch: [158 | 180] LR: 0.000100
+
+Epoch: [159 | 180] LR: 0.000100
+
+Epoch: [160 | 180] LR: 0.000100
+
+Epoch: [161 | 180] LR: 0.000100
+
+Epoch: [162 | 180] LR: 0.000100
+
+Epoch: [163 | 180] LR: 0.000100
+
+Epoch: [164 | 180] LR: 0.000100
+
+Epoch: [165 | 180] LR: 0.000100
+
+Epoch: [166 | 180] LR: 0.000100
+
+Epoch: [167 | 180] LR: 0.000100
+
+Epoch: [168 | 180] LR: 0.000100
+
+Epoch: [169 | 180] LR: 0.000100
+
+Epoch: [170 | 180] LR: 0.000100
+
+Epoch: [171 | 180] LR: 0.000100
+
+Epoch: [172 | 180] LR: 0.000100
+
+Epoch: [173 | 180] LR: 0.000100
+
+Epoch: [174 | 180] LR: 0.000100
+
+Epoch: [175 | 180] LR: 0.000100
+
+Epoch: [176 | 180] LR: 0.000100
+
+Epoch: [177 | 180] LR: 0.000100
+
+Epoch: [178 | 180] LR: 0.000100
+
+Epoch: [179 | 180] LR: 0.000100
+
+Epoch: [180 | 180] LR: 0.000100
+
+  128
+  93.1
+ 127.768s  
