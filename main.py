@@ -175,10 +175,10 @@ def main():
             gpu_id = 1
         else:
             print(f'gpu id:0')
-            gpu_id = 2
+            gpu_id = 0
         print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
         total, used, free = checkmem(gpu_id)
-        if True:
+        if used<20:
             use_gpu = cudaArray[gpu_id]
             torch.cuda.set_device(gpu_id)
             use_gpu_num = gpu_id
@@ -190,29 +190,29 @@ def main():
             print('\n')
             not_enough_memory = False
             break
-        #
-        # if args.gpu1080 and not_enough_memory:
-        #     print(f'GPU1080 id 3')
-        #     gpu_id = 3
-        # elif not_enough_memory:
-        #     print(f'GPU id:2')
-        #     gpu_id = 2
-        # print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
-        # total, used, free = checkmem(gpu_id)
-        # if used < 20:
-        #     use_gpu = cudaArray[gpu_id]
-        #     use_gpu_num = gpu_id
-        #     torch.cuda.set_device(gpu_id)
-        #     print(f'This Gpu is free')
-        #     print(f'GPU Id: {gpu_id}')
-        #     print(f'total    : {total}')
-        #     print(f'free     : {free}')
-        #     print(f'used     : {used}')
-        #     print('\n')
-        #     not_enough_memory = False
-        #     break
-        # if not_enough_memory:
-        #     time.sleep(600)
+
+        if args.gpu1080 and not_enough_memory:
+            print(f'GPU1080 id 3')
+            gpu_id = 3
+        elif not_enough_memory:
+            print(f'GPU id:2')
+            gpu_id = 2
+        print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
+        total, used, free = checkmem(gpu_id)
+        if used < 20:
+            use_gpu = cudaArray[gpu_id]
+            use_gpu_num = gpu_id
+            torch.cuda.set_device(gpu_id)
+            print(f'This Gpu is free')
+            print(f'GPU Id: {gpu_id}')
+            print(f'total    : {total}')
+            print(f'free     : {free}')
+            print(f'used     : {used}')
+            print('\n')
+            not_enough_memory = False
+            break
+        if not_enough_memory:
+            time.sleep(600)
     use_cuda = torch.cuda.is_available()
 
     # Random seed
