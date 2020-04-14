@@ -337,189 +337,189 @@ class N2N(nn.Module):
         _x = self.relu(x)
         j = 2
         notfirstLayer = False
-        try:
-            for stage in range(0, self.numOfStages):
-                if printNet:
-                    print("\n\nStage: ", stage)
-                archNum = self.archNums[stage]
-                firstBlockInStage = True
-                for block in range(0, len(archNum)):
-                    if self.bottleneck:
-                        if firstLayerInStage:
-                            if printNet:
-                                print("\n\n\tBlock: ", block)
-                            i = 0
-                            layerInThisBlock = archNum[block]
-                            # conv2(2)
-                            x = self.module_list[j](_x)
-                            if printNet:
-                                print("\nJ: ", j, " ; ", self.module_list[j])
-                                print("\nX Shape: ", x.shape)
-                            j = j + 1
-
-                            # bn3(2)
-                            x = self.module_list[j](x)
-                            if printNet:
-                                print(f'J:  {j}; {self.module_list[j]}')
-                            j = j + 1
-                            x = self.relu(x)
-
-                            # conv4 (3)
-                            x = self.module_list[j](x)
-                            if printNet:
-                                print("\nJ: ", j, " ; ", self.module_list[j])
-                                print("\nX Shape: ", x.shape)
-                            j = j + 1
-
-                            # bn5 (3)
-                            x = self.module_list[j](x)
-                            if printNet:
-                                print("\nJ: ", j, " ; ", self.module_list[j])
-                                print("\nX Shape: ", x.shape)
-                            j = j + 1
-                            x = self.relu(x)
-
-                            # conv6 (4)
-                            x = self.module_list[j](x)
-                            if printNet:
-                                print(f'J:  {j}; {self.module_list[j]}')
-                            j = j + 1
-
-                            # bn7 (4)
-                            x = self.module_list[j](x)
-                            if printNet:
-                                print("\nJ: ", j, " ; ", self.module_list[j])
-                                print("\nX Shape: ", x.shape)
-                            j = j + 1
-
-                            # conv8 (5)
-                            _x = self.module_list[j](_x)
-                            if printNet:
-                                print("\nJ: ", j, " ; ", self.module_list[j])
-                                print("\nX Shape: ", x.shape)
-                            j = j + 1
-
-                            # bn9 (5)
-                            _x = self.module_list[j](_x)
-                            if printNet:
-                                print(f'J:  {j}; {self.module_list[j]}')
-                            j = j + 1
-                            i = i + 1
-                            _x = x + _x
-                            _x = self.relu(_x)
-                            firstLayerInStage = False
-                        else:
-                            if printNet:
-                                print("\n\n\tBlock: ", block)
-
-                            i = 0
-                            layerInThisBlock = archNum[block]
-                            while i < layerInThisBlock:
-                                # conv
-                                if i == 0:
-                                    x = self.module_list[j](_x)
-                                else:
-                                    x = self.module_list[j](x)
-                                if printNet:
-                                    print("\n conv J: ", j, " ; ", self.module_list[j])
-                                    print("\nX Shape: ", x.shape)
-                                j = j + 1
-
-                                # bn
-                                x = self.module_list[j](x)
-                                if printNet:
-                                    print("\nbn: ", j, " ; ", self.module_list[j])
-                                j = j + 1
-
-                                x = self.relu(x)
-
-                                if ((i + 1) % layerInThisBlock) == 0:
-                                    _x = _x + x
-                                    _x = self.relu(_x)
-
-                    else:
+        # try:
+        for stage in range(0, self.numOfStages):
+            if printNet:
+                print("\n\nStage: ", stage)
+            archNum = self.archNums[stage]
+            firstBlockInStage = True
+            for block in range(0, len(archNum)):
+                if self.bottleneck:
+                    if firstLayerInStage:
                         if printNet:
                             print("\n\n\tBlock: ", block)
                         i = 0
                         layerInThisBlock = archNum[block]
+                        # conv2(2)
+                        x = self.module_list[j](_x)
+                        if printNet:
+                            print("\nJ: ", j, " ; ", self.module_list[j])
+                            print("\nX Shape: ", x.shape)
+                        j = j + 1
+
+                        # bn3(2)
+                        x = self.module_list[j](x)
+                        if printNet:
+                            print(f'J:  {j}; {self.module_list[j]}')
+                        j = j + 1
+                        x = self.relu(x)
+
+                        # conv4 (3)
+                        x = self.module_list[j](x)
+                        if printNet:
+                            print("\nJ: ", j, " ; ", self.module_list[j])
+                            print("\nX Shape: ", x.shape)
+                        j = j + 1
+
+                        # bn5 (3)
+                        x = self.module_list[j](x)
+                        if printNet:
+                            print("\nJ: ", j, " ; ", self.module_list[j])
+                            print("\nX Shape: ", x.shape)
+                        j = j + 1
+                        x = self.relu(x)
+
+                        # conv6 (4)
+                        x = self.module_list[j](x)
+                        if printNet:
+                            print(f'J:  {j}; {self.module_list[j]}')
+                        j = j + 1
+
+                        # bn7 (4)
+                        x = self.module_list[j](x)
+                        if printNet:
+                            print("\nJ: ", j, " ; ", self.module_list[j])
+                            print("\nX Shape: ", x.shape)
+                        j = j + 1
+
+                        # conv8 (5)
+                        _x = self.module_list[j](_x)
+                        if printNet:
+                            print("\nJ: ", j, " ; ", self.module_list[j])
+                            print("\nX Shape: ", x.shape)
+                        j = j + 1
+
+                        # bn9 (5)
+                        _x = self.module_list[j](_x)
+                        if printNet:
+                            print(f'J:  {j}; {self.module_list[j]}')
+                        j = j + 1
+                        i = i + 1
+                        _x = x + _x
+                        _x = self.relu(_x)
+                        firstLayerInStage = False
+                    else:
+                        if printNet:
+                            print("\n\n\tBlock: ", block)
+
+                        i = 0
+                        layerInThisBlock = archNum[block]
                         while i < layerInThisBlock:
+                            # conv
                             if i == 0:
-                                # conv
                                 x = self.module_list[j](_x)
-                                if printNet:
-                                    print("\nLayer of new Stage i: ", i, " ; ", self.module_list[j])
-                                    print("\nX Shape: ", x.shape)
-                                j = j + 1
-
-                                # bn
+                            else:
                                 x = self.module_list[j](x)
-                                if printNet:
-                                    print("\ni: ", i, " ; ", self.module_list[j])
-                                    print("\nX Shape: ", x.shape)
-                                j = j + 1
-                                i = i + 1
+                            if printNet:
+                                print("\n conv J: ", j, " ; ", self.module_list[j])
+                                print("\nX Shape: ", x.shape)
+                            j = j + 1
 
-                                # relu
-                                x = self.relu(x)
+                            # bn
+                            x = self.module_list[j](x)
+                            if printNet:
+                                print("\nbn: ", j, " ; ", self.module_list[j])
+                            j = j + 1
 
-                            elif ((i + 1) % layerInThisBlock == 0) and firstBlockInStage and notfirstLayer:
-                                # conv
-                                _x = self.module_list[j](_x)
-                                if printNet:
-                                    print("\ni: ", i, " ; ", self.module_list[j])
-                                    print("\nX Shape: ", x.shape)
-                                j = j + 1
+                            x = self.relu(x)
 
-                                # bn
-                                _x = self.module_list[j](_x)
-                                if printNet:
-                                    print("\ni: ", i, " ; ", self.module_list[j])
-                                j = j + 1
-                                i = i + 1
-                                firstBlockInStage = False
-                                _x = x + _x
-                                _x = self.relu(_x)
-
-                            elif ((i + 1) % layerInThisBlock == 0):
-                                # conv
-                                x = self.module_list[j](x)
-                                j = j + 1
-
-                                if printNet:
-                                    print("\n i: ", i, " ; ", self.module_list[j])
-                                    print("\nX Shape: ", x.shape)
-
-                                # bn
-                                x = self.module_list[j](x)
-                                if printNet:
-                                    print("\nShortcutLayer i: ", i, " ; ", self.module_list[j])
-                                j = j + 1
-                                i = i + 1
-
+                            if ((i + 1) % layerInThisBlock) == 0:
                                 _x = _x + x
                                 _x = self.relu(_x)
 
-                            else:
-                                # conv
-                                x = self.module_list[j](x)
-                                if printNet:
-                                    print("\ni: ", i, " ; ", self.module_list[j])
-                                    print("\nX Shape: ", x.shape)
-                                j = j + 1
+                else:
+                    if printNet:
+                        print("\n\n\tBlock: ", block)
+                    i = 0
+                    layerInThisBlock = archNum[block]
+                    while i < layerInThisBlock:
+                        if i == 0:
+                            # conv
+                            x = self.module_list[j](_x)
+                            if printNet:
+                                print("\nLayer of new Stage i: ", i, " ; ", self.module_list[j])
+                                print("\nX Shape: ", x.shape)
+                            j = j + 1
 
-                                # bn
-                                x = self.module_list[j](x)
-                                if printNet:
-                                    print("\ni: ", i, " ; ", self.module_list[j])
-                                    print("\nX Shape: ", x.shape)
-                                j = j + 1
-                                x = self.relu(x)
-                                i = i + 1
-                        notfirstLayer = True
-        except RuntimeError:
-            print(f'Except')
-            print("\nJ: ", j, " ; ", self.module_list[j])
-            print("\nX Shape: ", x.shape)
+                            # bn
+                            x = self.module_list[j](x)
+                            if printNet:
+                                print("\ni: ", i, " ; ", self.module_list[j])
+                                print("\nX Shape: ", x.shape)
+                            j = j + 1
+                            i = i + 1
+
+                            # relu
+                            x = self.relu(x)
+
+                        elif ((i + 1) % layerInThisBlock == 0) and firstBlockInStage and notfirstLayer:
+                            # conv
+                            _x = self.module_list[j](_x)
+                            if printNet:
+                                print("\ni: ", i, " ; ", self.module_list[j])
+                                print("\nX Shape: ", x.shape)
+                            j = j + 1
+
+                            # bn
+                            _x = self.module_list[j](_x)
+                            if printNet:
+                                print("\ni: ", i, " ; ", self.module_list[j])
+                            j = j + 1
+                            i = i + 1
+                            firstBlockInStage = False
+                            _x = x + _x
+                            _x = self.relu(_x)
+
+                        elif ((i + 1) % layerInThisBlock == 0):
+                            # conv
+                            x = self.module_list[j](x)
+                            j = j + 1
+
+                            if printNet:
+                                print("\n i: ", i, " ; ", self.module_list[j])
+                                print("\nX Shape: ", x.shape)
+
+                            # bn
+                            x = self.module_list[j](x)
+                            if printNet:
+                                print("\nShortcutLayer i: ", i, " ; ", self.module_list[j])
+                            j = j + 1
+                            i = i + 1
+
+                            _x = _x + x
+                            _x = self.relu(_x)
+
+                        else:
+                            # conv
+                            x = self.module_list[j](x)
+                            if printNet:
+                                print("\ni: ", i, " ; ", self.module_list[j])
+                                print("\nX Shape: ", x.shape)
+                            j = j + 1
+
+                            # bn
+                            x = self.module_list[j](x)
+                            if printNet:
+                                print("\ni: ", i, " ; ", self.module_list[j])
+                                print("\nX Shape: ", x.shape)
+                            j = j + 1
+                            x = self.relu(x)
+                            i = i + 1
+                    notfirstLayer = True
+        # except RuntimeError:
+        #     print(f'Except')
+        #     print("\nJ: ", j, " ; ", self.module_list[j])
+        #     print("\nX Shape: ", x.shape)
 
         if printNet:
             print("\nX Shape: ", x.shape)
