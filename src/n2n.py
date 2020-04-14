@@ -670,6 +670,7 @@ class N2N(nn.Module):
                         numDelete = self.archnums[stage][block]
                         self.archNums[stage].remove(block)
             for layers in range(0, len(self.module_list) - k):
+                print(f'Number: {k+layers}')
                 try:
                     self.module_list[k + layers] = self.module_list[j + layers]
                 except IndexError:
