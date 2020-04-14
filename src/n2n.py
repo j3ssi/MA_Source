@@ -649,7 +649,7 @@ class N2N(nn.Module):
         return sameNode
 
     def delete(self, model, name, index):
-        printNet = False
+        printNet = True
 
         for stage in range(0, self.numOfStages):
             j = 2
@@ -665,6 +665,7 @@ class N2N(nn.Module):
                 layerInThisBlock = archNum[block]
                 while i < layerInThisBlock:
                     j = j + 1
+                    i = i + 1
                     if (j == index) and not block == 0:
                         numDelete = self.archnums[stage][block]
                         self.archNums[stage].remove(block)

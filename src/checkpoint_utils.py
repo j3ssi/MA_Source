@@ -306,13 +306,13 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
             print("\nModule List Length: ", len(model.module_list))
             model.delete(module, name, index)
             print("\nModule List Length After Delete: ", len(model.module_list))
-            i=0
-            for s in range(0, model.numOfStages):
-                blocks = model.archNums[s]
-                for b in range(0, model.numOfBlocksinStage):
-                    i = i + blocks[b]
-                    if(index == i):
-                        blocks[b] = blocks[b] - 1
+            # i=0
+            # for s in range(0, model.numOfStages):
+            #     blocks = model.archNums[s]
+            #     for b in range(0, model.numOfBlocksinStage):
+            #         i = i + blocks[b]
+            #         if(index == i):
+            #             blocks[b] = blocks[b] - 1
         # # Sanity check: Print out optimizer parameters before change
         # print("[INFO] ==== Size of parameter group (Before)")
         # for g in optimizer.param_groups:
