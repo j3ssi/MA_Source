@@ -70,7 +70,7 @@ parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
 parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')
 parser.add_argument('--manualSeed', type=int, help='manual seed')
-parser.add_argument('--gpu_id', default='0', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
+parser.add_argument('--gpu_id', default='5', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
 parser.add_argument('-s', '--numOfStages', default=3, type=int, help='defines the number of stages in the network')
 # parser.add_argument('-n', '--numOfBlocksinStage', type=int, default=5, help='defines the number of Blocks per Stage')
 parser.add_argument('-l', '--layersInBlock', type=int, default=3, help='defines the number of')
@@ -169,6 +169,10 @@ def main():
     use_gpu_num = 0
     cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+    if args.gpu_id < 5:
+        gpu_id = args.gpu_id
+        not_enough_memory = False
+
     while not_enough_memory:
         if args.gpu1080:
             print(f'Nutze Geforce 1080')
