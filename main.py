@@ -101,7 +101,7 @@ parser.add_argument('--coeff_container', default='./coeff', type=str,
                     help='Directory to store lasso coefficient')
 parser.add_argument('--global_coeff', default=True, action='store_true',
                     help='Use a global group lasso regularizaiton coefficient')
-parser.add_argument('--print-freq', default=1, type=int,
+parser.add_argument('--print-freq', default=64, type=int,
                     metavar='N', help='print frequency (default: 10)')
 parser.add_argument('--batchTrue', default=False, action='store_true',
                     help='Set the batchsize')
