@@ -325,7 +325,7 @@ def main():
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0) and not (epoch == args.epochs) :
                 # Force weights under threshold to zero
-                model.delete(model, 5)
+                model.delete(model, 8)
                 # dense_chs, chs_map = makeSparse(optimizer, model, args.threshold, use_gpu)
                 # if args.visual:
                 #     visualizePruneTrain(model, epoch, args.threshold)
