@@ -325,19 +325,18 @@ def main():
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0) and not (epoch == args.epochs) :
                 # Force weights under threshold to zero
-                model.delete(model, 8)
-                # dense_chs, chs_map = makeSparse(optimizer, model, args.threshold, use_gpu)
-                # if args.visual:
-                #     visualizePruneTrain(model, epoch, args.threshold)
-                #
-                # genDenseModel(model, dense_chs, optimizer, 'cifar', use_gpu)
-                # gc.collect()
-                # model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, False, model)
-                # use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
-                # # print(f'use after new Model Creation')
-                # model.cuda(use_gpu)
-                # optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-                #                       weight_decay=args.weight_decay)
+                dense_chs, chs_map = makeSparse(optimizer, model, args.threshold, use_gpu)
+                if args.visual:
+                    visualizePruneTrain(model, epoch, args.threshold)
+
+                genDenseModel(model, dense_chs, optimizer, 'cifar', use_gpu)
+                gc.collect()
+                model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, False, model)
+                use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
+                # print(f'use after new Model Creation')
+                model.cuda(use_gpu)
+                optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+                                      weight_decay=args.weight_decay)
             #     if args.fp16:
             #         model, optimizer = amp.initialize(model, optimizer)
             #
