@@ -670,7 +670,7 @@ class N2N(nn.Module):
                     print(f'Bool1: {(j == index) }')
                     print(f'Bool2: {not(block == 0 and stage>0)}')
                     if (j == index) and not(block == 0 and stage>0):
-                        numDelete = self.archnums[stage][block]
+                        numDelete = self.archNums[stage][block]
                         print(f'numDelete: {numDelete}')
                         self.archNums[stage].remove(block)
                     j = j + 1
