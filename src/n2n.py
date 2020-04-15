@@ -672,17 +672,16 @@ class N2N(nn.Module):
         module_list = nn.ModuleList()
         for layers in range(0, len(self.module_list)):
             if layers < (2 * k -2):
-                module_list[layers] = self.module_list[layers]
+                module_list.append(self.module_list[layers])
                 print(f'Kopiere {layers}: {module_list[layers]}')
-                lastLayer = layers
             elif layers - 2 * numDelete < (2 * k - 2):
-                module_list[layers] = self.module_list[layers + 2 * numDelete]
+                module_list.append(self.module_list[layers + 2 * numDelete])
                 print(f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
             elif layers< len(self.module_list)-2 * numDelete:
-                module_list[layers] = self.module_list[layers + 2 * numDelete]
+                module_list.append(self.module_list[layers + 2 * numDelete])
                 print(f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
             elif (layers + 1) % (len(self.module_list)-2 * numDelete) == 0:
-                module_list[layers] = self.module_list[layers + 2 * numDelete]
+                module_list.append(self.module_list[layers + 2 * numDelete])
                 print(f'Ersetze Linear {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
             else:
                 print(f'Fertig!!!')
