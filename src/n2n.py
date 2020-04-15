@@ -672,7 +672,7 @@ class N2N(nn.Module):
                     if (j == index) and not(block == 0 and stage>0):
                         numDelete = self.archNums[stage][block]
                         print(f'numDelete: {numDelete}')
-                        self.archNums[stage].[block]=0
+                        self.archNums[stage][block]=0
                     j = j + 1
                     i = i + 1
 
