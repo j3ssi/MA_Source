@@ -686,9 +686,11 @@ class N2N(nn.Module):
             elif layers - 2 * numDelete < (2 * k - 2):
                 print(f'Shape1: {self.module_list[layers].weight.size()}')
                 print(f'Shape2: {self.module_list[layers+layers + 2 * numDelete].weight.size()}')
-
-                # inChannels2 =
-                # if(i == 0 )
+                inChannels1 = self.module_list[layers].weight.size()[1]
+                inChannels2 = self.module_list[layers+layers + 2 * numDelete].weight.size()[1]
+                if not (inChannels1 == inChannels2):
+                    print(f'InChannels haben nicht die gleiche Dimension')
+                    break
                 module_list.append(self.module_list[layers + 2 * numDelete])
                 print(f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
             elif layers< len(self.module_list)-2 * numDelete:
