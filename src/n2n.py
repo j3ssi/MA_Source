@@ -695,7 +695,7 @@ class N2N(nn.Module):
                     print(f'InChannels haben nicht die gleiche Dimension')
                     deleteModule = False
                     break
-                if not (outChannels1 == outChannels2) and i==(numDelete*2 -1)
+                if not (outChannels1 == outChannels2) and i==(numDelete*2 -1):
                     print(f'InChannels haben nicht die gleiche Dimension')
                     deleteModule = False
                     break
