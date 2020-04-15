@@ -684,8 +684,8 @@ class N2N(nn.Module):
                 module_list.append(self.module_list[layers])
                 print(f'Kopiere {layers}: {module_list[layers]}')
             elif layers - 2 * numDelete < (2 * k - 2):
-                print(f'Shape1: {self.module_list[layers].shape}')
-                print(f'Shape2: {self.module_list[layers+layers + 2 * numDelete].shape}')
+                print(f'Shape1: {self.module_list[layers].size()}')
+                print(f'Shape2: {self.module_list[layers+layers + 2 * numDelete].size()}')
 
                 # inChannels2 =
                 # if(i == 0 )
