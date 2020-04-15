@@ -648,9 +648,9 @@ class N2N(nn.Module):
         print("\nSame Node: ", sameNode)
         return sameNode
 
-    def delete(self, model, name, index):
+    def delete(self, model, index):
         printNet = True
-
+        index = int(index/2 +1)
         for stage in range(0, self.numOfStages):
             j = 2
             if printNet:
@@ -669,13 +669,27 @@ class N2N(nn.Module):
                     if (j == index) and not block == 0:
                         numDelete = self.archnums[stage][block]
                         self.archNums[stage].remove(block)
-            for layers in range(0, len(self.module_list) - k):
-                print(f'Number: {k+layers}; {j}')
-                try:
-                    self.module_list[k + layers] = self.module_list[j + layers]
-                except IndexError:
-                    # del self.module_list[k + layers]
-                    print(f'Index Number: {k+layers}; {j}')
+        module_list = nn.ModuleList()
+        for layers in range(0, len(self.module_list)):
+            if layers < (2 * k -2):
+                module_list[layers] = self.module_list[layers]
+                print(f'Kopiere {layers}: {module_list[layers]}')
+                lastLayer = layers
+            elif layers - 2 * numDelete < (2 * k - 2):
+                module_list[layers] = self.module_list[layers + 2 * numDelete]
+                print(f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
+            elif layers< len(self.module_list)-2 * numDelete:
+                module_list[layers] = self.module_list[layers + 2 * numDelete]
+                print(f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
+            elif (layers + 1) % (len(self.module_list)-2 * numDelete) == 0:
+                module_list[layers] = self.module_list[layers + 2 * numDelete]
+                print(f'Ersetze Linear {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
+            else:
+                print(f'Fertig!!!')
+                break
+        self.module_list = module_list
+        print(self)
+        return model
     """
     Convert all layers in layer to its wider version by adapting next weight layer and possible batch norm layer in btw.
     layers = 'conv 3, conv6'

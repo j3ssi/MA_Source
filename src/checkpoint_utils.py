@@ -304,7 +304,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
             index = (index-1)*2
             module = model.module_list[index]
             print("\nModule List Length: ", len(model.module_list))
-            model.delete(module, name, index)
+            model.delete(module, index)
             print("\nModule List Length After Delete: ", len(model.module_list))
             # i=0
             # for s in range(0, model.numOfStages):
