@@ -679,6 +679,7 @@ class N2N(nn.Module):
 
         module_list = nn.ModuleList()
         i = 0
+        deleteModule= True
         for layers in range(0, len(self.module_list)):
             if layers < (2 * k -2):
                 module_list.append(self.module_list[layers])
@@ -691,6 +692,7 @@ class N2N(nn.Module):
                 if not (inChannels1 == inChannels2):
                     print(f'InChannels haben nicht die gleiche Dimension')
                     break
+                    deleteModule = False
                 module_list.append(self.module_list[layers + 2 * numDelete])
                 print(f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
             elif layers< len(self.module_list)-2 * numDelete:
@@ -703,10 +705,10 @@ class N2N(nn.Module):
                 print(f'Fertig!!!')
                 break
 
-        self.archNums[stage][block] = 0
-        self.archNums[stage].remove(0)
-
-        self.module_list = module_list
+        if deleteModule:
+            self.archNums[stage][block] = 0
+            self.archNums[stage].remove(0)
+            self.module_list = module_list
         print(self)
         return model
     """
