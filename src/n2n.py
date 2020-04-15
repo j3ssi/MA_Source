@@ -670,12 +670,12 @@ class N2N(nn.Module):
                         numDelete = self.archnums[stage][block]
                         self.archNums[stage].remove(block)
             for layers in range(0, len(self.module_list) - k):
-                print(f'Number: {k+layers}')
+                print(f'Number: {k+layers}; {j}')
                 try:
                     self.module_list[k + layers] = self.module_list[j + layers]
                 except IndexError:
-                    del self.module_list[k + layers]
-
+                    # del self.module_list[k + layers]
+                    print(f'Index Number: {k+layers}; {j}')
     """
     Convert all layers in layer to its wider version by adapting next weight layer and possible batch norm layer in btw.
     layers = 'conv 3, conv6'
