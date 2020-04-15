@@ -691,8 +691,8 @@ class N2N(nn.Module):
                 inChannels2 = self.module_list[layers+layers + 2 * numDelete].weight.size()[1]
                 if not (inChannels1 == inChannels2):
                     print(f'InChannels haben nicht die gleiche Dimension')
-                    break
                     deleteModule = False
+                    break
                 module_list.append(self.module_list[layers + 2 * numDelete])
                 print(f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
             elif layers< len(self.module_list)-2 * numDelete:
