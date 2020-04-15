@@ -666,7 +666,8 @@ class N2N(nn.Module):
                 while i < layerInThisBlock:
                     j = j + 1
                     i = i + 1
-                    if (j == index) and not block == 0:
+                    if (j == index) and not(block == 0 and stage>0):
+                        print(f'numDelete: {numDelete}')
                         numDelete = self.archnums[stage][block]
                         self.archNums[stage].remove(block)
         module_list = nn.ModuleList()
