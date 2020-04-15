@@ -669,20 +669,26 @@ class N2N(nn.Module):
                     print(f'j: {j}; k: {k}')
                     print(f'Bool1: {(j == index) }')
                     print(f'Bool2: {not(block == 0 and stage>0)}')
-                    if (j == index) and not(block == 0 and stage>0):
+                    if j== index:
                         numDelete = self.archNums[stage][block]
+                        stageDelete = stage
+                        blockDelete = block
                         print(f'numDelete: {numDelete}')
-                        self.archNums[stage][block]=0
-                        self.archNums[stage].remove(0)
                     j = j + 1
                     i = i + 1
 
         module_list = nn.ModuleList()
+        i = 0
         for layers in range(0, len(self.module_list)):
             if layers < (2 * k -2):
                 module_list.append(self.module_list[layers])
                 print(f'Kopiere {layers}: {module_list[layers]}')
             elif layers - 2 * numDelete < (2 * k - 2):
+                print(f'Shape1: {self.module_list[layers].shape}')
+                print(f'Shape2: {self.module_list[layers+layers + 2 * numDelete].shape}')
+
+                # inChannels2 =
+                # if(i == 0 )
                 module_list.append(self.module_list[layers + 2 * numDelete])
                 print(f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
             elif layers< len(self.module_list)-2 * numDelete:
@@ -694,6 +700,10 @@ class N2N(nn.Module):
             else:
                 print(f'Fertig!!!')
                 break
+
+        self.archNums[stage][block] = 0
+        self.archNums[stage].remove(0)
+
         self.module_list = module_list
         print(self)
         return model
