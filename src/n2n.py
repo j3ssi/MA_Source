@@ -685,13 +685,13 @@ class N2N(nn.Module):
                 module_list.append(self.module_list[layers])
                 print(f'Kopiere {layers}: {module_list[layers]}')
             elif layers - 2 * numDelete < (2 * k - 2):
-                if isinstance(self.module_list[layers], nn.Conv2d):
+                if isinstance(self.module_list[layers], nn.Conv2d) and isinstance(self.module_list[layers + 2 * numDelete], nn.Conv2d):
                     print(f'Shape1: {self.module_list[layers].weight.size()}')
-                    print(f'Shape2: {self.module_list[layers + 2 * numDelete - 1].weight.size()}')
+                    print(f'Shape2: {self.module_list[layers + 2 * numDelete].weight.size()}')
                     inChannels1 = self.module_list[layers].weight.size()[1]
-                    inChannels2 = self.module_list[layers+layers + 2 * numDelete - 1].weight.size()[1]
+                    inChannels2 = self.module_list[layers+layers + 2 * numDelete].weight.size()[1]
                     outChannels1 = self.module_list[layers].weight.size()[0]
-                    outChannels2 = self.module_list[layers+layers + 2 * numDelete - 1].weight.size()[0]
+                    outChannels2 = self.module_list[layers+layers + 2 * numDelete].weight.size()[0]
                     if not (inChannels1 == inChannels2) and i==0:
                         print(f'InChannels haben nicht die gleiche Dimension')
                         deleteModule = False
@@ -708,15 +708,17 @@ class N2N(nn.Module):
             elif layers< len(self.module_list)-2 * numDelete:
                 if isinstance(self.module_list[layers], nn.Conv2d):
                     print(f'Shape1: {self.module_list[layers].weight.size()}')
-                    print(f'Shape2: {self.module_list[layers + 2 * numDelete - 1].weight.size()}')
-                    inChannels1 = self.module_list[layers].weight.size()[1]
-                    inChannels2 = self.module_list[layers + layers + 2 * numDelete - 1].weight.size()[1]
-                    outChannels1 = self.module_list[layers].weight.size()[0]
-                    outChannels2 = self.module_list[layers + layers + 2 * numDelete - 1].weight.size()[0]
-                    if not (inChannels1 == inChannels2) and i == 0:
-                        print(f'InChannels haben nicht die gleiche Dimension')
-                        deleteModule = False
-                        break
+                    if isinstance(self.module_list[layers + 2 * numDelete - 1], nn.AdaptiveAvgPool2d):
+                        print(f'Shape2: {self.module_list[layers + 2 * numDelete - 1].weight.size()}')
+                    else:
+                        inChannels1 = self.module_list[layers].weight.size()[1]
+                        inChannels2 = self.module_list[layers + layers + 2 * numDelete - 1].weight.size()[1]
+                        outChannels1 = self.module_list[layers].weight.size()[0]
+                        outChannels2 = self.module_list[layers + layers + 2 * numDelete - 1].weight.size()[0]
+                        if not (inChannels1 == inChannels2) and i == 0:
+                            print(f'InChannels haben nicht die gleiche Dimension')
+                            deleteModule = False
+                            break
                     if not (outChannels1 == outChannels2) and i == (numDelete * 2 - 1):
                         print(f'InChannels haben nicht die gleiche Dimension')
                         deleteModule = False
