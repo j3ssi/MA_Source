@@ -653,8 +653,8 @@ class N2N(nn.Module):
         print(f'Index1: {index}')
         index = int(index/2 +1)
         print(f'Index: {index}')
+        j = 2
         for stage in range(0, self.numOfStages):
-            j = 2
             if printNet:
                 print("\n\nStage: ", stage)
             archNum = self.archNums[stage]
