@@ -728,13 +728,6 @@ class N2N(nn.Module):
                 else:
                     module_list.append(self.module_list[layers + 2 * numDelete])
                     print(f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]}')
-            elif (layers + 1) % (len(self.module_list)-2 * numDelete) == 0:
-                module_list.append(self.module_list[layers + 2 * numDelete])
-                print(f'Ersetze Linear {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
-                break
-            else:
-                print(f'Fertig!!!')
-                break
 
         if deleteModule:
             self.archNums[stage][block] = 0
