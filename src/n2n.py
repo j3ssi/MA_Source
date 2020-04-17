@@ -654,12 +654,14 @@ class N2N(nn.Module):
         index = int(index/2 +1)
         print(f'Index: {index}')
         j = 2
+        blockBegin =[]
         for stage in range(0, self.numOfStages):
             if printNet:
                 print("\n\nStage: ", stage)
             archNum = self.archNums[stage]
             firstBlockInStage = True
             for block in range(0, len(archNum)):
+                blockBegin.append(j)
                 if printNet:
                     print("\n\n\tBlock: ", block)
                 i = 0
@@ -678,7 +680,6 @@ class N2N(nn.Module):
                     i = i + 1
 
         module_list = nn.ModuleList()
-        i = 0
         deleteModule= True
         for layers in range(0, (len(self.module_list)-2 * numDelete)):
             if layers < (2 * k -2):
@@ -710,19 +711,20 @@ class N2N(nn.Module):
                     print(f'Shape1: {self.module_list[layers].weight.size()}')
                     if isinstance(self.module_list[layers + 2 * numDelete - 1], nn.AdaptiveAvgPool2d):
                         print(f'Shape2: {self.module_list[layers + 2 * numDelete - 1].weight.size()}')
-                    else:
+                    elif layers in blockBegin:
                         inChannels1 = self.module_list[layers].weight.size()[1]
                         inChannels2 = self.module_list[layers + layers + 2 * numDelete - 1].weight.size()[1]
-                        outChannels1 = self.module_list[layers].weight.size()[0]
-                        outChannels2 = self.module_list[layers + layers + 2 * numDelete - 1].weight.size()[0]
-                        if not (inChannels1 == inChannels2) and i == 0:
+                        if not (inChannels1 == inChannels2):
                             print(f'InChannels haben nicht die gleiche Dimension')
                             deleteModule = False
                             break
-                    if not (outChannels1 == outChannels2) and i == (numDelete * 2 - 1):
-                        print(f'InChannels haben nicht die gleiche Dimension')
-                        deleteModule = False
-                        break
+                    elif (layers + 1) in blockBegin:
+                        outChannels1 = self.module_list[layers].weight.size()[0]
+                        outChannels2 = self.module_list[layers + layers + 2 * numDelete - 1].weight.size()[0]
+                        if not (outChannels1 == outChannels2):
+                            print(f'InChannels haben nicht die gleiche Dimension')
+                            deleteModule = False
+                            break
                     module_list.append(self.module_list[layers + 2 * numDelete])
                     print(f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
                 else:
