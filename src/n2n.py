@@ -7,7 +7,7 @@ import numpy as np
 
 class N2N(nn.Module):
 
-    def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock, first, bottleneck, model=None):
+    def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock, first, bottleneck, model=None, archNums):
         super(N2N, self).__init__()
         self.numOfStages = numOfStages
         self.numOfBlocksinStage = numOfBlocksinStage
@@ -219,7 +219,7 @@ class N2N(nn.Module):
                         m.bias.data.zero_()
             print(self)
         else:
-            self.archNums = model.archNums
+            self.archNums = archNums
             print(f'Archnums: {self.archNums}')
             module_list = model.module_list
             altList = []
