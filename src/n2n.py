@@ -7,7 +7,7 @@ import numpy as np
 
 class N2N(nn.Module):
 
-    def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock, first, bottleneck, model=None, archNums):
+    def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock, first, bottleneck, model=None, archNums=None):
         super(N2N, self).__init__()
         self.numOfStages = numOfStages
         self.numOfBlocksinStage = numOfBlocksinStage
