@@ -299,7 +299,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
 
     if len(rm_list) > 0:
 
-        for name in rm_list.reverse():
+        for name in reversed(rm_list):
             # delete module from moduleList
             index = int(name.split('.')[1].split('v')[1])
             index = (index-1)*2
