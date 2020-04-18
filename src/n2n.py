@@ -559,22 +559,9 @@ class N2N(nn.Module):
         return x
 
     def getResidualPath(self):
-        # [n(2), n(4), n(6), n(8), n(10), n(12), n(14)]
-        # [n(15), n(17), n(19), n(21), n(23), n(25)]
-        # [n(26), n(28), n(30), n(32), n('fc34')]
-        # stages0I =
-        # stagesI.append(stages0I)
         # stage0O = [n(1), n(3), n(5), n(7), n(9), n(11)]
-        # stagesO.append(stage0O)
-        # stages1I =
-        # stagesI.append(stages1I)
         # stages1O = [n(13), n(14), n(16), n(18), n(20), n(22)]
-        # stagesO.append(stages1O)
-        # stages2I =
-        # stagesI.append(stages2I)
         # stages2O = [n(24), n(25), n(27), n(29), n(31), n(33)]
-        # stagesO.append(stages2O)
-        # i = 1
         printStages = False
         sameNode = self.getShareSameNodeLayers()
         tempStagesI = []
@@ -585,7 +572,7 @@ class N2N(nn.Module):
             tempStagesO.append(node[-1])
 
         length = len(self.module_list)
-        fcStr = 'fc' + str(int(length / 2 + 1))
+        fcStr = 'fc' + str(int(length / 2))
         tempStagesI.append(n(fcStr))
         stagesI = [[]]
         stagesO = [[]]
@@ -606,6 +593,17 @@ class N2N(nn.Module):
                 stagesI.append([])
                 stagesI[-1].append(layer)
         print(f'StagesI:{stagesI}')
+        for layer in tempStagesO:
+            print(layer)
+            i = int(layer.split('.')[1].split('v')[1])
+            i = 2 * i - 2
+            if self.module_list[i].weight.size()[1] == stageWidth:
+                stagesI[-1].append(layer)
+            else:
+                stageWidth = self.module_list[i].weight.size()[1]
+                stagesI.append([])
+                stagesI[-1].append(layer)
+
         #         stagesI[-1].append(n(i))
         #     if stage > 0:
         #         stagesI.append([])
