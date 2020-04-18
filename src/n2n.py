@@ -571,14 +571,13 @@ class N2N(nn.Module):
         tempStagesI = []
         tempStagesO = [n(1)]
         stageWidth = self.module_list[0].weight.size()[0]
+        oddLayersBool = False
         for node in sameNode:
-            try:
+            if len(self.oddLayers)>0:
                 print(f'len oddLayer: {len(self.oddLayers)}')
                 if compare(node[-1], self.oddLayers[0]):
                     tempStagesO.append(self.oddLayers[0])
-                    self.oddLayers.pop()
-            except:
-                print(f'Oddlayers size = 0')
+                    oddLayersBool =True
             tempStagesI.append(node[0])
             tempStagesO.append(node[-1])
 
@@ -617,9 +616,11 @@ class N2N(nn.Module):
             if self.module_list[i].weight.size()[0] == stageWidth:
                 stagesO[-1].append(layer)
             else:
-                oddLayer = self.oddLayers[0]
-                j = int(oddLayer.split('.')[1].split('v')[1])
-                j = 2 * j - 2
+                if oddLayersBool:
+                    oddLayer = self.oddLayers[0]
+                    self.oddLayers.pop()
+                    j = int(oddLayer.split('.')[1].split('v')[1])
+                    j = 2 * j - 2
                 if self.module_list[j].weight.size()[0] == stageWidth:
                     stagesO[-1].append(layer)
                     stagesO[-1].sort()
