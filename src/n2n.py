@@ -580,7 +580,7 @@ class N2N(nn.Module):
         for layers in self.oddLayers:
             tempStagesO.append(layers)
         print(f'tempStagesO: {tempStagesO}')
-        tempStagesO = tempStagesO.sort()
+        tempStagesO.sort()
         print(f'tempStagesO: {tempStagesO}')
 
         stagesI = [[]]
