@@ -598,11 +598,11 @@ class N2N(nn.Module):
             i = int(layer.split('.')[1].split('v')[1])
             i = 2 * i - 2
             if self.module_list[i].weight.size()[1] == stageWidth:
-                stagesI[-1].append(layer)
+                stagesO[-1].append(layer)
             else:
                 stageWidth = self.module_list[i].weight.size()[1]
-                stagesI.append([])
-                stagesI[-1].append(layer)
+                stagesO.append([])
+                stagesO[-1].append(layer)
 
         print(stagesO)
         #         stagesI[-1].append(n(i))
