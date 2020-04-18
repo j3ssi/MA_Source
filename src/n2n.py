@@ -5,6 +5,8 @@ import math
 import numpy as np
 
 
+
+
 class N2N(nn.Module):
 
     def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock,
@@ -570,6 +572,9 @@ class N2N(nn.Module):
         tempStagesO = [n(1)]
         stageWidth = self.module_list[0].weight.size()[0]
         for node in sameNode:
+            if compare(node, self.oddLayers):
+                tempStagesO.append(self.oddLayers[0])
+                self.oddLayers.pop()
             tempStagesI.append(node[0])
             tempStagesO.append(node[-1])
 
@@ -580,9 +585,6 @@ class N2N(nn.Module):
         for layers in self.oddLayers:
             tempStagesO.append(layers)
         print(f'tempStagesO: {tempStagesO}')
-        tempStagesO.sort()
-        print(f'tempStagesO: {tempStagesO}')
-
         stagesI = [[]]
         stagesO = [[]]
         for layer in tempStagesI:
@@ -661,6 +663,8 @@ class N2N(nn.Module):
         # print("\nStagesI: ", stagesI)
         # print("\nStagesO: ", stagesO)
         return stagesI, stagesO
+
+
 
     def getShareSameNodeLayers(self):
         sameNode = []
@@ -973,6 +977,13 @@ class N2N(nn.Module):
         # return model
 
 
+def compare(layer, oddLayer):
+    i1 = int(layer.split('.')[1].split('v')[1])
+    i2 = int(oddLayer.split('.')[1].split('v')[1])
+    if(i1<i2):
+        return True
+    else:
+        return False
 def n(name):
     if isinstance(name, int):
         return 'module.conv' + str(name) + '.weight'
