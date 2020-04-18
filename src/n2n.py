@@ -576,40 +576,6 @@ class N2N(nn.Module):
         # stagesO.append(stages2O)
         # i = 1
         printStages = False
-
-        altList = []
-        paramList = []
-        printName = False
-        for name, param in self.named_parameters():
-            # print("\nName: {}", name)
-            paramList.append(param)
-            # print("\nName: ", name)
-            i = int(name.split('.')[1])
-
-            if i % 2 == 0:
-                altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
-                if printName:
-                    print("\nI:", i, " ; ", altList[-1])
-            elif (i % 2 == 1) and ('weight' in name) and (i < (len(self.module_list) - 2)):
-                altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
-                if printName:
-                    print("\nI:", i, " ; ", altList[-1])
-            elif (i % 2 == 1) and ('weight' in name) and (i > (len(self.module_list) - 3)):
-                altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
-                if printName:
-                    print("\nI:", i, " ; ", altList[-1])
-            elif (i % 2 == 1) and ('bias' in name) and (i < (len(self.module_list) - 1)):
-                altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
-                if printName:
-                    print("\nI:", i, " ; ", altList[-1])
-            elif (i % 2 == 1) and ('bias' in name) and (i > (len(self.module_list) - 2)):
-                altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-                if printName:
-                    print("\nI:", i, " ; ", altList[-1])
-            else:
-                assert True, print("Hier fehlt noch was!!")
-
-        print(f'AltList: {altList}')
         sameNode = self.getShareSameNodeLayers()
         tempStagesI = []
         tempStagesO = [n(1)]
@@ -624,14 +590,16 @@ class N2N(nn.Module):
         stagesI = [[]]
         stagesO = [[]]
         for layer in tempStagesI:
-            i = altList.index(layer)
+            i = int(layer.split('.')[1].split('v')[1])
             if i == 1:
                 stagesI[0].append(layer)
             elif self.module_list[i].weight.size()[1] == stageWidth:
                 stagesI[-1].append(layer)
             else:
                 stageWidth = self.module_list[i].weight.size()[1]
-
+                stagesI.append([])
+                stagesI[-1].append(layer)
+        print(f'StagesI:{stagesI}')
         #         stagesI[-1].append(n(i))
         #     if stage > 0:
         #         stagesI.append([])
