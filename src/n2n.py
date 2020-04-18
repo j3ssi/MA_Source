@@ -30,7 +30,7 @@ class N2N(nn.Module):
 
                 if s != (self.numOfStages - 1):
                     self.archNums.append([])
-            print("\nArch Num: ", self.archNums)
+            # print("\nArch Num: ", self.archNums)
 
             self.module_list = nn.ModuleList()
 
@@ -221,10 +221,10 @@ class N2N(nn.Module):
                     elif isinstance(m, nn.BatchNorm2d):
                         m.weight.data.fill_(1)
                         m.bias.data.zero_()
-            print(self)
+            # print(self)
         else:
             self.archNums = archNums
-            print(f'Archnums: {self.archNums}')
+            # print(f'Archnums: {self.archNums}')
             module_list = model.module_list
             altList = []
             paramList = []
@@ -257,7 +257,7 @@ class N2N(nn.Module):
                         print("\nI:", i, " ; ", altList[-1])
                 else:
                     assert True, print("Hier fehlt noch was!!")
-            print(altList)
+            # print(altList)
             del model
             self.module_list = nn.ModuleList()
 
@@ -320,7 +320,7 @@ class N2N(nn.Module):
             self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
             # if printName:
-            print("\nnew Model: ", self)
+            # print("\nnew Model: ", self)
 
     def forward(self, x):
         # First layer
@@ -587,11 +587,11 @@ class N2N(nn.Module):
         # print(tempStagesO)
         for layers in self.oddLayers:
             tempStagesO.append(layers)
-        print(f'tempStagesO: {tempStagesO}')
+        # print(f'tempStagesO: {tempStagesO}')
         stagesI = [[]]
         stagesO = [[]]
         for layer in tempStagesI:
-            print(layer)
+            # print(layer)
             if 'conv' in layer:
                 i = int(layer.split('.')[1].split('v')[1])
                 i = 2 * i - 2
@@ -610,7 +610,7 @@ class N2N(nn.Module):
 
         stageWidth = self.module_list[0].weight.size()[0]
         for layer in tempStagesO:
-            print(layer)
+            # print(layer)
             i = int(layer.split('.')[1].split('v')[1])
             i = 2 * i - 2
             if self.module_list[i].weight.size()[0] == stageWidth:
@@ -629,45 +629,9 @@ class N2N(nn.Module):
                 stagesO.append([])
                 stagesO[-1].append(layer)
 
-        print(f'tempStagesO: {tempStagesO}')
+        # print(f'tempStagesO: {tempStagesO}')
 
-        print(f'stagesO: {stagesO}')
-        #         stagesI[-1].append(n(i))
-        #     if stage > 0:
-        #         stagesI.append([])
-        #         stagesO.append([])
-        #     if printStages:
-        #         print("\n\nStage: ", stage)
-        #     archNum = self.archNums[stage]
-        #     firstBlockInStage = True
-        #     for block in range(0, len(archNum)):
-        #         if printStages:
-        #             print("\n\n\tBlock: ", block)
-        #         for layer in range(0,archNum[block]):
-        #             if printStages:
-        #                 print(f'Layer: {layer}')
-        #             if layer == 0 and not
-        #             if firstBlockInStage and not firstStage and (layer+1)%
-        #
-        #         if 0 < block < len(archNum):
-        #             i = i + 1
-        #             stagesI[-1].append(n(i))
-        #             layerInThisBlock = archNum[block]
-        #             i = i + layerInThisBlock - 1
-        #             stagesO[-1].append(n(i))
-        #         elif block == 0:
-        #             layerInThisBlock = archNum[block]
-        #             i = i + layerInThisBlock - 1
-        #             stagesO[-1].append(n(i))
-        #
-        # # print("\nstagesO:  1")
-        # printStages = False
-        # fcStr = 'fc' + str(i + 1)
-        # stagesI[-1].append(n(fcStr))
-        #
-        # # if printStages:
-        # print("\nStagesI: ", stagesI)
-        # print("\nStagesO: ", stagesO)
+        # print(f'stagesO: {stagesO}')
         return stagesI, stagesO
 
 
