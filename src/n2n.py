@@ -575,8 +575,8 @@ class N2N(nn.Module):
             if len(self.oddLayers)>0:
                 print(f'oddLayer: {self.oddLayers[0]}')
                 if compare(node[-1], self.oddLayers[0]):
-                    tempStagesO.append(self.oddLayers[0])
-                    self.oddLayers.pop()
+                    oddLayer = self.oddLayers.pop()
+                    tempStagesO.append(oddLayer)
                     oddLayersBool =True
             tempStagesI.append(node[0])
             tempStagesO.append(node[-1])
