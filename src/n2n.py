@@ -581,6 +581,8 @@ class N2N(nn.Module):
             tempStagesO.append(layers)
         print(f'tempStagesO: {tempStagesO}')
         tempStagesO = tempStagesO.sort()
+        print(f'tempStagesO: {tempStagesO}')
+
         stagesI = [[]]
         stagesO = [[]]
         for layer in tempStagesI:
