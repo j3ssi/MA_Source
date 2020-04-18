@@ -298,6 +298,26 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
     """
 
     if len(rm_list) > 0:
+        indexList = []
+        j = 2
+        m = 0
+        for rm in rm_list:
+            index = int(name.split('.')[1].split('v')[1])
+            index = (index - 1) * 2
+            indexList.append(index)
+        for stage in range(0, model.numOfStages):
+            archNum = model.archNums[stage]
+            sameBlock = False
+            for block in range(0, len(archNum)):
+                if len(indexList)>0:
+                    if indexList[0]==j and not sameBlock:
+                        indexList.pop()
+                        sameBlock =True
+                        i=i+1
+                    elif indexList[0]==j and sameBlock:
+                        delete = rm_list[i]
+                        rm_list.remove(delete)
+                        i=i+1
 
         for name in reversed(rm_list):
             # delete module from moduleList
