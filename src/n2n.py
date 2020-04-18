@@ -572,7 +572,7 @@ class N2N(nn.Module):
         tempStagesO = [n(1)]
         stageWidth = self.module_list[0].weight.size()[0]
         for node in sameNode:
-            if compare(node, self.oddLayers):
+            if compare(node[-1], self.oddLayers):
                 tempStagesO.append(self.oddLayers[0])
                 self.oddLayers.pop()
             tempStagesI.append(node[0])
@@ -663,7 +663,6 @@ class N2N(nn.Module):
         # print("\nStagesI: ", stagesI)
         # print("\nStagesO: ", stagesO)
         return stagesI, stagesO
-
 
 
     def getShareSameNodeLayers(self):
