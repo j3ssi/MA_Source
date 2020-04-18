@@ -673,6 +673,7 @@ class N2N(nn.Module):
 
     def getShareSameNodeLayers(self):
         sameNode = []
+        self.oddLayers = []
         first = True
         j = 2
         k = 2
