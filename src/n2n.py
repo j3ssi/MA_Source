@@ -586,7 +586,7 @@ class N2N(nn.Module):
 
         length = len(self.module_list)
         fcStr = 'fc' + str(int(length / 2 + 1))
-        tempStagesI.append(n('fcStr'))
+        tempStagesI.append(n(fcStr))
         stagesI = [[]]
         stagesO = [[]]
         for layer in tempStagesI:
