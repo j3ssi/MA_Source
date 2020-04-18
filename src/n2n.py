@@ -7,7 +7,8 @@ import numpy as np
 
 class N2N(nn.Module):
 
-    def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock, first, bottleneck, model=None, archNums=None):
+    def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock,
+                 first, bottleneck, model=None, archNums=None):
         super(N2N, self).__init__()
         self.numOfStages = numOfStages
         self.numOfBlocksinStage = numOfBlocksinStage
@@ -558,30 +559,79 @@ class N2N(nn.Module):
         return x
 
     def getResidualPath(self):
-        stagesI = []
-        stagesO = []
-        stages0I = [n(2), n(4), n(6), n(8), n(10), n(12), n(14)]
-        stagesI.append(stages0I)
-        stage0O = [n(1), n(3), n(5), n(7), n(9), n(11)]
-        stagesO.append(stage0O)
-        stages1I = [n(15), n(17), n(19), n(21), n(23), n(25)]
-        stagesI.append(stages1I)
-        stages1O = [n(13), n(14), n(16), n(18), n(20), n(22)]
-        stagesO.append(stages1O)
-        stages2I = [n(26), n(28), n(30), n(32), n('fc34')]
-        stagesI.append(stages2I)
-        stages2O = [n(24), n(25), n(27), n(29), n(31), n(33)]
-        stagesO.append(stages2O)
+        # [n(2), n(4), n(6), n(8), n(10), n(12), n(14)]
+        # [n(15), n(17), n(19), n(21), n(23), n(25)]
+        # [n(26), n(28), n(30), n(32), n('fc34')]
+        # stages0I =
+        # stagesI.append(stages0I)
+        # stage0O = [n(1), n(3), n(5), n(7), n(9), n(11)]
+        # stagesO.append(stage0O)
+        # stages1I =
+        # stagesI.append(stages1I)
+        # stages1O = [n(13), n(14), n(16), n(18), n(20), n(22)]
+        # stagesO.append(stages1O)
+        # stages2I =
+        # stagesI.append(stages2I)
+        # stages2O = [n(24), n(25), n(27), n(29), n(31), n(33)]
+        # stagesO.append(stages2O)
         # i = 1
-        # printStages = False
-        # stagesI.append([])
-        # stagesO.append([])
-        # stagesO[0].append(n(1))
-        # firstStage = True
-        # for stage in range(0, self.numOfStages):
-        #     if stage < self.numOfStages:
-        #         i = i + 1
-        #         print(f'I: {i} ; {stage}')
+        printStages = False
+
+        altList = []
+        paramList = []
+        printName = False
+        for name, param in self.named_parameters():
+            # print("\nName: {}", name)
+            paramList.append(param)
+            # print("\nName: ", name)
+            i = int(name.split('.')[1])
+
+            if i % 2 == 0:
+                altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
+                if printName:
+                    print("\nI:", i, " ; ", altList[-1])
+            elif (i % 2 == 1) and ('weight' in name) and (i < (len(self.module_list) - 2)):
+                altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
+                if printName:
+                    print("\nI:", i, " ; ", altList[-1])
+            elif (i % 2 == 1) and ('weight' in name) and (i > (len(self.module_list) - 3)):
+                altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
+                if printName:
+                    print("\nI:", i, " ; ", altList[-1])
+            elif (i % 2 == 1) and ('bias' in name) and (i < (len(self.module_list) - 1)):
+                altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
+                if printName:
+                    print("\nI:", i, " ; ", altList[-1])
+            elif (i % 2 == 1) and ('bias' in name) and (i > (len(self.module_list) - 2)):
+                altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
+                if printName:
+                    print("\nI:", i, " ; ", altList[-1])
+            else:
+                assert True, print("Hier fehlt noch was!!")
+
+        print(f'AltList: {altList}')
+        sameNode = self.getShareSameNodeLayers()
+        tempStagesI = []
+        tempStagesO = [n(1)]
+        stageWidth = self.module_list[0].weight.size()[0]
+        for node in sameNode:
+            tempStagesI.append(sameNode[0])
+            tempStagesO.append(sameNode[1])
+
+        length = len(self.module_list)
+        fcStr = 'fc' + str(int(length / 2 + 1))
+        tempStagesI.append(n('fcStr'))
+        stagesI = [[]]
+        stagesO = [[]]
+        for layer in tempStagesI:
+            i = altList.index(layer)
+            if i == 1:
+                stagesI[0].append(layer)
+            elif self.module_list[i].weight.size()[1] == stageWidth:
+                stagesI[-1].append(layer)
+            else:
+                stageWidth = self.module_list[i].weight.size()[1]
+
         #         stagesI[-1].append(n(i))
         #     if stage > 0:
         #         stagesI.append([])
@@ -645,16 +695,16 @@ class N2N(nn.Module):
 
                 sameNode.append(block)
             firstStage = False
-        print("\nSame Node: ", sameNode)
+        # print("\nSame Node: ", sameNode)
         return sameNode
 
     def delete(self, model, index):
-        printNet = True
+        printNet = False
         print(f'Index1: {index}')
-        index = int(index/2 +1)
+        index = int(index / 2 + 1)
         print(f'Index: {index}')
         j = 2
-        blockBegin =[]
+        blockBegin = []
         for stage in range(0, self.numOfStages):
             if printNet:
                 print("\n\nStage: ", stage)
@@ -669,9 +719,9 @@ class N2N(nn.Module):
                 layerInThisBlock = archNum[block]
                 while i < layerInThisBlock:
                     print(f'j: {j}; k: {k}')
-                    print(f'Bool1: {(j == index) }')
-                    print(f'Bool2: {not(block == 0 and stage>0)}')
-                    if j== index:
+                    print(f'Bool1: {(j == index)}')
+                    print(f'Bool2: {not (block == 0 and stage > 0)}')
+                    if j == index:
                         numDelete = self.archNums[stage][block]
                         stageDelete = stage
                         blockDelete = block
@@ -680,33 +730,36 @@ class N2N(nn.Module):
                     i = i + 1
 
         module_list = nn.ModuleList()
-        deleteModule= True
-        for layers in range(0, (len(self.module_list)-2 * numDelete)):
-            if layers < (2 * k -2):
+        deleteModule = True
+        for layers in range(0, (len(self.module_list) - 2 * numDelete)):
+            if layers < (2 * k - 2):
                 module_list.append(self.module_list[layers])
                 print(f'Kopiere {layers}: {module_list[layers]}')
             elif layers - 2 * numDelete < (2 * k - 2):
-                if isinstance(self.module_list[layers], nn.Conv2d) and isinstance(self.module_list[layers + 2 * numDelete], nn.Conv2d):
+                if isinstance(self.module_list[layers], nn.Conv2d) and isinstance(
+                        self.module_list[layers + 2 * numDelete], nn.Conv2d):
                     print(f'Shape1: {self.module_list[layers].weight.size()}')
                     print(f'Shape2: {self.module_list[layers + 2 * numDelete].weight.size()}')
                     inChannels1 = self.module_list[layers].weight.size()[1]
-                    inChannels2 = self.module_list[layers+layers + 2 * numDelete].weight.size()[1]
+                    inChannels2 = self.module_list[layers + layers + 2 * numDelete].weight.size()[1]
                     outChannels1 = self.module_list[layers].weight.size()[0]
-                    outChannels2 = self.module_list[layers+layers + 2 * numDelete].weight.size()[0]
-                    if not (inChannels1 == inChannels2) and i==0:
+                    outChannels2 = self.module_list[layers + layers + 2 * numDelete].weight.size()[0]
+                    if not (inChannels1 == inChannels2) and i == 0:
                         print(f'InChannels haben nicht die gleiche Dimension')
                         deleteModule = False
                         break
-                    if not (outChannels1 == outChannels2) and i==(numDelete*2 -1):
+                    if not (outChannels1 == outChannels2) and i == (numDelete * 2 - 1):
                         print(f'InChannels haben nicht die gleiche Dimension')
                         deleteModule = False
                         break
                     module_list.append(self.module_list[layers + 2 * numDelete])
-                    print(f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
+                    print(
+                        f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
                 else:
                     module_list.append(self.module_list[layers + 2 * numDelete])
-                    print(f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
-            elif layers< len(self.module_list)-2 * numDelete:
+                    print(
+                        f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
+            elif layers < len(self.module_list) - 2 * numDelete:
                 if isinstance(self.module_list[layers], nn.Conv2d):
                     print(f'Shape1: {self.module_list[layers].weight.size()}')
                     if isinstance(self.module_list[layers + 2 * numDelete - 1], nn.AdaptiveAvgPool2d):
@@ -726,7 +779,8 @@ class N2N(nn.Module):
                             deleteModule = False
                             break
                     module_list.append(self.module_list[layers + 2 * numDelete])
-                    print(f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
+                    print(
+                        f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
                 else:
                     module_list.append(self.module_list[layers + 2 * numDelete])
                     print(f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]}')
@@ -737,6 +791,7 @@ class N2N(nn.Module):
             self.module_list = module_list
         print(self)
         return model
+
     """
     Convert all layers in layer to its wider version by adapting next weight layer and possible batch norm layer in btw.
     layers = 'conv 3, conv6'
