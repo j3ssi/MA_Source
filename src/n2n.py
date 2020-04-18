@@ -572,9 +572,10 @@ class N2N(nn.Module):
         tempStagesO = [n(1)]
         stageWidth = self.module_list[0].weight.size()[0]
         for node in sameNode:
-            if compare(node[-1], self.oddLayers[0]):
-                tempStagesO.append(self.oddLayers[0])
-                self.oddLayers.pop()
+            if len(self.oddLayers):
+                if compare(node[-1], self.oddLayers[0]):
+                    tempStagesO.append(self.oddLayers[0])
+                    self.oddLayers.pop()
             tempStagesI.append(node[0])
             tempStagesO.append(node[-1])
 
