@@ -621,10 +621,10 @@ class N2N(nn.Module):
                     self.oddLayers.pop()
                     j = int(oddLayer.split('.')[1].split('v')[1])
                     j = 2 * j - 2
+                    if self.module_list[j].weight.size()[0] == stageWidth:
+                        stagesO[-1].append(layer)
+                        stagesO[-1].sort()
                 oddLayersBool = False
-                if self.module_list[j].weight.size()[0] == stageWidth:
-                    stagesO[-1].append(layer)
-                    stagesO[-1].sort()
                 stageWidth = self.module_list[i].weight.size()[1]
                 stagesO.append([])
                 stagesO[-1].append(layer)
