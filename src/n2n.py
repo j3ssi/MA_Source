@@ -680,6 +680,7 @@ class N2N(nn.Module):
 
                 sameNode.append(block)
             firstStage = False
+        print(f'oddLayers: {self.oddLayers}')
         # print("\nSame Node: ", sameNode)
         return sameNode
 
