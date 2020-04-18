@@ -604,6 +604,7 @@ class N2N(nn.Module):
                 stagesI.append([])
                 stagesI[-1].append(layer)
 
+        print(stagesO)
         #         stagesI[-1].append(n(i))
         #     if stage > 0:
         #         stagesI.append([])
