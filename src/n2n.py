@@ -616,7 +616,7 @@ class N2N(nn.Module):
                 stagesO.append([])
                 stagesO[-1].append(layer)
 
-        print(f'tempStagesI: {tempStagesI}')
+        print(f'tempStagesI: {StagesI}')
 
         print(f'stagesO: {stagesO}')
         return stagesI, stagesO
