@@ -567,7 +567,7 @@ class N2N(nn.Module):
         # stages2O = [n(24), n(25), n(27), n(29), n(31), n(33)]
         printStages = False
         sameNode = self.getShareSameNodeLayers()
-
+        print(f'sameNode: {sameNode}')
         tempStagesI = []
         tempStagesO = [n(1)]
         stageWidth = self.module_list[0].weight.size()[0]
