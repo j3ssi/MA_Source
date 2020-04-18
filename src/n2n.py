@@ -590,6 +590,7 @@ class N2N(nn.Module):
         stagesI = [[]]
         stagesO = [[]]
         for layer in tempStagesI:
+            print(layer)
             i = int(layer.split('.')[1].split('v')[1])
             if i == 1:
                 stagesI[0].append(layer)
