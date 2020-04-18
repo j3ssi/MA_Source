@@ -950,7 +950,7 @@ class N2N(nn.Module):
 def compare(layer, oddLayer):
     i1 = int(layer.split('.')[1].split('v')[1])
     i2 = int(oddLayer.split('.')[1].split('v')[1])
-    if(i1+2==i2):
+    if(i2+2==i1):
         return True
     else:
         return False
