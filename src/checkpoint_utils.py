@@ -141,7 +141,7 @@ def makeSparse(optimizer, model, threshold, use_gpu, reconf=False ):
             if lyr_name in dense_chs:
                 edges = list(set().union(edges, dense_chs[lyr_name]['in_chs']))
         for lyr_name in stagesO[idx]:
-            print("\nLyr_name: ", lyr_name)
+            # print("\nLyr_name: ", lyr_name)
             if lyr_name in dense_chs:
                 edges = list(set().union(edges, dense_chs[lyr_name]['out_chs']))
         # Maintain the dense channels at the shared node

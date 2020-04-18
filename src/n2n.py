@@ -573,7 +573,7 @@ class N2N(nn.Module):
         oddLayersBool = False
         for node in sameNode:
             if len(self.oddLayers) > 0:
-                print(f'oddLayer: {self.oddLayers[0]}')
+                # print(f'oddLayer: {self.oddLayers[0]}')
                 if compare(node[-1], self.oddLayers[0]):
                     oddLayer = self.oddLayers.pop(0)
                     tempStagesO.append(oddLayer)
@@ -616,9 +616,9 @@ class N2N(nn.Module):
                 stagesO.append([])
                 stagesO[-1].append(layer)
 
-        print(f'stagesI: {stagesI}')
+        # print(f'stagesI: {stagesI}')
 
-        print(f'stagesO: {stagesO}')
+        # print(f'stagesO: {stagesO}')
         return stagesI, stagesO
 
 
@@ -649,7 +649,7 @@ class N2N(nn.Module):
 
                 sameNode.append(block)
             firstStage = False
-        print(f'oddLayers: {self.oddLayers}')
+        # print(f'oddLayers: {self.oddLayers}')
         # print("\nSame Node: ", sameNode)
         return sameNode
 
