@@ -578,6 +578,7 @@ class N2N(nn.Module):
         tempStagesI.append(n(fcStr))
         print(tempStagesO)
         tempStagesO.append(self.oddLayers)
+        print(f'tempStagesO: {tempStagesO}')
         tempStagesO = tempStagesO.sort()
         print(f'tempStagesO: {tempStagesO}')
         stagesI = [[]]
