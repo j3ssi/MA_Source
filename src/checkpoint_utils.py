@@ -304,7 +304,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
         print(f'RM List vorher: {rm_list}')
 
         for rm in rm_list:
-            index = int(name.split('.')[1].split('v')[1])
+            index = int(rm.split('.')[1].split('v')[1])
             index = (index - 1) * 2
             indexList.append(index)
         for stage in range(0, model.numOfStages):
