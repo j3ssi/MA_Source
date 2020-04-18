@@ -615,7 +615,7 @@ class N2N(nn.Module):
                 stagesO.append([])
                 stagesO[-1].append(layer)
 
-        print(stagesO)
+        print(f'stagesO: {stagesO}')
         #         stagesI[-1].append(n(i))
         #     if stage > 0:
         #         stagesI.append([])
@@ -680,7 +680,7 @@ class N2N(nn.Module):
 
                 sameNode.append(block)
             firstStage = False
-        print("\nSame Node: ", sameNode)
+        # print("\nSame Node: ", sameNode)
         return sameNode
 
     def delete(self, model, index):
