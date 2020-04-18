@@ -576,11 +576,9 @@ class N2N(nn.Module):
         length = len(self.module_list)
         fcStr = 'fc' + str(int(length / 2))
         tempStagesI.append(n(fcStr))
-        print(tempStagesO)
+        # print(tempStagesO)
         for layers in self.oddLayers:
             tempStagesO.append(layers)
-        print(f'tempStagesO: {tempStagesO}')
-        tempStagesO = tempStagesO.sort()
         print(f'tempStagesO: {tempStagesO}')
         stagesI = [[]]
         stagesO = [[]]
@@ -619,6 +617,9 @@ class N2N(nn.Module):
                 stageWidth = self.module_list[i].weight.size()[1]
                 stagesO.append([])
                 stagesO[-1].append(layer)
+
+        tempStagesO = tempStagesO.sort()
+        print(f'tempStagesO: {tempStagesO}')
 
         print(f'stagesO: {stagesO}')
         #         stagesI[-1].append(n(i))
