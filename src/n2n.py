@@ -574,6 +574,7 @@ class N2N(nn.Module):
         length = len(self.module_list)
         fcStr = 'fc' + str(int(length / 2))
         tempStagesI.append(n(fcStr))
+        print(tempStagesO)
         stagesI = [[]]
         stagesO = [[]]
         for layer in tempStagesI:
@@ -592,7 +593,7 @@ class N2N(nn.Module):
 
             elif 'fc' in layer:
                 stagesI.append(layer)
-            print(f'StagesI:{stagesI}')
+            # print(f'StagesI:{stagesI}')
         for layer in tempStagesO:
             print(layer)
             i = int(layer.split('.')[1].split('v')[1])
