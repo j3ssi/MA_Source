@@ -11,6 +11,7 @@ class N2N(nn.Module):
                  first, bottleneck, model=None, archNums=None):
         super(N2N, self).__init__()
         self.numOfStages = numOfStages
+        self.oddLayers = []
         self.numOfBlocksinStage = numOfBlocksinStage
         self.bottleneck = bottleneck
         self.layersInBlock = layersInBlock
@@ -604,6 +605,12 @@ class N2N(nn.Module):
             if self.module_list[i].weight.size()[0] == stageWidth:
                 stagesO[-1].append(layer)
             else:
+                oddLayer = self.oddLayers[0]
+                j = int(oddLayer.split('.')[1].split('v')[1])
+                j = 2 * j - 2
+                if self.module_list[j].weight.size()[0] == stageWidth:
+                    stagesO[-1].append(layer)
+                    stagesO[-1].sort()
                 stageWidth = self.module_list[i].weight.size()[1]
                 stagesO.append([])
                 stagesO[-1].append(layer)
@@ -660,6 +667,7 @@ class N2N(nn.Module):
                 for layer in range(0, self.archNums[stage][i]):
                     # print("\nI: ", i, " ; ", stage, " ; ", block, " ; ", layer)
                     if (layer + 1) % self.archNums[stage][i] == 0 and not firstStage and firstBlockInStage:
+                        self.oddLayers.append(n(k))
                         j = j + 1
                         k = k + 1
                         firstBlockInStage = False
