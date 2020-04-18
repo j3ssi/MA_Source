@@ -581,18 +581,18 @@ class N2N(nn.Module):
             if 'conv' in layer:
                 i = int(layer.split('.')[1].split('v')[1])
                 i = 2 * i - 2
+                if i == 0:
+                    stagesI[0].append(layer)
+                elif self.module_list[i].weight.size()[1] == stageWidth:
+                    stagesI[-1].append(layer)
+                else:
+                    stageWidth = self.module_list[i].weight.size()[1]
+                    stagesI.append([])
+                    stagesI[-1].append(layer)
+
             elif 'fc' in layer:
-                i = int(layer.split('.')[1].split('c')[1])
-                i = 2 * i - 3
-            if i == 0:
-                stagesI[0].append(layer)
-            elif self.module_list[i].weight.size()[1] == stageWidth:
-                stagesI[-1].append(layer)
-            else:
-                stageWidth = self.module_list[i].weight.size()[1]
-                stagesI.append([])
-                stagesI[-1].append(layer)
-        print(f'StagesI:{stagesI}')
+                stagesI.append(layer)
+            print(f'StagesI:{stagesI}')
         for layer in tempStagesO:
             print(layer)
             i = int(layer.split('.')[1].split('v')[1])
