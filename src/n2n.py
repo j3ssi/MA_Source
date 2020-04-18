@@ -567,14 +567,13 @@ class N2N(nn.Module):
         # stages2O = [n(24), n(25), n(27), n(29), n(31), n(33)]
         printStages = False
         sameNode = self.getShareSameNodeLayers()
-        print(f'sameNode: {sameNode}')
         tempStagesI = []
         tempStagesO = [n(1)]
         stageWidth = self.module_list[0].weight.size()[0]
         oddLayersBool = False
         for node in sameNode:
             if len(self.oddLayers)>0:
-                # print(f'len oddLayer: {len(self.oddLayers)}')
+                print(f'oddLayer: {self.oddLayers[0]}')
                 if compare(node[-1], self.oddLayers[0]):
                     tempStagesO.append(self.oddLayers[0])
                     oddLayersBool =True
