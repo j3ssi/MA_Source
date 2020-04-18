@@ -601,7 +601,7 @@ class N2N(nn.Module):
                     stagesI[-1].append(layer)
 
             elif 'fc' in layer:
-                stagesI.append(layer)
+                stagesI[-1].append(layer)
             # print(f'StagesI:{stagesI}')
 
         stageWidth = self.module_list[0].weight.size()[0]
