@@ -591,8 +591,12 @@ class N2N(nn.Module):
         stagesO = [[]]
         for layer in tempStagesI:
             print(layer)
-            i = int(layer.split('.')[1].split('v')[1])
-            i = 2 * i -2
+            if 'conv' in layer:
+                i = int(layer.split('.')[1].split('v')[1])
+                i = 2 * i - 2
+            elif 'fc' in layer:
+                i = int(layer.split('.')[1].split('c')[1])
+                i = 2 * i - 3
             if i == 0:
                 stagesI[0].append(layer)
             elif self.module_list[i].weight.size()[1] == stageWidth:
