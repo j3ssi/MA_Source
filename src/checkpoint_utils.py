@@ -301,6 +301,8 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
         indexList = []
         j = 2
         m = 0
+        print(f'RM List vorher: {rm_list}')
+
         for rm in rm_list:
             index = int(name.split('.')[1].split('v')[1])
             index = (index - 1) * 2
@@ -320,7 +322,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
                         i=i+1
 
 
-        print(f'RM List: {rm_list}')
+        print(f'RM List nachher: {rm_list}')
         for name in reversed(rm_list):
             # delete module from moduleList
             index = int(name.split('.')[1].split('v')[1])
