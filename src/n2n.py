@@ -581,8 +581,8 @@ class N2N(nn.Module):
         tempStagesO = [n(1)]
         stageWidth = self.module_list[0].weight.size()[0]
         for node in sameNode:
-            tempStagesI.append(sameNode[0])
-            tempStagesO.append(sameNode[1])
+            tempStagesI.append(node[0])
+            tempStagesO.append(node[-1])
 
         length = len(self.module_list)
         fcStr = 'fc' + str(int(length / 2 + 1))
