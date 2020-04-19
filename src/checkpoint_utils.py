@@ -309,20 +309,27 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
             indexList.append(index)
         print(f'indexList: {indexList}')
         for stage in range(0, model.numOfStages):
+            print(f'Stage: {stage}')
             archNum = model.archNums[stage]
             sameBlock = False
             for block in range(0, len(archNum)):
-                if len(indexList)>1:
-                    if indexList[0]==j and not sameBlock:
-                        elem = indexList.pop()
-                        print(f'pop element: {elem}')
-                        sameBlock =True
-                        m=m+1
-                    elif indexList[0]==j and sameBlock:
-                        delete = rm_list[m]
-                        rm_list.remove(delete)
-
-
+                print(f'Block: {block}')
+                arch = archNum[block]
+                i=0
+                while i < arch:
+                    if len(indexList)>1:
+                        if indexList[0]==j and not sameBlock:
+                            elem = indexList.pop()
+                            print(f'pop element: {elem}')
+                            sameBlock =True
+                            m = m + 1
+                            j = j + 1
+                            i = i + 1
+                        elif indexList[0]==j and sameBlock:
+                            delete = rm_list[m]
+                            rm_list.remove(delete)
+                            j = j + 1
+                            i = i + 1
 
         print(f'RM List nachher: {rm_list}')
         for name in reversed(rm_list):
