@@ -51,6 +51,7 @@ from apex import amp, optimizers
 # from apex.apex.multi_tensor_apply import multi_tensor_applier
 import platform, psutil
 
+
 # Parser
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 # Baseline
@@ -146,6 +147,10 @@ parser.add_argument('--no-regime_bb_fix', dest='regime_bb_fix', action='store_fa
 
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
+
+listofBlocks = [int(i) for i in args.n.split(',')]
+print(listofBlocks)
+grp_lasso_coeff = 0
 
 
 def main():
