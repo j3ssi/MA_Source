@@ -315,7 +315,7 @@ def main():
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion,
                                                                          optimizer,
                                                                          epoch, use_cuda, use_gpu,
-                                                                         use_gpu_num)
+                                                             use_gpu_num)
             ende = time.time()
 
             if args.test:
@@ -438,7 +438,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
             optimizer.step()
         else:
             print(f'Before Forward')
-            outputs = model.forward(inputs)
+            outputs = model.forward(inputs,init_batch)
             print(f'After Forward')
 
             # print(f'Size of Forward Path: {-use_before_forward + use_after_forward}')
@@ -452,7 +452,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
             loss = criterion(outputs, targets)
             print(f'After loss')
             # lasso penalty
-            init_batch = batch_idx == 0 and epoch == 1
+
 
             if args.en_group_lasso:
                 if args.global_group_lasso:
