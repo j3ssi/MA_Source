@@ -654,7 +654,7 @@ class N2N(nn.Module):
         return sameNode
 
     def delete(self, model, index):
-        printNet = False
+        printNet = True
         print(f'Index1: {index}')
         index = int(index / 2 + 1)
         print(f'Index: {index}')
