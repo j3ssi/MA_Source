@@ -290,56 +290,55 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
                 with torch.no_grad():
                     new_buf[out_idx] = buf[out_ch]
             buf.data = new_buf
-
     """
     Remove layers (Only applicable to ResNet-like networks)
     - Remove model parameters
     - Remove parameters/states in optimizer
     """
 
-    # if len(rm_list) > 0:
-    #     indexList = []
-    #     j = 2
-    #     m = 0
-    #     print(f'RM List vorher: {rm_list}')
-    #
-    #     for rm in rm_list:
-    #         index = int(rm.split('.')[1].split('v')[1])
-    #         # index = (index - 1) * 2
-    #         indexList.append(index)
-    #     print(f'indexList: {indexList}')
-    #     for stage in range(0, model.numOfStages):
-    #         print(f'Stage: {stage}')
-    #         archNum = model.archNums[stage]
-    #         sameBlock = False
-    #         for block in range(0, len(archNum)):
-    #             print(f'Block: {block}')
-    #             arch = archNum[block]
-    #             i=0
-    #             while i < arch:
-    #                 if len(indexList)>1:
-    #                     if indexList[0]==j and not sameBlock:
-    #                         elem = indexList.pop()
-    #                         print(f'pop element: {elem}')
-    #                         sameBlock =True
-    #                         m = m + 1
-    #                         j = j + 1
-    #                         i = i + 1
-    #                     elif indexList[0]==j and sameBlock:
-    #                         delete = rm_list[m]
-    #                         rm_list.remove(delete)
-    #                         j = j + 1
-    #                         i = i + 1
-    #
-    #     print(f'RM List nachher: {rm_list}')
-    #     for name in reversed(rm_list):
-    #         # delete module from moduleList
-    #         index = int(name.split('.')[1].split('v')[1])
-    #         index = (index-1)*2
-    #         module = model.module_list[index]
-    #         print("\nModule List Length: ", len(model.module_list))
-    #         model.delete(module, index)
-    #         print("\nModule List Length After Delete: ", len(model.module_list))
+    if len(rm_list) > 0:
+        indexList = []
+        j = 2
+        m = 0
+        print(f'RM List vorher: {rm_list}')
+
+        for rm in rm_list:
+            index = int(rm.split('.')[1].split('v')[1])
+            # index = (index - 1) * 2
+            indexList.append(index)
+        print(f'indexList: {indexList}')
+        for stage in range(0, model.numOfStages):
+            print(f'Stage: {stage}')
+            archNum = model.archNums[stage]
+            sameBlock = False
+            for block in range(0, len(archNum)):
+                print(f'Block: {block}')
+                arch = archNum[block]
+                i=0
+                while i < arch:
+                    if len(indexList)>1:
+                        if indexList[0]==j and not sameBlock:
+                            elem = indexList.pop()
+                            print(f'pop element: {elem}')
+                            sameBlock =True
+                            m = m + 1
+                            j = j + 1
+                            i = i + 1
+                        elif indexList[0]==j and sameBlock:
+                            delete = rm_list[m]
+                            rm_list.remove(delete)
+                            j = j + 1
+                            i = i + 1
+
+        print(f'RM List nachher: {rm_list}')
+        for name in reversed(rm_list):
+            # delete module from moduleList
+            index = int(name.split('.')[1].split('v')[1])
+            index = (index-1)*2
+            module = model.module_list[index]
+            print("\nModule List Length: ", len(model.module_list))
+            model.delete(module, index)
+            print("\nModule List Length After Delete: ", len(model.module_list))
             # i=0
             # for s in range(0, model.numOfStages):
             #     blocks = model.archNums[s]
