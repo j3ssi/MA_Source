@@ -413,10 +413,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
 
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
-
         with torch.no_grad():
             inputs = Variable(inputs)
-
         targets = torch.autograd.Variable(targets)
         if args.largeBatch:
             mini_inputs = inputs.chunk(args.batch_size // args.mini_batch_size)
@@ -439,7 +437,9 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
             clip_grad_norm_(model.parameters(), 5.)
             optimizer.step()
         else:
+            print(f'Before Forward')
             outputs = model.forward(inputs)
+            print(f'After Forward')
 
             # print(f'Size of Forward Path: {-use_before_forward + use_after_forward}')
 
@@ -450,7 +450,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
             #     filename = 'PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
             #     dot.render(filename=filename)
             loss = criterion(outputs, targets)
-
+            print(f'After loss')
             # lasso penalty
             init_batch = batch_idx == 0 and epoch == 1
 
@@ -480,7 +480,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
                 lasso_penalty = lasso_penalty * grp_lasso_coeff
             else:
                 lasso_penalty = 0.
-
+            print(f'nach group lasso')
             # Group lasso calcution is not performance-optimized => Ignore from execution time
             loss += lasso_penalty
             # print("Loss: ", loss)
