@@ -323,7 +323,7 @@ class N2N(nn.Module):
             print("\nnew Model: ", self)
 
     def forward(self, x):
-        print(f'ArchNums: {self.archNums}')
+        #print(f'ArchNums: {self.archNums}')
         # First layer
         printNet = False
         if printNet:
