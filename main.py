@@ -454,7 +454,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
             loss = criterion(outputs, targets)
             print(f'After loss')
             # lasso penalty
-
+            init_batch = batch_idx == 0 and epoch == 1
 
             if args.en_group_lasso:
                 if args.global_group_lasso:
