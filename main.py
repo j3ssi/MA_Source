@@ -438,7 +438,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
             optimizer.step()
         else:
             print(f'Before Forward')
-            outputs = model.forward(inputs,init_batch)
+            outputs = model.forward(inputs)
             print(f'After Forward')
 
             # print(f'Size of Forward Path: {-use_before_forward + use_after_forward}')
