@@ -409,8 +409,6 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
         data_time.update(time.time() - end)
         data_load_time = time.time() - end
 
-        total, use_before_forward, free = checkmem(use_gpu_num)
-        # print(f'Available after Model Creation: {free}')
         optimizer.zero_grad()
 
         if use_cuda:
@@ -443,16 +441,14 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
             outputs = model.forward(inputs)
             print(f'After Forward')
 
-            # print(f'Size of Forward Path: {-use_before_forward + use_after_forward}')
-
-            # Print model Structure
-            # print("\n\nOutput Shape: ", outputs.shape)
             # if batch_idx == 0:
             #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
             #     filename = 'PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
             #     dot.render(filename=filename)
+
             loss = criterion(outputs, targets)
-            # print(f'After loss')
+            print(f'After loss')
+
             # lasso penalty
             init_batch = batch_idx == 0 and epoch == 1
 
@@ -482,10 +478,10 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
                 lasso_penalty = lasso_penalty * grp_lasso_coeff
             else:
                 lasso_penalty = 0.
-            # print(f'nach group lasso')
+            print(f'nach group lasso')
             # Group lasso calcution is not performance-optimized => Ignore from execution time
             loss += lasso_penalty
-            # print("Loss: ", loss)
+            print(f' After Loss')
             # measure accuracy and record loss
             prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
             losses.update(loss.item(), inputs.size(0))
@@ -501,8 +497,6 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
                 loss.backward()
             optimizer.step()
 
-            # total, use_after_backward, free = checkmem(use_gpu_num)
-            # print(f'Available after Backward Path: {total - use_after_backward}')
             # measure elapsed time
             batch_time.update(time.time() - end - data_load_time)
             end = time.time()
