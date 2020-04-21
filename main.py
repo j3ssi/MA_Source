@@ -328,7 +328,7 @@ def main():
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0) and not (epoch == args.epochs) :
                 # Force weights under threshold to zero
-                dense_chs, chs_map = makeSparse(optimizer, model, args.threshold, use_gpu)
+                dense_chs, chs_map = makeSparse(optimizer, model, args.threshold)
                 if args.visual:
                     visualizePruneTrain(model, epoch, args.threshold)
 
@@ -543,7 +543,7 @@ def test(testloader, model, criterion, epoch, use_cuda, use_gpu):
         # compute output
         outputs = model(inputs)
         loss = criterion(outputs, targets)
-
+        print(f'Test nachdem loss')
         # measure accuracy and record loss
         prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
         losses.update(loss.item(), inputs.size(0))
