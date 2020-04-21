@@ -221,7 +221,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
             # print("===> Dense inchs: [{}], outchs: [{}]".format(num_in_ch, num_out_ch))
 
             # Enlist layers with zero channels for removal
-            if num_in_ch == 0 or num_out_ch == 0:
+            if False  # num_in_ch == 0 or num_out_ch == 0:
                 print("\n RM: ", name)
                 rm_list.append(name)
             else:
