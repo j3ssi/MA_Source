@@ -495,8 +495,10 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
                     scaled_loss.backward()
             else:
                 loss.backward()
+                print(f'After loss')
             optimizer.step()
 
+            print(f'After Step')
             # measure elapsed time
             batch_time.update(time.time() - end - data_load_time)
             end = time.time()
@@ -510,7 +512,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
                       'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
                       epoch, batch_idx, len(trainloader), batch_time=batch_time,
                       data_time=data_time, loss=losses, top1=top1, top5=top5))
-
+    print(f'For fertig!!')
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
     return losses.avg, top1.avg, lasso_ratio.avg, epoch_time
 
