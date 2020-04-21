@@ -439,7 +439,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
             clip_grad_norm_(model.parameters(), 5.)
             optimizer.step()
         else:
-            # print(f'Before Forward')
+            print(f'Before Forward')
             outputs = model.forward(inputs)
             print(f'After Forward')
 
