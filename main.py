@@ -221,6 +221,7 @@ def main():
             time.sleep(600)
     use_cuda = torch.cuda.is_available()
 
+    os.environ['CUDA_VISIBLE_DEVICES'] = use_gpu_num
     # Random seed
     if args.manualSeed is None:
         args.manualSeed = random.randint(1, 10000)
@@ -336,7 +337,7 @@ def main():
                 model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, False, model, model.archNums)
                 use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
                 # print(f'use after new Model Creation')
-                model.cuda(use_gpu)
+                model.cuda()
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
             #     if args.fp16:
@@ -370,7 +371,7 @@ def main():
                 print("\n\nnow deeper")
                 # deeper student training
                 model = n2n.deeper(model, optimizer, [2, 4])
-                model.cuda(use_gpu)
+                model.cuda()
                 criterion = nn.CrossEntropyLoss()
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
@@ -518,6 +519,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
 
 
 def test(testloader, model, criterion, epoch, use_cuda, use_gpu):
+    print(f'Test')
     batch_time = AverageMeter()
     data_time = AverageMeter()
     losses = AverageMeter()
@@ -534,7 +536,7 @@ def test(testloader, model, criterion, epoch, use_cuda, use_gpu):
         data_load_time = time.time() - end
 
         if use_cuda:
-            inputs, targets = inputs.cuda(use_gpu), targets.cuda(use_gpu)
+            inputs, targets = inputs.cuda(), targets.cuda()
         with torch.no_grad():
             inputs = Variable(inputs)
             # targets = Variable(targets)
