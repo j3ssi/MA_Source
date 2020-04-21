@@ -195,7 +195,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
         else:
             assert True, "Hier fehlt was!! "
-        # print("\n> altList: ", altList[-1])
+    print("\n> altList: ", altList[-1])
     i = -1
     # print("\nParam: ", paramList)
     # print("==================")
