@@ -354,9 +354,9 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
 
     # Sanity check => Print out optimizer parameters after change
     # print("[INFO] ==== Size of parameter group (After)")
-    # for g in optimizer.param_groups:
-    #    for idx, g2 in enumerate(g['params']):
-    #        print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
+    for g in optimizer.param_groups:
+        for idx, g2 in enumerate(g['params']):
+            print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
 
 # Sanity check => Check the changed parameters
 # for name, param in model.named_parameters():

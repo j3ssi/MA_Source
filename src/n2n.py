@@ -702,10 +702,11 @@ class N2N(nn.Module):
                     inChannels2 = self.module_list[layers + layers + 2 * numDelete].weight.size()[1]
                     outChannels1 = self.module_list[layers].weight.size()[0]
                     outChannels2 = self.module_list[layers + layers + 2 * numDelete].weight.size()[0]
-                    if not (inChannels1 == inChannels2) and i == 0:
+                    if not (inChannels1 == inChannels2) and layers in blockBegin:
                         print(f'InChannels haben nicht die gleiche Dimension')
                         deleteModule = False
                         break
+                    # todo hier reparieren
                     if not (outChannels1 == outChannels2) and i == (numDelete * 2 - 1):
                         print(f'InChannels haben nicht die gleiche Dimension')
                         deleteModule = False
