@@ -26,7 +26,7 @@ import torch.nn as nn
 # arch: architecture name
 # lasso_penalty: group lasso regularization penalty
 """
-device = nn.device("cuda:0")
+device = torch.device("cuda:0")
 
 
 def get_group_lasso_global(model):
