@@ -227,6 +227,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
             else:
                 # Generate a new dense tensor and replace (Convolution layer)
                 if len(dims) == 4:
+                    print(f'Dims = 4')
                     new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
                     new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
 
@@ -238,6 +239,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
 
                 # Generate a new dense tensor and replace (FC layer)
                 elif len(dims) == 2:
+                    print(f'Dims =2')
                     new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
                     new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
 
