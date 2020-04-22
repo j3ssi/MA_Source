@@ -167,8 +167,8 @@ def main():
     torch.backends.cudnn.benchmark = False
     # choose which gpu to use
     not_enough_memory = True
-    use_gpu = 'cuda:0'
-    use_gpu_num = 0
+    use_gpu = 'cuda:2'
+    use_gpu_num = 2
     cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
     if int(args.gpu_id) < 5:
@@ -180,8 +180,8 @@ def main():
             print(f'Nutze Geforce 1080')
             gpu_id = 1
         else:
-            print(f'gpu id:0')
-            gpu_id = 0
+            print(f'gpu id:2')
+            gpu_id = 2
         print(f'Device Name: {torch.cuda.get_device_name(gpu_id)}')
         total, used, free = checkmem(gpu_id)
         if used<20:
