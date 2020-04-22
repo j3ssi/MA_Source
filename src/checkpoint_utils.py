@@ -195,7 +195,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
         else:
             assert True, "Hier fehlt was!! "
-    print("\n> altList: ", altList)
+    # print("\n> altList: ", altList)
     i = -1
     # print("\nParam: ", paramList)
     # print("==================")
@@ -205,7 +205,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
     for name, param in model.named_parameters():
         i = i + 1
         name = altList[i]
-        print("\nName: ", name)
+        # print("\nName: ", name)
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[param]['momentum_buffer']
 
@@ -218,7 +218,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
             dense_out_ch_idxs = dense_chs[name]['out_chs']
             num_in_ch, num_out_ch = len(dense_in_ch_idxs), len(dense_out_ch_idxs)
 
-            print("===> Dense inchs: [{}], outchs: [{}]".format(num_in_ch, num_out_ch))
+            # print("===> Dense inchs: [{}], outchs: [{}]".format(num_in_ch, num_out_ch))
 
             # Enlist layers with zero channels for removal
             if num_in_ch == 0 or num_out_ch == 0:
