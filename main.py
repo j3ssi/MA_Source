@@ -533,12 +533,14 @@ def test(testloader, model, criterion, epoch, use_cuda):
         data_time.update(time.time() - end)
         print(f'Time 1')
         data_load_time = time.time() - end
-        print(f'Test Variablen')
+        print(f'Test Variablen; use cuda: {use_cuda}')
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
+        print(f'Nach if use cuda')
         with torch.no_grad():
             inputs = Variable(inputs)
             # targets = Variable(targets)
+        print(f'vor target Variablen')
         targets = torch.autograd.Variable(targets)
         # compute output
         print(f'Test vor dem Forward')
