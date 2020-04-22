@@ -377,7 +377,8 @@ def main():
 
     print("\n ",
           args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
-    print(" ", test_acc)
+    if args.test:
+        print(" ", test_acc)
 
     print(' {:5.3f}s'.format(ende - start), end='  ')
 
