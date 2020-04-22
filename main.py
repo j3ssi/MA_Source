@@ -71,7 +71,7 @@ parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
 parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')
 parser.add_argument('--manualSeed', type=int, help='manual seed')
-parser.add_argument('--gpu_id', default='5', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
+parser.add_argument('--gpu_id', default='2', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
 parser.add_argument('-s', '--numOfStages', default=3, type=int, help='defines the number of stages in the network')
 # parser.add_argument('-n', '--numOfBlocksinStage', type=int, default=5, help='defines the number of Blocks per Stage')
 parser.add_argument('-l', '--layersInBlock', type=int, default=3, help='defines the number of')
