@@ -5,8 +5,6 @@ import math
 import numpy as np
 
 
-
-
 class N2N(nn.Module):
 
     def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock,
@@ -222,8 +220,13 @@ class N2N(nn.Module):
                         m.weight.data.fill_(1)
                         m.bias.data.zero_()
             # print(self)
+            self.sameNode, self.oddLayers  = buildShareSameNodeLayers(self.module_list, self.numOfStages, self.archNums)
+            self.stageI, self.stageO = buildResidualPath(self.module_list, self.oddLayers)
         else:
             self.archNums = archNums
+            self.sameNode = model.sameNode
+            self.stageI = model.stageI
+            self.stageO = model.stageO
             # print(f'Archnums: {self.archNums}')
             module_list = model.module_list
             altList = []
@@ -323,7 +326,7 @@ class N2N(nn.Module):
             print("\nnew Model: ", self)
 
     def forward(self, x):
-        #print(f'ArchNums: {self.archNums}')
+        # print(f'ArchNums: {self.archNums}')
         # First layer
         printNet = False
         if printNet:
@@ -562,102 +565,6 @@ class N2N(nn.Module):
             print("Linear")
         return x
 
-    def getResidualPath(self):
-        # stage0O = [n(1), n(3), n(5), n(7), n(9), n(11)]
-        # stages1O = [n(13), n(14), n(16), n(18), n(20), n(22)]
-        # stages2O = [n(24), n(25), n(27), n(29), n(31), n(33)]
-        printStages = False
-        sameNode = self.getShareSameNodeLayers()
-        tempStagesI = []
-        tempStagesO = [n(1)]
-        stageWidth = self.module_list[0].weight.size()[0]
-        oddLayersCopy = self.oddLayers
-        oddLayersBool = False
-        for node in sameNode:
-            if len(self.oddLayers) > 0:
-                # print(f'oddLayer: {self.oddLayers[0]}')
-                if compare(node[-1], self.oddLayers[0]):
-                    oddLayer = self.oddLayers.pop(0)
-                    tempStagesO.append(oddLayer)
-                    tempStagesI.append(oddLayer)
-                    oddLayersBool =True
-            tempStagesI.append(node[0])
-            tempStagesO.append(node[-1])
-
-        length = len(self.module_list)
-        fcStr = 'fc' + str(int(length / 2))
-        tempStagesI.append(n(fcStr))
-        stagesI = [[]]
-        stagesO = [[]]
-        for layer in tempStagesI:
-            # print(layer)
-            if 'conv' in layer:
-                i = int(layer.split('.')[1].split('v')[1])
-                i = 2 * i - 2
-                if i == 0:
-                    stagesI[0].append(layer)
-                elif self.module_list[i].weight.size()[1] == stageWidth:
-                    stagesI[-1].append(layer)
-                else:
-                    stageWidth = self.module_list[i].weight.size()[1]
-                    stagesI.append([])
-                    stagesI[-1].append(layer)
-
-            elif 'fc' in layer:
-                stagesI[-1].append(layer)
-            # print(f'StagesI:{stagesI}')
-
-        stageWidth = self.module_list[0].weight.size()[0]
-        for layer in tempStagesO:
-            # print(layer)
-            i = int(layer.split('.')[1].split('v')[1])
-            i = 2 * i - 2
-            if self.module_list[i].weight.size()[0] == stageWidth:
-                stagesO[-1].append(layer)
-            elif layer in oddLayersCopy:
-                stagesO[-1].append(layer)
-            else:
-                stageWidth = self.module_list[i].weight.size()[1]
-                stagesO.append([])
-                stagesO[-1].append(layer)
-
-        print(f'stagesI: {stagesI}')
-
-        print(f'stagesO: {stagesO}')
-        return stagesI, stagesO
-
-
-    def getShareSameNodeLayers(self):
-        sameNode = []
-        self.oddLayers = []
-        first = True
-        j = 2
-        k = 2
-        firstStage = True
-        for stage in range(0, self.numOfStages):
-            firstBlockInStage = True
-            for i in range(0, len(self.archNums[stage])):
-                block = []
-                for layer in range(0, self.archNums[stage][i]):
-                    # print("\nI: ", i, " ; ", stage, " ; ", block, " ; ", layer)
-                    if (layer + 1) % self.archNums[stage][i] == 0 and not firstStage and firstBlockInStage:
-                        self.oddLayers.append(n(k))
-                        j = j + 1
-                        k = k + 1
-                        firstBlockInStage = False
-                    if isinstance(self.module_list[j], nn.Conv2d):
-                        block.append(n(k))
-                        j = j + 1
-                        k = k + 1
-                    if isinstance(self.module_list[j], nn.BatchNorm2d):
-                        j = j + 1
-
-                sameNode.append(block)
-            firstStage = False
-        # print(f'oddLayers: {self.oddLayers}')
-        print("\nSame Node: ", sameNode)
-        return sameNode
-
     def delete(self, model, index):
         printNet = True
         print(f'Index1: {index}')
@@ -750,6 +657,23 @@ class N2N(nn.Module):
             self.module_list = module_list
         print(self)
         return model
+
+    def getResidualPath(self):
+        return self.stageI, self.stageO
+
+    def getShareSameNodeLayers(self):
+        return self.sameNode
+
+
+    def deleteModuleFromLists(self, layer):
+        for stages in self.sameNode:
+            stages.remove(layer)
+        for stages in self.stageO:
+            stages.remove(layer)
+        for stages in self.stageI:
+            stages.remove(layer)
+
+
 
     """
     Convert all layers in layer to its wider version by adapting next weight layer and possible batch norm layer in btw.
@@ -941,12 +865,111 @@ class N2N(nn.Module):
 def compare(layer, oddLayer):
     i1 = int(layer.split('.')[1].split('v')[1])
     i2 = int(oddLayer.split('.')[1].split('v')[1])
-    if(i2+2==i1):
+    if (i2 + 2 == i1):
         return True
     else:
         return False
+
+
 def n(name):
     if isinstance(name, int):
         return 'module.conv' + str(name) + '.weight'
     else:
         return 'module.' + name + '.weight'
+
+
+def buildResidualPath(module_list, oddLayers):
+    # stage0O = [n(1), n(3), n(5), n(7), n(9), n(11)]
+    # stages1O = [n(13), n(14), n(16), n(18), n(20), n(22)]
+    # stages2O = [n(24), n(25), n(27), n(29), n(31), n(33)]
+    printStages = False
+    sameNode = buildShareSameNodeLayers()
+    tempStagesI = []
+    tempStagesO = [n(1)]
+    stageWidth = module_list[0].weight.size()[0]
+    oddLayersCopy = oddLayers
+    oddLayersBool = False
+    for node in sameNode:
+        if len(oddLayers) > 0:
+            # print(f'oddLayer: {self.oddLayers[0]}')
+            if compare(node[-1], oddLayers[0]):
+                oddLayer = oddLayers.pop(0)
+                tempStagesO.append(oddLayer)
+                tempStagesI.append(oddLayer)
+                oddLayersBool = True
+        tempStagesI.append(node[0])
+        tempStagesO.append(node[-1])
+
+    length = len(module_list)
+    fcStr = 'fc' + str(int(length / 2))
+    tempStagesI.append(n(fcStr))
+    stagesI = [[]]
+    stagesO = [[]]
+    for layer in tempStagesI:
+        # print(layer)
+        if 'conv' in layer:
+            i = int(layer.split('.')[1].split('v')[1])
+            i = 2 * i - 2
+            if i == 0:
+                stagesI[0].append(layer)
+            elif module_list[i].weight.size()[1] == stageWidth:
+                stagesI[-1].append(layer)
+            else:
+                stageWidth = module_list[i].weight.size()[1]
+                stagesI.append([])
+                stagesI[-1].append(layer)
+
+        elif 'fc' in layer:
+            stagesI[-1].append(layer)
+        # print(f'StagesI:{stagesI}')
+
+    stageWidth = module_list[0].weight.size()[0]
+    for layer in tempStagesO:
+        # print(layer)
+        i = int(layer.split('.')[1].split('v')[1])
+        i = 2 * i - 2
+        if module_list[i].weight.size()[0] == stageWidth:
+            stagesO[-1].append(layer)
+        elif layer in oddLayersCopy:
+            stagesO[-1].append(layer)
+        else:
+            stageWidth = module_list[i].weight.size()[1]
+            stagesO.append([])
+            stagesO[-1].append(layer)
+
+    print(f'stagesI: {stagesI}')
+
+    print(f'stagesO: {stagesO}')
+    return stagesI, stagesO
+
+
+def buildShareSameNodeLayers(module_list, numOfStages, archNums):
+    sameNode = []
+    oddLayers = []
+    first = True
+    j = 2
+    k = 2
+    firstStage = True
+    for stage in range(0, numOfStages):
+        firstBlockInStage = True
+        for i in range(0, len(archNums[stage])):
+            block = []
+            for layer in range(0, archNums[stage][i]):
+                # print("\nI: ", i, " ; ", stage, " ; ", block, " ; ", layer)
+                if (layer + 1) % archNums[stage][i] == 0 and not firstStage and firstBlockInStage:
+                    oddLayers.append(n(k))
+                    j = j + 1
+                    k = k + 1
+                    firstBlockInStage = False
+                if isinstance(module_list[j], nn.Conv2d):
+                    block.append(n(k))
+                    j = j + 1
+                    k = k + 1
+                if isinstance(module_list[j], nn.BatchNorm2d):
+                    j = j + 1
+
+            sameNode.append(block)
+        firstStage = False
+    # print(f'oddLayers: {self.oddLayers}')
+    print("\nSame Node: ", sameNode)
+    return sameNode, oddLayers
