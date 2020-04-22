@@ -553,7 +553,7 @@ def test(testloader, model, criterion, epoch, use_cuda, use_gpu):
         # measure elapsed time
         batch_time.update(time.time() - end - data_load_time)
         end = time.time()
-    # print(f'Test Ende')
+    print(f'Test Ende')
     epoch_time = batch_time.avg * len(testloader)  # Time for total test dataset
     return (losses.avg, top1.avg, epoch_time)
 
