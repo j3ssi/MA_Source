@@ -151,6 +151,8 @@ state = {k: v for k, v in args._get_kwargs()}
 listofBlocks = [int(i) for i in args.n.split(',')]
 print(listofBlocks)
 grp_lasso_coeff = 0
+dev = "cuda:0"
+device = torch.device(dev)
 
 
 def main():
@@ -162,8 +164,6 @@ def main():
         args.lr *= (args.batch_size / args.mini_batch_size) ** 0.5
     # if args.regime_bb_fix and args.largeBatch:
     #     e *= torch.ceil(args.batch_size / args.mini_batch_size)
-    dev = "cuda:0"
-    device = torch.device(dev)
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
     # choose which gpu to use
