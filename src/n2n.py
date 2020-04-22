@@ -1,4 +1,6 @@
 import copy
+
+import torch
 import torch as th
 import torch.nn as nn
 import math
@@ -10,6 +12,7 @@ class N2N(nn.Module):
     def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock,
                  first, bottleneck, model=None, archNums=None):
         super(N2N, self).__init__()
+        self.device = torch.device("cuda:0")
         self.numOfStages = numOfStages
         self.oddLayers = []
         self.numOfBlocksinStage = numOfBlocksinStage
@@ -847,11 +850,11 @@ class N2N(nn.Module):
         #     bn1 = model.module_list[pos * 2 + 1]
         #     conv2 = copy.deepcopy(conv)
         #     conv3 = copy.deepcopy(conv1)
-        #     noise = torch.Tensor(conv2.weight.shape).random_(0, 1).cuda()
+        #     noise = torch.Tensor(conv2.weight.shape).random_(0, 1).to(self.device)
         #     # noise = torch.rand(0,0.5)
         #     conv2.weight.data += noise
         #     bn2 = copy.deepcopy(bn)
-        #     noise = torch.Tensor(conv1.weight.shape).random_(0, 1).cuda()
+        #     noise = torch.Tensor(conv1.weight.shape).random_(0, 1).to(self.device)
         #     conv3.weight.data += noise
         #     bn3 = copy.deepcopy(bn1)
         #     model.module_list.insert(pos * 2 + 2, conv2)
