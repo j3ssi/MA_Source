@@ -249,7 +249,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
                             new_mom_param[:, in_idx] = mom_param[:, in_ch]
                 else:
                     assert True, "Wrong tensor dimension: {} at layer {}".format(dims, name)
-
+                print(f'Übertrage new Param')
                 param.data = new_param
                 optimizer.state[param]['momentum_buffer'].data = new_mom_param
 
@@ -276,7 +276,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
 
             # print("[{}]: {} >> {}".format(name, dims[0], num_out_ch))
 
-    # print(model)
+    print(f'Change moving mean and var of BN')
     # Change moving_mean and moving_var of BN
     for name, buf in model.named_buffers():
         # print("\nBuffer Name: ", name)
