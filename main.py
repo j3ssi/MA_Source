@@ -329,10 +329,10 @@ def main():
                 if args.visual:
                     visualizePruneTrain(model, epoch, args.threshold)
 
-                genDenseModel(model, dense_chs, optimizer, 'cifar', use_gpu)
+                genDenseModel(model, dense_chs, optimizer, 'cifar')
                 gc.collect()
                 model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, False, model, model.archNums)
-                use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
+                #use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
                 # print(f'use after new Model Creation')
                 model.cuda()
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,

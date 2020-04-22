@@ -168,7 +168,7 @@ Generate a new dense network model
 """
 
 
-def genDenseModel(model, dense_chs, optimizer, dataset, use_gpu):
+def genDenseModel(model, dense_chs, optimizer, dataset):
     print("[INFO] Squeezing the sparse model to dense one...")
 
     # Sanity check
