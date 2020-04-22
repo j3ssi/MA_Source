@@ -174,7 +174,7 @@ def main():
     if int(args.gpu_id) < 5:
         gpu_id = args.gpu_id
         not_enough_memory = False
-
+        use_gpu_num = int(gpu_id)
     while not_enough_memory:
         if args.gpu1080:
             print(f'Nutze Geforce 1080')
