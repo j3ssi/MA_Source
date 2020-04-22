@@ -221,7 +221,7 @@ class N2N(nn.Module):
                         m.bias.data.zero_()
             # print(self)
             self.sameNode, self.oddLayers  = buildShareSameNodeLayers(self.module_list, self.numOfStages, self.archNums)
-            self.stageI, self.stageO = buildResidualPath(self.module_list, self.oddLayers)
+            self.stageI, self.stageO = buildResidualPath(self.module_list, self.oddLayers, self.numOfStages, self.archNums)
         else:
             self.archNums = archNums
             self.sameNode = model.sameNode
@@ -878,12 +878,12 @@ def n(name):
         return 'module.' + name + '.weight'
 
 
-def buildResidualPath(module_list, oddLayers):
+def buildResidualPath(module_list, oddLayers, numOfStages, archNums):
     # stage0O = [n(1), n(3), n(5), n(7), n(9), n(11)]
     # stages1O = [n(13), n(14), n(16), n(18), n(20), n(22)]
     # stages2O = [n(24), n(25), n(27), n(29), n(31), n(33)]
     printStages = False
-    sameNode = buildShareSameNodeLayers()
+    sameNode = buildShareSameNodeLayers(module_list, numOfStages, archNums)
     tempStagesI = []
     tempStagesO = [n(1)]
     stageWidth = module_list[0].weight.size()[0]
