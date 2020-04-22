@@ -4,7 +4,6 @@ import os
 def main():
 
     s = 3
-    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n ab hier mit pruneTrain")
     for i in range(0,4):
         cmdLine = 'python3 main.py '
         cmdLine = cmdLine + '--workers 4 --gpu_id 2 --epochs 180 --test --gpu_id 0 --cifar10 --learning-rate 0.1 --sparse_interval 5 '
