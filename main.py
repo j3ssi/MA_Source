@@ -130,9 +130,9 @@ parser.add_argument('--gpu1080', default=False, action='store_true',
                     help='Use Geforce 1080 instead of geforce 2080')
 parser.add_argument('--test', default=False, action='store_true',
                     help='Should the Test run?')
+
 parser.add_argument('--largeBatch', default=False, action='store_true',
                     help='Use Large Batch Optimizing')
-
 parser.add_argument('-mb', '--mini-batch-size', default=128, type=int,
                     help='mini-mini-batch size (default: 64)')
 parser.add_argument('--lr_bb_fix', dest='lr_bb_fix', action='store_true',
@@ -155,12 +155,12 @@ grp_lasso_coeff = 0
 
 def main():
     # large batch
-    if args.regime_bb_fix:
+    if args.regime_bb_fix and args.largeBatch:
         args.epochs *= torch.ceil(args.batch_size / args.mini_batch_size)
 
-    if args.lr_bb_fix:
+    if args.lr_bb_fix and args.largeBatch:
         args.lr *= (args.batch_size / args.mini_batch_size) ** 0.5
-    # if args.regime_bb_fix:
+    # if args.regime_bb_fix and args.largeBatch:
     #     e *= torch.ceil(args.batch_size / args.mini_batch_size)
 
     torch.backends.cudnn.deterministic = True
