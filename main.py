@@ -541,6 +541,8 @@ def test(testloader, model, criterion, epoch, use_cuda, use_gpu):
             # targets = Variable(targets)
         targets = torch.autograd.Variable(targets)
         # compute output
+        print(f'Test vor dem Forward')
+
         outputs = model(inputs)
         loss = criterion(outputs, targets)
         print(f'Test nachdem loss')
