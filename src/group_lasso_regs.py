@@ -28,7 +28,7 @@ import torch.nn as nn
 """
 
 
-def get_group_lasso_global(model, use_gpu):
+def get_group_lasso_global(model):
     lasso_in_ch = []
     lasso_out_ch = []
     altList = []
@@ -69,8 +69,8 @@ def get_group_lasso_global(model, use_gpu):
             elif param.dim() == 2:
                 lasso_in_ch.append( param.pow(2).sum(dim=[0]) )
 
-    _lasso_in_ch         = torch.cat(lasso_in_ch).cuda(use_gpu)
-    _lasso_out_ch        = torch.cat(lasso_out_ch).cuda(use_gpu)
+    _lasso_in_ch         = torch.cat(lasso_in_ch).cuda()
+    _lasso_out_ch        = torch.cat(lasso_out_ch).cuda()
 
     lasso_penalty_in_ch  = _lasso_in_ch.add(1.0e-8).sqrt().sum()
     lasso_penalty_out_ch = _lasso_out_ch.add(1.0e-8).sqrt().sum()
@@ -89,7 +89,7 @@ def get_group_lasso_global(model, use_gpu):
 """
 
 
-def get_group_lasso_group(model, use_gpu):
+def get_group_lasso_group(model):
     lasso_in_ch = []
     lasso_out_ch = []
     lasso_in_ch_penalty = []
@@ -128,28 +128,28 @@ def get_group_lasso_group(model, use_gpu):
                 if 'conv1.' not in name:
                     _in = param.pow(2).sum(dim=[0, 2, 3])
                     lasso_in_ch.append(_in)
-                    penalty_tensor = torch.Tensor(param.shape[1]).cuda(use_gpu)
+                    penalty_tensor = torch.Tensor(param.shape[1]).cuda()
                     lasso_in_ch_penalty.append(penalty_tensor.new_full([param.shape[1]], w_num_i_ch))
 
                 _out = param.pow(2).sum(dim=[1, 2, 3])
                 lasso_out_ch.append(_out)
-                penalty_tensor = torch.Tensor(param.shape[0]).cuda(use_gpu)
+                penalty_tensor = torch.Tensor(param.shape[0]).cuda()
                 lasso_out_ch_penalty.append(penalty_tensor.new_full([param.shape[0]], w_num_o_ch))
 
             elif param.dim() == 2:
                 w_num_i_ch = param.shape[0]
                 lasso_in_ch.append(param.pow(2).sum(dim=[0]))
-                penalty_tensor = torch.Tensor(param.shape[1]).cuda(use_gpu)
+                penalty_tensor = torch.Tensor(param.shape[1]).cuda()
                 lasso_in_ch_penalty.append(penalty_tensor.new_full([param.shape[1]], w_num_i_ch))
 
-    _lasso_in_ch = torch.cat(lasso_in_ch).cuda(use_gpu)
-    _lasso_out_ch = torch.cat(lasso_out_ch).cuda(use_gpu)
+    _lasso_in_ch = torch.cat(lasso_in_ch).cuda()
+    _lasso_out_ch = torch.cat(lasso_out_ch).cuda()
     lasso_penalty_in_ch = _lasso_in_ch.add(1.0e-8).sqrt()
     lasso_penalty_out_ch = _lasso_out_ch.add(1.0e-8).sqrt()
 
     # Extra penalty using the number of parameters in each group
-    lasso_in_ch_penalty = torch.cat(lasso_in_ch_penalty).cuda(use_gpu).sqrt()
-    lasso_out_ch_penalty = torch.cat(lasso_out_ch_penalty).cuda(use_gpu).sqrt()
+    lasso_in_ch_penalty = torch.cat(lasso_in_ch_penalty).cuda().sqrt()
+    lasso_out_ch_penalty = torch.cat(lasso_out_ch_penalty).cuda().sqrt()
     lasso_penalty_in_ch = lasso_penalty_in_ch.mul(lasso_in_ch_penalty).sum()
     lasso_penalty_out_ch = lasso_penalty_out_ch.mul(lasso_out_ch_penalty).sum()
 

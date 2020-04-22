@@ -316,14 +316,11 @@ def main():
             print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
             start = time.time()
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion,
-                                                                         optimizer,
-                                                                         epoch, use_cuda, use_gpu,
-                                                             use_gpu_num)
+                                                                         optimizer, epoch, use_cuda)
             ende = time.time()
 
             if args.test:
-                test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda,
-                                                            use_gpu)
+                test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
             # i = 2
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0) and not (epoch == args.epochs) :
@@ -385,7 +382,7 @@ def main():
     print(' {:5.3f}s'.format(ende - start), end='  ')
 
 
-def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, use_gpu_num):
+def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     # switch to train mode
 
     model.train()
@@ -455,9 +452,9 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
 
             if args.en_group_lasso:
                 if args.global_group_lasso:
-                    lasso_penalty = get_group_lasso_global(model, use_gpu)
+                    lasso_penalty = get_group_lasso_global(model)
                 else:
-                    lasso_penalty = get_group_lasso_group(model, use_gpu)
+                    lasso_penalty = get_group_lasso_group(model)
 
                 # Auto-tune the group-lasso coefficient @first training iteration
                 coeff_dir = os.path.join(args.coeff_container, 'cifar')
@@ -517,7 +514,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda, use_gpu, us
     return losses.avg, top1.avg, lasso_ratio.avg, epoch_time
 
 
-def test(testloader, model, criterion, epoch, use_cuda, use_gpu):
+def test(testloader, model, criterion, epoch, use_cuda):
     print(f'Test')
     batch_time = AverageMeter()
     data_time = AverageMeter()
@@ -529,11 +526,12 @@ def test(testloader, model, criterion, epoch, use_cuda, use_gpu):
     model.eval()
 
     end = time.time()
+    print(f'Vor der For Schleife Test mit Länge: {len(testloader)}')
     for batch_idx, (inputs, targets) in enumerate(testloader):
         # measure data loading time
         data_time.update(time.time() - end)
         data_load_time = time.time() - end
-
+        print(f'Test Variablen')
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
         with torch.no_grad():
