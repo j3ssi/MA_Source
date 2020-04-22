@@ -528,8 +528,10 @@ def test(testloader, model, criterion, epoch, use_cuda):
     end = time.time()
     print(f'Vor der For Schleife Test mit Länge: {len(testloader)}')
     for batch_idx, (inputs, targets) in enumerate(testloader):
+        print(f'For Schleife betretten')
         # measure data loading time
         data_time.update(time.time() - end)
+        print(f'Time 1')
         data_load_time = time.time() - end
         print(f'Test Variablen')
         if use_cuda:
