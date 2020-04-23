@@ -249,7 +249,7 @@ def main():
     ])
 
     # Load data
-    print(f'Cifar10: {args.cifar10}; cifar100: {args.cifar100}')
+    # print(f'Cifar10: {args.cifar10}; cifar100: {args.cifar100}')
     if args.cifar10 and not args.cifar100:
         dataloader = datasets.CIFAR10
         num_classes = 10
@@ -257,7 +257,7 @@ def main():
         dataloader = datasets.CIFAR100
         num_classes = 100
     dataset = not ((not args.cifar10 and not args.cifar100) or (args.cifar10 and args.cifar100))
-    print(f'{not args.cifar10 and not args.cifar100}' or {args.cifar10 and args.cifar100})
+    # print(f'{not args.cifar10 and not args.cifar100}' or {args.cifar10 and args.cifar100})
     assert dataset, "kein gültiger Datensatz angegeben"
 
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
@@ -437,9 +437,9 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             clip_grad_norm_(model.parameters(), 5.)
             optimizer.step()
         else:
-            print(f'Before Forward')
+            # print(f'Before Forward')
             outputs = model.forward(inputs)
-            print(f'After Forward')
+            # print(f'After Forward')
 
             # if batch_idx == 0:
             #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
@@ -447,7 +447,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             #     dot.render(filename=filename)
 
             loss = criterion(outputs, targets)
-            print(f'After loss')
+            # print(f'After loss')
 
             # lasso penalty
             init_batch = batch_idx == 0 and epoch == 1
@@ -478,7 +478,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 lasso_penalty = lasso_penalty * grp_lasso_coeff
             else:
                 lasso_penalty = 0.
-            print(f'nach group lasso')
+            # print(f'nach group lasso')
             # Group lasso calcution is not performance-optimized => Ignore from execution time
             loss += lasso_penalty
             # measure accuracy and record loss
@@ -494,10 +494,10 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                     scaled_loss.backward()
             else:
                 loss.backward()
-                print(f'After backward')
+                # print(f'After backward')
             optimizer.step()
 
-            print(f'After Step')
+            # print(f'After Step')
             # measure elapsed time
             batch_time.update(time.time() - end - data_load_time)
             end = time.time()
@@ -511,13 +511,13 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                       'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
                       epoch, batch_idx, len(trainloader), batch_time=batch_time,
                       data_time=data_time, loss=losses, top1=top1, top5=top5))
-    print(f'For fertig!!')
+    # print(f'For fertig!!')
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
     return losses.avg, top1.avg, lasso_ratio.avg, epoch_time
 
 
 def test(testloader, model, criterion, epoch, use_cuda):
-    print(f'Test')
+    # print(f'Test')
     batch_time = AverageMeter()
     data_time = AverageMeter()
     losses = AverageMeter()
@@ -528,28 +528,28 @@ def test(testloader, model, criterion, epoch, use_cuda):
     model.eval()
 
     end = time.time()
-    print(f'Vor der For Schleife Test mit Länge: {len(testloader)}')
+    # print(f'Vor der For Schleife Test mit Länge: {len(testloader)}')
     for batch_idx, (inputs, targets) in enumerate(testloader):
-        print(f'For Schleife betretten')
+        # print(f'For Schleife betretten')
         # measure data loading time
         data_time.update(time.time() - end)
-        print(f'Time 1')
+        # print(f'Time 1')
         data_load_time = time.time() - end
-        print(f'Test Variablen; use cuda: {use_cuda}')
+        # print(f'Test Variablen; use cuda: {use_cuda}')
         if use_cuda:
             inputs, targets = inputs.to(device), targets.to(device)
-        print(f'Nach if use cuda')
+        # print(f'Nach if use cuda')
         with torch.no_grad():
             inputs = Variable(inputs)
             # targets = Variable(targets)
-        print(f'vor target Variablen')
+        # print(f'vor target Variablen')
         targets = torch.autograd.Variable(targets)
         # compute output
-        print(f'Test vor dem Forward')
+        # print(f'Test vor dem Forward')
 
         outputs = model(inputs)
         loss = criterion(outputs, targets)
-        print(f'Test nachdem loss')
+        # print(f'Test nachdem loss')
         # measure accuracy and record loss
         prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
         losses.update(loss.item(), inputs.size(0))
@@ -559,7 +559,7 @@ def test(testloader, model, criterion, epoch, use_cuda):
         # measure elapsed time
         batch_time.update(time.time() - end - data_load_time)
         end = time.time()
-    print(f'Test Ende')
+    # print(f'Test Ende')
     epoch_time = batch_time.avg * len(testloader)  # Time for total test dataset
     return (losses.avg, top1.avg, epoch_time)
 
