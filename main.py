@@ -19,7 +19,7 @@ import os
 import argparse
 import time
 import random
-from pynvml import *
+
 import matplotlib
 import numpy as np
 from torch.nn.utils import clip_grad_norm_
@@ -29,7 +29,7 @@ from copy import deepcopy
 
 from matplotlib import pyplot
 from matplotlib.colors import ListedColormap
-from mpl_toolkits.mplot3d import Axes3D
+#from mpl_toolkits.mplot3d import Axes3D
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -38,7 +38,7 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 from torch.autograd import Variable
 from torch.backends import cudnn
-import torchviz as tw
+# import torchviz as tw
 import matplotlib.pyplot as plt
 from src import n2n
 from src.custom_arch import *
@@ -47,7 +47,7 @@ from src.group_lasso_regs import get_group_lasso_global, get_group_lasso_group
 from src.utils import AverageMeter, accuracy
 # from apex.parallel import DistributedDataParallel as DDP
 # from apex.apex.fp16_utils import *
-from apex import amp, optimizers
+# from apex import amp, optimizers
 # from apex.apex.multi_tensor_apply import multi_tensor_applier
 import platform, psutil
 
