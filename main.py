@@ -307,7 +307,8 @@ def main():
         best_acc = checkpoint['best_acc']
         start_epoch = checkpoint['epoch'] + 1
         try:
-            mm = model.load_state_dict(checkpoint['state_dict'])
+            abc = nn.Module
+            mm = abc.load_state_dict(checkpoint['state_dict'])
         except RuntimeError:
             print(mm)
         optimizer.load_state_dict(checkpoint['optimizer'])
