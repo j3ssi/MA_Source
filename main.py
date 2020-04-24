@@ -24,6 +24,7 @@ import matplotlib
 import numpy as np
 from torch.nn.utils import clip_grad_norm_
 
+from prunetrain.src.cifar import save_checkpoint
 from src.mem_reporter import *
 from copy import deepcopy
 
@@ -44,7 +45,7 @@ from src import n2n
 from src.custom_arch import *
 from src.checkpoint_utils import makeSparse, genDenseModel
 from src.group_lasso_regs import get_group_lasso_global, get_group_lasso_group
-from src.utils import AverageMeter, accuracy
+from src.utils import AverageMeter, accuracy, mkdir_p, Logger
 # from apex.parallel import DistributedDataParallel as DDP
 # from apex.apex.fp16_utils import *
 # from apex import amp, optimizers
@@ -59,6 +60,8 @@ parser.add_argument('-j', '--workers', default=4, type=int, metavar='N',
                     help='number of data loading workers (default: 4)')
 parser.add_argument('--epochs', default=8, type=int, metavar='N',
                     help='number of total epochs to run')
+parser.add_argument('--start-epoch', default=1, type=int, metavar='N',
+                    help='manual epoch number (useful on restarts)')
 parser.add_argument('--test_batch', default=100, type=int, metavar='N',
                     help='test batchsize')
 parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
@@ -70,7 +73,13 @@ parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
                     help='momentum')
 parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')
+parser.add_argument('-c', '--checkpoint', default='checkpoint', type=str, metavar='PATH',
+                    help='path to save checkpoint (default: checkpoint)')
+parser.add_argument('--resume', default='', type=str, metavar='PATH',
+                    help='path to latest checkpoint (default: none)')
 parser.add_argument('--manualSeed', type=int, help='manual seed')
+parser.add_argument('-e', '--evaluate', dest='evaluate', action='store_true',
+                    help='evaluate model on validation set')
 parser.add_argument('--gpu_id', default='2', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
 parser.add_argument('-s', '--numOfStages', default=3, type=int, help='defines the number of stages in the network')
 # parser.add_argument('-n', '--numOfBlocksinStage', type=int, default=5, help='defines the number of Blocks per Stage')
@@ -81,6 +90,8 @@ parser.add_argument('-b', '--bottleneck', default=False, action='store_true',
 
 # PruneTrain
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
+parser.add_argument('--save_checkpoint', default=10, type=int,
+                    help='Interval to save checkpoint')
 parser.add_argument('--sparse_interval', default=0, type=int,
                     help='Interval to force the value under threshold')
 parser.add_argument('--threshold', default=0.0001, type=float,
@@ -116,7 +127,6 @@ parser.add_argument('--cifar100', default=False, action='store_true',
 # N2N
 parser.add_argument('--deeper', default=False, action='store_true',
                     help='Make network deeper')
-
 parser.add_argument('--visual', default=False, action='store_true',
                     help='Set the visual')
 parser.add_argument('--O1', default=False, action='store_true',
@@ -156,6 +166,11 @@ device = torch.device(dev)
 
 
 def main():
+    # checkpoint
+    if not os.path.isdir(args.checkpoint):
+        mkdir_p(args.checkpoint)
+
+
     # large batch
     if args.regime_bb_fix and args.largeBatch:
         args.epochs *= torch.ceil(args.batch_size / args.mini_batch_size)
@@ -164,7 +179,7 @@ def main():
         args.lr *= (args.batch_size / args.mini_batch_size) ** 0.5
     # if args.regime_bb_fix and args.largeBatch:
     #     e *= torch.ceil(args.batch_size / args.mini_batch_size)
-    torch.backends.cudnn.deterministic = True
+    # torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = True
     # choose which gpu to use
     # not_enough_memory = True
@@ -257,12 +272,10 @@ def main():
         dataloader = datasets.CIFAR100
         num_classes = 100
     dataset = not ((not args.cifar10 and not args.cifar100) or (args.cifar10 and args.cifar100))
-    # print(f'{not args.cifar10 and not args.cifar100}' or {args.cifar10 and args.cifar100})
     assert dataset, "kein gültiger Datensatz angegeben"
 
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
 
-    # trainloader = data.DataLoader(trainset, batch_size=args.batch_size, shuffle=True, num_workers=args.workers)
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
@@ -273,6 +286,31 @@ def main():
     model.to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+
+    if args.resume:
+        # Load checkpoint.
+        print('==> Resuming from checkpoint..')
+        assert os.path.isfile(args.resume), 'Error: no checkpoint directory found!'
+        args.checkpoint = os.path.dirname(args.resume)
+        checkpoint = torch.load(args.resume)
+        best_acc = checkpoint['best_acc']
+        start_epoch = checkpoint['epoch'] + 1
+        model.load_state_dict(checkpoint['state_dict'])
+        optimizer.load_state_dict(checkpoint['optimizer'])
+        logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
+    else:
+        logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
+        logger.set_names(
+            ['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.', 'Lasso/Full_loss', 'TrainEpochTime(s)',
+             'TestEpochTime(s)'])
+
+    if args.evaluate:
+        print('\nEvaluation only')
+        test_loss, test_acc = test(testloader, model, criterion, start_epoch, use_cuda)
+        print(' Test Loss:  %.8f, Test Acc:  %.2f' % (test_loss, test_acc))
+        return
+
+
     if args.O1:
         model, optimizer = amp.initialize(model, optimizer, opt_level="O1")
     if args.O2:
@@ -322,6 +360,11 @@ def main():
 
             if args.test:
                 test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
+
+            # append logger file
+            logger.append([state['lr'], train_loss, test_loss, train_acc, test_acc, lasso_ratio, train_epoch_time,
+                           test_epoch_time])
+
             # i = 2
             # SparseTrain routine
             if args.en_group_lasso and (epoch % args.sparse_interval == 0) and not (epoch == args.epochs) :
@@ -374,10 +417,36 @@ def main():
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
             # print("\n Verhältnis Modell Größe: ", count / count0)
+
+            # save model
+            is_best = test_acc > best_acc
+            best_acc = max(test_acc, best_acc)
+
+            print("[INFO] Storing checkpoint...")
+            save_checkpoint({
+                'epoch': epoch,
+                'state_dict': model.state_dict(),
+                'acc': test_acc,
+                'best_acc': best_acc,
+                'optimizer': optimizer.state_dict(), },
+                is_best,
+                checkpoint=args.checkpoint)
+            # Leave unique checkpoint of pruned models druing training
+            if epoch % args.save_checkpoint == 0:
+                save_checkpoint({
+                    'epoch': epoch,
+                    'state_dict': model.state_dict(),
+                    'acc': test_acc,
+                    'best_acc': best_acc,
+                    'optimizer': optimizer.state_dict(), },
+                    is_best,
+                    checkpoint=args.checkpoint,
+                    filename='checkpoint' + str(epoch) + '.tar')
+
         i = 2
 
-    print("\n ",
-          args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
+    logger.close()
+    print("\n ",args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
     if args.test:
         print(" ", test_acc)
 
