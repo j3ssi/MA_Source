@@ -90,6 +90,8 @@ parser.add_argument('-l', '--layersInBlock', type=int, default=3, help='defines 
 parser.add_argument('-n', type=str, help="#stage numbers separated by commas")
 parser.add_argument('-b', '--bottleneck', default=False, action='store_true',
                     help='Set the bootleneck parameter')
+parser.add_argument('--lastEpoch', default=False, action='store_true',
+                    help='Last Epoch')
 
 # PruneTrain
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
@@ -374,7 +376,7 @@ def main():
 
             # i = 2
             # SparseTrain routine
-            if args.en_group_lasso and (epoch % args.sparse_interval == 0) and not (epoch == args.epochs) :
+            if args.en_group_lasso and (epoch % args.sparse_interval == 0) and not args.lastEpoch:
                 # Force weights under threshold to zero
                 dense_chs, chs_map = makeSparse(optimizer, model, args.threshold)
                 if args.visual:
