@@ -169,7 +169,7 @@ device = torch.device(dev)
 best_acc = 0  # best test accuracy
 
 def main():
-    
+
     global best_acc
 
     # checkpoint

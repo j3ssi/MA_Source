@@ -3,7 +3,7 @@ import os
 def main():
 
     s = 3
-    for i in range(0,4):
+    for i in range(0,1):
         for j in range(0, 36):
             cmdLine = 'python3 main.py '
             cmdLine = cmdLine + '--workers 0 --checkpoint ./output/prune1 --test --epochs 5 --cifar10 --gpu_id 2 '
