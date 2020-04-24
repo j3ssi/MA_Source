@@ -165,7 +165,7 @@ def main():
     # if args.regime_bb_fix and args.largeBatch:
     #     e *= torch.ceil(args.batch_size / args.mini_batch_size)
     torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.benchmark = True
     # choose which gpu to use
     # not_enough_memory = True
     use_gpu = 'cuda:1'
