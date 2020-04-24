@@ -65,6 +65,8 @@ parser.add_argument('--start-epoch', default=1, type=int, metavar='N',
 parser.add_argument('--epochsFromBegin', default=0, type=int, metavar='N',
                     help='number of Epochs from begin (default: 0)')
 
+
+
 parser.add_argument('--test_batch', default=100, type=int, metavar='N',
                     help='test batchsize')
 parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
