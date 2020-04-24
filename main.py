@@ -169,6 +169,9 @@ device = torch.device(dev)
 best_acc = 0  # best test accuracy
 
 def main():
+    
+    global best_acc
+
     # checkpoint
     if not os.path.isdir(args.checkpoint):
         mkdir_p(args.checkpoint)
