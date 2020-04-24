@@ -291,6 +291,7 @@ def main():
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
     # dynamic resnet modell
+
     assert args.numOfStages == len(listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
     model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck)
     model.to(device)
@@ -307,8 +308,7 @@ def main():
         best_acc = checkpoint['best_acc']
         start_epoch = checkpoint['epoch'] + 1
         try:
-            abc = nn.Module
-            mm = abc.load_state_dict(checkpoint['state_dict'])
+            mm = model.load_state_dict(checkpoint['state_dict'])
         except RuntimeError:
             print(mm)
         optimizer.load_state_dict(checkpoint['optimizer'])

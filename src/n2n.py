@@ -568,6 +568,11 @@ class N2N(nn.Module):
             print("Linear")
         return x
 
+    def resnet32(**kwargs):
+        model = N2N(**kwargs)
+        return model
+
+
     def delete(self, model, index):
         printNet = True
         print(f'Index1: {index}')
