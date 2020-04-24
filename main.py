@@ -24,7 +24,7 @@ import matplotlib
 import numpy as np
 from torch.nn.utils import clip_grad_norm_
 
-from prunetrain.src.cifar import save_checkpoint
+from gitignore.cifar import save_checkpoint
 from src.mem_reporter import *
 from copy import deepcopy
 
