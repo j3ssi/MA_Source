@@ -61,6 +61,9 @@ parser.add_argument('--epochs', default=8, type=int, metavar='N',
                     help='number of total epochs to run')
 parser.add_argument('--start-epoch', default=1, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
+parser.add_argument('--epochsFromBegin', default=0, type=int, metavar='N',
+                    help='number of Epochs from begin (default: 0)')
+
 parser.add_argument('--test_batch', default=100, type=int, metavar='N',
                     help='test batchsize')
 parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
@@ -286,6 +289,7 @@ def main():
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
 
+    title = 'prune' + args.epochsFromBegin
     if args.resume:
         # Load checkpoint.
         print('==> Resuming from checkpoint..')
