@@ -195,9 +195,9 @@ def main():
         best_acc = checkpoint['best_acc']
         start_epoch = checkpoint['epoch'] +1
         try:
-            model.load_state_dict(checkpoint['state_dict'])
+            mm = model.load_state_dict(checkpoint['state_dict'])
         except RuntimeError:
-            print(model.load_state_dict(checkpoint['state_dict']))
+            print(mm)
         optimizer.load_state_dict(checkpoint['optimizer'])
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     else:
