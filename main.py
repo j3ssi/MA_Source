@@ -166,6 +166,7 @@ grp_lasso_coeff = 0
 dev = "cuda:0"
 device = torch.device(dev)
 
+best_acc = 0  # best test accuracy
 
 def main():
     # checkpoint
