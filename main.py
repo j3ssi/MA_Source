@@ -24,7 +24,6 @@ import matplotlib
 import numpy as np
 from torch.nn.utils import clip_grad_norm_
 
-from gitignore.cifar import save_checkpoint
 from src.mem_reporter import *
 from copy import deepcopy
 
@@ -793,6 +792,14 @@ def checkmem(use_gpu):
     free = int(free)
     # print(use_gpu, 'Total GPU mem:', total, 'used:', used)
     return total, used, free
+
+
+
+def save_checkpoint(state, is_best, checkpoint='checkpoint', filename='checkpoint.pth.tar'):
+    filepath = os.path.join(checkpoint, filename)
+    torch.save(state, filepath)
+    if is_best:
+        shutil.copyfile(filepath, os.path.join(checkpoint, 'model_best.pth.tar'))
 
 
 if __name__ == '__main__':
