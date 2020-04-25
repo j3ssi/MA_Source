@@ -306,6 +306,7 @@ def main():
         checkpoint = torch.load(args.resume)
         best_acc = checkpoint['best_acc']
         start_epoch = checkpoint['epoch'] + 1
+        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
         optimizer.load_state_dict(checkpoint['optimizer'])
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     else:
