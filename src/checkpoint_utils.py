@@ -333,7 +333,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
                             j = j + 1
                             i = i + 1
                     else:
-                       break
+                       i = arch +1
         print(f'RM List nachher: {rm_list}')
         for name in reversed(rm_list):
             # delete module from moduleList
