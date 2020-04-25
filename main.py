@@ -292,7 +292,7 @@ def main():
 
     # dynamic resnet modell
 
-    optimizer = None
+    optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
 
     title = 'prune' + str(args.epochsFromBegin)
     if args.resume:
