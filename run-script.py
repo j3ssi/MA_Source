@@ -10,7 +10,7 @@ def main():
             cmdLine = cmdLine + ' --threshold 0.01  --en_group_lasso --batchTrue --batch_size 128 --sparse_interval 5 '
             cmdLine = cmdLine + ' --var_group_lasso_coeff 0.2 --test_batch 100 -s ' + str(s) + ' -n 5,5,5 -l 2 '
             cmdLine = cmdLine + ' --gpu_id 2 --cifar10 --learning-rate 0.1 --sparse_interval 5  --learning-rate 0.1 '
-            cmdLine = cmdLine + ' --epochsFromBegin ' + str(j*5)
+            cmdLine = cmdLine + ' --epochsFromBegin ' + str(j*5) + ' --pathToModell ./output/prune1/model.nn '
             if(j>0):
                 cmdLine = cmdLine + ' --resume ./output/prune1/checkpoint.pth.tar'
 
@@ -21,7 +21,7 @@ def main():
         cmdLine = cmdLine + ' --threshold 0.01  --en_group_lasso --batchTrue --batch_size 128 --sparse_interval 5 '
         cmdLine = cmdLine + ' --var_group_lasso_coeff 0.2 --test_batch 100 -s ' + str(s) + ' -n 5,5,5 -l 2 --lastEpoch'
         cmdLine = cmdLine + ' --gpu_id 2 --cifar10 --learning-rate 0.1 --sparse_interval 5  --learning-rate 0.1 '
-        cmdLine = cmdLine + ' --epochsFromBegin ' + str(j * 5)
+        cmdLine = cmdLine + ' --epochsFromBegin ' + str(j * 5) + ' --pathToModell ./output/prune1/model.nn '
         print(cmdLine)
         os.system(cmdLine)
 

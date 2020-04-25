@@ -94,7 +94,7 @@ parser.add_argument('-b', '--bottleneck', default=False, action='store_true',
                     help='Set the bootleneck parameter')
 parser.add_argument('--lastEpoch', default=False, action='store_true',
                     help='Last Epoch')
-
+parser.add_argument('--pathToModell', type=str, help='Path to the location where the model will be stored')
 # PruneTrain
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
 parser.add_argument('--save_checkpoint', default=10, type=int,
@@ -292,14 +292,13 @@ def main():
 
     # dynamic resnet modell
 
-    assert args.numOfStages == len(listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
-    model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck)
-    model.to(device)
-    criterion = nn.CrossEntropyLoss()
-    optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+    optimizer = None
 
     title = 'prune' + str(args.epochsFromBegin)
     if args.resume:
+        model = torch.load(args.pathToModell)
+        model.to(device)
+        criterion = nn.CrossEntropyLoss()
         # Load checkpoint.
         print('==> Resuming from checkpoint..')
         assert os.path.isfile(args.resume), 'Error: no checkpoint directory found!'
@@ -307,10 +306,6 @@ def main():
         checkpoint = torch.load(args.resume)
         best_acc = checkpoint['best_acc']
         start_epoch = checkpoint['epoch'] + 1
-        try:
-            mm = model.load_state_dict(checkpoint['state_dict'])
-        except RuntimeError:
-            print(mm)
         optimizer.load_state_dict(checkpoint['optimizer'])
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     else:
@@ -318,6 +313,13 @@ def main():
         logger.set_names(
             ['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.', 'Lasso/Full_loss', 'TrainEpochTime(s)',
              'TestEpochTime(s)'])
+        assert args.numOfStages == len(listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
+        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck)
+        model.to(device)
+        criterion = nn.CrossEntropyLoss()
+        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+
+
 
     if args.evaluate:
         print('\nEvaluation only')
@@ -459,7 +461,7 @@ def main():
                     filename='checkpoint' + str(epoch) + '.tar')
 
         i = 2
-
+    torch.save(model, args.pathToModell)
     logger.close()
     print("\n ",args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
     if args.test:
