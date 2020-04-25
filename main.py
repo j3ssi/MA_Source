@@ -30,7 +30,7 @@ from copy import deepcopy
 
 from matplotlib import pyplot
 from matplotlib.colors import ListedColormap
-#from mpl_toolkits.mplot3d import Axes3D
+# from mpl_toolkits.mplot3d import Axes3D
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -52,7 +52,6 @@ from src.utils import AverageMeter, accuracy, mkdir_p, Logger
 # from apex.apex.multi_tensor_apply import multi_tensor_applier
 import platform, psutil
 
-
 # Parser
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 # Baseline
@@ -64,8 +63,6 @@ parser.add_argument('--start-epoch', default=1, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
 parser.add_argument('--epochsFromBegin', default=0, type=int, metavar='N',
                     help='number of Epochs from begin (default: 0)')
-
-
 
 parser.add_argument('--test_batch', default=100, type=int, metavar='N',
                     help='test batchsize')
@@ -173,14 +170,13 @@ device = torch.device(dev)
 
 best_acc = 0  # best test accuracy
 
-def main():
 
+def main():
     global best_acc
 
     # checkpoint
     if not os.path.isdir(args.checkpoint):
         mkdir_p(args.checkpoint)
-
 
     # large batch
     if args.regime_bb_fix and args.largeBatch:
@@ -292,8 +288,8 @@ def main():
 
     # dynamic resnet modell
 
-
     title = 'prune' + str(args.epochsFromBegin)
+
     if args.resume:
         model = torch.load(args.pathToModell)
         model.to(device)
@@ -313,20 +309,18 @@ def main():
         logger.set_names(
             ['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.', 'Lasso/Full_loss', 'TrainEpochTime(s)',
              'TestEpochTime(s)'])
-        assert args.numOfStages == len(listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
+        assert args.numOfStages == len(
+            listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
         model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck)
         model.to(device)
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
-
-
 
     if args.evaluate:
         print('\nEvaluation only')
         test_loss, test_acc = test(testloader, model, criterion, start_epoch, use_cuda)
         print(' Test Loss:  %.8f, Test Acc:  %.2f' % (test_loss, test_acc))
         return
-
 
     if args.O1:
         model, optimizer = amp.initialize(model, optimizer, opt_level="O1")
@@ -369,7 +363,7 @@ def main():
             if epoch in args.schedule:
                 adjust_learning_rate(optimizer, epoch)
 
-            print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs, state['lr']))
+            print('\nEpoch: [%d | %d] LR: %f' % (epoch + args.epochsFromBegin, args.epochs, state['lr']))
             start = time.time()
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion,
                                                                          optimizer, epoch, use_cuda)
@@ -392,7 +386,8 @@ def main():
 
                 genDenseModel(model, dense_chs, optimizer, 'cifar')
                 gc.collect()
-                model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, False, model, model.archNums)
+                model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, False, model,
+                                model.archNums)
                 # use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
                 # print(f'use after new Model Creation')
                 model.to(device)
@@ -463,7 +458,8 @@ def main():
         i = 2
     torch.save(model, args.pathToModell)
     logger.close()
-    print("\n ",args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
+    print("\n ",
+          args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
     if args.test:
         print(" ", test_acc)
 
@@ -595,8 +591,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                       'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
                       'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
                       'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
-                      epoch, batch_idx, len(trainloader), batch_time=batch_time,
-                      data_time=data_time, loss=losses, top1=top1, top5=top5))
+                    epoch + args.epochsFromBegin, batch_idx, len(trainloader), batch_time=batch_time,
+                    data_time=data_time, loss=losses, top1=top1, top5=top5))
     # print(f'For fertig!!')
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
     return losses.avg, top1.avg, lasso_ratio.avg, epoch_time
@@ -803,14 +799,13 @@ def visualizePruneTrain(model, epoch, threshold):
 
 def checkmem(use_gpu):
     total, used, free = \
-    os.popen('"nvidia-smi" --query-gpu=memory.total,memory.used,memory.free --format=csv,nounits,noheader'
-             ).read().split('\n')[use_gpu].split(',')
+        os.popen('"nvidia-smi" --query-gpu=memory.total,memory.used,memory.free --format=csv,nounits,noheader'
+                 ).read().split('\n')[use_gpu].split(',')
     total = int(total)
     used = int(used)
     free = int(free)
     # print(use_gpu, 'Total GPU mem:', total, 'used:', used)
     return total, used, free
-
 
 
 def save_checkpoint(state, is_best, checkpoint='checkpoint', filename='checkpoint.pth.tar'):
