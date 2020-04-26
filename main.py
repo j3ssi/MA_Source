@@ -244,7 +244,7 @@ def main():
     #         time.sleep(600)
     use_cuda = torch.cuda.is_available()
 
-    os.environ['CUDA_VISIBLE_DEVICES'] = str(use_gpu_num)
+    os.environ['CUDA_VISIBLE_DEVICES'] = str(args.gpu_id)
     # Random seed
     if args.manualSeed is None:
         args.manualSeed = random.randint(1, 10000)
