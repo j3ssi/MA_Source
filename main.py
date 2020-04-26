@@ -186,6 +186,8 @@ def main():
     #     args.lr *= (args.batch_size / args.mini_batch_size) ** 0.5
     # if args.regime_bb_fix and args.largeBatch:
     #     e *= torch.ceil(args.batch_size / args.mini_batch_size)
+
+    # torch
     # torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = True
     # choose which gpu to use
@@ -194,7 +196,11 @@ def main():
     #use_gpu_num = 1
     # cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+    use_cuda = torch.cuda.is_available()
+    os.environ['CUDA_VISIBLE_DEVICES'] = str(args.gpu_id)
 
+
+    # choose gpu
     # if int(args.gpu_id) < 5:
     #     gpu_id = args.gpu_id
     #     not_enough_memory = False
@@ -243,9 +249,7 @@ def main():
     #         break
     #     if not_enough_memory:
     #         time.sleep(600)
-    use_cuda = torch.cuda.is_available()
 
-    os.environ['CUDA_VISIBLE_DEVICES'] = str(args.gpu_id)
     # Random seed
     if args.manualSeed is None:
         args.manualSeed = random.randint(1, 10000)
@@ -324,14 +328,13 @@ def main():
         print(' Test Loss:  %.8f, Test Acc:  %.2f' % (test_loss, test_acc))
         return
 
-    if args.O1:
-        model, optimizer = amp.initialize(model, optimizer, opt_level="O1")
-    if args.O2:
-        model, optimizer = amp.initialize(model, optimizer, opt_level="O2")
-    if args.O3:
-        model, optimizer = amp.initialize(model, optimizer, opt_level="O3")
+    # if args.O1:
+    #     model, optimizer = amp.initialize(model, optimizer, opt_level="O1")
+    # if args.O2:
+    #     model, optimizer = amp.initialize(model, optimizer, opt_level="O2")
+    # if args.O3:
+    #     model, optimizer = amp.initialize(model, optimizer, opt_level="O3")
 
-    start = time.time()
 
     # Count the parameters of the model and calculate training bacth size
     count0 = 0
@@ -360,12 +363,12 @@ def main():
     i = 1
     # for epochNet2Net in range(1, 4):
     while i == 1:
-        for epoch in range(1, args.epochs + 1):
+        for epoch in range(start_epoch, args.epochs + start_epoch):
             # adjust learning rate when epoch is the scheduled epoch
             if epoch in args.schedule:
                 adjust_learning_rate(optimizer, epoch)
 
-            print('\nEpoch: [%d | %d] LR: %f' % (epoch + args.epochsFromBegin, args.epochs, state['lr']))
+            print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs + start_epoch, state['lr']))
             start = time.time()
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion,
                                                                          optimizer, epoch, use_cuda)
@@ -387,7 +390,7 @@ def main():
                     visualizePruneTrain(model, epoch, args.threshold)
 
                 genDenseModel(model, dense_chs, optimizer, 'cifar')
-                gc.collect()
+                # gc.collect()
                 model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, False, model,
                                 model.archNums)
                 # use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
@@ -422,7 +425,7 @@ def main():
             # # print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
             #
 
-            if (args.deeper):
+            if args.deeper:
                 print("\n\nnow deeper")
                 # deeper student training
                 model = n2n.deeper(model, optimizer, [2, 4])
@@ -438,7 +441,7 @@ def main():
 
             print("[INFO] Storing checkpoint...")
             save_checkpoint({
-                'epoch': epoch,
+                'epoch': args.epochs + start_epoch,
                 'acc': test_acc,
                 'best_acc': best_acc,
                 'optimizer': optimizer.state_dict(), },
@@ -447,7 +450,7 @@ def main():
             # Leave unique checkpoint of pruned models druing training
             if epoch % args.save_checkpoint == 0:
                 save_checkpoint({
-                    'epoch': epoch,
+                    'epoch': args.epochs + start_epoch,
                     'acc': test_acc,
                     'best_acc': best_acc,
                     'optimizer': optimizer.state_dict(), },
@@ -491,7 +494,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         data_time.update(time.time() - end)
         data_load_time = time.time() - end
 
-        optimizer.zero_grad()
+        # optimizer.zero_grad()
 
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
@@ -591,7 +594,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                       'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
                       'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
                       'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
-                    epoch + args.epochsFromBegin, batch_idx, len(trainloader), batch_time=batch_time,
+                    epoch, batch_idx, len(trainloader), batch_time=batch_time,
                     data_time=data_time, loss=losses, top1=top1, top5=top5))
     # print(f'For fertig!!')
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
