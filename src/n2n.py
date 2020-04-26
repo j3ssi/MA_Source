@@ -472,7 +472,6 @@ class N2N(nn.Module):
 
                             # relu
                             x = self.relu(x)
-                            firstBlockInStage = False
                         elif ((i + 1) % layerInThisBlock == 0) and firstBlockInStage and notfirstLayer:
                             # conv
                             _x = self.module_list[j](_x)
@@ -526,6 +525,7 @@ class N2N(nn.Module):
                             j = j + 1
                             x = self.relu(x)
                             i = i + 1
+                    firstBlockInStage = False
                     notfirstLayer = True
         # except RuntimeError:
         #     print(f'Except')
