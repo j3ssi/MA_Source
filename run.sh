@@ -2,28 +2,28 @@
 
 source venv/bin/activate
 
-# j: 0 bis 5
+echo "j: 0 bis 5"
 python3 main.py -j 2 --checkpoint ./output/prune1 --epochs 5  -s 3 -l 2 -n 5,5,5 --cifar10 --test --sparse_interval 5 --threshold 0.001 --en_group_lasso --batchTrue --batch_size 64 --gpu_id 0  --var_group_lasso_coeff 0.2 --test_batch 200 --epochsFromBegin 0 --pathToModell ./output/prune1/model.nn
 
-# j: 6 bis 10
+echo "j: 6 bis 10"
 python3 main.py -j 2 --checkpoint ./output/prune1 --epochs 5  -s 3 -l 2 -n 5,5,5 --cifar10 --test --sparse_interval 5 --threshold 0.001 --en_group_lasso --batchTrue --batch_size 64 --gpu_id 0  --var_group_lasso_coeff 0.2 --test_batch 200 --epochsFromBegin 5 --pathToModell ./output/prune1/model.nn --resume ./output/prune1/checkpoint.pth.tar
 
-# j: 11 bis 15
+echo "j: 11 bis 15"
 python3 main.py -j 2 --checkpoint ./output/prune1 --epochs 5  -s 3 -l 2 -n 5,5,5 --cifar10 --test --sparse_interval 5 --threshold 0.001 --en_group_lasso --batchTrue --batch_size 64 --gpu_id 0  --var_group_lasso_coeff 0.2 --test_batch 200 --epochsFromBegin 10 --pathToModell ./output/prune1/model.nn --resume ./output/prune1/checkpoint.pth.tar
 
-# j: 16 bis 20
+echo "j: 16 bis 20"
 python3 main.py -j 2 --checkpoint ./output/prune1 --epochs 5  -s 3 -l 2 -n 5,5,5 --cifar10 --test --sparse_interval 5 --threshold 0.001 --en_group_lasso --batchTrue --batch_size 64 --gpu_id 0  --var_group_lasso_coeff 0.2 --test_batch 200 --epochsFromBegin 15 --pathToModell ./output/prune1/model.nn --resume ./output/prune1/checkpoint.pth.tar
 
-# j: 21 bis 25
+echo "j: 21 bis 25"
 python3 main.py -j 2 --checkpoint ./output/prune1 --epochs 5  -s 3 -l 2 -n 5,5,5 --cifar10 --test --sparse_interval 5 --threshold 0.001 --en_group_lasso --batchTrue --batch_size 64 --gpu_id 0  --var_group_lasso_coeff 0.2 --test_batch 200 --epochsFromBegin 20 --pathToModell ./output/prune1/model.nn --resume ./output/prune1/checkpoint.pth.tar
 
-# j: 26 bis 30
+echho "j: 26 bis 30"
 python3 main.py -j 2 --checkpoint ./output/prune1 --epochs 5  -s 3 -l 2 -n 5,5,5 --cifar10 --test --sparse_interval 5 --threshold 0.001 --en_group_lasso --batchTrue --batch_size 64 --gpu_id 0  --var_group_lasso_coeff 0.2 --test_batch 200 --epochsFromBegin 25 --pathToModell ./output/prune1/model.nn --resume ./output/prune1/checkpoint.pth.tar
 
-# j: 31 bis 35
+echo "j: 31 bis 35"
 python3 main.py -j 2 --checkpoint ./output/prune1 --epochs 5  -s 3 -l 2 -n 5,5,5 --cifar10 --test --sparse_interval 5 --threshold 0.001 --en_group_lasso --batchTrue --batch_size 64 --gpu_id 0  --var_group_lasso_coeff 0.2 --test_batch 200 --epochsFromBegin 30 --pathToModell ./output/prune1/model.nn --resume ./output/prune1/checkpoint.pth.tar
 
-# j: 36 bis 40
+echo "j: 36 bis 40"
 python3 main.py -j 2 --checkpoint ./output/prune1 --epochs 5  -s 3 -l 2 -n 5,5,5 --cifar10 --test --sparse_interval 5 --threshold 0.001 --en_group_lasso --batchTrue --batch_size 64 --gpu_id 0  --var_group_lasso_coeff 0.2 --test_batch 200 --epochsFromBegin 35 --pathToModell ./output/prune1/model.nn --resume ./output/prune1/checkpoint.pth.tar
 
 # j: 41 bis 45
