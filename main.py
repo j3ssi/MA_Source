@@ -357,7 +357,7 @@ def main():
     else:
         batch_size = args.batch_size
 
-    trainloader = data.DataLoader(trainset, batch_size=batch_size,
+    trainloader = data.DataLoader(trainset, batch_size=batch_size, pin_memory=True,
                                   shuffle=True, num_workers=args.workers)
 
     i = 1
