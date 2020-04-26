@@ -179,11 +179,11 @@ def main():
         mkdir_p(args.checkpoint)
 
     # large batch
-    if args.regime_bb_fix and args.largeBatch:
-        args.epochs *= torch.ceil(args.batch_size / args.mini_batch_size)
-
-    if args.lr_bb_fix and args.largeBatch:
-        args.lr *= (args.batch_size / args.mini_batch_size) ** 0.5
+    # if args.regime_bb_fix and args.largeBatch:
+    #     args.epochs *= torch.ceil(args.batch_size / args.mini_batch_size)
+    #
+    # if args.lr_bb_fix and args.largeBatch:
+    #     args.lr *= (args.batch_size / args.mini_batch_size) ** 0.5
     # if args.regime_bb_fix and args.largeBatch:
     #     e *= torch.ceil(args.batch_size / args.mini_batch_size)
     # torch.backends.cudnn.deterministic = True
@@ -293,6 +293,7 @@ def main():
     if args.resume:
         model = torch.load(args.pathToModell)
         model.to(device)
+        print(f'Model: {model}')
         criterion = nn.CrossEntropyLoss()
         # Load checkpoint.
         print('==> Resuming from checkpoint..')
@@ -437,7 +438,6 @@ def main():
             print("[INFO] Storing checkpoint...")
             save_checkpoint({
                 'epoch': epoch,
-                'state_dict': model.state_dict(),
                 'acc': test_acc,
                 'best_acc': best_acc,
                 'optimizer': optimizer.state_dict(), },
@@ -447,7 +447,6 @@ def main():
             if epoch % args.save_checkpoint == 0:
                 save_checkpoint({
                     'epoch': epoch,
-                    'state_dict': model.state_dict(),
                     'acc': test_acc,
                     'best_acc': best_acc,
                     'optimizer': optimizer.state_dict(), },

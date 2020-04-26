@@ -1,7 +1,5 @@
 #!/bin/sh
 
-source venv/bin/activate
-
 echo "j: 0 bis 5"
 python3 main.py -j 2 --checkpoint ./output/prune1 --epochs 5  -s 3 -l 2 -n 5,5,5 --cifar10 --test --sparse_interval 5 --threshold 0.001 --en_group_lasso --batchTrue --batch_size 64 --gpu_id 0  --var_group_lasso_coeff 0.2 --test_batch 200 --epochsFromBegin 0 --pathToModell ./output/prune1/model.nn
 sleep 40
