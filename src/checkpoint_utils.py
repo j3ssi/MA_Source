@@ -58,7 +58,7 @@ def makeSparse(optimizer, model, threshold, reconf=False ):
         if (('conv' in name) or ('fc' in name)) and ('weight' in name):
 
             with torch.no_grad():
-                param = torch.where(param < threshold, torch.tensor(0.).to(device), param)
+                param = torch.where(param < threshold, torch.tensor(0.).cuda(), param)
 
             dense_in_chs, dense_out_chs = [], []
             # param din ==4 -> param is for conv Layer
@@ -229,8 +229,8 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
                 # Generate a new dense tensor and replace (Convolution layer)
                 if len(dims) == 4:
                     print(f'Dims = 4')
-                    new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).to(device)
-                    new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).to(device)
+                    new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
+                    new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
 
                     for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
                         for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
@@ -241,8 +241,8 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
                 # Generate a new dense tensor and replace (FC layer)
                 elif len(dims) == 2:
                     print(f'Dims =2')
-                    new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).to(device)
-                    new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).to(device)
+                    new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
+                    new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
 
                     for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
                         with torch.no_grad():
@@ -264,8 +264,8 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
             dense_out_ch_idxs = dense_chs[w_name]['out_chs']
             num_out_ch = len(dense_out_ch_idxs)
 
-            new_param = Parameter(torch.Tensor(num_out_ch)).to(device)
-            new_mom_param = Parameter(torch.Tensor(num_out_ch)).to(device)
+            new_param = Parameter(torch.Tensor(num_out_ch)).cuda()
+            new_mom_param = Parameter(torch.Tensor(num_out_ch)).cuda()
 
             for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
                 with torch.no_grad():
@@ -287,7 +287,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
             # print("\nW_name2: ", w_name)
             dense_out_ch_idxs = dense_chs[w_name]['out_chs']
             num_out_ch = len(dense_out_ch_idxs)
-            new_buf = Parameter(torch.Tensor(num_out_ch)).to(device)
+            new_buf = Parameter(torch.Tensor(num_out_ch)).cuda()
 
             for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
                 with torch.no_grad():

@@ -292,7 +292,7 @@ def main():
 
     if args.resume:
         model = torch.load(args.pathToModell)
-        model.to(device)
+        model.cuda()
         print(f'Model: {model}')
         criterion = nn.CrossEntropyLoss()
         # Load checkpoint.
@@ -313,7 +313,7 @@ def main():
         assert args.numOfStages == len(
             listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
         model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck)
-        model.to(device)
+        model.cuda()
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
 
@@ -391,7 +391,7 @@ def main():
                                 model.archNums)
                 # use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
                 # print(f'use after new Model Creation')
-                model.to(device)
+                model.cuda()
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
             #     if args.fp16:
@@ -425,7 +425,7 @@ def main():
                 print("\n\nnow deeper")
                 # deeper student training
                 model = n2n.deeper(model, optimizer, [2, 4])
-                model.to(device)
+                model.cuda()
                 criterion = nn.CrossEntropyLoss()
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
@@ -493,7 +493,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         optimizer.zero_grad()
 
         if use_cuda:
-            inputs, targets = inputs.to(device), targets.to(device)
+            inputs, targets = inputs.cuda(), targets.cuda()
         with torch.no_grad():
             inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
@@ -618,7 +618,7 @@ def test(testloader, model, criterion, epoch, use_cuda):
         data_load_time = time.time() - end
         # print(f'Test Variablen; use cuda: {use_cuda}')
         if use_cuda:
-            inputs, targets = inputs.to(device), targets.to(device)
+            inputs, targets = inputs.cuda(), targets.cuda()
         # print(f'Nach if use cuda')
         with torch.no_grad():
             inputs = Variable(inputs)
