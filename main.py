@@ -450,7 +450,7 @@ def main():
             # Leave unique checkpoint of pruned models druing training
             if epoch % args.save_checkpoint == 0:
                 save_checkpoint({
-                    'epoch': args.epochs + start_epoch,
+                    'epoch': args.epochs + start_epoch -1,
                     'acc': test_acc,
                     'best_acc': best_acc,
                     'optimizer': optimizer.state_dict(), },
