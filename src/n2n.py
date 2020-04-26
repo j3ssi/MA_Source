@@ -331,7 +331,7 @@ class N2N(nn.Module):
     def forward(self, x):
         # print(f'ArchNums: {self.archNums}')
         # First layer
-        printNet = False
+        printNet = True
         if printNet:
             print("\nX Shape: ", x.shape)
         # conv1
@@ -567,10 +567,6 @@ class N2N(nn.Module):
             print("\n \n Oops!!!: ")
             print("Linear")
         return x
-
-    def resnet32(**kwargs):
-        model = N2N(**kwargs)
-        return model
 
 
     def delete(self, model, index):
