@@ -363,7 +363,7 @@ def main():
     i = 1
     # for epochNet2Net in range(1, 4):
     while i == 1:
-        for epoch in range(start_epoch, args.epochs + start_epoch):
+        for epoch in range(start_epoch, args.epochs + start_epoch-1):
             # adjust learning rate when epoch is the scheduled epoch
             if epoch in args.schedule:
                 adjust_learning_rate(optimizer, epoch)
