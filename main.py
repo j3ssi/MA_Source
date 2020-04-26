@@ -193,7 +193,8 @@ def main():
     #use_gpu = 'cuda:1'
     #use_gpu_num = 1
     # cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
-    os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+    # os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+
     # if int(args.gpu_id) < 5:
     #     gpu_id = args.gpu_id
     #     not_enough_memory = False
