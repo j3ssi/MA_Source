@@ -560,6 +560,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                         grp_lasso_coeff = float(line)
             print(f'Grp lasso coeff: {grp_lasso_coeff}')
             lasso_penalty = lasso_penalty * grp_lasso_coeff
+            print(f'Lasso Penalty: {lasso_penalty}')
         else:
             lasso_penalty = 0.
             # print(f'nach group lasso')
