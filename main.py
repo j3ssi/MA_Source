@@ -530,7 +530,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             #     dot.render(filename=filename)
 
             loss = criterion(outputs, targets)
-
+            print(f'Loss: {loss}')
         # lasso penalty
         init_batch = batch_idx == 0 and epoch == 1
 
