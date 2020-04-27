@@ -553,13 +553,13 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                     os.makedirs(coeff_dir)
                 with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
                     f_coeff.write(str(grp_lasso_coeff.item()))
+                if printLasso:
+                    print(f'Grp lasso coeff: {grp_lasso_coeff}')
 
             else:
                 with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
                     for line in f_coeff:
                         grp_lasso_coeff = float(line)
-            if printLasso:
-                print(f'Grp lasso coeff: {grp_lasso_coeff}')
             lasso_penalty = lasso_penalty * grp_lasso_coeff
             if printLasso:
                 print(f'Lasso Penalty2: {lasso_penalty}')
