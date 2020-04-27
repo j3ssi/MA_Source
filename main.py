@@ -530,7 +530,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             #     dot.render(filename=filename)
 
             loss = criterion(outputs, targets)
-            print(f'Loss: {loss}')
+            if printLasso:
+                print(f'Loss: {loss}')
         # lasso penalty
         init_batch = batch_idx == 0 and epoch == 1
 
@@ -557,9 +558,11 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
                     for line in f_coeff:
                         grp_lasso_coeff = float(line)
-            print(f'Grp lasso coeff: {grp_lasso_coeff}')
+            if printLasso:
+                print(f'Grp lasso coeff: {grp_lasso_coeff}')
             lasso_penalty = lasso_penalty * grp_lasso_coeff
-            print(f'Lasso Penalty2: {lasso_penalty}')
+            if printLasso:
+                print(f'Lasso Penalty2: {lasso_penalty}')
         else:
             lasso_penalty = 0.
             # print(f'nach group lasso')
