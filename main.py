@@ -482,6 +482,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     top5 = AverageMeter()
     lasso_ratio = AverageMeter()
 
+    printLasso = False
     end = time.time()
 
     # for param in model.parameters():
@@ -521,9 +522,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             clip_grad_norm_(model.parameters(), 5.)
             optimizer.step()
         else:
-            # print(f'Before Forward')
             outputs = model.forward(inputs)
-            # print(f'After Forward')
 
             # if batch_idx == 0:
             #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
@@ -531,9 +530,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             #     dot.render(filename=filename)
 
             loss = criterion(outputs, targets)
-            # print(f'After loss')
 
-            # lasso penalty
+        # lasso penalty
         init_batch = batch_idx == 0 and epoch == 1
 
         if args.en_group_lasso:
@@ -541,7 +539,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 lasso_penalty = get_group_lasso_global(model)
             else:
                 lasso_penalty = get_group_lasso_group(model)
-            print(f'Lasso Penalty1: {lasso_penalty}')
+            if printLasso:
+                print(f'Lasso Penalty1: {lasso_penalty}')
             # Auto-tune the group-lasso coefficient @first training iteration
             coeff_dir = os.path.join(args.coeff_container, 'cifar')
             if init_batch:
