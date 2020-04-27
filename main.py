@@ -364,8 +364,7 @@ def main():
     while i == 1:
         for epoch in range(start_epoch, args.epochs + start_epoch):
             # adjust learning rate when epoch is the scheduled epoch
-            if epoch in args.schedule:
-                adjust_learning_rate(optimizer, epoch)
+            adjust_learning_rate(optimizer, epoch)
 
             print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs + start_epoch-1, state['lr']))
             start = time.time()
@@ -494,8 +493,6 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         data_time.update(time.time() - end)
         data_load_time = time.time() - end
 
-        # optimizer.zero_grad()
-
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
         with torch.no_grad():
@@ -575,6 +572,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         top5.update(prec5.item(), inputs.size(0))
         lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
 
+        optimizer.zero_grad()
         # compute gradient and do SGD step
         if args.O1 or args.O2 or args.O3:
             with amp.scale_loss(loss, optimizer) as scaled_loss:
