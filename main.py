@@ -306,7 +306,7 @@ def main():
         args.checkpoint = os.path.dirname(args.resume)
         checkpoint = torch.load(args.resume)
         best_acc = checkpoint['best_acc']
-        start_epoch = checkpoint['epoch'] + 1
+        start_epoch = checkpoint['epoch'] 
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
         optimizer.load_state_dict(checkpoint['optimizer'])
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
@@ -363,7 +363,7 @@ def main():
     i = 1
     # for epochNet2Net in range(1, 4):
     while i == 1:
-        for epoch in range(start_epoch, args.epochs + start_epoch-1):
+        for epoch in range(start_epoch, args.epochs + start_epoch):
             # adjust learning rate when epoch is the scheduled epoch
             if epoch in args.schedule:
                 adjust_learning_rate(optimizer, epoch)
