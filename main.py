@@ -482,7 +482,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     top5 = AverageMeter()
     lasso_ratio = AverageMeter()
 
-    printLasso = False
+    printLasso = True
     end = time.time()
 
     # for param in model.parameters():
@@ -755,7 +755,7 @@ def visualizePruneTrain(model, epoch, threshold):
                 # ax = fig.add_subplot(111, projection='3d')
                 # ax.scatter(printWeights[0], printWeights[1], printWeights[2])
             # pyplot.legend(bbox_to_anchor=(0, -0.15, 1, 0), loc=2, ncol=2, mode="expand", borderaxespad=0)
-            fileName = altList[a] + '_' + str(epoch) + '.png'
+            fileName = '/img/' + altList[a] + '_' + str(epoch) + '.png'
             pyplot.savefig(fileName)
 
         elif 'bn' in altList[a]:
@@ -773,7 +773,7 @@ def visualizePruneTrain(model, epoch, threshold):
             # ax.set_yticks([])
             # pyplot.imshow(weight[:,0],cmap=my_cmap,vmin=threshold)
             # ix += 1
-            fileName = altList[a] + '_' + str(epoch) + '.png'
+            fileName = '/img/' + altList[a] + '_' + str(epoch) + '.png'
             pyplot.savefig(fileName)
 
         elif 'fc' in altList[a]:
