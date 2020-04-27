@@ -164,7 +164,6 @@ state = {k: v for k, v in args._get_kwargs()}
 
 listofBlocks = [int(i) for i in args.n.split(',')]
 print(listofBlocks)
-grp_lasso_coeff = 0
 # dev = "cuda:0"
 # device = torch.device(dev)
 
