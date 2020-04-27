@@ -154,8 +154,8 @@ def makeSparse(optimizer, model, threshold, reconf=False ):
             if lyr_name in dense_chs:
                 # print ("Output_ch [{}]: {} => {}".format(lyr_name, len(dense_chs[lyr_name]['out_chs']), len(edges)))
                 dense_chs[lyr_name]['out_chs'] = edges
-    # for name in dense_chs:
-    #     print("2: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
+    for name in dense_chs:
+        print("2: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
     return dense_chs, None
 
@@ -357,7 +357,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
         #         print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
 
     # Sanity check => Print out optimizer parameters after change
-    # print("[INFO] ==== Size of parameter group (After)")
+    print("[INFO] ==== Size of parameter group (After)")
     for g in optimizer.param_groups:
         for idx, g2 in enumerate(g['params']):
             print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
