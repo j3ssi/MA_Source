@@ -481,7 +481,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     top5 = AverageMeter()
     lasso_ratio = AverageMeter()
 
-    printLasso = True
+    printLasso = False
     end = time.time()
 
     # for param in model.parameters():
