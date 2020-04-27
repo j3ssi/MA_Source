@@ -368,7 +368,7 @@ def main():
             if epoch in args.schedule:
                 adjust_learning_rate(optimizer, epoch)
 
-            print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs + start_epoch, state['lr']))
+            print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs + start_epoch-1, state['lr']))
             start = time.time()
             train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion,
                                                                          optimizer, epoch, use_cuda)
