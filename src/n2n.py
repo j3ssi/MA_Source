@@ -601,10 +601,10 @@ class N2N(nn.Module):
         module_list = nn.ModuleList()
         deleteModule = True
         for layers in range(0, (len(self.module_list) - 2 * numDelete)):
-            if layers < (2 * k ):
+            if layers < index:
                 module_list.append(self.module_list[layers])
                 print(f'Kopiere {layers}: {module_list[layers]}')
-            elif layers - 2 * numDelete < (2 * k ):
+            elif layers - 2 * numDelete < index:
                 if isinstance(self.module_list[layers], nn.Conv2d) and isinstance(
                         self.module_list[layers + 2 * numDelete], nn.Conv2d):
                     print(f'Shape1: {self.module_list[layers].weight.size()}')
