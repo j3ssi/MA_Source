@@ -611,7 +611,7 @@ class N2N(nn.Module):
                     print(f'Shape1: {self.module_list[layers].weight.size()}')
                     print(f'Shape2: {self.module_list[layers + 2 * numDelete].weight.size()}')
                     inChannels1 = self.module_list[layers].weight.size()[1]
-                    inChannels2 = self.module_list[layers + layers + 2 * numDelete].weight.size()[1]
+                    inChannels2 = self.module_list[ layers + 2 * numDelete].weight.size()[1]
                     outChannels1 = self.module_list[layers].weight.size()[0]
                     outChannels2 = self.module_list[layers + layers + 2 * numDelete].weight.size()[0]
                     if not (inChannels1 == inChannels2) and layers in blockBegin:
