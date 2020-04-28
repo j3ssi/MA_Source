@@ -568,12 +568,11 @@ class N2N(nn.Module):
             print("Linear")
         return x
 
-
     def delete(self, model, index):
-        printNet = True
-        print(f'Index1: {index}')
+        printNet = False
+        # print(f'Index: {index}')
         index1 = int(index / 2 + 1)
-        print(f'Index: {index}')
+        # print(f'Index1: {index1}')
         j = 2
         blockBegin = []
         for stage in range(0, self.numOfStages):
@@ -597,7 +596,8 @@ class N2N(nn.Module):
                         print(f'numDelete: {numDelete}')
                     j = j + 1
                     i = i + 1
-        print(f'K: {k}; k_nn: {2*k-2}')
+        print(f'blockBeginn: {blockBegin}')
+
         module_list = nn.ModuleList()
         deleteModule = True
         thisBlockBeginn = 0
