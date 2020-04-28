@@ -324,6 +324,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
                             elem = indexList[0]
                             indexList.remove(elem)
                             print(f'pop element: {elem}')
+                            print(f'IndexListe: {indexList}')
                             sameBlock =True
                             m = m + 1
                             j = j + 1
