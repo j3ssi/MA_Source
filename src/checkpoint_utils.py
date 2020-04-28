@@ -321,14 +321,16 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
                 while i < arch:
                     if len(indexList)>1:
                         if indexList[0]==j and not sameBlock:
-                            elem = indexList.pop()
+                            elem = indexList[0]
+                            indexList.remove(elem)
                             print(f'pop element: {elem}')
                             sameBlock =True
                             m = m + 1
                             j = j + 1
                             i = i + 1
                         elif indexList[0]==j and sameBlock:
-                            elem = indexList.pop()
+                            elem = indexList[0]
+                            indexList.remove(elem)
                             print(f'pop element2: {elem}')
                             delete = rm_list[m]
                             rm_list.remove(delete)
