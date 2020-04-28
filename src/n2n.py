@@ -317,7 +317,7 @@ class N2N(nn.Module):
             self.module_list.append(avgpool)
             if printName:
                 print("\n self sizeofFC: ", self.sizeOfFC)
-            fc = nn.Linear(module.weight.shape[1], num_classes)
+            fc = nn.Linear(module.weight.shape[0], num_classes)
             if printName:
                 print("\nLinear: ", fc)
             fc.weight.data = module.weight.data
