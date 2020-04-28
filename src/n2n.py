@@ -661,7 +661,10 @@ class N2N(nn.Module):
             self.archNums[stage].remove(0)
             self.module_list = module_list
             self.sameNode = buildShareSameNodeLayers(module_list, self.numOfStages, self.archNums)
+            print(f'sameNode: {self.sameNode}')
             self.stageI, self.StagesO = buildResidualPath(self.module_list, self.numOfStages, self.archNums)
+            print(f'stageI: {self.stageI}')
+            print(f'stageO: {self.stageO}')
         else:
             print(f'Dont delete anything')
         print(self)
