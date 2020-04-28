@@ -941,9 +941,9 @@ def buildResidualPath(module_list, numOfStages, archNums):
             stagesO.append([])
             stagesO[-1].append(layer)
 
-    print(f'stagesI: {stagesI}')
+    # print(f'stagesI: {stagesI}')
 
-    print(f'stagesO: {stagesO}')
+    # print(f'stagesO: {stagesO}')
     return stagesI, stagesO
 
 
@@ -975,5 +975,5 @@ def buildShareSameNodeLayers(module_list, numOfStages, archNums):
             sameNode.append(block)
         firstStage = False
     # print(f'oddLayers: {self.oddLayers}')
-    print("\nSame Node: ", sameNode)
+    # print("\nSame Node: ", sameNode)
     return sameNode, oddLayers

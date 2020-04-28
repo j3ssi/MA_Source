@@ -154,8 +154,8 @@ def makeSparse(optimizer, model, threshold, reconf=False ):
             if lyr_name in dense_chs:
                 # print ("Output_ch [{}]: {} => {}".format(lyr_name, len(dense_chs[lyr_name]['out_chs']), len(edges)))
                 dense_chs[lyr_name]['out_chs'] = edges
-    for name in dense_chs:
-        print("2: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
+    # for name in dense_chs:
+    #    print("2: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
     return dense_chs, None
 
@@ -277,7 +277,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
 
             # print("[{}]: {} >> {}".format(name, dims[0], num_out_ch))
 
-    print(f'Change moving mean and var of BN')
+    # print(f'Change moving mean and var of BN')
     # Change moving_mean and moving_var of BN
     for name, buf in model.named_buffers():
         # print("\nBuffer Name: ", name)
@@ -302,15 +302,15 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
         indexList = []
         j = 2
         m = 0
-        print(f'RM List vorher: {rm_list}')
+        # print(f'RM List vorher: {rm_list}')
 
         for rm in rm_list:
             index = int(rm.split('.')[1].split('v')[1])
             # index = (index - 1) * 2
             indexList.append(index)
-        print(f'indexList: {indexList}')
+        # (f'indexList: {indexList}')
         for stage in range(0, model.numOfStages):
-            print(f'Stage: {stage}')
+            # print(f'Stage: {stage}')
             archNum = model.archNums[stage]
             sameBlock = False
             for block in range(0, len(archNum)):
@@ -343,15 +343,15 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
 
                     else:
                        i = arch +1
-        print(f'RM List nachher: {rm_list}')
+        # print(f'RM List nachher: {rm_list}')
         for name in reversed(rm_list):
             # delete module from moduleList
             index = int(name.split('.')[1].split('v')[1])
             index = (index-1)*2
             module = model.module_list[index]
-            print("\nModule List Length: ", len(model.module_list))
+            # print("\nModule List Length: ", len(model.module_list))
             model.delete(module, index)
-            print("\nModule List Length After Delete: ", len(model.module_list))
+            # print("\nModule List Length After Delete: ", len(model.module_list))
             # i=0
             # for s in range(0, model.numOfStages):
             #     blocks = model.archNums[s]
@@ -366,10 +366,10 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
         #         print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
 
     # Sanity check => Print out optimizer parameters after change
-    print("[INFO] ==== Size of parameter group (After)")
-    for g in optimizer.param_groups:
-        for idx, g2 in enumerate(g['params']):
-            print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
+    # print("[INFO] ==== Size of parameter group (After)")
+    #for g in optimizer.param_groups:
+    #    for idx, g2 in enumerate(g['params']):
+    #        print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
 
 # Sanity check => Check the changed parameters
 # for name, param in model.named_parameters():
