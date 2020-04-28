@@ -311,7 +311,7 @@ class N2N(nn.Module):
                     self.module_list[-1].weight.data = module.weight.data
                 # else:
                 # print('\nelse: ', name)
-            module = module_list[-1]
+            module = self.module_list[-1]
             self.sizeOfFC = module.weight.shape[1]
             avgpool = nn.AdaptiveAvgPool2d((1, 1))
             self.module_list.append(avgpool)
