@@ -572,7 +572,7 @@ class N2N(nn.Module):
     def delete(self, model, index):
         printNet = True
         print(f'Index1: {index}')
-        index = int(index / 2 + 1)
+        index1 = int(index / 2 + 1)
         print(f'Index: {index}')
         j = 2
         blockBegin = []
@@ -600,6 +600,7 @@ class N2N(nn.Module):
         print(f'K: {k}; k_nn: {2*k-2}')
         module_list = nn.ModuleList()
         deleteModule = True
+        thisBlockBeginn = 0
         for layers in range(0, (len(self.module_list) - 2 * numDelete)):
             if layers < index:
                 module_list.append(self.module_list[layers])
