@@ -333,6 +333,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
                             indexList.remove(elem)
                             print(f'pop element2: {elem}')
                             delete = rm_list[m]
+                            print(f'delete: {delete}')
                             rm_list.remove(delete)
                             j = j + 1
                             i = i + 1
