@@ -597,7 +597,7 @@ class N2N(nn.Module):
                         print(f'numDelete: {numDelete}')
                     j = j + 1
                     i = i + 1
-
+        print(f'K: {k}; k_nn: {2*k-2}')
         module_list = nn.ModuleList()
         deleteModule = True
         for layers in range(0, (len(self.module_list) - 2 * numDelete)):

@@ -298,6 +298,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
     - Remove model parameters
     - Remove parameters/states in optimizer
     """
+    rm_list=[ 'module.conv21.weight' ,' module.conv22.weight']
     if len(rm_list) > 0:
         indexList = []
         j = 2
@@ -314,7 +315,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
             archNum = model.archNums[stage]
             sameBlock = False
             for block in range(0, len(archNum)):
-                print(f'Block: {block}')
+                # print(f'Block: {block}')
                 arch = archNum[block]
                 i=0
                 while i < arch:
@@ -322,8 +323,8 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
                         if indexList[0]==j and not sameBlock:
                             elem = indexList[0]
                             indexList.remove(elem)
-                            print(f'pop element: {elem}')
-                            print(f'IndexListe: {indexList}')
+                            # print(f'pop element: {elem}')
+                            # print(f'IndexListe: {indexList}')
                             sameBlock =True
                             m = m + 1
                             j = j + 1
@@ -331,9 +332,9 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
                         elif indexList[0]==j and sameBlock:
                             elem = indexList[0]
                             indexList.remove(elem)
-                            print(f'pop element2: {elem}')
+                            # print(f'pop element2: {elem}')
                             delete = rm_list[m]
-                            print(f'delete: {delete}')
+                            # print(f'delete: {delete}')
                             rm_list.remove(delete)
                             j = j + 1
                             i = i + 1
