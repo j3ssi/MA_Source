@@ -588,12 +588,12 @@ class N2N(nn.Module):
                 k = j
                 layerInThisBlock = archNum[block]
                 while i < layerInThisBlock:
-                    print(f'j: {j}; k: {k}')
+                    # print(f'j: {j}; k: {k}')
                     if j == index1:
                         numDelete = self.archNums[stage][block]
                         stageDelete = stage
                         blockDelete = block
-                        print(f'numDelete: {numDelete}')
+                        # print(f'numDelete: {numDelete}')
                     j = j + 1
                     i = i + 1
         print(f'blockBeginn: {blockBegin}')
@@ -613,7 +613,7 @@ class N2N(nn.Module):
                     inChannels1 = self.module_list[layers].weight.size()[1]
                     inChannels2 = self.module_list[ layers + 2 * numDelete].weight.size()[1]
                     outChannels1 = self.module_list[layers].weight.size()[0]
-                    outChannels2 = self.module_list[layers + layers + 2 * numDelete].weight.size()[0]
+                    outChannels2 = self.module_list[layers + 2 * numDelete].weight.size()[0]
                     if not (inChannels1 == inChannels2) and layers in blockBegin:
                         thisBlockBeginn = layers
                         print(f'InChannels haben nicht die gleiche Dimension')
