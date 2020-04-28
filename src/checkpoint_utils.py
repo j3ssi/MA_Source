@@ -319,7 +319,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
                 arch = archNum[block]
                 i=0
                 while i < arch:
-                    if len(indexList)>1:
+                    if len(indexList)>0:
                         if indexList[0]==j and not sameBlock:
                             elem = indexList[0]
                             indexList.remove(elem)
