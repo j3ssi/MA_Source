@@ -311,12 +311,12 @@ class N2N(nn.Module):
                     self.module_list[-1].weight.data = module.weight.data
                 # else:
                 # print('\nelse: ', name)
-            module = self.module_list[-1]
+            module = self.module_list[-2]
             self.sizeOfFC = module.weight.shape[0]
             avgpool = nn.AdaptiveAvgPool2d((1, 1))
             self.module_list.append(avgpool)
-            if printName:
-                print("\n self sizeofFC: ", self.sizeOfFC)
+            # <if printName:
+            print("\n self sizeofFC: ", self.sizeOfFC)
             fc = nn.Linear(module.weight.shape[0], num_classes)
             if printName:
                 print("\nLinear: ", fc)
