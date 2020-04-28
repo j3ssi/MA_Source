@@ -660,6 +660,8 @@ class N2N(nn.Module):
             self.archNums[stage][block] = 0
             self.archNums[stage].remove(0)
             self.module_list = module_list
+        else:
+            print(f'Dont delete anything')
         print(self)
         return model
 
