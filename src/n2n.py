@@ -660,7 +660,7 @@ class N2N(nn.Module):
             self.archNums[stage][block] = 0
             self.archNums[stage].remove(0)
             self.module_list = module_list
-            self.sameNode = buildShareSameNodeLayers(module_list, self.numOfStages, self.archNums)
+            self.sameNode, self.oddLayers = buildShareSameNodeLayers(module_list, self.numOfStages, self.archNums)
             print(f'sameNode: {self.sameNode}')
             self.stageI, self.StagesO = buildResidualPath(self.module_list, self.numOfStages, self.archNums)
             print(f'stageI: {self.stageI}')
