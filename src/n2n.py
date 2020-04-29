@@ -619,8 +619,8 @@ class N2N(nn.Module):
                         print(f'InChannels haben nicht die gleiche Dimension')
                         deleteModule = False
                         break
-                    if not (outChannels1 == outChannels2) and layers == thisBlockBeginn + numDelete:
-                        print(f'InChannels haben nicht die gleiche Dimension')
+                    if not (outChannels1 == outChannels2) and layers == (thisBlockBeginn + numDelete-1):
+                        print(f'OutChannels haben nicht die gleiche Dimension')
                         deleteModule = False
                         break
                     module_list.append(self.module_list[layers + 2 * numDelete])
@@ -629,7 +629,7 @@ class N2N(nn.Module):
                 else:
                     module_list.append(self.module_list[layers + 2 * numDelete])
                     print(
-                        f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
+                        f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}; ')
             elif layers < len(self.module_list) - 2 * numDelete:
                 if isinstance(self.module_list[layers], nn.Conv2d):
                     print(f'Shape1: {self.module_list[layers].weight.size()}')
@@ -646,7 +646,7 @@ class N2N(nn.Module):
                         outChannels1 = self.module_list[layers].weight.size()[0]
                         outChannels2 = self.module_list[layers + layers + 2 * numDelete - 1].weight.size()[0]
                         if not (outChannels1 == outChannels2):
-                            print(f'InChannels haben nicht die gleiche Dimension')
+                            print(f'OutChannels haben nicht die gleiche Dimension')
                             deleteModule = False
                             break
                     module_list.append(self.module_list[layers + 2 * numDelete])
