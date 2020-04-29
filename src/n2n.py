@@ -657,8 +657,8 @@ class N2N(nn.Module):
                     print(f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]}')
         print(f'archnums vorher: {self.archNums}')
         if deleteModule:
-            self.archNums[stage][block] = 0
-            self.archNums[stage].remove(0)
+            self.archNums[stageDelete][blockDelete] = 0
+            self.archNums[stageDelete].remove(0)
             self.module_list = module_list
             self.sameNode, self.oddLayers = buildShareSameNodeLayers(module_list, self.numOfStages, self.archNums)
             print(f'sameNode: {self.sameNode}')
