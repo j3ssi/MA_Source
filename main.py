@@ -520,15 +520,15 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             optimizer.step()
         else:
             outputs = model.forward(inputs)
+            loss = criterion(outputs, targets)
+            if printLasso:
+                print(f'Loss: {loss}')
 
         if batch_idx == 0 and (epoch % args.sparse_interval == 0):
             dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
             filename = 'model/PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
             dot.render(filename=filename)
 
-            loss = criterion(outputs, targets)
-            if printLasso:
-                print(f'Loss: {loss}')
         # lasso penalty
         init_batch = batch_idx == 0 and epoch == 1
 
