@@ -21,14 +21,11 @@ from torch.nn.parameter import Parameter
 
 from src import n2n
 
-device = torch.device("cuda:0")
-
 """
 Make only the (conv, FC) layer parameters sparse 
 - Match other layers' parameters when reconfiguring network
 - Only work for the flattened networks
 """
-
 
 def makeSparse(optimizer, model, threshold, reconf=False ):
     print("[INFO] Force the sparse filters to zero...")
@@ -154,8 +151,8 @@ def makeSparse(optimizer, model, threshold, reconf=False ):
             if lyr_name in dense_chs:
                 # print ("Output_ch [{}]: {} => {}".format(lyr_name, len(dense_chs[lyr_name]['out_chs']), len(edges)))
                 dense_chs[lyr_name]['out_chs'] = edges
-    # for name in dense_chs:
-    #    print("2: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
+    for name in dense_chs:
+        print("2: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
     return dense_chs, None
 
@@ -361,6 +358,8 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
             #         i = i + blocks[b]
             #         if(index == i):
             #             blocks[b] = blocks[b] - 1
+
+
         # # Sanity check: Print out optimizer parameters before change
         # print("[INFO] ==== Size of parameter group (Before)")
         # for g in optimizer.param_groups:
@@ -369,9 +368,9 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
 
     # Sanity check => Print out optimizer parameters after change
     # print("[INFO] ==== Size of parameter group (After)")
-    #for g in optimizer.param_groups:
-    #    for idx, g2 in enumerate(g['params']):
-    #        print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
+    for g in optimizer.param_groups:
+        for idx, g2 in enumerate(g['params']):
+            print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
 
 # Sanity check => Check the changed parameters
 # for name, param in model.named_parameters():
