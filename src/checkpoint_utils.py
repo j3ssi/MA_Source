@@ -313,10 +313,11 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
         for stage in range(0, model.numOfStages):
             # print(f'Stage: {stage}')
             archNum = model.archNums[stage]
-            sameBlock = False
+
             for block in range(0, len(archNum)):
                 # print(f'Block: {block}')
                 arch = archNum[block]
+                sameBlock = False
                 i=0
                 while i < arch:
                     if len(indexList)>0:
