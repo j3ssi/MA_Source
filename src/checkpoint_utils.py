@@ -298,7 +298,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
     - Remove model parameters
     - Remove parameters/states in optimizer
     """
-    # rm_list=[ 'module.conv21.weight' ,' module.conv22.weight']
+    rm_list=[ 'module.conv21.weight' ,' module.conv22.weight']
     if len(rm_list) > 0:
         indexList = []
         j = 2

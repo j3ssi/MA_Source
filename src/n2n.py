@@ -331,7 +331,7 @@ class N2N(nn.Module):
     def forward(self, x):
         # print(f'ArchNums: {self.archNums}')
         # First layer
-        printNet = True
+        printNet = False
         if printNet:
             print("\nX Shape: ", x.shape)
         # conv1
@@ -655,7 +655,7 @@ class N2N(nn.Module):
                 else:
                     module_list.append(self.module_list[layers + 2 * numDelete])
                     print(f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]}')
-
+        print(f'archnums vorher: {self.archNums}')
         if deleteModule:
             self.archNums[stage][block] = 0
             self.archNums[stage].remove(0)
@@ -667,6 +667,8 @@ class N2N(nn.Module):
             print(f'stageO: {self.stageO}')
         else:
             print(f'Dont delete anything')
+
+        print(f'archnums nachher: {self.archNums}')
         print(self)
         return model
 
