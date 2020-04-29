@@ -665,6 +665,7 @@ class N2N(nn.Module):
             self.stageI, self.StagesO = buildResidualPath(self.module_list, self.numOfStages, self.archNums)
             print(f'stageI: {self.stageI}')
             print(f'stageO: {self.stageO}')
+
         else:
             print(f'Dont delete anything')
 

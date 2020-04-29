@@ -39,7 +39,7 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 from torch.autograd import Variable
 from torch.backends import cudnn
-# import torchviz as tw
+import torchviz as tw
 import matplotlib.pyplot as plt
 from src import n2n
 from src.custom_arch import *
@@ -521,10 +521,10 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         else:
             outputs = model.forward(inputs)
 
-            # if batch_idx == 0:
-            #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
-            #     filename = 'PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
-            #     dot.render(filename=filename)
+        if batch_idx == 0 and (epoch % args.sparse_interval == 0):
+            dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
+            filename = 'model/PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
+            dot.render(filename=filename)
 
             loss = criterion(outputs, targets)
             if printLasso:
