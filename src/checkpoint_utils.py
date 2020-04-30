@@ -203,7 +203,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
     for name, param in model.named_parameters():
         i = i + 1
         name = altList[i]
-        # print("\nName: ", name)
+        print("\nName: ", name)
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[param]['momentum_buffer']
 
