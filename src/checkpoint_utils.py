@@ -231,6 +231,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
 
                     for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
                         for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
+                            print(f'in_idx: {in_idx}; out_idx: {out_idx}; in_ch: {in_ch}; out_ch: {out_ch}')
                             with torch.no_grad():
                                 new_param[out_idx, in_idx, :, :] = param[out_ch, in_ch, :, :]
                                 new_mom_param[out_idx, in_idx, :, :] = mom_param[out_ch, in_ch, :, :]
