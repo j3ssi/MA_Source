@@ -300,7 +300,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
         indexList = []
         j = 2
         m = 0
-        # print(f'RM List vorher: {rm_list}')
+        print(f'RM List vorher: {rm_list}')
 
         for rm in rm_list:
             index = int(rm.split('.')[1].split('v')[1])
