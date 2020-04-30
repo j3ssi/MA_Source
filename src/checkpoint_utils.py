@@ -228,7 +228,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
                     # print(f'Dims = 4')
                     new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
                     new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
-                    print(f'Sorted: {sorted(dense_in_ch_idxs)}')
+                    print(f'Sorted: {sorted(dense_out_ch_idxs)}')
                     for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
                         for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
                             print(f'in_idx: {in_idx}; out_idx: {out_idx}; in_ch: {in_ch}; out_ch: {out_ch}')
