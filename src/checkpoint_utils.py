@@ -52,6 +52,7 @@ def makeSparse(optimizer, model, threshold, reconf=True ):
         i = i + 1
         name = altList[i]
         dims = list(param.shape)
+        print(f'name: {name}; dims {dims}')
         if (('conv' in name) or ('fc' in name)) and ('weight' in name):
 
             with torch.no_grad():
