@@ -27,7 +27,8 @@ Make only the (conv, FC) layer parameters sparse
 - Only work for the flattened networks
 """
 
-def makeSparse(optimizer, model, threshold, reconf=True ):
+
+def makeSparse(optimizer, model, threshold, reconf=False):
     print("[INFO] Force the sparse filters to zero...")
     dense_chs, chs_temp, idx = {}, {}, 0
     # alternative List to find the layers by name and not the stupid index of module_list
@@ -70,6 +71,7 @@ def makeSparse(optimizer, model, threshold, reconf=True ):
                     for c in range(dims[1]):
                         if param[:, c, :, :].abs().max() > 0:
                             dense_in_chs.append(c)
+                            print(f'Dense Ch. {c}')
 
                 # Forcing sparse output channels to zero
                 for c in range(dims[0]):
@@ -317,19 +319,19 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
                 # print(f'Block: {block}')
                 arch = archNum[block]
                 sameBlock = False
-                i=0
+                i = 0
                 while i < arch:
-                    if len(indexList)>0:
-                        if indexList[0]==j and not sameBlock:
+                    if len(indexList) > 0:
+                        if indexList[0] == j and not sameBlock:
                             elem = indexList[0]
                             indexList.remove(elem)
                             # print(f'pop element: {elem}')
                             # print(f'IndexListe: {indexList}')
-                            sameBlock =True
+                            sameBlock = True
                             m = m + 1
                             j = j + 1
                             i = i + 1
-                        elif indexList[0]==j and sameBlock:
+                        elif indexList[0] == j and sameBlock:
                             elem = indexList[0]
                             indexList.remove(elem)
                             # print(f'pop element2: {elem}')
@@ -343,12 +345,12 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
                             i = i + 1
 
                     else:
-                       i = arch +1
+                        i = arch + 1
         # print(f'RM List nachher: {rm_list}')
         for name in reversed(rm_list):
             # delete module from moduleList
             index = int(name.split('.')[1].split('v')[1])
-            index = (index-1)*2
+            index = (index - 1) * 2
             module = model.module_list[index]
             # print("\nModule List Length: ", len(model.module_list))
             model.delete(module, index)
@@ -360,7 +362,6 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
             #         i = i + blocks[b]
             #         if(index == i):
             #             blocks[b] = blocks[b] - 1
-
 
         # # Sanity check: Print out optimizer parameters before change
         # print("[INFO] ==== Size of parameter group (Before)")
@@ -381,5 +382,3 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
 # Sanity check => Check the changed buffers
 # for name, param in model.named_parameters():
 #  print("===<<< [{}]: {}".format(name, optimizer.state[param]['momentum_buffer'].shape))
-
-
