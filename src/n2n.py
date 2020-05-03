@@ -886,15 +886,15 @@ def buildResidualPath(module_list, numOfStages, archNums):
         if module_list[i].weight.size()[0] == stageWidth:
             stagesO[-1].append(layer)
         elif layer in oddLayersCopy:
-            stagesO[-1].append(layer)
+            stagesO[1].append(layer)
         else:
             stageWidth = module_list[i].weight.size()[1]
             stagesO.append([])
             stagesO[-1].append(layer)
 
-    # print(f'stagesI: {stagesI}')
+    print(f'stagesI: {stagesI}')
 
-    # print(f'stagesO: {stagesO}')
+    print(f'stagesO: {stagesO}')
     return stagesI, stagesO
 
 
@@ -925,6 +925,6 @@ def buildShareSameNodeLayers(module_list, numOfStages, archNums):
 
             sameNode.append(block)
         firstStage = False
-    # print(f'oddLayers: {self.oddLayers}')
-    # print("\nSame Node: ", sameNode)
+    print(f'oddLayers: {self.oddLayers}')
+    print("\nSame Node: ", sameNode)
     return sameNode, oddLayers
