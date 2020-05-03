@@ -45,13 +45,13 @@ def makeSparse(optimizer, model, threshold, reconf=False):
             altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
         elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
             altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-    print(f'altList: {altList}')
+    # print(f'altList: {altList}')
     i = -1
     for name, param in model.named_parameters():
         i = i + 1
         name = altList[i]
         dims = list(param.shape)
-        print(f'name: {name}; dims {dims}')
+        # print(f'name: {name}; dims {dims}')
         if (('conv' in name) or ('fc' in name)) and ('weight' in name):
 
             with torch.no_grad():
@@ -69,13 +69,13 @@ def makeSparse(optimizer, model, threshold, reconf=False):
                     for c in range(dims[1]):
                         if param[:, c, :, :].abs().max() > 0:
                             dense_in_chs.append(c)
-                            print(f'Dense In Ch. {c}')
+                            # print(f'Dense In Ch. {c}')
 
                 # Forcing sparse output channels to zero
                 for c in range(dims[0]):
                     if param[c, :, :, :].abs().max() > 0:
                         dense_out_chs.append(c)
-                        print(f'Dense Out Ch. {c}')
+                        # print(f'Dense Out Ch. {c}')
 
             # Forcing input channels of FC layer to zero
             elif param.dim() == 2:
@@ -129,8 +129,8 @@ def makeSparse(optimizer, model, threshold, reconf=False):
                 # print("\n>Edge: ", edge)
                 dense_chs[adj_lyr[idx]]['out_chs'] = edge
                 dense_chs[adj_lyr[idx + 1]]['in_chs'] = edge
-    # for name in dense_chs:
-    #     print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
+    for name in dense_chs:
+        print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
     for idx in range(len(stagesI)):
         # print("\n> IDX: ", idx)
