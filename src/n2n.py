@@ -312,12 +312,12 @@ class N2N(nn.Module):
                 # else:
                 # print('\nelse: ', name)
             module = module_list[-1]
-            print(f'module: {module}')
+            # print(f'module: {module}')
             self.sizeOfFC = module.weight.shape[1]
             avgpool = nn.AdaptiveAvgPool2d((1, 1))
             self.module_list.append(avgpool)
             # <if printName:
-            print("\n self sizeofFC: ", self.sizeOfFC)
+            # print("\n self sizeofFC: ", self.sizeOfFC)
             fc = nn.Linear(module.weight.shape[1], num_classes)
             if printName:
                 print("\nLinear: ", fc)
@@ -596,7 +596,7 @@ class N2N(nn.Module):
                         # print(f'numDelete: {numDelete}')
                     j = j + 1
                     i = i + 1
-        print(f'blockBeginn: {blockBegin}')
+        # print(f'blockBeginn: {blockBegin}')
 
         module_list = nn.ModuleList()
         deleteModule = True
@@ -604,25 +604,25 @@ class N2N(nn.Module):
         for layers in range(0, (len(self.module_list) - 2 * numDelete)):
             if layers < index:
                 module_list.append(self.module_list[layers])
-                print(f'Kopiere {layers}: {module_list[layers]}')
+                # print(f'Kopiere {layers}: {module_list[layers]}')
             elif layers >= index:
                     module_list.append(self.module_list[layers + 2 * numDelete])
-                    print(
-                        f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
-        print(f'archnums vorher: {self.archNums}')
+                    # print(
+                    #    f'Ersetze {layers} gegen {layers + 2 * numDelete}: {self.module_list[layers]} gegen {self.module_list[layers + 2 * numDelete]}')
+        # print(f'archnums vorher: {self.archNums}')
         self.archNums[stageDelete][blockDelete] = 0
         self.archNums[stageDelete].remove(0)
         self.module_list = module_list
         self.sameNode, self.oddLayers = buildShareSameNodeLayers(module_list, self.numOfStages, self.archNums)
-        print(f'sameNode: {self.sameNode}')
+        # print(f'sameNode: {self.sameNode}')
         self.stageI, self.stageO = buildResidualPath(self.module_list, self.numOfStages, self.archNums)
         tempStage= []
 
 
-        print(f'stageI: {self.stageI}')
-        print(f'stageO: {self.stageO}')
+        # print(f'stageI: {self.stageI}')
+        # print(f'stageO: {self.stageO}')
 
-        print(f'archnums nachher: {self.archNums}')
+        # print(f'archnums nachher: {self.archNums}')
         print(self)
         return model
 
@@ -895,9 +895,9 @@ def buildResidualPath(module_list, numOfStages, archNums):
             stagesO.append([])
             stagesO[-1].append(layer)
 
-    print(f'stagesI: {stagesI}')
+    # print(f'stagesI: {stagesI}')
 
-    print(f'stagesO: {stagesO}')
+    # print(f'stagesO: {stagesO}')
     return stagesI, stagesO
 
 
@@ -928,6 +928,6 @@ def buildShareSameNodeLayers(module_list, numOfStages, archNums):
 
             sameNode.append(block)
         firstStage = False
-    print(f'oddLayers: {oddLayers}')
-    print("\nSame Node: ", sameNode)
+    # print(f'oddLayers: {oddLayers}')
+    # print("\nSame Node: ", sameNode)
     return sameNode, oddLayers

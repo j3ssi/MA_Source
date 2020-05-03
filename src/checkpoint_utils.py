@@ -129,8 +129,8 @@ def makeSparse(optimizer, model, threshold, reconf=False):
                 # print("\n>Edge: ", edge)
                 dense_chs[adj_lyr[idx]]['out_chs'] = edge
                 dense_chs[adj_lyr[idx + 1]]['in_chs'] = edge
-    for name in dense_chs:
-        print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
+    # for name in dense_chs:
+    #    print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
     for idx in range(len(stagesI)):
         # print("\n> IDX: ", idx)
@@ -153,8 +153,8 @@ def makeSparse(optimizer, model, threshold, reconf=False):
             if lyr_name in dense_chs:
                 # print ("Output_ch [{}]: {} => {}".format(lyr_name, len(dense_chs[lyr_name]['out_chs']), len(edges)))
                 dense_chs[lyr_name]['out_chs'] = edges
-    for name in dense_chs:
-        print("2: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
+    # for name in dense_chs:
+    #     print("2: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
 
     return dense_chs, None
 
@@ -205,7 +205,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
     for name, param in model.named_parameters():
         i = i + 1
         name = altList[i]
-        print("\nName: ", name)
+        # print("\nName: ", name)
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[param]['momentum_buffer']
 
@@ -213,7 +213,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
         if (('conv' in name) or ('fc' in name)) and ('weight' in name):
 
             dims = list(param.shape)
-            print(f'dims: {dims}')
+            # print(f'dims: {dims}')
             dense_in_ch_idxs = dense_chs[name]['in_chs']
             dense_out_ch_idxs = dense_chs[name]['out_chs']
             num_in_ch, num_out_ch = len(dense_in_ch_idxs), len(dense_out_ch_idxs)
@@ -230,13 +230,13 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
                     # print(f'Dims = 4')
                     new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
                     new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch, dims[2], dims[3])).cuda()
-                    print(f'Sorted: {sorted(dense_out_ch_idxs)}')
+                    # print(f'Sorted: {sorted(dense_out_ch_idxs)}')
                     for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
                         for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
                             with torch.no_grad():
                                 new_param[out_idx, in_idx, :, :] = param[out_ch, in_ch, :, :]
                                 new_mom_param[out_idx, in_idx, :, :] = mom_param[out_ch, in_ch, :, :]
-                        print(f'in_idx: {in_idx}; out_idx: {out_idx}; in_ch: {in_ch}; out_ch: {out_ch}')
+                        # print(f'in_idx: {in_idx}; out_idx: {out_idx}; in_ch: {in_ch}; out_ch: {out_ch}')
 
                 # Generate a new dense tensor and replace (FC layer)
                 elif len(dims) == 2:
@@ -303,7 +303,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
         indexList = []
         j = 2
         m = 0
-        print(f'RM List vorher: {rm_list}')
+        # print(f'RM List vorher: {rm_list}')
 
         for rm in rm_list:
             index = int(rm.split('.')[1].split('v')[1])
@@ -370,9 +370,9 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
 
     # Sanity check => Print out optimizer parameters after change
     # print("[INFO] ==== Size of parameter group (After)")
-    for g in optimizer.param_groups:
-        for idx, g2 in enumerate(g['params']):
-            print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
+    # for g in optimizer.param_groups:
+    #    for idx, g2 in enumerate(g['params']):
+    #        print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
 
 # Sanity check => Check the changed parameters
 # for name, param in model.named_parameters():
