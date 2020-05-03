@@ -615,7 +615,10 @@ class N2N(nn.Module):
         self.module_list = module_list
         self.sameNode, self.oddLayers = buildShareSameNodeLayers(module_list, self.numOfStages, self.archNums)
         print(f'sameNode: {self.sameNode}')
-        self.stageI, self.StagesO = buildResidualPath(self.module_list, self.numOfStages, self.archNums)
+        self.stageI, self.stageO = buildResidualPath(self.module_list, self.numOfStages, self.archNums)
+        tempStage= []
+
+
         print(f'stageI: {self.stageI}')
         print(f'stageO: {self.stageO}')
 
@@ -888,7 +891,7 @@ def buildResidualPath(module_list, numOfStages, archNums):
         elif layer in oddLayersCopy:
             stagesO[1].append(layer)
         else:
-            stageWidth = module_list[i].weight.size()[1]
+            stageWidth = module_list[i].weight.size()[0]
             stagesO.append([])
             stagesO[-1].append(layer)
 
