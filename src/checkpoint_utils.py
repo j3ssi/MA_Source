@@ -379,5 +379,6 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
 #  print("===>>> [{}]: {}".format(name, list(param.shape)))
 
 # Sanity check => Check the changed buffers
-# for name, param in model.named_parameters():
+# for name
+# , param in model.named_parameters():
 #  print("===<<< [{}]: {}".format(name, optimizer.state[param]['momentum_buffer'].shape))
