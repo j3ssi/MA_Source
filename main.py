@@ -381,7 +381,9 @@ def main():
 
             # i = 2
             # SparseTrain routine
-            if args.en_group_lasso and (epoch % args.sparse_interval == 0) and not args.lastEpoch:
+            if not args.en_group_lasso:
+                pass
+            elif args.en_group_lasso and (epoch % args.sparse_interval == 0) and not args.lastEpoch:
                 # Force weights under threshold to zero
                 dense_chs, chs_map = makeSparse(optimizer, model, args.threshold)
                 if args.visual:
