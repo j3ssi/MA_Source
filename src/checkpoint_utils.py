@@ -71,12 +71,13 @@ def makeSparse(optimizer, model, threshold, reconf=False):
                     for c in range(dims[1]):
                         if param[:, c, :, :].abs().max() > 0:
                             dense_in_chs.append(c)
-                            print(f'Dense Ch. {c}')
+                            print(f'Dense In Ch. {c}')
 
                 # Forcing sparse output channels to zero
                 for c in range(dims[0]):
                     if param[c, :, :, :].abs().max() > 0:
                         dense_out_chs.append(c)
+                        print(f'Dense Out Ch. {c}')
 
             # Forcing input channels of FC layer to zero
             elif param.dim() == 2:
@@ -234,10 +235,10 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
                     print(f'Sorted: {sorted(dense_out_ch_idxs)}')
                     for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
                         for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
-                            print(f'in_idx: {in_idx}; out_idx: {out_idx}; in_ch: {in_ch}; out_ch: {out_ch}')
                             with torch.no_grad():
                                 new_param[out_idx, in_idx, :, :] = param[out_ch, in_ch, :, :]
                                 new_mom_param[out_idx, in_idx, :, :] = mom_param[out_ch, in_ch, :, :]
+                        print(f'in_idx: {in_idx}; out_idx: {out_idx}; in_ch: {in_ch}; out_ch: {out_ch}')
 
                 # Generate a new dense tensor and replace (FC layer)
                 elif len(dims) == 2:
