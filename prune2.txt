@@ -5,715 +5,1765 @@ Files already downloaded and verified
 count0: 487386
 
 Epoch: [1 | 5] LR: 0.100000
-Epoch: [1][0/196]	Time 0.655 (0.655)	Data 0.278 (0.278)	Loss 3.2354 (3.2354)	Acc@1 9.766 (9.766)	Acc@5 52.734 (52.734)
-Epoch: [1][64/196]	Time 0.472 (0.431)	Data 0.000 (0.004)	Loss 2.7106 (2.8871)	Acc@1 33.984 (26.046)	Acc@5 86.328 (79.639)
-Epoch: [1][128/196]	Time 0.471 (0.441)	Data 0.000 (0.002)	Loss 2.4563 (2.7435)	Acc@1 37.891 (31.026)	Acc@5 91.797 (84.160)
-Epoch: [1][192/196]	Time 0.280 (0.436)	Data 0.000 (0.002)	Loss 2.2854 (2.6164)	Acc@1 47.656 (35.529)	Acc@5 91.406 (86.873)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 6 bis 10
+Epoch: [1][0/196]	Time 0.485 (0.485)	Data 0.425 (0.425)	Loss 3.5652 (3.5652)	Acc@1 10.547 (10.547)	Acc@5 47.656 (47.656)
+Epoch: [1][64/196]	Time 0.394 (0.296)	Data 0.000 (0.007)	Loss 2.6587 (2.8683)	Acc@1 30.859 (23.263)	Acc@5 84.375 (77.067)
+Epoch: [1][128/196]	Time 0.428 (0.354)	Data 0.000 (0.003)	Loss 2.3279 (2.6912)	Acc@1 43.359 (29.179)	Acc@5 92.578 (82.822)
+Epoch: [1][192/196]	Time 0.453 (0.388)	Data 0.000 (0.002)	Loss 2.1778 (2.5695)	Acc@1 44.922 (33.784)	Acc@5 90.234 (85.549)
+[INFO] Storing checkpoint...
+
+Epoch: [2 | 5] LR: 0.100000
+Epoch: [2][0/196]	Time 0.489 (0.489)	Data 0.298 (0.298)	Loss 2.1877 (2.1877)	Acc@1 49.219 (49.219)	Acc@5 92.969 (92.969)
+Epoch: [2][64/196]	Time 0.465 (0.461)	Data 0.000 (0.005)	Loss 2.0898 (2.1136)	Acc@1 51.562 (49.561)	Acc@5 92.578 (93.630)
+Epoch: [2][128/196]	Time 0.475 (0.458)	Data 0.000 (0.002)	Loss 1.6351 (2.0286)	Acc@1 68.359 (52.471)	Acc@5 96.875 (94.377)
+Epoch: [2][192/196]	Time 0.464 (0.457)	Data 0.000 (0.002)	Loss 1.7476 (1.9608)	Acc@1 60.156 (54.467)	Acc@5 96.484 (94.867)
+[INFO] Storing checkpoint...
+
+Epoch: [3 | 5] LR: 0.100000
+Epoch: [3][0/196]	Time 0.539 (0.539)	Data 0.324 (0.324)	Loss 1.8570 (1.8570)	Acc@1 57.422 (57.422)	Acc@5 96.484 (96.484)
+Epoch: [3][64/196]	Time 0.446 (0.452)	Data 0.000 (0.005)	Loss 1.5915 (1.7139)	Acc@1 67.969 (62.109)	Acc@5 97.266 (96.478)
+Epoch: [3][128/196]	Time 0.454 (0.454)	Data 0.000 (0.003)	Loss 1.4742 (1.6670)	Acc@1 71.094 (63.333)	Acc@5 98.047 (96.684)
+Epoch: [3][192/196]	Time 0.468 (0.454)	Data 0.000 (0.002)	Loss 1.4778 (1.6221)	Acc@1 68.359 (64.514)	Acc@5 97.266 (96.863)
+[INFO] Storing checkpoint...
+
+Epoch: [4 | 5] LR: 0.100000
+Epoch: [4][0/196]	Time 0.472 (0.472)	Data 0.348 (0.348)	Loss 1.3783 (1.3783)	Acc@1 71.094 (71.094)	Acc@5 98.047 (98.047)
+Epoch: [4][64/196]	Time 0.170 (0.322)	Data 0.000 (0.006)	Loss 1.4782 (1.4404)	Acc@1 66.797 (69.597)	Acc@5 96.484 (97.770)
+Epoch: [4][128/196]	Time 0.170 (0.245)	Data 0.000 (0.003)	Loss 1.2900 (1.4077)	Acc@1 75.391 (70.406)	Acc@5 96.484 (97.871)
+Epoch: [4][192/196]	Time 0.456 (0.260)	Data 0.000 (0.002)	Loss 1.3475 (1.3824)	Acc@1 73.438 (70.978)	Acc@5 98.047 (97.859)
+[INFO] Storing checkpoint...
+
+Epoch: [5 | 5] LR: 0.100000
+Epoch: [5][0/196]	Time 0.455 (0.455)	Data 0.286 (0.286)	Loss 1.2914 (1.2914)	Acc@1 73.047 (73.047)	Acc@5 98.047 (98.047)
+Epoch: [5][64/196]	Time 0.473 (0.455)	Data 0.000 (0.005)	Loss 1.2298 (1.2764)	Acc@1 77.344 (73.612)	Acc@5 98.047 (98.083)
+Epoch: [5][128/196]	Time 0.461 (0.453)	Data 0.000 (0.002)	Loss 1.2318 (1.2329)	Acc@1 75.781 (74.652)	Acc@5 98.047 (98.313)
+Epoch: [5][192/196]	Time 0.470 (0.453)	Data 0.000 (0.002)	Loss 1.2034 (1.2167)	Acc@1 74.219 (74.909)	Acc@5 98.438 (98.381)
+[INFO] Storing checkpoint...
+
+  256
+  65.41
+ 89.101s  j: 6 bis 10
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 487386
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.760 (0.760)	Data 0.250 (0.250)	Loss 0.4577 (0.4577)	Acc@1 96.875 (96.875)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.419 (0.342)	Data 0.000 (0.004)	Loss 0.4562 (0.5030)	Acc@1 94.141 (94.153)	Acc@5 99.609 (99.910)
-Epoch: [116][128/196]	Time 0.360 (0.372)	Data 0.000 (0.002)	Loss 0.5204 (0.5048)	Acc@1 93.359 (94.020)	Acc@5 100.000 (99.882)
-Epoch: [116][192/196]	Time 0.326 (0.377)	Data 0.000 (0.001)	Loss 0.4795 (0.5052)	Acc@1 94.531 (93.975)	Acc@5 100.000 (99.872)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 11 bis 15
+Epoch: [6 | 10] LR: 0.100000
+Epoch: [6][0/196]	Time 0.530 (0.530)	Data 0.271 (0.271)	Loss 1.2408 (1.2408)	Acc@1 73.047 (73.047)	Acc@5 98.047 (98.047)
+Epoch: [6][64/196]	Time 0.445 (0.406)	Data 0.000 (0.004)	Loss 1.1013 (1.1237)	Acc@1 76.953 (76.881)	Acc@5 98.438 (98.582)
+Epoch: [6][128/196]	Time 0.450 (0.430)	Data 0.000 (0.002)	Loss 1.1358 (1.1166)	Acc@1 75.000 (76.890)	Acc@5 98.828 (98.553)
+Epoch: [6][192/196]	Time 0.464 (0.437)	Data 0.000 (0.002)	Loss 1.0372 (1.1069)	Acc@1 83.203 (76.929)	Acc@5 97.656 (98.581)
+[INFO] Storing checkpoint...
+
+Epoch: [7 | 10] LR: 0.100000
+Epoch: [7][0/196]	Time 0.480 (0.480)	Data 0.300 (0.300)	Loss 1.0392 (1.0392)	Acc@1 80.859 (80.859)	Acc@5 98.047 (98.047)
+Epoch: [7][64/196]	Time 0.248 (0.399)	Data 0.000 (0.005)	Loss 0.9538 (1.0555)	Acc@1 81.641 (78.059)	Acc@5 98.828 (98.654)
+Epoch: [7][128/196]	Time 0.241 (0.322)	Data 0.000 (0.003)	Loss 0.9170 (1.0374)	Acc@1 81.250 (78.458)	Acc@5 98.828 (98.722)
+Epoch: [7][192/196]	Time 0.446 (0.350)	Data 0.000 (0.002)	Loss 0.9711 (1.0322)	Acc@1 81.250 (78.429)	Acc@5 98.047 (98.735)
+[INFO] Storing checkpoint...
+
+Epoch: [8 | 10] LR: 0.100000
+Epoch: [8][0/196]	Time 0.533 (0.533)	Data 0.479 (0.479)	Loss 1.1441 (1.1441)	Acc@1 75.391 (75.391)	Acc@5 98.047 (98.047)
+Epoch: [8][64/196]	Time 0.375 (0.452)	Data 0.000 (0.008)	Loss 1.0857 (0.9860)	Acc@1 76.172 (79.189)	Acc@5 97.656 (98.990)
+Epoch: [8][128/196]	Time 0.455 (0.452)	Data 0.000 (0.004)	Loss 1.0553 (0.9823)	Acc@1 75.000 (79.457)	Acc@5 98.438 (98.934)
+Epoch: [8][192/196]	Time 0.461 (0.450)	Data 0.000 (0.003)	Loss 0.9477 (0.9819)	Acc@1 80.859 (79.420)	Acc@5 98.438 (98.881)
+[INFO] Storing checkpoint...
+
+Epoch: [9 | 10] LR: 0.100000
+Epoch: [9][0/196]	Time 0.561 (0.561)	Data 0.416 (0.416)	Loss 0.9709 (0.9709)	Acc@1 79.688 (79.688)	Acc@5 100.000 (100.000)
+Epoch: [9][64/196]	Time 0.493 (0.454)	Data 0.000 (0.007)	Loss 0.9039 (0.9381)	Acc@1 80.469 (80.775)	Acc@5 99.219 (98.960)
+Epoch: [9][128/196]	Time 0.372 (0.433)	Data 0.000 (0.003)	Loss 0.9068 (0.9441)	Acc@1 83.984 (80.357)	Acc@5 98.438 (98.955)
+Epoch: [9][192/196]	Time 0.425 (0.418)	Data 0.000 (0.002)	Loss 0.9334 (0.9421)	Acc@1 80.078 (80.372)	Acc@5 98.047 (98.946)
+[INFO] Storing checkpoint...
+
+Epoch: [10 | 10] LR: 0.100000
+Epoch: [10][0/196]	Time 0.656 (0.656)	Data 0.368 (0.368)	Loss 0.9144 (0.9144)	Acc@1 81.250 (81.250)	Acc@5 98.828 (98.828)
+Epoch: [10][64/196]	Time 0.457 (0.452)	Data 0.000 (0.006)	Loss 0.9036 (0.9331)	Acc@1 81.641 (80.685)	Acc@5 98.828 (98.954)
+Epoch: [10][128/196]	Time 0.233 (0.415)	Data 0.000 (0.003)	Loss 0.9634 (0.9256)	Acc@1 81.250 (80.850)	Acc@5 99.219 (98.967)
+Epoch: [10][192/196]	Time 0.314 (0.357)	Data 0.000 (0.002)	Loss 0.8596 (0.9258)	Acc@1 82.812 (80.710)	Acc@5 98.828 (98.968)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  74.12
+ 70.481s  j: 11 bis 15
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 487386
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 1.033 (1.033)	Data 0.267 (0.267)	Loss 0.4107 (0.4107)	Acc@1 98.438 (98.438)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.408 (0.399)	Data 0.000 (0.004)	Loss 0.5652 (0.5030)	Acc@1 92.188 (94.417)	Acc@5 100.000 (99.880)
-Epoch: [116][128/196]	Time 0.415 (0.401)	Data 0.000 (0.002)	Loss 0.4671 (0.5030)	Acc@1 95.312 (94.234)	Acc@5 100.000 (99.888)
-Epoch: [116][192/196]	Time 0.345 (0.400)	Data 0.000 (0.002)	Loss 0.5278 (0.5050)	Acc@1 94.531 (94.114)	Acc@5 99.219 (99.893)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 16 bis 20
+Epoch: [11 | 15] LR: 0.100000
+Epoch: [11][0/196]	Time 0.517 (0.517)	Data 0.440 (0.440)	Loss 0.9486 (0.9486)	Acc@1 79.688 (79.688)	Acc@5 98.828 (98.828)
+Epoch: [11][64/196]	Time 0.434 (0.410)	Data 0.000 (0.007)	Loss 0.8675 (0.8773)	Acc@1 82.422 (82.188)	Acc@5 99.219 (98.990)
+Epoch: [11][128/196]	Time 0.476 (0.429)	Data 0.000 (0.004)	Loss 0.9113 (0.8958)	Acc@1 82.812 (81.592)	Acc@5 99.219 (99.001)
+Epoch: [11][192/196]	Time 0.431 (0.437)	Data 0.000 (0.002)	Loss 0.8513 (0.8985)	Acc@1 83.984 (81.527)	Acc@5 99.219 (99.037)
+[INFO] Storing checkpoint...
+
+Epoch: [12 | 15] LR: 0.100000
+Epoch: [12][0/196]	Time 0.471 (0.471)	Data 0.455 (0.455)	Loss 0.9333 (0.9333)	Acc@1 82.812 (82.812)	Acc@5 98.828 (98.828)
+Epoch: [12][64/196]	Time 0.454 (0.447)	Data 0.000 (0.007)	Loss 0.9631 (0.8904)	Acc@1 77.344 (81.556)	Acc@5 99.219 (99.135)
+Epoch: [12][128/196]	Time 0.460 (0.450)	Data 0.000 (0.004)	Loss 0.9498 (0.8970)	Acc@1 80.859 (81.423)	Acc@5 96.875 (99.082)
+Epoch: [12][192/196]	Time 0.473 (0.448)	Data 0.000 (0.003)	Loss 0.8693 (0.8986)	Acc@1 81.641 (81.276)	Acc@5 99.609 (99.081)
+[INFO] Storing checkpoint...
+
+Epoch: [13 | 15] LR: 0.100000
+Epoch: [13][0/196]	Time 0.481 (0.481)	Data 0.356 (0.356)	Loss 0.9075 (0.9075)	Acc@1 83.594 (83.594)	Acc@5 98.438 (98.438)
+Epoch: [13][64/196]	Time 0.369 (0.431)	Data 0.000 (0.006)	Loss 0.8298 (0.8663)	Acc@1 84.375 (82.674)	Acc@5 98.828 (99.219)
+Epoch: [13][128/196]	Time 0.243 (0.349)	Data 0.000 (0.003)	Loss 0.9709 (0.8759)	Acc@1 81.641 (82.225)	Acc@5 98.828 (99.207)
+Epoch: [13][192/196]	Time 0.452 (0.348)	Data 0.000 (0.002)	Loss 1.0005 (0.8864)	Acc@1 77.734 (81.803)	Acc@5 99.219 (99.158)
+[INFO] Storing checkpoint...
+
+Epoch: [14 | 15] LR: 0.100000
+Epoch: [14][0/196]	Time 0.467 (0.467)	Data 0.409 (0.409)	Loss 0.9463 (0.9463)	Acc@1 79.688 (79.688)	Acc@5 98.828 (98.828)
+Epoch: [14][64/196]	Time 0.447 (0.450)	Data 0.000 (0.006)	Loss 1.0056 (0.8812)	Acc@1 76.953 (82.188)	Acc@5 98.828 (99.201)
+Epoch: [14][128/196]	Time 0.381 (0.423)	Data 0.000 (0.003)	Loss 0.7877 (0.8854)	Acc@1 85.938 (82.074)	Acc@5 100.000 (99.191)
+Epoch: [14][192/196]	Time 0.443 (0.422)	Data 0.000 (0.002)	Loss 0.8266 (0.8833)	Acc@1 82.812 (82.092)	Acc@5 99.219 (99.150)
+[INFO] Storing checkpoint...
+
+Epoch: [15 | 15] LR: 0.100000
+Epoch: [15][0/196]	Time 0.417 (0.417)	Data 0.328 (0.328)	Loss 0.7507 (0.7507)	Acc@1 87.891 (87.891)	Acc@5 99.219 (99.219)
+Epoch: [15][64/196]	Time 0.451 (0.450)	Data 0.000 (0.005)	Loss 0.8659 (0.8582)	Acc@1 83.594 (82.788)	Acc@5 99.609 (99.195)
+Epoch: [15][128/196]	Time 0.439 (0.449)	Data 0.000 (0.003)	Loss 0.8645 (0.8705)	Acc@1 84.766 (82.171)	Acc@5 99.609 (99.116)
+Epoch: [15][192/196]	Time 0.514 (0.450)	Data 0.000 (0.002)	Loss 0.8770 (0.8706)	Acc@1 81.641 (82.323)	Acc@5 99.609 (99.152)
+[INFO] Storing checkpoint...
+
+  256
+  76.85
+ 88.581s  j: 16 bis 20
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 487386
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.814 (0.814)	Data 0.276 (0.276)	Loss 0.4644 (0.4644)	Acc@1 94.922 (94.922)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.193 (0.240)	Data 0.000 (0.004)	Loss 0.5526 (0.5095)	Acc@1 92.188 (94.044)	Acc@5 99.609 (99.892)
-Epoch: [116][128/196]	Time 0.323 (0.257)	Data 0.000 (0.002)	Loss 0.5343 (0.5066)	Acc@1 95.312 (94.192)	Acc@5 100.000 (99.900)
-Epoch: [116][192/196]	Time 0.404 (0.303)	Data 0.000 (0.002)	Loss 0.5080 (0.5053)	Acc@1 93.750 (94.147)	Acc@5 99.609 (99.887)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 21 bis 25
+Epoch: [16 | 20] LR: 0.100000
+Epoch: [16][0/196]	Time 0.558 (0.558)	Data 0.342 (0.342)	Loss 0.8549 (0.8549)	Acc@1 82.422 (82.422)	Acc@5 99.609 (99.609)
+Epoch: [16][64/196]	Time 0.239 (0.344)	Data 0.000 (0.006)	Loss 0.8988 (0.8740)	Acc@1 80.469 (82.067)	Acc@5 99.219 (99.147)
+Epoch: [16][128/196]	Time 0.346 (0.295)	Data 0.000 (0.003)	Loss 0.7612 (0.8696)	Acc@1 85.156 (82.495)	Acc@5 99.609 (99.158)
+Epoch: [16][192/196]	Time 0.461 (0.330)	Data 0.000 (0.002)	Loss 0.9820 (0.8665)	Acc@1 78.125 (82.632)	Acc@5 99.219 (99.170)
+[INFO] Storing checkpoint...
+
+Epoch: [17 | 20] LR: 0.100000
+Epoch: [17][0/196]	Time 0.506 (0.506)	Data 0.369 (0.369)	Loss 0.8705 (0.8705)	Acc@1 79.688 (79.688)	Acc@5 99.609 (99.609)
+Epoch: [17][64/196]	Time 0.440 (0.456)	Data 0.000 (0.006)	Loss 0.8329 (0.8628)	Acc@1 85.938 (82.812)	Acc@5 99.609 (99.201)
+Epoch: [17][128/196]	Time 0.457 (0.454)	Data 0.000 (0.003)	Loss 0.8574 (0.8605)	Acc@1 80.469 (82.816)	Acc@5 99.219 (99.210)
+Epoch: [17][192/196]	Time 0.437 (0.453)	Data 0.000 (0.002)	Loss 0.9812 (0.8667)	Acc@1 76.953 (82.673)	Acc@5 99.219 (99.186)
+[INFO] Storing checkpoint...
+
+Epoch: [18 | 20] LR: 0.100000
+Epoch: [18][0/196]	Time 0.463 (0.463)	Data 0.279 (0.279)	Loss 0.7513 (0.7513)	Acc@1 89.062 (89.062)	Acc@5 99.609 (99.609)
+Epoch: [18][64/196]	Time 0.469 (0.454)	Data 0.000 (0.004)	Loss 0.8089 (0.8621)	Acc@1 85.547 (83.203)	Acc@5 99.219 (99.159)
+Epoch: [18][128/196]	Time 0.467 (0.454)	Data 0.000 (0.002)	Loss 0.7466 (0.8584)	Acc@1 87.500 (83.085)	Acc@5 99.609 (99.125)
+Epoch: [18][192/196]	Time 0.466 (0.454)	Data 0.000 (0.002)	Loss 0.7970 (0.8576)	Acc@1 84.375 (83.074)	Acc@5 99.609 (99.128)
+[INFO] Storing checkpoint...
+
+Epoch: [19 | 20] LR: 0.100000
+Epoch: [19][0/196]	Time 0.598 (0.598)	Data 0.386 (0.386)	Loss 0.8163 (0.8163)	Acc@1 83.594 (83.594)	Acc@5 99.609 (99.609)
+Epoch: [19][64/196]	Time 0.428 (0.455)	Data 0.000 (0.006)	Loss 0.8173 (0.8443)	Acc@1 82.422 (83.546)	Acc@5 99.609 (99.171)
+Epoch: [19][128/196]	Time 0.174 (0.379)	Data 0.000 (0.003)	Loss 0.8707 (0.8463)	Acc@1 81.641 (83.385)	Acc@5 100.000 (99.246)
+Epoch: [19][192/196]	Time 0.179 (0.309)	Data 0.000 (0.002)	Loss 0.8080 (0.8526)	Acc@1 84.766 (83.144)	Acc@5 99.219 (99.162)
+[INFO] Storing checkpoint...
+
+Epoch: [20 | 20] LR: 0.100000
+Epoch: [20][0/196]	Time 0.391 (0.391)	Data 0.289 (0.289)	Loss 0.9147 (0.9147)	Acc@1 80.469 (80.469)	Acc@5 98.828 (98.828)
+Epoch: [20][64/196]	Time 0.462 (0.377)	Data 0.000 (0.005)	Loss 0.8769 (0.8575)	Acc@1 82.422 (82.981)	Acc@5 99.219 (99.153)
+Epoch: [20][128/196]	Time 0.457 (0.414)	Data 0.000 (0.002)	Loss 0.8487 (0.8525)	Acc@1 81.250 (83.079)	Acc@5 98.828 (99.216)
+Epoch: [20][192/196]	Time 0.421 (0.426)	Data 0.000 (0.002)	Loss 0.8545 (0.8509)	Acc@1 85.156 (83.112)	Acc@5 98.047 (99.205)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 481322 ; 487386 ; 0.9875581161543417
+[INFO] Storing checkpoint...
+
+  256
+  74.17
+ 84.027s  j: 21 bis 25
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 481322
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 1.072 (1.072)	Data 0.263 (0.263)	Loss 0.5173 (0.5173)	Acc@1 93.750 (93.750)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.453 (0.394)	Data 0.000 (0.004)	Loss 0.4623 (0.5006)	Acc@1 95.703 (94.285)	Acc@5 100.000 (99.880)
-Epoch: [116][128/196]	Time 0.401 (0.395)	Data 0.000 (0.002)	Loss 0.5540 (0.5052)	Acc@1 92.188 (94.080)	Acc@5 100.000 (99.870)
-Epoch: [116][192/196]	Time 0.394 (0.395)	Data 0.000 (0.002)	Loss 0.5020 (0.5047)	Acc@1 94.141 (94.102)	Acc@5 100.000 (99.885)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 26 bis 30
+Epoch: [21 | 25] LR: 0.100000
+Epoch: [21][0/196]	Time 0.781 (0.781)	Data 0.288 (0.288)	Loss 0.9041 (0.9041)	Acc@1 82.422 (82.422)	Acc@5 99.609 (99.609)
+Epoch: [21][64/196]	Time 0.457 (0.419)	Data 0.000 (0.005)	Loss 0.8085 (0.8044)	Acc@1 83.984 (84.694)	Acc@5 99.609 (99.405)
+Epoch: [21][128/196]	Time 0.465 (0.436)	Data 0.000 (0.002)	Loss 0.7882 (0.8229)	Acc@1 84.766 (84.069)	Acc@5 99.219 (99.328)
+Epoch: [21][192/196]	Time 0.442 (0.441)	Data 0.000 (0.002)	Loss 0.7765 (0.8282)	Acc@1 87.891 (83.958)	Acc@5 99.609 (99.284)
+[INFO] Storing checkpoint...
+
+Epoch: [22 | 25] LR: 0.100000
+Epoch: [22][0/196]	Time 0.458 (0.458)	Data 0.331 (0.331)	Loss 0.8512 (0.8512)	Acc@1 82.031 (82.031)	Acc@5 99.609 (99.609)
+Epoch: [22][64/196]	Time 0.351 (0.443)	Data 0.000 (0.005)	Loss 0.9466 (0.8251)	Acc@1 80.078 (84.062)	Acc@5 98.438 (99.249)
+Epoch: [22][128/196]	Time 0.214 (0.365)	Data 0.000 (0.003)	Loss 0.8146 (0.8361)	Acc@1 83.984 (83.563)	Acc@5 98.828 (99.231)
+Epoch: [22][192/196]	Time 0.443 (0.355)	Data 0.000 (0.002)	Loss 0.8603 (0.8374)	Acc@1 82.812 (83.576)	Acc@5 99.219 (99.233)
+[INFO] Storing checkpoint...
+
+Epoch: [23 | 25] LR: 0.100000
+Epoch: [23][0/196]	Time 0.476 (0.476)	Data 0.356 (0.356)	Loss 0.8025 (0.8025)	Acc@1 86.328 (86.328)	Acc@5 99.219 (99.219)
+Epoch: [23][64/196]	Time 0.454 (0.453)	Data 0.000 (0.006)	Loss 0.9252 (0.8327)	Acc@1 80.078 (83.846)	Acc@5 100.000 (99.285)
+Epoch: [23][128/196]	Time 0.391 (0.454)	Data 0.000 (0.003)	Loss 0.8118 (0.8341)	Acc@1 83.984 (83.854)	Acc@5 98.828 (99.273)
+Epoch: [23][192/196]	Time 0.444 (0.455)	Data 0.000 (0.002)	Loss 0.7946 (0.8350)	Acc@1 84.766 (83.869)	Acc@5 99.609 (99.233)
+[INFO] Storing checkpoint...
+
+Epoch: [24 | 25] LR: 0.100000
+Epoch: [24][0/196]	Time 0.471 (0.471)	Data 0.306 (0.306)	Loss 0.7893 (0.7893)	Acc@1 85.938 (85.938)	Acc@5 99.219 (99.219)
+Epoch: [24][64/196]	Time 0.461 (0.453)	Data 0.000 (0.005)	Loss 0.8595 (0.8053)	Acc@1 83.203 (84.585)	Acc@5 98.047 (99.285)
+Epoch: [24][128/196]	Time 0.548 (0.453)	Data 0.000 (0.003)	Loss 0.8305 (0.8143)	Acc@1 83.594 (84.354)	Acc@5 100.000 (99.252)
+Epoch: [24][192/196]	Time 0.386 (0.426)	Data 0.000 (0.002)	Loss 0.8698 (0.8216)	Acc@1 84.766 (84.207)	Acc@5 99.219 (99.227)
+[INFO] Storing checkpoint...
+
+Epoch: [25 | 25] LR: 0.100000
+Epoch: [25][0/196]	Time 0.486 (0.486)	Data 0.335 (0.335)	Loss 0.8224 (0.8224)	Acc@1 85.156 (85.156)	Acc@5 99.219 (99.219)
+Epoch: [25][64/196]	Time 0.450 (0.458)	Data 0.000 (0.005)	Loss 0.8636 (0.8281)	Acc@1 82.422 (84.249)	Acc@5 98.438 (99.243)
+Epoch: [25][128/196]	Time 0.348 (0.430)	Data 0.000 (0.003)	Loss 0.7578 (0.8256)	Acc@1 85.938 (84.245)	Acc@5 99.609 (99.282)
+Epoch: [25][192/196]	Time 0.342 (0.375)	Data 0.000 (0.002)	Loss 0.8346 (0.8290)	Acc@1 84.766 (84.013)	Acc@5 99.609 (99.267)
+[INFO] Storing checkpoint...
+
+  256
+  80.59
+ 73.764s  j: 26 bis 30
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 481322
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.889 (0.889)	Data 0.320 (0.320)	Loss 0.6037 (0.6037)	Acc@1 91.797 (91.797)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.401 (0.365)	Data 0.000 (0.005)	Loss 0.4636 (0.5040)	Acc@1 96.094 (94.339)	Acc@5 100.000 (99.874)
-Epoch: [116][128/196]	Time 0.203 (0.345)	Data 0.000 (0.003)	Loss 0.5666 (0.5034)	Acc@1 91.406 (94.253)	Acc@5 100.000 (99.900)
-Epoch: [116][192/196]	Time 0.288 (0.304)	Data 0.000 (0.002)	Loss 0.4734 (0.5062)	Acc@1 95.703 (94.118)	Acc@5 100.000 (99.905)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 31 bis 35
+Epoch: [26 | 30] LR: 0.100000
+Epoch: [26][0/196]	Time 0.745 (0.745)	Data 0.257 (0.257)	Loss 0.8178 (0.8178)	Acc@1 84.375 (84.375)	Acc@5 99.609 (99.609)
+Epoch: [26][64/196]	Time 0.448 (0.430)	Data 0.000 (0.004)	Loss 0.8840 (0.8123)	Acc@1 80.469 (84.177)	Acc@5 99.219 (99.399)
+Epoch: [26][128/196]	Time 0.459 (0.440)	Data 0.000 (0.002)	Loss 0.8883 (0.8171)	Acc@1 80.859 (84.115)	Acc@5 99.219 (99.313)
+Epoch: [26][192/196]	Time 0.451 (0.444)	Data 0.000 (0.001)	Loss 0.9690 (0.8170)	Acc@1 79.688 (84.187)	Acc@5 98.438 (99.286)
+[INFO] Storing checkpoint...
+
+Epoch: [27 | 30] LR: 0.100000
+Epoch: [27][0/196]	Time 0.485 (0.485)	Data 0.323 (0.323)	Loss 0.7246 (0.7246)	Acc@1 86.719 (86.719)	Acc@5 100.000 (100.000)
+Epoch: [27][64/196]	Time 0.449 (0.453)	Data 0.000 (0.005)	Loss 0.9011 (0.8165)	Acc@1 82.812 (84.351)	Acc@5 99.219 (99.351)
+Epoch: [27][128/196]	Time 0.440 (0.453)	Data 0.000 (0.003)	Loss 0.7751 (0.8184)	Acc@1 84.375 (84.160)	Acc@5 98.828 (99.273)
+Epoch: [27][192/196]	Time 0.451 (0.451)	Data 0.000 (0.002)	Loss 0.9261 (0.8203)	Acc@1 82.422 (84.112)	Acc@5 98.047 (99.279)
+[INFO] Storing checkpoint...
+
+Epoch: [28 | 30] LR: 0.100000
+Epoch: [28][0/196]	Time 0.493 (0.493)	Data 0.309 (0.309)	Loss 0.9503 (0.9503)	Acc@1 83.203 (83.203)	Acc@5 98.438 (98.438)
+Epoch: [28][64/196]	Time 0.346 (0.434)	Data 0.000 (0.005)	Loss 0.8282 (0.8217)	Acc@1 82.031 (84.062)	Acc@5 99.609 (99.243)
+Epoch: [28][128/196]	Time 0.253 (0.367)	Data 0.000 (0.003)	Loss 0.8177 (0.8251)	Acc@1 81.250 (84.136)	Acc@5 99.219 (99.231)
+Epoch: [28][192/196]	Time 0.428 (0.357)	Data 0.000 (0.002)	Loss 0.7734 (0.8201)	Acc@1 85.156 (84.227)	Acc@5 99.609 (99.265)
+[INFO] Storing checkpoint...
+
+Epoch: [29 | 30] LR: 0.100000
+Epoch: [29][0/196]	Time 0.500 (0.500)	Data 0.322 (0.322)	Loss 0.7160 (0.7160)	Acc@1 87.500 (87.500)	Acc@5 99.609 (99.609)
+Epoch: [29][64/196]	Time 0.454 (0.452)	Data 0.000 (0.005)	Loss 0.8694 (0.8013)	Acc@1 85.938 (84.790)	Acc@5 98.438 (99.339)
+Epoch: [29][128/196]	Time 0.390 (0.448)	Data 0.000 (0.003)	Loss 0.8260 (0.8082)	Acc@1 84.375 (84.517)	Acc@5 98.828 (99.310)
+Epoch: [29][192/196]	Time 0.395 (0.423)	Data 0.000 (0.002)	Loss 0.8311 (0.8094)	Acc@1 83.984 (84.442)	Acc@5 99.609 (99.261)
+[INFO] Storing checkpoint...
+
+Epoch: [30 | 30] LR: 0.100000
+Epoch: [30][0/196]	Time 0.646 (0.646)	Data 0.322 (0.322)	Loss 0.6868 (0.6868)	Acc@1 88.281 (88.281)	Acc@5 99.219 (99.219)
+Epoch: [30][64/196]	Time 0.454 (0.453)	Data 0.000 (0.005)	Loss 0.7867 (0.8190)	Acc@1 85.547 (84.267)	Acc@5 98.438 (99.315)
+Epoch: [30][128/196]	Time 0.433 (0.451)	Data 0.000 (0.003)	Loss 0.9461 (0.8119)	Acc@1 82.422 (84.505)	Acc@5 98.828 (99.273)
+Epoch: [30][192/196]	Time 0.425 (0.451)	Data 0.000 (0.002)	Loss 0.8239 (0.8151)	Acc@1 84.766 (84.373)	Acc@5 99.219 (99.267)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 427908 ; 481322 ; 0.8890264729224926
+[INFO] Storing checkpoint...
+
+  256
+  76.24
+ 88.916s  j: 31 bis 35
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 427908
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.847 (0.847)	Data 0.256 (0.256)	Loss 0.4633 (0.4633)	Acc@1 95.703 (95.703)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.389 (0.354)	Data 0.000 (0.004)	Loss 0.4750 (0.5095)	Acc@1 96.484 (94.201)	Acc@5 100.000 (99.886)
-Epoch: [116][128/196]	Time 0.411 (0.374)	Data 0.000 (0.002)	Loss 0.5416 (0.5092)	Acc@1 93.359 (94.098)	Acc@5 99.219 (99.888)
-Epoch: [116][192/196]	Time 0.391 (0.381)	Data 0.000 (0.002)	Loss 0.5805 (0.5089)	Acc@1 89.844 (94.027)	Acc@5 100.000 (99.895)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 36 bis 40
+Epoch: [31 | 35] LR: 0.100000
+Epoch: [31][0/196]	Time 0.706 (0.706)	Data 0.304 (0.304)	Loss 0.8503 (0.8503)	Acc@1 82.812 (82.812)	Acc@5 98.828 (98.828)
+Epoch: [31][64/196]	Time 0.246 (0.286)	Data 0.000 (0.005)	Loss 0.7584 (0.7782)	Acc@1 85.156 (85.445)	Acc@5 99.219 (99.387)
+Epoch: [31][128/196]	Time 0.365 (0.290)	Data 0.000 (0.003)	Loss 0.8000 (0.7947)	Acc@1 84.375 (84.917)	Acc@5 99.219 (99.313)
+Epoch: [31][192/196]	Time 0.467 (0.339)	Data 0.000 (0.002)	Loss 0.9178 (0.7995)	Acc@1 78.125 (84.770)	Acc@5 99.609 (99.320)
+[INFO] Storing checkpoint...
+
+Epoch: [32 | 35] LR: 0.100000
+Epoch: [32][0/196]	Time 0.409 (0.409)	Data 0.327 (0.327)	Loss 0.7893 (0.7893)	Acc@1 82.812 (82.812)	Acc@5 99.219 (99.219)
+Epoch: [32][64/196]	Time 0.436 (0.448)	Data 0.000 (0.005)	Loss 0.7737 (0.8158)	Acc@1 88.281 (84.447)	Acc@5 100.000 (99.303)
+Epoch: [32][128/196]	Time 0.448 (0.447)	Data 0.000 (0.003)	Loss 0.7616 (0.8085)	Acc@1 86.328 (84.784)	Acc@5 100.000 (99.370)
+Epoch: [32][192/196]	Time 0.475 (0.448)	Data 0.000 (0.002)	Loss 0.7422 (0.8060)	Acc@1 85.938 (84.861)	Acc@5 99.609 (99.344)
+[INFO] Storing checkpoint...
+
+Epoch: [33 | 35] LR: 0.100000
+Epoch: [33][0/196]	Time 0.452 (0.452)	Data 0.312 (0.312)	Loss 0.7045 (0.7045)	Acc@1 89.453 (89.453)	Acc@5 99.609 (99.609)
+Epoch: [33][64/196]	Time 0.472 (0.448)	Data 0.000 (0.005)	Loss 0.8314 (0.8137)	Acc@1 83.203 (84.315)	Acc@5 99.609 (99.237)
+Epoch: [33][128/196]	Time 0.464 (0.449)	Data 0.000 (0.003)	Loss 0.9012 (0.8017)	Acc@1 82.031 (84.820)	Acc@5 99.609 (99.261)
+Epoch: [33][192/196]	Time 0.457 (0.448)	Data 0.000 (0.002)	Loss 0.9522 (0.8066)	Acc@1 80.078 (84.537)	Acc@5 99.219 (99.298)
+[INFO] Storing checkpoint...
+
+Epoch: [34 | 35] LR: 0.100000
+Epoch: [34][0/196]	Time 0.494 (0.494)	Data 0.318 (0.318)	Loss 0.7776 (0.7776)	Acc@1 86.719 (86.719)	Acc@5 99.219 (99.219)
+Epoch: [34][64/196]	Time 0.344 (0.419)	Data 0.000 (0.005)	Loss 0.8449 (0.7980)	Acc@1 83.594 (84.880)	Acc@5 99.219 (99.345)
+Epoch: [34][128/196]	Time 0.168 (0.330)	Data 0.000 (0.003)	Loss 0.7970 (0.7972)	Acc@1 85.156 (84.802)	Acc@5 98.828 (99.334)
+Epoch: [34][192/196]	Time 0.288 (0.300)	Data 0.000 (0.002)	Loss 0.8904 (0.8029)	Acc@1 84.766 (84.646)	Acc@5 98.438 (99.300)
+[INFO] Storing checkpoint...
+
+Epoch: [35 | 35] LR: 0.100000
+Epoch: [35][0/196]	Time 0.329 (0.329)	Data 0.309 (0.309)	Loss 0.7991 (0.7991)	Acc@1 84.375 (84.375)	Acc@5 98.438 (98.438)
+Epoch: [35][64/196]	Time 0.429 (0.433)	Data 0.000 (0.005)	Loss 0.7512 (0.7981)	Acc@1 84.766 (85.174)	Acc@5 99.609 (99.351)
+Epoch: [35][128/196]	Time 0.456 (0.440)	Data 0.000 (0.003)	Loss 0.8585 (0.8009)	Acc@1 84.766 (84.850)	Acc@5 99.609 (99.328)
+Epoch: [35][192/196]	Time 0.445 (0.443)	Data 0.000 (0.002)	Loss 0.7667 (0.8079)	Acc@1 83.594 (84.614)	Acc@5 99.219 (99.316)
+[INFO] Storing checkpoint...
+
+  256
+  73.84
+ 87.215s  j: 36 bis 40
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 427908
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.840 (0.840)	Data 0.286 (0.286)	Loss 0.4473 (0.4473)	Acc@1 96.484 (96.484)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.406 (0.327)	Data 0.000 (0.005)	Loss 0.4777 (0.4959)	Acc@1 95.312 (94.627)	Acc@5 99.609 (99.892)
-Epoch: [116][128/196]	Time 0.360 (0.360)	Data 0.000 (0.002)	Loss 0.5164 (0.5026)	Acc@1 94.141 (94.347)	Acc@5 99.219 (99.900)
-Epoch: [116][192/196]	Time 0.306 (0.372)	Data 0.000 (0.002)	Loss 0.5533 (0.5050)	Acc@1 89.844 (94.141)	Acc@5 100.000 (99.895)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 41 bis 45
+Epoch: [36 | 40] LR: 0.100000
+Epoch: [36][0/196]	Time 0.739 (0.739)	Data 0.328 (0.328)	Loss 0.8347 (0.8347)	Acc@1 84.766 (84.766)	Acc@5 99.219 (99.219)
+Epoch: [36][64/196]	Time 0.439 (0.426)	Data 0.000 (0.005)	Loss 0.7207 (0.7974)	Acc@1 87.500 (85.048)	Acc@5 100.000 (99.351)
+Epoch: [36][128/196]	Time 0.501 (0.437)	Data 0.000 (0.003)	Loss 0.7493 (0.7965)	Acc@1 83.984 (84.744)	Acc@5 99.609 (99.340)
+Epoch: [36][192/196]	Time 0.442 (0.441)	Data 0.000 (0.002)	Loss 0.7331 (0.7986)	Acc@1 85.156 (84.711)	Acc@5 100.000 (99.322)
+[INFO] Storing checkpoint...
+
+Epoch: [37 | 40] LR: 0.100000
+Epoch: [37][0/196]	Time 0.443 (0.443)	Data 0.319 (0.319)	Loss 0.8853 (0.8853)	Acc@1 84.375 (84.375)	Acc@5 97.656 (97.656)
+Epoch: [37][64/196]	Time 0.355 (0.372)	Data 0.000 (0.005)	Loss 0.8546 (0.8015)	Acc@1 83.594 (84.694)	Acc@5 99.219 (99.249)
+Epoch: [37][128/196]	Time 0.423 (0.337)	Data 0.000 (0.003)	Loss 0.9088 (0.8093)	Acc@1 83.594 (84.451)	Acc@5 98.047 (99.276)
+Epoch: [37][192/196]	Time 0.471 (0.357)	Data 0.000 (0.002)	Loss 0.7775 (0.7997)	Acc@1 85.938 (84.735)	Acc@5 99.219 (99.312)
+[INFO] Storing checkpoint...
+
+Epoch: [38 | 40] LR: 0.100000
+Epoch: [38][0/196]	Time 0.453 (0.453)	Data 0.376 (0.376)	Loss 0.7336 (0.7336)	Acc@1 85.156 (85.156)	Acc@5 99.219 (99.219)
+Epoch: [38][64/196]	Time 0.469 (0.448)	Data 0.000 (0.006)	Loss 0.7536 (0.7980)	Acc@1 85.156 (84.333)	Acc@5 99.219 (99.393)
+Epoch: [38][128/196]	Time 0.517 (0.448)	Data 0.000 (0.003)	Loss 0.7687 (0.7936)	Acc@1 87.109 (84.717)	Acc@5 99.219 (99.355)
+Epoch: [38][192/196]	Time 0.456 (0.448)	Data 0.000 (0.002)	Loss 0.8614 (0.7965)	Acc@1 84.766 (84.685)	Acc@5 98.438 (99.324)
+[INFO] Storing checkpoint...
+
+Epoch: [39 | 40] LR: 0.100000
+Epoch: [39][0/196]	Time 0.468 (0.468)	Data 0.333 (0.333)	Loss 0.7300 (0.7300)	Acc@1 87.891 (87.891)	Acc@5 98.828 (98.828)
+Epoch: [39][64/196]	Time 0.461 (0.444)	Data 0.000 (0.005)	Loss 0.7994 (0.7889)	Acc@1 82.812 (85.012)	Acc@5 99.609 (99.369)
+Epoch: [39][128/196]	Time 0.476 (0.445)	Data 0.000 (0.003)	Loss 0.8710 (0.7955)	Acc@1 82.031 (84.775)	Acc@5 99.219 (99.349)
+Epoch: [39][192/196]	Time 0.366 (0.425)	Data 0.000 (0.002)	Loss 0.7711 (0.7959)	Acc@1 85.547 (84.713)	Acc@5 100.000 (99.354)
+[INFO] Storing checkpoint...
+
+Epoch: [40 | 40] LR: 0.100000
+Epoch: [40][0/196]	Time 0.519 (0.519)	Data 0.323 (0.323)	Loss 0.8555 (0.8555)	Acc@1 82.031 (82.031)	Acc@5 98.828 (98.828)
+Epoch: [40][64/196]	Time 0.335 (0.417)	Data 0.000 (0.005)	Loss 0.7962 (0.7679)	Acc@1 83.203 (85.547)	Acc@5 99.609 (99.447)
+Epoch: [40][128/196]	Time 0.250 (0.368)	Data 0.000 (0.003)	Loss 0.8755 (0.7808)	Acc@1 83.984 (85.289)	Acc@5 98.828 (99.394)
+Epoch: [40][192/196]	Time 0.338 (0.354)	Data 0.000 (0.002)	Loss 0.7697 (0.7872)	Acc@1 85.156 (85.140)	Acc@5 99.609 (99.346)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+
+ RM:  module.conv21.weight
+
+ RM:  module.conv22.weight
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(16, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(14, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(16, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(14, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(32, 29, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(29, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(29, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(32, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(24, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(64, 61, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(61, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(61, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(64, 57, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(57, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(57, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): Conv2d(64, 44, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (59): BatchNorm2d(44, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (60): Conv2d(44, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (61): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (62): AdaptiveAvgPool2d(output_size=(1, 1))
+    (63): Linear(in_features=64, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+Count: 389450 ; 427908 ; 0.9101255410041411
+[INFO] Storing checkpoint...
+
+  256
+  79.32
+ 69.864s  j: 41 bis 45
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 389450
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.611 (0.611)	Data 0.227 (0.227)	Loss 0.5131 (0.5131)	Acc@1 94.531 (94.531)	Acc@5 99.609 (99.609)
-Epoch: [116][64/196]	Time 0.328 (0.208)	Data 0.000 (0.004)	Loss 0.5654 (0.5026)	Acc@1 90.234 (94.153)	Acc@5 99.609 (99.904)
-Epoch: [116][128/196]	Time 0.388 (0.299)	Data 0.000 (0.002)	Loss 0.4505 (0.5054)	Acc@1 95.703 (94.044)	Acc@5 100.000 (99.900)
-Epoch: [116][192/196]	Time 0.402 (0.333)	Data 0.000 (0.001)	Loss 0.5285 (0.5086)	Acc@1 93.359 (93.867)	Acc@5 99.219 (99.883)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 46 bis 50
+Epoch: [41 | 45] LR: 0.100000
+Epoch: [41][0/196]	Time 0.858 (0.858)	Data 0.300 (0.300)	Loss 0.8321 (0.8321)	Acc@1 82.812 (82.812)	Acc@5 99.609 (99.609)
+Epoch: [41][64/196]	Time 0.437 (0.395)	Data 0.000 (0.005)	Loss 0.7421 (0.7573)	Acc@1 87.109 (85.938)	Acc@5 99.219 (99.435)
+Epoch: [41][128/196]	Time 0.417 (0.407)	Data 0.000 (0.002)	Loss 0.9239 (0.7720)	Acc@1 79.297 (85.489)	Acc@5 99.219 (99.428)
+Epoch: [41][192/196]	Time 0.420 (0.411)	Data 0.000 (0.002)	Loss 0.8252 (0.7832)	Acc@1 85.938 (85.118)	Acc@5 99.219 (99.364)
+[INFO] Storing checkpoint...
+
+Epoch: [42 | 45] LR: 0.100000
+Epoch: [42][0/196]	Time 0.457 (0.457)	Data 0.332 (0.332)	Loss 0.6974 (0.6974)	Acc@1 83.984 (83.984)	Acc@5 99.219 (99.219)
+Epoch: [42][64/196]	Time 0.434 (0.425)	Data 0.000 (0.005)	Loss 0.7995 (0.7925)	Acc@1 85.156 (84.844)	Acc@5 100.000 (99.303)
+Epoch: [42][128/196]	Time 0.427 (0.422)	Data 0.000 (0.003)	Loss 0.6761 (0.7935)	Acc@1 90.234 (84.802)	Acc@5 99.609 (99.282)
+Epoch: [42][192/196]	Time 0.415 (0.421)	Data 0.000 (0.002)	Loss 0.7638 (0.7918)	Acc@1 85.938 (84.772)	Acc@5 99.609 (99.284)
+[INFO] Storing checkpoint...
+
+Epoch: [43 | 45] LR: 0.100000
+Epoch: [43][0/196]	Time 0.445 (0.445)	Data 0.302 (0.302)	Loss 0.7363 (0.7363)	Acc@1 87.891 (87.891)	Acc@5 100.000 (100.000)
+Epoch: [43][64/196]	Time 0.318 (0.351)	Data 0.000 (0.005)	Loss 0.8270 (0.7840)	Acc@1 85.938 (85.192)	Acc@5 98.828 (99.321)
+Epoch: [43][128/196]	Time 0.326 (0.320)	Data 0.000 (0.003)	Loss 0.8389 (0.7933)	Acc@1 82.812 (84.893)	Acc@5 98.438 (99.328)
+Epoch: [43][192/196]	Time 0.421 (0.332)	Data 0.000 (0.002)	Loss 0.8654 (0.7907)	Acc@1 84.766 (84.964)	Acc@5 98.828 (99.346)
+[INFO] Storing checkpoint...
+
+Epoch: [44 | 45] LR: 0.100000
+Epoch: [44][0/196]	Time 0.454 (0.454)	Data 0.328 (0.328)	Loss 0.9647 (0.9647)	Acc@1 81.250 (81.250)	Acc@5 98.047 (98.047)
+Epoch: [44][64/196]	Time 0.445 (0.420)	Data 0.000 (0.005)	Loss 0.7287 (0.7875)	Acc@1 87.109 (85.337)	Acc@5 98.438 (99.333)
+Epoch: [44][128/196]	Time 0.437 (0.421)	Data 0.000 (0.003)	Loss 0.7512 (0.7870)	Acc@1 86.328 (85.177)	Acc@5 99.219 (99.294)
+Epoch: [44][192/196]	Time 0.339 (0.407)	Data 0.000 (0.002)	Loss 0.8166 (0.7857)	Acc@1 83.984 (85.112)	Acc@5 99.219 (99.304)
+[INFO] Storing checkpoint...
+
+Epoch: [45 | 45] LR: 0.100000
+Epoch: [45][0/196]	Time 0.373 (0.373)	Data 0.303 (0.303)	Loss 0.7146 (0.7146)	Acc@1 88.281 (88.281)	Acc@5 99.219 (99.219)
+Epoch: [45][64/196]	Time 0.419 (0.395)	Data 0.000 (0.005)	Loss 0.8685 (0.7993)	Acc@1 82.422 (84.615)	Acc@5 99.219 (99.273)
+Epoch: [45][128/196]	Time 0.441 (0.407)	Data 0.000 (0.003)	Loss 0.7615 (0.7868)	Acc@1 84.766 (85.147)	Acc@5 98.828 (99.319)
+Epoch: [45][192/196]	Time 0.420 (0.410)	Data 0.000 (0.002)	Loss 0.6708 (0.7843)	Acc@1 90.625 (85.191)	Acc@5 100.000 (99.354)
+[INFO] Storing checkpoint...
+
+  256
+  79.59
+ 80.862s  j: 46 bis 50
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 389450
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 1.025 (1.025)	Data 0.255 (0.255)	Loss 0.4732 (0.4732)	Acc@1 95.312 (95.312)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.346 (0.305)	Data 0.000 (0.004)	Loss 0.5020 (0.5068)	Acc@1 93.750 (94.135)	Acc@5 99.609 (99.904)
-Epoch: [116][128/196]	Time 0.414 (0.337)	Data 0.000 (0.002)	Loss 0.4736 (0.5064)	Acc@1 95.312 (94.101)	Acc@5 100.000 (99.891)
-Epoch: [116][192/196]	Time 0.419 (0.357)	Data 0.000 (0.002)	Loss 0.4958 (0.5078)	Acc@1 94.922 (93.960)	Acc@5 99.609 (99.889)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 51 bis 55
+Epoch: [46 | 50] LR: 0.100000
+Epoch: [46][0/196]	Time 0.870 (0.870)	Data 0.289 (0.289)	Loss 0.7590 (0.7590)	Acc@1 86.328 (86.328)	Acc@5 98.047 (98.047)
+Epoch: [46][64/196]	Time 0.322 (0.309)	Data 0.000 (0.005)	Loss 0.8016 (0.7946)	Acc@1 85.938 (84.633)	Acc@5 98.828 (99.345)
+Epoch: [46][128/196]	Time 0.320 (0.298)	Data 0.000 (0.002)	Loss 0.7501 (0.7862)	Acc@1 86.719 (85.011)	Acc@5 98.828 (99.391)
+Epoch: [46][192/196]	Time 0.436 (0.320)	Data 0.000 (0.002)	Loss 0.8144 (0.7873)	Acc@1 83.984 (85.002)	Acc@5 99.219 (99.366)
+[INFO] Storing checkpoint...
+
+Epoch: [47 | 50] LR: 0.100000
+Epoch: [47][0/196]	Time 0.451 (0.451)	Data 0.368 (0.368)	Loss 0.7423 (0.7423)	Acc@1 86.719 (86.719)	Acc@5 99.219 (99.219)
+Epoch: [47][64/196]	Time 0.405 (0.420)	Data 0.000 (0.006)	Loss 0.7799 (0.7772)	Acc@1 85.938 (85.312)	Acc@5 98.828 (99.321)
+Epoch: [47][128/196]	Time 0.446 (0.419)	Data 0.000 (0.003)	Loss 0.7916 (0.7796)	Acc@1 86.328 (85.262)	Acc@5 100.000 (99.337)
+Epoch: [47][192/196]	Time 0.428 (0.420)	Data 0.000 (0.002)	Loss 0.7978 (0.7780)	Acc@1 83.203 (85.397)	Acc@5 99.219 (99.366)
+[INFO] Storing checkpoint...
+
+Epoch: [48 | 50] LR: 0.100000
+Epoch: [48][0/196]	Time 0.299 (0.299)	Data 0.340 (0.340)	Loss 0.7923 (0.7923)	Acc@1 85.938 (85.938)	Acc@5 99.219 (99.219)
+Epoch: [48][64/196]	Time 0.441 (0.414)	Data 0.000 (0.005)	Loss 0.8226 (0.7874)	Acc@1 83.203 (85.018)	Acc@5 99.219 (99.351)
+Epoch: [48][128/196]	Time 0.416 (0.417)	Data 0.000 (0.003)	Loss 0.7940 (0.7836)	Acc@1 83.203 (85.044)	Acc@5 99.219 (99.361)
+Epoch: [48][192/196]	Time 0.419 (0.419)	Data 0.000 (0.002)	Loss 0.8431 (0.7783)	Acc@1 82.812 (85.371)	Acc@5 100.000 (99.326)
+[INFO] Storing checkpoint...
+
+Epoch: [49 | 50] LR: 0.100000
+Epoch: [49][0/196]	Time 0.450 (0.450)	Data 0.336 (0.336)	Loss 0.7716 (0.7716)	Acc@1 85.156 (85.156)	Acc@5 100.000 (100.000)
+Epoch: [49][64/196]	Time 0.411 (0.419)	Data 0.000 (0.005)	Loss 0.7214 (0.7657)	Acc@1 87.109 (85.691)	Acc@5 99.609 (99.405)
+Epoch: [49][128/196]	Time 0.310 (0.388)	Data 0.000 (0.003)	Loss 0.7640 (0.7771)	Acc@1 84.375 (85.302)	Acc@5 99.219 (99.376)
+Epoch: [49][192/196]	Time 0.306 (0.356)	Data 0.000 (0.002)	Loss 0.9041 (0.7839)	Acc@1 82.422 (85.122)	Acc@5 98.828 (99.373)
+[INFO] Storing checkpoint...
+
+Epoch: [50 | 50] LR: 0.100000
+Epoch: [50][0/196]	Time 0.455 (0.455)	Data 0.304 (0.304)	Loss 0.7499 (0.7499)	Acc@1 86.328 (86.328)	Acc@5 100.000 (100.000)
+Epoch: [50][64/196]	Time 0.343 (0.283)	Data 0.000 (0.005)	Loss 0.7439 (0.7814)	Acc@1 85.156 (85.439)	Acc@5 99.219 (99.345)
+Epoch: [50][128/196]	Time 0.416 (0.334)	Data 0.000 (0.003)	Loss 0.7503 (0.7775)	Acc@1 87.109 (85.559)	Acc@5 99.219 (99.346)
+Epoch: [50][192/196]	Time 0.427 (0.363)	Data 0.000 (0.002)	Loss 0.8314 (0.7823)	Acc@1 81.641 (85.223)	Acc@5 100.000 (99.316)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 363170 ; 389450 ; 0.9325202208242394
+[INFO] Storing checkpoint...
+
+  256
+  78.17
+ 71.649s  j: 51 bis 55
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 363170
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 1.030 (1.030)	Data 0.259 (0.259)	Loss 0.4880 (0.4880)	Acc@1 94.922 (94.922)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.229 (0.285)	Data 0.000 (0.004)	Loss 0.5351 (0.4956)	Acc@1 93.750 (94.621)	Acc@5 100.000 (99.916)
-Epoch: [116][128/196]	Time 0.145 (0.253)	Data 0.000 (0.002)	Loss 0.4826 (0.5009)	Acc@1 94.922 (94.304)	Acc@5 99.609 (99.909)
-Epoch: [116][192/196]	Time 0.309 (0.243)	Data 0.000 (0.002)	Loss 0.5381 (0.5073)	Acc@1 93.359 (94.106)	Acc@5 99.609 (99.887)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 56 bis 60
+Epoch: [51 | 55] LR: 0.100000
+Epoch: [51][0/196]	Time 0.955 (0.955)	Data 0.283 (0.283)	Loss 0.7747 (0.7747)	Acc@1 86.328 (86.328)	Acc@5 98.828 (98.828)
+Epoch: [51][64/196]	Time 0.410 (0.388)	Data 0.000 (0.005)	Loss 0.8623 (0.7537)	Acc@1 82.812 (85.841)	Acc@5 99.219 (99.381)
+Epoch: [51][128/196]	Time 0.411 (0.402)	Data 0.000 (0.002)	Loss 0.7521 (0.7671)	Acc@1 85.938 (85.438)	Acc@5 99.219 (99.352)
+Epoch: [51][192/196]	Time 0.396 (0.406)	Data 0.000 (0.002)	Loss 0.8033 (0.7698)	Acc@1 83.594 (85.365)	Acc@5 99.609 (99.401)
+[INFO] Storing checkpoint...
+
+Epoch: [52 | 55] LR: 0.100000
+Epoch: [52][0/196]	Time 0.428 (0.428)	Data 0.421 (0.421)	Loss 0.7977 (0.7977)	Acc@1 83.203 (83.203)	Acc@5 98.828 (98.828)
+Epoch: [52][64/196]	Time 0.413 (0.417)	Data 0.000 (0.007)	Loss 0.8486 (0.7662)	Acc@1 82.422 (85.829)	Acc@5 99.219 (99.483)
+Epoch: [52][128/196]	Time 0.307 (0.365)	Data 0.000 (0.003)	Loss 0.7599 (0.7694)	Acc@1 82.422 (85.644)	Acc@5 100.000 (99.455)
+Epoch: [52][192/196]	Time 0.300 (0.344)	Data 0.000 (0.002)	Loss 0.8310 (0.7676)	Acc@1 80.859 (85.642)	Acc@5 98.047 (99.452)
+[INFO] Storing checkpoint...
+
+Epoch: [53 | 55] LR: 0.100000
+Epoch: [53][0/196]	Time 0.346 (0.346)	Data 0.347 (0.347)	Loss 0.6977 (0.6977)	Acc@1 90.234 (90.234)	Acc@5 99.609 (99.609)
+Epoch: [53][64/196]	Time 0.420 (0.370)	Data 0.000 (0.006)	Loss 0.8670 (0.7721)	Acc@1 80.078 (85.168)	Acc@5 98.438 (99.339)
+Epoch: [53][128/196]	Time 0.413 (0.392)	Data 0.000 (0.003)	Loss 0.7475 (0.7708)	Acc@1 86.719 (85.405)	Acc@5 100.000 (99.343)
+Epoch: [53][192/196]	Time 0.400 (0.399)	Data 0.000 (0.002)	Loss 0.7422 (0.7721)	Acc@1 86.719 (85.312)	Acc@5 99.219 (99.356)
+[INFO] Storing checkpoint...
+
+Epoch: [54 | 55] LR: 0.100000
+Epoch: [54][0/196]	Time 0.411 (0.411)	Data 0.291 (0.291)	Loss 0.7481 (0.7481)	Acc@1 88.281 (88.281)	Acc@5 99.609 (99.609)
+Epoch: [54][64/196]	Time 0.281 (0.413)	Data 0.000 (0.005)	Loss 0.7127 (0.7760)	Acc@1 85.547 (85.180)	Acc@5 99.609 (99.429)
+Epoch: [54][128/196]	Time 0.408 (0.414)	Data 0.000 (0.002)	Loss 0.7830 (0.7786)	Acc@1 84.766 (85.074)	Acc@5 99.219 (99.419)
+Epoch: [54][192/196]	Time 0.402 (0.414)	Data 0.000 (0.002)	Loss 0.8231 (0.7805)	Acc@1 83.984 (85.136)	Acc@5 100.000 (99.389)
+[INFO] Storing checkpoint...
+
+Epoch: [55 | 55] LR: 0.100000
+Epoch: [55][0/196]	Time 0.427 (0.427)	Data 0.358 (0.358)	Loss 0.7606 (0.7606)	Acc@1 85.156 (85.156)	Acc@5 99.609 (99.609)
+Epoch: [55][64/196]	Time 0.350 (0.402)	Data 0.000 (0.006)	Loss 0.6698 (0.7508)	Acc@1 87.109 (85.974)	Acc@5 99.609 (99.459)
+Epoch: [55][128/196]	Time 0.361 (0.375)	Data 0.000 (0.003)	Loss 0.7601 (0.7578)	Acc@1 84.766 (85.895)	Acc@5 99.609 (99.437)
+Epoch: [55][192/196]	Time 0.255 (0.362)	Data 0.000 (0.002)	Loss 0.8751 (0.7662)	Acc@1 80.469 (85.642)	Acc@5 99.609 (99.360)
+[INFO] Storing checkpoint...
+
+  256
+  78.45
+ 71.145s  j: 56 bis 60
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 363170
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.983 (0.983)	Data 0.343 (0.343)	Loss 0.4621 (0.4621)	Acc@1 96.875 (96.875)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.412 (0.357)	Data 0.000 (0.005)	Loss 0.5149 (0.5033)	Acc@1 93.359 (94.297)	Acc@5 99.609 (99.910)
-Epoch: [116][128/196]	Time 0.334 (0.356)	Data 0.000 (0.003)	Loss 0.4812 (0.5076)	Acc@1 94.922 (94.104)	Acc@5 100.000 (99.903)
-Epoch: [116][192/196]	Time 0.422 (0.357)	Data 0.000 (0.002)	Loss 0.5076 (0.5090)	Acc@1 94.531 (94.007)	Acc@5 100.000 (99.881)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 61 bis 65
+Epoch: [56 | 60] LR: 0.100000
+Epoch: [56][0/196]	Time 0.842 (0.842)	Data 0.306 (0.306)	Loss 0.7105 (0.7105)	Acc@1 87.500 (87.500)	Acc@5 99.609 (99.609)
+Epoch: [56][64/196]	Time 0.413 (0.402)	Data 0.000 (0.005)	Loss 0.7175 (0.7702)	Acc@1 88.281 (85.535)	Acc@5 98.828 (99.459)
+Epoch: [56][128/196]	Time 0.387 (0.409)	Data 0.000 (0.003)	Loss 0.7674 (0.7663)	Acc@1 83.203 (85.653)	Acc@5 99.219 (99.410)
+Epoch: [56][192/196]	Time 0.360 (0.410)	Data 0.000 (0.002)	Loss 0.8700 (0.7685)	Acc@1 82.031 (85.541)	Acc@5 98.828 (99.379)
+[INFO] Storing checkpoint...
+
+Epoch: [57 | 60] LR: 0.100000
+Epoch: [57][0/196]	Time 0.424 (0.424)	Data 0.321 (0.321)	Loss 0.7860 (0.7860)	Acc@1 86.328 (86.328)	Acc@5 100.000 (100.000)
+Epoch: [57][64/196]	Time 0.388 (0.415)	Data 0.000 (0.005)	Loss 0.7557 (0.7759)	Acc@1 85.938 (85.204)	Acc@5 100.000 (99.285)
+Epoch: [57][128/196]	Time 0.411 (0.416)	Data 0.000 (0.003)	Loss 0.8084 (0.7783)	Acc@1 85.938 (85.047)	Acc@5 97.656 (99.322)
+Epoch: [57][192/196]	Time 0.392 (0.414)	Data 0.000 (0.002)	Loss 0.7793 (0.7760)	Acc@1 85.938 (85.221)	Acc@5 99.609 (99.330)
+[INFO] Storing checkpoint...
+
+Epoch: [58 | 60] LR: 0.100000
+Epoch: [58][0/196]	Time 0.448 (0.448)	Data 0.284 (0.284)	Loss 0.7926 (0.7926)	Acc@1 85.156 (85.156)	Acc@5 100.000 (100.000)
+Epoch: [58][64/196]	Time 0.425 (0.416)	Data 0.000 (0.005)	Loss 0.9088 (0.7685)	Acc@1 83.203 (85.703)	Acc@5 98.828 (99.399)
+Epoch: [58][128/196]	Time 0.325 (0.398)	Data 0.000 (0.002)	Loss 0.7075 (0.7692)	Acc@1 87.891 (85.765)	Acc@5 99.609 (99.373)
+Epoch: [58][192/196]	Time 0.405 (0.374)	Data 0.000 (0.002)	Loss 0.7920 (0.7699)	Acc@1 83.984 (85.701)	Acc@5 99.609 (99.358)
+[INFO] Storing checkpoint...
+
+Epoch: [59 | 60] LR: 0.100000
+Epoch: [59][0/196]	Time 0.446 (0.446)	Data 0.304 (0.304)	Loss 0.7718 (0.7718)	Acc@1 85.938 (85.938)	Acc@5 99.609 (99.609)
+Epoch: [59][64/196]	Time 0.323 (0.320)	Data 0.000 (0.005)	Loss 0.8146 (0.7572)	Acc@1 85.547 (85.931)	Acc@5 99.219 (99.309)
+Epoch: [59][128/196]	Time 0.430 (0.348)	Data 0.000 (0.003)	Loss 0.7342 (0.7622)	Acc@1 85.156 (85.671)	Acc@5 98.828 (99.319)
+Epoch: [59][192/196]	Time 0.393 (0.369)	Data 0.000 (0.002)	Loss 0.7051 (0.7660)	Acc@1 88.281 (85.583)	Acc@5 98.828 (99.296)
+[INFO] Storing checkpoint...
+
+Epoch: [60 | 60] LR: 0.100000
+Epoch: [60][0/196]	Time 0.630 (0.630)	Data 0.325 (0.325)	Loss 0.7453 (0.7453)	Acc@1 85.938 (85.938)	Acc@5 99.609 (99.609)
+Epoch: [60][64/196]	Time 0.360 (0.390)	Data 0.000 (0.005)	Loss 0.8778 (0.7689)	Acc@1 82.031 (85.312)	Acc@5 98.828 (99.279)
+Epoch: [60][128/196]	Time 0.359 (0.375)	Data 0.000 (0.003)	Loss 0.7251 (0.7646)	Acc@1 85.156 (85.589)	Acc@5 100.000 (99.319)
+Epoch: [60][192/196]	Time 0.352 (0.368)	Data 0.000 (0.002)	Loss 0.8358 (0.7689)	Acc@1 83.203 (85.425)	Acc@5 98.047 (99.369)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 342966 ; 363170 ; 0.9443676515130655
+[INFO] Storing checkpoint...
+
+  256
+  78.0
+ 72.487s  j: 61 bis 65
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 342966
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.977 (0.977)	Data 0.291 (0.291)	Loss 0.5353 (0.5353)	Acc@1 94.531 (94.531)	Acc@5 99.609 (99.609)
-Epoch: [116][64/196]	Time 0.424 (0.358)	Data 0.000 (0.005)	Loss 0.5566 (0.5047)	Acc@1 91.016 (94.261)	Acc@5 100.000 (99.874)
-Epoch: [116][128/196]	Time 0.336 (0.366)	Data 0.000 (0.002)	Loss 0.5197 (0.5079)	Acc@1 92.969 (94.083)	Acc@5 100.000 (99.873)
-Epoch: [116][192/196]	Time 0.389 (0.358)	Data 0.000 (0.002)	Loss 0.5130 (0.5055)	Acc@1 92.969 (94.098)	Acc@5 99.609 (99.879)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 66 bis 70
+Epoch: [61 | 65] LR: 0.100000
+Epoch: [61][0/196]	Time 1.107 (1.107)	Data 0.274 (0.274)	Loss 0.6384 (0.6384)	Acc@1 90.234 (90.234)	Acc@5 99.219 (99.219)
+Epoch: [61][64/196]	Time 0.433 (0.431)	Data 0.000 (0.004)	Loss 0.7872 (0.7347)	Acc@1 80.859 (86.472)	Acc@5 99.219 (99.447)
+Epoch: [61][128/196]	Time 0.310 (0.394)	Data 0.000 (0.002)	Loss 0.6969 (0.7496)	Acc@1 88.281 (85.901)	Acc@5 99.609 (99.437)
+Epoch: [61][192/196]	Time 0.443 (0.378)	Data 0.000 (0.002)	Loss 0.6133 (0.7632)	Acc@1 91.797 (85.442)	Acc@5 99.219 (99.401)
+[INFO] Storing checkpoint...
+
+Epoch: [62 | 65] LR: 0.100000
+Epoch: [62][0/196]	Time 0.354 (0.354)	Data 0.321 (0.321)	Loss 0.7808 (0.7808)	Acc@1 83.594 (83.594)	Acc@5 99.219 (99.219)
+Epoch: [62][64/196]	Time 0.320 (0.314)	Data 0.000 (0.005)	Loss 0.7994 (0.7728)	Acc@1 84.766 (85.114)	Acc@5 98.438 (99.357)
+Epoch: [62][128/196]	Time 0.396 (0.357)	Data 0.000 (0.003)	Loss 0.7519 (0.7695)	Acc@1 85.156 (85.156)	Acc@5 100.000 (99.391)
+Epoch: [62][192/196]	Time 0.374 (0.378)	Data 0.000 (0.002)	Loss 0.7721 (0.7737)	Acc@1 87.109 (85.114)	Acc@5 99.219 (99.356)
+[INFO] Storing checkpoint...
+
+Epoch: [63 | 65] LR: 0.100000
+Epoch: [63][0/196]	Time 0.439 (0.439)	Data 0.335 (0.335)	Loss 0.8829 (0.8829)	Acc@1 83.984 (83.984)	Acc@5 99.609 (99.609)
+Epoch: [63][64/196]	Time 0.426 (0.412)	Data 0.000 (0.005)	Loss 0.7009 (0.7649)	Acc@1 88.672 (85.631)	Acc@5 99.609 (99.363)
+Epoch: [63][128/196]	Time 0.466 (0.414)	Data 0.000 (0.003)	Loss 0.8583 (0.7671)	Acc@1 81.641 (85.498)	Acc@5 99.609 (99.358)
+Epoch: [63][192/196]	Time 0.416 (0.415)	Data 0.000 (0.002)	Loss 0.8178 (0.7700)	Acc@1 83.594 (85.342)	Acc@5 99.219 (99.326)
+[INFO] Storing checkpoint...
+
+Epoch: [64 | 65] LR: 0.100000
+Epoch: [64][0/196]	Time 0.454 (0.454)	Data 0.323 (0.323)	Loss 0.7993 (0.7993)	Acc@1 85.547 (85.547)	Acc@5 98.047 (98.047)
+Epoch: [64][64/196]	Time 0.388 (0.415)	Data 0.000 (0.005)	Loss 0.7828 (0.7632)	Acc@1 84.375 (85.547)	Acc@5 99.219 (99.465)
+Epoch: [64][128/196]	Time 0.429 (0.415)	Data 0.000 (0.003)	Loss 0.7377 (0.7664)	Acc@1 87.500 (85.568)	Acc@5 98.828 (99.413)
+Epoch: [64][192/196]	Time 0.314 (0.401)	Data 0.000 (0.002)	Loss 0.7554 (0.7615)	Acc@1 85.938 (85.662)	Acc@5 99.219 (99.413)
+[INFO] Storing checkpoint...
+
+Epoch: [65 | 65] LR: 0.100000
+Epoch: [65][0/196]	Time 0.329 (0.329)	Data 0.285 (0.285)	Loss 0.7589 (0.7589)	Acc@1 86.328 (86.328)	Acc@5 99.219 (99.219)
+Epoch: [65][64/196]	Time 0.272 (0.291)	Data 0.000 (0.005)	Loss 0.7068 (0.7662)	Acc@1 88.281 (85.721)	Acc@5 100.000 (99.333)
+Epoch: [65][128/196]	Time 0.180 (0.239)	Data 0.000 (0.002)	Loss 0.7329 (0.7644)	Acc@1 84.766 (85.480)	Acc@5 100.000 (99.397)
+Epoch: [65][192/196]	Time 0.353 (0.238)	Data 0.000 (0.002)	Loss 0.7791 (0.7645)	Acc@1 85.547 (85.533)	Acc@5 98.828 (99.379)
+[INFO] Storing checkpoint...
+
+  256
+  79.59
+ 47.348s  j: 66 bis 70
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 342966
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.547 (0.547)	Data 0.283 (0.283)	Loss 0.5202 (0.5202)	Acc@1 92.188 (92.188)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.161 (0.190)	Data 0.000 (0.005)	Loss 0.4804 (0.5046)	Acc@1 94.922 (94.171)	Acc@5 100.000 (99.892)
-Epoch: [116][128/196]	Time 0.352 (0.232)	Data 0.000 (0.002)	Loss 0.4708 (0.5068)	Acc@1 95.703 (94.135)	Acc@5 100.000 (99.903)
-Epoch: [116][192/196]	Time 0.384 (0.280)	Data 0.000 (0.002)	Loss 0.4584 (0.5066)	Acc@1 95.703 (94.041)	Acc@5 100.000 (99.891)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 71 bis 75
+Epoch: [66 | 70] LR: 0.100000
+Epoch: [66][0/196]	Time 1.114 (1.114)	Data 0.350 (0.350)	Loss 0.7107 (0.7107)	Acc@1 88.672 (88.672)	Acc@5 99.219 (99.219)
+Epoch: [66][64/196]	Time 0.406 (0.421)	Data 0.000 (0.006)	Loss 0.6876 (0.7581)	Acc@1 87.891 (85.769)	Acc@5 99.219 (99.399)
+Epoch: [66][128/196]	Time 0.414 (0.419)	Data 0.000 (0.003)	Loss 0.7621 (0.7612)	Acc@1 87.109 (85.816)	Acc@5 98.828 (99.376)
+Epoch: [66][192/196]	Time 0.414 (0.417)	Data 0.000 (0.002)	Loss 0.8277 (0.7631)	Acc@1 86.328 (85.713)	Acc@5 98.438 (99.375)
+[INFO] Storing checkpoint...
+
+Epoch: [67 | 70] LR: 0.100000
+Epoch: [67][0/196]	Time 0.417 (0.417)	Data 0.274 (0.274)	Loss 0.6743 (0.6743)	Acc@1 89.062 (89.062)	Acc@5 99.609 (99.609)
+Epoch: [67][64/196]	Time 0.399 (0.414)	Data 0.000 (0.004)	Loss 0.8411 (0.7553)	Acc@1 83.594 (85.950)	Acc@5 99.219 (99.387)
+Epoch: [67][128/196]	Time 0.414 (0.417)	Data 0.000 (0.002)	Loss 0.8038 (0.7577)	Acc@1 83.594 (85.841)	Acc@5 98.438 (99.391)
+Epoch: [67][192/196]	Time 0.335 (0.407)	Data 0.000 (0.002)	Loss 0.8372 (0.7598)	Acc@1 83.984 (85.725)	Acc@5 98.828 (99.389)
+[INFO] Storing checkpoint...
+
+Epoch: [68 | 70] LR: 0.100000
+Epoch: [68][0/196]	Time 0.330 (0.330)	Data 0.288 (0.288)	Loss 0.7766 (0.7766)	Acc@1 86.328 (86.328)	Acc@5 99.219 (99.219)
+Epoch: [68][64/196]	Time 0.432 (0.328)	Data 0.000 (0.005)	Loss 0.8387 (0.7654)	Acc@1 83.984 (85.529)	Acc@5 99.609 (99.351)
+Epoch: [68][128/196]	Time 0.317 (0.353)	Data 0.000 (0.002)	Loss 0.7405 (0.7626)	Acc@1 87.891 (85.610)	Acc@5 99.219 (99.367)
+Epoch: [68][192/196]	Time 0.428 (0.344)	Data 0.000 (0.002)	Loss 0.7457 (0.7639)	Acc@1 85.938 (85.567)	Acc@5 99.609 (99.407)
+[INFO] Storing checkpoint...
+
+Epoch: [69 | 70] LR: 0.100000
+Epoch: [69][0/196]	Time 0.438 (0.438)	Data 0.307 (0.307)	Loss 0.7404 (0.7404)	Acc@1 87.109 (87.109)	Acc@5 98.828 (98.828)
+Epoch: [69][64/196]	Time 0.425 (0.417)	Data 0.000 (0.005)	Loss 0.7385 (0.7488)	Acc@1 85.547 (86.130)	Acc@5 100.000 (99.459)
+Epoch: [69][128/196]	Time 0.421 (0.415)	Data 0.000 (0.003)	Loss 0.7549 (0.7589)	Acc@1 85.156 (85.822)	Acc@5 98.828 (99.440)
+Epoch: [69][192/196]	Time 0.417 (0.413)	Data 0.000 (0.002)	Loss 0.6937 (0.7636)	Acc@1 88.281 (85.672)	Acc@5 100.000 (99.415)
+[INFO] Storing checkpoint...
+
+Epoch: [70 | 70] LR: 0.100000
+Epoch: [70][0/196]	Time 0.608 (0.608)	Data 0.308 (0.308)	Loss 0.7125 (0.7125)	Acc@1 87.109 (87.109)	Acc@5 100.000 (100.000)
+Epoch: [70][64/196]	Time 0.336 (0.416)	Data 0.000 (0.005)	Loss 0.6908 (0.7646)	Acc@1 87.500 (85.517)	Acc@5 100.000 (99.465)
+Epoch: [70][128/196]	Time 0.281 (0.362)	Data 0.000 (0.003)	Loss 0.7067 (0.7595)	Acc@1 85.156 (85.680)	Acc@5 99.609 (99.373)
+Epoch: [70][192/196]	Time 0.419 (0.344)	Data 0.000 (0.002)	Loss 0.6953 (0.7647)	Acc@1 87.500 (85.488)	Acc@5 99.609 (99.371)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+
+ RM:  module.conv19.weight
+
+ RM:  module.conv20.weight
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(16, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(14, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(16, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(16, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(14, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(16, 11, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(11, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(11, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(16, 30, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(30, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(30, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(32, 28, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(28, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(28, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(32, 21, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(21, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(21, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(64, 36, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(36, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(36, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(64, 46, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(46, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(46, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(64, 29, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(29, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(29, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): AdaptiveAvgPool2d(output_size=(1, 1))
+    (59): Linear(in_features=64, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+Count: 335396 ; 342966 ; 0.9779278412437384
+[INFO] Storing checkpoint...
+
+  256
+  79.54
+ 68.145s  j: 71 bis 75
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 335396
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.952 (0.952)	Data 0.283 (0.283)	Loss 0.4968 (0.4968)	Acc@1 95.312 (95.312)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.271 (0.332)	Data 0.000 (0.005)	Loss 0.4961 (0.5091)	Acc@1 93.750 (94.141)	Acc@5 100.000 (99.886)
-Epoch: [116][128/196]	Time 0.376 (0.342)	Data 0.000 (0.002)	Loss 0.4941 (0.5080)	Acc@1 95.312 (94.110)	Acc@5 99.609 (99.891)
-Epoch: [116][192/196]	Time 0.423 (0.345)	Data 0.000 (0.002)	Loss 0.5319 (0.5089)	Acc@1 92.188 (93.993)	Acc@5 100.000 (99.881)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 76 bis 80
+Epoch: [71 | 75] LR: 0.100000
+Epoch: [71][0/196]	Time 0.944 (0.944)	Data 0.304 (0.304)	Loss 0.7275 (0.7275)	Acc@1 85.938 (85.938)	Acc@5 98.438 (98.438)
+Epoch: [71][64/196]	Time 0.413 (0.336)	Data 0.000 (0.005)	Loss 0.8479 (0.7359)	Acc@1 83.594 (86.442)	Acc@5 98.438 (99.393)
+Epoch: [71][128/196]	Time 0.328 (0.337)	Data 0.000 (0.003)	Loss 0.7938 (0.7555)	Acc@1 83.203 (85.662)	Acc@5 100.000 (99.352)
+Epoch: [71][192/196]	Time 0.396 (0.332)	Data 0.000 (0.002)	Loss 0.7111 (0.7572)	Acc@1 88.281 (85.765)	Acc@5 100.000 (99.371)
+[INFO] Storing checkpoint...
+
+Epoch: [72 | 75] LR: 0.100000
+Epoch: [72][0/196]	Time 0.413 (0.413)	Data 0.289 (0.289)	Loss 0.6608 (0.6608)	Acc@1 92.188 (92.188)	Acc@5 98.828 (98.828)
+Epoch: [72][64/196]	Time 0.447 (0.394)	Data 0.000 (0.005)	Loss 0.7822 (0.7604)	Acc@1 85.938 (85.811)	Acc@5 99.219 (99.321)
+Epoch: [72][128/196]	Time 0.424 (0.390)	Data 0.000 (0.002)	Loss 0.6719 (0.7639)	Acc@1 89.453 (85.650)	Acc@5 99.609 (99.270)
+Epoch: [72][192/196]	Time 0.395 (0.391)	Data 0.000 (0.002)	Loss 0.7431 (0.7666)	Acc@1 83.984 (85.488)	Acc@5 100.000 (99.304)
+[INFO] Storing checkpoint...
+
+Epoch: [73 | 75] LR: 0.100000
+Epoch: [73][0/196]	Time 0.416 (0.416)	Data 0.397 (0.397)	Loss 0.7423 (0.7423)	Acc@1 86.719 (86.719)	Acc@5 99.609 (99.609)
+Epoch: [73][64/196]	Time 0.497 (0.391)	Data 0.000 (0.006)	Loss 0.7525 (0.7623)	Acc@1 83.203 (85.385)	Acc@5 99.609 (99.369)
+Epoch: [73][128/196]	Time 0.384 (0.393)	Data 0.000 (0.003)	Loss 0.6885 (0.7642)	Acc@1 86.328 (85.344)	Acc@5 100.000 (99.352)
+Epoch: [73][192/196]	Time 0.403 (0.391)	Data 0.000 (0.002)	Loss 0.7906 (0.7641)	Acc@1 85.156 (85.359)	Acc@5 100.000 (99.373)
+[INFO] Storing checkpoint...
+
+Epoch: [74 | 75] LR: 0.100000
+Epoch: [74][0/196]	Time 0.400 (0.400)	Data 0.344 (0.344)	Loss 0.7225 (0.7225)	Acc@1 89.062 (89.062)	Acc@5 99.219 (99.219)
+Epoch: [74][64/196]	Time 0.479 (0.392)	Data 0.000 (0.005)	Loss 0.7595 (0.7492)	Acc@1 84.766 (85.950)	Acc@5 99.609 (99.471)
+Epoch: [74][128/196]	Time 0.312 (0.354)	Data 0.000 (0.003)	Loss 0.7794 (0.7526)	Acc@1 84.375 (86.071)	Acc@5 99.609 (99.416)
+Epoch: [74][192/196]	Time 0.390 (0.349)	Data 0.000 (0.002)	Loss 0.8700 (0.7578)	Acc@1 82.031 (85.881)	Acc@5 98.828 (99.362)
+[INFO] Storing checkpoint...
+
+Epoch: [75 | 75] LR: 0.100000
+Epoch: [75][0/196]	Time 0.398 (0.398)	Data 0.358 (0.358)	Loss 0.7765 (0.7765)	Acc@1 84.766 (84.766)	Acc@5 98.828 (98.828)
+Epoch: [75][64/196]	Time 0.396 (0.306)	Data 0.000 (0.006)	Loss 0.7016 (0.7532)	Acc@1 89.062 (85.980)	Acc@5 99.609 (99.435)
+Epoch: [75][128/196]	Time 0.250 (0.287)	Data 0.000 (0.003)	Loss 0.6929 (0.7496)	Acc@1 85.547 (85.989)	Acc@5 99.609 (99.413)
+Epoch: [75][192/196]	Time 0.323 (0.290)	Data 0.000 (0.002)	Loss 0.7379 (0.7525)	Acc@1 87.109 (85.889)	Acc@5 99.219 (99.375)
+[INFO] Storing checkpoint...
+
+  256
+  80.47
+ 57.338s  j: 76 bis 80
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 335396
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.993 (0.993)	Data 0.310 (0.310)	Loss 0.5303 (0.5303)	Acc@1 92.578 (92.578)	Acc@5 99.219 (99.219)
-Epoch: [116][64/196]	Time 0.329 (0.334)	Data 0.000 (0.005)	Loss 0.4910 (0.5053)	Acc@1 94.922 (94.201)	Acc@5 100.000 (99.886)
-Epoch: [116][128/196]	Time 0.228 (0.336)	Data 0.000 (0.003)	Loss 0.4963 (0.5082)	Acc@1 94.531 (93.995)	Acc@5 100.000 (99.879)
-Epoch: [116][192/196]	Time 0.146 (0.289)	Data 0.000 (0.002)	Loss 0.4809 (0.5077)	Acc@1 95.703 (94.001)	Acc@5 100.000 (99.872)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 81 bis 85
+Epoch: [76 | 80] LR: 0.100000
+Epoch: [76][0/196]	Time 1.186 (1.186)	Data 0.270 (0.270)	Loss 0.7111 (0.7111)	Acc@1 87.109 (87.109)	Acc@5 99.219 (99.219)
+Epoch: [76][64/196]	Time 0.503 (0.404)	Data 0.000 (0.004)	Loss 0.8920 (0.7718)	Acc@1 82.031 (85.198)	Acc@5 98.438 (99.285)
+Epoch: [76][128/196]	Time 0.392 (0.398)	Data 0.000 (0.002)	Loss 0.8187 (0.7687)	Acc@1 84.766 (85.265)	Acc@5 99.609 (99.394)
+Epoch: [76][192/196]	Time 0.337 (0.396)	Data 0.000 (0.002)	Loss 0.6678 (0.7647)	Acc@1 88.672 (85.504)	Acc@5 99.609 (99.356)
+[INFO] Storing checkpoint...
+
+Epoch: [77 | 80] LR: 0.100000
+Epoch: [77][0/196]	Time 0.432 (0.432)	Data 0.301 (0.301)	Loss 0.7028 (0.7028)	Acc@1 85.156 (85.156)	Acc@5 99.609 (99.609)
+Epoch: [77][64/196]	Time 0.395 (0.395)	Data 0.000 (0.005)	Loss 0.7973 (0.7589)	Acc@1 82.812 (85.541)	Acc@5 99.609 (99.411)
+Epoch: [77][128/196]	Time 0.287 (0.380)	Data 0.000 (0.003)	Loss 0.7918 (0.7667)	Acc@1 83.984 (85.377)	Acc@5 99.609 (99.346)
+Epoch: [77][192/196]	Time 0.310 (0.354)	Data 0.000 (0.002)	Loss 0.7224 (0.7670)	Acc@1 87.891 (85.379)	Acc@5 99.219 (99.332)
+[INFO] Storing checkpoint...
+
+Epoch: [78 | 80] LR: 0.100000
+Epoch: [78][0/196]	Time 0.328 (0.328)	Data 0.293 (0.293)	Loss 0.6582 (0.6582)	Acc@1 88.281 (88.281)	Acc@5 100.000 (100.000)
+Epoch: [78][64/196]	Time 0.305 (0.361)	Data 0.000 (0.005)	Loss 0.7816 (0.7471)	Acc@1 83.594 (85.877)	Acc@5 99.219 (99.459)
+Epoch: [78][128/196]	Time 0.233 (0.331)	Data 0.000 (0.002)	Loss 0.7888 (0.7514)	Acc@1 85.156 (85.822)	Acc@5 99.609 (99.385)
+Epoch: [78][192/196]	Time 0.398 (0.349)	Data 0.000 (0.002)	Loss 0.7644 (0.7541)	Acc@1 84.766 (85.812)	Acc@5 99.609 (99.399)
+[INFO] Storing checkpoint...
+
+Epoch: [79 | 80] LR: 0.100000
+Epoch: [79][0/196]	Time 0.408 (0.408)	Data 0.391 (0.391)	Loss 0.7341 (0.7341)	Acc@1 86.719 (86.719)	Acc@5 98.828 (98.828)
+Epoch: [79][64/196]	Time 0.369 (0.389)	Data 0.000 (0.006)	Loss 0.6984 (0.7485)	Acc@1 87.891 (86.106)	Acc@5 99.609 (99.411)
+Epoch: [79][128/196]	Time 0.380 (0.391)	Data 0.000 (0.003)	Loss 0.8332 (0.7552)	Acc@1 84.375 (85.847)	Acc@5 98.828 (99.419)
+Epoch: [79][192/196]	Time 0.383 (0.390)	Data 0.000 (0.002)	Loss 0.7234 (0.7600)	Acc@1 87.891 (85.832)	Acc@5 99.609 (99.399)
+[INFO] Storing checkpoint...
+
+Epoch: [80 | 80] LR: 0.100000
+Epoch: [80][0/196]	Time 0.528 (0.528)	Data 0.316 (0.316)	Loss 0.7868 (0.7868)	Acc@1 85.547 (85.547)	Acc@5 99.219 (99.219)
+Epoch: [80][64/196]	Time 0.410 (0.395)	Data 0.000 (0.005)	Loss 0.7262 (0.7487)	Acc@1 85.938 (85.925)	Acc@5 100.000 (99.399)
+Epoch: [80][128/196]	Time 0.314 (0.371)	Data 0.000 (0.003)	Loss 0.7121 (0.7549)	Acc@1 87.891 (85.704)	Acc@5 99.609 (99.385)
+Epoch: [80][192/196]	Time 0.348 (0.364)	Data 0.000 (0.002)	Loss 0.6982 (0.7582)	Acc@1 86.328 (85.644)	Acc@5 99.609 (99.381)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 329626 ; 335396 ; 0.9827964555331608
+[INFO] Storing checkpoint...
+
+  256
+  69.38
+ 71.801s  j: 81 bis 85
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 329626
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.972 (0.972)	Data 0.269 (0.269)	Loss 0.4743 (0.4743)	Acc@1 95.312 (95.312)	Acc@5 99.609 (99.609)
-Epoch: [116][64/196]	Time 0.398 (0.376)	Data 0.000 (0.004)	Loss 0.5209 (0.5036)	Acc@1 94.141 (94.141)	Acc@5 100.000 (99.886)
-Epoch: [116][128/196]	Time 0.395 (0.384)	Data 0.000 (0.002)	Loss 0.5260 (0.5051)	Acc@1 94.531 (94.177)	Acc@5 100.000 (99.888)
-Epoch: [116][192/196]	Time 0.320 (0.369)	Data 0.000 (0.002)	Loss 0.4601 (0.5082)	Acc@1 95.312 (94.029)	Acc@5 100.000 (99.875)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 86 bis 90
+Epoch: [81 | 85] LR: 0.100000
+Epoch: [81][0/196]	Time 0.954 (0.954)	Data 0.306 (0.306)	Loss 0.8511 (0.8511)	Acc@1 82.031 (82.031)	Acc@5 99.609 (99.609)
+Epoch: [81][64/196]	Time 0.299 (0.325)	Data 0.000 (0.005)	Loss 0.6640 (0.7211)	Acc@1 85.938 (86.809)	Acc@5 100.000 (99.543)
+Epoch: [81][128/196]	Time 0.381 (0.331)	Data 0.000 (0.003)	Loss 0.8690 (0.7405)	Acc@1 82.422 (86.213)	Acc@5 98.828 (99.476)
+Epoch: [81][192/196]	Time 0.391 (0.351)	Data 0.000 (0.002)	Loss 0.6633 (0.7481)	Acc@1 88.281 (86.049)	Acc@5 100.000 (99.415)
+[INFO] Storing checkpoint...
+
+Epoch: [82 | 85] LR: 0.100000
+Epoch: [82][0/196]	Time 0.415 (0.415)	Data 0.306 (0.306)	Loss 0.6830 (0.6830)	Acc@1 87.891 (87.891)	Acc@5 100.000 (100.000)
+Epoch: [82][64/196]	Time 0.340 (0.391)	Data 0.000 (0.005)	Loss 0.7191 (0.7519)	Acc@1 85.156 (86.010)	Acc@5 99.219 (99.405)
+Epoch: [82][128/196]	Time 0.386 (0.392)	Data 0.000 (0.003)	Loss 0.8331 (0.7533)	Acc@1 85.938 (85.847)	Acc@5 98.828 (99.416)
+Epoch: [82][192/196]	Time 0.401 (0.392)	Data 0.000 (0.002)	Loss 0.7429 (0.7590)	Acc@1 86.719 (85.646)	Acc@5 98.828 (99.383)
+[INFO] Storing checkpoint...
+
+Epoch: [83 | 85] LR: 0.100000
+Epoch: [83][0/196]	Time 0.484 (0.484)	Data 0.326 (0.326)	Loss 0.8037 (0.8037)	Acc@1 82.031 (82.031)	Acc@5 99.609 (99.609)
+Epoch: [83][64/196]	Time 0.362 (0.392)	Data 0.000 (0.005)	Loss 0.7282 (0.7517)	Acc@1 87.109 (85.805)	Acc@5 100.000 (99.429)
+Epoch: [83][128/196]	Time 0.391 (0.392)	Data 0.000 (0.003)	Loss 0.9394 (0.7582)	Acc@1 80.078 (85.735)	Acc@5 98.438 (99.391)
+Epoch: [83][192/196]	Time 0.410 (0.394)	Data 0.000 (0.002)	Loss 0.7290 (0.7660)	Acc@1 86.328 (85.521)	Acc@5 99.219 (99.377)
+[INFO] Storing checkpoint...
+
+Epoch: [84 | 85] LR: 0.100000
+Epoch: [84][0/196]	Time 0.430 (0.430)	Data 0.308 (0.308)	Loss 0.6491 (0.6491)	Acc@1 88.281 (88.281)	Acc@5 100.000 (100.000)
+Epoch: [84][64/196]	Time 0.280 (0.355)	Data 0.000 (0.005)	Loss 0.7994 (0.7504)	Acc@1 86.328 (86.094)	Acc@5 99.219 (99.399)
+Epoch: [84][128/196]	Time 0.422 (0.330)	Data 0.000 (0.003)	Loss 0.8042 (0.7479)	Acc@1 85.547 (86.007)	Acc@5 99.219 (99.397)
+Epoch: [84][192/196]	Time 0.281 (0.323)	Data 0.000 (0.002)	Loss 0.7350 (0.7525)	Acc@1 86.328 (85.776)	Acc@5 99.609 (99.391)
+[INFO] Storing checkpoint...
+
+Epoch: [85 | 85] LR: 0.100000
+Epoch: [85][0/196]	Time 0.332 (0.332)	Data 0.292 (0.292)	Loss 0.8685 (0.8685)	Acc@1 83.594 (83.594)	Acc@5 99.609 (99.609)
+Epoch: [85][64/196]	Time 0.315 (0.313)	Data 0.000 (0.005)	Loss 0.7690 (0.7365)	Acc@1 87.109 (86.478)	Acc@5 99.219 (99.519)
+Epoch: [85][128/196]	Time 0.394 (0.338)	Data 0.000 (0.002)	Loss 0.6935 (0.7440)	Acc@1 87.500 (86.104)	Acc@5 99.219 (99.519)
+Epoch: [85][192/196]	Time 0.398 (0.355)	Data 0.000 (0.002)	Loss 0.6627 (0.7519)	Acc@1 89.062 (85.786)	Acc@5 100.000 (99.405)
+[INFO] Storing checkpoint...
+
+  256
+  80.62
+ 70.112s  j: 86 bis 90
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 329626
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.999 (0.999)	Data 0.267 (0.267)	Loss 0.4841 (0.4841)	Acc@1 95.312 (95.312)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.412 (0.382)	Data 0.000 (0.004)	Loss 0.5303 (0.5119)	Acc@1 92.969 (94.038)	Acc@5 99.609 (99.886)
-Epoch: [116][128/196]	Time 0.391 (0.388)	Data 0.000 (0.002)	Loss 0.4439 (0.5110)	Acc@1 96.875 (93.989)	Acc@5 100.000 (99.882)
-Epoch: [116][192/196]	Time 0.342 (0.375)	Data 0.000 (0.002)	Loss 0.4858 (0.5095)	Acc@1 95.703 (93.991)	Acc@5 100.000 (99.881)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 91 bis 95
+Epoch: [86 | 90] LR: 0.100000
+Epoch: [86][0/196]	Time 0.995 (0.995)	Data 0.313 (0.313)	Loss 0.6708 (0.6708)	Acc@1 88.281 (88.281)	Acc@5 99.609 (99.609)
+Epoch: [86][64/196]	Time 0.367 (0.366)	Data 0.000 (0.005)	Loss 0.8528 (0.7469)	Acc@1 83.594 (86.046)	Acc@5 98.047 (99.435)
+Epoch: [86][128/196]	Time 0.407 (0.378)	Data 0.000 (0.003)	Loss 0.8117 (0.7543)	Acc@1 85.156 (85.856)	Acc@5 99.219 (99.382)
+Epoch: [86][192/196]	Time 0.390 (0.382)	Data 0.000 (0.002)	Loss 0.7680 (0.7564)	Acc@1 87.500 (85.828)	Acc@5 99.219 (99.354)
+[INFO] Storing checkpoint...
+
+Epoch: [87 | 90] LR: 0.100000
+Epoch: [87][0/196]	Time 0.434 (0.434)	Data 0.319 (0.319)	Loss 0.6672 (0.6672)	Acc@1 88.281 (88.281)	Acc@5 100.000 (100.000)
+Epoch: [87][64/196]	Time 0.304 (0.391)	Data 0.000 (0.005)	Loss 0.8166 (0.7493)	Acc@1 84.375 (85.733)	Acc@5 99.219 (99.387)
+Epoch: [87][128/196]	Time 0.283 (0.344)	Data 0.000 (0.003)	Loss 0.7628 (0.7508)	Acc@1 84.375 (85.632)	Acc@5 99.609 (99.485)
+Epoch: [87][192/196]	Time 0.298 (0.336)	Data 0.000 (0.002)	Loss 0.8737 (0.7537)	Acc@1 82.031 (85.672)	Acc@5 100.000 (99.425)
+[INFO] Storing checkpoint...
+
+Epoch: [88 | 90] LR: 0.100000
+Epoch: [88][0/196]	Time 0.300 (0.300)	Data 0.304 (0.304)	Loss 0.6651 (0.6651)	Acc@1 89.453 (89.453)	Acc@5 99.609 (99.609)
+Epoch: [88][64/196]	Time 0.381 (0.324)	Data 0.000 (0.005)	Loss 0.7676 (0.7312)	Acc@1 84.375 (86.436)	Acc@5 99.219 (99.429)
+Epoch: [88][128/196]	Time 0.408 (0.359)	Data 0.000 (0.003)	Loss 0.7898 (0.7475)	Acc@1 83.203 (86.077)	Acc@5 99.219 (99.391)
+Epoch: [88][192/196]	Time 0.383 (0.369)	Data 0.000 (0.002)	Loss 0.7593 (0.7510)	Acc@1 83.594 (85.879)	Acc@5 99.219 (99.375)
+[INFO] Storing checkpoint...
+
+Epoch: [89 | 90] LR: 0.100000
+Epoch: [89][0/196]	Time 0.406 (0.406)	Data 0.491 (0.491)	Loss 0.7088 (0.7088)	Acc@1 88.672 (88.672)	Acc@5 99.219 (99.219)
+Epoch: [89][64/196]	Time 0.419 (0.394)	Data 0.000 (0.008)	Loss 0.7906 (0.7395)	Acc@1 85.547 (86.088)	Acc@5 99.219 (99.417)
+Epoch: [89][128/196]	Time 0.392 (0.392)	Data 0.000 (0.004)	Loss 0.7874 (0.7460)	Acc@1 84.375 (85.862)	Acc@5 99.609 (99.403)
+Epoch: [89][192/196]	Time 0.407 (0.393)	Data 0.000 (0.003)	Loss 0.7531 (0.7511)	Acc@1 87.500 (85.786)	Acc@5 100.000 (99.360)
+[INFO] Storing checkpoint...
+
+Epoch: [90 | 90] LR: 0.100000
+Epoch: [90][0/196]	Time 0.554 (0.554)	Data 0.362 (0.362)	Loss 0.7470 (0.7470)	Acc@1 85.547 (85.547)	Acc@5 99.219 (99.219)
+Epoch: [90][64/196]	Time 0.308 (0.340)	Data 0.000 (0.006)	Loss 0.7991 (0.7466)	Acc@1 83.984 (85.697)	Acc@5 99.219 (99.375)
+Epoch: [90][128/196]	Time 0.398 (0.351)	Data 0.000 (0.003)	Loss 0.6575 (0.7577)	Acc@1 89.844 (85.650)	Acc@5 99.219 (99.358)
+Epoch: [90][192/196]	Time 0.304 (0.355)	Data 0.000 (0.002)	Loss 0.7301 (0.7548)	Acc@1 84.766 (85.676)	Acc@5 100.000 (99.391)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 324860 ; 329626 ; 0.9855411891052284
+[INFO] Storing checkpoint...
+
+  256
+  73.48
+ 69.920s  j: 91 bis 95
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 324860
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.592 (0.592)	Data 0.273 (0.273)	Loss 0.5033 (0.5033)	Acc@1 95.703 (95.703)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.286 (0.206)	Data 0.000 (0.004)	Loss 0.4169 (0.5069)	Acc@1 98.047 (94.249)	Acc@5 100.000 (99.898)
-Epoch: [116][128/196]	Time 0.326 (0.264)	Data 0.000 (0.002)	Loss 0.5449 (0.5092)	Acc@1 93.359 (94.053)	Acc@5 99.609 (99.876)
-Epoch: [116][192/196]	Time 0.401 (0.290)	Data 0.000 (0.002)	Loss 0.4485 (0.5074)	Acc@1 97.656 (94.068)	Acc@5 100.000 (99.879)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 96 bis 100
+Epoch: [91 | 95] LR: 0.100000
+Epoch: [91][0/196]	Time 0.780 (0.780)	Data 0.284 (0.284)	Loss 0.7457 (0.7457)	Acc@1 85.547 (85.547)	Acc@5 98.438 (98.438)
+Epoch: [91][64/196]	Time 0.271 (0.248)	Data 0.000 (0.005)	Loss 0.9115 (0.7247)	Acc@1 80.078 (86.677)	Acc@5 99.609 (99.519)
+Epoch: [91][128/196]	Time 0.394 (0.313)	Data 0.000 (0.002)	Loss 0.7758 (0.7396)	Acc@1 88.281 (86.301)	Acc@5 98.828 (99.443)
+Epoch: [91][192/196]	Time 0.345 (0.339)	Data 0.000 (0.002)	Loss 0.8476 (0.7526)	Acc@1 83.984 (85.767)	Acc@5 99.219 (99.421)
+[INFO] Storing checkpoint...
+
+Epoch: [92 | 95] LR: 0.100000
+Epoch: [92][0/196]	Time 0.425 (0.425)	Data 0.286 (0.286)	Loss 0.7733 (0.7733)	Acc@1 83.594 (83.594)	Acc@5 100.000 (100.000)
+Epoch: [92][64/196]	Time 0.414 (0.392)	Data 0.000 (0.005)	Loss 0.8014 (0.7648)	Acc@1 83.984 (85.156)	Acc@5 99.609 (99.405)
+Epoch: [92][128/196]	Time 0.393 (0.391)	Data 0.000 (0.002)	Loss 0.7677 (0.7550)	Acc@1 85.547 (85.508)	Acc@5 99.219 (99.419)
+Epoch: [92][192/196]	Time 0.403 (0.391)	Data 0.000 (0.002)	Loss 0.7371 (0.7623)	Acc@1 87.109 (85.306)	Acc@5 98.828 (99.383)
+[INFO] Storing checkpoint...
+
+Epoch: [93 | 95] LR: 0.010000
+Epoch: [93][0/196]	Time 0.407 (0.407)	Data 0.307 (0.307)	Loss 0.6765 (0.6765)	Acc@1 88.672 (88.672)	Acc@5 99.609 (99.609)
+Epoch: [93][64/196]	Time 0.385 (0.388)	Data 0.000 (0.005)	Loss 0.6452 (0.6503)	Acc@1 88.672 (89.567)	Acc@5 98.828 (99.675)
+Epoch: [93][128/196]	Time 0.385 (0.389)	Data 0.000 (0.003)	Loss 0.5397 (0.6281)	Acc@1 93.750 (90.216)	Acc@5 100.000 (99.718)
+Epoch: [93][192/196]	Time 0.302 (0.378)	Data 0.000 (0.002)	Loss 0.6475 (0.6129)	Acc@1 88.281 (90.661)	Acc@5 99.219 (99.723)
+[INFO] Storing checkpoint...
+
+Epoch: [94 | 95] LR: 0.001000
+Epoch: [94][0/196]	Time 0.281 (0.281)	Data 0.315 (0.315)	Loss 0.5121 (0.5121)	Acc@1 93.359 (93.359)	Acc@5 100.000 (100.000)
+Epoch: [94][64/196]	Time 0.389 (0.308)	Data 0.000 (0.005)	Loss 0.5544 (0.5612)	Acc@1 92.969 (92.272)	Acc@5 100.000 (99.766)
+Epoch: [94][128/196]	Time 0.287 (0.315)	Data 0.000 (0.003)	Loss 0.5228 (0.5617)	Acc@1 91.016 (92.300)	Acc@5 100.000 (99.782)
+Epoch: [94][192/196]	Time 0.347 (0.309)	Data 0.000 (0.002)	Loss 0.5852 (0.5589)	Acc@1 91.406 (92.394)	Acc@5 100.000 (99.810)
+[INFO] Storing checkpoint...
+
+Epoch: [95 | 95] LR: 0.000100
+Epoch: [95][0/196]	Time 0.365 (0.365)	Data 0.351 (0.351)	Loss 0.5770 (0.5770)	Acc@1 91.797 (91.797)	Acc@5 99.609 (99.609)
+Epoch: [95][64/196]	Time 0.390 (0.347)	Data 0.000 (0.006)	Loss 0.5373 (0.5525)	Acc@1 92.578 (92.440)	Acc@5 99.609 (99.832)
+Epoch: [95][128/196]	Time 0.402 (0.368)	Data 0.000 (0.003)	Loss 0.4897 (0.5493)	Acc@1 93.750 (92.569)	Acc@5 100.000 (99.830)
+Epoch: [95][192/196]	Time 0.398 (0.376)	Data 0.000 (0.002)	Loss 0.5921 (0.5516)	Acc@1 90.234 (92.588)	Acc@5 100.000 (99.832)
+[INFO] Storing checkpoint...
+
+  256
+  90.41
+ 74.097s  j: 96 bis 100
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 324860
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 1.007 (1.007)	Data 0.307 (0.307)	Loss 0.4929 (0.4929)	Acc@1 96.094 (96.094)	Acc@5 99.609 (99.609)
-Epoch: [116][64/196]	Time 0.402 (0.356)	Data 0.000 (0.005)	Loss 0.4693 (0.5024)	Acc@1 95.312 (94.369)	Acc@5 100.000 (99.910)
-Epoch: [116][128/196]	Time 0.323 (0.372)	Data 0.000 (0.003)	Loss 0.4446 (0.5063)	Acc@1 95.703 (94.201)	Acc@5 100.000 (99.897)
-Epoch: [116][192/196]	Time 0.353 (0.355)	Data 0.000 (0.002)	Loss 0.4838 (0.5047)	Acc@1 94.922 (94.183)	Acc@5 100.000 (99.905)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 101 bis 105
+Epoch: [96 | 100] LR: 0.010000
+Epoch: [96][0/196]	Time 1.146 (1.146)	Data 0.313 (0.313)	Loss 0.5254 (0.5254)	Acc@1 95.312 (95.312)	Acc@5 100.000 (100.000)
+Epoch: [96][64/196]	Time 0.390 (0.391)	Data 0.000 (0.005)	Loss 0.5912 (0.5479)	Acc@1 90.625 (92.680)	Acc@5 100.000 (99.832)
+Epoch: [96][128/196]	Time 0.337 (0.357)	Data 0.000 (0.003)	Loss 0.6049 (0.5463)	Acc@1 90.234 (92.569)	Acc@5 100.000 (99.846)
+Epoch: [96][192/196]	Time 0.458 (0.369)	Data 0.000 (0.002)	Loss 0.5806 (0.5474)	Acc@1 89.844 (92.406)	Acc@5 100.000 (99.822)
+[INFO] Storing checkpoint...
+
+Epoch: [97 | 100] LR: 0.001000
+Epoch: [97][0/196]	Time 0.406 (0.406)	Data 0.303 (0.303)	Loss 0.5232 (0.5232)	Acc@1 94.531 (94.531)	Acc@5 100.000 (100.000)
+Epoch: [97][64/196]	Time 0.297 (0.307)	Data 0.000 (0.005)	Loss 0.5029 (0.5241)	Acc@1 93.359 (93.173)	Acc@5 100.000 (99.856)
+Epoch: [97][128/196]	Time 0.290 (0.321)	Data 0.000 (0.003)	Loss 0.5166 (0.5225)	Acc@1 93.359 (93.290)	Acc@5 99.609 (99.858)
+Epoch: [97][192/196]	Time 0.316 (0.313)	Data 0.000 (0.002)	Loss 0.5936 (0.5220)	Acc@1 90.234 (93.345)	Acc@5 99.609 (99.854)
+[INFO] Storing checkpoint...
+
+Epoch: [98 | 100] LR: 0.000100
+Epoch: [98][0/196]	Time 0.327 (0.327)	Data 0.321 (0.321)	Loss 0.4755 (0.4755)	Acc@1 94.922 (94.922)	Acc@5 100.000 (100.000)
+Epoch: [98][64/196]	Time 0.385 (0.388)	Data 0.000 (0.005)	Loss 0.5522 (0.5168)	Acc@1 91.016 (93.720)	Acc@5 99.609 (99.838)
+Epoch: [98][128/196]	Time 0.328 (0.390)	Data 0.000 (0.003)	Loss 0.5306 (0.5156)	Acc@1 93.750 (93.780)	Acc@5 100.000 (99.849)
+Epoch: [98][192/196]	Time 0.381 (0.388)	Data 0.000 (0.002)	Loss 0.4920 (0.5165)	Acc@1 94.922 (93.687)	Acc@5 100.000 (99.846)
+[INFO] Storing checkpoint...
+
+Epoch: [99 | 100] LR: 0.000010
+Epoch: [99][0/196]	Time 0.418 (0.418)	Data 0.302 (0.302)	Loss 0.5368 (0.5368)	Acc@1 92.188 (92.188)	Acc@5 100.000 (100.000)
+Epoch: [99][64/196]	Time 0.324 (0.389)	Data 0.000 (0.005)	Loss 0.4918 (0.5156)	Acc@1 95.312 (93.720)	Acc@5 100.000 (99.862)
+Epoch: [99][128/196]	Time 0.390 (0.389)	Data 0.000 (0.003)	Loss 0.4777 (0.5163)	Acc@1 94.922 (93.526)	Acc@5 100.000 (99.882)
+Epoch: [99][192/196]	Time 0.363 (0.384)	Data 0.000 (0.002)	Loss 0.4772 (0.5133)	Acc@1 95.312 (93.598)	Acc@5 100.000 (99.872)
+[INFO] Storing checkpoint...
+
+Epoch: [100 | 100] LR: 0.000001
+Epoch: [100][0/196]	Time 0.504 (0.504)	Data 0.306 (0.306)	Loss 0.5221 (0.5221)	Acc@1 92.578 (92.578)	Acc@5 100.000 (100.000)
+Epoch: [100][64/196]	Time 0.412 (0.342)	Data 0.000 (0.005)	Loss 0.5597 (0.5162)	Acc@1 92.578 (93.534)	Acc@5 99.219 (99.844)
+Epoch: [100][128/196]	Time 0.295 (0.358)	Data 0.000 (0.003)	Loss 0.6185 (0.5149)	Acc@1 89.062 (93.487)	Acc@5 99.609 (99.867)
+Epoch: [100][192/196]	Time 0.275 (0.336)	Data 0.000 (0.002)	Loss 0.5022 (0.5157)	Acc@1 92.578 (93.546)	Acc@5 100.000 (99.846)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 324426 ; 324860 ; 0.9986640398941082
+[INFO] Storing checkpoint...
+
+  256
+  90.82
+ 66.214s  j: 101 bis 105
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 324426
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 1.002 (1.002)	Data 0.292 (0.292)	Loss 0.5117 (0.5117)	Acc@1 93.750 (93.750)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.395 (0.355)	Data 0.000 (0.005)	Loss 0.5523 (0.5081)	Acc@1 91.406 (94.044)	Acc@5 100.000 (99.886)
-Epoch: [116][128/196]	Time 0.269 (0.356)	Data 0.000 (0.002)	Loss 0.5143 (0.5085)	Acc@1 93.750 (94.056)	Acc@5 99.609 (99.891)
-Epoch: [116][192/196]	Time 0.144 (0.301)	Data 0.000 (0.002)	Loss 0.5097 (0.5092)	Acc@1 92.188 (93.999)	Acc@5 100.000 (99.875)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 106 bis 110
+Epoch: [101 | 105] LR: 0.010000
+Epoch: [101][0/196]	Time 0.937 (0.937)	Data 0.443 (0.443)	Loss 0.4765 (0.4765)	Acc@1 95.703 (95.703)	Acc@5 100.000 (100.000)
+Epoch: [101][64/196]	Time 0.364 (0.373)	Data 0.000 (0.007)	Loss 0.5158 (0.5179)	Acc@1 92.969 (93.251)	Acc@5 100.000 (99.886)
+Epoch: [101][128/196]	Time 0.358 (0.351)	Data 0.000 (0.004)	Loss 0.5070 (0.5218)	Acc@1 94.141 (93.150)	Acc@5 100.000 (99.888)
+Epoch: [101][192/196]	Time 0.394 (0.346)	Data 0.000 (0.002)	Loss 0.4835 (0.5226)	Acc@1 94.531 (93.062)	Acc@5 100.000 (99.877)
+[INFO] Storing checkpoint...
+
+Epoch: [102 | 105] LR: 0.001000
+Epoch: [102][0/196]	Time 0.404 (0.404)	Data 0.323 (0.323)	Loss 0.4840 (0.4840)	Acc@1 92.188 (92.188)	Acc@5 100.000 (100.000)
+Epoch: [102][64/196]	Time 0.378 (0.388)	Data 0.000 (0.005)	Loss 0.5121 (0.5068)	Acc@1 93.359 (93.552)	Acc@5 100.000 (99.850)
+Epoch: [102][128/196]	Time 0.384 (0.385)	Data 0.000 (0.003)	Loss 0.4874 (0.4998)	Acc@1 94.531 (93.871)	Acc@5 100.000 (99.879)
+Epoch: [102][192/196]	Time 0.385 (0.388)	Data 0.000 (0.002)	Loss 0.5017 (0.4980)	Acc@1 94.922 (93.928)	Acc@5 100.000 (99.877)
+[INFO] Storing checkpoint...
+
+Epoch: [103 | 105] LR: 0.000100
+Epoch: [103][0/196]	Time 0.285 (0.285)	Data 0.428 (0.428)	Loss 0.4640 (0.4640)	Acc@1 94.531 (94.531)	Acc@5 99.609 (99.609)
+Epoch: [103][64/196]	Time 0.405 (0.389)	Data 0.000 (0.007)	Loss 0.5170 (0.4937)	Acc@1 94.141 (93.900)	Acc@5 99.609 (99.868)
+Epoch: [103][128/196]	Time 0.304 (0.385)	Data 0.000 (0.004)	Loss 0.5023 (0.4901)	Acc@1 92.969 (94.089)	Acc@5 100.000 (99.894)
+Epoch: [103][192/196]	Time 0.302 (0.355)	Data 0.000 (0.002)	Loss 0.4685 (0.4915)	Acc@1 96.875 (94.041)	Acc@5 100.000 (99.901)
+[INFO] Storing checkpoint...
+
+Epoch: [104 | 105] LR: 0.000010
+Epoch: [104][0/196]	Time 0.356 (0.356)	Data 0.413 (0.413)	Loss 0.5062 (0.5062)	Acc@1 92.578 (92.578)	Acc@5 100.000 (100.000)
+Epoch: [104][64/196]	Time 0.295 (0.351)	Data 0.000 (0.007)	Loss 0.4658 (0.4937)	Acc@1 94.922 (94.050)	Acc@5 99.609 (99.838)
+Epoch: [104][128/196]	Time 0.318 (0.325)	Data 0.000 (0.003)	Loss 0.4669 (0.4905)	Acc@1 95.703 (94.138)	Acc@5 99.609 (99.876)
+Epoch: [104][192/196]	Time 0.295 (0.323)	Data 0.000 (0.002)	Loss 0.4874 (0.4949)	Acc@1 92.969 (93.938)	Acc@5 100.000 (99.856)
+[INFO] Storing checkpoint...
+
+Epoch: [105 | 105] LR: 0.000001
+Epoch: [105][0/196]	Time 0.342 (0.342)	Data 0.304 (0.304)	Loss 0.5324 (0.5324)	Acc@1 92.188 (92.188)	Acc@5 100.000 (100.000)
+Epoch: [105][64/196]	Time 0.423 (0.377)	Data 0.000 (0.005)	Loss 0.4732 (0.4900)	Acc@1 93.359 (94.219)	Acc@5 100.000 (99.928)
+Epoch: [105][128/196]	Time 0.389 (0.384)	Data 0.000 (0.003)	Loss 0.5149 (0.4922)	Acc@1 92.188 (94.056)	Acc@5 100.000 (99.903)
+Epoch: [105][192/196]	Time 0.415 (0.385)	Data 0.000 (0.002)	Loss 0.4913 (0.4911)	Acc@1 93.359 (94.092)	Acc@5 100.000 (99.885)
+[INFO] Storing checkpoint...
+
+  256
+  91.23
+ 75.730s  j: 106 bis 110
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 324426
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.988 (0.988)	Data 0.255 (0.255)	Loss 0.5148 (0.5148)	Acc@1 94.141 (94.141)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.400 (0.395)	Data 0.000 (0.004)	Loss 0.4689 (0.4997)	Acc@1 95.312 (94.357)	Acc@5 100.000 (99.868)
-Epoch: [116][128/196]	Time 0.396 (0.393)	Data 0.000 (0.002)	Loss 0.4904 (0.5041)	Acc@1 95.312 (94.201)	Acc@5 100.000 (99.885)
-Epoch: [116][192/196]	Time 0.331 (0.388)	Data 0.000 (0.001)	Loss 0.4924 (0.5052)	Acc@1 93.359 (94.037)	Acc@5 99.609 (99.887)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 111 bis 115
+Epoch: [106 | 110] LR: 0.010000
+Epoch: [106][0/196]	Time 1.139 (1.139)	Data 0.249 (0.249)	Loss 0.5538 (0.5538)	Acc@1 91.797 (91.797)	Acc@5 100.000 (100.000)
+Epoch: [106][64/196]	Time 0.403 (0.398)	Data 0.000 (0.004)	Loss 0.5559 (0.5008)	Acc@1 91.406 (93.750)	Acc@5 100.000 (99.862)
+Epoch: [106][128/196]	Time 0.325 (0.394)	Data 0.000 (0.002)	Loss 0.5530 (0.5001)	Acc@1 90.625 (93.617)	Acc@5 100.000 (99.879)
+Epoch: [106][192/196]	Time 0.238 (0.357)	Data 0.000 (0.001)	Loss 0.5254 (0.4990)	Acc@1 93.750 (93.570)	Acc@5 100.000 (99.879)
+[INFO] Storing checkpoint...
+
+Epoch: [107 | 110] LR: 0.001000
+Epoch: [107][0/196]	Time 0.258 (0.258)	Data 0.292 (0.292)	Loss 0.5061 (0.5061)	Acc@1 93.359 (93.359)	Acc@5 100.000 (100.000)
+Epoch: [107][64/196]	Time 0.390 (0.294)	Data 0.000 (0.005)	Loss 0.4372 (0.4771)	Acc@1 96.094 (94.339)	Acc@5 99.609 (99.898)
+Epoch: [107][128/196]	Time 0.301 (0.309)	Data 0.000 (0.002)	Loss 0.4645 (0.4748)	Acc@1 95.312 (94.413)	Acc@5 99.609 (99.894)
+Epoch: [107][192/196]	Time 0.356 (0.315)	Data 0.000 (0.002)	Loss 0.4672 (0.4770)	Acc@1 93.750 (94.298)	Acc@5 100.000 (99.895)
+[INFO] Storing checkpoint...
+
+Epoch: [108 | 110] LR: 0.000100
+Epoch: [108][0/196]	Time 0.405 (0.405)	Data 0.392 (0.392)	Loss 0.4773 (0.4773)	Acc@1 93.359 (93.359)	Acc@5 99.609 (99.609)
+Epoch: [108][64/196]	Time 0.377 (0.393)	Data 0.000 (0.006)	Loss 0.4528 (0.4709)	Acc@1 94.531 (94.507)	Acc@5 100.000 (99.916)
+Epoch: [108][128/196]	Time 0.394 (0.391)	Data 0.000 (0.003)	Loss 0.4528 (0.4703)	Acc@1 96.094 (94.498)	Acc@5 99.609 (99.885)
+Epoch: [108][192/196]	Time 0.374 (0.391)	Data 0.000 (0.002)	Loss 0.5288 (0.4710)	Acc@1 93.359 (94.497)	Acc@5 99.609 (99.893)
+[INFO] Storing checkpoint...
+
+Epoch: [109 | 110] LR: 0.000010
+Epoch: [109][0/196]	Time 0.399 (0.399)	Data 0.315 (0.315)	Loss 0.4616 (0.4616)	Acc@1 94.922 (94.922)	Acc@5 100.000 (100.000)
+Epoch: [109][64/196]	Time 0.412 (0.388)	Data 0.000 (0.005)	Loss 0.4255 (0.4725)	Acc@1 96.094 (94.519)	Acc@5 100.000 (99.928)
+Epoch: [109][128/196]	Time 0.398 (0.390)	Data 0.000 (0.003)	Loss 0.4903 (0.4721)	Acc@1 93.750 (94.559)	Acc@5 99.609 (99.903)
+Epoch: [109][192/196]	Time 0.346 (0.374)	Data 0.000 (0.002)	Loss 0.4659 (0.4703)	Acc@1 94.141 (94.594)	Acc@5 100.000 (99.907)
+[INFO] Storing checkpoint...
+
+Epoch: [110 | 110] LR: 0.000001
+Epoch: [110][0/196]	Time 0.504 (0.504)	Data 0.265 (0.265)	Loss 0.4890 (0.4890)	Acc@1 92.578 (92.578)	Acc@5 100.000 (100.000)
+Epoch: [110][64/196]	Time 0.410 (0.366)	Data 0.000 (0.004)	Loss 0.4366 (0.4690)	Acc@1 96.484 (94.700)	Acc@5 100.000 (99.904)
+Epoch: [110][128/196]	Time 0.314 (0.349)	Data 0.000 (0.002)	Loss 0.4734 (0.4717)	Acc@1 94.922 (94.510)	Acc@5 100.000 (99.903)
+Epoch: [110][192/196]	Time 0.391 (0.341)	Data 0.000 (0.002)	Loss 0.4758 (0.4716)	Acc@1 93.359 (94.594)	Acc@5 100.000 (99.911)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  91.18
+ 67.380s  j: 111 bis 115
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 324426
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 1.027 (1.027)	Data 0.265 (0.265)	Loss 0.5088 (0.5088)	Acc@1 94.531 (94.531)	Acc@5 99.609 (99.609)
-Epoch: [116][64/196]	Time 0.412 (0.395)	Data 0.000 (0.004)	Loss 0.5900 (0.5033)	Acc@1 91.406 (94.183)	Acc@5 99.219 (99.880)
-Epoch: [116][128/196]	Time 0.392 (0.396)	Data 0.000 (0.002)	Loss 0.5183 (0.5053)	Acc@1 91.797 (94.113)	Acc@5 99.609 (99.867)
-Epoch: [116][192/196]	Time 0.327 (0.386)	Data 0.000 (0.002)	Loss 0.5064 (0.5062)	Acc@1 94.141 (94.027)	Acc@5 100.000 (99.875)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 116 bis 120
+Epoch: [111 | 115] LR: 0.010000
+Epoch: [111][0/196]	Time 1.096 (1.096)	Data 0.340 (0.340)	Loss 0.5200 (0.5200)	Acc@1 93.359 (93.359)	Acc@5 99.609 (99.609)
+Epoch: [111][64/196]	Time 0.405 (0.402)	Data 0.000 (0.005)	Loss 0.4744 (0.4782)	Acc@1 92.578 (94.075)	Acc@5 100.000 (99.898)
+Epoch: [111][128/196]	Time 0.408 (0.392)	Data 0.000 (0.003)	Loss 0.4342 (0.4795)	Acc@1 96.875 (94.116)	Acc@5 100.000 (99.894)
+Epoch: [111][192/196]	Time 0.311 (0.381)	Data 0.000 (0.002)	Loss 0.5893 (0.4814)	Acc@1 89.844 (93.981)	Acc@5 99.219 (99.881)
+[INFO] Storing checkpoint...
+
+Epoch: [112 | 115] LR: 0.001000
+Epoch: [112][0/196]	Time 0.358 (0.358)	Data 0.288 (0.288)	Loss 0.4171 (0.4171)	Acc@1 96.094 (96.094)	Acc@5 100.000 (100.000)
+Epoch: [112][64/196]	Time 0.378 (0.345)	Data 0.000 (0.005)	Loss 0.4715 (0.4665)	Acc@1 94.531 (94.531)	Acc@5 100.000 (99.874)
+Epoch: [112][128/196]	Time 0.399 (0.368)	Data 0.000 (0.002)	Loss 0.4698 (0.4603)	Acc@1 95.312 (94.674)	Acc@5 100.000 (99.876)
+Epoch: [112][192/196]	Time 0.410 (0.374)	Data 0.000 (0.002)	Loss 0.4953 (0.4610)	Acc@1 94.531 (94.643)	Acc@5 99.219 (99.891)
+[INFO] Storing checkpoint...
+
+Epoch: [113 | 115] LR: 0.000100
+Epoch: [113][0/196]	Time 0.405 (0.405)	Data 0.297 (0.297)	Loss 0.4300 (0.4300)	Acc@1 95.703 (95.703)	Acc@5 100.000 (100.000)
+Epoch: [113][64/196]	Time 0.363 (0.393)	Data 0.000 (0.005)	Loss 0.5071 (0.4498)	Acc@1 92.578 (94.982)	Acc@5 100.000 (99.910)
+Epoch: [113][128/196]	Time 0.286 (0.358)	Data 0.000 (0.002)	Loss 0.4547 (0.4530)	Acc@1 94.531 (94.846)	Acc@5 100.000 (99.903)
+Epoch: [113][192/196]	Time 0.286 (0.338)	Data 0.000 (0.002)	Loss 0.4146 (0.4526)	Acc@1 96.094 (94.914)	Acc@5 100.000 (99.897)
+[INFO] Storing checkpoint...
+
+Epoch: [114 | 115] LR: 0.000010
+Epoch: [114][0/196]	Time 0.309 (0.309)	Data 0.287 (0.287)	Loss 0.4322 (0.4322)	Acc@1 95.703 (95.703)	Acc@5 99.609 (99.609)
+Epoch: [114][64/196]	Time 0.171 (0.223)	Data 0.000 (0.005)	Loss 0.4904 (0.4478)	Acc@1 94.531 (95.024)	Acc@5 100.000 (99.892)
+Epoch: [114][128/196]	Time 0.142 (0.208)	Data 0.000 (0.002)	Loss 0.4389 (0.4490)	Acc@1 95.703 (94.982)	Acc@5 100.000 (99.891)
+Epoch: [114][192/196]	Time 0.152 (0.188)	Data 0.000 (0.002)	Loss 0.4617 (0.4523)	Acc@1 94.922 (94.892)	Acc@5 100.000 (99.889)
+[INFO] Storing checkpoint...
+
+Epoch: [115 | 115] LR: 0.000001
+Epoch: [115][0/196]	Time 0.162 (0.162)	Data 0.258 (0.258)	Loss 0.4982 (0.4982)	Acc@1 92.969 (92.969)	Acc@5 99.609 (99.609)
+Epoch: [115][64/196]	Time 0.157 (0.145)	Data 0.000 (0.004)	Loss 0.4356 (0.4500)	Acc@1 95.312 (94.988)	Acc@5 100.000 (99.922)
+Epoch: [115][128/196]	Time 0.210 (0.167)	Data 0.000 (0.002)	Loss 0.4911 (0.4516)	Acc@1 92.969 (95.010)	Acc@5 100.000 (99.918)
+Epoch: [115][192/196]	Time 0.205 (0.180)	Data 0.000 (0.002)	Loss 0.4237 (0.4506)	Acc@1 95.703 (95.037)	Acc@5 100.000 (99.917)
+[INFO] Storing checkpoint...
+
+  256
+  91.58
+ 35.686s  j: 116 bis 120
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 324426
 
 Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.839 (0.839)	Data 0.222 (0.222)	Loss 0.4777 (0.4777)	Acc@1 95.703 (95.703)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.393 (0.345)	Data 0.000 (0.004)	Loss 0.4825 (0.5073)	Acc@1 96.094 (94.375)	Acc@5 100.000 (99.886)
-Epoch: [116][128/196]	Time 0.425 (0.369)	Data 0.000 (0.002)	Loss 0.4747 (0.5107)	Acc@1 94.141 (94.001)	Acc@5 100.000 (99.867)
-Epoch: [116][192/196]	Time 0.359 (0.377)	Data 0.000 (0.001)	Loss 0.5183 (0.5091)	Acc@1 94.141 (93.963)	Acc@5 100.000 (99.887)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 121 bis 125
+Epoch: [116][0/196]	Time 0.698 (0.698)	Data 0.242 (0.242)	Loss 0.4766 (0.4766)	Acc@1 94.141 (94.141)	Acc@5 99.609 (99.609)
+Epoch: [116][64/196]	Time 0.205 (0.214)	Data 0.000 (0.004)	Loss 0.4829 (0.4600)	Acc@1 93.359 (94.483)	Acc@5 100.000 (99.904)
+Epoch: [116][128/196]	Time 0.145 (0.194)	Data 0.000 (0.002)	Loss 0.5272 (0.4660)	Acc@1 92.188 (94.216)	Acc@5 100.000 (99.882)
+Epoch: [116][192/196]	Time 0.139 (0.177)	Data 0.000 (0.001)	Loss 0.3932 (0.4659)	Acc@1 97.266 (94.189)	Acc@5 100.000 (99.881)
+[INFO] Storing checkpoint...
+
+Epoch: [117 | 120] LR: 0.001000
+Epoch: [117][0/196]	Time 0.169 (0.169)	Data 0.247 (0.247)	Loss 0.4496 (0.4496)	Acc@1 94.922 (94.922)	Acc@5 99.609 (99.609)
+Epoch: [117][64/196]	Time 0.153 (0.145)	Data 0.000 (0.004)	Loss 0.4295 (0.4496)	Acc@1 95.703 (94.615)	Acc@5 99.609 (99.898)
+Epoch: [117][128/196]	Time 0.215 (0.170)	Data 0.000 (0.002)	Loss 0.4731 (0.4447)	Acc@1 94.141 (94.886)	Acc@5 100.000 (99.900)
+Epoch: [117][192/196]	Time 0.213 (0.182)	Data 0.000 (0.001)	Loss 0.4455 (0.4429)	Acc@1 95.703 (94.960)	Acc@5 100.000 (99.899)
+[INFO] Storing checkpoint...
+
+Epoch: [118 | 120] LR: 0.000100
+Epoch: [118][0/196]	Time 0.238 (0.238)	Data 0.292 (0.292)	Loss 0.4367 (0.4367)	Acc@1 94.141 (94.141)	Acc@5 100.000 (100.000)
+Epoch: [118][64/196]	Time 0.214 (0.206)	Data 0.000 (0.005)	Loss 0.4297 (0.4376)	Acc@1 94.922 (95.108)	Acc@5 100.000 (99.916)
+Epoch: [118][128/196]	Time 0.202 (0.203)	Data 0.000 (0.002)	Loss 0.4406 (0.4387)	Acc@1 95.312 (95.067)	Acc@5 100.000 (99.909)
+Epoch: [118][192/196]	Time 0.211 (0.204)	Data 0.000 (0.002)	Loss 0.3874 (0.4354)	Acc@1 96.875 (95.205)	Acc@5 100.000 (99.915)
+[INFO] Storing checkpoint...
+
+Epoch: [119 | 120] LR: 0.000010
+Epoch: [119][0/196]	Time 0.236 (0.236)	Data 0.243 (0.243)	Loss 0.4032 (0.4032)	Acc@1 95.703 (95.703)	Acc@5 100.000 (100.000)
+Epoch: [119][64/196]	Time 0.191 (0.207)	Data 0.000 (0.004)	Loss 0.3871 (0.4256)	Acc@1 97.656 (95.541)	Acc@5 100.000 (99.916)
+Epoch: [119][128/196]	Time 0.184 (0.202)	Data 0.000 (0.002)	Loss 0.4827 (0.4294)	Acc@1 93.359 (95.431)	Acc@5 100.000 (99.918)
+Epoch: [119][192/196]	Time 0.144 (0.184)	Data 0.000 (0.001)	Loss 0.4541 (0.4331)	Acc@1 93.750 (95.284)	Acc@5 100.000 (99.915)
+[INFO] Storing checkpoint...
+
+Epoch: [120 | 120] LR: 0.000001
+Epoch: [120][0/196]	Time 0.274 (0.274)	Data 0.251 (0.251)	Loss 0.4060 (0.4060)	Acc@1 95.312 (95.312)	Acc@5 100.000 (100.000)
+Epoch: [120][64/196]	Time 0.164 (0.149)	Data 0.000 (0.004)	Loss 0.4494 (0.4288)	Acc@1 96.484 (95.565)	Acc@5 100.000 (99.922)
+Epoch: [120][128/196]	Time 0.207 (0.159)	Data 0.000 (0.002)	Loss 0.3927 (0.4312)	Acc@1 97.266 (95.406)	Acc@5 100.000 (99.909)
+Epoch: [120][192/196]	Time 0.209 (0.175)	Data 0.000 (0.001)	Loss 0.4207 (0.4327)	Acc@1 94.922 (95.323)	Acc@5 100.000 (99.915)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  91.34
+ 34.682s  j: 121 bis 125
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 324426
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.985 (0.985)	Data 0.263 (0.263)	Loss 0.5073 (0.5073)	Acc@1 93.359 (93.359)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.392 (0.392)	Data 0.000 (0.004)	Loss 0.4812 (0.5000)	Acc@1 93.750 (94.177)	Acc@5 100.000 (99.910)
-Epoch: [116][128/196]	Time 0.391 (0.391)	Data 0.000 (0.002)	Loss 0.5170 (0.5087)	Acc@1 93.750 (93.986)	Acc@5 100.000 (99.882)
-Epoch: [116][192/196]	Time 0.382 (0.392)	Data 0.000 (0.002)	Loss 0.5452 (0.5072)	Acc@1 93.750 (93.987)	Acc@5 100.000 (99.891)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 126 bis 130
+Epoch: [121 | 125] LR: 0.010000
+Epoch: [121][0/196]	Time 0.683 (0.683)	Data 0.282 (0.282)	Loss 0.4400 (0.4400)	Acc@1 94.922 (94.922)	Acc@5 100.000 (100.000)
+Epoch: [121][64/196]	Time 0.220 (0.214)	Data 0.000 (0.005)	Loss 0.4429 (0.4415)	Acc@1 94.141 (94.916)	Acc@5 100.000 (99.886)
+Epoch: [121][128/196]	Time 0.137 (0.200)	Data 0.000 (0.002)	Loss 0.4536 (0.4482)	Acc@1 94.141 (94.574)	Acc@5 99.609 (99.903)
+Epoch: [121][192/196]	Time 0.147 (0.181)	Data 0.000 (0.002)	Loss 0.4634 (0.4486)	Acc@1 92.969 (94.564)	Acc@5 100.000 (99.913)
+[INFO] Storing checkpoint...
+
+Epoch: [122 | 125] LR: 0.001000
+Epoch: [122][0/196]	Time 0.165 (0.165)	Data 0.266 (0.266)	Loss 0.4922 (0.4922)	Acc@1 92.578 (92.578)	Acc@5 100.000 (100.000)
+Epoch: [122][64/196]	Time 0.142 (0.144)	Data 0.000 (0.004)	Loss 0.4854 (0.4302)	Acc@1 92.969 (95.337)	Acc@5 100.000 (99.922)
+Epoch: [122][128/196]	Time 0.206 (0.162)	Data 0.000 (0.002)	Loss 0.4569 (0.4276)	Acc@1 94.922 (95.373)	Acc@5 99.609 (99.930)
+Epoch: [122][192/196]	Time 0.209 (0.176)	Data 0.000 (0.002)	Loss 0.4357 (0.4278)	Acc@1 94.531 (95.270)	Acc@5 100.000 (99.927)
+[INFO] Storing checkpoint...
+
+Epoch: [123 | 125] LR: 0.000100
+Epoch: [123][0/196]	Time 0.220 (0.220)	Data 0.235 (0.235)	Loss 0.3918 (0.3918)	Acc@1 96.484 (96.484)	Acc@5 100.000 (100.000)
+Epoch: [123][64/196]	Time 0.201 (0.204)	Data 0.000 (0.004)	Loss 0.4033 (0.4169)	Acc@1 95.703 (95.673)	Acc@5 100.000 (99.958)
+Epoch: [123][128/196]	Time 0.210 (0.203)	Data 0.000 (0.002)	Loss 0.4521 (0.4183)	Acc@1 93.359 (95.661)	Acc@5 99.609 (99.927)
+Epoch: [123][192/196]	Time 0.199 (0.204)	Data 0.000 (0.001)	Loss 0.4228 (0.4204)	Acc@1 95.703 (95.594)	Acc@5 100.000 (99.931)
+[INFO] Storing checkpoint...
+
+Epoch: [124 | 125] LR: 0.000010
+Epoch: [124][0/196]	Time 0.226 (0.226)	Data 0.243 (0.243)	Loss 0.4317 (0.4317)	Acc@1 94.531 (94.531)	Acc@5 100.000 (100.000)
+Epoch: [124][64/196]	Time 0.198 (0.205)	Data 0.000 (0.004)	Loss 0.4029 (0.4180)	Acc@1 96.875 (95.649)	Acc@5 100.000 (99.946)
+Epoch: [124][128/196]	Time 0.154 (0.196)	Data 0.000 (0.002)	Loss 0.4453 (0.4198)	Acc@1 95.312 (95.594)	Acc@5 99.609 (99.924)
+Epoch: [124][192/196]	Time 0.145 (0.180)	Data 0.000 (0.001)	Loss 0.4455 (0.4191)	Acc@1 92.578 (95.586)	Acc@5 100.000 (99.933)
+[INFO] Storing checkpoint...
+
+Epoch: [125 | 125] LR: 0.000001
+Epoch: [125][0/196]	Time 0.164 (0.164)	Data 0.249 (0.249)	Loss 0.3914 (0.3914)	Acc@1 96.484 (96.484)	Acc@5 100.000 (100.000)
+Epoch: [125][64/196]	Time 0.154 (0.148)	Data 0.000 (0.004)	Loss 0.4317 (0.4185)	Acc@1 94.922 (95.505)	Acc@5 100.000 (99.910)
+Epoch: [125][128/196]	Time 0.201 (0.172)	Data 0.000 (0.002)	Loss 0.4194 (0.4198)	Acc@1 96.094 (95.515)	Acc@5 100.000 (99.912)
+Epoch: [125][192/196]	Time 0.205 (0.183)	Data 0.000 (0.001)	Loss 0.4094 (0.4192)	Acc@1 95.312 (95.590)	Acc@5 100.000 (99.913)
+[INFO] Storing checkpoint...
+
+  256
+  91.61
+ 36.357s  j: 126 bis 130
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 324426
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.501 (0.501)	Data 0.291 (0.291)	Loss 0.5211 (0.5211)	Acc@1 92.578 (92.578)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.144 (0.099)	Data 0.000 (0.005)	Loss 0.4686 (0.5051)	Acc@1 94.531 (94.255)	Acc@5 100.000 (99.892)
-Epoch: [116][128/196]	Time 0.343 (0.170)	Data 0.000 (0.002)	Loss 0.4720 (0.5064)	Acc@1 94.141 (93.965)	Acc@5 100.000 (99.900)
-Epoch: [116][192/196]	Time 0.370 (0.240)	Data 0.000 (0.002)	Loss 0.4847 (0.5072)	Acc@1 94.141 (93.914)	Acc@5 100.000 (99.893)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 131 bis 135
+Epoch: [126 | 130] LR: 0.010000
+Epoch: [126][0/196]	Time 0.712 (0.712)	Data 0.255 (0.255)	Loss 0.4153 (0.4153)	Acc@1 96.094 (96.094)	Acc@5 99.609 (99.609)
+Epoch: [126][64/196]	Time 0.210 (0.214)	Data 0.000 (0.004)	Loss 0.4567 (0.4264)	Acc@1 94.922 (95.096)	Acc@5 99.609 (99.904)
+Epoch: [126][128/196]	Time 0.173 (0.209)	Data 0.000 (0.002)	Loss 0.4360 (0.4347)	Acc@1 94.531 (94.789)	Acc@5 100.000 (99.900)
+Epoch: [126][192/196]	Time 0.148 (0.189)	Data 0.000 (0.002)	Loss 0.4112 (0.4361)	Acc@1 95.703 (94.722)	Acc@5 100.000 (99.901)
+[INFO] Storing checkpoint...
+
+Epoch: [127 | 130] LR: 0.001000
+Epoch: [127][0/196]	Time 0.155 (0.155)	Data 0.274 (0.274)	Loss 0.4071 (0.4071)	Acc@1 94.531 (94.531)	Acc@5 100.000 (100.000)
+Epoch: [127][64/196]	Time 0.144 (0.144)	Data 0.000 (0.004)	Loss 0.4235 (0.4193)	Acc@1 95.312 (95.403)	Acc@5 100.000 (99.928)
+Epoch: [127][128/196]	Time 0.202 (0.156)	Data 0.000 (0.002)	Loss 0.4108 (0.4160)	Acc@1 95.703 (95.518)	Acc@5 100.000 (99.930)
+Epoch: [127][192/196]	Time 0.202 (0.172)	Data 0.000 (0.002)	Loss 0.3875 (0.4135)	Acc@1 96.875 (95.608)	Acc@5 100.000 (99.925)
+[INFO] Storing checkpoint...
+
+Epoch: [128 | 130] LR: 0.000100
+Epoch: [128][0/196]	Time 0.247 (0.247)	Data 0.260 (0.260)	Loss 0.3830 (0.3830)	Acc@1 96.484 (96.484)	Acc@5 100.000 (100.000)
+Epoch: [128][64/196]	Time 0.212 (0.207)	Data 0.000 (0.004)	Loss 0.4051 (0.4077)	Acc@1 95.703 (95.823)	Acc@5 100.000 (99.934)
+Epoch: [128][128/196]	Time 0.208 (0.203)	Data 0.000 (0.002)	Loss 0.4025 (0.4031)	Acc@1 95.312 (96.024)	Acc@5 100.000 (99.930)
+Epoch: [128][192/196]	Time 0.217 (0.204)	Data 0.000 (0.002)	Loss 0.4163 (0.4024)	Acc@1 95.312 (96.067)	Acc@5 100.000 (99.933)
+[INFO] Storing checkpoint...
+
+Epoch: [129 | 130] LR: 0.000010
+Epoch: [129][0/196]	Time 0.229 (0.229)	Data 0.270 (0.270)	Loss 0.4056 (0.4056)	Acc@1 96.094 (96.094)	Acc@5 100.000 (100.000)
+Epoch: [129][64/196]	Time 0.194 (0.207)	Data 0.000 (0.004)	Loss 0.4041 (0.4063)	Acc@1 96.484 (95.799)	Acc@5 100.000 (99.928)
+Epoch: [129][128/196]	Time 0.151 (0.198)	Data 0.000 (0.002)	Loss 0.4038 (0.4055)	Acc@1 95.703 (95.764)	Acc@5 100.000 (99.924)
+Epoch: [129][192/196]	Time 0.152 (0.181)	Data 0.000 (0.002)	Loss 0.4329 (0.4059)	Acc@1 96.484 (95.744)	Acc@5 100.000 (99.927)
+[INFO] Storing checkpoint...
+
+Epoch: [130 | 130] LR: 0.000001
+Epoch: [130][0/196]	Time 0.301 (0.301)	Data 0.278 (0.278)	Loss 0.3593 (0.3593)	Acc@1 98.047 (98.047)	Acc@5 100.000 (100.000)
+Epoch: [130][64/196]	Time 0.148 (0.149)	Data 0.000 (0.005)	Loss 0.3899 (0.3965)	Acc@1 95.703 (96.214)	Acc@5 100.000 (99.952)
+Epoch: [130][128/196]	Time 0.208 (0.168)	Data 0.000 (0.002)	Loss 0.4272 (0.4010)	Acc@1 94.922 (96.057)	Acc@5 99.609 (99.930)
+Epoch: [130][192/196]	Time 0.212 (0.181)	Data 0.000 (0.002)	Loss 0.4421 (0.4033)	Acc@1 96.094 (95.997)	Acc@5 100.000 (99.935)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  91.53
+ 35.831s  j: 131 bis 135
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 324426
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.983 (0.983)	Data 0.287 (0.287)	Loss 0.4772 (0.4772)	Acc@1 95.312 (95.312)	Acc@5 99.609 (99.609)
-Epoch: [116][64/196]	Time 0.278 (0.308)	Data 0.000 (0.005)	Loss 0.5338 (0.5090)	Acc@1 93.750 (94.093)	Acc@5 99.609 (99.886)
-Epoch: [116][128/196]	Time 0.406 (0.323)	Data 0.000 (0.002)	Loss 0.5317 (0.5095)	Acc@1 92.969 (94.095)	Acc@5 99.609 (99.876)
-Epoch: [116][192/196]	Time 0.393 (0.346)	Data 0.000 (0.002)	Loss 0.5072 (0.5062)	Acc@1 94.531 (94.118)	Acc@5 100.000 (99.887)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 136 bis 140
+Epoch: [131 | 135] LR: 0.010000
+Epoch: [131][0/196]	Time 0.693 (0.693)	Data 0.267 (0.267)	Loss 0.3738 (0.3738)	Acc@1 97.266 (97.266)	Acc@5 100.000 (100.000)
+Epoch: [131][64/196]	Time 0.205 (0.212)	Data 0.000 (0.004)	Loss 0.4101 (0.4165)	Acc@1 94.922 (95.228)	Acc@5 100.000 (99.940)
+Epoch: [131][128/196]	Time 0.237 (0.207)	Data 0.000 (0.002)	Loss 0.4193 (0.4181)	Acc@1 94.922 (95.164)	Acc@5 99.609 (99.906)
+Epoch: [131][192/196]	Time 0.146 (0.189)	Data 0.000 (0.002)	Loss 0.4066 (0.4237)	Acc@1 93.750 (94.956)	Acc@5 100.000 (99.905)
+[INFO] Storing checkpoint...
+
+Epoch: [132 | 135] LR: 0.001000
+Epoch: [132][0/196]	Time 0.149 (0.149)	Data 0.260 (0.260)	Loss 0.4108 (0.4108)	Acc@1 94.531 (94.531)	Acc@5 100.000 (100.000)
+Epoch: [132][64/196]	Time 0.140 (0.143)	Data 0.000 (0.004)	Loss 0.4023 (0.4059)	Acc@1 96.094 (95.613)	Acc@5 100.000 (99.904)
+Epoch: [132][128/196]	Time 0.209 (0.146)	Data 0.000 (0.002)	Loss 0.4255 (0.4063)	Acc@1 93.359 (95.415)	Acc@5 99.609 (99.909)
+Epoch: [132][192/196]	Time 0.200 (0.166)	Data 0.000 (0.002)	Loss 0.4493 (0.4036)	Acc@1 92.969 (95.557)	Acc@5 100.000 (99.915)
+[INFO] Storing checkpoint...
+
+Epoch: [133 | 135] LR: 0.000100
+Epoch: [133][0/196]	Time 0.219 (0.219)	Data 0.283 (0.283)	Loss 0.3708 (0.3708)	Acc@1 97.656 (97.656)	Acc@5 100.000 (100.000)
+Epoch: [133][64/196]	Time 0.187 (0.205)	Data 0.000 (0.005)	Loss 0.3959 (0.3916)	Acc@1 96.094 (95.974)	Acc@5 100.000 (99.928)
+Epoch: [133][128/196]	Time 0.195 (0.203)	Data 0.000 (0.002)	Loss 0.3782 (0.3930)	Acc@1 96.484 (95.991)	Acc@5 100.000 (99.930)
+Epoch: [133][192/196]	Time 0.193 (0.203)	Data 0.000 (0.002)	Loss 0.3569 (0.3928)	Acc@1 98.047 (96.009)	Acc@5 100.000 (99.933)
+[INFO] Storing checkpoint...
+
+Epoch: [134 | 135] LR: 0.000010
+Epoch: [134][0/196]	Time 0.219 (0.219)	Data 0.296 (0.296)	Loss 0.4022 (0.4022)	Acc@1 95.703 (95.703)	Acc@5 99.609 (99.609)
+Epoch: [134][64/196]	Time 0.216 (0.206)	Data 0.000 (0.005)	Loss 0.3681 (0.3952)	Acc@1 97.656 (96.052)	Acc@5 100.000 (99.922)
+Epoch: [134][128/196]	Time 0.146 (0.190)	Data 0.000 (0.002)	Loss 0.3798 (0.3939)	Acc@1 96.094 (96.024)	Acc@5 100.000 (99.936)
+Epoch: [134][192/196]	Time 0.157 (0.175)	Data 0.000 (0.002)	Loss 0.3821 (0.3928)	Acc@1 94.922 (96.003)	Acc@5 100.000 (99.943)
+[INFO] Storing checkpoint...
+
+Epoch: [135 | 135] LR: 0.000001
+Epoch: [135][0/196]	Time 0.188 (0.188)	Data 0.365 (0.365)	Loss 0.3572 (0.3572)	Acc@1 98.047 (98.047)	Acc@5 100.000 (100.000)
+Epoch: [135][64/196]	Time 0.174 (0.157)	Data 0.000 (0.006)	Loss 0.3679 (0.3941)	Acc@1 96.094 (96.040)	Acc@5 100.000 (99.952)
+Epoch: [135][128/196]	Time 0.147 (0.181)	Data 0.000 (0.003)	Loss 0.4069 (0.3942)	Acc@1 95.703 (95.942)	Acc@5 100.000 (99.949)
+Epoch: [135][192/196]	Time 0.206 (0.190)	Data 0.000 (0.002)	Loss 0.3851 (0.3923)	Acc@1 94.531 (96.025)	Acc@5 100.000 (99.951)
+[INFO] Storing checkpoint...
+
+  256
+  91.78
+ 37.670s  j: 136 bis 140
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 324426
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.987 (0.987)	Data 0.281 (0.281)	Loss 0.4747 (0.4747)	Acc@1 95.703 (95.703)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.293 (0.340)	Data 0.000 (0.004)	Loss 0.5667 (0.5039)	Acc@1 91.797 (94.231)	Acc@5 99.609 (99.874)
-Epoch: [116][128/196]	Time 0.355 (0.334)	Data 0.000 (0.002)	Loss 0.4580 (0.5082)	Acc@1 95.703 (94.023)	Acc@5 100.000 (99.879)
-Epoch: [116][192/196]	Time 0.298 (0.331)	Data 0.000 (0.002)	Loss 0.5794 (0.5059)	Acc@1 89.844 (94.035)	Acc@5 100.000 (99.885)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 141 bis 145
+Epoch: [136 | 140] LR: 0.010000
+Epoch: [136][0/196]	Time 0.691 (0.691)	Data 0.298 (0.298)	Loss 0.4136 (0.4136)	Acc@1 95.312 (95.312)	Acc@5 100.000 (100.000)
+Epoch: [136][64/196]	Time 0.217 (0.215)	Data 0.000 (0.005)	Loss 0.4153 (0.4010)	Acc@1 94.922 (95.589)	Acc@5 100.000 (99.910)
+Epoch: [136][128/196]	Time 0.221 (0.210)	Data 0.000 (0.002)	Loss 0.3920 (0.4079)	Acc@1 96.484 (95.312)	Acc@5 99.609 (99.891)
+Epoch: [136][192/196]	Time 0.139 (0.198)	Data 0.000 (0.002)	Loss 0.3602 (0.4128)	Acc@1 96.094 (95.072)	Acc@5 100.000 (99.903)
+[INFO] Storing checkpoint...
+
+Epoch: [137 | 140] LR: 0.001000
+Epoch: [137][0/196]	Time 0.182 (0.182)	Data 0.261 (0.261)	Loss 0.3808 (0.3808)	Acc@1 96.875 (96.875)	Acc@5 100.000 (100.000)
+Epoch: [137][64/196]	Time 0.146 (0.143)	Data 0.000 (0.004)	Loss 0.3911 (0.3932)	Acc@1 96.484 (95.962)	Acc@5 99.609 (99.928)
+Epoch: [137][128/196]	Time 0.154 (0.140)	Data 0.000 (0.002)	Loss 0.3961 (0.3936)	Acc@1 96.484 (95.858)	Acc@5 100.000 (99.924)
+Epoch: [137][192/196]	Time 0.196 (0.160)	Data 0.000 (0.002)	Loss 0.3999 (0.3897)	Acc@1 95.312 (95.928)	Acc@5 100.000 (99.933)
+[INFO] Storing checkpoint...
+
+Epoch: [138 | 140] LR: 0.000100
+Epoch: [138][0/196]	Time 0.219 (0.219)	Data 0.278 (0.278)	Loss 0.4005 (0.4005)	Acc@1 96.094 (96.094)	Acc@5 99.609 (99.609)
+Epoch: [138][64/196]	Time 0.202 (0.206)	Data 0.000 (0.004)	Loss 0.3724 (0.3783)	Acc@1 96.094 (96.352)	Acc@5 100.000 (99.946)
+Epoch: [138][128/196]	Time 0.197 (0.204)	Data 0.000 (0.002)	Loss 0.3567 (0.3809)	Acc@1 95.703 (96.257)	Acc@5 100.000 (99.945)
+Epoch: [138][192/196]	Time 0.193 (0.204)	Data 0.000 (0.002)	Loss 0.3627 (0.3819)	Acc@1 96.875 (96.197)	Acc@5 100.000 (99.941)
+[INFO] Storing checkpoint...
+
+Epoch: [139 | 140] LR: 0.000010
+Epoch: [139][0/196]	Time 0.251 (0.251)	Data 0.278 (0.278)	Loss 0.3755 (0.3755)	Acc@1 97.266 (97.266)	Acc@5 99.609 (99.609)
+Epoch: [139][64/196]	Time 0.206 (0.207)	Data 0.000 (0.004)	Loss 0.3565 (0.3863)	Acc@1 96.875 (95.871)	Acc@5 100.000 (99.940)
+Epoch: [139][128/196]	Time 0.149 (0.195)	Data 0.000 (0.002)	Loss 0.3824 (0.3827)	Acc@1 96.484 (96.094)	Acc@5 100.000 (99.936)
+Epoch: [139][192/196]	Time 0.144 (0.176)	Data 0.000 (0.002)	Loss 0.3495 (0.3815)	Acc@1 98.047 (96.144)	Acc@5 100.000 (99.941)
+[INFO] Storing checkpoint...
+
+Epoch: [140 | 140] LR: 0.000001
+Epoch: [140][0/196]	Time 0.255 (0.255)	Data 0.290 (0.290)	Loss 0.3529 (0.3529)	Acc@1 95.703 (95.703)	Acc@5 100.000 (100.000)
+Epoch: [140][64/196]	Time 0.161 (0.149)	Data 0.000 (0.005)	Loss 0.3750 (0.3841)	Acc@1 95.703 (96.022)	Acc@5 100.000 (99.928)
+Epoch: [140][128/196]	Time 0.204 (0.173)	Data 0.000 (0.002)	Loss 0.3753 (0.3822)	Acc@1 96.484 (96.230)	Acc@5 100.000 (99.912)
+Epoch: [140][192/196]	Time 0.209 (0.183)	Data 0.000 (0.002)	Loss 0.3336 (0.3811)	Acc@1 98.438 (96.284)	Acc@5 100.000 (99.929)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  91.78
+ 36.270s  j: 141 bis 145
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 324426
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 1.210 (1.210)	Data 0.277 (0.277)	Loss 0.5809 (0.5809)	Acc@1 91.406 (91.406)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.323 (0.304)	Data 0.000 (0.004)	Loss 0.5407 (0.5021)	Acc@1 92.578 (94.345)	Acc@5 100.000 (99.898)
-Epoch: [116][128/196]	Time 0.414 (0.340)	Data 0.000 (0.002)	Loss 0.5709 (0.5060)	Acc@1 92.188 (94.122)	Acc@5 100.000 (99.888)
-Epoch: [116][192/196]	Time 0.402 (0.357)	Data 0.000 (0.002)	Loss 0.4876 (0.5064)	Acc@1 94.922 (94.037)	Acc@5 100.000 (99.870)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 146 bis 150
+Epoch: [141 | 145] LR: 0.010000
+Epoch: [141][0/196]	Time 0.711 (0.711)	Data 0.266 (0.266)	Loss 0.4190 (0.4190)	Acc@1 94.531 (94.531)	Acc@5 99.609 (99.609)
+Epoch: [141][64/196]	Time 0.201 (0.213)	Data 0.000 (0.004)	Loss 0.3914 (0.3949)	Acc@1 96.094 (95.703)	Acc@5 99.609 (99.934)
+Epoch: [141][128/196]	Time 0.203 (0.207)	Data 0.000 (0.002)	Loss 0.4274 (0.3981)	Acc@1 93.359 (95.506)	Acc@5 100.000 (99.936)
+Epoch: [141][192/196]	Time 0.144 (0.201)	Data 0.000 (0.002)	Loss 0.4020 (0.4029)	Acc@1 95.703 (95.272)	Acc@5 100.000 (99.941)
+[INFO] Storing checkpoint...
+
+Epoch: [142 | 145] LR: 0.001000
+Epoch: [142][0/196]	Time 0.177 (0.177)	Data 0.269 (0.269)	Loss 0.3677 (0.3677)	Acc@1 97.266 (97.266)	Acc@5 100.000 (100.000)
+Epoch: [142][64/196]	Time 0.140 (0.143)	Data 0.000 (0.004)	Loss 0.4117 (0.3846)	Acc@1 96.094 (95.835)	Acc@5 100.000 (99.958)
+Epoch: [142][128/196]	Time 0.146 (0.140)	Data 0.000 (0.002)	Loss 0.3940 (0.3800)	Acc@1 95.312 (95.985)	Acc@5 100.000 (99.945)
+Epoch: [142][192/196]	Time 0.207 (0.155)	Data 0.000 (0.002)	Loss 0.3922 (0.3773)	Acc@1 94.922 (96.130)	Acc@5 100.000 (99.939)
+[INFO] Storing checkpoint...
+
+Epoch: [143 | 145] LR: 0.000100
+Epoch: [143][0/196]	Time 0.216 (0.216)	Data 0.283 (0.283)	Loss 0.3780 (0.3780)	Acc@1 96.484 (96.484)	Acc@5 100.000 (100.000)
+Epoch: [143][64/196]	Time 0.204 (0.204)	Data 0.000 (0.005)	Loss 0.3609 (0.3630)	Acc@1 97.266 (96.809)	Acc@5 100.000 (99.946)
+Epoch: [143][128/196]	Time 0.211 (0.203)	Data 0.000 (0.002)	Loss 0.3692 (0.3635)	Acc@1 97.266 (96.733)	Acc@5 100.000 (99.958)
+Epoch: [143][192/196]	Time 0.195 (0.203)	Data 0.000 (0.002)	Loss 0.3599 (0.3659)	Acc@1 97.266 (96.626)	Acc@5 100.000 (99.960)
+[INFO] Storing checkpoint...
+
+Epoch: [144 | 145] LR: 0.000010
+Epoch: [144][0/196]	Time 0.222 (0.222)	Data 0.279 (0.279)	Loss 0.3458 (0.3458)	Acc@1 97.656 (97.656)	Acc@5 100.000 (100.000)
+Epoch: [144][64/196]	Time 0.206 (0.205)	Data 0.000 (0.004)	Loss 0.4017 (0.3689)	Acc@1 94.531 (96.472)	Acc@5 100.000 (99.958)
+Epoch: [144][128/196]	Time 0.151 (0.185)	Data 0.000 (0.002)	Loss 0.3561 (0.3687)	Acc@1 97.266 (96.472)	Acc@5 100.000 (99.952)
+Epoch: [144][192/196]	Time 0.149 (0.170)	Data 0.000 (0.002)	Loss 0.3829 (0.3668)	Acc@1 96.094 (96.586)	Acc@5 100.000 (99.962)
+[INFO] Storing checkpoint...
+
+Epoch: [145 | 145] LR: 0.000001
+Epoch: [145][0/196]	Time 0.164 (0.164)	Data 0.288 (0.288)	Loss 0.3725 (0.3725)	Acc@1 96.875 (96.875)	Acc@5 100.000 (100.000)
+Epoch: [145][64/196]	Time 0.203 (0.162)	Data 0.000 (0.005)	Loss 0.3531 (0.3718)	Acc@1 97.266 (96.430)	Acc@5 100.000 (99.928)
+Epoch: [145][128/196]	Time 0.204 (0.182)	Data 0.000 (0.002)	Loss 0.3881 (0.3689)	Acc@1 95.703 (96.448)	Acc@5 100.000 (99.942)
+Epoch: [145][192/196]	Time 0.211 (0.189)	Data 0.000 (0.002)	Loss 0.3772 (0.3673)	Acc@1 95.312 (96.497)	Acc@5 100.000 (99.947)
+[INFO] Storing checkpoint...
+
+  256
+  91.97
+ 37.402s  j: 146 bis 150
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 324426
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 1.006 (1.006)	Data 0.241 (0.241)	Loss 0.4701 (0.4701)	Acc@1 96.094 (96.094)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.340 (0.325)	Data 0.000 (0.004)	Loss 0.5408 (0.5116)	Acc@1 93.750 (94.032)	Acc@5 100.000 (99.904)
-Epoch: [116][128/196]	Time 0.393 (0.339)	Data 0.000 (0.002)	Loss 0.5014 (0.5085)	Acc@1 92.578 (93.935)	Acc@5 100.000 (99.918)
-Epoch: [116][192/196]	Time 0.403 (0.356)	Data 0.000 (0.001)	Loss 0.5010 (0.5081)	Acc@1 94.141 (93.993)	Acc@5 100.000 (99.917)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 151 bis 155
+Epoch: [146 | 150] LR: 0.010000
+Epoch: [146][0/196]	Time 0.597 (0.597)	Data 0.244 (0.244)	Loss 0.4567 (0.4567)	Acc@1 93.359 (93.359)	Acc@5 100.000 (100.000)
+Epoch: [146][64/196]	Time 0.202 (0.210)	Data 0.000 (0.004)	Loss 0.4491 (0.3830)	Acc@1 95.703 (95.919)	Acc@5 98.828 (99.916)
+Epoch: [146][128/196]	Time 0.206 (0.206)	Data 0.000 (0.002)	Loss 0.3620 (0.3920)	Acc@1 96.484 (95.479)	Acc@5 100.000 (99.927)
+Epoch: [146][192/196]	Time 0.206 (0.206)	Data 0.000 (0.001)	Loss 0.3593 (0.3976)	Acc@1 96.484 (95.207)	Acc@5 100.000 (99.927)
+[INFO] Storing checkpoint...
+
+Epoch: [147 | 150] LR: 0.001000
+Epoch: [147][0/196]	Time 0.273 (0.273)	Data 0.321 (0.321)	Loss 0.4004 (0.4004)	Acc@1 94.141 (94.141)	Acc@5 100.000 (100.000)
+Epoch: [147][64/196]	Time 0.143 (0.145)	Data 0.000 (0.005)	Loss 0.4455 (0.3783)	Acc@1 92.969 (95.895)	Acc@5 100.000 (99.910)
+Epoch: [147][128/196]	Time 0.141 (0.141)	Data 0.000 (0.003)	Loss 0.3740 (0.3748)	Acc@1 95.312 (96.109)	Acc@5 100.000 (99.927)
+Epoch: [147][192/196]	Time 0.206 (0.147)	Data 0.000 (0.002)	Loss 0.4004 (0.3724)	Acc@1 94.531 (96.217)	Acc@5 100.000 (99.935)
+[INFO] Storing checkpoint...
+
+Epoch: [148 | 150] LR: 0.000100
+Epoch: [148][0/196]	Time 0.223 (0.223)	Data 0.291 (0.291)	Loss 0.3713 (0.3713)	Acc@1 96.094 (96.094)	Acc@5 100.000 (100.000)
+Epoch: [148][64/196]	Time 0.200 (0.206)	Data 0.000 (0.005)	Loss 0.3704 (0.3537)	Acc@1 96.094 (96.755)	Acc@5 100.000 (99.958)
+Epoch: [148][128/196]	Time 0.199 (0.204)	Data 0.000 (0.002)	Loss 0.3302 (0.3576)	Acc@1 98.438 (96.596)	Acc@5 100.000 (99.945)
+Epoch: [148][192/196]	Time 0.212 (0.203)	Data 0.000 (0.002)	Loss 0.3481 (0.3585)	Acc@1 96.094 (96.584)	Acc@5 100.000 (99.943)
+[INFO] Storing checkpoint...
+
+Epoch: [149 | 150] LR: 0.000010
+Epoch: [149][0/196]	Time 0.231 (0.231)	Data 0.263 (0.263)	Loss 0.3261 (0.3261)	Acc@1 98.047 (98.047)	Acc@5 100.000 (100.000)
+Epoch: [149][64/196]	Time 0.202 (0.205)	Data 0.000 (0.004)	Loss 0.3604 (0.3589)	Acc@1 96.094 (96.635)	Acc@5 100.000 (99.958)
+Epoch: [149][128/196]	Time 0.142 (0.190)	Data 0.000 (0.002)	Loss 0.3667 (0.3579)	Acc@1 96.484 (96.699)	Acc@5 100.000 (99.955)
+Epoch: [149][192/196]	Time 0.155 (0.174)	Data 0.000 (0.002)	Loss 0.3531 (0.3581)	Acc@1 96.484 (96.652)	Acc@5 100.000 (99.949)
+[INFO] Storing checkpoint...
+
+Epoch: [150 | 150] LR: 0.000000
+Epoch: [150][0/196]	Time 0.270 (0.270)	Data 0.277 (0.277)	Loss 0.3573 (0.3573)	Acc@1 96.875 (96.875)	Acc@5 99.609 (99.609)
+Epoch: [150][64/196]	Time 0.149 (0.151)	Data 0.000 (0.004)	Loss 0.3691 (0.3580)	Acc@1 96.484 (96.707)	Acc@5 100.000 (99.970)
+Epoch: [150][128/196]	Time 0.199 (0.176)	Data 0.000 (0.002)	Loss 0.3621 (0.3574)	Acc@1 96.094 (96.593)	Acc@5 100.000 (99.958)
+Epoch: [150][192/196]	Time 0.214 (0.185)	Data 0.000 (0.002)	Loss 0.3394 (0.3587)	Acc@1 98.438 (96.602)	Acc@5 99.609 (99.951)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  91.97
+ 36.745s  j: 151 bis 155
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 324426
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.767 (0.767)	Data 0.281 (0.281)	Loss 0.4818 (0.4818)	Acc@1 94.922 (94.922)	Acc@5 99.609 (99.609)
-Epoch: [116][64/196]	Time 0.088 (0.174)	Data 0.000 (0.005)	Loss 0.5185 (0.5014)	Acc@1 93.750 (94.321)	Acc@5 100.000 (99.922)
-Epoch: [116][128/196]	Time 0.232 (0.152)	Data 0.000 (0.002)	Loss 0.4938 (0.5075)	Acc@1 95.312 (94.138)	Acc@5 100.000 (99.888)
-Epoch: [116][192/196]	Time 0.306 (0.184)	Data 0.000 (0.002)	Loss 0.4886 (0.5072)	Acc@1 95.312 (94.015)	Acc@5 100.000 (99.887)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 156 bis 160
+Epoch: [151 | 155] LR: 0.001000
+Epoch: [151][0/196]	Time 0.633 (0.633)	Data 0.271 (0.271)	Loss 0.3455 (0.3455)	Acc@1 96.094 (96.094)	Acc@5 100.000 (100.000)
+Epoch: [151][64/196]	Time 0.203 (0.209)	Data 0.000 (0.004)	Loss 0.3660 (0.3591)	Acc@1 95.703 (96.599)	Acc@5 100.000 (99.958)
+Epoch: [151][128/196]	Time 0.212 (0.206)	Data 0.000 (0.002)	Loss 0.3911 (0.3566)	Acc@1 95.312 (96.711)	Acc@5 99.219 (99.958)
+Epoch: [151][192/196]	Time 0.205 (0.206)	Data 0.000 (0.002)	Loss 0.3228 (0.3573)	Acc@1 98.438 (96.731)	Acc@5 100.000 (99.953)
+[INFO] Storing checkpoint...
+
+Epoch: [152 | 155] LR: 0.000010
+Epoch: [152][0/196]	Time 0.214 (0.214)	Data 0.256 (0.256)	Loss 0.4143 (0.4143)	Acc@1 94.531 (94.531)	Acc@5 100.000 (100.000)
+Epoch: [152][64/196]	Time 0.144 (0.162)	Data 0.000 (0.004)	Loss 0.3401 (0.3599)	Acc@1 97.656 (96.683)	Acc@5 100.000 (99.946)
+Epoch: [152][128/196]	Time 0.144 (0.149)	Data 0.000 (0.002)	Loss 0.3411 (0.3545)	Acc@1 97.656 (96.830)	Acc@5 100.000 (99.955)
+Epoch: [152][192/196]	Time 0.156 (0.147)	Data 0.000 (0.002)	Loss 0.3445 (0.3536)	Acc@1 96.484 (96.824)	Acc@5 100.000 (99.955)
+[INFO] Storing checkpoint...
+
+Epoch: [153 | 155] LR: 0.000000
+Epoch: [153][0/196]	Time 0.188 (0.188)	Data 0.273 (0.273)	Loss 0.3719 (0.3719)	Acc@1 95.703 (95.703)	Acc@5 100.000 (100.000)
+Epoch: [153][64/196]	Time 0.205 (0.205)	Data 0.000 (0.004)	Loss 0.3582 (0.3565)	Acc@1 97.266 (96.569)	Acc@5 100.000 (99.952)
+Epoch: [153][128/196]	Time 0.208 (0.205)	Data 0.000 (0.002)	Loss 0.3643 (0.3547)	Acc@1 96.484 (96.748)	Acc@5 100.000 (99.939)
+Epoch: [153][192/196]	Time 0.204 (0.205)	Data 0.000 (0.002)	Loss 0.3346 (0.3546)	Acc@1 97.656 (96.782)	Acc@5 100.000 (99.947)
+[INFO] Storing checkpoint...
+
+Epoch: [154 | 155] LR: 0.000000
+Epoch: [154][0/196]	Time 0.226 (0.226)	Data 0.263 (0.263)	Loss 0.3508 (0.3508)	Acc@1 96.875 (96.875)	Acc@5 100.000 (100.000)
+Epoch: [154][64/196]	Time 0.220 (0.205)	Data 0.000 (0.004)	Loss 0.3641 (0.3524)	Acc@1 97.266 (96.839)	Acc@5 100.000 (99.946)
+Epoch: [154][128/196]	Time 0.148 (0.186)	Data 0.000 (0.002)	Loss 0.3411 (0.3532)	Acc@1 96.484 (96.817)	Acc@5 100.000 (99.949)
+Epoch: [154][192/196]	Time 0.149 (0.173)	Data 0.000 (0.002)	Loss 0.3864 (0.3537)	Acc@1 95.312 (96.835)	Acc@5 100.000 (99.937)
+[INFO] Storing checkpoint...
+
+Epoch: [155 | 155] LR: 0.000000
+Epoch: [155][0/196]	Time 0.147 (0.147)	Data 0.260 (0.260)	Loss 0.3335 (0.3335)	Acc@1 97.656 (97.656)	Acc@5 100.000 (100.000)
+Epoch: [155][64/196]	Time 0.207 (0.159)	Data 0.000 (0.004)	Loss 0.3609 (0.3540)	Acc@1 95.703 (96.581)	Acc@5 100.000 (99.982)
+Epoch: [155][128/196]	Time 0.207 (0.182)	Data 0.000 (0.002)	Loss 0.3242 (0.3526)	Acc@1 98.047 (96.775)	Acc@5 100.000 (99.973)
+Epoch: [155][192/196]	Time 0.198 (0.190)	Data 0.000 (0.002)	Loss 0.3424 (0.3532)	Acc@1 97.266 (96.814)	Acc@5 100.000 (99.964)
+[INFO] Storing checkpoint...
+
+  256
+  91.98
+ 37.550s  j: 156 bis 160
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 324426
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 1.167 (1.167)	Data 0.351 (0.351)	Loss 0.4700 (0.4700)	Acc@1 94.922 (94.922)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.328 (0.352)	Data 0.000 (0.006)	Loss 0.4986 (0.4977)	Acc@1 93.750 (94.543)	Acc@5 100.000 (99.916)
-Epoch: [116][128/196]	Time 0.464 (0.359)	Data 0.000 (0.003)	Loss 0.4941 (0.5042)	Acc@1 94.141 (94.119)	Acc@5 100.000 (99.888)
-Epoch: [116][192/196]	Time 0.322 (0.350)	Data 0.000 (0.002)	Loss 0.4408 (0.5066)	Acc@1 95.703 (94.050)	Acc@5 100.000 (99.895)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 161 bis 165
+Epoch: [156 | 160] LR: 0.001000
+Epoch: [156][0/196]	Time 0.706 (0.706)	Data 0.260 (0.260)	Loss 0.3529 (0.3529)	Acc@1 96.875 (96.875)	Acc@5 100.000 (100.000)
+Epoch: [156][64/196]	Time 0.199 (0.209)	Data 0.000 (0.004)	Loss 0.4001 (0.3497)	Acc@1 94.531 (96.911)	Acc@5 99.609 (99.964)
+Epoch: [156][128/196]	Time 0.213 (0.206)	Data 0.000 (0.002)	Loss 0.3348 (0.3529)	Acc@1 98.438 (96.817)	Acc@5 100.000 (99.936)
+Epoch: [156][192/196]	Time 0.209 (0.206)	Data 0.000 (0.002)	Loss 0.3478 (0.3523)	Acc@1 96.484 (96.863)	Acc@5 100.000 (99.941)
+[INFO] Storing checkpoint...
+
+Epoch: [157 | 160] LR: 0.000010
+Epoch: [157][0/196]	Time 0.202 (0.202)	Data 0.270 (0.270)	Loss 0.3382 (0.3382)	Acc@1 96.875 (96.875)	Acc@5 100.000 (100.000)
+Epoch: [157][64/196]	Time 0.146 (0.186)	Data 0.000 (0.004)	Loss 0.4082 (0.3467)	Acc@1 94.141 (96.971)	Acc@5 100.000 (99.964)
+Epoch: [157][128/196]	Time 0.141 (0.162)	Data 0.000 (0.002)	Loss 0.3776 (0.3487)	Acc@1 95.312 (96.908)	Acc@5 99.609 (99.955)
+Epoch: [157][192/196]	Time 0.139 (0.155)	Data 0.000 (0.002)	Loss 0.3328 (0.3490)	Acc@1 97.266 (96.956)	Acc@5 100.000 (99.951)
+[INFO] Storing checkpoint...
+
+Epoch: [158 | 160] LR: 0.000000
+Epoch: [158][0/196]	Time 0.161 (0.161)	Data 0.275 (0.275)	Loss 0.3147 (0.3147)	Acc@1 98.438 (98.438)	Acc@5 100.000 (100.000)
+Epoch: [158][64/196]	Time 0.207 (0.189)	Data 0.000 (0.004)	Loss 0.3638 (0.3469)	Acc@1 96.875 (97.001)	Acc@5 100.000 (99.970)
+Epoch: [158][128/196]	Time 0.208 (0.196)	Data 0.000 (0.002)	Loss 0.3454 (0.3455)	Acc@1 96.484 (97.096)	Acc@5 100.000 (99.964)
+Epoch: [158][192/196]	Time 0.210 (0.199)	Data 0.000 (0.002)	Loss 0.3441 (0.3463)	Acc@1 96.875 (97.027)	Acc@5 100.000 (99.960)
+[INFO] Storing checkpoint...
+
+Epoch: [159 | 160] LR: 0.000000
+Epoch: [159][0/196]	Time 0.240 (0.240)	Data 0.245 (0.245)	Loss 0.3476 (0.3476)	Acc@1 98.047 (98.047)	Acc@5 100.000 (100.000)
+Epoch: [159][64/196]	Time 0.205 (0.204)	Data 0.000 (0.004)	Loss 0.3884 (0.3517)	Acc@1 95.703 (96.773)	Acc@5 99.609 (99.958)
+Epoch: [159][128/196]	Time 0.146 (0.189)	Data 0.000 (0.002)	Loss 0.3253 (0.3507)	Acc@1 98.828 (96.905)	Acc@5 100.000 (99.961)
+Epoch: [159][192/196]	Time 0.147 (0.175)	Data 0.000 (0.001)	Loss 0.3339 (0.3504)	Acc@1 96.875 (96.879)	Acc@5 100.000 (99.966)
+[INFO] Storing checkpoint...
+
+Epoch: [160 | 160] LR: 0.000000
+Epoch: [160][0/196]	Time 0.273 (0.273)	Data 0.278 (0.278)	Loss 0.3520 (0.3520)	Acc@1 97.656 (97.656)	Acc@5 99.609 (99.609)
+Epoch: [160][64/196]	Time 0.171 (0.145)	Data 0.000 (0.005)	Loss 0.3711 (0.3442)	Acc@1 96.484 (97.230)	Acc@5 100.000 (99.982)
+Epoch: [160][128/196]	Time 0.208 (0.175)	Data 0.000 (0.002)	Loss 0.3558 (0.3468)	Acc@1 97.266 (97.102)	Acc@5 99.609 (99.952)
+Epoch: [160][192/196]	Time 0.203 (0.185)	Data 0.000 (0.002)	Loss 0.3580 (0.3472)	Acc@1 96.484 (97.079)	Acc@5 100.000 (99.951)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  92.03
+ 36.787s  j: 161 bis 165
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 324426
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 1.142 (1.142)	Data 0.275 (0.275)	Loss 0.4980 (0.4980)	Acc@1 93.750 (93.750)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.263 (0.350)	Data 0.000 (0.004)	Loss 0.4756 (0.5010)	Acc@1 95.703 (94.387)	Acc@5 100.000 (99.910)
-Epoch: [116][128/196]	Time 0.336 (0.359)	Data 0.000 (0.002)	Loss 0.5530 (0.5039)	Acc@1 92.969 (94.189)	Acc@5 100.000 (99.885)
-Epoch: [116][192/196]	Time 0.221 (0.357)	Data 0.000 (0.002)	Loss 0.4304 (0.5035)	Acc@1 97.266 (94.141)	Acc@5 100.000 (99.895)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 166 bis 170
+Epoch: [161 | 165] LR: 0.001000
+Epoch: [161][0/196]	Time 0.683 (0.683)	Data 0.237 (0.237)	Loss 0.3365 (0.3365)	Acc@1 97.656 (97.656)	Acc@5 100.000 (100.000)
+Epoch: [161][64/196]	Time 0.203 (0.207)	Data 0.000 (0.004)	Loss 0.3261 (0.3493)	Acc@1 98.047 (96.815)	Acc@5 100.000 (99.940)
+Epoch: [161][128/196]	Time 0.208 (0.205)	Data 0.000 (0.002)	Loss 0.3766 (0.3479)	Acc@1 96.484 (96.917)	Acc@5 100.000 (99.945)
+Epoch: [161][192/196]	Time 0.212 (0.205)	Data 0.000 (0.001)	Loss 0.3374 (0.3492)	Acc@1 97.656 (96.853)	Acc@5 100.000 (99.955)
+[INFO] Storing checkpoint...
+
+Epoch: [162 | 165] LR: 0.000010
+Epoch: [162][0/196]	Time 0.222 (0.222)	Data 0.242 (0.242)	Loss 0.3349 (0.3349)	Acc@1 98.047 (98.047)	Acc@5 99.609 (99.609)
+Epoch: [162][64/196]	Time 0.183 (0.200)	Data 0.000 (0.004)	Loss 0.3682 (0.3459)	Acc@1 96.484 (97.073)	Acc@5 100.000 (99.940)
+Epoch: [162][128/196]	Time 0.134 (0.169)	Data 0.000 (0.002)	Loss 0.3567 (0.3457)	Acc@1 96.875 (97.032)	Acc@5 100.000 (99.949)
+Epoch: [162][192/196]	Time 0.148 (0.161)	Data 0.000 (0.001)	Loss 0.3691 (0.3446)	Acc@1 95.703 (97.069)	Acc@5 100.000 (99.947)
+[INFO] Storing checkpoint...
+
+Epoch: [163 | 165] LR: 0.000000
+Epoch: [163][0/196]	Time 0.200 (0.200)	Data 0.363 (0.363)	Loss 0.3231 (0.3231)	Acc@1 98.438 (98.438)	Acc@5 100.000 (100.000)
+Epoch: [163][64/196]	Time 0.202 (0.176)	Data 0.000 (0.006)	Loss 0.3388 (0.3462)	Acc@1 98.047 (96.995)	Acc@5 99.609 (99.952)
+Epoch: [163][128/196]	Time 0.215 (0.190)	Data 0.000 (0.003)	Loss 0.3464 (0.3461)	Acc@1 96.875 (97.017)	Acc@5 100.000 (99.961)
+Epoch: [163][192/196]	Time 0.214 (0.197)	Data 0.000 (0.002)	Loss 0.3447 (0.3457)	Acc@1 97.266 (97.011)	Acc@5 99.609 (99.955)
+[INFO] Storing checkpoint...
+
+Epoch: [164 | 165] LR: 0.000000
+Epoch: [164][0/196]	Time 0.199 (0.199)	Data 0.411 (0.411)	Loss 0.3704 (0.3704)	Acc@1 95.703 (95.703)	Acc@5 100.000 (100.000)
+Epoch: [164][64/196]	Time 0.199 (0.205)	Data 0.000 (0.007)	Loss 0.3189 (0.3436)	Acc@1 97.656 (97.163)	Acc@5 100.000 (99.970)
+Epoch: [164][128/196]	Time 0.148 (0.184)	Data 0.000 (0.003)	Loss 0.3350 (0.3432)	Acc@1 97.266 (97.160)	Acc@5 100.000 (99.958)
+Epoch: [164][192/196]	Time 0.142 (0.172)	Data 0.000 (0.002)	Loss 0.3773 (0.3458)	Acc@1 96.484 (97.029)	Acc@5 99.609 (99.955)
+[INFO] Storing checkpoint...
+
+Epoch: [165 | 165] LR: 0.000000
+Epoch: [165][0/196]	Time 0.181 (0.181)	Data 0.280 (0.280)	Loss 0.3072 (0.3072)	Acc@1 98.047 (98.047)	Acc@5 100.000 (100.000)
+Epoch: [165][64/196]	Time 0.208 (0.160)	Data 0.000 (0.005)	Loss 0.3224 (0.3423)	Acc@1 97.656 (97.194)	Acc@5 100.000 (99.970)
+Epoch: [165][128/196]	Time 0.195 (0.183)	Data 0.000 (0.002)	Loss 0.3430 (0.3435)	Acc@1 96.875 (97.096)	Acc@5 100.000 (99.967)
+Epoch: [165][192/196]	Time 0.207 (0.191)	Data 0.000 (0.002)	Loss 0.3315 (0.3441)	Acc@1 98.438 (97.051)	Acc@5 100.000 (99.962)
+[INFO] Storing checkpoint...
+
+  256
+  92.13
+ 37.771s  j: 166 bis 170
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 324426
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.777 (0.777)	Data 0.240 (0.240)	Loss 0.4660 (0.4660)	Acc@1 95.312 (95.312)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.370 (0.288)	Data 0.000 (0.004)	Loss 0.5203 (0.5050)	Acc@1 93.750 (94.279)	Acc@5 99.219 (99.850)
-Epoch: [116][128/196]	Time 0.323 (0.322)	Data 0.000 (0.002)	Loss 0.5353 (0.5051)	Acc@1 92.188 (94.135)	Acc@5 100.000 (99.861)
-Epoch: [116][192/196]	Time 0.374 (0.331)	Data 0.000 (0.001)	Loss 0.5425 (0.5060)	Acc@1 91.016 (94.100)	Acc@5 100.000 (99.864)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 171 bis 175
+Epoch: [166 | 170] LR: 0.001000
+Epoch: [166][0/196]	Time 0.675 (0.675)	Data 0.285 (0.285)	Loss 0.3515 (0.3515)	Acc@1 97.656 (97.656)	Acc@5 100.000 (100.000)
+Epoch: [166][64/196]	Time 0.208 (0.213)	Data 0.000 (0.005)	Loss 0.2990 (0.3448)	Acc@1 99.219 (97.073)	Acc@5 100.000 (99.940)
+Epoch: [166][128/196]	Time 0.205 (0.203)	Data 0.000 (0.002)	Loss 0.3302 (0.3466)	Acc@1 98.047 (97.014)	Acc@5 100.000 (99.955)
+Epoch: [166][192/196]	Time 0.208 (0.204)	Data 0.000 (0.002)	Loss 0.3322 (0.3456)	Acc@1 98.047 (97.057)	Acc@5 100.000 (99.951)
+[INFO] Storing checkpoint...
+
+Epoch: [167 | 170] LR: 0.000010
+Epoch: [167][0/196]	Time 0.211 (0.211)	Data 0.251 (0.251)	Loss 0.3452 (0.3452)	Acc@1 96.875 (96.875)	Acc@5 100.000 (100.000)
+Epoch: [167][64/196]	Time 0.205 (0.205)	Data 0.000 (0.004)	Loss 0.3674 (0.3420)	Acc@1 96.484 (97.079)	Acc@5 100.000 (99.946)
+Epoch: [167][128/196]	Time 0.138 (0.182)	Data 0.000 (0.002)	Loss 0.3563 (0.3431)	Acc@1 96.484 (97.048)	Acc@5 100.000 (99.961)
+Epoch: [167][192/196]	Time 0.142 (0.169)	Data 0.000 (0.002)	Loss 0.3867 (0.3425)	Acc@1 95.703 (97.132)	Acc@5 99.609 (99.964)
+[INFO] Storing checkpoint...
+
+Epoch: [168 | 170] LR: 0.000000
+Epoch: [168][0/196]	Time 0.147 (0.147)	Data 0.263 (0.263)	Loss 0.3194 (0.3194)	Acc@1 98.047 (98.047)	Acc@5 100.000 (100.000)
+Epoch: [168][64/196]	Time 0.229 (0.148)	Data 0.000 (0.004)	Loss 0.3594 (0.3453)	Acc@1 96.484 (97.037)	Acc@5 100.000 (99.958)
+Epoch: [168][128/196]	Time 0.197 (0.175)	Data 0.000 (0.002)	Loss 0.3462 (0.3442)	Acc@1 97.266 (97.045)	Acc@5 100.000 (99.961)
+Epoch: [168][192/196]	Time 0.205 (0.185)	Data 0.000 (0.002)	Loss 0.3505 (0.3425)	Acc@1 95.703 (97.152)	Acc@5 100.000 (99.962)
+[INFO] Storing checkpoint...
+
+Epoch: [169 | 170] LR: 0.000000
+Epoch: [169][0/196]	Time 0.224 (0.224)	Data 0.276 (0.276)	Loss 0.3340 (0.3340)	Acc@1 98.047 (98.047)	Acc@5 100.000 (100.000)
+Epoch: [169][64/196]	Time 0.212 (0.203)	Data 0.000 (0.004)	Loss 0.4257 (0.3463)	Acc@1 93.750 (97.013)	Acc@5 99.609 (99.952)
+Epoch: [169][128/196]	Time 0.145 (0.189)	Data 0.000 (0.002)	Loss 0.3633 (0.3426)	Acc@1 97.266 (97.105)	Acc@5 100.000 (99.955)
+Epoch: [169][192/196]	Time 0.143 (0.175)	Data 0.000 (0.002)	Loss 0.3158 (0.3418)	Acc@1 98.828 (97.144)	Acc@5 99.609 (99.955)
+[INFO] Storing checkpoint...
+
+Epoch: [170 | 170] LR: 0.000000
+Epoch: [170][0/196]	Time 0.242 (0.242)	Data 0.295 (0.295)	Loss 0.3748 (0.3748)	Acc@1 96.484 (96.484)	Acc@5 100.000 (100.000)
+Epoch: [170][64/196]	Time 0.144 (0.147)	Data 0.000 (0.005)	Loss 0.3212 (0.3421)	Acc@1 97.656 (97.085)	Acc@5 100.000 (99.964)
+Epoch: [170][128/196]	Time 0.213 (0.171)	Data 0.000 (0.002)	Loss 0.3228 (0.3409)	Acc@1 98.438 (97.135)	Acc@5 100.000 (99.949)
+Epoch: [170][192/196]	Time 0.207 (0.183)	Data 0.000 (0.002)	Loss 0.3292 (0.3406)	Acc@1 98.047 (97.203)	Acc@5 100.000 (99.953)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  92.15
+ 36.286s  j: 171 bis 175
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 324426
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.984 (0.984)	Data 0.261 (0.261)	Loss 0.4516 (0.4516)	Acc@1 96.094 (96.094)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.398 (0.346)	Data 0.000 (0.004)	Loss 0.4793 (0.4991)	Acc@1 94.922 (94.495)	Acc@5 100.000 (99.940)
-Epoch: [116][128/196]	Time 0.305 (0.364)	Data 0.000 (0.002)	Loss 0.5157 (0.5032)	Acc@1 93.359 (94.277)	Acc@5 99.609 (99.903)
-Epoch: [116][192/196]	Time 0.341 (0.352)	Data 0.000 (0.002)	Loss 0.5200 (0.5044)	Acc@1 94.141 (94.161)	Acc@5 100.000 (99.897)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
-j: 176 bis 180
+Epoch: [171 | 175] LR: 0.001000
+Epoch: [171][0/196]	Time 0.683 (0.683)	Data 0.282 (0.282)	Loss 0.3314 (0.3314)	Acc@1 97.266 (97.266)	Acc@5 99.609 (99.609)
+Epoch: [171][64/196]	Time 0.198 (0.213)	Data 0.000 (0.005)	Loss 0.3314 (0.3446)	Acc@1 96.875 (97.073)	Acc@5 100.000 (99.964)
+Epoch: [171][128/196]	Time 0.195 (0.202)	Data 0.000 (0.002)	Loss 0.3798 (0.3428)	Acc@1 95.312 (97.157)	Acc@5 100.000 (99.942)
+Epoch: [171][192/196]	Time 0.200 (0.203)	Data 0.000 (0.002)	Loss 0.3388 (0.3413)	Acc@1 96.875 (97.203)	Acc@5 100.000 (99.949)
+[INFO] Storing checkpoint...
+
+Epoch: [172 | 175] LR: 0.000010
+Epoch: [172][0/196]	Time 0.231 (0.231)	Data 0.291 (0.291)	Loss 0.3421 (0.3421)	Acc@1 97.656 (97.656)	Acc@5 100.000 (100.000)
+Epoch: [172][64/196]	Time 0.208 (0.206)	Data 0.000 (0.005)	Loss 0.3616 (0.3380)	Acc@1 96.484 (97.290)	Acc@5 100.000 (99.970)
+Epoch: [172][128/196]	Time 0.138 (0.193)	Data 0.000 (0.002)	Loss 0.3197 (0.3380)	Acc@1 98.047 (97.263)	Acc@5 100.000 (99.973)
+Epoch: [172][192/196]	Time 0.141 (0.177)	Data 0.000 (0.002)	Loss 0.3132 (0.3375)	Acc@1 98.438 (97.308)	Acc@5 100.000 (99.955)
+[INFO] Storing checkpoint...
+
+Epoch: [173 | 175] LR: 0.000000
+Epoch: [173][0/196]	Time 0.176 (0.176)	Data 0.293 (0.293)	Loss 0.3493 (0.3493)	Acc@1 96.484 (96.484)	Acc@5 100.000 (100.000)
+Epoch: [173][64/196]	Time 0.140 (0.143)	Data 0.000 (0.005)	Loss 0.3260 (0.3419)	Acc@1 97.656 (97.067)	Acc@5 100.000 (99.952)
+Epoch: [173][128/196]	Time 0.205 (0.164)	Data 0.000 (0.002)	Loss 0.3504 (0.3407)	Acc@1 96.484 (97.084)	Acc@5 100.000 (99.955)
+Epoch: [173][192/196]	Time 0.210 (0.178)	Data 0.000 (0.002)	Loss 0.3327 (0.3404)	Acc@1 97.656 (97.179)	Acc@5 100.000 (99.951)
+[INFO] Storing checkpoint...
+
+Epoch: [174 | 175] LR: 0.000000
+Epoch: [174][0/196]	Time 0.219 (0.219)	Data 0.298 (0.298)	Loss 0.3436 (0.3436)	Acc@1 97.266 (97.266)	Acc@5 100.000 (100.000)
+Epoch: [174][64/196]	Time 0.218 (0.204)	Data 0.000 (0.005)	Loss 0.3524 (0.3371)	Acc@1 96.484 (97.194)	Acc@5 100.000 (99.958)
+Epoch: [174][128/196]	Time 0.147 (0.184)	Data 0.000 (0.002)	Loss 0.3259 (0.3366)	Acc@1 97.656 (97.266)	Acc@5 100.000 (99.967)
+Epoch: [174][192/196]	Time 0.143 (0.172)	Data 0.000 (0.002)	Loss 0.3714 (0.3388)	Acc@1 94.922 (97.205)	Acc@5 100.000 (99.962)
+[INFO] Storing checkpoint...
+
+Epoch: [175 | 175] LR: 0.000000
+Epoch: [175][0/196]	Time 0.191 (0.191)	Data 0.277 (0.277)	Loss 0.3649 (0.3649)	Acc@1 95.703 (95.703)	Acc@5 100.000 (100.000)
+Epoch: [175][64/196]	Time 0.210 (0.161)	Data 0.000 (0.004)	Loss 0.3258 (0.3388)	Acc@1 98.438 (97.362)	Acc@5 100.000 (99.946)
+Epoch: [175][128/196]	Time 0.212 (0.182)	Data 0.000 (0.002)	Loss 0.3379 (0.3407)	Acc@1 96.484 (97.202)	Acc@5 100.000 (99.945)
+Epoch: [175][192/196]	Time 0.204 (0.190)	Data 0.000 (0.002)	Loss 0.3412 (0.3410)	Acc@1 97.266 (97.195)	Acc@5 99.609 (99.949)
+[INFO] Storing checkpoint...
+
+  256
+  92.13
+ 37.656s  j: 176 bis 180
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
 ==> Resuming from checkpoint..
-count0: 323124
+count0: 324426
 
-Epoch: [116 | 120] LR: 0.010000
-Epoch: [116][0/196]	Time 0.978 (0.978)	Data 0.275 (0.275)	Loss 0.4887 (0.4887)	Acc@1 95.312 (95.312)	Acc@5 100.000 (100.000)
-Epoch: [116][64/196]	Time 0.415 (0.308)	Data 0.000 (0.004)	Loss 0.4726 (0.5088)	Acc@1 95.703 (94.008)	Acc@5 100.000 (99.874)
-Epoch: [116][128/196]	Time 0.212 (0.288)	Data 0.000 (0.002)	Loss 0.5292 (0.5069)	Acc@1 92.578 (94.074)	Acc@5 100.000 (99.891)
-Epoch: [116][192/196]	Time 0.249 (0.268)	Data 0.000 (0.002)	Loss 0.5238 (0.5086)	Acc@1 93.750 (93.906)	Acc@5 100.000 (99.889)
-Traceback (most recent call last):
-  File "main.py", line 824, in <module>
-    main()
-  File "main.py", line 380, in main
-    test_epoch_time])
-  File "/home/jessica.buehler/MA_Source/src/utils/logger.py", line 71, in append
-    assert len(self.names) == len(numbers), 'Numbers do not match names'
-AssertionError: Numbers do not match names
+Epoch: [176 | 180] LR: 0.001000
+Epoch: [176][0/196]	Time 0.682 (0.682)	Data 0.236 (0.236)	Loss 0.3509 (0.3509)	Acc@1 97.266 (97.266)	Acc@5 99.609 (99.609)
+Epoch: [176][64/196]	Time 0.214 (0.213)	Data 0.000 (0.004)	Loss 0.3157 (0.3370)	Acc@1 98.438 (97.302)	Acc@5 100.000 (99.958)
+Epoch: [176][128/196]	Time 0.214 (0.208)	Data 0.000 (0.002)	Loss 0.3020 (0.3372)	Acc@1 98.828 (97.247)	Acc@5 100.000 (99.964)
+Epoch: [176][192/196]	Time 0.204 (0.206)	Data 0.000 (0.001)	Loss 0.3761 (0.3383)	Acc@1 96.875 (97.239)	Acc@5 99.609 (99.960)
+[INFO] Storing checkpoint...
+
+Epoch: [177 | 180] LR: 0.000010
+Epoch: [177][0/196]	Time 0.230 (0.230)	Data 0.260 (0.260)	Loss 0.3424 (0.3424)	Acc@1 97.656 (97.656)	Acc@5 100.000 (100.000)
+Epoch: [177][64/196]	Time 0.200 (0.207)	Data 0.000 (0.004)	Loss 0.3359 (0.3360)	Acc@1 98.047 (97.302)	Acc@5 100.000 (99.952)
+Epoch: [177][128/196]	Time 0.225 (0.205)	Data 0.000 (0.002)	Loss 0.3411 (0.3353)	Acc@1 96.484 (97.314)	Acc@5 100.000 (99.952)
+Epoch: [177][192/196]	Time 0.146 (0.186)	Data 0.000 (0.002)	Loss 0.3304 (0.3390)	Acc@1 96.875 (97.152)	Acc@5 100.000 (99.949)
+[INFO] Storing checkpoint...
+
+Epoch: [178 | 180] LR: 0.000000
+Epoch: [178][0/196]	Time 0.152 (0.152)	Data 0.306 (0.306)	Loss 0.3338 (0.3338)	Acc@1 96.875 (96.875)	Acc@5 100.000 (100.000)
+Epoch: [178][64/196]	Time 0.144 (0.143)	Data 0.000 (0.005)	Loss 0.3259 (0.3353)	Acc@1 96.875 (97.500)	Acc@5 100.000 (99.958)
+Epoch: [178][128/196]	Time 0.204 (0.153)	Data 0.000 (0.003)	Loss 0.3444 (0.3355)	Acc@1 96.875 (97.408)	Acc@5 100.000 (99.958)
+Epoch: [178][192/196]	Time 0.200 (0.171)	Data 0.000 (0.002)	Loss 0.3480 (0.3365)	Acc@1 95.703 (97.308)	Acc@5 100.000 (99.960)
+[INFO] Storing checkpoint...
+
+Epoch: [179 | 180] LR: 0.000000
+Epoch: [179][0/196]	Time 0.224 (0.224)	Data 0.316 (0.316)	Loss 0.3733 (0.3733)	Acc@1 96.094 (96.094)	Acc@5 100.000 (100.000)
+Epoch: [179][64/196]	Time 0.201 (0.204)	Data 0.000 (0.005)	Loss 0.3526 (0.3351)	Acc@1 97.266 (97.350)	Acc@5 100.000 (99.952)
+Epoch: [179][128/196]	Time 0.146 (0.183)	Data 0.000 (0.003)	Loss 0.3185 (0.3375)	Acc@1 98.438 (97.232)	Acc@5 100.000 (99.955)
+Epoch: [179][192/196]	Time 0.147 (0.170)	Data 0.000 (0.002)	Loss 0.3160 (0.3372)	Acc@1 98.047 (97.253)	Acc@5 100.000 (99.957)
+[INFO] Storing checkpoint...
+
+Epoch: [180 | 180] LR: 0.000000
+Epoch: [180][0/196]	Time 0.276 (0.276)	Data 0.290 (0.290)	Loss 0.3393 (0.3393)	Acc@1 97.656 (97.656)	Acc@5 100.000 (100.000)
+Epoch: [180][64/196]	Time 0.143 (0.148)	Data 0.000 (0.005)	Loss 0.3457 (0.3332)	Acc@1 97.656 (97.434)	Acc@5 100.000 (99.964)
+Epoch: [180][128/196]	Time 0.152 (0.143)	Data 0.000 (0.002)	Loss 0.3759 (0.3364)	Acc@1 96.484 (97.269)	Acc@5 99.609 (99.961)
+Epoch: [180][192/196]	Time 0.136 (0.144)	Data 0.000 (0.002)	Loss 0.3344 (0.3363)	Acc@1 98.438 (97.296)	Acc@5 99.609 (99.960)
+[INFO] Storing checkpoint...
+
+  256
+  92.16
+ 28.618s  
