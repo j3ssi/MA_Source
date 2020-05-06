@@ -1,0 +1,10 @@
+Überblick über Experimente
+
+Prune1-5
+python3 main.py -j 6 --epochs insgesamt 180 in 5er Gruppen -s 3 -l 2 -n 5,5,5 --cifar10 --sparse_interval 10 --threshold 0.0001 --batch_size 256 --gpu_id 2  --var_group_lasso_coeff 0.25 --pathToModell ./output/prune$1/model.nn
+
+Ergebnis: langsamer als Baseline
+
+Prune 6-10
+python3 main.py -j 6 --epochs insgesamt 180 in 5er Gruppen -s 3 -l 2 -n 5,5,5 --cifar10 --sparse_interval 10 --threshold 0.001 --batch_size 256 --gpu_id 2  --var_group_lasso_coeff 0.25 --pathToModell ./output/prune$1/model.nn
+
