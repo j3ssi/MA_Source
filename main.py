@@ -505,6 +505,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             mini_inputs = inputs.chunk(args.batch_size // args.mini_batch_size)
             mini_targets = targets.chunk(args.batch_size // args.mini_batch_size)
             for k, mini_input_var in enumerate(mini_inputs):
+                print(f'K: {k}')
                 mini_target_var = mini_targets[k]
                 output = model.forward(mini_input_var)
                 loss = criterion(output, mini_target_var)
