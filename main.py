@@ -505,20 +505,20 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             mini_inputs = inputs.chunk(args.batch_size // args.mini_batch_size)
             mini_targets = targets.chunk(args.batch_size // args.mini_batch_size)
             for k, mini_input_var in enumerate(mini_inputs):
-                print(f'K: {k}')
+                # print(f'K: {k}')
                 mini_target_var = mini_targets[k]
-                print(f'size of mini target var: {mini_target_var.size()}')
-                output = model.forward(mini_input_var)
-                print(f'size of output: {output.size()}')
-                loss = criterion(output, mini_target_var)
+                # print(f'size of mini target var: {mini_target_var.size()}')
+                outputs = model.forward(mini_input_var)
+                # print(f'size of output: {outputs.size()}')
+                loss = criterion(outputs, mini_target_var)
 
-                prec1, prec5 = accuracy(output.data, mini_target_var.data, topk=(1, 5))
-                print(f'loss data: {loss.data}')
-                print(f'mini input var size: {mini_input_var.size(0)}')
+                prec1, prec5 = accuracy(outputs.data, mini_target_var.data, topk=(1, 5))
+                # print(f'loss data: {loss.data}')
+                # print(f'mini input var size: {mini_input_var.size(0)}')
 
-                losses.update(loss.item(), mini_input_var.size(0))
-                top1.update(prec1.item(), mini_input_var.size(0))
-                top5.update(prec5.item(), mini_input_var.size(0))
+                #losses.update(loss.item(), mini_input_var.size(0))
+                #top1.update(prec1.item(), mini_input_var.size(0))
+                #top5.update(prec5.item(), mini_input_var.size(0))
 
                 # compute gradient and do SGD step
                 loss.backward()
