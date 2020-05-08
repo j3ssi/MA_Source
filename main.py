@@ -369,7 +369,7 @@ def main():
 
             print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs + start_epoch-1, state['lr']))
             start = time.time()
-            train_loss, train_acc, lasso_ratio, train_epoch_time = train(trainloader, model, criterion,
+            train_loss, train_acc, train_epoch_time = train(trainloader, model, criterion,
                                                                          optimizer, epoch, use_cuda)
             ende = time.time()
 
@@ -516,9 +516,9 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 # print(f'loss data: {loss.data}')
                 # print(f'mini input var size: {mini_input_var.size(0)}')
 
-                #losses.update(loss.item(), mini_input_var.size(0))
-                #top1.update(prec1.item(), mini_input_var.size(0))
-                #top5.update(prec5.item(), mini_input_var.size(0))
+                losses.update(loss.item(), mini_input_var.size(0))
+                top1.update(prec1.item(), mini_input_var.size(0))
+                top5.update(prec5.item(), mini_input_var.size(0))
 
                 # compute gradient and do SGD step
                 loss.backward()
@@ -575,11 +575,13 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             # Group lasso calcution is not performance-optimized => Ignore from execution time
         loss += lasso_penalty
             # measure accuracy and record loss
-        prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
-        losses.update(loss.item(), inputs.size(0))
-        top1.update(prec1.item(), inputs.size(0))
-        top5.update(prec5.item(), inputs.size(0))
-        lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
+
+        if not args.largeBatch:
+            prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
+            losses.update(loss.item(), inputs.size(0))
+            top1.update(prec1.item(), inputs.size(0))
+            top5.update(prec5.item(), inputs.size(0))
+            lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
 
         optimizer.zero_grad()
         # compute gradient and do SGD step
@@ -607,7 +609,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                   data_time=data_time, loss=losses, top1=top1, top5=top5))
     # print(f'For fertig!!')
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
-    return losses.avg, top1.avg, lasso_ratio.avg, epoch_time
+    return losses.avg, top1.avg, epoch_time
 
 
 def test(testloader, model, criterion, epoch, use_cuda):
