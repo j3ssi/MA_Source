@@ -511,13 +511,12 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 output = model.forward(mini_input_var)
                 print(f'size of output: {output.size()}')
                 loss = criterion(output, mini_target_var)
-                print(f'size of loss: {loss.size()}')
-
+            
                 prec1, prec5 = accuracy(output.data, mini_target_var.data, topk=(1, 5))
                 print(f'loss data: {loss.data}')
                 print(f'mini input var size: {mini_input_var.size(0)}')
 
-                losses.update(loss.data[0], mini_input_var.size(0))
+                losses.update(loss.data, mini_input_var.size(0))
                 top1.update(prec1[0], mini_input_var.size(0))
                 top5.update(prec5[0], mini_input_var.size(0))
 
