@@ -353,6 +353,7 @@ def main():
         y = m * min(listofBlocks) + y0
         batch_size = int(0.98 * count0 / min(listofBlocks) * 1 / y)
         print(f'batch_size: {batch_size} ; {y}')
+        args.batch_size = batch_size
     else:
         batch_size = args.batch_size
 
