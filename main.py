@@ -507,8 +507,11 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             for k, mini_input_var in enumerate(mini_inputs):
                 print(f'K: {k}')
                 mini_target_var = mini_targets[k]
+                print(f'size of mini target var: {mini_target_var.size()}')
                 output = model.forward(mini_input_var)
+                print(f'size of output: {output.size()}')
                 loss = criterion(output, mini_target_var)
+                print(f'size of loss: {loss.size()}')
 
                 prec1, prec5 = accuracy(output.data, mini_target_var.data, topk=(1, 5))
                 print(f'loss data: {loss.data[0]}')
