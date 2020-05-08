@@ -510,6 +510,9 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 loss = criterion(output, mini_target_var)
 
                 prec1, prec5 = accuracy(output.data, mini_target_var.data, topk=(1, 5))
+                print(f'loss data: {loss.data[0]}')
+                print(f'mini input var size: {mini_input_var.size(0)}')
+
                 losses.update(loss.data[0], mini_input_var.size(0))
                 top1.update(prec1[0], mini_input_var.size(0))
                 top5.update(prec5[0], mini_input_var.size(0))
