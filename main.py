@@ -506,7 +506,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             mini_targets = targets.chunk(args.batch_size // args.mini_batch_size)
             for k, mini_input_var in enumerate(mini_inputs):
                 mini_target_var = mini_targets[k]
-                output = model(mini_input_var)
+                output = model.forward(mini_input_var)
                 loss = criterion(output, mini_target_var)
 
                 prec1, prec5 = accuracy(output.data, mini_target_var.data, topk=(1, 5))
