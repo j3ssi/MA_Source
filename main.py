@@ -514,7 +514,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 print(f'size of loss: {loss.size()}')
 
                 prec1, prec5 = accuracy(output.data, mini_target_var.data, topk=(1, 5))
-                print(f'loss data: {loss.data[0]}')
+                print(f'loss data: {loss.data}')
                 print(f'mini input var size: {mini_input_var.size(0)}')
 
                 losses.update(loss.data[0], mini_input_var.size(0))
