@@ -551,11 +551,11 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 # lasso penalty
                 loss += lasso_penalty
                 # measure accuracy and record loss
-                prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
-                losses.update(loss.item(), inputs.size(0))
-                top1.update(prec1.item(), inputs.size(0))
-                top5.update(prec5.item(), inputs.size(0))
-                lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
+                prec1, prec5 = accuracy(outputs.data, mini_target_var.data, topk=(1, 5))
+                losses.update(loss.item(), mini_input_var.size(0))
+                top1.update(prec1.item(), mini_input_var.size(0))
+                top5.update(prec5.item(), mini_input_var.size(0))
+                lasso_ratio.update(lasso_penalty / loss.item(), mini_input_var.size(0))
 
                 # compute gradient and do SGD step
                 if args.O1 or args.O2 or args.O3:
