@@ -342,16 +342,25 @@ def main():
     print(f'count0: {count0}')
     count1 = count0
 
-    # batch size
+    # Calculate Size of Trainings Batch size
     if not args.batchTrue:
-        # Calculate Size of Trainings Batch size
-        ms = [0.2926, 4.4695, 0.889, 406.9735]
-        m = ms[args.numOfStages - 1]
-        y0s = [0.2392, 0.7999, 3.899, -51.4890]
-        y0 = y0s[args.numOfStages - 1]
-        print(f'count0: {count0}')
-        y = m * min(listofBlocks) + y0
-        batch_size = int(0.98 * count0 / min(listofBlocks) * 1 / y)
+
+        # calculate first how many blocks is equal to the count0
+        sizeX=count0-1306/97216
+
+
+        y = 4.27*sizeX + 2.60
+        # calculate now the batch size
+        batch_size = count0/sizeX/y
+
+
+        #ms = [0.2926, 4.4695, 0.889, 406.9735]
+        #m = ms[args.numOfStages - 1]
+        #y0s = [0.2392, 0.7999, 3.899, -51.4890]
+        #y0 = y0s[args.numOfStages - 1]
+        #print(f'count0: {count0}')
+        #y = m * min(listofBlocks) + y0
+        #batch_size = int(0.98 * count0 / min(listofBlocks) * 1 / y)
         print(f'batch_size: {batch_size} ; {y}')
         args.batch_size = batch_size
     else:
