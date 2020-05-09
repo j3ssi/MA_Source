@@ -346,7 +346,7 @@ def main():
     if not args.batchTrue:
 
         # calculate first how many blocks is equal to the count0
-        sizeX=count0-1306/97216
+        sizeX=(count0-1306)/97216
         print(f'sizeX: {sizeX}')
 
         y = 4.27*sizeX + 2.60
