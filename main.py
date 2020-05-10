@@ -305,7 +305,8 @@ def main():
         args.checkpoint = os.path.dirname(args.resume)
         checkpoint = torch.load(args.resume)
         best_acc = checkpoint['best_acc']
-        start_epoch = checkpoint['epoch'] 
+        start_epoch = checkpoint['epoch']
+        start_batchSize = checkpoint['start_batchSize']
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
         optimizer.load_state_dict(checkpoint['optimizer'])
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
@@ -321,6 +322,7 @@ def main():
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
         start_epoch = 1
+
     if args.evaluate:
         print('\nEvaluation only')
         test_loss, test_acc = test(testloader, model, criterion, start_epoch, use_cuda)
@@ -366,8 +368,15 @@ def main():
     else:
         batch_size = args.batch_size
 
+    if not args.resume:
+        start_batchSize = batch_size
+
     trainloader = data.DataLoader(trainset, batch_size=batch_size, pin_memory=True,
                                   shuffle=True, num_workers=args.workers)
+    if not batch_size == start_batchSize:
+        lr = (batch_size / start_batchSize) ** 0.5
+        for param_group in optimizer.param_groups:
+            param_group['lr'] *= lr
 
     i = 1
     # for epochNet2Net in range(1, 4):
@@ -454,7 +463,8 @@ def main():
                 'epoch': args.epochs + start_epoch,
                 'acc': test_acc,
                 'best_acc': best_acc,
-                'optimizer': optimizer.state_dict(), },
+                'optimizer': optimizer.state_dict(),
+                'start_batchSize': start_batchSize },
                 is_best,
                 checkpoint=args.checkpoint)
             # Leave unique checkpoint of pruned models druing training
