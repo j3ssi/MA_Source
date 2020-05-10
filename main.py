@@ -351,7 +351,7 @@ def main():
 
         y = 4.27*sizeX + 2.60
         # calculate now the batch size
-        batch_size = int(count0/sizeX/y)
+        batch_size = int(0.98*count0/sizeX/y)
 
 
         #ms = [0.2926, 4.4695, 0.889, 406.9735]
