@@ -306,8 +306,6 @@ def main():
         best_acc = checkpoint['best_acc']
         start_epoch = checkpoint['epoch']
         start_batchSize = checkpoint['start_batchSize']
-        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
-        optimizer.load_state_dict(checkpoint['optimizer'])
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     else:
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
@@ -319,7 +317,6 @@ def main():
         model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck)
         model.cuda()
         criterion = nn.CrossEntropyLoss()
-        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
         start_epoch = 1
 
     if args.evaluate:
@@ -352,7 +349,7 @@ def main():
 
         # y = 4.27*sizeX + 2.60
         # calculate now the batch size
-        batch_size = int(0.9 * count0 / sizeX / y)
+        batch_size = int(0.999 * count0 / sizeX / y)
 
         # ms = [0.2926, 4.4695, 0.889, 406.9735]
         # m = ms[args.numOfStages - 1]
@@ -371,8 +368,8 @@ def main():
 
     trainloader = data.DataLoader(trainset, batch_size=batch_size, pin_memory=True,
                                   shuffle=True, num_workers=args.workers)
-    lr = (batch_size / args.mini_batch_size) ** 0.5 ** args.lr
-    optimizer = optim.SGD(model.parameters(), lr=lr, momentum=args.momentum, weight_decay=args.weight_decay)
+    args.lr *= (batch_size / args.mini_batch_size) ** 0.5
+    optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
 
     i = 1
     # for epochNet2Net in range(1, 4):
