@@ -484,7 +484,7 @@ def main():
           args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
     if args.test:
         print(" ", test_acc)
-    print(f'Max memory: {torch.cuda.max_memory_allocated()}')
+    print(f'Max memory: {torch.cuda.max_memory_allocated()/10000000}')
     print(' {:5.3f}s'.format(ende - start), end='  ')
 
 
