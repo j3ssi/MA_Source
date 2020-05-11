@@ -66,7 +66,7 @@ parser.add_argument('--epochsFromBegin', default=0, type=int, metavar='N',
 
 parser.add_argument('--test_batch', default=100, type=int, metavar='N',
                     help='test batchsize')
-parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
+parser.add_argument('--lr', '--learning-rate', default=0.001, type=float,
                     metavar='LR', help='initial learning rate')
 parser.add_argument('--schedule', type=int, nargs='+', default=[93, 150],
                     help='Decrease learning rate at these epochs.')
@@ -147,7 +147,7 @@ parser.add_argument('--test', default=False, action='store_true',
 
 parser.add_argument('--largeBatch', default=False, action='store_true',
                     help='Use Large Batch Optimizing')
-parser.add_argument('-mb', '--mini-batch-size', default=128, type=int,
+parser.add_argument('-mb', '--mini-batch-size', default=64, type=int,
                     help='mini-mini-batch size (default: 64)')
 parser.add_argument('--lr_bb_fix', dest='lr_bb_fix', action='store_true',
                     help='learning rate fix for big batch lr =  lr0*(batch_size/128)**0.5')
@@ -373,11 +373,10 @@ def main():
 
     trainloader = data.DataLoader(trainset, batch_size=batch_size, pin_memory=True,
                                   shuffle=True, num_workers=args.workers)
-    if not batch_size == start_batchSize:
-        lr = (batch_size / start_batchSize) ** 0.5
-        for param_group in optimizer.param_groups:
-            param_group['lr'] *= lr
-
+    lr = (batch_size / args.mini-batch-size) ** 0.5
+    for param_group in optimizer.param_groups:
+        param_group['lr'] *= lr
+    print(f'Learning Rate: {lr}')
     i = 1
     # for epochNet2Net in range(1, 4):
     while i == 1:
@@ -485,7 +484,7 @@ def main():
           args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
     if args.test:
         print(" ", test_acc)
-
+    print(f'Max memory: {torch.cuda.max_memory_allocated()}')
     print(' {:5.3f}s'.format(ende - start), end='  ')
 
 
