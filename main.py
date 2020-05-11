@@ -191,13 +191,12 @@ def main():
     torch.backends.cudnn.benchmark = True
     # choose which gpu to use
     # not_enough_memory = True
-    #use_gpu = 'cuda:1'
-    #use_gpu_num = 1
+    # use_gpu = 'cuda:1'
+    # use_gpu_num = 1
     # cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
     use_cuda = torch.cuda.is_available()
     os.environ['CUDA_VISIBLE_DEVICES'] = str(args.gpu_id)
-
 
     # choose gpu
     # if int(args.gpu_id) < 5:
@@ -336,7 +335,6 @@ def main():
     # if args.O3:
     #     model, optimizer = amp.initialize(model, optimizer, opt_level="O3")
 
-
     # Count the parameters of the model and calculate training bacth size
     count0 = 0
     for p in model.parameters():
@@ -348,23 +346,21 @@ def main():
     if not args.batchTrue:
 
         # calculate first how many blocks is equal to the count0
-        sizeX=(count0-1306)/97216
+        sizeX = (count0 - 1306) / 97216
         print(f'sizeX: {sizeX}')
         y = 53.13 * sizeX + 75.89
 
-
         # y = 4.27*sizeX + 2.60
         # calculate now the batch size
-        batch_size = int(0.9*count0/sizeX/y)
+        batch_size = int(0.9 * count0 / sizeX / y)
 
-
-        #ms = [0.2926, 4.4695, 0.889, 406.9735]
-        #m = ms[args.numOfStages - 1]
-        #y0s = [0.2392, 0.7999, 3.899, -51.4890]
-        #y0 = y0s[args.numOfStages - 1]
-        #print(f'count0: {count0}')
-        #y = m * min(listofBlocks) + y0
-        #batch_size = int(0.98 * count0 / min(listofBlocks) * 1 / y)
+        # ms = [0.2926, 4.4695, 0.889, 406.9735]
+        # m = ms[args.numOfStages - 1]
+        # y0s = [0.2392, 0.7999, 3.899, -51.4890]
+        # y0 = y0s[args.numOfStages - 1]
+        # print(f'count0: {count0}')
+        # y = m * min(listofBlocks) + y0
+        # batch_size = int(0.98 * count0 / min(listofBlocks) * 1 / y)
         print(f'batch_size: {batch_size} ; {y}')
         args.batch_size = batch_size
     else:
@@ -375,7 +371,7 @@ def main():
 
     trainloader = data.DataLoader(trainset, batch_size=batch_size, pin_memory=True,
                                   shuffle=True, num_workers=args.workers)
-    lr = (batch_size / args.mini_batch_size) ** 0.5
+    lr = (batch_size / args.mini_batch_size) ** 0.5 ** args.lr
     optimizer = optim.SGD(model.parameters(), lr=lr, momentum=args.momentum, weight_decay=args.weight_decay)
 
     i = 1
@@ -385,10 +381,10 @@ def main():
             # adjust learning rate when epoch is the scheduled epoch
             adjust_learning_rate(optimizer, epoch)
 
-            print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs + start_epoch-1, state['lr']))
+            print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs + start_epoch - 1, state['lr']))
             start = time.time()
             train_loss, train_acc, train_epoch_time = train(trainloader, model, criterion,
-                                                                         optimizer, epoch, use_cuda)
+                                                            optimizer, epoch, use_cuda)
             ende = time.time()
 
             if args.test:
@@ -464,13 +460,13 @@ def main():
                 'acc': test_acc,
                 'best_acc': best_acc,
                 'optimizer': optimizer.state_dict(),
-                'start_batchSize': start_batchSize },
+                'start_batchSize': start_batchSize},
                 is_best,
                 checkpoint=args.checkpoint)
             # Leave unique checkpoint of pruned models druing training
             if epoch % args.save_checkpoint == 0:
                 save_checkpoint({
-                    'epoch': args.epochs + start_epoch -1,
+                    'epoch': args.epochs + start_epoch - 1,
                     'acc': test_acc,
                     'best_acc': best_acc,
                     'optimizer': optimizer.state_dict(), },
@@ -485,7 +481,7 @@ def main():
           args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
     if args.test:
         print(" ", test_acc)
-    print(f'Max memory: {torch.cuda.max_memory_allocated()/10000000}')
+    print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
     print(' {:5.3f}s'.format(ende - start), end='  ')
 
 
@@ -509,12 +505,10 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     # for param in model.parameters():
     #    param.grad = None
 
-
     if args.largeBatch:
 
         for batch_idx, (inputs, targets) in enumerate(trainloader):
             init_batch = batch_idx == 0 and epoch == 1
-
 
             # measure data loading time
             data_time.update(time.time() - end)
@@ -590,13 +584,13 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 p.grad.data.div_(len(mini_inputs))
             clip_grad_norm_(model.parameters(), 5.)
 
-            if batch_idx % args.print_freq == 0 and k==0:
+            if batch_idx % args.print_freq == 0 and k == 0:
                 print('Epoch: [{0}][{1}/{2}]\t'
                       'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-                    'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
-                    'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
-                    'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
-                    'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
+                      'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
+                      'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
+                      'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
+                      'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
                     epoch, batch_idx, len(trainloader), batch_time=batch_time,
                     data_time=data_time, loss=losses, top1=top1, top5=top5))
 
@@ -636,7 +630,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 coeff_dir = os.path.join(args.coeff_container, 'cifar')
                 if init_batch:
                     args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
-                                lasso_penalty * (1 - args.var_group_lasso_coeff))
+                            lasso_penalty * (1 - args.var_group_lasso_coeff))
                     grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
 
                     if not os.path.exists(coeff_dir):
@@ -658,7 +652,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 # print(f'nach group lasso')
                 # Group lasso calcution is not performance-optimized => Ignore from execution time
             loss += lasso_penalty
-                # measure accuracy and record loss
+            # measure accuracy and record loss
 
             prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
             losses.update(loss.item(), inputs.size(0))
@@ -684,10 +678,10 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             if batch_idx % args.print_freq == 0:
                 print('Epoch: [{0}][{1}/{2}]\t'
                       'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-                    'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
-                    'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
-                    'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
-                    'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
+                      'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
+                      'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
+                      'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
+                      'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
                     epoch, batch_idx, len(trainloader), batch_time=batch_time,
                     data_time=data_time, loss=losses, top1=top1, top5=top5))
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
