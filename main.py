@@ -350,11 +350,13 @@ def main():
         # calculate first how many blocks is equal to the count0
         sizeX=(count0-1306)/97216
         print(f'sizeX: {sizeX}')
+        y = 53.13 * sizeX + 75.89
 
-        y = 4.27*sizeX + 2.60
+
+        # y = 4.27*sizeX + 2.60
         # calculate now the batch size
         batch_size = int(0.9*count0/sizeX/y)
-        batch_size=256
+
 
         #ms = [0.2926, 4.4695, 0.889, 406.9735]
         #m = ms[args.numOfStages - 1]
@@ -374,9 +376,8 @@ def main():
     trainloader = data.DataLoader(trainset, batch_size=batch_size, pin_memory=True,
                                   shuffle=True, num_workers=args.workers)
     lr = (batch_size / args.mini_batch_size) ** 0.5
-    for param_group in optimizer.param_groups:
-        param_group['lr'] *= lr
-    print(f'Learning Rate: {lr}')
+    optimizer = optim.SGD(model.parameters(), lr=lr, momentum=args.momentum, weight_decay=args.weight_decay)
+
     i = 1
     # for epochNet2Net in range(1, 4):
     while i == 1:

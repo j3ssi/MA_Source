@@ -28,3 +28,10 @@ gerade3<-lm(coeff3 ~ size)
 summary(gerade3)
 gerade3x <-lm (count3 ~ size)
 plot(gerade3x)
+
+
+count3S <- c(98522, 195738, 292954, 390170, 487386)
+batch3S <- c(642, 552, 463, 384,256)
+coeff3S <- c(153.46, 177.30, 210.91, 254.02, 380.77)
+size3S <- c(1,2,3,4,5)
+gerade3<-lm(coeff3S ~ size3S)
