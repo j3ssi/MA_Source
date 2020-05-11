@@ -147,7 +147,7 @@ parser.add_argument('--test', default=False, action='store_true',
 
 parser.add_argument('--largeBatch', default=False, action='store_true',
                     help='Use Large Batch Optimizing')
-parser.add_argument('-mb', '--mini-batch-size', default=64, type=int,
+parser.add_argument('-mb', '--mini_batch_size', default=64, type=int,
                     help='mini-mini-batch size (default: 64)')
 parser.add_argument('--lr_bb_fix', dest='lr_bb_fix', action='store_true',
                     help='learning rate fix for big batch lr =  lr0*(batch_size/128)**0.5')
@@ -373,7 +373,7 @@ def main():
 
     trainloader = data.DataLoader(trainset, batch_size=batch_size, pin_memory=True,
                                   shuffle=True, num_workers=args.workers)
-    lr = (batch_size / args.mini-batch-size) ** 0.5
+    lr = (batch_size / args.mini_batch_size) ** 0.5
     for param_group in optimizer.param_groups:
         param_group['lr'] *= lr
     print(f'Learning Rate: {lr}')
