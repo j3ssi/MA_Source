@@ -457,7 +457,6 @@ def main():
                 'acc': test_acc,
                 'best_acc': best_acc,
                 'optimizer': optimizer.state_dict(),
-                # 'start_batchSize': start_batchSize},
                 is_best,
                 checkpoint=args.checkpoint)
             # Leave unique checkpoint of pruned models druing training
