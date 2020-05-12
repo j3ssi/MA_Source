@@ -1,0 +1,107 @@
+j: 0 bis 5
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+count0: 487386
+sizeX: 5.0
+batch_size: 256 ; 23.95
+
+Epoch: [1 | 5] LR: 0.100000
+Epoch: [1][0/196]	Time 0.375 (0.375)	Data 0.274 (0.274)	Loss 3.3517 (3.3517)	Acc@1 12.500 (12.500)	Acc@5 51.172 (51.172)
+Epoch: [1][64/196]	Time 0.168 (0.172)	Data 0.000 (0.004)	Loss 2.6202 (2.8457)	Acc@1 28.516 (24.555)	Acc@5 82.422 (77.542)
+Epoch: [1][128/196]	Time 0.203 (0.170)	Data 0.000 (0.002)	Loss 2.2848 (2.6442)	Acc@1 42.969 (31.077)	Acc@5 90.625 (83.124)
+Epoch: [1][192/196]	Time 0.155 (0.168)	Data 0.000 (0.002)	Loss 2.0525 (2.4953)	Acc@1 49.219 (36.322)	Acc@5 97.266 (86.219)
+[INFO] Storing checkpoint...
+
+Epoch: [2 | 5] LR: 0.100000
+Epoch: [2][0/196]	Time 0.216 (0.216)	Data 0.244 (0.244)	Loss 2.0397 (2.0397)	Acc@1 52.344 (52.344)	Acc@5 91.797 (91.797)
+Epoch: [2][64/196]	Time 0.172 (0.168)	Data 0.000 (0.004)	Loss 1.9562 (1.9964)	Acc@1 52.344 (53.630)	Acc@5 95.703 (94.225)
+Epoch: [2][128/196]	Time 0.157 (0.169)	Data 0.000 (0.002)	Loss 1.6645 (1.9061)	Acc@1 68.750 (56.432)	Acc@5 96.484 (95.046)
+Epoch: [2][192/196]	Time 0.171 (0.169)	Data 0.000 (0.002)	Loss 1.7575 (1.8426)	Acc@1 62.500 (58.270)	Acc@5 96.875 (95.462)
+[INFO] Storing checkpoint...
+
+Epoch: [3 | 5] LR: 0.100000
+Epoch: [3][0/196]	Time 0.225 (0.225)	Data 0.249 (0.249)	Loss 1.5484 (1.5484)	Acc@1 65.234 (65.234)	Acc@5 96.875 (96.875)
+Epoch: [3][64/196]	Time 0.181 (0.170)	Data 0.000 (0.004)	Loss 1.6536 (1.5898)	Acc@1 65.625 (65.775)	Acc@5 96.094 (97.266)
+Epoch: [3][128/196]	Time 0.166 (0.173)	Data 0.000 (0.002)	Loss 1.6517 (1.5538)	Acc@1 63.281 (66.570)	Acc@5 94.531 (97.317)
+Epoch: [3][192/196]	Time 0.159 (0.172)	Data 0.000 (0.002)	Loss 1.4205 (1.5207)	Acc@1 69.531 (67.487)	Acc@5 98.047 (97.419)
+[INFO] Storing checkpoint...
+
+Epoch: [4 | 5] LR: 0.100000
+Epoch: [4][0/196]	Time 0.219 (0.219)	Data 0.258 (0.258)	Loss 1.3943 (1.3943)	Acc@1 74.219 (74.219)	Acc@5 98.438 (98.438)
+Epoch: [4][64/196]	Time 0.175 (0.171)	Data 0.000 (0.004)	Loss 1.3739 (1.3781)	Acc@1 68.359 (71.352)	Acc@5 98.828 (97.999)
+Epoch: [4][128/196]	Time 0.159 (0.170)	Data 0.000 (0.002)	Loss 1.3738 (1.3447)	Acc@1 69.141 (72.154)	Acc@5 96.094 (97.980)
+Epoch: [4][192/196]	Time 0.173 (0.170)	Data 0.000 (0.002)	Loss 1.2888 (1.3253)	Acc@1 72.656 (72.413)	Acc@5 98.047 (98.012)
+[INFO] Storing checkpoint...
+
+Epoch: [5 | 5] LR: 0.100000
+Epoch: [5][0/196]	Time 0.332 (0.332)	Data 0.258 (0.258)	Loss 1.2519 (1.2519)	Acc@1 71.484 (71.484)	Acc@5 98.438 (98.438)
+Epoch: [5][64/196]	Time 0.177 (0.171)	Data 0.000 (0.004)	Loss 1.2683 (1.2106)	Acc@1 71.484 (75.030)	Acc@5 98.828 (98.498)
+Epoch: [5][128/196]	Time 0.173 (0.171)	Data 0.000 (0.002)	Loss 1.1036 (1.1923)	Acc@1 76.172 (75.584)	Acc@5 98.828 (98.419)
+Epoch: [5][192/196]	Time 0.171 (0.170)	Data 0.000 (0.002)	Loss 1.2069 (1.1813)	Acc@1 75.000 (75.623)	Acc@5 99.219 (98.409)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  59.57
+ 33.687s  Running your script with the autograd profiler...
+[5, 5, 5]
+Files already downloaded and verified
+count0: 487386
+sizeX: 5.0
+batch_size: 256 ; 23.95
+
+Epoch: [1 | 5] LR: 0.100000
+Epoch: [1][0/196]	Time 0.207 (0.207)	Data 0.253 (0.253)	Loss 3.6118 (3.6118)	Acc@1 7.422 (7.422)	Acc@5 47.266 (47.266)
+Epoch: [1][64/196]	Time 0.161 (0.160)	Data 0.000 (0.004)	Loss 2.7757 (3.0126)	Acc@1 22.656 (21.412)	Acc@5 84.766 (75.841)
+Epoch: [1][128/196]	Time 0.158 (0.160)	Data 0.000 (0.002)	Loss 2.4546 (2.8028)	Acc@1 40.625 (27.062)	Acc@5 91.016 (81.335)
+Epoch: [1][192/196]	Time 0.159 (0.160)	Data 0.000 (0.001)	Loss 2.3461 (2.6745)	Acc@1 39.844 (31.125)	Acc@5 91.016 (84.045)
+[INFO] Storing checkpoint...
+
+Epoch: [2 | 5] LR: 0.100000
+Epoch: [2][0/196]	Time 0.190 (0.190)	Data 0.277 (0.277)	Loss 2.2618 (2.2618)	Acc@1 44.531 (44.531)	Acc@5 91.797 (91.797)
+Epoch: [2][64/196]	Time 0.147 (0.157)	Data 0.000 (0.005)	Loss 2.0739 (2.1982)	Acc@1 55.859 (47.115)	Acc@5 92.969 (92.380)
+Epoch: [2][128/196]	Time 0.177 (0.155)	Data 0.000 (0.002)	Loss 1.8714 (2.1037)	Acc@1 57.422 (50.266)	Acc@5 95.312 (93.284)
+Epoch: [2][192/196]	Time 0.156 (0.154)	Data 0.000 (0.002)	Loss 1.8393 (2.0269)	Acc@1 57.812 (52.666)	Acc@5 95.703 (93.997)
+[INFO] Storing checkpoint...
+
+Epoch: [3 | 5] LR: 0.100000
+Epoch: [3][0/196]	Time 0.208 (0.208)	Data 0.283 (0.283)	Loss 1.8547 (1.8547)	Acc@1 58.203 (58.203)	Acc@5 92.578 (92.578)
+Epoch: [3][64/196]	Time 0.154 (0.162)	Data 0.000 (0.005)	Loss 1.7905 (1.7363)	Acc@1 60.156 (61.418)	Acc@5 95.312 (96.142)
+Epoch: [3][128/196]	Time 0.150 (0.161)	Data 0.000 (0.002)	Loss 1.5679 (1.6870)	Acc@1 66.016 (62.806)	Acc@5 98.047 (96.387)
+Epoch: [3][192/196]	Time 0.152 (0.160)	Data 0.000 (0.002)	Loss 1.5121 (1.6377)	Acc@1 64.062 (64.016)	Acc@5 98.047 (96.685)
+[INFO] Storing checkpoint...
+
+Epoch: [4 | 5] LR: 0.100000
+Epoch: [4][0/196]	Time 0.202 (0.202)	Data 0.306 (0.306)	Loss 1.4757 (1.4757)	Acc@1 71.875 (71.875)	Acc@5 96.484 (96.484)
+Epoch: [4][64/196]	Time 0.153 (0.160)	Data 0.000 (0.005)	Loss 1.3848 (1.4474)	Acc@1 73.438 (69.369)	Acc@5 99.219 (97.722)
+Epoch: [4][128/196]	Time 0.154 (0.159)	Data 0.000 (0.003)	Loss 1.4439 (1.4206)	Acc@1 67.578 (69.728)	Acc@5 97.266 (97.805)
+Epoch: [4][192/196]	Time 0.151 (0.159)	Data 0.000 (0.002)	Loss 1.3045 (1.3871)	Acc@1 74.609 (70.598)	Acc@5 98.438 (97.891)
+[INFO] Storing checkpoint...
+
+Epoch: [5 | 5] LR: 0.100000
+Epoch: [5][0/196]	Time 0.317 (0.317)	Data 0.306 (0.306)	Loss 1.3700 (1.3700)	Acc@1 71.484 (71.484)	Acc@5 96.484 (96.484)
+Epoch: [5][64/196]	Time 0.162 (0.162)	Data 0.000 (0.005)	Loss 1.2005 (1.2749)	Acc@1 75.781 (73.317)	Acc@5 98.438 (98.089)
+Epoch: [5][128/196]	Time 0.162 (0.161)	Data 0.000 (0.003)	Loss 1.1306 (1.2423)	Acc@1 78.125 (74.125)	Acc@5 96.875 (98.141)
+Epoch: [5][192/196]	Time 0.156 (0.160)	Data 0.000 (0.002)	Loss 1.1045 (1.2212)	Acc@1 77.734 (74.601)	Acc@5 99.219 (98.282)
+
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  67.45
+ 31.739s  

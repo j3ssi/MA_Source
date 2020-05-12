@@ -1,0 +1,1589 @@
+j: 0 bis 5
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+count0: 487386
+sizeX: 5.0
+batch_size: 256 ; 23.95
+
+Epoch: [1 | 5] LR: 0.100000
+Epoch: [1][0/196]	Time 0.525 (0.525)	Data 0.313 (0.313)	Loss 3.7962 (3.7962)	Acc@1 8.203 (8.203)	Acc@5 42.969 (42.969)
+Epoch: [1][64/196]	Time 0.329 (0.317)	Data 0.000 (0.005)	Loss 2.7026 (2.9999)	Acc@1 28.906 (22.596)	Acc@5 86.328 (76.665)
+Epoch: [1][128/196]	Time 0.364 (0.316)	Data 0.000 (0.003)	Loss 2.5669 (2.8023)	Acc@1 39.453 (28.352)	Acc@5 88.281 (81.937)
+Epoch: [1][192/196]	Time 0.308 (0.317)	Data 0.000 (0.002)	Loss 2.3441 (2.6680)	Acc@1 42.578 (32.681)	Acc@5 93.750 (84.847)
+[INFO] Storing checkpoint...
+
+Epoch: [2 | 5] LR: 0.100000
+Epoch: [2][0/196]	Time 0.347 (0.347)	Data 0.246 (0.246)	Loss 2.2444 (2.2444)	Acc@1 42.188 (42.188)	Acc@5 94.922 (94.922)
+Epoch: [2][64/196]	Time 0.331 (0.319)	Data 0.000 (0.004)	Loss 2.1732 (2.1844)	Acc@1 48.828 (49.153)	Acc@5 92.969 (92.885)
+Epoch: [2][128/196]	Time 0.313 (0.317)	Data 0.000 (0.002)	Loss 1.9285 (2.0992)	Acc@1 58.594 (51.717)	Acc@5 94.531 (93.747)
+Epoch: [2][192/196]	Time 0.322 (0.318)	Data 0.000 (0.002)	Loss 1.6789 (2.0251)	Acc@1 63.281 (53.977)	Acc@5 97.266 (94.339)
+[INFO] Storing checkpoint...
+
+Epoch: [3 | 5] LR: 0.100000
+Epoch: [3][0/196]	Time 0.377 (0.377)	Data 0.327 (0.327)	Loss 1.8106 (1.8106)	Acc@1 60.156 (60.156)	Acc@5 97.656 (97.656)
+Epoch: [3][64/196]	Time 0.319 (0.318)	Data 0.000 (0.005)	Loss 1.7097 (1.7456)	Acc@1 62.109 (61.731)	Acc@5 97.266 (96.406)
+Epoch: [3][128/196]	Time 0.313 (0.318)	Data 0.000 (0.003)	Loss 1.6404 (1.6993)	Acc@1 62.891 (62.957)	Acc@5 95.703 (96.609)
+Epoch: [3][192/196]	Time 0.331 (0.318)	Data 0.000 (0.002)	Loss 1.4128 (1.6571)	Acc@1 70.703 (63.998)	Acc@5 98.047 (96.822)
+[INFO] Storing checkpoint...
+
+Epoch: [4 | 5] LR: 0.100000
+Epoch: [4][0/196]	Time 0.366 (0.366)	Data 0.329 (0.329)	Loss 1.2764 (1.2764)	Acc@1 73.438 (73.438)	Acc@5 98.828 (98.828)
+Epoch: [4][64/196]	Time 0.321 (0.312)	Data 0.000 (0.005)	Loss 1.4713 (1.4828)	Acc@1 69.922 (68.642)	Acc@5 98.438 (97.476)
+Epoch: [4][128/196]	Time 0.278 (0.308)	Data 0.000 (0.003)	Loss 1.3249 (1.4497)	Acc@1 73.047 (69.453)	Acc@5 97.656 (97.711)
+Epoch: [4][192/196]	Time 0.315 (0.310)	Data 0.000 (0.002)	Loss 1.3325 (1.4169)	Acc@1 71.484 (70.325)	Acc@5 97.266 (97.834)
+[INFO] Storing checkpoint...
+
+Epoch: [5 | 5] LR: 0.100000
+Epoch: [5][0/196]	Time 0.539 (0.539)	Data 0.391 (0.391)	Loss 1.2322 (1.2322)	Acc@1 75.000 (75.000)	Acc@5 97.266 (97.266)
+Epoch: [5][64/196]	Time 0.336 (0.301)	Data 0.000 (0.006)	Loss 1.2962 (1.2823)	Acc@1 71.875 (73.137)	Acc@5 97.656 (98.185)
+Epoch: [5][128/196]	Time 0.259 (0.306)	Data 0.000 (0.003)	Loss 1.0533 (1.2471)	Acc@1 79.688 (73.540)	Acc@5 98.828 (98.268)
+Epoch: [5][192/196]	Time 0.311 (0.301)	Data 0.000 (0.002)	Loss 1.2251 (1.2178)	Acc@1 74.609 (74.249)	Acc@5 98.438 (98.330)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  64.31
+ 59.559s  Running your script with the autograd profiler...
+[5, 5, 5]
+Files already downloaded and verified
+count0: 487386
+sizeX: 5.0
+batch_size: 256 ; 23.95
+
+Epoch: [1 | 5] LR: 0.100000
+Epoch: [1][0/196]	Time 0.328 (0.328)	Data 0.293 (0.293)	Loss 3.4615 (3.4615)	Acc@1 9.766 (9.766)	Acc@5 48.438 (48.438)
+Epoch: [1][64/196]	Time 0.306 (0.308)	Data 0.000 (0.005)	Loss 2.4690 (2.8911)	Acc@1 41.016 (24.393)	Acc@5 89.844 (76.737)
+Epoch: [1][128/196]	Time 0.287 (0.308)	Data 0.000 (0.002)	Loss 2.3988 (2.6820)	Acc@1 39.844 (30.835)	Acc@5 91.016 (82.770)
+Epoch: [1][192/196]	Time 0.302 (0.308)	Data 0.000 (0.002)	Loss 2.1513 (2.5345)	Acc@1 48.047 (35.798)	Acc@5 92.578 (85.822)
+[INFO] Storing checkpoint...
+
+Epoch: [2 | 5] LR: 0.100000
+Epoch: [2][0/196]	Time 0.381 (0.381)	Data 0.415 (0.415)	Loss 2.0907 (2.0907)	Acc@1 55.078 (55.078)	Acc@5 92.188 (92.188)
+Epoch: [2][64/196]	Time 0.313 (0.310)	Data 0.000 (0.007)	Loss 1.9944 (2.0146)	Acc@1 55.469 (53.756)	Acc@5 94.141 (94.345)
+Epoch: [2][128/196]	Time 0.238 (0.309)	Data 0.000 (0.003)	Loss 1.7673 (1.9390)	Acc@1 61.719 (55.841)	Acc@5 94.531 (94.958)
+Epoch: [2][192/196]	Time 0.302 (0.308)	Data 0.000 (0.002)	Loss 1.7756 (1.8762)	Acc@1 62.891 (57.738)	Acc@5 96.875 (95.385)
+[INFO] Storing checkpoint...
+
+Epoch: [3 | 5] LR: 0.100000
+Epoch: [3][0/196]	Time 0.349 (0.349)	Data 0.365 (0.365)	Loss 1.7427 (1.7427)	Acc@1 57.812 (57.812)	Acc@5 95.703 (95.703)
+Epoch: [3][64/196]	Time 0.317 (0.309)	Data 0.000 (0.006)	Loss 1.5284 (1.6259)	Acc@1 69.141 (64.814)	Acc@5 99.219 (97.007)
+Epoch: [3][128/196]	Time 0.267 (0.309)	Data 0.000 (0.003)	Loss 1.3665 (1.5829)	Acc@1 73.047 (66.004)	Acc@5 100.000 (97.157)
+Epoch: [3][192/196]	Time 0.302 (0.308)	Data 0.000 (0.002)	Loss 1.3717 (1.5497)	Acc@1 71.484 (66.744)	Acc@5 97.656 (97.227)
+[INFO] Storing checkpoint...
+
+Epoch: [4 | 5] LR: 0.100000
+Epoch: [4][0/196]	Time 0.365 (0.365)	Data 0.362 (0.362)	Loss 1.3263 (1.3263)	Acc@1 71.875 (71.875)	Acc@5 98.438 (98.438)
+Epoch: [4][64/196]	Time 0.305 (0.309)	Data 0.000 (0.006)	Loss 1.3226 (1.3791)	Acc@1 72.656 (71.502)	Acc@5 99.219 (97.939)
+Epoch: [4][128/196]	Time 0.314 (0.304)	Data 0.000 (0.003)	Loss 1.3445 (1.3636)	Acc@1 71.875 (71.817)	Acc@5 96.875 (97.862)
+Epoch: [4][192/196]	Time 0.305 (0.300)	Data 0.000 (0.002)	Loss 1.2837 (1.3336)	Acc@1 73.047 (72.464)	Acc@5 98.438 (97.964)
+[INFO] Storing checkpoint...
+
+Epoch: [5 | 5] LR: 0.100000
+Epoch: [5][0/196]	Time 0.523 (0.523)	Data 0.326 (0.326)	Loss 1.1516 (1.1516)	Acc@1 76.172 (76.172)	Acc@5 100.000 (100.000)
+Epoch: [5][64/196]	Time 0.234 (0.273)	Data 0.000 (0.005)	Loss 1.1704 (1.2196)	Acc@1 74.219 (74.904)	Acc@5 99.219 (98.438)
+Epoch: [5][128/196]	Time 0.254 (0.252)	Data 0.000 (0.003)	Loss 1.1178 (1.2051)	Acc@1 78.906 (75.333)	Acc@5 98.047 (98.371)
+Epoch: [5][192/196]	Time 0.153 (0.228)	Data 0.000 (0.002)	Loss 1.1037 (1.1887)	Acc@1 79.297 (75.609)	Acc@5 98.047 (98.397)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  67.2
+ 45.014s  [5, 5, 5]
+Files already downloaded and verified
+count0: 487386
+sizeX: 5.0
+batch_size: 256 ; 23.95
+
+Epoch: [1 | 5] LR: 0.100000
+Epoch: [1][0/196]	Time 0.509 (0.509)	Data 1.612 (1.612)	Loss 3.7704 (3.7704)	Acc@1 13.672 (13.672)	Acc@5 43.750 (43.750)
+Epoch: [1][64/196]	Time 0.347 (0.353)	Data 0.000 (0.025)	Loss 2.6303 (2.9815)	Acc@1 32.812 (23.329)	Acc@5 87.500 (76.605)
+Epoch: [1][128/196]	Time 0.354 (0.353)	Data 0.000 (0.013)	Loss 2.3725 (2.7858)	Acc@1 43.359 (29.224)	Acc@5 91.016 (82.264)
+Epoch: [1][192/196]	Time 0.348 (0.352)	Data 0.000 (0.009)	Loss 2.2023 (2.6418)	Acc@1 50.391 (33.873)	Acc@5 92.578 (85.338)
+[INFO] Storing checkpoint...
+
+Epoch: [2 | 5] LR: 0.100000
+Epoch: [2][0/196]	Time 0.528 (0.528)	Data 1.366 (1.366)	Loss 2.2960 (2.2960)	Acc@1 46.484 (46.484)	Acc@5 92.969 (92.969)
+Epoch: [2][64/196]	Time 0.351 (0.366)	Data 0.000 (0.021)	Loss 2.1336 (2.1735)	Acc@1 49.609 (49.621)	Acc@5 92.578 (93.413)
+Epoch: [2][128/196]	Time 0.317 (0.358)	Data 0.000 (0.011)	Loss 1.9638 (2.0803)	Acc@1 55.859 (52.244)	Acc@5 94.531 (94.265)
+Epoch: [2][192/196]	Time 0.356 (0.355)	Data 0.000 (0.007)	Loss 1.7351 (2.0010)	Acc@1 64.844 (54.669)	Acc@5 94.922 (94.728)
+[INFO] Storing checkpoint...
+
+Epoch: [3 | 5] LR: 0.100000
+Epoch: [3][0/196]	Time 0.357 (0.357)	Data 1.198 (1.198)	Loss 1.7534 (1.7534)	Acc@1 60.938 (60.938)	Acc@5 95.703 (95.703)
+Epoch: [3][64/196]	Time 0.355 (0.357)	Data 0.000 (0.019)	Loss 1.6971 (1.7472)	Acc@1 60.547 (61.791)	Acc@5 96.484 (96.166)
+Epoch: [3][128/196]	Time 0.365 (0.361)	Data 0.000 (0.009)	Loss 1.5303 (1.7009)	Acc@1 71.484 (62.912)	Acc@5 96.875 (96.530)
+Epoch: [3][192/196]	Time 0.351 (0.359)	Data 0.000 (0.006)	Loss 1.5566 (1.6528)	Acc@1 66.406 (64.243)	Acc@5 96.875 (96.774)
+[INFO] Storing checkpoint...
+
+Epoch: [4 | 5] LR: 0.100000
+Epoch: [4][0/196]	Time 0.422 (0.422)	Data 1.312 (1.312)	Loss 1.5648 (1.5648)	Acc@1 66.016 (66.016)	Acc@5 96.484 (96.484)
+Epoch: [4][64/196]	Time 0.370 (0.361)	Data 0.000 (0.020)	Loss 1.3839 (1.4784)	Acc@1 73.438 (68.912)	Acc@5 98.438 (97.374)
+Epoch: [4][128/196]	Time 0.353 (0.363)	Data 0.000 (0.010)	Loss 1.3545 (1.4390)	Acc@1 71.484 (69.858)	Acc@5 99.609 (97.581)
+Epoch: [4][192/196]	Time 0.355 (0.359)	Data 0.000 (0.007)	Loss 1.3143 (1.4066)	Acc@1 74.219 (70.568)	Acc@5 97.656 (97.721)
+[INFO] Storing checkpoint...
+
+Epoch: [5 | 5] LR: 0.100000
+Epoch: [5][0/196]	Time 0.950 (0.950)	Data 1.246 (1.246)	Loss 1.3116 (1.3116)	Acc@1 71.484 (71.484)	Acc@5 96.875 (96.875)
+Epoch: [5][64/196]	Time 0.317 (0.368)	Data 0.000 (0.019)	Loss 1.2843 (1.2745)	Acc@1 76.562 (74.008)	Acc@5 97.656 (98.173)
+Epoch: [5][128/196]	Time 0.306 (0.328)	Data 0.000 (0.010)	Loss 1.1976 (1.2486)	Acc@1 78.516 (74.376)	Acc@5 98.047 (98.277)
+Epoch: [5][192/196]	Time 0.296 (0.311)	Data 0.000 (0.007)	Loss 1.1143 (1.2343)	Acc@1 79.688 (74.694)	Acc@5 98.828 (98.314)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  71.21
+ 62.399s  --------------------------------------------------------------------------------
+  Environment Summary
+--------------------------------------------------------------------------------
+PyTorch 1.5.0 compiled w/ CUDA 10.2
+Running with Python 3.6 and CUDA 10.2.89
+
+`pip3 list` truncated output:
+numpy==1.18.3
+torch==1.5.0
+torchvision==0.6.0
+torchviz==0.0.1
+--------------------------------------------------------------------------------
+  cProfile output
+--------------------------------------------------------------------------------
+         88838112 function calls (88145556 primitive calls) in 327.947 seconds
+
+   Ordered by: internal time
+   List reduced from 3331 to 15 due to restriction <15>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      980  234.438    0.239  234.588    0.239 {method 'run_backward' of 'torch._C._EngineBase' objects}
+   296498    8.320    0.000   28.491    0.000 /usr/lib/python3.6/traceback.py:319(extract)
+   296474    7.159    0.000   12.689    0.000 /usr/lib/python3.6/traceback.py:386(format)
+  1539933    6.095    0.000    6.095    0.000 {built-in method posix.stat}
+    40590    4.157    0.000   11.522    0.000 {built-in method conv2d}
+    40590    3.361    0.000   11.049    0.000 {built-in method batch_norm}
+  9270330    3.073    0.000    7.568    0.000 /usr/lib/python3.6/traceback.py:283(line)
+        1    2.916    2.916    3.263    3.263 /home/jessica.buehler/MA_Source/src/checkpoint_utils.py:171(genDenseModel)
+     5122    2.890    0.001    2.952    0.001 {method 'cuda' of 'torch._C._TensorBase' objects}
+    69100    2.830    0.000   11.296    0.000 {method 'sum' of 'torch._C._TensorBase' objects}
+  6182601    2.813    0.000    2.813    0.000 {method 'format' of 'str' objects}
+    64680    2.778    0.000   11.018    0.000 {method 'pow' of 'torch._C._TensorBase' objects}
+   197859    2.220    0.000    2.220    0.000 {method 'add_' of 'torch._C._TensorBase' objects}
+  3090150    1.995    0.000    3.848    0.000 /home/jessica.buehler/venv/lib/python3.6/linecache.py:15(getline)
+  1538387    1.984    0.000    8.205    0.000 /home/jessica.buehler/venv/lib/python3.6/linecache.py:53(checkcache)
+
+
+--------------------------------------------------------------------------------
+  autograd profiler output (CPU mode)
+--------------------------------------------------------------------------------
+        top 15 events sorted by cpu_time_total
+
+--------------------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  -----------------------------------  
+Name                        Self CPU total %  Self CPU total   CPU total %      CPU total        CPU time avg     CUDA total %     CUDA total       CUDA time avg    Number of Calls  Input Shapes                         
+--------------------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  -----------------------------------  
+relu_                       20.20%           65.925ms         20.20%           65.925ms         65.925ms         NaN              0.000us          0.000us          1                []                                   
+pow                         13.02%           42.487ms         13.02%           42.487ms         42.487ms         NaN              0.000us          0.000us          1                []                                   
+relu_                       11.16%           36.413ms         11.16%           36.413ms         36.413ms         NaN              0.000us          0.000us          1                []                                   
+pow                         10.34%           33.748ms         10.34%           33.748ms         33.748ms         NaN              0.000us          0.000us          1                []                                   
+sum                         4.98%            16.270ms         4.98%            16.270ms         16.270ms         NaN              0.000us          0.000us          1                []                                   
+item                        4.38%            14.303ms         4.38%            14.303ms         14.303ms         NaN              0.000us          0.000us          1                []                                   
+_local_scalar_dense         4.38%            14.300ms         4.38%            14.300ms         14.300ms         NaN              0.000us          0.000us          1                []                                   
+batch_norm                  4.37%            14.278ms         4.37%            14.278ms         14.278ms         NaN              0.000us          0.000us          1                []                                   
+_batch_norm_impl_index      4.37%            14.275ms         4.37%            14.275ms         14.275ms         NaN              0.000us          0.000us          1                []                                   
+cudnn_batch_norm            4.37%            14.261ms         4.37%            14.261ms         14.261ms         NaN              0.000us          0.000us          1                []                                   
+sum                         4.08%            13.329ms         4.08%            13.329ms         13.329ms         NaN              0.000us          0.000us          1                []                                   
+SumBackward1                3.70%            12.080ms         3.70%            12.080ms         12.080ms         NaN              0.000us          0.000us          1                []                                   
+batch_norm                  3.59%            11.708ms         3.59%            11.708ms         11.708ms         NaN              0.000us          0.000us          1                []                                   
+_batch_norm_impl_index      3.59%            11.705ms         3.59%            11.705ms         11.705ms         NaN              0.000us          0.000us          1                []                                   
+contiguous                  3.47%            11.324ms         3.47%            11.324ms         11.324ms         NaN              0.000us          0.000us          1                []                                   
+--------------------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  -----------------------------------  
+Self CPU time total: 326.406ms
+CUDA time total: 0.000us
+
+--------------------------------------------------------------------------------
+  autograd profiler output (CUDA mode)
+--------------------------------------------------------------------------------
+        top 15 events sorted by cpu_time_total
+
+	Because the autograd profiler uses the CUDA event API,
+	the CUDA time column reports approximately max(cuda_time, cpu_time).
+	Please ignore this output if your code does not use CUDA.
+
+-----------------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  -----------------------------------  
+Name                     Self CPU total %  Self CPU total   CPU total %      CPU total        CPU time avg     CUDA total %     CUDA total       CUDA time avg    Number of Calls  Input Shapes                         
+-----------------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  -----------------------------------  
+sum                      25.48%           214.484ms        25.48%           214.484ms        214.484ms        25.52%           214.197ms        214.197ms        1                []                                   
+select                   17.71%           149.092ms        17.71%           149.092ms        149.092ms        17.76%           149.086ms        149.086ms        1                []                                   
+item                     4.98%            41.912ms         4.98%            41.912ms         41.912ms         4.97%            41.728ms         41.728ms         1                []                                   
+_local_scalar_dense      4.98%            41.889ms         4.98%            41.889ms         41.889ms         4.97%            41.728ms         41.728ms         1                []                                   
+sum                      4.83%            40.690ms         4.83%            40.690ms         40.690ms         4.87%            40.840ms         40.840ms         1                []                                   
+item                     4.70%            39.603ms         4.70%            39.603ms         39.603ms         4.60%            38.640ms         38.640ms         1                []                                   
+_local_scalar_dense      4.70%            39.590ms         4.70%            39.590ms         39.590ms         4.60%            38.624ms         38.624ms         1                []                                   
+mul                      4.61%            38.835ms         4.61%            38.835ms         38.835ms         4.70%            39.440ms         39.440ms         1                []                                   
+any                      4.34%            36.545ms         4.34%            36.545ms         36.545ms         4.40%            36.936ms         36.936ms         1                []                                   
+item                     4.25%            35.789ms         4.25%            35.789ms         35.789ms         4.25%            35.668ms         35.668ms         1                []                                   
+_local_scalar_dense      4.25%            35.773ms         4.25%            35.773ms         35.773ms         4.25%            35.656ms         35.656ms         1                []                                   
+item                     3.85%            32.387ms         3.85%            32.387ms         32.387ms         3.76%            31.568ms         31.568ms         1                []                                   
+add                      3.81%            32.076ms         3.81%            32.076ms         32.076ms         3.90%            32.720ms         32.720ms         1                []                                   
+PowBackward0             3.75%            31.578ms         3.75%            31.578ms         31.578ms         3.76%            31.584ms         31.584ms         1                []                                   
+pow                      3.75%            31.559ms         3.75%            31.559ms         31.559ms         3.70%            31.024ms         31.024ms         1                []                                   
+-----------------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  -----------------------------------  
+Self CPU time total: 841.800ms
+CUDA time total: 839.439ms
+
+j: 6 bis 10
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 256 ; 23.95
+
+Epoch: [6 | 10] LR: 0.100000
+Epoch: [6][0/196]	Time 0.510 (0.510)	Data 0.365 (0.365)	Loss 1.1911 (1.1911)	Acc@1 74.609 (74.609)	Acc@5 99.219 (99.219)
+Epoch: [6][64/196]	Time 0.293 (0.314)	Data 0.000 (0.006)	Loss 1.1612 (1.1438)	Acc@1 73.828 (76.725)	Acc@5 98.828 (98.588)
+Epoch: [6][128/196]	Time 0.296 (0.306)	Data 0.000 (0.003)	Loss 1.1533 (1.1369)	Acc@1 73.438 (76.629)	Acc@5 99.219 (98.622)
+Epoch: [6][192/196]	Time 0.340 (0.307)	Data 0.000 (0.002)	Loss 1.1638 (1.1166)	Acc@1 77.344 (77.024)	Acc@5 97.656 (98.616)
+[INFO] Storing checkpoint...
+
+Epoch: [7 | 10] LR: 0.100000
+Epoch: [7][0/196]	Time 0.365 (0.365)	Data 0.318 (0.318)	Loss 0.9344 (0.9344)	Acc@1 85.156 (85.156)	Acc@5 99.609 (99.609)
+Epoch: [7][64/196]	Time 0.318 (0.317)	Data 0.000 (0.005)	Loss 1.1101 (1.0622)	Acc@1 75.000 (77.524)	Acc@5 98.047 (98.840)
+Epoch: [7][128/196]	Time 0.321 (0.317)	Data 0.000 (0.003)	Loss 1.0431 (1.0612)	Acc@1 80.078 (77.798)	Acc@5 98.828 (98.734)
+Epoch: [7][192/196]	Time 0.321 (0.316)	Data 0.000 (0.002)	Loss 0.9722 (1.0524)	Acc@1 82.812 (78.056)	Acc@5 99.219 (98.769)
+[INFO] Storing checkpoint...
+
+Epoch: [8 | 10] LR: 0.100000
+Epoch: [8][0/196]	Time 0.369 (0.369)	Data 0.384 (0.384)	Loss 0.9372 (0.9372)	Acc@1 82.422 (82.422)	Acc@5 99.219 (99.219)
+Epoch: [8][64/196]	Time 0.321 (0.318)	Data 0.000 (0.006)	Loss 0.9053 (0.9937)	Acc@1 80.469 (79.261)	Acc@5 99.609 (98.882)
+Epoch: [8][128/196]	Time 0.329 (0.317)	Data 0.000 (0.003)	Loss 0.9193 (0.9970)	Acc@1 81.250 (79.203)	Acc@5 99.609 (98.864)
+Epoch: [8][192/196]	Time 0.313 (0.316)	Data 0.000 (0.002)	Loss 0.9414 (0.9918)	Acc@1 81.641 (79.341)	Acc@5 98.438 (98.834)
+[INFO] Storing checkpoint...
+
+Epoch: [9 | 10] LR: 0.100000
+Epoch: [9][0/196]	Time 0.387 (0.387)	Data 0.298 (0.298)	Loss 0.9361 (0.9361)	Acc@1 81.641 (81.641)	Acc@5 98.828 (98.828)
+Epoch: [9][64/196]	Time 0.305 (0.318)	Data 0.000 (0.005)	Loss 0.9173 (0.9587)	Acc@1 82.031 (80.475)	Acc@5 98.828 (98.912)
+Epoch: [9][128/196]	Time 0.269 (0.313)	Data 0.000 (0.003)	Loss 0.8464 (0.9652)	Acc@1 81.250 (80.078)	Acc@5 99.609 (98.925)
+Epoch: [9][192/196]	Time 0.312 (0.309)	Data 0.000 (0.002)	Loss 0.9868 (0.9654)	Acc@1 79.688 (80.032)	Acc@5 99.219 (98.897)
+[INFO] Storing checkpoint...
+
+Epoch: [10 | 10] LR: 0.100000
+Epoch: [10][0/196]	Time 0.498 (0.498)	Data 0.363 (0.363)	Loss 1.0065 (1.0065)	Acc@1 79.688 (79.688)	Acc@5 98.047 (98.047)
+Epoch: [10][64/196]	Time 0.308 (0.315)	Data 0.000 (0.006)	Loss 1.0234 (0.9363)	Acc@1 75.000 (80.769)	Acc@5 99.609 (98.972)
+Epoch: [10][128/196]	Time 0.318 (0.314)	Data 0.000 (0.003)	Loss 0.8962 (0.9415)	Acc@1 81.641 (80.584)	Acc@5 99.219 (98.910)
+Epoch: [10][192/196]	Time 0.307 (0.306)	Data 0.000 (0.002)	Loss 1.0698 (0.9358)	Acc@1 75.781 (80.736)	Acc@5 98.438 (98.968)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  68.11
+ 60.465s  Running your script with the autograd profiler...
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 256 ; 23.95
+
+Epoch: [11 | 15] LR: 0.100000
+Epoch: [11][0/196]	Time 0.364 (0.364)	Data 0.313 (0.313)	Loss 0.8963 (0.8963)	Acc@1 81.641 (81.641)	Acc@5 99.609 (99.609)
+Epoch: [11][64/196]	Time 0.311 (0.302)	Data 0.000 (0.005)	Loss 0.8773 (0.9200)	Acc@1 82.031 (80.775)	Acc@5 98.438 (98.924)
+Epoch: [11][128/196]	Time 0.309 (0.298)	Data 0.000 (0.003)	Loss 0.9167 (0.9202)	Acc@1 83.594 (80.962)	Acc@5 98.828 (98.949)
+Epoch: [11][192/196]	Time 0.295 (0.299)	Data 0.000 (0.002)	Loss 0.8676 (0.9179)	Acc@1 80.469 (81.167)	Acc@5 99.609 (98.960)
+[INFO] Storing checkpoint...
+
+Epoch: [12 | 15] LR: 0.100000
+Epoch: [12][0/196]	Time 0.354 (0.354)	Data 0.386 (0.386)	Loss 0.9736 (0.9736)	Acc@1 77.344 (77.344)	Acc@5 99.609 (99.609)
+Epoch: [12][64/196]	Time 0.243 (0.297)	Data 0.000 (0.006)	Loss 1.0513 (0.8998)	Acc@1 76.172 (81.448)	Acc@5 98.438 (99.171)
+Epoch: [12][128/196]	Time 0.229 (0.265)	Data 0.000 (0.003)	Loss 0.9000 (0.9027)	Acc@1 79.297 (81.404)	Acc@5 100.000 (99.043)
+Epoch: [12][192/196]	Time 0.182 (0.236)	Data 0.000 (0.002)	Loss 0.9166 (0.8925)	Acc@1 79.688 (81.465)	Acc@5 99.609 (99.065)
+[INFO] Storing checkpoint...
+
+Epoch: [13 | 15] LR: 0.100000
+Epoch: [13][0/196]	Time 0.246 (0.246)	Data 0.387 (0.387)	Loss 0.8910 (0.8910)	Acc@1 77.734 (77.734)	Acc@5 99.219 (99.219)
+Epoch: [13][64/196]	Time 0.160 (0.175)	Data 0.000 (0.006)	Loss 0.7702 (0.8639)	Acc@1 84.375 (81.442)	Acc@5 98.047 (98.936)
+Epoch: [13][128/196]	Time 0.160 (0.174)	Data 0.000 (0.003)	Loss 0.8825 (0.8600)	Acc@1 81.641 (81.756)	Acc@5 99.609 (99.010)
+Epoch: [13][192/196]	Time 0.189 (0.174)	Data 0.000 (0.002)	Loss 0.9082 (0.8594)	Acc@1 83.203 (81.950)	Acc@5 98.828 (99.026)
+[INFO] Storing checkpoint...
+
+Epoch: [14 | 15] LR: 0.100000
+Epoch: [14][0/196]	Time 0.246 (0.246)	Data 0.348 (0.348)	Loss 0.8865 (0.8865)	Acc@1 80.078 (80.078)	Acc@5 98.828 (98.828)
+Epoch: [14][64/196]	Time 0.185 (0.179)	Data 0.000 (0.006)	Loss 0.8850 (0.8570)	Acc@1 80.859 (82.085)	Acc@5 99.219 (99.177)
+Epoch: [14][128/196]	Time 0.184 (0.176)	Data 0.000 (0.003)	Loss 0.8408 (0.8462)	Acc@1 80.469 (82.440)	Acc@5 99.219 (99.204)
+Epoch: [14][192/196]	Time 0.170 (0.176)	Data 0.000 (0.002)	Loss 0.9080 (0.8470)	Acc@1 81.641 (82.383)	Acc@5 97.656 (99.168)
+[INFO] Storing checkpoint...
+
+Epoch: [15 | 15] LR: 0.100000
+Epoch: [15][0/196]	Time 0.369 (0.369)	Data 0.390 (0.390)	Loss 0.8217 (0.8217)	Acc@1 80.469 (80.469)	Acc@5 99.219 (99.219)
+Epoch: [15][64/196]	Time 0.161 (0.178)	Data 0.000 (0.006)	Loss 0.7642 (0.8356)	Acc@1 84.375 (82.692)	Acc@5 98.828 (99.177)
+Epoch: [15][128/196]	Time 0.158 (0.175)	Data 0.000 (0.003)	Loss 0.8092 (0.8362)	Acc@1 83.594 (82.879)	Acc@5 99.609 (99.131)
+Epoch: [15][192/196]	Time 0.157 (0.175)	Data 0.000 (0.002)	Loss 0.8867 (0.8430)	Acc@1 81.641 (82.616)	Acc@5 100.000 (99.136)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  74.36
+ 34.699s  [5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 256 ; 23.95
+
+Epoch: [16 | 20] LR: 0.100000
+Epoch: [16][0/196]	Time 0.320 (0.320)	Data 1.157 (1.157)	Loss 0.8714 (0.8714)	Acc@1 80.469 (80.469)	Acc@5 99.219 (99.219)
+Epoch: [16][64/196]	Time 0.223 (0.222)	Data 0.000 (0.018)	Loss 0.8858 (0.8154)	Acc@1 80.859 (83.167)	Acc@5 99.219 (99.279)
+Epoch: [16][128/196]	Time 0.211 (0.217)	Data 0.000 (0.009)	Loss 0.8998 (0.8233)	Acc@1 80.469 (83.082)	Acc@5 98.828 (99.188)
+Epoch: [16][192/196]	Time 0.222 (0.218)	Data 0.000 (0.006)	Loss 0.8707 (0.8301)	Acc@1 81.641 (82.887)	Acc@5 99.609 (99.186)
+[INFO] Storing checkpoint...
+
+Epoch: [17 | 20] LR: 0.100000
+Epoch: [17][0/196]	Time 0.305 (0.305)	Data 1.336 (1.336)	Loss 0.8619 (0.8619)	Acc@1 81.250 (81.250)	Acc@5 98.828 (98.828)
+Epoch: [17][64/196]	Time 0.225 (0.228)	Data 0.000 (0.021)	Loss 0.9126 (0.8326)	Acc@1 79.297 (83.245)	Acc@5 98.438 (99.105)
+Epoch: [17][128/196]	Time 0.244 (0.228)	Data 0.000 (0.011)	Loss 0.7554 (0.8291)	Acc@1 86.719 (83.173)	Acc@5 99.609 (99.164)
+Epoch: [17][192/196]	Time 0.190 (0.227)	Data 0.000 (0.007)	Loss 0.7606 (0.8285)	Acc@1 84.375 (83.072)	Acc@5 99.219 (99.201)
+[INFO] Storing checkpoint...
+
+Epoch: [18 | 20] LR: 0.100000
+Epoch: [18][0/196]	Time 0.293 (0.293)	Data 1.425 (1.425)	Loss 0.9277 (0.9277)	Acc@1 80.859 (80.859)	Acc@5 99.609 (99.609)
+Epoch: [18][64/196]	Time 0.250 (0.233)	Data 0.000 (0.022)	Loss 0.7748 (0.8328)	Acc@1 83.594 (83.281)	Acc@5 99.219 (99.207)
+Epoch: [18][128/196]	Time 0.244 (0.233)	Data 0.000 (0.011)	Loss 0.7940 (0.8284)	Acc@1 87.109 (83.373)	Acc@5 98.438 (99.204)
+Epoch: [18][192/196]	Time 0.230 (0.232)	Data 0.000 (0.008)	Loss 0.8015 (0.8248)	Acc@1 82.031 (83.515)	Acc@5 99.219 (99.188)
+[INFO] Storing checkpoint...
+
+Epoch: [19 | 20] LR: 0.100000
+Epoch: [19][0/196]	Time 0.368 (0.368)	Data 1.726 (1.726)	Loss 0.8694 (0.8694)	Acc@1 82.812 (82.812)	Acc@5 99.609 (99.609)
+Epoch: [19][64/196]	Time 0.218 (0.235)	Data 0.000 (0.027)	Loss 0.7469 (0.8106)	Acc@1 86.719 (83.438)	Acc@5 99.609 (99.243)
+Epoch: [19][128/196]	Time 0.200 (0.231)	Data 0.000 (0.014)	Loss 0.7966 (0.8123)	Acc@1 81.250 (83.436)	Acc@5 98.828 (99.246)
+Epoch: [19][192/196]	Time 0.200 (0.229)	Data 0.000 (0.009)	Loss 0.7694 (0.8184)	Acc@1 85.156 (83.286)	Acc@5 100.000 (99.241)
+[INFO] Storing checkpoint...
+
+Epoch: [20 | 20] LR: 0.100000
+Epoch: [20][0/196]	Time 0.873 (0.873)	Data 1.577 (1.577)	Loss 0.7297 (0.7297)	Acc@1 89.062 (89.062)	Acc@5 99.609 (99.609)
+Epoch: [20][64/196]	Time 0.253 (0.251)	Data 0.000 (0.024)	Loss 0.8144 (0.7971)	Acc@1 83.594 (84.231)	Acc@5 98.828 (99.375)
+Epoch: [20][128/196]	Time 0.237 (0.245)	Data 0.000 (0.012)	Loss 0.8200 (0.8075)	Acc@1 82.422 (83.760)	Acc@5 98.828 (99.313)
+Epoch: [20][192/196]	Time 0.233 (0.245)	Data 0.000 (0.008)	Loss 0.7197 (0.8112)	Acc@1 85.547 (83.776)	Acc@5 98.828 (99.296)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 478154 ; 487386 ; 0.9810581346201984
+[INFO] Storing checkpoint...
+
+  256
+  75.27
+ 49.901s  --------------------------------------------------------------------------------
+  Environment Summary
+--------------------------------------------------------------------------------
+PyTorch 1.5.0 compiled w/ CUDA 10.2
+Running with Python 3.6 and CUDA 10.2.89
+
+`pip3 list` truncated output:
+numpy==1.18.3
+torch==1.5.0
+torchvision==0.6.0
+torchviz==0.0.1
+--------------------------------------------------------------------------------
+  cProfile output
+--------------------------------------------------------------------------------
+         88767627 function calls (88075360 primitive calls) in 326.869 seconds
+
+   Ordered by: internal time
+   List reduced from 3378 to 15 due to restriction <15>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      980  231.094    0.236  231.244    0.236 {method 'run_backward' of 'torch._C._EngineBase' objects}
+   296769    8.367    0.000   28.683    0.000 /usr/lib/python3.6/traceback.py:319(extract)
+   296745    7.185    0.000   12.769    0.000 /usr/lib/python3.6/traceback.py:386(format)
+  1541655    5.815    0.000    5.815    0.000 {built-in method posix.stat}
+    40590    4.227    0.000   11.625    0.000 {built-in method conv2d}
+    40590    3.362    0.000   11.163    0.000 {built-in method batch_norm}
+  9224647    3.122    0.000    7.775    0.000 /usr/lib/python3.6/traceback.py:283(line)
+    69100    3.004    0.000   11.562    0.000 {method 'sum' of 'torch._C._TensorBase' objects}
+        1    2.916    2.916    3.254    3.254 /home/jessica.buehler/MA_Source/src/checkpoint_utils.py:171(genDenseModel)
+    64680    2.906    0.000   11.218    0.000 {method 'pow' of 'torch._C._TensorBase' objects}
+  6133316    2.902    0.000    2.902    0.000 {method 'format' of 'str' objects}
+   197859    2.452    0.000    2.452    0.000 {method 'add_' of 'torch._C._TensorBase' objects}
+  1540103    2.059    0.000    7.997    0.000 /home/jessica.buehler/venv/lib/python3.6/linecache.py:53(checkcache)
+  3093451    2.055    0.000    3.981    0.000 /home/jessica.buehler/venv/lib/python3.6/linecache.py:15(getline)
+   101339    2.016    0.000    2.016    0.000 {method 'mul_' of 'torch._C._TensorBase' objects}
+
+
+--------------------------------------------------------------------------------
+  autograd profiler output (CUDA mode)
+--------------------------------------------------------------------------------
+        top 15 events sorted by cpu_time_total
+
+	Because the autograd profiler uses the CUDA event API,
+	the CUDA time column reports approximately max(cuda_time, cpu_time).
+	Please ignore this output if your code does not use CUDA.
+
+--------------------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  -----------------------------------  
+Name                        Self CPU total %  Self CPU total   CPU total %      CPU total        CPU time avg     CUDA total %     CUDA total       CUDA time avg    Number of Calls  Input Shapes                         
+--------------------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  -----------------------------------  
+adaptive_avg_pool2d         7.44%            28.819ms         7.44%            28.819ms         28.819ms         7.43%            28.800ms         28.800ms         1                []                                   
+mean                        7.30%            28.281ms         7.30%            28.281ms         28.281ms         7.30%            28.288ms         28.288ms         1                []                                   
+batch_norm                  7.19%            27.870ms         7.19%            27.870ms         27.870ms         7.16%            27.752ms         27.752ms         1                []                                   
+_batch_norm_impl_index      7.19%            27.854ms         7.19%            27.854ms         27.854ms         7.16%            27.752ms         27.752ms         1                []                                   
+cudnn_batch_norm            7.17%            27.760ms         7.17%            27.760ms         27.760ms         7.15%            27.728ms         27.728ms         1                []                                   
+batch_norm                  6.81%            26.395ms         6.81%            26.395ms         26.395ms         6.79%            26.304ms         26.304ms         1                []                                   
+_batch_norm_impl_index      6.81%            26.378ms         6.81%            26.378ms         26.378ms         6.79%            26.304ms         26.304ms         1                []                                   
+sum                         6.56%            25.415ms         6.56%            25.415ms         25.415ms         6.56%            25.424ms         25.424ms         1                []                                   
+conv2d                      6.39%            24.746ms         6.39%            24.746ms         24.746ms         6.41%            24.844ms         24.844ms         1                []                                   
+convolution                 6.39%            24.735ms         6.39%            24.735ms         24.735ms         6.41%            24.836ms         24.836ms         1                []                                   
+_convolution                6.38%            24.724ms         6.38%            24.724ms         24.724ms         6.41%            24.832ms         24.832ms         1                []                                   
+cudnn_convolution           6.37%            24.684ms         6.37%            24.684ms         24.684ms         6.40%            24.796ms         24.796ms         1                []                                   
+PowBackward0                6.11%            23.673ms         6.11%            23.673ms         23.673ms         6.15%            23.856ms         23.856ms         1                []                                   
+conv2d                      5.96%            23.094ms         5.96%            23.094ms         23.094ms         5.96%            23.120ms         23.120ms         1                []                                   
+pin_memory                  5.92%            22.942ms         5.92%            22.942ms         22.942ms         5.92%            22.960ms         22.960ms         1                []                                   
+--------------------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  -----------------------------------  
+Self CPU time total: 387.370ms
+CUDA time total: 387.596ms
+
+j: 11 bis 15
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 16 bis 20
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 21 bis 25
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 26 bis 30
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 31 bis 35
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 36 bis 40
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 41 bis 45
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 46 bis 50
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 51 bis 55
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 56 bis 60
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 61 bis 65
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 66 bis 70
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 71 bis 75
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 76 bis 80
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 81 bis 85
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 86 bis 90
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 91 bis 95
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 96 bis 100
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 101 bis 105
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 106 bis 110
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 111 bis 115
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 116 bis 120
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 121 bis 125
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 126 bis 130
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 131 bis 135
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 136 bis 140
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 141 bis 145
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 146 bis 150
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 151 bis 155
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 156 bis 160
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 161 bis 165
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 166 bis 170
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 171 bis 175
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+j: 176 bis 180
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 231, in <module>
+    main()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 209, in main
+    cprofile_prof = run_cprofile(code, globs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/utils/bottleneck/__main__.py", line 74, in run_cprofile
+    exec(code, globs, None)
+  File "main.py", line 915, in <module>
+    main()
+  File "main.py", line 309, in main
+    start_batchSize = checkpoint['start_batchSize']
+KeyError: 'start_batchSize'
+`bottleneck` is a tool that can be used as an initial step for debugging
+bottlenecks in your program.
+
+It summarizes runs of your script with the Python profiler and PyTorch's
+autograd profiler. Because your script will be profiled, please ensure that it
+exits in a finite amount of time.
+
+For more complicated uses of the profilers, please see
+https://docs.python.org/3/library/profile.html and
+https://pytorch.org/docs/master/autograd.html#profiler for more information.
+Running environment analysis...
+Running your script with cProfile
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
