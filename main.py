@@ -345,9 +345,9 @@ def main():
         # calculate first how many blocks is equal to the count0
         sizeX = (count0 - 1306) / 97216
         print(f'sizeX: {sizeX}')
-        y = 53.13 * sizeX + 75.89
+        # y = 53.13 * sizeX + 75.89
 
-        # y = 4.27*sizeX + 2.60
+        y = 4.27*sizeX + 2.60
         # calculate now the batch size
         batch_size = int(0.999 * count0 / sizeX / y)
 
