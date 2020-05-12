@@ -158,6 +158,8 @@ parser.add_argument('--regime_bb_fix', dest='regime_bb_fix', action='store_true'
                     help='regime fix for big batch e = e0*(batch_size/128)')
 parser.add_argument('--no-regime_bb_fix', dest='regime_bb_fix', action='store_false',
                     help='regime fix for big batch e = e0*(batch_size/128)')
+parser.add_argument('--saveModell', default=False, action='store_true',
+                    help='Save Modell')
 
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
@@ -471,7 +473,8 @@ def main():
                     filename='checkpoint' + str(epoch) + '.tar')
 
         i = 2
-    # torch.save(model, args.pathToModell)
+    if args.saveModell:
+        torch.save(model, args.pathToModell)
     logger.close()
     print("\n ",
           args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
