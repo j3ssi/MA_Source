@@ -305,7 +305,7 @@ def main():
         checkpoint = torch.load(args.resume)
         best_acc = checkpoint['best_acc']
         start_epoch = checkpoint['epoch']
-        start_batchSize = checkpoint['start_batchSize']
+        # start_batchSize = checkpoint['start_batchSize']
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     else:
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
