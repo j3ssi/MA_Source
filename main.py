@@ -353,7 +353,7 @@ def main():
         # calculate now the batch size
         batch_size = int(0.999 * count0 / sizeX / y)
         delta_bs = (4065 -batch_size)*0.2
-        batch_size = batch_size - delta_bs
+        batch_size = int(batch_size - delta_bs)
         # ms = [0.2926, 4.4695, 0.889, 406.9735]
         # m = ms[args.numOfStages - 1]
         # y0s = [0.2392, 0.7999, 3.899, -51.4890]
