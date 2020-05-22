@@ -121,3 +121,17 @@ boxplot(baselineAcc, pruneAcc1, pruneAcc2, pruneAcc3, pruneAcc4, pruneAcc5,
 
 legend("bottomleft", legend = c('baseline', 'prune1', 'prune2', 'prune3', 'prune4', 'prune5'), col= c('powderblue', 'mistyrose', 'lightsalmon', 'lightpink', 'lightsalmon4', 'orange'), fill=c('powderblue', 'mistyrose', 'lightsalmon', 'lightpink', 'lightsalmon4', 'orange'), horiz=TRUE, cex=0.8)
 
+baseline11 <- read.delim("baseline11.txt", header = TRUE, sep = "\t", dec = ".")
+baseline11 <- read.delim("baseline11.txt", header = TRUE, sep = "\t", dec = ".")
+
+
+
+boxplot(baseline1$TrainEpochTime.s., baseline2$TrainEpochTime.s., baseline3$TrainEpochTime.s., baseline4$TrainEpochTime.s., baseline5$TrainEpochTime.s., baseline11$TrainEpochTime.s.,
+        col=c('powderblue', 'powderblue', 'powderblue', 'powderblue', 'powderblue', 
+              'mistyrose'              
+        ),ylim=c(10,60),
+        ylab = "Trainingszeit in Sekunden",
+        xlab="verschiedene Experimente"
+)
+legend("bottomleft", legend = c('baseline ohne Synchronisation', 'baseline mit Synchronisation'), col= c('powderblue','mistyrose'),fill=c('powderblue', 'mistyrose'), horiz=TRUE, cex=0.8)
+                                                                                                                                                                          
