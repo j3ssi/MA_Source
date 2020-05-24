@@ -611,10 +611,10 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             if printLasso:
                 print(f'Loss: {loss}')
 
-            if batch_idx == 0 and (epoch % args.sparse_interval == 0):
-                dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
-                filename = 'model/PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
-                dot.render(filename=filename)
+            # if batch_idx == 0 and (epoch % args.sparse_interval == 0):
+            #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
+            #     filename = 'model/PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
+            #     dot.render(filename=filename)
 
             # lasso penalty
             init_batch = batch_idx == 0 and epoch == 1
@@ -627,21 +627,19 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 if printLasso:
                     print(f'Lasso Penalty1: {lasso_penalty}')
                 # Auto-tune the group-lasso coefficient @first training iteration
-                coeff_dir = os.path.join(args.coeff_container, 'cifar')
+                # coeff_dir = os.path.join(args.coeff_container, 'cifar')
                 if init_batch:
                     args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
                             lasso_penalty * (1 - args.var_group_lasso_coeff))
                     grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
 
-                    if not os.path.exists(coeff_dir):
-                        os.makedirs(coeff_dir)
-                    with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
+                    with open(os.path.join(args.checkpoint, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
                         f_coeff.write(str(grp_lasso_coeff.item()))
                     if printLasso:
                         print(f'Grp lasso coeff: {grp_lasso_coeff}')
 
                 else:
-                    with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
+                    with open(os.path.join(args.checkpoint, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
                         for line in f_coeff:
                             grp_lasso_coeff = float(line)
                 lasso_penalty = lasso_penalty * grp_lasso_coeff
