@@ -1,0 +1,585 @@
+j: 0 bis 5
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [1 | 5] LR: 0.631590
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 459, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 160.00 MiB (GPU 0; 10.76 GiB total capacity; 2.37 GiB already allocated; 123.25 MiB free; 2.41 GiB reserved in total by PyTorch)
+j: 6 bis 10
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 11 bis 15
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 16 bis 20
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 21 bis 25
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 26 bis 30
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 31 bis 35
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 36 bis 40
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 41 bis 45
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 46 bis 50
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 51 bis 55
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 56 bis 60
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 61 bis 65
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 66 bis 70
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 71 bis 75
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 76 bis 80
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 81 bis 85
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 86 bis 90
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 91 bis 95
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 96 bis 100
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 101 bis 105
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 106 bis 110
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 111 bis 115
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 116 bis 120
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 121 bis 125
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 126 bis 130
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 131 bis 135
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 136 bis 140
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 141 bis 145
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 146 bis 150
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 151 bis 155
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 156 bis 160
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 161 bis 165
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 166 bis 170
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 171 bis 175
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'
+j: 176 bis 180
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 299, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune9/model.nn'

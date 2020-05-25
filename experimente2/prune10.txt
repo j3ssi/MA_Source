@@ -1,0 +1,997 @@
+j: 0 bis 5
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [1 | 5] LR: 0.631590
+Epoch: [1][0/20]	Time 1.238 (1.238)	Data 0.876 (0.876)	Loss 3.4581 (3.4581)	Acc@1 9.753 (9.753)	Acc@5 51.038 (51.038)
+[INFO] Storing checkpoint...
+
+Epoch: [2 | 5] LR: 0.631590
+Epoch: [2][0/20]	Time 0.484 (0.484)	Data 0.800 (0.800)	Loss 3.3921 (3.3921)	Acc@1 9.440 (9.440)	Acc@5 51.508 (51.508)
+[INFO] Storing checkpoint...
+
+Epoch: [3 | 5] LR: 0.631590
+Epoch: [3][0/20]	Time 0.795 (0.795)	Data 1.290 (1.290)	Loss 3.3563 (3.3563)	Acc@1 9.597 (9.597)	Acc@5 49.824 (49.824)
+[INFO] Storing checkpoint...
+
+Epoch: [4 | 5] LR: 0.631590
+Epoch: [4][0/20]	Time 0.496 (0.496)	Data 1.121 (1.121)	Loss 3.2549 (3.2549)	Acc@1 11.751 (11.751)	Acc@5 51.626 (51.626)
+[INFO] Storing checkpoint...
+
+Epoch: [5 | 5] LR: 0.631590
+Epoch: [5][0/20]	Time 0.514 (0.514)	Data 0.956 (0.956)	Loss 3.1536 (3.1536)	Acc@1 12.378 (12.378)	Acc@5 50.568 (50.568)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  2553
+  10.05
+Max memory: 796.4539392
+ 9.967s  j: 6 bis 10
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [6 | 10] LR: 0.631590
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 459, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 160.00 MiB (GPU 0; 10.76 GiB total capacity; 2.37 GiB already allocated; 133.25 MiB free; 2.41 GiB reserved in total by PyTorch)
+j: 11 bis 15
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [6 | 10] LR: 0.631590
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 459, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 160.00 MiB (GPU 0; 10.76 GiB total capacity; 2.37 GiB already allocated; 123.25 MiB free; 2.41 GiB reserved in total by PyTorch)
+j: 16 bis 20
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [6 | 10] LR: 0.631590
+Epoch: [6][0/20]	Time 1.198 (1.198)	Data 0.890 (0.890)	Loss 3.0435 (3.0435)	Acc@1 12.887 (12.887)	Acc@5 54.877 (54.877)
+[INFO] Storing checkpoint...
+
+Epoch: [7 | 10] LR: 0.631590
+Epoch: [7][0/20]	Time 0.550 (0.550)	Data 0.805 (0.805)	Loss 2.9318 (2.9318)	Acc@1 15.276 (15.276)	Acc@5 64.826 (64.826)
+[INFO] Storing checkpoint...
+
+Epoch: [8 | 10] LR: 0.631590
+Epoch: [8][0/20]	Time 0.833 (0.833)	Data 1.287 (1.287)	Loss 2.6962 (2.6962)	Acc@1 21.426 (21.426)	Acc@5 77.360 (77.360)
+[INFO] Storing checkpoint...
+
+Epoch: [9 | 10] LR: 0.631590
+Epoch: [9][0/20]	Time 0.497 (0.497)	Data 0.816 (0.816)	Loss 2.5664 (2.5664)	Acc@1 21.896 (21.896)	Acc@5 76.342 (76.342)
+[INFO] Storing checkpoint...
+
+Epoch: [10 | 10] LR: 0.631590
+Epoch: [10][0/20]	Time 0.521 (0.521)	Data 0.970 (0.970)	Loss 2.4717 (2.4717)	Acc@1 23.580 (23.580)	Acc@5 78.457 (78.457)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  2553
+  12.59
+Max memory: 796.4538368
+ 10.430s  j: 21 bis 25
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [11 | 15] LR: 0.631590
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 459, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 160.00 MiB (GPU 0; 10.76 GiB total capacity; 2.37 GiB already allocated; 133.25 MiB free; 2.41 GiB reserved in total by PyTorch)
+j: 26 bis 30
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [11 | 15] LR: 0.631590
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 459, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 160.00 MiB (GPU 0; 10.76 GiB total capacity; 2.37 GiB already allocated; 123.25 MiB free; 2.41 GiB reserved in total by PyTorch)
+j: 31 bis 35
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [11 | 15] LR: 0.631590
+Epoch: [11][0/20]	Time 1.248 (1.248)	Data 0.964 (0.964)	Loss 2.3501 (2.3501)	Acc@1 25.264 (25.264)	Acc@5 81.551 (81.551)
+[INFO] Storing checkpoint...
+
+Epoch: [12 | 15] LR: 0.631590
+Epoch: [12][0/20]	Time 0.566 (0.566)	Data 1.014 (1.014)	Loss 2.2252 (2.2252)	Acc@1 28.555 (28.555)	Acc@5 84.371 (84.371)
+[INFO] Storing checkpoint...
+
+Epoch: [13 | 15] LR: 0.631590
+Epoch: [13][0/20]	Time 0.712 (0.712)	Data 1.341 (1.341)	Loss 2.1008 (2.1008)	Acc@1 30.004 (30.004)	Acc@5 86.604 (86.604)
+[INFO] Storing checkpoint...
+
+Epoch: [14 | 15] LR: 0.631590
+Epoch: [14][0/20]	Time 0.527 (0.527)	Data 0.788 (0.788)	Loss 2.0039 (2.0039)	Acc@1 35.213 (35.213)	Acc@5 87.505 (87.505)
+[INFO] Storing checkpoint...
+
+Epoch: [15 | 15] LR: 0.631590
+Epoch: [15][0/20]	Time 0.519 (0.519)	Data 0.820 (0.820)	Loss 1.8433 (1.8433)	Acc@1 39.992 (39.992)	Acc@5 91.030 (91.030)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  2553
+  40.1
+Max memory: 796.4538368
+ 10.348s  j: 36 bis 40
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [16 | 20] LR: 0.631590
+Epoch: [16][0/20]	Time 1.547 (1.547)	Data 1.061 (1.061)	Loss 1.7404 (1.7404)	Acc@1 45.202 (45.202)	Acc@5 91.579 (91.579)
+[INFO] Storing checkpoint...
+
+Epoch: [17 | 20] LR: 0.631590
+Epoch: [17][0/20]	Time 0.554 (0.554)	Data 0.809 (0.809)	Loss 1.6482 (1.6482)	Acc@1 46.494 (46.494)	Acc@5 93.380 (93.380)
+[INFO] Storing checkpoint...
+
+Epoch: [18 | 20] LR: 0.631590
+Epoch: [18][0/20]	Time 0.481 (0.481)	Data 0.785 (0.785)	Loss 1.4792 (1.4792)	Acc@1 56.404 (56.404)	Acc@5 95.065 (95.065)
+[INFO] Storing checkpoint...
+
+Epoch: [19 | 20] LR: 0.631590
+Epoch: [19][0/20]	Time 0.484 (0.484)	Data 0.767 (0.767)	Loss 1.3399 (1.3399)	Acc@1 61.222 (61.222)	Acc@5 96.240 (96.240)
+[INFO] Storing checkpoint...
+
+Epoch: [20 | 20] LR: 0.631590
+Epoch: [20][0/20]	Time 0.519 (0.519)	Data 1.005 (1.005)	Loss 1.1874 (1.1874)	Acc@1 66.079 (66.079)	Acc@5 97.493 (97.493)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  2553
+  43.39
+Max memory: 658.1152256
+ 10.234s  j: 41 bis 45
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [21 | 25] LR: 0.631590
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 459, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 160.00 MiB (GPU 0; 10.76 GiB total capacity; 2.37 GiB already allocated; 15.25 MiB free; 2.41 GiB reserved in total by PyTorch)
+j: 46 bis 50
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [21 | 25] LR: 0.631590
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 459, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 160.00 MiB (GPU 0; 10.76 GiB total capacity; 2.37 GiB already allocated; 5.25 MiB free; 2.41 GiB reserved in total by PyTorch)
+j: 51 bis 55
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [21 | 25] LR: 0.631590
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 459, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 160.00 MiB (GPU 0; 10.76 GiB total capacity; 2.37 GiB already allocated; 5.25 MiB free; 2.41 GiB reserved in total by PyTorch)
+j: 56 bis 60
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [21 | 25] LR: 0.631590
+Epoch: [21][0/20]	Time 1.278 (1.278)	Data 1.092 (1.092)	Loss 1.1147 (1.1147)	Acc@1 69.252 (69.252)	Acc@5 98.198 (98.198)
+[INFO] Storing checkpoint...
+
+Epoch: [22 | 25] LR: 0.631590
+Epoch: [22][0/20]	Time 0.474 (0.474)	Data 0.828 (0.828)	Loss 1.0642 (1.0642)	Acc@1 71.524 (71.524)	Acc@5 98.159 (98.159)
+[INFO] Storing checkpoint...
+
+Epoch: [23 | 25] LR: 0.631590
+Epoch: [23][0/20]	Time 0.518 (0.518)	Data 0.900 (0.900)	Loss 1.0736 (1.0736)	Acc@1 72.425 (72.425)	Acc@5 97.180 (97.180)
+[INFO] Storing checkpoint...
+
+Epoch: [24 | 25] LR: 0.631590
+Epoch: [24][0/20]	Time 0.470 (0.470)	Data 0.877 (0.877)	Loss 0.9707 (0.9707)	Acc@1 76.028 (76.028)	Acc@5 98.590 (98.590)
+[INFO] Storing checkpoint...
+
+Epoch: [25 | 25] LR: 0.631590
+Epoch: [25][0/20]	Time 0.521 (0.521)	Data 1.094 (1.094)	Loss 0.9159 (0.9159)	Acc@1 77.830 (77.830)	Acc@5 98.825 (98.825)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  2553
+  62.13
+Max memory: 796.4538368
+ 9.969s  j: 61 bis 65
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [26 | 30] LR: 0.631590
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 459, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 160.00 MiB (GPU 0; 10.76 GiB total capacity; 2.37 GiB already allocated; 83.25 MiB free; 2.41 GiB reserved in total by PyTorch)
+j: 66 bis 70
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [26 | 30] LR: 0.631590
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 459, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 160.00 MiB (GPU 0; 10.76 GiB total capacity; 2.37 GiB already allocated; 43.25 MiB free; 2.41 GiB reserved in total by PyTorch)
+j: 71 bis 75
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [26 | 30] LR: 0.631590
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 459, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 160.00 MiB (GPU 0; 10.76 GiB total capacity; 2.37 GiB already allocated; 43.25 MiB free; 2.41 GiB reserved in total by PyTorch)
+j: 76 bis 80
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [26 | 30] LR: 0.631590
+Epoch: [26][0/20]	Time 1.393 (1.393)	Data 1.273 (1.273)	Loss 0.9290 (0.9290)	Acc@1 77.164 (77.164)	Acc@5 98.433 (98.433)
+[INFO] Storing checkpoint...
+
+Epoch: [27 | 30] LR: 0.631590
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 503, in forward
+    x = self.module_list[j](x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/batchnorm.py", line 106, in forward
+    exponential_average_factor, self.eps)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1923, in batch_norm
+    training, momentum, eps, torch.backends.cudnn.enabled
+RuntimeError: CUDA out of memory. Tried to allocate 160.00 MiB (GPU 0; 10.76 GiB total capacity; 2.69 GiB already allocated; 37.25 MiB free; 2.70 GiB reserved in total by PyTorch)
+j: 81 bis 85
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [31 | 35] LR: 0.631590
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 509, in forward
+    _x = _x + x
+RuntimeError: CUDA out of memory. Tried to allocate 160.00 MiB (GPU 0; 10.76 GiB total capacity; 2.22 GiB already allocated; 155.25 MiB free; 2.26 GiB reserved in total by PyTorch)
+j: 86 bis 90
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [31 | 35] LR: 0.631590
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 509, in forward
+    _x = _x + x
+RuntimeError: CUDA out of memory. Tried to allocate 160.00 MiB (GPU 0; 10.76 GiB total capacity; 2.22 GiB already allocated; 155.25 MiB free; 2.26 GiB reserved in total by PyTorch)
+j: 91 bis 95
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 2553 ; 341.54
+
+Epoch: [31 | 35] LR: 0.631590
+Epoch: [31][0/20]	Time 1.416 (1.416)	Data 1.756 (1.756)	Loss 0.9441 (0.9441)	Acc@1 77.321 (77.321)	Acc@5 98.590 (98.590)
+[INFO] Storing checkpoint...
+
+Epoch: [32 | 35] LR: 0.631590
+Epoch: [32][0/20]	Time 0.821 (0.821)	Data 1.819 (1.819)	Loss 0.9140 (0.9140)	Acc@1 77.908 (77.908)	Acc@5 98.942 (98.942)
+[INFO] Storing checkpoint...
+
+Epoch: [33 | 35] LR: 0.631590
+Epoch: [33][0/20]	Time 0.673 (0.673)	Data 1.806 (1.806)	Loss 0.8655 (0.8655)	Acc@1 80.337 (80.337)	Acc@5 98.355 (98.355)
+[INFO] Storing checkpoint...
+
+Epoch: [34 | 35] LR: 0.631590
+Epoch: [34][0/20]	Time 0.706 (0.706)	Data 1.465 (1.465)	Loss 0.8593 (0.8593)	Acc@1 80.807 (80.807)	Acc@5 98.825 (98.825)
+[INFO] Storing checkpoint...
+
+Epoch: [35 | 35] LR: 0.631590
+Epoch: [35][0/20]	Time 0.713 (0.713)	Data 1.253 (1.253)	Loss 0.8440 (0.8440)	Acc@1 81.120 (81.120)	Acc@5 98.903 (98.903)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 486806 ; 487386 ; 0.9988099781282187
+[INFO] Storing checkpoint...
+
+  2553
+  54.9
+Max memory: 796.651264
+ 10.561s  j: 96 bis 100
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 486806
+sizeX: 4.994033903884135
+batch_size: 2553 ; 341.2230213133641
+
+Epoch: [36 | 40] LR: 0.631590
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 459, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 160.00 MiB (GPU 0; 10.76 GiB total capacity; 2.33 GiB already allocated; 99.25 MiB free; 2.47 GiB reserved in total by PyTorch)
+j: 101 bis 105
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 486806
+sizeX: 4.994033903884135
+batch_size: 2553 ; 341.2230213133641
+
+Epoch: [36 | 40] LR: 0.631590
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 459, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 160.00 MiB (GPU 0; 10.76 GiB total capacity; 2.33 GiB already allocated; 99.25 MiB free; 2.47 GiB reserved in total by PyTorch)
+j: 106 bis 110
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 486806
+sizeX: 4.994033903884135
+batch_size: 2553 ; 341.2230213133641
+
+Epoch: [36 | 40] LR: 0.631590
+Epoch: [36][0/20]	Time 2.024 (2.024)	Data 1.850 (1.850)	Loss 0.8495 (0.8495)	Acc@1 80.376 (80.376)	Acc@5 99.256 (99.256)
+[INFO] Storing checkpoint...
+
+Epoch: [37 | 40] LR: 0.631590
+Epoch: [37][0/20]	Time 0.788 (0.788)	Data 1.600 (1.600)	Loss 0.7989 (0.7989)	Acc@1 82.922 (82.922)	Acc@5 99.334 (99.334)
+[INFO] Storing checkpoint...
+
+Epoch: [38 | 40] LR: 0.631590
+Epoch: [38][0/20]	Time 0.773 (0.773)	Data 1.527 (1.527)	Loss 0.8319 (0.8319)	Acc@1 81.394 (81.394)	Acc@5 99.021 (99.021)
+[INFO] Storing checkpoint...
+
+Epoch: [39 | 40] LR: 0.631590
+Epoch: [39][0/20]	Time 0.803 (0.803)	Data 1.251 (1.251)	Loss 0.7821 (0.7821)	Acc@1 83.000 (83.000)	Acc@5 98.903 (98.903)
+[INFO] Storing checkpoint...
+
+Epoch: [40 | 40] LR: 0.631590
+Epoch: [40][0/20]	Time 0.638 (0.638)	Data 1.184 (1.184)	Loss 0.8142 (0.8142)	Acc@1 82.609 (82.609)	Acc@5 98.825 (98.825)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 462010 ; 486806 ; 0.94906389814423
+[INFO] Storing checkpoint...
+
+  2553
+  72.84
+Max memory: 792.270592
+ 11.342s  j: 111 bis 115
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 462010
+sizeX: 4.738973008558262
+batch_size: 2557 ; 327.6716359447005
+
+Epoch: [41 | 45] LR: 0.632085
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 459, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 150.00 MiB (GPU 0; 10.76 GiB total capacity; 2.31 GiB already allocated; 111.25 MiB free; 2.45 GiB reserved in total by PyTorch)
+j: 116 bis 120
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 462010
+sizeX: 4.738973008558262
+batch_size: 2557 ; 327.6716359447005
+
+Epoch: [41 | 45] LR: 0.632085
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 459, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 150.00 MiB (GPU 0; 10.76 GiB total capacity; 2.31 GiB already allocated; 111.25 MiB free; 2.45 GiB reserved in total by PyTorch)
+j: 121 bis 125
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 462010
+sizeX: 4.738973008558262
+batch_size: 2557 ; 327.6716359447005
+
+Epoch: [41 | 45] LR: 0.632085
+Epoch: [41][0/20]	Time 2.997 (2.997)	Data 1.255 (1.255)	Loss 0.7682 (0.7682)	Acc@1 83.183 (83.183)	Acc@5 99.296 (99.296)
+[INFO] Storing checkpoint...
+
+Epoch: [42 | 45] LR: 0.632085
+Epoch: [42][0/20]	Time 0.643 (0.643)	Data 1.746 (1.746)	Loss 0.7232 (0.7232)	Acc@1 84.709 (84.709)	Acc@5 99.492 (99.492)
+[INFO] Storing checkpoint...
+
+Epoch: [43 | 45] LR: 0.632085
+Epoch: [43][0/20]	Time 0.590 (0.590)	Data 1.396 (1.396)	Loss 0.7517 (0.7517)	Acc@1 84.474 (84.474)	Acc@5 99.218 (99.218)
+[INFO] Storing checkpoint...
+
+Epoch: [44 | 45] LR: 0.632085
+Epoch: [44][0/20]	Time 0.783 (0.783)	Data 1.201 (1.201)	Loss 0.7807 (0.7807)	Acc@1 82.519 (82.519)	Acc@5 99.257 (99.257)
+[INFO] Storing checkpoint...
+
+Epoch: [45 | 45] LR: 0.632085
+Epoch: [45][0/20]	Time 0.676 (0.676)	Data 1.449 (1.449)	Loss 0.7595 (0.7595)	Acc@1 83.731 (83.731)	Acc@5 99.101 (99.101)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 447212 ; 462010 ; 0.9679703902512933
+[INFO] Storing checkpoint...
+
+  2557
+  68.22
+Max memory: 776.21888
+ 11.329s  j: 126 bis 130
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 447212
+sizeX: 4.586755266622778
+batch_size: 2560 ; 319.58430731566824
+
+Epoch: [46 | 50] LR: 0.632456
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 495, in forward
+    x = self.module_list[j](x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 160.00 MiB (GPU 0; 10.76 GiB total capacity; 2.37 GiB already allocated; 27.25 MiB free; 2.58 GiB reserved in total by PyTorch)
+j: 131 bis 135
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 447212
+sizeX: 4.586755266622778
+batch_size: 2560 ; 319.58430731566824
+
+Epoch: [46 | 50] LR: 0.632456
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 495, in forward
+    x = self.module_list[j](x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 160.00 MiB (GPU 0; 10.76 GiB total capacity; 2.37 GiB already allocated; 27.25 MiB free; 2.58 GiB reserved in total by PyTorch)
+j: 136 bis 140
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 447212
+sizeX: 4.586755266622778
+batch_size: 2560 ; 319.58430731566824
+
+Epoch: [46 | 50] LR: 0.632456
+Epoch: [46][0/20]	Time 3.210 (3.210)	Data 1.769 (1.769)	Loss 0.7625 (0.7625)	Acc@1 83.945 (83.945)	Acc@5 99.219 (99.219)
+[INFO] Storing checkpoint...
+
+Epoch: [47 | 50] LR: 0.632456
+Epoch: [47][0/20]	Time 0.967 (0.967)	Data 1.729 (1.729)	Loss 0.7279 (0.7279)	Acc@1 84.727 (84.727)	Acc@5 99.297 (99.297)
+[INFO] Storing checkpoint...
+
+Epoch: [48 | 50] LR: 0.632456
+Epoch: [48][0/20]	Time 0.606 (0.606)	Data 1.631 (1.631)	Loss 0.7655 (0.7655)	Acc@1 83.945 (83.945)	Acc@5 99.141 (99.141)
+[INFO] Storing checkpoint...
+
+Epoch: [49 | 50] LR: 0.632456
+Epoch: [49][0/20]	Time 0.627 (0.627)	Data 1.726 (1.726)	Loss 0.7474 (0.7474)	Acc@1 83.789 (83.789)	Acc@5 99.297 (99.297)
+[INFO] Storing checkpoint...
+
+Epoch: [50 | 50] LR: 0.632456
+Epoch: [50][0/20]	Time 0.711 (0.711)	Data 1.207 (1.207)	Loss 0.7298 (0.7298)	Acc@1 84.844 (84.844)	Acc@5 99.375 (99.375)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 404888 ; 447212 ; 0.9053603212793933
+[INFO] Storing checkpoint...
+
+  2560
+  67.18
+Max memory: 759.629056
+ 11.144s  j: 141 bis 145
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 404888
+sizeX: 4.151394832126399
+batch_size: 2570 ; 296.4536074308756
+
+Epoch: [51 | 55] LR: 0.633690
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 509, in forward
+    _x = _x + x
+RuntimeError: CUDA out of memory. Tried to allocate 162.00 MiB (GPU 0; 10.76 GiB total capacity; 2.03 GiB already allocated; 119.25 MiB free; 2.13 GiB reserved in total by PyTorch)
+j: 146 bis 150
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 404888
+sizeX: 4.151394832126399
+batch_size: 2570 ; 296.4536074308756
+
+Epoch: [51 | 55] LR: 0.633690
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 509, in forward
+    _x = _x + x
+RuntimeError: CUDA out of memory. Tried to allocate 162.00 MiB (GPU 0; 10.76 GiB total capacity; 2.03 GiB already allocated; 119.25 MiB free; 2.13 GiB reserved in total by PyTorch)
+j: 151 bis 155
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 404888
+sizeX: 4.151394832126399
+batch_size: 2570 ; 296.4536074308756
+
+Epoch: [51 | 55] LR: 0.633690
+Epoch: [51][0/20]	Time 3.158 (3.158)	Data 1.827 (1.827)	Loss 0.7249 (0.7249)	Acc@1 84.903 (84.903)	Acc@5 99.533 (99.533)
+[INFO] Storing checkpoint...
+
+Epoch: [52 | 55] LR: 0.633690
+Epoch: [52][0/20]	Time 0.920 (0.920)	Data 1.171 (1.171)	Loss 0.7090 (0.7090)	Acc@1 85.759 (85.759)	Acc@5 99.455 (99.455)
+[INFO] Storing checkpoint...
+
+Epoch: [53 | 55] LR: 0.633690
+Epoch: [53][0/20]	Time 0.685 (0.685)	Data 1.814 (1.814)	Loss 0.7013 (0.7013)	Acc@1 85.681 (85.681)	Acc@5 99.416 (99.416)
+[INFO] Storing checkpoint...
+
+Epoch: [54 | 55] LR: 0.633690
+Epoch: [54][0/20]	Time 0.754 (0.754)	Data 1.759 (1.759)	Loss 0.7934 (0.7934)	Acc@1 83.230 (83.230)	Acc@5 99.261 (99.261)
+[INFO] Storing checkpoint...
+
+Epoch: [55 | 55] LR: 0.633690
+Epoch: [55][0/20]	Time 0.665 (0.665)	Data 1.617 (1.617)	Loss 0.7237 (0.7237)	Acc@1 85.564 (85.564)	Acc@5 99.300 (99.300)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 360992 ; 404888 ; 0.8915848333366264
+[INFO] Storing checkpoint...
+
+  2570
+  63.13
+Max memory: 745.1313664
+ 11.220s  j: 156 bis 160
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 360992
+sizeX: 3.699864219881501
+batch_size: 2581 ; 272.4637860023042
+
+Epoch: [56 | 60] LR: 0.635044
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 509, in forward
+    _x = _x + x
+RuntimeError: CUDA out of memory. Tried to allocate 162.00 MiB (GPU 0; 10.76 GiB total capacity; 2.47 GiB already allocated; 13.25 MiB free; 2.72 GiB reserved in total by PyTorch)
+j: 161 bis 165
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 360992
+sizeX: 3.699864219881501
+batch_size: 2581 ; 272.4637860023042
+
+Epoch: [56 | 60] LR: 0.635044
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 509, in forward
+    _x = _x + x
+RuntimeError: CUDA out of memory. Tried to allocate 162.00 MiB (GPU 0; 10.76 GiB total capacity; 2.47 GiB already allocated; 13.25 MiB free; 2.72 GiB reserved in total by PyTorch)
+j: 166 bis 170
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 360992
+sizeX: 3.699864219881501
+batch_size: 2581 ; 272.4637860023042
+
+Epoch: [56 | 60] LR: 0.635044
+Epoch: [56][0/20]	Time 3.275 (3.275)	Data 1.732 (1.732)	Loss 0.7076 (0.7076)	Acc@1 86.284 (86.284)	Acc@5 99.458 (99.458)
+[INFO] Storing checkpoint...
+
+Epoch: [57 | 60] LR: 0.635044
+Epoch: [57][0/20]	Time 1.228 (1.228)	Data 2.552 (2.552)	Loss 0.7322 (0.7322)	Acc@1 83.882 (83.882)	Acc@5 99.574 (99.574)
+[INFO] Storing checkpoint...
+
+Epoch: [58 | 60] LR: 0.635044
+Epoch: [58][0/20]	Time 0.632 (0.632)	Data 1.756 (1.756)	Loss 0.7529 (0.7529)	Acc@1 84.812 (84.812)	Acc@5 99.070 (99.070)
+[INFO] Storing checkpoint...
+
+Epoch: [59 | 60] LR: 0.635044
+Epoch: [59][0/20]	Time 0.666 (0.666)	Data 1.652 (1.652)	Loss 0.7467 (0.7467)	Acc@1 84.580 (84.580)	Acc@5 99.341 (99.341)
+[INFO] Storing checkpoint...
+
+Epoch: [60 | 60] LR: 0.635044
+Epoch: [60][0/20]	Time 0.637 (0.637)	Data 1.194 (1.194)	Loss 0.7157 (0.7157)	Acc@1 86.052 (86.052)	Acc@5 99.613 (99.613)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 333628 ; 360992 ; 0.9241977661554827
+[INFO] Storing checkpoint...
+
+  2581
+  61.75
+Max memory: 712.3388416
+ 10.713s  j: 171 bis 175
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 333628
+sizeX: 3.418387919684003
+batch_size: 2590 ; 257.50895017281107
+
+Epoch: [61 | 65] LR: 0.636151
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 503, in forward
+    x = self.module_list[j](x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/batchnorm.py", line 106, in forward
+    exponential_average_factor, self.eps)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1923, in batch_norm
+    training, momentum, eps, torch.backends.cudnn.enabled
+RuntimeError: CUDA out of memory. Tried to allocate 162.00 MiB (GPU 0; 10.76 GiB total capacity; 2.28 GiB already allocated; 121.25 MiB free; 2.39 GiB reserved in total by PyTorch)
+j: 176 bis 180
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+count0: 333628
+sizeX: 3.418387919684003
+batch_size: 2590 ; 257.50895017281107
+
+Epoch: [61 | 65] LR: 0.636151
+Traceback (most recent call last):
+  File "main.py", line 908, in <module>
+    main()
+  File "main.py", line 388, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 610, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 503, in forward
+    x = self.module_list[j](x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/batchnorm.py", line 106, in forward
+    exponential_average_factor, self.eps)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1923, in batch_norm
+    training, momentum, eps, torch.backends.cudnn.enabled
+RuntimeError: CUDA out of memory. Tried to allocate 162.00 MiB (GPU 0; 10.76 GiB total capacity; 2.28 GiB already allocated; 121.25 MiB free; 2.39 GiB reserved in total by PyTorch)
