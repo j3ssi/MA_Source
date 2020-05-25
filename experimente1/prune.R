@@ -135,3 +135,32 @@ boxplot(baseline1$TrainEpochTime.s., baseline2$TrainEpochTime.s., baseline3$Trai
 )
 legend("bottomleft", legend = c('baseline ohne Synchronisation', 'baseline mit Synchronisation'), col= c('powderblue','mistyrose'),fill=c('powderblue', 'mistyrose'), horiz=TRUE, cex=0.8)
                                                                                                                                                                           
+
+
+
+
+setwd("/home/j3ssi/MA_Source/output/experimente2/")
+
+prune1 <- read.delim("prune1.txt", header = TRUE, sep = "\t", dec = ".")
+prune2 <- read.delim("prune2.txt", header = TRUE, sep = "\t", dec = ".")
+prune3 <- read.delim("prune3.txt", header = TRUE, sep = "\t", dec = ".")
+prune4 <- read.delim("prune4.txt", header = TRUE, sep = "\t", dec = ".")
+prune5 <- read.delim("prune5.txt", header = TRUE, sep = "\t", dec = ".")
+
+prune1Sum <- sum(prune1$TrainEpochTime.s.)
+prune2Sum <- sum(prune2$TrainEpochTime.s.)
+prune3Sum <- sum(prune3$TrainEpochTime.s.)
+prune4Sum <- sum(prune4$TrainEpochTime.s.)
+prune5Sum <- sum(prune5$TrainEpochTime.s.)
+
+prune6 <- read.delim("prune6.txt", header = TRUE, sep = "\t", dec = ".")
+prune7 <- read.delim("prune7.txt", header = TRUE, sep = "\t", dec = ".")
+prune8 <- read.delim("prune8.txt", header = TRUE, sep = "\t", dec = ".")
+prune9 <- read.delim("prune9.txt", header = TRUE, sep = "\t", dec = ".")
+prune10 <- read.delim("prune10.txt", header = TRUE, sep = "\t", dec = ".")
+
+prune6Sum <- sum(prune6$TrainEpochTime.s.)
+prune7Sum <- sum(prune7$TrainEpochTime.s.)
+prune8Sum <- sum(prune8$TrainEpochTime.s.)
+prune9Sum <- sum(prune9$TrainEpochTime.s.)
+prune10Sum <- sum(prune10$TrainEpochTime.s.)
