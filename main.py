@@ -68,6 +68,10 @@ parser.add_argument('--test_batch', default=100, type=int, metavar='N',
                     help='test batchsize')
 parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
                     metavar='LR', help='initial learning rate')
+parser.add_argument('-dlr', '--delta_learning_rate', default=False, action='store_true',
+                    help='No change in learning rate')
+
+
 parser.add_argument('--schedule', type=int, nargs='+', default=[93, 150],
                     help='Decrease learning rate at these epochs.')
 parser.add_argument('--gamma', type=float, default=0.1, help='LR is multiplied by gamma on schedule.')
@@ -380,7 +384,8 @@ def main():
     while i == 1:
         for epoch in range(start_epoch, args.epochs + start_epoch):
             # adjust learning rate when epoch is the scheduled epoch
-            adjust_learning_rate(optimizer, epoch)
+            if not args.delta_learning_rate:
+                adjust_learning_rate(optimizer, epoch)
 
             print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs + start_epoch - 1, state['lr']))
             start = time.time()

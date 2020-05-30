@@ -130,10 +130,10 @@ boxplot(baseline1$TrainEpochTime.s., baseline2$TrainEpochTime.s., baseline3$Trai
         col=c('powderblue', 'powderblue', 'powderblue', 'powderblue', 'powderblue', 
               'mistyrose'              
         ),ylim=c(10,60),
-        ylab = "Trainingszeit in Sekunden",
+        ylab = "Trainingszeit in Sekunden pro Epoche",
         xlab="verschiedene Experimente"
 )
-legend("bottomleft", legend = c('baseline ohne Synchronisation', 'baseline mit Synchronisation'), col= c('powderblue','mistyrose'),fill=c('powderblue', 'mistyrose'), horiz=TRUE, cex=0.8)
+legend("bottomleft", legend = c('baseline ohne Synchronisation', 'baseline mit Synchronisation'), col= c('powderblue','mistyrose'),fill=c('powderblue', 'mistyrose'), lty=1:2, horiz=TRUE, cex=0.8)
                                                                                                                                                                           
 
 
@@ -141,11 +141,11 @@ legend("bottomleft", legend = c('baseline ohne Synchronisation', 'baseline mit S
 
 setwd("/home/j3ssi/MA_Source/output/experimente2/")
 
-prune1 <- read.delim("prune1.txt", header = TRUE, sep = "\t", dec = ".")
-prune2 <- read.delim("prune2.txt", header = TRUE, sep = "\t", dec = ".")
-prune3 <- read.delim("prune3.txt", header = TRUE, sep = "\t", dec = ".")
-prune4 <- read.delim("prune4.txt", header = TRUE, sep = "\t", dec = ".")
-prune5 <- read.delim("prune5.txt", header = TRUE, sep = "\t", dec = ".")
+prune1x <- read.delim("prune1.txt", header = TRUE, sep = "\t", dec = ".")
+prune2x <- read.delim("prune2.txt", header = TRUE, sep = "\t", dec = ".")
+prune3x <- read.delim("prune3.txt", header = TRUE, sep = "\t", dec = ".")
+prune4x <- read.delim("prune4.txt", header = TRUE, sep = "\t", dec = ".")
+prune5x <- read.delim("prune5.txt", header = TRUE, sep = "\t", dec = ".")
 
 prune1Sum <- sum(prune1$TrainEpochTime.s.)
 prune2Sum <- sum(prune2$TrainEpochTime.s.)
@@ -164,3 +164,14 @@ prune7Sum <- sum(prune7$TrainEpochTime.s.)
 prune8Sum <- sum(prune8$TrainEpochTime.s.)
 prune9Sum <- sum(prune9$TrainEpochTime.s.)
 prune10Sum <- sum(prune10$TrainEpochTime.s.)
+
+boxplot(prune1x$TrainEpochTime.s., prune2x$TrainEpochTime.s., prune3x$TrainEpochTime.s., prune4x$TrainEpochTime.s. , prune5x$TrainEpochTime.s.)
+
+
+plot(baseline1$ValidAcc., col='red', xlim=c(90, 180), ylim=c(86,95), ylab="",xlab="")
+par(new=TRUE)
+plot(prune11$ValidAcc., col='blue', xlim=c(90, 180), ylim=c(86,95),ylab="Accuracy",xlab="Epochen")
+legend("bottomright", legend = c('baseline', 'prunetrain'), col= c('red','blue'), lty=1:2, horiz=TRUE, cex=0.8)
+
+
+plot(baseline1$ValidAcc. -prune1$ValidAcc., col='blue', xlim=c(90, 180), ylim=c(-5,5))
