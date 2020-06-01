@@ -368,6 +368,8 @@ def main():
         # batch_size = int(0.98 * count0 / min(listofBlocks) * 1 / y)
         print(f'batch_size: {batch_size} ; {y}')
         args.batch_size = batch_size
+        args.lr *= (batch_size / args.mini_batch_size) ** 0.5
+
     else:
         batch_size = args.batch_size
 
@@ -376,7 +378,6 @@ def main():
 
     trainloader = data.DataLoader(trainset, batch_size=batch_size, pin_memory=True,
                                   shuffle=True, num_workers=args.workers)
-    args.lr *= (batch_size / args.mini_batch_size) ** 0.5
     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
 
     i = 1
