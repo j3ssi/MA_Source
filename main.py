@@ -298,7 +298,6 @@ def main():
     # dynamic resnet modell
 
     title = 'prune' + str(args.epochsFromBegin)
-
     if args.resume:
         model = torch.load(args.pathToModell)
         model.cuda()
@@ -324,6 +323,8 @@ def main():
         model.cuda()
         criterion = nn.CrossEntropyLoss()
         start_epoch = 1
+
+    print(f'Startepoche: {start_epoch}')
 
     if args.evaluate:
         print('\nEvaluation only')
