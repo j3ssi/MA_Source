@@ -654,7 +654,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 if printLasso:
                     print(f'Lasso Penalty2: {lasso_penalty}')
             else:
-                lasso_penalty = 0.
+                lasso_penalty = 0
                 # print(f'nach group lasso')
                 # Group lasso calcution is not performance-optimized => Ignore from execution time
             loss += lasso_penalty
