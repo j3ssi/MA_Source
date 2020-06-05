@@ -4,582 +4,1706 @@ no display found. Using non-interactive Agg backend
 Files already downloaded and verified
 count0: 487386
 sizeX: 5.0
-batch_size: 2553 ; 341.54
+batch_size: 285 ; 341.54
 
-Epoch: [1 | 5] LR: 0.631590
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 388, in main
-    optimizer, epoch, use_cuda)
-  File "main.py", line 610, in train
-    outputs = model.forward(inputs)
-  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 459, in forward
-    x = self.module_list[j](_x)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
-    result = self.forward(*input, **kwargs)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
-    return self._conv_forward(input, self.weight)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
-    self.padding, self.dilation, self.groups)
-RuntimeError: CUDA out of memory. Tried to allocate 160.00 MiB (GPU 0; 10.76 GiB total capacity; 2.37 GiB already allocated; 123.25 MiB free; 2.41 GiB reserved in total by PyTorch)
-j: 6 bis 10
+Epoch: [1 | 5] LR: 0.211024
+Epoch: [1][0/176]	Time 0.522 (0.522)	Data 0.261 (0.261)	Loss 3.3138 (3.3138)	Acc@1 11.930 (11.930)	Acc@5 55.088 (55.088)
+Epoch: [1][64/176]	Time 1.017 (0.570)	Data 0.000 (0.004)	Loss 2.7686 (3.1112)	Acc@1 17.193 (17.101)	Acc@5 81.404 (70.111)
+Epoch: [1][128/176]	Time 1.043 (0.799)	Data 0.000 (0.002)	Loss 2.6510 (2.9177)	Acc@1 20.702 (19.693)	Acc@5 80.000 (75.194)
+[INFO] Storing checkpoint...
+
+Epoch: [2 | 5] LR: 0.211024
+Epoch: [2][0/176]	Time 1.059 (1.059)	Data 0.316 (0.316)	Loss 2.5116 (2.5116)	Acc@1 24.211 (24.211)	Acc@5 84.561 (84.561)
+Epoch: [2][64/176]	Time 1.065 (1.057)	Data 0.000 (0.005)	Loss 2.4138 (2.4107)	Acc@1 30.877 (29.706)	Acc@5 85.965 (85.657)
+Epoch: [2][128/176]	Time 1.066 (1.061)	Data 0.000 (0.003)	Loss 2.2102 (2.3283)	Acc@1 33.684 (31.881)	Acc@5 87.719 (86.775)
+[INFO] Storing checkpoint...
+
+Epoch: [3 | 5] LR: 0.211024
+Epoch: [3][0/176]	Time 1.098 (1.098)	Data 0.309 (0.309)	Loss 2.0435 (2.0435)	Acc@1 41.754 (41.754)	Acc@5 92.982 (92.982)
+Epoch: [3][64/176]	Time 1.069 (1.074)	Data 0.000 (0.005)	Loss 1.8259 (1.9413)	Acc@1 45.965 (43.762)	Acc@5 92.982 (91.649)
+Epoch: [3][128/176]	Time 1.064 (1.069)	Data 0.000 (0.003)	Loss 1.7310 (1.8563)	Acc@1 50.877 (46.408)	Acc@5 93.684 (92.593)
+[INFO] Storing checkpoint...
+
+Epoch: [4 | 5] LR: 0.211024
+Epoch: [4][0/176]	Time 1.078 (1.078)	Data 0.320 (0.320)	Loss 1.6018 (1.6018)	Acc@1 52.632 (52.632)	Acc@5 95.789 (95.789)
+Epoch: [4][64/176]	Time 1.076 (1.067)	Data 0.000 (0.005)	Loss 1.5169 (1.4920)	Acc@1 59.649 (58.677)	Acc@5 96.842 (95.671)
+Epoch: [4][128/176]	Time 1.057 (1.062)	Data 0.000 (0.003)	Loss 1.3265 (1.4463)	Acc@1 65.614 (60.000)	Acc@5 96.842 (95.955)
+[INFO] Storing checkpoint...
+
+Epoch: [5 | 5] LR: 0.211024
+Epoch: [5][0/176]	Time 1.096 (1.096)	Data 0.505 (0.505)	Loss 1.2051 (1.2051)	Acc@1 67.018 (67.018)	Acc@5 97.895 (97.895)
+Epoch: [5][64/176]	Time 1.020 (1.051)	Data 0.000 (0.008)	Loss 1.3129 (1.2643)	Acc@1 63.509 (65.625)	Acc@5 97.895 (96.955)
+Epoch: [5][128/176]	Time 0.836 (1.012)	Data 0.000 (0.004)	Loss 1.1632 (1.2326)	Acc@1 70.526 (66.939)	Acc@5 98.596 (97.220)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  285
+  60.59
+Max memory: 102.54464
+ 177.249s  j: 6 bis 10
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 11 bis 15
+==> Resuming from checkpoint..
+count0: 487386
+sizeX: 5.0
+batch_size: 285 ; 341.54
+
+Epoch: [6 | 10] LR: 0.211024
+Epoch: [6][0/176]	Time 0.595 (0.595)	Data 0.463 (0.463)	Loss 1.2587 (1.2587)	Acc@1 69.123 (69.123)	Acc@5 96.842 (96.842)
+Epoch: [6][64/176]	Time 1.040 (0.631)	Data 0.000 (0.007)	Loss 1.1622 (1.1123)	Acc@1 68.421 (71.174)	Acc@5 97.895 (98.078)
+Epoch: [6][128/176]	Time 1.080 (0.840)	Data 0.000 (0.004)	Loss 1.1101 (1.1071)	Acc@1 72.632 (71.652)	Acc@5 98.246 (98.101)
+[INFO] Storing checkpoint...
+
+Epoch: [7 | 10] LR: 0.211024
+Epoch: [7][0/176]	Time 1.127 (1.127)	Data 0.576 (0.576)	Loss 1.1052 (1.1052)	Acc@1 71.579 (71.579)	Acc@5 98.596 (98.596)
+Epoch: [7][64/176]	Time 1.047 (1.057)	Data 0.000 (0.009)	Loss 1.0433 (1.0668)	Acc@1 71.579 (73.587)	Acc@5 98.947 (98.300)
+Epoch: [7][128/176]	Time 1.062 (1.055)	Data 0.000 (0.005)	Loss 1.0068 (1.0590)	Acc@1 76.140 (73.929)	Acc@5 98.947 (98.341)
+[INFO] Storing checkpoint...
+
+Epoch: [8 | 10] LR: 0.211024
+Epoch: [8][0/176]	Time 1.118 (1.118)	Data 0.564 (0.564)	Loss 1.0941 (1.0941)	Acc@1 72.632 (72.632)	Acc@5 97.544 (97.544)
+Epoch: [8][64/176]	Time 1.102 (1.047)	Data 0.000 (0.009)	Loss 1.0551 (1.0263)	Acc@1 74.737 (75.093)	Acc@5 98.246 (98.499)
+Epoch: [8][128/176]	Time 1.087 (1.048)	Data 0.000 (0.005)	Loss 1.0056 (1.0336)	Acc@1 76.491 (74.995)	Acc@5 98.947 (98.390)
+[INFO] Storing checkpoint...
+
+Epoch: [9 | 10] LR: 0.211024
+Epoch: [9][0/176]	Time 1.202 (1.202)	Data 0.483 (0.483)	Loss 0.9314 (0.9314)	Acc@1 77.544 (77.544)	Acc@5 98.246 (98.246)
+Epoch: [9][64/176]	Time 1.055 (1.046)	Data 0.000 (0.008)	Loss 0.9275 (0.9864)	Acc@1 80.000 (76.108)	Acc@5 98.596 (98.553)
+Epoch: [9][128/176]	Time 1.021 (1.050)	Data 0.000 (0.004)	Loss 1.0473 (0.9883)	Acc@1 73.684 (76.241)	Acc@5 98.596 (98.531)
+[INFO] Storing checkpoint...
+
+Epoch: [10 | 10] LR: 0.211024
+Epoch: [10][0/176]	Time 1.221 (1.221)	Data 0.459 (0.459)	Loss 1.0154 (1.0154)	Acc@1 77.193 (77.193)	Acc@5 98.596 (98.596)
+Epoch: [10][64/176]	Time 0.989 (1.035)	Data 0.000 (0.007)	Loss 1.1493 (0.9837)	Acc@1 73.333 (76.794)	Acc@5 97.895 (98.521)
+Epoch: [10][128/176]	Time 1.041 (0.978)	Data 0.000 (0.004)	Loss 0.8695 (0.9842)	Acc@1 79.649 (76.690)	Acc@5 99.649 (98.469)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 481894 ; 487386 ; 0.9887317239313398
+[INFO] Storing checkpoint...
+
+  285
+  54.08
+Max memory: 102.5445376
+ 176.262s  j: 11 bis 15
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 16 bis 20
+==> Resuming from checkpoint..
+count0: 481894
+sizeX: 4.94350724160632
+batch_size: 287 ; 338.5385397465438
+
+Epoch: [11 | 15] LR: 0.211763
+Epoch: [11][0/175]	Time 1.257 (1.257)	Data 0.598 (0.598)	Loss 0.9663 (0.9663)	Acc@1 77.352 (77.352)	Acc@5 98.258 (98.258)
+Epoch: [11][64/175]	Time 1.033 (0.523)	Data 0.000 (0.009)	Loss 0.8765 (0.9496)	Acc@1 79.791 (77.995)	Acc@5 99.303 (98.655)
+Epoch: [11][128/175]	Time 1.064 (0.783)	Data 0.000 (0.005)	Loss 0.7943 (0.9467)	Acc@1 82.578 (77.949)	Acc@5 99.303 (98.641)
+[INFO] Storing checkpoint...
+
+Epoch: [12 | 15] LR: 0.211763
+Epoch: [12][0/175]	Time 1.163 (1.163)	Data 0.531 (0.531)	Loss 1.0221 (1.0221)	Acc@1 73.519 (73.519)	Acc@5 97.561 (97.561)
+Epoch: [12][64/175]	Time 1.048 (1.046)	Data 0.000 (0.009)	Loss 0.9612 (0.9635)	Acc@1 75.958 (77.234)	Acc@5 98.606 (98.649)
+Epoch: [12][128/175]	Time 1.001 (1.043)	Data 0.000 (0.004)	Loss 0.9353 (0.9672)	Acc@1 81.185 (77.217)	Acc@5 97.909 (98.631)
+[INFO] Storing checkpoint...
+
+Epoch: [13 | 15] LR: 0.211763
+Epoch: [13][0/175]	Time 1.102 (1.102)	Data 0.522 (0.522)	Loss 0.9640 (0.9640)	Acc@1 76.307 (76.307)	Acc@5 97.909 (97.909)
+Epoch: [13][64/175]	Time 1.059 (1.041)	Data 0.000 (0.008)	Loss 0.9317 (0.9562)	Acc@1 75.958 (77.695)	Acc@5 99.303 (98.547)
+Epoch: [13][128/175]	Time 1.034 (1.044)	Data 0.000 (0.004)	Loss 0.8573 (0.9501)	Acc@1 80.836 (77.844)	Acc@5 98.606 (98.641)
+[INFO] Storing checkpoint...
+
+Epoch: [14 | 15] LR: 0.211763
+Epoch: [14][0/175]	Time 1.119 (1.119)	Data 0.431 (0.431)	Loss 0.8866 (0.8866)	Acc@1 78.049 (78.049)	Acc@5 99.303 (99.303)
+Epoch: [14][64/175]	Time 1.057 (1.037)	Data 0.000 (0.007)	Loss 0.9085 (0.9265)	Acc@1 77.352 (78.579)	Acc@5 99.652 (98.697)
+Epoch: [14][128/175]	Time 1.060 (1.043)	Data 0.000 (0.004)	Loss 0.9775 (0.9192)	Acc@1 79.094 (78.983)	Acc@5 98.258 (98.747)
+[INFO] Storing checkpoint...
+
+Epoch: [15 | 15] LR: 0.211763
+Epoch: [15][0/175]	Time 1.103 (1.103)	Data 0.518 (0.518)	Loss 0.9212 (0.9212)	Acc@1 78.049 (78.049)	Acc@5 97.909 (97.909)
+Epoch: [15][64/175]	Time 1.051 (1.027)	Data 0.000 (0.008)	Loss 0.8638 (0.9370)	Acc@1 83.624 (78.376)	Acc@5 97.909 (98.638)
+Epoch: [15][128/175]	Time 1.043 (0.982)	Data 0.000 (0.004)	Loss 0.9076 (0.9243)	Acc@1 80.488 (78.810)	Acc@5 98.606 (98.658)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 359480 ; 481894 ; 0.7459731808239987
+[INFO] Storing checkpoint...
+
+  287
+  74.84
+Max memory: 102.1287936
+ 175.570s  j: 16 bis 20
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 21 bis 25
+==> Resuming from checkpoint..
+count0: 359480
+sizeX: 3.6843112244897958
+batch_size: 358 ; 271.63745535714287
+
+Epoch: [16 | 20] LR: 0.236511
+Epoch: [16][0/140]	Time 1.519 (1.519)	Data 0.647 (0.647)	Loss 0.9027 (0.9027)	Acc@1 78.771 (78.771)	Acc@5 97.486 (97.486)
+Epoch: [16][64/140]	Time 1.062 (0.770)	Data 0.000 (0.011)	Loss 0.9918 (0.8708)	Acc@1 75.698 (80.185)	Acc@5 97.765 (98.835)
+Epoch: [16][128/140]	Time 1.094 (0.929)	Data 0.000 (0.006)	Loss 0.8240 (0.8785)	Acc@1 80.726 (79.797)	Acc@5 98.603 (98.855)
+[INFO] Storing checkpoint...
+
+Epoch: [17 | 20] LR: 0.236511
+Epoch: [17][0/140]	Time 1.169 (1.169)	Data 0.666 (0.666)	Loss 0.9169 (0.9169)	Acc@1 79.050 (79.050)	Acc@5 98.045 (98.045)
+Epoch: [17][64/140]	Time 1.083 (1.080)	Data 0.000 (0.011)	Loss 0.9203 (0.8939)	Acc@1 77.654 (79.532)	Acc@5 98.883 (98.818)
+Epoch: [17][128/140]	Time 1.064 (1.081)	Data 0.000 (0.005)	Loss 0.8742 (0.8848)	Acc@1 82.682 (79.914)	Acc@5 98.324 (98.859)
+[INFO] Storing checkpoint...
+
+Epoch: [18 | 20] LR: 0.236511
+Epoch: [18][0/140]	Time 1.069 (1.069)	Data 0.564 (0.564)	Loss 0.8307 (0.8307)	Acc@1 79.050 (79.050)	Acc@5 99.441 (99.441)
+Epoch: [18][64/140]	Time 1.114 (1.076)	Data 0.000 (0.009)	Loss 0.9050 (0.8815)	Acc@1 77.095 (79.824)	Acc@5 99.441 (98.840)
+Epoch: [18][128/140]	Time 1.122 (1.081)	Data 0.000 (0.005)	Loss 0.8666 (0.8795)	Acc@1 82.682 (80.036)	Acc@5 98.324 (98.833)
+[INFO] Storing checkpoint...
+
+Epoch: [19 | 20] LR: 0.236511
+Epoch: [19][0/140]	Time 1.117 (1.117)	Data 0.510 (0.510)	Loss 0.9243 (0.9243)	Acc@1 75.140 (75.140)	Acc@5 99.441 (99.441)
+Epoch: [19][64/140]	Time 1.079 (1.063)	Data 0.000 (0.008)	Loss 0.9486 (0.8816)	Acc@1 78.212 (79.502)	Acc@5 98.324 (98.904)
+Epoch: [19][128/140]	Time 1.072 (1.073)	Data 0.000 (0.004)	Loss 0.8040 (0.8765)	Acc@1 81.564 (79.836)	Acc@5 99.441 (98.919)
+[INFO] Storing checkpoint...
+
+Epoch: [20 | 20] LR: 0.236511
+Epoch: [20][0/140]	Time 1.214 (1.214)	Data 0.487 (0.487)	Loss 0.8118 (0.8118)	Acc@1 81.006 (81.006)	Acc@5 99.162 (99.162)
+Epoch: [20][64/140]	Time 0.872 (0.889)	Data 0.000 (0.008)	Loss 0.8383 (0.8557)	Acc@1 82.402 (80.615)	Acc@5 99.162 (98.797)
+Epoch: [20][128/140]	Time 1.095 (0.959)	Data 0.000 (0.004)	Loss 0.8930 (0.8735)	Acc@1 81.285 (79.958)	Acc@5 99.162 (98.766)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+
+ RM:  module.conv19.weight
+
+ RM:  module.conv20.weight
+
+ RM:  module.conv21.weight
+
+ RM:  module.conv22.weight
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(16, 15, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(15, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(15, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(16, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(14, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(16, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(14, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(16, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(14, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(16, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(6, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(32, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(30, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(30, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(32, 21, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(21, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(21, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(32, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(64, 63, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(63, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(63, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(64, 42, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(42, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(42, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(64, 49, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(49, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(49, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): Conv2d(64, 33, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (59): BatchNorm2d(33, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (60): Conv2d(33, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (61): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (62): AdaptiveAvgPool2d(output_size=(1, 1))
+    (63): Linear(in_features=64, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(16, 15, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(15, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(15, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(16, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(14, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(16, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(14, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(16, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(14, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(16, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(6, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(32, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(30, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(30, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(32, 21, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(21, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(21, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(64, 63, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(63, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(63, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(64, 42, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(42, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(42, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(64, 49, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(49, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(49, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(64, 33, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(33, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(33, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): AdaptiveAvgPool2d(output_size=(1, 1))
+    (59): Linear(in_features=64, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+Count: 280086 ; 359480 ; 0.7791420941359742
+[INFO] Storing checkpoint...
+
+  358
+  70.88
+Max memory: 97.2385792
+ 136.029s  j: 21 bis 25
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 26 bis 30
+==> Resuming from checkpoint..
+count0: 280086
+sizeX: 2.86763495720869
+batch_size: 427 ; 228.24744527649773
+
+Epoch: [21 | 25] LR: 0.258300
+Epoch: [21][0/118]	Time 2.250 (2.250)	Data 0.466 (0.466)	Loss 0.8780 (0.8780)	Acc@1 79.391 (79.391)	Acc@5 98.126 (98.126)
+Epoch: [21][64/118]	Time 1.011 (0.979)	Data 0.000 (0.007)	Loss 0.9350 (0.8315)	Acc@1 78.220 (81.387)	Acc@5 99.532 (98.995)
+[INFO] Storing checkpoint...
+
+Epoch: [22 | 25] LR: 0.258300
+Epoch: [22][0/118]	Time 1.067 (1.067)	Data 0.606 (0.606)	Loss 0.7733 (0.7733)	Acc@1 85.012 (85.012)	Acc@5 98.829 (98.829)
+Epoch: [22][64/118]	Time 1.015 (0.989)	Data 0.000 (0.010)	Loss 0.8324 (0.8895)	Acc@1 80.796 (79.690)	Acc@5 99.063 (98.775)
+[INFO] Storing checkpoint...
+
+Epoch: [23 | 25] LR: 0.258300
+Epoch: [23][0/118]	Time 1.013 (1.013)	Data 0.844 (0.844)	Loss 1.0006 (1.0006)	Acc@1 74.941 (74.941)	Acc@5 97.892 (97.892)
+Epoch: [23][64/118]	Time 0.982 (0.995)	Data 0.000 (0.013)	Loss 0.8697 (0.8659)	Acc@1 80.328 (80.555)	Acc@5 98.829 (98.847)
+[INFO] Storing checkpoint...
+
+Epoch: [24 | 25] LR: 0.258300
+Epoch: [24][0/118]	Time 1.173 (1.173)	Data 0.698 (0.698)	Loss 0.9222 (0.9222)	Acc@1 78.220 (78.220)	Acc@5 97.892 (97.892)
+Epoch: [24][64/118]	Time 0.798 (0.901)	Data 0.000 (0.011)	Loss 0.8789 (0.8629)	Acc@1 80.094 (80.533)	Acc@5 99.297 (98.930)
+[INFO] Storing checkpoint...
+
+Epoch: [25 | 25] LR: 0.258300
+Epoch: [25][0/118]	Time 0.860 (0.860)	Data 0.610 (0.610)	Loss 0.9543 (0.9543)	Acc@1 77.986 (77.986)	Acc@5 98.829 (98.829)
+Epoch: [25][64/118]	Time 0.810 (0.887)	Data 0.000 (0.010)	Loss 0.8063 (0.8657)	Acc@1 81.733 (80.634)	Acc@5 99.297 (98.916)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 250619 ; 280086 ; 0.89479302785573
+[INFO] Storing checkpoint...
+
+  427
+  66.49
+Max memory: 104.96896
+ 103.484s  j: 26 bis 30
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 31 bis 35
+==> Resuming from checkpoint..
+count0: 250619
+sizeX: 2.5645264154048717
+batch_size: 460 ; 212.14328845046083
+
+Epoch: [26 | 30] LR: 0.268095
+Epoch: [26][0/109]	Time 2.510 (2.510)	Data 0.514 (0.514)	Loss 0.8830 (0.8830)	Acc@1 80.217 (80.217)	Acc@5 98.261 (98.261)
+Epoch: [26][64/109]	Time 1.024 (0.903)	Data 0.000 (0.008)	Loss 0.8838 (0.7986)	Acc@1 82.391 (82.515)	Acc@5 98.478 (99.187)
+[INFO] Storing checkpoint...
+
+Epoch: [27 | 30] LR: 0.268095
+Epoch: [27][0/109]	Time 1.145 (1.145)	Data 0.575 (0.575)	Loss 0.8454 (0.8454)	Acc@1 79.348 (79.348)	Acc@5 99.130 (99.130)
+Epoch: [27][64/109]	Time 0.954 (0.992)	Data 0.000 (0.009)	Loss 0.7647 (0.8227)	Acc@1 82.391 (81.876)	Acc@5 100.000 (98.960)
+[INFO] Storing checkpoint...
+
+Epoch: [28 | 30] LR: 0.268095
+Epoch: [28][0/109]	Time 1.164 (1.164)	Data 0.837 (0.837)	Loss 0.8313 (0.8313)	Acc@1 80.435 (80.435)	Acc@5 99.565 (99.565)
+Epoch: [28][64/109]	Time 0.829 (0.915)	Data 0.000 (0.013)	Loss 0.9105 (0.8217)	Acc@1 77.826 (81.552)	Acc@5 98.043 (99.027)
+[INFO] Storing checkpoint...
+
+Epoch: [29 | 30] LR: 0.268095
+Epoch: [29][0/109]	Time 1.124 (1.124)	Data 0.599 (0.599)	Loss 0.8128 (0.8128)	Acc@1 81.739 (81.739)	Acc@5 99.348 (99.348)
+Epoch: [29][64/109]	Time 1.137 (0.992)	Data 0.000 (0.010)	Loss 0.9121 (0.8242)	Acc@1 77.609 (81.488)	Acc@5 98.913 (99.094)
+[INFO] Storing checkpoint...
+
+Epoch: [30 | 30] LR: 0.268095
+Epoch: [30][0/109]	Time 1.097 (1.097)	Data 0.667 (0.667)	Loss 0.7884 (0.7884)	Acc@1 82.174 (82.174)	Acc@5 99.783 (99.783)
+Epoch: [30][64/109]	Time 0.912 (0.975)	Data 0.000 (0.011)	Loss 0.8053 (0.8235)	Acc@1 80.000 (81.766)	Acc@5 98.478 (98.957)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 229257 ; 250619 ; 0.9147630466963798
+[INFO] Storing checkpoint...
+
+  460
+  74.23
+Max memory: 110.098176
+ 96.806s  j: 31 bis 35
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 36 bis 40
+==> Resuming from checkpoint..
+count0: 229257
+sizeX: 2.3447889236339696
+batch_size: 487 ; 200.46863551267282
+
+Epoch: [31 | 35] LR: 0.275851
+Epoch: [31][0/103]	Time 2.543 (2.543)	Data 0.751 (0.751)	Loss 0.7314 (0.7314)	Acc@1 83.778 (83.778)	Acc@5 99.795 (99.795)
+Epoch: [31][64/103]	Time 0.958 (1.021)	Data 0.000 (0.012)	Loss 0.7786 (0.7826)	Acc@1 82.957 (82.682)	Acc@5 99.384 (99.109)
+[INFO] Storing checkpoint...
+
+Epoch: [32 | 35] LR: 0.275851
+Epoch: [32][0/103]	Time 1.078 (1.078)	Data 0.561 (0.561)	Loss 0.7706 (0.7706)	Acc@1 81.725 (81.725)	Acc@5 99.589 (99.589)
+Epoch: [32][64/103]	Time 0.833 (0.919)	Data 0.000 (0.009)	Loss 0.8105 (0.7977)	Acc@1 81.930 (82.240)	Acc@5 99.384 (99.097)
+[INFO] Storing checkpoint...
+
+Epoch: [33 | 35] LR: 0.275851
+Epoch: [33][0/103]	Time 0.964 (0.964)	Data 0.651 (0.651)	Loss 0.7873 (0.7873)	Acc@1 84.189 (84.189)	Acc@5 98.973 (98.973)
+Epoch: [33][64/103]	Time 1.005 (1.013)	Data 0.000 (0.010)	Loss 0.8283 (0.8087)	Acc@1 80.698 (81.842)	Acc@5 98.973 (99.128)
+[INFO] Storing checkpoint...
+
+Epoch: [34 | 35] LR: 0.275851
+Epoch: [34][0/103]	Time 1.099 (1.099)	Data 0.570 (0.570)	Loss 0.7279 (0.7279)	Acc@1 83.368 (83.368)	Acc@5 99.179 (99.179)
+Epoch: [34][64/103]	Time 1.016 (1.008)	Data 0.000 (0.009)	Loss 0.7535 (0.8018)	Acc@1 83.162 (82.293)	Acc@5 99.589 (99.103)
+[INFO] Storing checkpoint...
+
+Epoch: [35 | 35] LR: 0.275851
+Epoch: [35][0/103]	Time 1.124 (1.124)	Data 0.659 (0.659)	Loss 0.7223 (0.7223)	Acc@1 83.984 (83.984)	Acc@5 99.179 (99.179)
+Epoch: [35][64/103]	Time 0.808 (0.956)	Data 0.000 (0.010)	Loss 0.7809 (0.8009)	Acc@1 83.162 (82.293)	Acc@5 99.589 (99.134)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 222919 ; 229257 ; 0.9723541702107242
+[INFO] Storing checkpoint...
+
+  487
+  71.84
+Max memory: 114.3453696
+ 94.707s  j: 36 bis 40
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 41 bis 45
+==> Resuming from checkpoint..
+count0: 222919
+sizeX: 2.2795938940092166
+batch_size: 495 ; 197.00482358870968
+
+Epoch: [36 | 40] LR: 0.278107
+Epoch: [36][0/102]	Time 2.321 (2.321)	Data 0.643 (0.643)	Loss 0.7141 (0.7141)	Acc@1 86.667 (86.667)	Acc@5 99.596 (99.596)
+Epoch: [36][64/102]	Time 0.836 (0.897)	Data 0.000 (0.010)	Loss 0.7883 (0.7734)	Acc@1 81.010 (83.027)	Acc@5 99.192 (99.092)
+[INFO] Storing checkpoint...
+
+Epoch: [37 | 40] LR: 0.278107
+Epoch: [37][0/102]	Time 1.098 (1.098)	Data 0.588 (0.588)	Loss 1.1211 (1.1211)	Acc@1 72.525 (72.525)	Acc@5 98.182 (98.182)
+Epoch: [37][64/102]	Time 0.986 (1.008)	Data 0.000 (0.009)	Loss 0.8616 (0.9678)	Acc@1 81.414 (77.492)	Acc@5 99.394 (98.474)
+[INFO] Storing checkpoint...
+
+Epoch: [38 | 40] LR: 0.278107
+Epoch: [38][0/102]	Time 1.206 (1.206)	Data 0.710 (0.710)	Loss 1.7799 (1.7799)	Acc@1 55.556 (55.556)	Acc@5 95.354 (95.354)
+Epoch: [38][64/102]	Time 1.065 (0.994)	Data 0.000 (0.011)	Loss 1.1690 (1.4570)	Acc@1 73.333 (63.363)	Acc@5 97.980 (95.751)
+[INFO] Storing checkpoint...
+
+Epoch: [39 | 40] LR: 0.278107
+Epoch: [39][0/102]	Time 1.178 (1.178)	Data 0.765 (0.765)	Loss 1.3620 (1.3620)	Acc@1 65.657 (65.657)	Acc@5 96.566 (96.566)
+Epoch: [39][64/102]	Time 1.000 (0.995)	Data 0.000 (0.012)	Loss 0.9730 (1.1075)	Acc@1 76.768 (74.073)	Acc@5 99.192 (98.185)
+[INFO] Storing checkpoint...
+
+Epoch: [40 | 40] LR: 0.278107
+Epoch: [40][0/102]	Time 1.168 (1.168)	Data 0.623 (0.623)	Loss 2.0668 (2.0668)	Acc@1 49.899 (49.899)	Acc@5 89.091 (89.091)
+Epoch: [40][64/102]	Time 0.744 (0.905)	Data 0.000 (0.010)	Loss 1.3359 (1.6474)	Acc@1 66.263 (58.347)	Acc@5 97.172 (93.989)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 220373 ; 222919 ; 0.9885788111376778
+[INFO] Storing checkpoint...
+
+  495
+  41.9
+Max memory: 114.63936
+ 88.302s  j: 41 bis 45
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 46 bis 50
+==> Resuming from checkpoint..
+count0: 220373
+sizeX: 2.253404789335089
+batch_size: 499 ; 195.61339645737328
+
+Epoch: [41 | 45] LR: 0.279229
+Epoch: [41][0/101]	Time 2.971 (2.971)	Data 0.783 (0.783)	Loss 1.5028 (1.5028)	Acc@1 64.128 (64.128)	Acc@5 97.595 (97.595)
+Epoch: [41][64/101]	Time 0.827 (0.956)	Data 0.000 (0.012)	Loss 1.1353 (1.1429)	Acc@1 74.349 (73.837)	Acc@5 98.998 (98.116)
+[INFO] Storing checkpoint...
+
+Epoch: [42 | 45] LR: 0.279229
+Epoch: [42][0/101]	Time 1.157 (1.157)	Data 0.771 (0.771)	Loss 1.0565 (1.0565)	Acc@1 74.950 (74.950)	Acc@5 98.998 (98.998)
+Epoch: [42][64/101]	Time 1.020 (1.016)	Data 0.000 (0.012)	Loss 0.9839 (0.9872)	Acc@1 75.551 (77.278)	Acc@5 98.196 (98.628)
+[INFO] Storing checkpoint...
+
+Epoch: [43 | 45] LR: 0.279229
+Epoch: [43][0/101]	Time 1.114 (1.114)	Data 0.667 (0.667)	Loss 0.9341 (0.9341)	Acc@1 79.559 (79.559)	Acc@5 98.196 (98.196)
+Epoch: [43][64/101]	Time 1.066 (1.023)	Data 0.000 (0.011)	Loss 0.8453 (0.9342)	Acc@1 82.164 (78.045)	Acc@5 98.798 (98.557)
+[INFO] Storing checkpoint...
+
+Epoch: [44 | 45] LR: 0.279229
+Epoch: [44][0/101]	Time 1.010 (1.010)	Data 0.800 (0.800)	Loss 0.8321 (0.8321)	Acc@1 79.359 (79.359)	Acc@5 99.800 (99.800)
+Epoch: [44][64/101]	Time 0.961 (0.999)	Data 0.000 (0.013)	Loss 0.8014 (0.8738)	Acc@1 81.363 (79.460)	Acc@5 98.798 (98.835)
+[INFO] Storing checkpoint...
+
+Epoch: [45 | 45] LR: 0.279229
+Epoch: [45][0/101]	Time 0.872 (0.872)	Data 0.482 (0.482)	Loss 0.7996 (0.7996)	Acc@1 82.565 (82.565)	Acc@5 98.798 (98.798)
+Epoch: [45][64/101]	Time 0.644 (0.667)	Data 0.000 (0.008)	Loss 0.7889 (0.8481)	Acc@1 81.964 (79.938)	Acc@5 98.597 (98.832)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 213570 ; 220373 ; 0.969129612066814
+[INFO] Storing checkpoint...
+
+  499
+  75.76
+Max memory: 114.9420544
+ 77.287s  j: 46 bis 50
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 51 bis 55
+==> Resuming from checkpoint..
+count0: 213570
+sizeX: 2.1834265964450297
+batch_size: 509 ; 191.89545506912444
+
+Epoch: [46 | 50] LR: 0.282013
+Epoch: [46][0/99]	Time 2.581 (2.581)	Data 0.730 (0.730)	Loss 0.7730 (0.7730)	Acc@1 80.943 (80.943)	Acc@5 98.625 (98.625)
+Epoch: [46][64/99]	Time 0.889 (1.011)	Data 0.000 (0.012)	Loss 0.8518 (0.8160)	Acc@1 80.354 (80.574)	Acc@5 98.821 (98.915)
+[INFO] Storing checkpoint...
+
+Epoch: [47 | 50] LR: 0.282013
+Epoch: [47][0/99]	Time 0.934 (0.934)	Data 0.691 (0.691)	Loss 0.8020 (0.8020)	Acc@1 81.139 (81.139)	Acc@5 98.428 (98.428)
+Epoch: [47][64/99]	Time 0.992 (1.016)	Data 0.000 (0.011)	Loss 0.7520 (0.8343)	Acc@1 83.104 (80.157)	Acc@5 99.214 (98.888)
+[INFO] Storing checkpoint...
+
+Epoch: [48 | 50] LR: 0.282013
+Epoch: [48][0/99]	Time 1.026 (1.026)	Data 0.902 (0.902)	Loss 0.8046 (0.8046)	Acc@1 82.515 (82.515)	Acc@5 99.214 (99.214)
+Epoch: [48][64/99]	Time 1.003 (0.992)	Data 0.000 (0.014)	Loss 0.8395 (0.8263)	Acc@1 78.782 (80.314)	Acc@5 98.625 (98.903)
+[INFO] Storing checkpoint...
+
+Epoch: [49 | 50] LR: 0.282013
+Epoch: [49][0/99]	Time 1.062 (1.062)	Data 0.853 (0.853)	Loss 0.7593 (0.7593)	Acc@1 83.301 (83.301)	Acc@5 99.411 (99.411)
+Epoch: [49][64/99]	Time 0.588 (0.908)	Data 0.000 (0.013)	Loss 0.8029 (0.8211)	Acc@1 82.711 (80.650)	Acc@5 98.625 (99.009)
+[INFO] Storing checkpoint...
+
+Epoch: [50 | 50] LR: 0.282013
+Epoch: [50][0/99]	Time 0.207 (0.207)	Data 0.480 (0.480)	Loss 0.8127 (0.8127)	Acc@1 78.782 (78.782)	Acc@5 99.411 (99.411)
+Epoch: [50][64/99]	Time 0.997 (0.749)	Data 0.000 (0.008)	Loss 0.8321 (0.8154)	Acc@1 78.585 (80.614)	Acc@5 99.411 (98.942)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 181657 ; 213570 ; 0.8505735824319895
+[INFO] Storing checkpoint...
+
+  509
+  75.41
+Max memory: 113.9017216
+ 84.289s  j: 51 bis 55
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 56 bis 60
+==> Resuming from checkpoint..
+count0: 181657
+sizeX: 1.8551575872284398
+batch_size: 560 ; 174.454522609447
+
+Epoch: [51 | 55] LR: 0.295804
+Epoch: [51][0/90]	Time 2.854 (2.854)	Data 0.677 (0.677)	Loss 0.8671 (0.8671)	Acc@1 80.357 (80.357)	Acc@5 98.929 (98.929)
+Epoch: [51][64/90]	Time 1.032 (1.052)	Data 0.000 (0.011)	Loss 0.8712 (0.7740)	Acc@1 78.571 (82.030)	Acc@5 98.750 (99.099)
+[INFO] Storing checkpoint...
+
+Epoch: [52 | 55] LR: 0.295804
+Epoch: [52][0/90]	Time 0.931 (0.931)	Data 0.701 (0.701)	Loss 0.8130 (0.8130)	Acc@1 81.250 (81.250)	Acc@5 98.929 (98.929)
+Epoch: [52][64/90]	Time 1.077 (0.902)	Data 0.000 (0.011)	Loss 0.8012 (0.7963)	Acc@1 82.143 (81.451)	Acc@5 98.929 (98.918)
+[INFO] Storing checkpoint...
+
+Epoch: [53 | 55] LR: 0.295804
+Epoch: [53][0/90]	Time 0.950 (0.950)	Data 0.704 (0.704)	Loss 0.7617 (0.7617)	Acc@1 83.214 (83.214)	Acc@5 98.929 (98.929)
+Epoch: [53][64/90]	Time 1.045 (1.006)	Data 0.000 (0.011)	Loss 0.8582 (0.8080)	Acc@1 77.679 (80.964)	Acc@5 98.750 (98.948)
+[INFO] Storing checkpoint...
+
+Epoch: [54 | 55] LR: 0.295804
+Epoch: [54][0/90]	Time 1.055 (1.055)	Data 0.658 (0.658)	Loss 0.8178 (0.8178)	Acc@1 80.714 (80.714)	Acc@5 99.286 (99.286)
+Epoch: [54][64/90]	Time 0.748 (0.803)	Data 0.000 (0.011)	Loss 0.7668 (0.7837)	Acc@1 82.500 (81.893)	Acc@5 98.750 (99.022)
+[INFO] Storing checkpoint...
+
+Epoch: [55 | 55] LR: 0.295804
+Epoch: [55][0/90]	Time 0.890 (0.890)	Data 0.626 (0.626)	Loss 0.7798 (0.7798)	Acc@1 80.357 (80.357)	Acc@5 99.286 (99.286)
+Epoch: [55][64/90]	Time 1.026 (0.968)	Data 0.000 (0.010)	Loss 0.7423 (0.7909)	Acc@1 82.321 (81.418)	Acc@5 99.286 (99.069)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 173584 ; 181657 ; 0.955559103144938
+[INFO] Storing checkpoint...
+
+  560
+  73.54
+Max memory: 117.2990976
+ 87.852s  j: 56 bis 60
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 61 bis 65
+==> Resuming from checkpoint..
+count0: 173584
+sizeX: 1.7721157011191573
+batch_size: 575 ; 170.04250720046082
+
+Epoch: [56 | 60] LR: 0.299739
+Epoch: [56][0/87]	Time 2.722 (2.722)	Data 0.814 (0.814)	Loss 0.7823 (0.7823)	Acc@1 82.957 (82.957)	Acc@5 99.478 (99.478)
+Epoch: [56][64/87]	Time 1.036 (1.032)	Data 0.000 (0.013)	Loss 0.7730 (0.7652)	Acc@1 83.130 (82.341)	Acc@5 99.304 (99.130)
+[INFO] Storing checkpoint...
+
+Epoch: [57 | 60] LR: 0.299739
+Epoch: [57][0/87]	Time 1.213 (1.213)	Data 0.732 (0.732)	Loss 0.7418 (0.7418)	Acc@1 81.739 (81.739)	Acc@5 99.478 (99.478)
+Epoch: [57][64/87]	Time 0.982 (0.996)	Data 0.000 (0.012)	Loss 0.7194 (0.7806)	Acc@1 83.304 (81.795)	Acc@5 98.957 (99.029)
+[INFO] Storing checkpoint...
+
+Epoch: [58 | 60] LR: 0.299739
+Epoch: [58][0/87]	Time 0.780 (0.780)	Data 0.793 (0.793)	Loss 0.6771 (0.6771)	Acc@1 86.957 (86.957)	Acc@5 99.478 (99.478)
+Epoch: [58][64/87]	Time 1.055 (0.843)	Data 0.000 (0.013)	Loss 0.8102 (0.7699)	Acc@1 81.565 (82.293)	Acc@5 99.304 (99.074)
+[INFO] Storing checkpoint...
+
+Epoch: [59 | 60] LR: 0.299739
+Epoch: [59][0/87]	Time 1.030 (1.030)	Data 0.627 (0.627)	Loss 0.7726 (0.7726)	Acc@1 81.391 (81.391)	Acc@5 99.130 (99.130)
+Epoch: [59][64/87]	Time 1.096 (0.890)	Data 0.000 (0.010)	Loss 0.8044 (0.7670)	Acc@1 82.435 (82.373)	Acc@5 98.783 (99.061)
+[INFO] Storing checkpoint...
+
+Epoch: [60 | 60] LR: 0.299739
+Epoch: [60][0/87]	Time 0.626 (0.626)	Data 0.682 (0.682)	Loss 0.7464 (0.7464)	Acc@1 83.130 (83.130)	Acc@5 99.652 (99.652)
+Epoch: [60][64/87]	Time 0.952 (0.892)	Data 0.000 (0.011)	Loss 0.7560 (0.7885)	Acc@1 83.478 (81.613)	Acc@5 99.304 (99.045)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 171315 ; 173584 ; 0.9869285187574892
+[INFO] Storing checkpoint...
+
+  575
+  64.69
+Max memory: 118.7169792
+ 81.445s  j: 61 bis 65
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 66 bis 70
+==> Resuming from checkpoint..
+count0: 171315
+sizeX: 1.7487759216589862
+batch_size: 579 ; 168.80246471774194
+
+Epoch: [61 | 65] LR: 0.300780
+Epoch: [61][0/87]	Time 2.826 (2.826)	Data 0.705 (0.705)	Loss 0.7460 (0.7460)	Acc@1 82.038 (82.038)	Acc@5 99.655 (99.655)
+Epoch: [61][64/87]	Time 1.013 (1.042)	Data 0.000 (0.011)	Loss 0.7607 (0.7525)	Acc@1 82.211 (82.846)	Acc@5 99.136 (99.091)
+[INFO] Storing checkpoint...
+
+Epoch: [62 | 65] LR: 0.300780
+Epoch: [62][0/87]	Time 1.239 (1.239)	Data 0.674 (0.674)	Loss 0.7700 (0.7700)	Acc@1 81.865 (81.865)	Acc@5 99.827 (99.827)
+Epoch: [62][64/87]	Time 0.832 (0.909)	Data 0.000 (0.011)	Loss 0.7746 (0.7716)	Acc@1 81.520 (82.009)	Acc@5 99.136 (99.065)
+[INFO] Storing checkpoint...
+
+Epoch: [63 | 65] LR: 0.300780
+Epoch: [63][0/87]	Time 1.103 (1.103)	Data 0.811 (0.811)	Loss 0.7856 (0.7856)	Acc@1 83.247 (83.247)	Acc@5 99.136 (99.136)
+Epoch: [63][64/87]	Time 0.782 (0.917)	Data 0.000 (0.013)	Loss 0.7284 (0.7640)	Acc@1 83.938 (82.468)	Acc@5 99.136 (99.142)
+[INFO] Storing checkpoint...
+
+Epoch: [64 | 65] LR: 0.300780
+Epoch: [64][0/87]	Time 0.781 (0.781)	Data 0.710 (0.710)	Loss 0.7560 (0.7560)	Acc@1 82.211 (82.211)	Acc@5 98.964 (98.964)
+Epoch: [64][64/87]	Time 1.119 (0.992)	Data 0.000 (0.011)	Loss 0.7246 (0.7705)	Acc@1 82.729 (82.051)	Acc@5 99.309 (99.166)
+[INFO] Storing checkpoint...
+
+Epoch: [65 | 65] LR: 0.300780
+Epoch: [65][0/87]	Time 0.982 (0.982)	Data 0.703 (0.703)	Loss 0.8258 (0.8258)	Acc@1 79.620 (79.620)	Acc@5 99.136 (99.136)
+Epoch: [65][64/87]	Time 1.000 (0.866)	Data 0.000 (0.011)	Loss 0.8014 (0.7706)	Acc@1 79.793 (82.163)	Acc@5 99.309 (99.147)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+
+ RM:  module.conv17.weight
+
+ RM:  module.conv18.weight
+
+ RM:  module.conv28.weight
+
+ RM:  module.conv29.weight
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(16, 11, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(11, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(11, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(16, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(6, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(16, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(5, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(16, 11, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(11, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(11, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(16, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(2, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(16, 21, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(21, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(21, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(30, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(16, 30, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(30, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(30, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(18, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(30, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(30, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(1, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(30, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(30, 55, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(55, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(55, 59, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(30, 59, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(59, 47, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(47, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(47, 59, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(59, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(1, 59, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(59, 22, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(22, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(22, 59, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): AdaptiveAvgPool2d(output_size=(1, 1))
+    (55): Linear(in_features=59, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(16, 11, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(11, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(11, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(16, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(6, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(16, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(5, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(16, 11, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(11, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(11, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(16, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(2, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(16, 21, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(21, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(21, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(30, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(16, 30, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(30, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(30, 18, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(18, 30, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(30, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(30, 55, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(55, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(55, 59, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(30, 59, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(59, 47, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(47, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(47, 59, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(59, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(1, 59, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(59, 22, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(22, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(22, 59, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): AdaptiveAvgPool2d(output_size=(1, 1))
+    (51): Linear(in_features=59, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+Count: 168051 ; 171315 ; 0.9809473776376849
+[INFO] Storing checkpoint...
+
+  579
+  60.74
+Max memory: 119.0210048
+ 79.463s  j: 66 bis 70
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 71 bis 75
+==> Resuming from checkpoint..
+count0: 168051
+sizeX: 1.7152012014483213
+batch_size: 586 ; 167.0186398329493
+
+Epoch: [66 | 70] LR: 0.302593
+Epoch: [66][0/86]	Time 2.534 (2.534)	Data 0.815 (0.815)	Loss 0.7511 (0.7511)	Acc@1 82.594 (82.594)	Acc@5 98.976 (98.976)
+Epoch: [66][64/86]	Time 0.876 (0.908)	Data 0.000 (0.013)	Loss 0.8391 (0.7460)	Acc@1 80.205 (82.856)	Acc@5 98.976 (99.218)
+[INFO] Storing checkpoint...
+
+Epoch: [67 | 70] LR: 0.302593
+Epoch: [67][0/86]	Time 0.827 (0.827)	Data 0.665 (0.665)	Loss 0.7402 (0.7402)	Acc@1 82.765 (82.765)	Acc@5 99.488 (99.488)
+Epoch: [67][64/86]	Time 1.018 (0.870)	Data 0.000 (0.011)	Loss 0.7702 (0.7822)	Acc@1 80.375 (81.748)	Acc@5 99.317 (99.060)
+[INFO] Storing checkpoint...
+
+Epoch: [68 | 70] LR: 0.302593
+Epoch: [68][0/86]	Time 1.001 (1.001)	Data 0.572 (0.572)	Loss 0.8043 (0.8043)	Acc@1 79.693 (79.693)	Acc@5 99.488 (99.488)
+Epoch: [68][64/86]	Time 0.894 (0.754)	Data 0.000 (0.010)	Loss 0.8192 (0.7616)	Acc@1 81.058 (82.575)	Acc@5 99.147 (99.063)
+[INFO] Storing checkpoint...
+
+Epoch: [69 | 70] LR: 0.302593
+Epoch: [69][0/86]	Time 1.033 (1.033)	Data 0.902 (0.902)	Loss 0.7536 (0.7536)	Acc@1 82.935 (82.935)	Acc@5 98.464 (98.464)
+Epoch: [69][64/86]	Time 0.876 (0.878)	Data 0.016 (0.015)	Loss 0.7613 (0.7550)	Acc@1 81.911 (82.820)	Acc@5 98.976 (99.160)
+[INFO] Storing checkpoint...
+
+Epoch: [70 | 70] LR: 0.302593
+Epoch: [70][0/86]	Time 0.729 (0.729)	Data 0.846 (0.846)	Loss 0.7919 (0.7919)	Acc@1 81.911 (81.911)	Acc@5 98.635 (98.635)
+Epoch: [70][64/86]	Time 0.736 (0.774)	Data 0.000 (0.013)	Loss 0.7185 (0.7608)	Acc@1 83.959 (82.536)	Acc@5 99.659 (99.173)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 167219 ; 168051 ; 0.9950491219927284
+[INFO] Storing checkpoint...
+
+  586
+  74.19
+Max memory: 116.267264
+ 69.512s  j: 71 bis 75
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 76 bis 80
+==> Resuming from checkpoint..
+count0: 167219
+sizeX: 1.706642939433838
+batch_size: 587 ; 166.56393937211982
+
+Epoch: [71 | 75] LR: 0.302851
+Epoch: [71][0/86]	Time 2.598 (2.598)	Data 0.783 (0.783)	Loss 0.7188 (0.7188)	Acc@1 84.838 (84.838)	Acc@5 99.659 (99.659)
+Epoch: [71][64/86]	Time 0.730 (0.833)	Data 0.000 (0.012)	Loss 0.8264 (0.7295)	Acc@1 80.750 (83.635)	Acc@5 98.978 (99.167)
+[INFO] Storing checkpoint...
+
+Epoch: [72 | 75] LR: 0.302851
+Epoch: [72][0/86]	Time 0.897 (0.897)	Data 1.048 (1.048)	Loss 0.7424 (0.7424)	Acc@1 83.305 (83.305)	Acc@5 98.637 (98.637)
+Epoch: [72][64/86]	Time 0.889 (0.895)	Data 0.000 (0.017)	Loss 0.7438 (0.7709)	Acc@1 83.475 (82.249)	Acc@5 99.319 (99.067)
+[INFO] Storing checkpoint...
+
+Epoch: [73 | 75] LR: 0.302851
+Epoch: [73][0/86]	Time 0.840 (0.840)	Data 0.638 (0.638)	Loss 0.7301 (0.7301)	Acc@1 83.305 (83.305)	Acc@5 99.659 (99.659)
+Epoch: [73][64/86]	Time 0.875 (0.765)	Data 0.000 (0.010)	Loss 0.7640 (0.7789)	Acc@1 81.772 (82.071)	Acc@5 99.148 (99.022)
+[INFO] Storing checkpoint...
+
+Epoch: [74 | 75] LR: 0.302851
+Epoch: [74][0/86]	Time 1.018 (1.018)	Data 0.778 (0.778)	Loss 0.7444 (0.7444)	Acc@1 84.497 (84.497)	Acc@5 98.637 (98.637)
+Epoch: [74][64/86]	Time 0.943 (0.898)	Data 0.000 (0.012)	Loss 0.6979 (0.7666)	Acc@1 84.327 (82.521)	Acc@5 99.489 (99.083)
+[INFO] Storing checkpoint...
+
+Epoch: [75 | 75] LR: 0.302851
+Epoch: [75][0/86]	Time 0.984 (0.984)	Data 0.725 (0.725)	Loss 0.8372 (0.8372)	Acc@1 79.387 (79.387)	Acc@5 99.148 (99.148)
+Epoch: [75][64/86]	Time 0.912 (0.892)	Data 0.000 (0.011)	Loss 0.7876 (0.7714)	Acc@1 81.942 (82.364)	Acc@5 99.319 (99.127)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 166929 ; 167219 ; 0.9982657473134033
+[INFO] Storing checkpoint...
+
+  587
+  71.37
+Max memory: 116.0073216
+ 77.542s  j: 76 bis 80
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 81 bis 85
+==> Resuming from checkpoint..
+count0: 166929
+sizeX: 1.7036598913759051
+batch_size: 588 ; 166.40545002880185
+
+Epoch: [76 | 80] LR: 0.303109
+Epoch: [76][0/86]	Time 1.880 (1.880)	Data 0.862 (0.862)	Loss 0.7625 (0.7625)	Acc@1 81.973 (81.973)	Acc@5 98.469 (98.469)
+Epoch: [76][64/86]	Time 0.460 (0.562)	Data 0.000 (0.014)	Loss 0.8142 (0.7291)	Acc@1 82.143 (83.671)	Acc@5 99.490 (99.181)
+[INFO] Storing checkpoint...
+
+Epoch: [77 | 80] LR: 0.303109
+Epoch: [77][0/86]	Time 0.935 (0.935)	Data 0.880 (0.880)	Loss 0.9601 (0.9601)	Acc@1 76.531 (76.531)	Acc@5 98.980 (98.980)
+Epoch: [77][64/86]	Time 0.408 (0.901)	Data 0.000 (0.014)	Loss 0.8699 (0.9348)	Acc@1 79.592 (77.478)	Acc@5 98.810 (98.506)
+[INFO] Storing checkpoint...
+
+Epoch: [78 | 80] LR: 0.303109
+Epoch: [78][0/86]	Time 0.736 (0.736)	Data 0.712 (0.712)	Loss 1.0113 (1.0113)	Acc@1 75.850 (75.850)	Acc@5 98.469 (98.469)
+Epoch: [78][64/86]	Time 0.895 (0.776)	Data 0.000 (0.011)	Loss 0.7937 (0.8972)	Acc@1 81.973 (78.820)	Acc@5 99.150 (98.791)
+[INFO] Storing checkpoint...
+
+Epoch: [79 | 80] LR: 0.303109
+Epoch: [79][0/86]	Time 0.912 (0.912)	Data 0.919 (0.919)	Loss 0.8055 (0.8055)	Acc@1 80.952 (80.952)	Acc@5 99.150 (99.150)
+Epoch: [79][64/86]	Time 0.773 (0.891)	Data 0.000 (0.015)	Loss 0.7249 (0.8240)	Acc@1 84.694 (81.290)	Acc@5 99.660 (98.925)
+[INFO] Storing checkpoint...
+
+Epoch: [80 | 80] LR: 0.303109
+Epoch: [80][0/86]	Time 0.877 (0.877)	Data 0.927 (0.927)	Loss 0.9530 (0.9530)	Acc@1 78.061 (78.061)	Acc@5 98.469 (98.469)
+Epoch: [80][64/86]	Time 0.776 (0.880)	Data 0.000 (0.015)	Loss 0.8387 (0.8931)	Acc@1 81.122 (79.066)	Acc@5 99.150 (98.731)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 166513 ; 166929 ; 0.9975079225299379
+[INFO] Storing checkpoint...
+
+  588
+  58.99
+Max memory: 115.6597248
+ 76.994s  j: 81 bis 85
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 86 bis 90
+==> Resuming from checkpoint..
+count0: 166513
+sizeX: 1.6993807603686637
+batch_size: 589 ; 166.1780997983871
+
+Epoch: [81 | 85] LR: 0.303367
+Epoch: [81][0/85]	Time 2.644 (2.644)	Data 0.874 (0.874)	Loss 0.9753 (0.9753)	Acc@1 76.910 (76.910)	Acc@5 98.642 (98.642)
+Epoch: [81][64/85]	Time 0.673 (0.792)	Data 0.005 (0.014)	Loss 0.8003 (0.7609)	Acc@1 81.664 (82.850)	Acc@5 98.642 (99.201)
+[INFO] Storing checkpoint...
+
+Epoch: [82 | 85] LR: 0.303367
+Epoch: [82][0/85]	Time 0.906 (0.906)	Data 0.696 (0.696)	Loss 0.7927 (0.7927)	Acc@1 80.645 (80.645)	Acc@5 98.642 (98.642)
+Epoch: [82][64/85]	Time 0.190 (0.719)	Data 0.000 (0.011)	Loss 0.7349 (0.7460)	Acc@1 85.569 (83.106)	Acc@5 99.151 (99.196)
+[INFO] Storing checkpoint...
+
+Epoch: [83 | 85] LR: 0.303367
+Epoch: [83][0/85]	Time 0.645 (0.645)	Data 0.658 (0.658)	Loss 0.6965 (0.6965)	Acc@1 83.192 (83.192)	Acc@5 99.491 (99.491)
+Epoch: [83][64/85]	Time 0.922 (0.717)	Data 0.000 (0.010)	Loss 0.7587 (0.7354)	Acc@1 83.362 (83.390)	Acc@5 98.812 (99.222)
+[INFO] Storing checkpoint...
+
+Epoch: [84 | 85] LR: 0.303367
+Epoch: [84][0/85]	Time 1.052 (1.052)	Data 0.755 (0.755)	Loss 0.7326 (0.7326)	Acc@1 83.871 (83.871)	Acc@5 99.151 (99.151)
+Epoch: [84][64/85]	Time 0.984 (0.892)	Data 0.000 (0.012)	Loss 0.7770 (0.7638)	Acc@1 81.324 (82.299)	Acc@5 99.151 (99.122)
+[INFO] Storing checkpoint...
+
+Epoch: [85 | 85] LR: 0.303367
+Epoch: [85][0/85]	Time 0.814 (0.814)	Data 0.626 (0.626)	Loss 0.7414 (0.7414)	Acc@1 82.173 (82.173)	Acc@5 99.491 (99.491)
+Epoch: [85][64/85]	Time 0.913 (0.865)	Data 0.000 (0.010)	Loss 0.8081 (0.7523)	Acc@1 79.966 (82.724)	Acc@5 100.000 (99.188)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 165449 ; 166513 ; 0.9936101085200555
+[INFO] Storing checkpoint...
+
+  589
+  72.19
+Max memory: 115.808256
+ 74.471s  j: 86 bis 90
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 91 bis 95
+==> Resuming from checkpoint..
+count0: 165449
+sizeX: 1.688436059907834
+batch_size: 591 ; 165.59660786290323
+
+Epoch: [86 | 90] LR: 0.303881
+Epoch: [86][0/85]	Time 2.485 (2.485)	Data 0.601 (0.601)	Loss 0.7087 (0.7087)	Acc@1 84.433 (84.433)	Acc@5 99.323 (99.323)
+Epoch: [86][64/85]	Time 0.895 (0.786)	Data 0.000 (0.010)	Loss 0.7261 (0.7210)	Acc@1 83.926 (83.777)	Acc@5 98.985 (99.279)
+[INFO] Storing checkpoint...
+
+Epoch: [87 | 90] LR: 0.303881
+Epoch: [87][0/85]	Time 0.917 (0.917)	Data 0.869 (0.869)	Loss 0.7296 (0.7296)	Acc@1 83.926 (83.926)	Acc@5 99.154 (99.154)
+Epoch: [87][64/85]	Time 0.952 (0.892)	Data 0.000 (0.014)	Loss 0.7309 (0.7593)	Acc@1 83.249 (82.694)	Acc@5 99.492 (99.123)
+[INFO] Storing checkpoint...
+
+Epoch: [88 | 90] LR: 0.303881
+Epoch: [88][0/85]	Time 0.839 (0.839)	Data 0.711 (0.711)	Loss 0.6652 (0.6652)	Acc@1 85.618 (85.618)	Acc@5 99.492 (99.492)
+Epoch: [88][64/85]	Time 0.718 (0.754)	Data 0.000 (0.011)	Loss 0.7321 (0.7560)	Acc@1 83.926 (82.892)	Acc@5 99.323 (99.146)
+[INFO] Storing checkpoint...
+
+Epoch: [89 | 90] LR: 0.303881
+Epoch: [89][0/85]	Time 0.847 (0.847)	Data 0.701 (0.701)	Loss 0.6871 (0.6871)	Acc@1 85.956 (85.956)	Acc@5 99.662 (99.662)
+Epoch: [89][64/85]	Time 0.730 (0.794)	Data 0.000 (0.011)	Loss 0.7721 (0.7485)	Acc@1 82.741 (82.887)	Acc@5 98.985 (99.201)
+[INFO] Storing checkpoint...
+
+Epoch: [90 | 90] LR: 0.303881
+Epoch: [90][0/85]	Time 0.956 (0.956)	Data 0.697 (0.697)	Loss 0.7036 (0.7036)	Acc@1 84.433 (84.433)	Acc@5 99.323 (99.323)
+Epoch: [90][64/85]	Time 0.814 (0.873)	Data 0.000 (0.011)	Loss 0.7473 (0.7388)	Acc@1 82.064 (83.095)	Acc@5 98.646 (99.164)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 165033 ; 165449 ; 0.997485630012874
+[INFO] Storing checkpoint...
+
+  591
+  64.54
+Max memory: 115.7739008
+ 75.330s  j: 91 bis 95
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 96 bis 100
+==> Resuming from checkpoint..
+count0: 165033
+sizeX: 1.6841569289005924
+batch_size: 591 ; 165.36925763248848
+
+Epoch: [91 | 95] LR: 0.303881
+Epoch: [91][0/85]	Time 2.319 (2.319)	Data 0.785 (0.785)	Loss 0.7335 (0.7335)	Acc@1 83.756 (83.756)	Acc@5 99.492 (99.492)
+Epoch: [91][64/85]	Time 0.931 (0.812)	Data 0.000 (0.012)	Loss 0.8131 (0.7322)	Acc@1 82.403 (83.361)	Acc@5 98.646 (99.196)
+[INFO] Storing checkpoint...
+
+Epoch: [92 | 95] LR: 0.303881
+Epoch: [92][0/85]	Time 0.964 (0.964)	Data 0.861 (0.861)	Loss 0.7193 (0.7193)	Acc@1 85.110 (85.110)	Acc@5 98.477 (98.477)
+Epoch: [92][64/85]	Time 0.862 (0.894)	Data 0.000 (0.014)	Loss 0.7133 (0.7464)	Acc@1 84.095 (82.949)	Acc@5 99.662 (99.196)
+[INFO] Storing checkpoint...
+
+Epoch: [93 | 95] LR: 0.030388
+Epoch: [93][0/85]	Time 0.828 (0.828)	Data 0.596 (0.596)	Loss 0.7794 (0.7794)	Acc@1 81.387 (81.387)	Acc@5 98.816 (98.816)
+Epoch: [93][64/85]	Time 0.877 (0.784)	Data 0.000 (0.010)	Loss 0.5720 (0.6313)	Acc@1 88.325 (86.984)	Acc@5 99.662 (99.487)
+[INFO] Storing checkpoint...
+
+Epoch: [94 | 95] LR: 0.003039
+Epoch: [94][0/85]	Time 0.969 (0.969)	Data 0.664 (0.664)	Loss 0.5726 (0.5726)	Acc@1 89.171 (89.171)	Acc@5 99.831 (99.831)
+Epoch: [94][64/85]	Time 0.899 (0.744)	Data 0.000 (0.011)	Loss 0.5393 (0.5603)	Acc@1 90.186 (89.507)	Acc@5 99.831 (99.703)
+[INFO] Storing checkpoint...
+
+Epoch: [95 | 95] LR: 0.000304
+Epoch: [95][0/85]	Time 0.878 (0.878)	Data 0.720 (0.720)	Loss 0.5607 (0.5607)	Acc@1 88.156 (88.156)	Acc@5 99.831 (99.831)
+Epoch: [95][64/85]	Time 0.937 (0.889)	Data 0.000 (0.012)	Loss 0.5336 (0.5533)	Acc@1 90.863 (89.449)	Acc@5 99.323 (99.677)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 164617 ; 165033 ; 0.9974792920203838
+[INFO] Storing checkpoint...
+
+  591
+  87.88
+Max memory: 115.5163136
+ 76.092s  j: 96 bis 100
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 101 bis 105
+==> Resuming from checkpoint..
+count0: 164617
+sizeX: 1.6798777978933508
+batch_size: 592 ; 165.14190740207374
+
+Epoch: [96 | 100] LR: 0.030414
+Epoch: [96][0/85]	Time 2.049 (2.049)	Data 0.700 (0.700)	Loss 0.5672 (0.5672)	Acc@1 89.020 (89.020)	Acc@5 99.493 (99.493)
+Epoch: [96][64/85]	Time 0.893 (0.887)	Data 0.000 (0.011)	Loss 0.5397 (0.5489)	Acc@1 89.189 (89.704)	Acc@5 99.831 (99.662)
+[INFO] Storing checkpoint...
+
+Epoch: [97 | 100] LR: 0.003041
+Epoch: [97][0/85]	Time 1.109 (1.109)	Data 0.667 (0.667)	Loss 0.5613 (0.5613)	Acc@1 89.527 (89.527)	Acc@5 99.493 (99.493)
+Epoch: [97][64/85]	Time 0.813 (0.866)	Data 0.000 (0.011)	Loss 0.5554 (0.5260)	Acc@1 88.345 (90.309)	Acc@5 99.831 (99.688)
+[INFO] Storing checkpoint...
+
+Epoch: [98 | 100] LR: 0.000304
+Epoch: [98][0/85]	Time 0.694 (0.694)	Data 0.849 (0.849)	Loss 0.5402 (0.5402)	Acc@1 89.865 (89.865)	Acc@5 99.493 (99.493)
+Epoch: [98][64/85]	Time 0.880 (0.857)	Data 0.000 (0.013)	Loss 0.5176 (0.5201)	Acc@1 89.527 (90.416)	Acc@5 99.831 (99.714)
+[INFO] Storing checkpoint...
+
+Epoch: [99 | 100] LR: 0.000030
+Epoch: [99][0/85]	Time 0.982 (0.982)	Data 0.787 (0.787)	Loss 0.5593 (0.5593)	Acc@1 89.865 (89.865)	Acc@5 99.324 (99.324)
+Epoch: [99][64/85]	Time 0.858 (0.785)	Data 0.005 (0.012)	Loss 0.5086 (0.5161)	Acc@1 91.892 (90.512)	Acc@5 100.000 (99.730)
+[INFO] Storing checkpoint...
+
+Epoch: [100 | 100] LR: 0.000003
+Epoch: [100][0/85]	Time 0.900 (0.900)	Data 0.853 (0.853)	Loss 0.4979 (0.4979)	Acc@1 90.372 (90.372)	Acc@5 99.493 (99.493)
+Epoch: [100][64/85]	Time 0.867 (0.893)	Data 0.000 (0.014)	Loss 0.5180 (0.5191)	Acc@1 91.047 (90.421)	Acc@5 99.493 (99.730)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  592
+  88.25
+Max memory: 115.6926464
+ 76.160s  j: 101 bis 105
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 106 bis 110
+==> Resuming from checkpoint..
+count0: 164617
+sizeX: 1.6798777978933508
+batch_size: 592 ; 165.14190740207374
+
+Epoch: [101 | 105] LR: 0.030414
+Epoch: [101][0/85]	Time 2.945 (2.945)	Data 0.772 (0.772)	Loss 0.4747 (0.4747)	Acc@1 92.568 (92.568)	Acc@5 100.000 (100.000)
+Epoch: [101][64/85]	Time 0.838 (0.918)	Data 0.000 (0.012)	Loss 0.4874 (0.5229)	Acc@1 91.554 (90.327)	Acc@5 99.662 (99.688)
+[INFO] Storing checkpoint...
+
+Epoch: [102 | 105] LR: 0.003041
+Epoch: [102][0/85]	Time 0.881 (0.881)	Data 0.493 (0.493)	Loss 0.5740 (0.5740)	Acc@1 86.993 (86.993)	Acc@5 99.831 (99.831)
+Epoch: [102][64/85]	Time 0.792 (0.734)	Data 0.000 (0.008)	Loss 0.4874 (0.4995)	Acc@1 90.709 (90.886)	Acc@5 100.000 (99.748)
+[INFO] Storing checkpoint...
+
+Epoch: [103 | 105] LR: 0.000304
+Epoch: [103][0/85]	Time 0.971 (0.971)	Data 0.732 (0.732)	Loss 0.5554 (0.5554)	Acc@1 89.696 (89.696)	Acc@5 99.662 (99.662)
+Epoch: [103][64/85]	Time 0.833 (0.912)	Data 0.000 (0.012)	Loss 0.4862 (0.4964)	Acc@1 90.541 (91.156)	Acc@5 99.831 (99.745)
+[INFO] Storing checkpoint...
+
+Epoch: [104 | 105] LR: 0.000030
+Epoch: [104][0/85]	Time 1.183 (1.183)	Data 0.689 (0.689)	Loss 0.4916 (0.4916)	Acc@1 91.723 (91.723)	Acc@5 100.000 (100.000)
+Epoch: [104][64/85]	Time 0.777 (0.886)	Data 0.000 (0.011)	Loss 0.4380 (0.4922)	Acc@1 93.919 (91.364)	Acc@5 99.831 (99.730)
+[INFO] Storing checkpoint...
+
+Epoch: [105 | 105] LR: 0.000003
+Epoch: [105][0/85]	Time 0.781 (0.781)	Data 0.862 (0.862)	Loss 0.5269 (0.5269)	Acc@1 89.358 (89.358)	Acc@5 99.831 (99.831)
+Epoch: [105][64/85]	Time 0.751 (0.855)	Data 0.000 (0.014)	Loss 0.4504 (0.4944)	Acc@1 92.736 (91.177)	Acc@5 100.000 (99.743)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  592
+  88.72
+Max memory: 115.6926464
+ 73.592s  j: 106 bis 110
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 111 bis 115
+==> Resuming from checkpoint..
+count0: 164617
+sizeX: 1.6798777978933508
+batch_size: 592 ; 165.14190740207374
+
+Epoch: [106 | 110] LR: 0.030414
+Epoch: [106][0/85]	Time 2.679 (2.679)	Data 0.724 (0.724)	Loss 0.5032 (0.5032)	Acc@1 90.541 (90.541)	Acc@5 99.493 (99.493)
+Epoch: [106][64/85]	Time 0.864 (0.919)	Data 0.000 (0.012)	Loss 0.4600 (0.5029)	Acc@1 92.905 (90.785)	Acc@5 99.831 (99.719)
+[INFO] Storing checkpoint...
+
+Epoch: [107 | 110] LR: 0.003041
+Epoch: [107][0/85]	Time 0.936 (0.936)	Data 0.601 (0.601)	Loss 0.5126 (0.5126)	Acc@1 90.203 (90.203)	Acc@5 99.662 (99.662)
+Epoch: [107][64/85]	Time 0.494 (0.830)	Data 0.000 (0.010)	Loss 0.4700 (0.4851)	Acc@1 92.568 (91.318)	Acc@5 99.324 (99.751)
+[INFO] Storing checkpoint...
+
+Epoch: [108 | 110] LR: 0.000304
+Epoch: [108][0/85]	Time 0.698 (0.698)	Data 0.677 (0.677)	Loss 0.4712 (0.4712)	Acc@1 92.399 (92.399)	Acc@5 99.831 (99.831)
+Epoch: [108][64/85]	Time 0.467 (0.834)	Data 0.000 (0.011)	Loss 0.4704 (0.4761)	Acc@1 90.541 (91.564)	Acc@5 99.831 (99.748)
+[INFO] Storing checkpoint...
+
+Epoch: [109 | 110] LR: 0.000030
+Epoch: [109][0/85]	Time 0.720 (0.720)	Data 0.666 (0.666)	Loss 0.5155 (0.5155)	Acc@1 90.034 (90.034)	Acc@5 99.662 (99.662)
+Epoch: [109][64/85]	Time 0.895 (0.888)	Data 0.000 (0.011)	Loss 0.4247 (0.4779)	Acc@1 93.412 (91.518)	Acc@5 100.000 (99.779)
+[INFO] Storing checkpoint...
+
+Epoch: [110 | 110] LR: 0.000003
+Epoch: [110][0/85]	Time 0.707 (0.707)	Data 0.862 (0.862)	Loss 0.4649 (0.4649)	Acc@1 93.412 (93.412)	Acc@5 99.324 (99.324)
+Epoch: [110][64/85]	Time 0.881 (0.774)	Data 0.000 (0.014)	Loss 0.4552 (0.4778)	Acc@1 92.736 (91.429)	Acc@5 99.831 (99.751)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  592
+  88.92
+Max memory: 115.6926464
+ 68.365s  j: 111 bis 115
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 116 bis 120
+==> Resuming from checkpoint..
+count0: 164617
+sizeX: 1.6798777978933508
+batch_size: 592 ; 165.14190740207374
+
+Epoch: [111 | 115] LR: 0.030414
+Epoch: [111][0/85]	Time 2.743 (2.743)	Data 0.845 (0.845)	Loss 0.4970 (0.4970)	Acc@1 91.385 (91.385)	Acc@5 100.000 (100.000)
+Epoch: [111][64/85]	Time 0.880 (0.921)	Data 0.000 (0.013)	Loss 0.5725 (0.4899)	Acc@1 88.514 (91.042)	Acc@5 99.662 (99.753)
+[INFO] Storing checkpoint...
+
+Epoch: [112 | 115] LR: 0.003041
+Epoch: [112][0/85]	Time 0.618 (0.618)	Data 0.783 (0.783)	Loss 0.4715 (0.4715)	Acc@1 91.723 (91.723)	Acc@5 99.831 (99.831)
+Epoch: [112][64/85]	Time 0.754 (0.817)	Data 0.000 (0.012)	Loss 0.4445 (0.4667)	Acc@1 92.905 (91.658)	Acc@5 99.831 (99.782)
+[INFO] Storing checkpoint...
+
+Epoch: [113 | 115] LR: 0.000304
+Epoch: [113][0/85]	Time 1.135 (1.135)	Data 0.711 (0.711)	Loss 0.4661 (0.4661)	Acc@1 90.034 (90.034)	Acc@5 100.000 (100.000)
+Epoch: [113][64/85]	Time 0.869 (0.894)	Data 0.000 (0.011)	Loss 0.5042 (0.4619)	Acc@1 91.723 (91.780)	Acc@5 100.000 (99.813)
+[INFO] Storing checkpoint...
+
+Epoch: [114 | 115] LR: 0.000030
+Epoch: [114][0/85]	Time 0.821 (0.821)	Data 0.959 (0.959)	Loss 0.4566 (0.4566)	Acc@1 92.061 (92.061)	Acc@5 100.000 (100.000)
+Epoch: [114][64/85]	Time 0.910 (0.895)	Data 0.000 (0.015)	Loss 0.4358 (0.4607)	Acc@1 93.581 (91.853)	Acc@5 100.000 (99.800)
+[INFO] Storing checkpoint...
+
+Epoch: [115 | 115] LR: 0.000003
+Epoch: [115][0/85]	Time 0.833 (0.833)	Data 0.598 (0.598)	Loss 0.4206 (0.4206)	Acc@1 92.905 (92.905)	Acc@5 100.000 (100.000)
+Epoch: [115][64/85]	Time 0.652 (0.696)	Data 0.000 (0.010)	Loss 0.4548 (0.4575)	Acc@1 93.074 (92.017)	Acc@5 100.000 (99.805)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  592
+  88.97
+Max memory: 115.6926464
+ 56.887s  j: 116 bis 120
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 121 bis 125
+==> Resuming from checkpoint..
+count0: 164617
+sizeX: 1.6798777978933508
+batch_size: 592 ; 165.14190740207374
+
+Epoch: [116 | 120] LR: 0.030414
+Epoch: [116][0/85]	Time 2.592 (2.592)	Data 0.812 (0.812)	Loss 0.5173 (0.5173)	Acc@1 89.865 (89.865)	Acc@5 99.662 (99.662)
+Epoch: [116][64/85]	Time 0.830 (0.894)	Data 0.000 (0.013)	Loss 0.4758 (0.4730)	Acc@1 91.216 (91.515)	Acc@5 99.493 (99.782)
+[INFO] Storing checkpoint...
+
+Epoch: [117 | 120] LR: 0.003041
+Epoch: [117][0/85]	Time 0.897 (0.897)	Data 0.530 (0.530)	Loss 0.4209 (0.4209)	Acc@1 93.243 (93.243)	Acc@5 100.000 (100.000)
+Epoch: [117][64/85]	Time 0.731 (0.830)	Data 0.000 (0.009)	Loss 0.4627 (0.4554)	Acc@1 91.047 (91.941)	Acc@5 99.831 (99.790)
+[INFO] Storing checkpoint...
+
+Epoch: [118 | 120] LR: 0.000304
+Epoch: [118][0/85]	Time 0.847 (0.847)	Data 0.737 (0.737)	Loss 0.4530 (0.4530)	Acc@1 92.230 (92.230)	Acc@5 99.831 (99.831)
+Epoch: [118][64/85]	Time 0.711 (0.890)	Data 0.000 (0.012)	Loss 0.4742 (0.4456)	Acc@1 90.372 (92.313)	Acc@5 99.662 (99.774)
+[INFO] Storing checkpoint...
+
+Epoch: [119 | 120] LR: 0.000030
+Epoch: [119][0/85]	Time 1.050 (1.050)	Data 0.416 (0.416)	Loss 0.4164 (0.4164)	Acc@1 93.750 (93.750)	Acc@5 99.831 (99.831)
+Epoch: [119][64/85]	Time 0.992 (0.900)	Data 0.000 (0.007)	Loss 0.4363 (0.4450)	Acc@1 92.568 (92.352)	Acc@5 99.831 (99.813)
+[INFO] Storing checkpoint...
+
+Epoch: [120 | 120] LR: 0.000003
+Epoch: [120][0/85]	Time 1.027 (1.027)	Data 0.695 (0.695)	Loss 0.4359 (0.4359)	Acc@1 93.243 (93.243)	Acc@5 100.000 (100.000)
+Epoch: [120][64/85]	Time 0.848 (0.862)	Data 0.000 (0.011)	Loss 0.4423 (0.4450)	Acc@1 92.230 (92.295)	Acc@5 100.000 (99.828)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  592
+  89.15
+Max memory: 115.6926464
+ 71.394s  j: 121 bis 125
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 126 bis 130
+==> Resuming from checkpoint..
+count0: 164617
+sizeX: 1.6798777978933508
+batch_size: 592 ; 165.14190740207374
+
+Epoch: [121 | 125] LR: 0.030414
+Epoch: [121][0/85]	Time 2.204 (2.204)	Data 0.600 (0.600)	Loss 0.4539 (0.4539)	Acc@1 91.892 (91.892)	Acc@5 99.831 (99.831)
+Epoch: [121][64/85]	Time 0.940 (0.812)	Data 0.000 (0.010)	Loss 0.4729 (0.4591)	Acc@1 90.203 (91.635)	Acc@5 100.000 (99.777)
+[INFO] Storing checkpoint...
+
+Epoch: [122 | 125] LR: 0.003041
+Epoch: [122][0/85]	Time 0.900 (0.900)	Data 0.720 (0.720)	Loss 0.4554 (0.4554)	Acc@1 90.709 (90.709)	Acc@5 99.662 (99.662)
+Epoch: [122][64/85]	Time 0.737 (0.813)	Data 0.000 (0.012)	Loss 0.3938 (0.4395)	Acc@1 93.919 (92.277)	Acc@5 99.662 (99.831)
+[INFO] Storing checkpoint...
+
+Epoch: [123 | 125] LR: 0.000304
+Epoch: [123][0/85]	Time 1.050 (1.050)	Data 0.777 (0.777)	Loss 0.4589 (0.4589)	Acc@1 92.061 (92.061)	Acc@5 99.831 (99.831)
+Epoch: [123][64/85]	Time 0.919 (0.907)	Data 0.000 (0.012)	Loss 0.4173 (0.4338)	Acc@1 93.243 (92.544)	Acc@5 100.000 (99.841)
+[INFO] Storing checkpoint...
+
+Epoch: [124 | 125] LR: 0.000030
+Epoch: [124][0/85]	Time 1.026 (1.026)	Data 0.799 (0.799)	Loss 0.4646 (0.4646)	Acc@1 92.230 (92.230)	Acc@5 99.493 (99.493)
+Epoch: [124][64/85]	Time 1.002 (0.881)	Data 0.000 (0.013)	Loss 0.3951 (0.4294)	Acc@1 93.750 (92.734)	Acc@5 99.831 (99.779)
+[INFO] Storing checkpoint...
+
+Epoch: [125 | 125] LR: 0.000003
+Epoch: [125][0/85]	Time 1.084 (1.084)	Data 0.898 (0.898)	Loss 0.3915 (0.3915)	Acc@1 94.426 (94.426)	Acc@5 100.000 (100.000)
+Epoch: [125][64/85]	Time 0.723 (0.806)	Data 0.000 (0.014)	Loss 0.4477 (0.4283)	Acc@1 92.568 (92.612)	Acc@5 100.000 (99.844)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  592
+  89.17
+Max memory: 115.6926464
+ 69.888s  j: 126 bis 130
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 131 bis 135
+==> Resuming from checkpoint..
+count0: 164617
+sizeX: 1.6798777978933508
+batch_size: 592 ; 165.14190740207374
+
+Epoch: [126 | 130] LR: 0.030414
+Epoch: [126][0/85]	Time 2.229 (2.229)	Data 0.755 (0.755)	Loss 0.4045 (0.4045)	Acc@1 93.581 (93.581)	Acc@5 99.831 (99.831)
+Epoch: [126][64/85]	Time 0.850 (0.793)	Data 0.000 (0.012)	Loss 0.4923 (0.4444)	Acc@1 90.878 (92.188)	Acc@5 99.324 (99.745)
+[INFO] Storing checkpoint...
+
+Epoch: [127 | 130] LR: 0.003041
+Epoch: [127][0/85]	Time 0.876 (0.876)	Data 0.821 (0.821)	Loss 0.4183 (0.4183)	Acc@1 91.892 (91.892)	Acc@5 99.662 (99.662)
+Epoch: [127][64/85]	Time 0.552 (0.739)	Data 0.000 (0.013)	Loss 0.5059 (0.4271)	Acc@1 90.203 (92.477)	Acc@5 100.000 (99.828)
+[INFO] Storing checkpoint...
+
+Epoch: [128 | 130] LR: 0.000304
+Epoch: [128][0/85]	Time 0.517 (0.517)	Data 0.803 (0.803)	Loss 0.4558 (0.4558)	Acc@1 90.541 (90.541)	Acc@5 100.000 (100.000)
+Epoch: [128][64/85]	Time 0.897 (0.855)	Data 0.000 (0.013)	Loss 0.4099 (0.4186)	Acc@1 93.243 (92.833)	Acc@5 100.000 (99.854)
+[INFO] Storing checkpoint...
+
+Epoch: [129 | 130] LR: 0.000030
+Epoch: [129][0/85]	Time 0.765 (0.765)	Data 0.795 (0.795)	Loss 0.4177 (0.4177)	Acc@1 92.061 (92.061)	Acc@5 99.831 (99.831)
+Epoch: [129][64/85]	Time 0.938 (0.898)	Data 0.000 (0.013)	Loss 0.3836 (0.4115)	Acc@1 93.581 (93.119)	Acc@5 100.000 (99.847)
+[INFO] Storing checkpoint...
+
+Epoch: [130 | 130] LR: 0.000003
+Epoch: [130][0/85]	Time 0.611 (0.611)	Data 0.707 (0.707)	Loss 0.4024 (0.4024)	Acc@1 93.750 (93.750)	Acc@5 100.000 (100.000)
+Epoch: [130][64/85]	Time 0.872 (0.769)	Data 0.000 (0.011)	Loss 0.4517 (0.4174)	Acc@1 91.554 (93.025)	Acc@5 99.662 (99.826)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 164201 ; 164617 ; 0.9974729219946907
+[INFO] Storing checkpoint...
+
+  592
+  89.53
+Max memory: 115.6926464
+ 67.793s  j: 131 bis 135
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 136 bis 140
+==> Resuming from checkpoint..
+count0: 164201
+sizeX: 1.6755986668861094
+batch_size: 593 ; 164.914557171659
+
+Epoch: [131 | 135] LR: 0.030439
+Epoch: [131][0/85]	Time 2.662 (2.662)	Data 0.659 (0.659)	Loss 0.3878 (0.3878)	Acc@1 93.929 (93.929)	Acc@5 99.831 (99.831)
+Epoch: [131][64/85]	Time 0.715 (0.844)	Data 0.000 (0.010)	Loss 0.4011 (0.4337)	Acc@1 93.255 (92.175)	Acc@5 99.831 (99.777)
+[INFO] Storing checkpoint...
+
+Epoch: [132 | 135] LR: 0.003044
+Epoch: [132][0/85]	Time 1.104 (1.104)	Data 1.071 (1.071)	Loss 0.4400 (0.4400)	Acc@1 91.906 (91.906)	Acc@5 99.831 (99.831)
+Epoch: [132][64/85]	Time 0.770 (0.840)	Data 0.000 (0.017)	Loss 0.3954 (0.4216)	Acc@1 93.929 (92.627)	Acc@5 99.831 (99.800)
+[INFO] Storing checkpoint...
+
+Epoch: [133 | 135] LR: 0.000304
+Epoch: [133][0/85]	Time 0.926 (0.926)	Data 0.871 (0.871)	Loss 0.3713 (0.3713)	Acc@1 94.266 (94.266)	Acc@5 99.831 (99.831)
+Epoch: [133][64/85]	Time 0.889 (0.884)	Data 0.000 (0.014)	Loss 0.3864 (0.4050)	Acc@1 93.929 (93.203)	Acc@5 100.000 (99.852)
+[INFO] Storing checkpoint...
+
+Epoch: [134 | 135] LR: 0.000030
+Epoch: [134][0/85]	Time 0.911 (0.911)	Data 0.715 (0.715)	Loss 0.3939 (0.3939)	Acc@1 95.110 (95.110)	Acc@5 99.494 (99.494)
+Epoch: [134][64/85]	Time 1.072 (0.781)	Data 0.000 (0.011)	Loss 0.3884 (0.4064)	Acc@1 93.761 (93.195)	Acc@5 99.663 (99.821)
+[INFO] Storing checkpoint...
+
+Epoch: [135 | 135] LR: 0.000003
+Epoch: [135][0/85]	Time 0.893 (0.893)	Data 0.759 (0.759)	Loss 0.3937 (0.3937)	Acc@1 92.917 (92.917)	Acc@5 99.831 (99.831)
+Epoch: [135][64/85]	Time 0.926 (0.760)	Data 0.000 (0.012)	Loss 0.4215 (0.4083)	Acc@1 93.086 (93.148)	Acc@5 99.663 (99.881)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  593
+  89.59
+Max memory: 115.9224832
+ 68.291s  j: 136 bis 140
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 141 bis 145
+==> Resuming from checkpoint..
+count0: 164201
+sizeX: 1.6755986668861094
+batch_size: 593 ; 164.914557171659
+
+Epoch: [136 | 140] LR: 0.030439
+Epoch: [136][0/85]	Time 3.065 (3.065)	Data 0.718 (0.718)	Loss 0.4030 (0.4030)	Acc@1 92.917 (92.917)	Acc@5 99.831 (99.831)
+Epoch: [136][64/85]	Time 0.788 (0.918)	Data 0.000 (0.011)	Loss 0.4121 (0.4324)	Acc@1 92.580 (91.976)	Acc@5 100.000 (99.826)
+[INFO] Storing checkpoint...
+
+Epoch: [137 | 140] LR: 0.003044
+Epoch: [137][0/85]	Time 0.942 (0.942)	Data 0.826 (0.826)	Loss 0.4060 (0.4060)	Acc@1 93.086 (93.086)	Acc@5 100.000 (100.000)
+Epoch: [137][64/85]	Time 0.735 (0.762)	Data 0.000 (0.013)	Loss 0.3917 (0.4099)	Acc@1 94.098 (92.863)	Acc@5 100.000 (99.831)
+[INFO] Storing checkpoint...
+
+Epoch: [138 | 140] LR: 0.000304
+Epoch: [138][0/85]	Time 0.866 (0.866)	Data 0.520 (0.520)	Loss 0.4127 (0.4127)	Acc@1 92.749 (92.749)	Acc@5 99.831 (99.831)
+Epoch: [138][64/85]	Time 0.914 (0.878)	Data 0.000 (0.008)	Loss 0.3928 (0.3939)	Acc@1 93.086 (93.418)	Acc@5 100.000 (99.852)
+[INFO] Storing checkpoint...
+
+Epoch: [139 | 140] LR: 0.000030
+Epoch: [139][0/85]	Time 0.898 (0.898)	Data 0.642 (0.642)	Loss 0.3821 (0.3821)	Acc@1 94.435 (94.435)	Acc@5 99.831 (99.831)
+Epoch: [139][64/85]	Time 0.941 (0.896)	Data 0.000 (0.010)	Loss 0.3595 (0.3978)	Acc@1 93.592 (93.397)	Acc@5 100.000 (99.860)
+[INFO] Storing checkpoint...
+
+Epoch: [140 | 140] LR: 0.000003
+Epoch: [140][0/85]	Time 0.757 (0.757)	Data 0.573 (0.573)	Loss 0.3904 (0.3904)	Acc@1 92.749 (92.749)	Acc@5 100.000 (100.000)
+Epoch: [140][64/85]	Time 0.878 (0.776)	Data 0.000 (0.009)	Loss 0.3946 (0.3939)	Acc@1 93.592 (93.519)	Acc@5 100.000 (99.839)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  593
+  89.47
+Max memory: 115.9224832
+ 67.952s  j: 141 bis 145
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 146 bis 150
+==> Resuming from checkpoint..
+count0: 164201
+sizeX: 1.6755986668861094
+batch_size: 593 ; 164.914557171659
+
+Epoch: [141 | 145] LR: 0.030439
+Epoch: [141][0/85]	Time 2.787 (2.787)	Data 0.684 (0.684)	Loss 0.3844 (0.3844)	Acc@1 94.266 (94.266)	Acc@5 99.831 (99.831)
+Epoch: [141][64/85]	Time 0.901 (0.924)	Data 0.000 (0.011)	Loss 0.3877 (0.4136)	Acc@1 93.255 (92.557)	Acc@5 100.000 (99.839)
+[INFO] Storing checkpoint...
+
+Epoch: [142 | 145] LR: 0.003044
+Epoch: [142][0/85]	Time 0.712 (0.712)	Data 0.808 (0.808)	Loss 0.4107 (0.4107)	Acc@1 91.737 (91.737)	Acc@5 100.000 (100.000)
+Epoch: [142][64/85]	Time 0.565 (0.761)	Data 0.000 (0.013)	Loss 0.3866 (0.4003)	Acc@1 93.761 (93.091)	Acc@5 99.663 (99.860)
+[INFO] Storing checkpoint...
+
+Epoch: [143 | 145] LR: 0.000304
+Epoch: [143][0/85]	Time 0.586 (0.586)	Data 0.649 (0.649)	Loss 0.4094 (0.4094)	Acc@1 92.074 (92.074)	Acc@5 99.831 (99.831)
+Epoch: [143][64/85]	Time 0.897 (0.860)	Data 0.000 (0.010)	Loss 0.3805 (0.3856)	Acc@1 93.086 (93.563)	Acc@5 99.494 (99.865)
+[INFO] Storing checkpoint...
+
+Epoch: [144 | 145] LR: 0.000030
+Epoch: [144][0/85]	Time 1.035 (1.035)	Data 0.715 (0.715)	Loss 0.4157 (0.4157)	Acc@1 91.737 (91.737)	Acc@5 99.831 (99.831)
+Epoch: [144][64/85]	Time 0.897 (0.875)	Data 0.000 (0.011)	Loss 0.3937 (0.3871)	Acc@1 93.592 (93.517)	Acc@5 99.831 (99.857)
+[INFO] Storing checkpoint...
+
+Epoch: [145 | 145] LR: 0.000003
+Epoch: [145][0/85]	Time 0.863 (0.863)	Data 0.602 (0.602)	Loss 0.3915 (0.3915)	Acc@1 92.749 (92.749)	Acc@5 100.000 (100.000)
+Epoch: [145][64/85]	Time 0.907 (0.827)	Data 0.000 (0.010)	Loss 0.3542 (0.3806)	Acc@1 93.929 (93.851)	Acc@5 99.663 (99.860)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  593
+  89.47
+Max memory: 115.9224832
+ 72.640s  j: 146 bis 150
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 151 bis 155
+==> Resuming from checkpoint..
+count0: 164201
+sizeX: 1.6755986668861094
+batch_size: 593 ; 164.914557171659
+
+Epoch: [146 | 150] LR: 0.030439
+Epoch: [146][0/85]	Time 2.431 (2.431)	Data 0.674 (0.674)	Loss 0.4010 (0.4010)	Acc@1 92.749 (92.749)	Acc@5 99.663 (99.663)
+Epoch: [146][64/85]	Time 0.844 (0.901)	Data 0.000 (0.011)	Loss 0.3984 (0.4121)	Acc@1 93.086 (92.601)	Acc@5 99.831 (99.826)
+[INFO] Storing checkpoint...
+
+Epoch: [147 | 150] LR: 0.003044
+Epoch: [147][0/85]	Time 0.844 (0.844)	Data 0.710 (0.710)	Loss 0.4049 (0.4049)	Acc@1 93.423 (93.423)	Acc@5 100.000 (100.000)
+Epoch: [147][64/85]	Time 0.731 (0.805)	Data 0.000 (0.011)	Loss 0.3796 (0.3915)	Acc@1 92.749 (93.205)	Acc@5 99.831 (99.850)
+[INFO] Storing checkpoint...
+
+Epoch: [148 | 150] LR: 0.000304
+Epoch: [148][0/85]	Time 0.870 (0.870)	Data 0.727 (0.727)	Loss 0.3608 (0.3608)	Acc@1 94.941 (94.941)	Acc@5 100.000 (100.000)
+Epoch: [148][64/85]	Time 0.916 (0.754)	Data 0.000 (0.012)	Loss 0.3989 (0.3766)	Acc@1 92.917 (93.776)	Acc@5 99.831 (99.875)
+[INFO] Storing checkpoint...
+
+Epoch: [149 | 150] LR: 0.000030
+Epoch: [149][0/85]	Time 0.820 (0.820)	Data 0.846 (0.846)	Loss 0.3805 (0.3805)	Acc@1 94.435 (94.435)	Acc@5 100.000 (100.000)
+Epoch: [149][64/85]	Time 0.694 (0.867)	Data 0.000 (0.013)	Loss 0.3769 (0.3759)	Acc@1 93.086 (93.872)	Acc@5 99.663 (99.868)
+[INFO] Storing checkpoint...
+
+Epoch: [150 | 150] LR: 0.000000
+Epoch: [150][0/85]	Time 0.854 (0.854)	Data 0.610 (0.610)	Loss 0.4193 (0.4193)	Acc@1 91.737 (91.737)	Acc@5 100.000 (100.000)
+Epoch: [150][64/85]	Time 0.931 (0.867)	Data 0.000 (0.010)	Loss 0.3778 (0.3759)	Acc@1 93.592 (93.859)	Acc@5 99.663 (99.857)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  593
+  89.62
+Max memory: 115.9224832
+ 74.909s  j: 151 bis 155
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 156 bis 160
+==> Resuming from checkpoint..
+count0: 164201
+sizeX: 1.6755986668861094
+batch_size: 593 ; 164.914557171659
+
+Epoch: [151 | 155] LR: 0.003044
+Epoch: [151][0/85]	Time 2.662 (2.662)	Data 0.768 (0.768)	Loss 0.3533 (0.3533)	Acc@1 94.435 (94.435)	Acc@5 99.831 (99.831)
+Epoch: [151][64/85]	Time 0.899 (0.899)	Data 0.000 (0.012)	Loss 0.3916 (0.3758)	Acc@1 93.086 (93.748)	Acc@5 99.831 (99.870)
+[INFO] Storing checkpoint...
+
+Epoch: [152 | 155] LR: 0.000030
+Epoch: [152][0/85]	Time 0.924 (0.924)	Data 0.600 (0.600)	Loss 0.3595 (0.3595)	Acc@1 93.929 (93.929)	Acc@5 100.000 (100.000)
+Epoch: [152][64/85]	Time 0.728 (0.855)	Data 0.000 (0.010)	Loss 0.3823 (0.3701)	Acc@1 92.917 (94.017)	Acc@5 99.663 (99.831)
+[INFO] Storing checkpoint...
+
+Epoch: [153 | 155] LR: 0.000000
+Epoch: [153][0/85]	Time 0.695 (0.695)	Data 0.630 (0.630)	Loss 0.3612 (0.3612)	Acc@1 94.266 (94.266)	Acc@5 100.000 (100.000)
+Epoch: [153][64/85]	Time 0.666 (0.766)	Data 0.000 (0.010)	Loss 0.3841 (0.3686)	Acc@1 94.098 (94.038)	Acc@5 99.831 (99.886)
+[INFO] Storing checkpoint...
+
+Epoch: [154 | 155] LR: 0.000000
+Epoch: [154][0/85]	Time 0.625 (0.625)	Data 0.872 (0.872)	Loss 0.3443 (0.3443)	Acc@1 94.772 (94.772)	Acc@5 99.831 (99.831)
+Epoch: [154][64/85]	Time 0.716 (0.790)	Data 0.000 (0.014)	Loss 0.3905 (0.3721)	Acc@1 93.423 (93.916)	Acc@5 99.831 (99.842)
+[INFO] Storing checkpoint...
+
+Epoch: [155 | 155] LR: 0.000000
+Epoch: [155][0/85]	Time 0.839 (0.839)	Data 0.566 (0.566)	Loss 0.3434 (0.3434)	Acc@1 95.110 (95.110)	Acc@5 100.000 (100.000)
+Epoch: [155][64/85]	Time 0.931 (0.889)	Data 0.000 (0.009)	Loss 0.3964 (0.3708)	Acc@1 92.074 (93.929)	Acc@5 99.831 (99.875)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  593
+  89.77
+Max memory: 115.9224832
+ 76.341s  j: 156 bis 160
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 161 bis 165
+==> Resuming from checkpoint..
+count0: 164201
+sizeX: 1.6755986668861094
+batch_size: 593 ; 164.914557171659
+
+Epoch: [156 | 160] LR: 0.003044
+Epoch: [156][0/85]	Time 2.930 (2.930)	Data 0.574 (0.574)	Loss 0.3665 (0.3665)	Acc@1 93.929 (93.929)	Acc@5 99.831 (99.831)
+Epoch: [156][64/85]	Time 0.899 (0.925)	Data 0.000 (0.009)	Loss 0.3640 (0.3728)	Acc@1 95.110 (93.963)	Acc@5 99.831 (99.870)
+[INFO] Storing checkpoint...
+
+Epoch: [157 | 160] LR: 0.000030
+Epoch: [157][0/85]	Time 0.958 (0.958)	Data 0.815 (0.815)	Loss 0.3890 (0.3890)	Acc@1 93.255 (93.255)	Acc@5 99.831 (99.831)
+Epoch: [157][64/85]	Time 0.727 (0.840)	Data 0.000 (0.013)	Loss 0.3686 (0.3672)	Acc@1 93.592 (94.152)	Acc@5 99.831 (99.865)
+[INFO] Storing checkpoint...
+
+Epoch: [158 | 160] LR: 0.000000
+Epoch: [158][0/85]	Time 0.909 (0.909)	Data 0.764 (0.764)	Loss 0.3693 (0.3693)	Acc@1 94.098 (94.098)	Acc@5 99.663 (99.663)
+Epoch: [158][64/85]	Time 0.897 (0.901)	Data 0.000 (0.012)	Loss 0.3830 (0.3603)	Acc@1 93.255 (94.360)	Acc@5 99.831 (99.883)
+[INFO] Storing checkpoint...
+
+Epoch: [159 | 160] LR: 0.000000
+Epoch: [159][0/85]	Time 1.194 (1.194)	Data 0.569 (0.569)	Loss 0.3397 (0.3397)	Acc@1 95.110 (95.110)	Acc@5 100.000 (100.000)
+Epoch: [159][64/85]	Time 0.561 (0.696)	Data 0.000 (0.009)	Loss 0.4017 (0.3654)	Acc@1 92.917 (94.085)	Acc@5 99.663 (99.847)
+[INFO] Storing checkpoint...
+
+Epoch: [160 | 160] LR: 0.000000
+Epoch: [160][0/85]	Time 0.557 (0.557)	Data 0.690 (0.690)	Loss 0.3620 (0.3620)	Acc@1 94.435 (94.435)	Acc@5 99.831 (99.831)
+Epoch: [160][64/85]	Time 0.878 (0.781)	Data 0.000 (0.011)	Loss 0.3918 (0.3688)	Acc@1 94.266 (93.997)	Acc@5 99.831 (99.878)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  593
+  89.8
+Max memory: 115.9224832
+ 69.902s  j: 161 bis 165
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 166 bis 170
+==> Resuming from checkpoint..
+count0: 164201
+sizeX: 1.6755986668861094
+batch_size: 593 ; 164.914557171659
+
+Epoch: [161 | 165] LR: 0.003044
+Epoch: [161][0/85]	Time 2.500 (2.500)	Data 0.624 (0.624)	Loss 0.3642 (0.3642)	Acc@1 93.592 (93.592)	Acc@5 100.000 (100.000)
+Epoch: [161][64/85]	Time 0.839 (0.901)	Data 0.000 (0.010)	Loss 0.3829 (0.3672)	Acc@1 93.592 (94.072)	Acc@5 99.831 (99.888)
+[INFO] Storing checkpoint...
+
+Epoch: [162 | 165] LR: 0.000030
+Epoch: [162][0/85]	Time 1.002 (1.002)	Data 0.747 (0.747)	Loss 0.3552 (0.3552)	Acc@1 94.941 (94.941)	Acc@5 100.000 (100.000)
+Epoch: [162][64/85]	Time 0.719 (0.836)	Data 0.000 (0.012)	Loss 0.3438 (0.3604)	Acc@1 94.941 (94.266)	Acc@5 99.831 (99.878)
+[INFO] Storing checkpoint...
+
+Epoch: [163 | 165] LR: 0.000000
+Epoch: [163][0/85]	Time 0.802 (0.802)	Data 0.601 (0.601)	Loss 0.3354 (0.3354)	Acc@1 94.941 (94.941)	Acc@5 100.000 (100.000)
+Epoch: [163][64/85]	Time 0.908 (0.894)	Data 0.000 (0.010)	Loss 0.3693 (0.3630)	Acc@1 93.255 (94.033)	Acc@5 100.000 (99.896)
+[INFO] Storing checkpoint...
+
+Epoch: [164 | 165] LR: 0.000000
+Epoch: [164][0/85]	Time 1.039 (1.039)	Data 0.619 (0.619)	Loss 0.3337 (0.3337)	Acc@1 94.941 (94.941)	Acc@5 100.000 (100.000)
+Epoch: [164][64/85]	Time 0.654 (0.826)	Data 0.000 (0.010)	Loss 0.3896 (0.3649)	Acc@1 93.086 (94.165)	Acc@5 99.663 (99.881)
+[INFO] Storing checkpoint...
+
+Epoch: [165 | 165] LR: 0.000000
+Epoch: [165][0/85]	Time 0.600 (0.600)	Data 0.746 (0.746)	Loss 0.3837 (0.3837)	Acc@1 93.086 (93.086)	Acc@5 99.831 (99.831)
+Epoch: [165][64/85]	Time 0.850 (0.780)	Data 0.000 (0.012)	Loss 0.3727 (0.3627)	Acc@1 93.761 (94.225)	Acc@5 100.000 (99.886)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  593
+  89.85
+Max memory: 115.9224832
+ 69.513s  j: 166 bis 170
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 171 bis 175
+==> Resuming from checkpoint..
+count0: 164201
+sizeX: 1.6755986668861094
+batch_size: 593 ; 164.914557171659
+
+Epoch: [166 | 170] LR: 0.003044
+Epoch: [166][0/85]	Time 2.278 (2.278)	Data 0.444 (0.444)	Loss 0.3619 (0.3619)	Acc@1 95.110 (95.110)	Acc@5 99.831 (99.831)
+Epoch: [166][64/85]	Time 0.880 (0.786)	Data 0.000 (0.007)	Loss 0.3688 (0.3632)	Acc@1 93.592 (94.196)	Acc@5 99.663 (99.860)
+[INFO] Storing checkpoint...
+
+Epoch: [167 | 170] LR: 0.000030
+Epoch: [167][0/85]	Time 1.023 (1.023)	Data 0.709 (0.709)	Loss 0.3566 (0.3566)	Acc@1 94.772 (94.772)	Acc@5 99.831 (99.831)
+Epoch: [167][64/85]	Time 0.719 (0.851)	Data 0.000 (0.011)	Loss 0.3322 (0.3613)	Acc@1 95.447 (94.282)	Acc@5 99.831 (99.868)
+[INFO] Storing checkpoint...
+
+Epoch: [168 | 170] LR: 0.000000
+Epoch: [168][0/85]	Time 0.771 (0.771)	Data 0.882 (0.882)	Loss 0.3267 (0.3267)	Acc@1 96.459 (96.459)	Acc@5 100.000 (100.000)
+Epoch: [168][64/85]	Time 0.890 (0.875)	Data 0.000 (0.014)	Loss 0.3669 (0.3563)	Acc@1 93.929 (94.469)	Acc@5 100.000 (99.888)
+[INFO] Storing checkpoint...
+
+Epoch: [169 | 170] LR: 0.000000
+Epoch: [169][0/85]	Time 0.912 (0.912)	Data 0.891 (0.891)	Loss 0.3661 (0.3661)	Acc@1 94.435 (94.435)	Acc@5 99.831 (99.831)
+Epoch: [169][64/85]	Time 0.713 (0.808)	Data 0.000 (0.014)	Loss 0.3765 (0.3615)	Acc@1 93.761 (94.282)	Acc@5 100.000 (99.896)
+[INFO] Storing checkpoint...
+
+Epoch: [170 | 170] LR: 0.000000
+Epoch: [170][0/85]	Time 0.843 (0.843)	Data 0.748 (0.748)	Loss 0.3614 (0.3614)	Acc@1 93.423 (93.423)	Acc@5 99.831 (99.831)
+Epoch: [170][64/85]	Time 0.729 (0.826)	Data 0.000 (0.012)	Loss 0.3692 (0.3619)	Acc@1 94.266 (94.202)	Acc@5 99.831 (99.857)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  593
+  89.85
+Max memory: 115.9224832
+ 68.861s  j: 171 bis 175
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
-j: 176 bis 180
+==> Resuming from checkpoint..
+count0: 164201
+sizeX: 1.6755986668861094
+batch_size: 593 ; 164.914557171659
+
+Epoch: [171 | 175] LR: 0.003044
+Epoch: [171][0/85]	Time 2.685 (2.685)	Data 0.826 (0.826)	Loss 0.3418 (0.3418)	Acc@1 95.278 (95.278)	Acc@5 100.000 (100.000)
+Epoch: [171][64/85]	Time 0.913 (0.913)	Data 0.000 (0.013)	Loss 0.3679 (0.3591)	Acc@1 94.266 (94.344)	Acc@5 100.000 (99.842)
+[INFO] Storing checkpoint...
+
+Epoch: [172 | 175] LR: 0.000030
+Epoch: [172][0/85]	Time 0.997 (0.997)	Data 0.754 (0.754)	Loss 0.3819 (0.3819)	Acc@1 93.761 (93.761)	Acc@5 99.494 (99.494)
+Epoch: [172][64/85]	Time 0.673 (0.767)	Data 0.000 (0.012)	Loss 0.3466 (0.3606)	Acc@1 94.266 (94.303)	Acc@5 100.000 (99.875)
+[INFO] Storing checkpoint...
+
+Epoch: [173 | 175] LR: 0.000000
+Epoch: [173][0/85]	Time 0.570 (0.570)	Data 0.604 (0.604)	Loss 0.3474 (0.3474)	Acc@1 95.447 (95.447)	Acc@5 99.831 (99.831)
+Epoch: [173][64/85]	Time 0.698 (0.636)	Data 0.000 (0.010)	Loss 0.3401 (0.3558)	Acc@1 95.447 (94.432)	Acc@5 99.831 (99.888)
+[INFO] Storing checkpoint...
+
+Epoch: [174 | 175] LR: 0.000000
+Epoch: [174][0/85]	Time 0.703 (0.703)	Data 0.564 (0.564)	Loss 0.3270 (0.3270)	Acc@1 95.953 (95.953)	Acc@5 100.000 (100.000)
+Epoch: [174][64/85]	Time 0.430 (0.518)	Data 0.000 (0.009)	Loss 0.3620 (0.3584)	Acc@1 94.098 (94.349)	Acc@5 99.831 (99.894)
+[INFO] Storing checkpoint...
+
+Epoch: [175 | 175] LR: 0.000000
+Epoch: [175][0/85]	Time 0.689 (0.689)	Data 0.496 (0.496)	Loss 0.3578 (0.3578)	Acc@1 94.266 (94.266)	Acc@5 100.000 (100.000)
+Epoch: [175][64/85]	Time 0.391 (0.538)	Data 0.000 (0.008)	Loss 0.3748 (0.3618)	Acc@1 93.423 (94.181)	Acc@5 99.831 (99.899)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  593
+  89.95
+Max memory: 115.9224832
+ 45.074s  j: 176 bis 180
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
 Files already downloaded and verified
-Traceback (most recent call last):
-  File "main.py", line 908, in <module>
-    main()
-  File "main.py", line 299, in main
-    model = torch.load(args.pathToModell)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 584, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 234, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 215, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: './output/experimente2/prune7/model.nn'
+==> Resuming from checkpoint..
+count0: 164201
+sizeX: 1.6755986668861094
+batch_size: 593 ; 164.914557171659
+
+Epoch: [176 | 180] LR: 0.003044
+Epoch: [176][0/85]	Time 1.682 (1.682)	Data 0.532 (0.532)	Loss 0.3437 (0.3437)	Acc@1 94.435 (94.435)	Acc@5 100.000 (100.000)
+Epoch: [176][64/85]	Time 0.547 (0.536)	Data 0.000 (0.008)	Loss 0.3183 (0.3595)	Acc@1 95.953 (94.261)	Acc@5 100.000 (99.873)
+[INFO] Storing checkpoint...
+
+Epoch: [177 | 180] LR: 0.000030
+Epoch: [177][0/85]	Time 0.536 (0.536)	Data 0.570 (0.570)	Loss 0.3367 (0.3367)	Acc@1 95.110 (95.110)	Acc@5 99.831 (99.831)
+Epoch: [177][64/85]	Time 0.503 (0.531)	Data 0.000 (0.009)	Loss 0.3638 (0.3552)	Acc@1 93.423 (94.409)	Acc@5 100.000 (99.891)
+[INFO] Storing checkpoint...
+
+Epoch: [178 | 180] LR: 0.000000
+Epoch: [178][0/85]	Time 0.382 (0.382)	Data 0.638 (0.638)	Loss 0.3295 (0.3295)	Acc@1 95.110 (95.110)	Acc@5 99.831 (99.831)
+Epoch: [178][64/85]	Time 0.353 (0.358)	Data 0.000 (0.010)	Loss 0.3531 (0.3554)	Acc@1 93.761 (94.479)	Acc@5 99.831 (99.912)
+[INFO] Storing checkpoint...
+
+Epoch: [179 | 180] LR: 0.000000
+Epoch: [179][0/85]	Time 0.527 (0.527)	Data 0.544 (0.544)	Loss 0.3561 (0.3561)	Acc@1 94.604 (94.604)	Acc@5 100.000 (100.000)
+Epoch: [179][64/85]	Time 0.520 (0.521)	Data 0.000 (0.009)	Loss 0.3434 (0.3561)	Acc@1 95.278 (94.230)	Acc@5 99.831 (99.896)
+[INFO] Storing checkpoint...
+
+Epoch: [180 | 180] LR: 0.000000
+Epoch: [180][0/85]	Time 0.594 (0.594)	Data 0.596 (0.596)	Loss 0.3329 (0.3329)	Acc@1 95.447 (95.447)	Acc@5 100.000 (100.000)
+Epoch: [180][64/85]	Time 0.531 (0.488)	Data 0.000 (0.009)	Loss 0.3490 (0.3561)	Acc@1 94.098 (94.417)	Acc@5 100.000 (99.888)
+[INFO] Storing checkpoint...
+
+  593
+  89.93
+Max memory: 115.9224832
+ 43.159s  
