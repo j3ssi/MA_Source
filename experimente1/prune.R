@@ -1,16 +1,164 @@
-setwd("/home/j3ssi/MA_Source/output")
+setwd("/home/j3ssi/MA_Source/output/experimente2/")
 
-prune1 <- read.delim("prune1.txt", header = TRUE, sep = "\t", dec = ".")
-prune2 <- read.delim("prune2.txt", header = TRUE, sep = "\t", dec = ".")
-prune3 <- read.delim("prune3.txt", header = TRUE, sep = "\t", dec = ".")
-prune4 <- read.delim("prune4.txt", header = TRUE, sep = "\t", dec = ".")
-prune5 <- read.delim("prune5.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso005_1 <- read.delim("prune_lasso005_1.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso005_2 <- read.delim("prune_lasso005_2.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso005_3 <- read.delim("prune_lasso005_3.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso005_4 <- read.delim("prune_lasso005_4.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso005_5 <- read.delim("prune_lasso005_5.txt", header = TRUE, sep = "\t", dec = ".")
 
-prune1Sum <- sum(prune1$TrainEpochTime.s.)
-prune2Sum <- sum(prune2$TrainEpochTime.s.)
-prune3Sum <- sum(prune3$TrainEpochTime.s.)
-prune4Sum <- sum(prune4$TrainEpochTime.s.)
-prune5Sum <- sum(prune5$TrainEpochTime.s.)
+prune_lasso005_1Sum <- sum(prune_lasso005_1$TrainEpochTime.s.)
+prune_lasso005_2Sum <- sum(prune_lasso005_2$TrainEpochTime.s.)
+prune_lasso005_3Sum <- sum(prune_lasso005_3$TrainEpochTime.s.)
+prune_lasso005_4Sum <- sum(prune_lasso005_4$TrainEpochTime.s.)
+prune_lasso005_5Sum <- sum(prune_lasso005_5$TrainEpochTime.s.)
+
+
+prune_lasso01_1 <- read.delim("prune_lasso01_1.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso01_2 <- read.delim("prune_lasso01_2.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso01_3 <- read.delim("prune_lasso01_3.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso01_4 <- read.delim("prune_lasso01_4.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso01_5 <- read.delim("prune_lasso01_5.txt", header = TRUE, sep = "\t", dec = ".")
+
+prune_lasso01_1Sum <- sum(prune_lasso01_1$TrainEpochTime.s.)
+prune_lasso01_2Sum <- sum(prune_lasso01_2$TrainEpochTime.s.)
+prune_lasso01_3Sum <- sum(prune_lasso01_3$TrainEpochTime.s.)
+prune_lasso01_4Sum <- sum(prune_lasso01_4$TrainEpochTime.s.)
+prune_lasso01_5Sum <- sum(prune_lasso01_5$TrainEpochTime.s.)
+
+prune_lasso015_1 <- read.delim("prune_lasso015_1.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso015_2 <- read.delim("prune_lasso015_2.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso015_3 <- read.delim("prune_lasso015_3.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso015_4 <- read.delim("prune_lasso015_4.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso015_5 <- read.delim("prune_lasso015_5.txt", header = TRUE, sep = "\t", dec = ".")
+
+prune_lasso015_1Sum <- sum(prune_lasso015_1$TrainEpochTime.s.)
+prune_lasso015_2Sum <- sum(prune_lasso015_2$TrainEpochTime.s.)
+prune_lasso015_3Sum <- sum(prune_lasso015_3$TrainEpochTime.s.)
+prune_lasso015_4Sum <- sum(prune_lasso015_4$TrainEpochTime.s.)
+prune_lasso015_5Sum <- sum(prune_lasso015_5$TrainEpochTime.s.)
+
+prune_lasso02_1 <- read.delim("prune_lasso02_1.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso02_2 <- read.delim("prune_lasso02_2.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso02_3 <- read.delim("prune_lasso02_3.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso02_4 <- read.delim("prune_lasso02_4.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso02_5 <- read.delim("prune_lasso02_5.txt", header = TRUE, sep = "\t", dec = ".")
+
+prune_lasso02_1Sum <- sum(prune_lasso02_1$TrainEpochTime.s.)
+prune_lasso02_2Sum <- sum(prune_lasso02_2$TrainEpochTime.s.)
+prune_lasso02_3Sum <- sum(prune_lasso02_3$TrainEpochTime.s.)
+prune_lasso02_4Sum <- sum(prune_lasso02_4$TrainEpochTime.s.)
+prune_lasso02_5Sum <- sum(prune_lasso02_5$TrainEpochTime.s.)
+
+prune_lasso025_1 <- read.delim("prune_lasso025_1.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso025_2 <- read.delim("prune_lasso025_2.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso025_3 <- read.delim("prune_lasso025_3.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso025_4 <- read.delim("prune_lasso025_4.txt", header = TRUE, sep = "\t", dec = ".")
+prune_lasso025_5 <- read.delim("prune_lasso025_5.txt", header = TRUE, sep = "\t", dec = ".")
+
+prune_lasso025_1Sum <- sum(prune_lasso025_1$TrainEpochTime.s.)
+prune_lasso025_2Sum <- sum(prune_lasso025_2$TrainEpochTime.s.)
+prune_lasso025_3Sum <- sum(prune_lasso025_3$TrainEpochTime.s.)
+prune_lasso025_4Sum <- sum(prune_lasso025_4$TrainEpochTime.s.)
+prune_lasso025_5Sum <- sum(prune_lasso025_5$TrainEpochTime.s.)
+
+
+
+boxplot(prune_lasso005_1$TrainEpochTime.s., prune_lasso005_2$TrainEpochTime.s., prune_lasso005_3$TrainEpochTime.s., prune_lasso005_4$TrainEpochTime.s., prune_lasso005_5$TrainEpochTime.s.,
+        prune_lasso01_1$TrainEpochTime.s., prune_lasso01_2$TrainEpochTime.s., prune_lasso01_3$TrainEpochTime.s., prune_lasso01_4$TrainEpochTime.s., prune_lasso01_5$TrainEpochTime.s.,
+        prune_lasso015_1$TrainEpochTime.s., prune_lasso015_2$TrainEpochTime.s., prune_lasso015_3$TrainEpochTime.s., prune_lasso015_4$TrainEpochTime.s., prune_lasso015_5$TrainEpochTime.s.,
+        prune_lasso02_1$TrainEpochTime.s., prune_lasso02_2$TrainEpochTime.s., prune_lasso02_3$TrainEpochTime.s., prune_lasso02_4$TrainEpochTime.s., prune_lasso02_5$TrainEpochTime.s.,
+        prune_lasso025_1$TrainEpochTime.s., prune_lasso025_2$TrainEpochTime.s., prune_lasso025_3$TrainEpochTime.s., prune_lasso025_4$TrainEpochTime.s., prune_lasso025_5$TrainEpochTime.s.,
+        col=c('powderblue', 'powderblue', 'powderblue', 'powderblue', 'powderblue', 
+              'mistyrose', 'mistyrose', 'mistyrose', 'mistyrose', 'mistyrose',
+              'lightsalmon', 'lightsalmon', 'lightsalmon', 'lightsalmon', 'lightsalmon',
+              'lightpink', 'lightpink', 'lightpink', 'lightpink', 'lightpink',
+              'lightsalmon4', 'lightsalmon4', 'lightsalmon4', 'lightsalmon4', 'lightsalmon4'),
+        ylim=c(0,120),
+        ylab = "Trainingszeit in Sekunden",
+        xlab ="verschiedene Experimente")
+
+legend(0,115, legend = c('Lasso 0.05', 'Lasso 0.1', 'Lasso 0.15', 'Lasso 0.2', 'Lasso 0.25'), 
+       col= c('powderblue', 'mistyrose', 'lightsalmon', 'lightpink', 'lightsalmon4'), 
+       fill=c('powderblue', 'mistyrose', 'lightsalmon', 'lightpink', 'lightsalmon4'), 
+       horiz=TRUE, cex=0.8)
+
+
+
+prune_reconf2_1 <- read.delim("prune_reconf2_1.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf2_2 <- read.delim("prune_reconf2_2.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf2_3 <- read.delim("prune_reconf2_3.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf2_4 <- read.delim("prune_reconf2_4.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf2_5 <- read.delim("prune_reconf2_5.txt", header = TRUE, sep = "\t", dec = ".")
+
+prune_reconf2_1Sum <- sum(prune_reconf2_1$TrainEpochTime.s.)
+prune_reconf2_2Sum <- sum(prune_reconf2_2$TrainEpochTime.s.)
+prune_reconf2_3Sum <- sum(prune_reconf2_3$TrainEpochTime.s.)
+prune_reconf2_4Sum <- sum(prune_reconf2_4$TrainEpochTime.s.)
+prune_reconf2_5Sum <- sum(prune_reconf2_5$TrainEpochTime.s.)
+
+reconf2_sum <- c(prune_reconf2_1Sum, prune_reconf2_2Sum, prune_reconf2_3Sum, prune_reconf2_4Sum, prune_reconf2_5Sum)
+
+prune_reconf5_1 <- read.delim("prune_reconf5_1.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf5_2 <- read.delim("prune_reconf5_2.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf5_3 <- read.delim("prune_reconf5_3.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf5_4 <- read.delim("prune_reconf5_4.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf5_5 <- read.delim("prune_reconf5_5.txt", header = TRUE, sep = "\t", dec = ".")
+
+prune_reconf5_1Sum <- sum(prune_reconf5_1$TrainEpochTime.s.)
+prune_reconf5_2Sum <- sum(prune_reconf5_2$TrainEpochTime.s.)
+prune_reconf5_3Sum <- sum(prune_reconf5_3$TrainEpochTime.s.)
+prune_reconf5_4Sum <- sum(prune_reconf5_4$TrainEpochTime.s.)
+prune_reconf5_5Sum <- sum(prune_reconf5_5$TrainEpochTime.s.)
+
+reconf5_sum <- c(prune_reconf5_1Sum, prune_reconf5_2Sum, prune_reconf5_3Sum, prune_reconf5_4Sum, prune_reconf5_5Sum)
+
+
+
+
+prune_reconf10_1 <- read.delim("prune_reconf10_1.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf10_2 <- read.delim("prune_reconf10_2.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf10_3 <- read.delim("prune_reconf10_3.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf10_4 <- read.delim("prune_reconf10_4.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf10_5 <- read.delim("prune_reconf10_5.txt", header = TRUE, sep = "\t", dec = ".")
+
+prune_reconf10_1Sum <- sum(prune_reconf10_1$TrainEpochTime.s.)
+prune_reconf10_2Sum <- sum(prune_reconf10_2$TrainEpochTime.s.)
+prune_reconf10_3Sum <- sum(prune_reconf10_3$TrainEpochTime.s.)
+prune_reconf10_4Sum <- sum(prune_reconf10_4$TrainEpochTime.s.)
+prune_reconf10_5Sum <- sum(prune_reconf10_5$TrainEpochTime.s.)
+
+reconf10_sum <- c(prune_reconf10_1Sum, prune_reconf10_2Sum, prune_reconf10_3Sum, prune_reconf10_4Sum, prune_reconf10_5Sum)
+
+
+boxplot(reconf2_sum, reconf5_sum, reconf10_sum,
+        col=c('powderblue', 'mistyrose', 'lightsalmon'),
+        ylim=c(29500,34000),
+        ylab = "Summe der Trainingszeit in Sekunden",
+        xlab ="verschiedene Experimentengruppen")
+
+legend(0,115, legend = c('Rekonfintervall 2 Summe', 'Rekonfintervall 5 Summe', 'Rekonfintervall 10 Summe'), 
+       col= c('powderblue', 'mistyrose', 'lightsalmon'), 
+       fill=c('powderblue', 'mistyrose', 'lightsalmon'), 
+       horiz=TRUE, cex=0.8)
+
+
+boxplot(prune_reconf2_1$TrainEpochTime.s., prune_reconf2_2$TrainEpochTime.s., prune_reconf2_3$TrainEpochTime.s., prune_reconf2_4$TrainEpochTime.s., prune_reconf2_5$TrainEpochTime.s.,
+        prune_reconf5_1$TrainEpochTime.s., prune_reconf5_2$TrainEpochTime.s., prune_reconf5_3$TrainEpochTime.s., prune_reconf5_4$TrainEpochTime.s., prune_reconf5_5$TrainEpochTime.s.,
+        prune_reconf10_1$TrainEpochTime.s., prune_reconf10_2$TrainEpochTime.s., prune_reconf10_3$TrainEpochTime.s., prune_reconf10_4$TrainEpochTime.s., prune_reconf10_5$TrainEpochTime.s.,
+        col=c('powderblue', 'powderblue', 'powderblue', 'powderblue', 'powderblue', 
+              'mistyrose', 'mistyrose', 'mistyrose', 'mistyrose', 'mistyrose',
+              'lightsalmon', 'lightsalmon', 'lightsalmon', 'lightsalmon', 'lightsalmon'),
+        ylim=c(0,250),
+        ylab = "Trainingszeit in Sekunden",
+        xlab ="verschiedene Experimente")
+
+legend(0,10, legend = c('Rekonfintervall 2', 'Rekonfintervall 5', 'Rekonfintervall 10'), 
+       col= c('powderblue', 'mistyrose', 'lightsalmon'), 
+       fill=c('powderblue', 'mistyrose', 'lightsalmon'), 
+       horiz=TRUE, cex=0.8)
+
+
+
 
 
 baseline1 <- read.delim("baseline1.txt", header = TRUE, sep = "\t", dec = ".")
