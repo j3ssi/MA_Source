@@ -95,6 +95,11 @@ parser.add_argument('-b', '--bottleneck', default=False, action='store_true',
                     help='Set the bootleneck parameter')
 parser.add_argument('--lastEpoch', default=False, action='store_true',
                     help='Last Epoch')
+parser.add_argument('--dynlr', default=False, action='store_true',
+                    help='Dynamische LR')
+parser.add_argument('--deltalr', default=False, action='store_true',
+                    help='Verändere die LR')
+
 parser.add_argument('--pathToModell', type=str, help='Path to the location where the model will be stored')
 # PruneTrain
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
@@ -368,9 +373,8 @@ def main():
         # y = m * min(listofBlocks) + y0
         # batch_size = int(0.98 * count0 / min(listofBlocks) * 1 / y)
         print(f'batch_size: {batch_size} ; {y}')
+        args.lr *= (batch_size / args.mini_batch_size)
         args.batch_size = batch_size
-        args.lr *= (batch_size / args.mini_batch_size) ** 0.5
-
     else:
         batch_size = args.batch_size
 
@@ -744,20 +748,37 @@ def test(testloader, model, criterion, epoch, use_cuda):
 
 def adjust_learning_rate(optimizer, epoch):
     global state
-    if args.schedule_exp == 0:
-        # Step-wise LR decay
-        set_lr = args.lr
-        for lr_decay in args.schedule:
-            if epoch >= lr_decay:
-                set_lr *= args.gamma
-        state['lr'] = set_lr
-        args.lr = set_lr
-    else:
-        # Exponential LR decay
-        set_lr = args.lr
-        exp = int((epoch - 1) / args.schedule_exp)
-        state['lr'] = set_lr * (args.gamma ** exp)
-        args.lr = set_lr
+    if args.dynlr and args.deltalr:
+        if args.schedule_exp == 0:
+            # Step-wise LR decay
+            set_lr = args.lr
+            for lr_decay in args.schedule:
+                if epoch == lr_decay:
+                    set_lr *= args.gamma
+            state['lr'] = set_lr
+            args.lr = set_lr
+        else:
+            # Exponential LR decay
+            set_lr = args.lr
+            exp = int((epoch - 1) / args.schedule_exp)
+            state['lr'] = set_lr * (args.gamma ** exp)
+            args.lr = set_lr
+    elif args.deltalr:
+        if args.schedule_exp == 0:
+            # Step-wise LR decay
+            set_lr = args.lr
+            for lr_decay in args.schedule:
+                if epoch >= lr_decay:
+                    set_lr *= args.gamma
+            state['lr'] = set_lr
+            args.lr = set_lr
+        else:
+            # Exponential LR decay
+            set_lr = args.lr
+            exp = int((epoch - 1) / args.schedule_exp)
+            state['lr'] = set_lr * (args.gamma ** exp)
+            args.lr = set_lr
+
     for param_group in optimizer.param_groups:
         param_group['lr'] = state['lr']
 
