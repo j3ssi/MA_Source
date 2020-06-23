@@ -349,11 +349,11 @@ def main():
         batch_size = int(0.999 * count0 / sizeX / y)
         delta_bs = (batch_size - 4065)*0.8
         batch_size = int(batch_size - delta_bs)
-        print(f'batch_size: {batch_size} ; {y}')
-        args.lr *= (batch_size / 256)
         args.batch_size = batch_size
     else:
         batch_size = args.batch_size
+    args.lr *= (batch_size / 256)
+    print(f'batch_size: {batch_size} ; {y}; lr: {args.lr}')
 
     if not args.resume:
         start_batchSize = batch_size
