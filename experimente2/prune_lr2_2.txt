@@ -1,0 +1,28 @@
+j: 0 bis 5
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Startepoche: 1
+count0: 487386
+
+Epoch: [1 | 5] LR: 0.200000
+Epoch: [1][0/196]	Time 0.567 (0.567)	Data 0.336 (0.336)	Loss 3.5226 (3.5226)	Acc@1 9.766 (9.766)	Acc@5 50.000 (50.000)
+Epoch: [1][64/196]	Time 0.595 (0.428)	Data 0.000 (0.006)	Loss 2.8995 (3.1508)	Acc@1 19.531 (12.632)	Acc@5 61.719 (54.207)
+Epoch: [1][128/196]	Time 0.704 (0.498)	Data 0.000 (0.003)	Loss 2.6358 (2.9389)	Acc@1 22.266 (16.382)	Acc@5 76.953 (63.835)
+Epoch: [1][192/196]	Time 0.298 (0.497)	Data 0.000 (0.002)	Loss 2.3259 (2.7818)	Acc@1 33.594 (20.096)	Acc@5 83.984 (70.159)
+[INFO] Storing checkpoint...
+
+Epoch: [2 | 5] LR: 0.200000
+Epoch: [2][0/196]	Time 0.406 (0.406)	Data 0.339 (0.339)	Loss 2.4620 (2.4620)	Acc@1 26.953 (26.953)	Acc@5 81.250 (81.250)
+Traceback (most recent call last):
+  File "main.py", line 936, in <module>
+    main()
+  File "main.py", line 399, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 679, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+KeyboardInterrupt

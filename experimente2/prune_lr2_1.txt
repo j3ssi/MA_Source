@@ -1,0 +1,26 @@
+j: 0 bis 5
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Startepoche: 1
+count0: 487386
+
+Epoch: [1 | 5] LR: 0.200000
+Epoch: [1][0/196]	Time 0.419 (0.419)	Data 0.416 (0.416)	Loss 3.2399 (3.2399)	Acc@1 9.766 (9.766)	Acc@5 50.781 (50.781)
+Epoch: [1][64/196]	Time 0.168 (0.175)	Data 0.000 (0.007)	Loss 2.6253 (2.8906)	Acc@1 21.094 (16.623)	Acc@5 79.297 (65.998)
+Epoch: [1][128/196]	Time 0.607 (0.255)	Data 0.000 (0.004)	Loss 2.3877 (2.6819)	Acc@1 30.078 (21.297)	Acc@5 88.281 (74.540)
+Epoch: [1][192/196]	Time 0.603 (0.366)	Data 0.000 (0.002)	Loss 2.1580 (2.5481)	Acc@1 39.453 (25.043)	Acc@5 89.453 (78.797)
+[INFO] Storing checkpoint...
+
+Epoch: [2 | 5] LR: 0.200000
+Epoch: [2][0/196]	Time 0.510 (0.510)	Data 0.425 (0.425)	Loss 2.2356 (2.2356)	Acc@1 35.156 (35.156)	Acc@5 87.109 (87.109)
+Traceback (most recent call last):
+  File "main.py", line 936, in <module>
+    main()
+  File "main.py", line 399, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 673, in train
+    optimizer.zero_grad()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/optim/optimizer.py", line 165, in zero_grad
+    p.grad.zero_()
+KeyboardInterrupt

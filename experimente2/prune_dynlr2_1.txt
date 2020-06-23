@@ -1,0 +1,1958 @@
+j: 0 bis 5
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Startepoche: 1
+count0: 487386
+
+Epoch: [1 | 5] LR: 0.200000
+Epoch: [1][0/196]	Time 0.640 (0.640)	Data 0.605 (0.605)	Loss 3.5600 (3.5600)	Acc@1 7.422 (7.422)	Acc@5 42.188 (42.188)
+Epoch: [1][64/196]	Time 0.427 (0.397)	Data 0.000 (0.010)	Loss 2.9308 (3.1333)	Acc@1 15.625 (11.556)	Acc@5 62.109 (51.869)
+Epoch: [1][128/196]	Time 0.885 (0.490)	Data 0.000 (0.005)	Loss 2.6244 (2.9837)	Acc@1 19.922 (13.854)	Acc@5 78.906 (58.848)
+Epoch: [1][192/196]	Time 1.003 (0.662)	Data 0.000 (0.004)	Loss 2.3933 (2.8366)	Acc@1 32.422 (17.238)	Acc@5 85.938 (66.192)
+[INFO] Storing checkpoint...
+
+Epoch: [2 | 5] LR: 0.200000
+Epoch: [2][0/196]	Time 1.243 (1.243)	Data 0.531 (0.531)	Loss 2.4970 (2.4970)	Acc@1 25.000 (25.000)	Acc@5 78.516 (78.516)
+Epoch: [2][64/196]	Time 0.986 (1.013)	Data 0.000 (0.009)	Loss 2.3319 (2.3398)	Acc@1 32.812 (30.012)	Acc@5 83.203 (84.922)
+Epoch: [2][128/196]	Time 1.247 (1.010)	Data 0.000 (0.005)	Loss 2.0223 (2.2570)	Acc@1 41.406 (32.419)	Acc@5 90.625 (86.661)
+Epoch: [2][192/196]	Time 1.046 (1.026)	Data 0.000 (0.003)	Loss 1.9152 (2.1802)	Acc@1 40.234 (34.776)	Acc@5 91.406 (87.850)
+[INFO] Storing checkpoint...
+
+Epoch: [3 | 5] LR: 0.200000
+Epoch: [3][0/196]	Time 1.071 (1.071)	Data 0.478 (0.478)	Loss 1.8883 (1.8883)	Acc@1 42.578 (42.578)	Acc@5 93.359 (93.359)
+Epoch: [3][64/196]	Time 1.037 (1.022)	Data 0.000 (0.008)	Loss 1.8411 (1.8926)	Acc@1 46.484 (43.450)	Acc@5 92.969 (91.863)
+Epoch: [3][128/196]	Time 1.045 (1.018)	Data 0.000 (0.004)	Loss 1.7142 (1.8169)	Acc@1 51.172 (46.436)	Acc@5 94.922 (92.512)
+Epoch: [3][192/196]	Time 0.578 (1.017)	Data 0.000 (0.003)	Loss 1.6697 (1.7485)	Acc@1 49.609 (48.832)	Acc@5 94.922 (93.112)
+[INFO] Storing checkpoint...
+
+Epoch: [4 | 5] LR: 0.200000
+Epoch: [4][0/196]	Time 1.129 (1.129)	Data 0.384 (0.384)	Loss 1.6334 (1.6334)	Acc@1 50.391 (50.391)	Acc@5 93.359 (93.359)
+Epoch: [4][64/196]	Time 1.082 (1.031)	Data 0.000 (0.007)	Loss 1.4409 (1.4910)	Acc@1 58.594 (57.734)	Acc@5 95.703 (95.108)
+Epoch: [4][128/196]	Time 1.023 (1.033)	Data 0.000 (0.004)	Loss 1.2505 (1.4426)	Acc@1 66.797 (59.523)	Acc@5 96.484 (95.458)
+Epoch: [4][192/196]	Time 1.035 (1.030)	Data 0.000 (0.003)	Loss 1.3586 (1.4014)	Acc@1 62.109 (60.861)	Acc@5 96.875 (95.762)
+[INFO] Storing checkpoint...
+
+Epoch: [5 | 5] LR: 0.200000
+Epoch: [5][0/196]	Time 1.103 (1.103)	Data 0.428 (0.428)	Loss 1.2286 (1.2286)	Acc@1 70.703 (70.703)	Acc@5 96.875 (96.875)
+Epoch: [5][64/196]	Time 0.906 (1.045)	Data 0.000 (0.007)	Loss 1.2931 (1.2445)	Acc@1 63.672 (66.208)	Acc@5 95.703 (96.821)
+Epoch: [5][128/196]	Time 1.100 (1.041)	Data 0.000 (0.004)	Loss 1.1139 (1.2164)	Acc@1 67.188 (67.069)	Acc@5 99.219 (96.954)
+Epoch: [5][192/196]	Time 0.974 (1.037)	Data 0.000 (0.003)	Loss 1.0388 (1.1906)	Acc@1 75.391 (67.979)	Acc@5 96.875 (97.142)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+
+ RM:  module.conv19.weight
+
+ RM:  module.conv20.weight
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (59): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (60): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (61): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (62): AdaptiveAvgPool2d(output_size=(1, 1))
+    (63): Linear(in_features=64, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+Count: 182195 ; 487386 ; 0.3738207498779202
+[INFO] Storing checkpoint...
+
+  256
+  54.69
+Max memory: 102.6363904
+ 203.799s  j: 6 bis 10
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 6
+count0: 182195
+
+Epoch: [6 | 10] LR: 0.200000
+Epoch: [6][0/196]	Time 2.216 (2.216)	Data 0.502 (0.502)	Loss 1.3032 (1.3032)	Acc@1 62.500 (62.500)	Acc@5 95.312 (95.312)
+Epoch: [6][64/196]	Time 0.585 (0.730)	Data 0.000 (0.008)	Loss 1.1238 (1.0819)	Acc@1 66.016 (68.660)	Acc@5 98.438 (97.554)
+Epoch: [6][128/196]	Time 0.890 (0.699)	Data 0.000 (0.004)	Loss 1.0487 (1.0727)	Acc@1 69.531 (69.592)	Acc@5 98.828 (97.665)
+Epoch: [6][192/196]	Time 0.872 (0.773)	Data 0.000 (0.003)	Loss 1.0456 (1.0540)	Acc@1 70.312 (70.655)	Acc@5 97.266 (97.731)
+[INFO] Storing checkpoint...
+
+Epoch: [7 | 10] LR: 0.200000
+Epoch: [7][0/196]	Time 0.832 (0.832)	Data 0.461 (0.461)	Loss 0.9914 (0.9914)	Acc@1 73.047 (73.047)	Acc@5 97.266 (97.266)
+Epoch: [7][64/196]	Time 0.904 (0.910)	Data 0.000 (0.008)	Loss 0.9256 (0.9898)	Acc@1 77.344 (73.768)	Acc@5 98.828 (97.939)
+Epoch: [7][128/196]	Time 0.870 (0.905)	Data 0.000 (0.004)	Loss 0.9438 (0.9890)	Acc@1 73.828 (73.659)	Acc@5 98.828 (98.004)
+Epoch: [7][192/196]	Time 0.919 (0.914)	Data 0.000 (0.003)	Loss 0.9448 (0.9774)	Acc@1 75.781 (74.130)	Acc@5 98.828 (98.118)
+[INFO] Storing checkpoint...
+
+Epoch: [8 | 10] LR: 0.200000
+Epoch: [8][0/196]	Time 1.013 (1.013)	Data 0.815 (0.815)	Loss 0.9158 (0.9158)	Acc@1 73.047 (73.047)	Acc@5 98.438 (98.438)
+Epoch: [8][64/196]	Time 0.541 (0.899)	Data 0.000 (0.013)	Loss 0.9885 (0.9384)	Acc@1 71.875 (75.583)	Acc@5 98.047 (98.468)
+Epoch: [8][128/196]	Time 0.838 (0.898)	Data 0.000 (0.007)	Loss 0.9363 (0.9493)	Acc@1 76.953 (75.421)	Acc@5 97.656 (98.434)
+Epoch: [8][192/196]	Time 0.893 (0.901)	Data 0.000 (0.005)	Loss 0.9836 (0.9434)	Acc@1 75.781 (75.652)	Acc@5 97.266 (98.429)
+[INFO] Storing checkpoint...
+
+Epoch: [9 | 10] LR: 0.200000
+Epoch: [9][0/196]	Time 1.000 (1.000)	Data 0.401 (0.401)	Loss 1.1408 (1.1408)	Acc@1 69.531 (69.531)	Acc@5 98.438 (98.438)
+Epoch: [9][64/196]	Time 1.085 (0.925)	Data 0.000 (0.007)	Loss 0.8762 (0.9429)	Acc@1 78.516 (75.925)	Acc@5 98.047 (98.468)
+Epoch: [9][128/196]	Time 0.801 (0.935)	Data 0.000 (0.004)	Loss 0.8369 (0.9131)	Acc@1 80.859 (76.868)	Acc@5 98.828 (98.556)
+Epoch: [9][192/196]	Time 0.879 (0.923)	Data 0.000 (0.003)	Loss 0.9545 (0.9186)	Acc@1 74.219 (76.769)	Acc@5 99.219 (98.512)
+[INFO] Storing checkpoint...
+
+Epoch: [10 | 10] LR: 0.200000
+Epoch: [10][0/196]	Time 1.024 (1.024)	Data 0.522 (0.522)	Loss 0.9062 (0.9062)	Acc@1 77.734 (77.734)	Acc@5 98.828 (98.828)
+Epoch: [10][64/196]	Time 1.014 (0.918)	Data 0.000 (0.009)	Loss 0.9327 (0.8955)	Acc@1 80.469 (77.825)	Acc@5 97.656 (98.510)
+Epoch: [10][128/196]	Time 0.903 (0.904)	Data 0.000 (0.005)	Loss 1.0152 (0.9029)	Acc@1 72.656 (77.556)	Acc@5 97.266 (98.483)
+Epoch: [10][192/196]	Time 0.934 (0.905)	Data 0.000 (0.003)	Loss 0.8360 (0.9020)	Acc@1 78.906 (77.508)	Acc@5 99.219 (98.523)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 174907 ; 182195 ; 0.959998902275035
+[INFO] Storing checkpoint...
+
+  256
+  72.59
+Max memory: 79.4646016
+ 178.336s  j: 11 bis 15
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 11
+count0: 174907
+
+Epoch: [11 | 15] LR: 0.200000
+Epoch: [11][0/196]	Time 2.861 (2.861)	Data 0.747 (0.747)	Loss 0.8755 (0.8755)	Acc@1 78.516 (78.516)	Acc@5 98.828 (98.828)
+Epoch: [11][64/196]	Time 0.503 (0.828)	Data 0.000 (0.012)	Loss 0.9335 (0.8757)	Acc@1 77.344 (78.131)	Acc@5 99.219 (98.684)
+Epoch: [11][128/196]	Time 0.989 (0.671)	Data 0.000 (0.006)	Loss 0.9034 (0.8875)	Acc@1 76.172 (77.704)	Acc@5 96.875 (98.695)
+Epoch: [11][192/196]	Time 0.925 (0.718)	Data 0.000 (0.004)	Loss 0.8861 (0.8902)	Acc@1 76.562 (77.676)	Acc@5 98.828 (98.652)
+[INFO] Storing checkpoint...
+
+Epoch: [12 | 15] LR: 0.200000
+Epoch: [12][0/196]	Time 0.957 (0.957)	Data 0.488 (0.488)	Loss 0.7482 (0.7482)	Acc@1 83.594 (83.594)	Acc@5 98.828 (98.828)
+Epoch: [12][64/196]	Time 0.908 (0.916)	Data 0.000 (0.008)	Loss 0.9309 (0.8843)	Acc@1 73.047 (77.686)	Acc@5 98.047 (98.690)
+Epoch: [12][128/196]	Time 0.900 (0.886)	Data 0.000 (0.004)	Loss 0.8388 (0.8873)	Acc@1 79.688 (77.798)	Acc@5 98.828 (98.728)
+Epoch: [12][192/196]	Time 0.939 (0.882)	Data 0.000 (0.003)	Loss 0.9082 (0.8858)	Acc@1 75.781 (77.870)	Acc@5 98.047 (98.711)
+[INFO] Storing checkpoint...
+
+Epoch: [13 | 15] LR: 0.200000
+Epoch: [13][0/196]	Time 0.940 (0.940)	Data 0.502 (0.502)	Loss 0.8671 (0.8671)	Acc@1 76.562 (76.562)	Acc@5 98.828 (98.828)
+Epoch: [13][64/196]	Time 0.697 (0.915)	Data 0.000 (0.008)	Loss 0.7773 (0.8833)	Acc@1 83.203 (78.113)	Acc@5 98.828 (98.684)
+Epoch: [13][128/196]	Time 0.772 (0.915)	Data 0.000 (0.005)	Loss 0.9259 (0.8801)	Acc@1 77.344 (78.234)	Acc@5 99.609 (98.765)
+Epoch: [13][192/196]	Time 0.867 (0.909)	Data 0.000 (0.003)	Loss 0.8578 (0.8807)	Acc@1 80.469 (78.315)	Acc@5 98.438 (98.707)
+[INFO] Storing checkpoint...
+
+Epoch: [14 | 15] LR: 0.200000
+Epoch: [14][0/196]	Time 1.045 (1.045)	Data 0.481 (0.481)	Loss 0.9291 (0.9291)	Acc@1 78.125 (78.125)	Acc@5 98.047 (98.047)
+Epoch: [14][64/196]	Time 0.862 (0.919)	Data 0.000 (0.008)	Loss 0.8783 (0.8537)	Acc@1 78.516 (79.201)	Acc@5 99.609 (98.786)
+Epoch: [14][128/196]	Time 0.894 (0.917)	Data 0.000 (0.004)	Loss 0.9188 (0.8585)	Acc@1 75.781 (78.918)	Acc@5 97.266 (98.746)
+Epoch: [14][192/196]	Time 0.813 (0.912)	Data 0.000 (0.003)	Loss 0.8465 (0.8624)	Acc@1 81.250 (78.825)	Acc@5 98.047 (98.755)
+[INFO] Storing checkpoint...
+
+Epoch: [15 | 15] LR: 0.200000
+Epoch: [15][0/196]	Time 0.955 (0.955)	Data 0.751 (0.751)	Loss 0.7873 (0.7873)	Acc@1 80.469 (80.469)	Acc@5 100.000 (100.000)
+Epoch: [15][64/196]	Time 0.935 (0.885)	Data 0.000 (0.012)	Loss 0.7946 (0.8554)	Acc@1 79.688 (79.261)	Acc@5 98.828 (98.846)
+Epoch: [15][128/196]	Time 0.944 (0.885)	Data 0.000 (0.006)	Loss 0.7887 (0.8574)	Acc@1 83.203 (79.155)	Acc@5 98.047 (98.710)
+Epoch: [15][192/196]	Time 0.933 (0.893)	Data 0.000 (0.004)	Loss 0.8581 (0.8596)	Acc@1 82.031 (79.064)	Acc@5 98.828 (98.741)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+
+ RM:  module.conv19.weight
+
+ RM:  module.conv20.weight
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(16, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(12, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(16, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(14, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(16, 13, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(13, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(13, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(16, 10, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(10, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(10, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(16, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(5, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(16, 28, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(28, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(28, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(16, 24, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(24, 14, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(14, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(14, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(24, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(9, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(9, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(24, 47, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(47, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(47, 59, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(24, 59, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(59, 39, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(39, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(39, 59, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(59, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(5, 59, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(59, 33, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(33, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(33, 59, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(59, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(3, 59, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): AdaptiveAvgPool2d(output_size=(1, 1))
+    (59): Linear(in_features=59, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+Count: 168967 ; 174907 ; 0.9660390950619472
+[INFO] Storing checkpoint...
+
+  256
+  72.13
+Max memory: 75.8784512
+ 176.147s  j: 16 bis 20
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 16
+count0: 168967
+
+Epoch: [16 | 20] LR: 0.200000
+Epoch: [16][0/196]	Time 2.224 (2.224)	Data 0.505 (0.505)	Loss 0.8257 (0.8257)	Acc@1 76.953 (76.953)	Acc@5 100.000 (100.000)
+Epoch: [16][64/196]	Time 0.723 (0.876)	Data 0.000 (0.008)	Loss 0.7978 (0.8284)	Acc@1 79.297 (79.730)	Acc@5 100.000 (99.008)
+Epoch: [16][128/196]	Time 0.444 (0.763)	Data 0.000 (0.005)	Loss 0.8659 (0.8419)	Acc@1 77.734 (79.297)	Acc@5 98.828 (98.934)
+Epoch: [16][192/196]	Time 0.687 (0.726)	Data 0.000 (0.003)	Loss 0.8156 (0.8484)	Acc@1 79.297 (79.107)	Acc@5 99.219 (98.903)
+[INFO] Storing checkpoint...
+
+Epoch: [17 | 20] LR: 0.200000
+Epoch: [17][0/196]	Time 0.935 (0.935)	Data 0.615 (0.615)	Loss 0.7829 (0.7829)	Acc@1 80.078 (80.078)	Acc@5 98.828 (98.828)
+Epoch: [17][64/196]	Time 0.964 (0.771)	Data 0.000 (0.010)	Loss 0.9914 (0.8418)	Acc@1 76.562 (79.645)	Acc@5 98.828 (98.912)
+Epoch: [17][128/196]	Time 0.784 (0.810)	Data 0.000 (0.005)	Loss 0.8352 (0.8346)	Acc@1 79.688 (79.797)	Acc@5 98.828 (98.816)
+Epoch: [17][192/196]	Time 0.932 (0.816)	Data 0.000 (0.004)	Loss 0.7493 (0.8396)	Acc@1 81.250 (79.540)	Acc@5 99.609 (98.814)
+[INFO] Storing checkpoint...
+
+Epoch: [18 | 20] LR: 0.200000
+Epoch: [18][0/196]	Time 0.968 (0.968)	Data 0.941 (0.941)	Loss 0.8806 (0.8806)	Acc@1 79.688 (79.688)	Acc@5 98.438 (98.438)
+Epoch: [18][64/196]	Time 0.880 (0.864)	Data 0.000 (0.015)	Loss 0.8619 (0.8438)	Acc@1 78.516 (79.561)	Acc@5 100.000 (98.876)
+Epoch: [18][128/196]	Time 0.888 (0.859)	Data 0.000 (0.008)	Loss 0.9372 (0.8542)	Acc@1 76.172 (79.145)	Acc@5 98.438 (98.864)
+Epoch: [18][192/196]	Time 0.696 (0.843)	Data 0.000 (0.005)	Loss 0.8581 (0.8506)	Acc@1 80.078 (79.258)	Acc@5 98.438 (98.865)
+[INFO] Storing checkpoint...
+
+Epoch: [19 | 20] LR: 0.200000
+Epoch: [19][0/196]	Time 1.043 (1.043)	Data 0.710 (0.710)	Loss 0.8932 (0.8932)	Acc@1 79.688 (79.688)	Acc@5 99.219 (99.219)
+Epoch: [19][64/196]	Time 0.832 (0.886)	Data 0.000 (0.012)	Loss 0.8274 (0.8311)	Acc@1 79.688 (79.886)	Acc@5 99.609 (98.942)
+Epoch: [19][128/196]	Time 0.879 (0.863)	Data 0.000 (0.006)	Loss 0.8663 (0.8349)	Acc@1 76.953 (79.569)	Acc@5 99.219 (98.840)
+Epoch: [19][192/196]	Time 0.906 (0.861)	Data 0.000 (0.004)	Loss 0.8621 (0.8333)	Acc@1 81.250 (79.744)	Acc@5 98.828 (98.822)
+[INFO] Storing checkpoint...
+
+Epoch: [20 | 20] LR: 0.200000
+Epoch: [20][0/196]	Time 0.987 (0.987)	Data 0.530 (0.530)	Loss 0.7305 (0.7305)	Acc@1 83.984 (83.984)	Acc@5 99.609 (99.609)
+Epoch: [20][64/196]	Time 1.029 (0.883)	Data 0.000 (0.009)	Loss 0.8620 (0.8484)	Acc@1 77.734 (79.489)	Acc@5 98.438 (98.804)
+Epoch: [20][128/196]	Time 0.834 (0.846)	Data 0.000 (0.005)	Loss 0.8541 (0.8412)	Acc@1 78.516 (79.597)	Acc@5 98.047 (98.871)
+Epoch: [20][192/196]	Time 0.895 (0.857)	Data 0.000 (0.003)	Loss 0.9841 (0.8368)	Acc@1 75.391 (79.799)	Acc@5 97.656 (98.850)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 162899 ; 168967 ; 0.9640876620878633
+[INFO] Storing checkpoint...
+
+  256
+  71.1
+Max memory: 72.3769856
+ 168.824s  j: 21 bis 25
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+count0: 162899
+
+Epoch: [21 | 25] LR: 0.200000
+Epoch: [21][0/196]	Time 2.178 (2.178)	Data 0.446 (0.446)	Loss 0.8402 (0.8402)	Acc@1 78.516 (78.516)	Acc@5 99.219 (99.219)
+Epoch: [21][64/196]	Time 0.722 (0.858)	Data 0.000 (0.007)	Loss 0.7774 (0.7991)	Acc@1 82.422 (80.841)	Acc@5 98.047 (98.948)
+Epoch: [21][128/196]	Time 0.894 (0.850)	Data 0.000 (0.005)	Loss 0.7246 (0.8177)	Acc@1 85.547 (80.396)	Acc@5 98.438 (98.889)
+Epoch: [21][192/196]	Time 0.692 (0.813)	Data 0.000 (0.003)	Loss 0.9421 (0.8219)	Acc@1 77.344 (80.258)	Acc@5 99.609 (98.861)
+[INFO] Storing checkpoint...
+
+Epoch: [22 | 25] LR: 0.200000
+Epoch: [22][0/196]	Time 0.554 (0.554)	Data 0.483 (0.483)	Loss 0.8620 (0.8620)	Acc@1 80.469 (80.469)	Acc@5 98.047 (98.047)
+Epoch: [22][64/196]	Time 0.943 (0.771)	Data 0.000 (0.008)	Loss 0.8625 (0.8354)	Acc@1 80.859 (79.760)	Acc@5 98.438 (98.972)
+Epoch: [22][128/196]	Time 0.448 (0.712)	Data 0.000 (0.005)	Loss 1.0344 (0.8332)	Acc@1 69.922 (79.845)	Acc@5 98.828 (98.883)
+Epoch: [22][192/196]	Time 0.862 (0.728)	Data 0.000 (0.003)	Loss 0.8487 (0.8338)	Acc@1 81.641 (79.740)	Acc@5 98.438 (98.899)
+[INFO] Storing checkpoint...
+
+Epoch: [23 | 25] LR: 0.200000
+Epoch: [23][0/196]	Time 0.903 (0.903)	Data 0.575 (0.575)	Loss 0.8326 (0.8326)	Acc@1 81.641 (81.641)	Acc@5 98.828 (98.828)
+Epoch: [23][64/196]	Time 0.729 (0.828)	Data 0.000 (0.009)	Loss 0.7807 (0.8178)	Acc@1 82.422 (80.631)	Acc@5 98.047 (98.912)
+Epoch: [23][128/196]	Time 0.879 (0.847)	Data 0.000 (0.005)	Loss 0.8298 (0.8156)	Acc@1 82.031 (80.647)	Acc@5 98.438 (98.983)
+Epoch: [23][192/196]	Time 0.853 (0.848)	Data 0.000 (0.004)	Loss 0.8472 (0.8204)	Acc@1 80.859 (80.396)	Acc@5 97.656 (98.960)
+[INFO] Storing checkpoint...
+
+Epoch: [24 | 25] LR: 0.200000
+Epoch: [24][0/196]	Time 0.658 (0.658)	Data 0.809 (0.809)	Loss 0.8980 (0.8980)	Acc@1 79.688 (79.688)	Acc@5 98.047 (98.047)
+Epoch: [24][64/196]	Time 0.741 (0.857)	Data 0.000 (0.013)	Loss 0.8437 (0.8181)	Acc@1 80.078 (80.445)	Acc@5 98.047 (98.924)
+Epoch: [24][128/196]	Time 0.926 (0.856)	Data 0.000 (0.007)	Loss 0.8637 (0.8141)	Acc@1 80.469 (80.605)	Acc@5 98.438 (98.977)
+Epoch: [24][192/196]	Time 0.793 (0.844)	Data 0.000 (0.005)	Loss 0.8859 (0.8230)	Acc@1 76.953 (80.250)	Acc@5 98.047 (98.925)
+[INFO] Storing checkpoint...
+
+Epoch: [25 | 25] LR: 0.200000
+Epoch: [25][0/196]	Time 0.885 (0.885)	Data 0.777 (0.777)	Loss 0.7505 (0.7505)	Acc@1 79.297 (79.297)	Acc@5 99.609 (99.609)
+Epoch: [25][64/196]	Time 1.106 (0.877)	Data 0.000 (0.012)	Loss 0.8439 (0.8202)	Acc@1 78.906 (80.222)	Acc@5 100.000 (99.032)
+Epoch: [25][128/196]	Time 0.756 (0.857)	Data 0.000 (0.006)	Loss 0.8202 (0.8284)	Acc@1 79.688 (80.005)	Acc@5 99.219 (98.977)
+Epoch: [25][192/196]	Time 0.840 (0.857)	Data 0.000 (0.004)	Loss 0.8254 (0.8248)	Acc@1 78.906 (80.141)	Acc@5 98.047 (98.915)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 162029 ; 162899 ; 0.9946592673988177
+[INFO] Storing checkpoint...
+
+  256
+  68.82
+Max memory: 70.9375488
+ 169.128s  j: 26 bis 30
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 26
+count0: 162029
+
+Epoch: [26 | 30] LR: 0.200000
+Epoch: [26][0/196]	Time 2.147 (2.147)	Data 0.465 (0.465)	Loss 0.8060 (0.8060)	Acc@1 80.859 (80.859)	Acc@5 99.219 (99.219)
+Epoch: [26][64/196]	Time 0.867 (0.866)	Data 0.000 (0.008)	Loss 0.8316 (0.8051)	Acc@1 80.078 (80.397)	Acc@5 98.438 (98.954)
+Epoch: [26][128/196]	Time 0.862 (0.870)	Data 0.000 (0.004)	Loss 0.7641 (0.8069)	Acc@1 82.422 (80.684)	Acc@5 98.828 (98.846)
+Epoch: [26][192/196]	Time 0.795 (0.864)	Data 0.000 (0.003)	Loss 0.7559 (0.8094)	Acc@1 81.641 (80.641)	Acc@5 98.828 (98.858)
+[INFO] Storing checkpoint...
+
+Epoch: [27 | 30] LR: 0.200000
+Epoch: [27][0/196]	Time 0.918 (0.918)	Data 0.575 (0.575)	Loss 0.7708 (0.7708)	Acc@1 82.422 (82.422)	Acc@5 99.219 (99.219)
+Epoch: [27][64/196]	Time 0.715 (0.733)	Data 0.000 (0.010)	Loss 0.7713 (0.8068)	Acc@1 83.203 (80.655)	Acc@5 99.219 (98.882)
+Epoch: [27][128/196]	Time 0.695 (0.705)	Data 0.000 (0.005)	Loss 0.8094 (0.8128)	Acc@1 82.031 (80.708)	Acc@5 97.656 (99.004)
+Epoch: [27][192/196]	Time 0.965 (0.746)	Data 0.000 (0.004)	Loss 0.8166 (0.8174)	Acc@1 84.375 (80.519)	Acc@5 96.875 (98.974)
+[INFO] Storing checkpoint...
+
+Epoch: [28 | 30] LR: 0.200000
+Epoch: [28][0/196]	Time 0.933 (0.933)	Data 0.549 (0.549)	Loss 0.8782 (0.8782)	Acc@1 80.078 (80.078)	Acc@5 98.438 (98.438)
+Epoch: [28][64/196]	Time 0.673 (0.741)	Data 0.000 (0.009)	Loss 0.8818 (0.8212)	Acc@1 79.688 (80.535)	Acc@5 99.219 (98.966)
+Epoch: [28][128/196]	Time 0.710 (0.795)	Data 0.000 (0.005)	Loss 0.8669 (0.8217)	Acc@1 78.516 (80.378)	Acc@5 98.828 (98.874)
+Epoch: [28][192/196]	Time 0.820 (0.807)	Data 0.000 (0.004)	Loss 0.7547 (0.8184)	Acc@1 82.422 (80.453)	Acc@5 99.219 (98.917)
+[INFO] Storing checkpoint...
+
+Epoch: [29 | 30] LR: 0.200000
+Epoch: [29][0/196]	Time 1.069 (1.069)	Data 0.646 (0.646)	Loss 0.8372 (0.8372)	Acc@1 78.516 (78.516)	Acc@5 99.219 (99.219)
+Epoch: [29][64/196]	Time 0.992 (0.859)	Data 0.005 (0.010)	Loss 0.8005 (0.7962)	Acc@1 80.078 (81.280)	Acc@5 99.219 (98.984)
+Epoch: [29][128/196]	Time 0.486 (0.841)	Data 0.000 (0.006)	Loss 0.8386 (0.8171)	Acc@1 80.078 (80.466)	Acc@5 97.656 (98.880)
+Epoch: [29][192/196]	Time 0.848 (0.843)	Data 0.000 (0.004)	Loss 0.8260 (0.8167)	Acc@1 78.906 (80.461)	Acc@5 99.219 (98.891)
+[INFO] Storing checkpoint...
+
+Epoch: [30 | 30] LR: 0.200000
+Epoch: [30][0/196]	Time 0.950 (0.950)	Data 0.477 (0.477)	Loss 0.7932 (0.7932)	Acc@1 81.641 (81.641)	Acc@5 100.000 (100.000)
+Epoch: [30][64/196]	Time 0.861 (0.854)	Data 0.000 (0.008)	Loss 0.8387 (0.8119)	Acc@1 80.859 (80.349)	Acc@5 98.828 (99.020)
+Epoch: [30][128/196]	Time 0.908 (0.861)	Data 0.000 (0.004)	Loss 0.7207 (0.8107)	Acc@1 83.594 (80.578)	Acc@5 99.219 (98.898)
+Epoch: [30][192/196]	Time 0.862 (0.848)	Data 0.000 (0.003)	Loss 0.7689 (0.8125)	Acc@1 82.031 (80.538)	Acc@5 99.219 (98.871)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 161449 ; 162029 ; 0.9964203938801078
+[INFO] Storing checkpoint...
+
+  256
+  67.3
+Max memory: 69.9017728
+ 166.937s  j: 31 bis 35
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 31
+count0: 161449
+
+Epoch: [31 | 35] LR: 0.200000
+Epoch: [31][0/196]	Time 1.996 (1.996)	Data 0.533 (0.533)	Loss 0.9133 (0.9133)	Acc@1 78.125 (78.125)	Acc@5 98.047 (98.047)
+Epoch: [31][64/196]	Time 0.852 (0.834)	Data 0.000 (0.009)	Loss 0.8742 (0.7870)	Acc@1 78.516 (81.460)	Acc@5 97.266 (98.966)
+Epoch: [31][128/196]	Time 0.902 (0.840)	Data 0.000 (0.005)	Loss 0.7530 (0.7996)	Acc@1 82.422 (80.920)	Acc@5 98.828 (98.937)
+Epoch: [31][192/196]	Time 0.824 (0.839)	Data 0.000 (0.003)	Loss 0.9098 (0.8025)	Acc@1 76.562 (80.876)	Acc@5 98.828 (98.917)
+[INFO] Storing checkpoint...
+
+Epoch: [32 | 35] LR: 0.200000
+Epoch: [32][0/196]	Time 0.631 (0.631)	Data 0.755 (0.755)	Loss 0.8297 (0.8297)	Acc@1 76.953 (76.953)	Acc@5 98.438 (98.438)
+Epoch: [32][64/196]	Time 0.813 (0.833)	Data 0.000 (0.012)	Loss 0.8645 (0.8239)	Acc@1 79.297 (80.132)	Acc@5 99.609 (98.834)
+Epoch: [32][128/196]	Time 0.609 (0.766)	Data 0.000 (0.007)	Loss 0.7103 (0.8173)	Acc@1 84.375 (80.281)	Acc@5 99.219 (98.871)
+Epoch: [32][192/196]	Time 0.805 (0.686)	Data 0.000 (0.005)	Loss 0.7573 (0.8119)	Acc@1 83.984 (80.513)	Acc@5 100.000 (98.915)
+[INFO] Storing checkpoint...
+
+Epoch: [33 | 35] LR: 0.200000
+Epoch: [33][0/196]	Time 1.008 (1.008)	Data 0.621 (0.621)	Loss 0.7800 (0.7800)	Acc@1 82.031 (82.031)	Acc@5 99.219 (99.219)
+Epoch: [33][64/196]	Time 0.720 (0.812)	Data 0.000 (0.010)	Loss 0.8412 (0.8185)	Acc@1 80.859 (80.288)	Acc@5 99.609 (98.840)
+Epoch: [33][128/196]	Time 0.836 (0.796)	Data 0.000 (0.005)	Loss 0.7097 (0.8172)	Acc@1 85.156 (80.505)	Acc@5 100.000 (98.825)
+Epoch: [33][192/196]	Time 0.872 (0.812)	Data 0.000 (0.004)	Loss 0.8284 (0.8172)	Acc@1 82.422 (80.493)	Acc@5 98.828 (98.869)
+[INFO] Storing checkpoint...
+
+Epoch: [34 | 35] LR: 0.200000
+Epoch: [34][0/196]	Time 0.741 (0.741)	Data 0.599 (0.599)	Loss 0.8695 (0.8695)	Acc@1 79.297 (79.297)	Acc@5 98.828 (98.828)
+Epoch: [34][64/196]	Time 0.900 (0.852)	Data 0.000 (0.010)	Loss 0.8111 (0.7931)	Acc@1 78.906 (81.346)	Acc@5 98.438 (98.912)
+Epoch: [34][128/196]	Time 0.854 (0.866)	Data 0.000 (0.005)	Loss 0.7936 (0.8012)	Acc@1 79.688 (81.065)	Acc@5 98.828 (98.925)
+Epoch: [34][192/196]	Time 0.510 (0.855)	Data 0.000 (0.004)	Loss 0.8518 (0.8005)	Acc@1 81.250 (81.035)	Acc@5 98.438 (98.948)
+[INFO] Storing checkpoint...
+
+Epoch: [35 | 35] LR: 0.200000
+Epoch: [35][0/196]	Time 1.007 (1.007)	Data 0.550 (0.550)	Loss 0.8360 (0.8360)	Acc@1 79.297 (79.297)	Acc@5 97.656 (97.656)
+Epoch: [35][64/196]	Time 0.850 (0.830)	Data 0.000 (0.009)	Loss 0.8245 (0.8163)	Acc@1 78.516 (80.451)	Acc@5 99.219 (98.834)
+Epoch: [35][128/196]	Time 0.881 (0.824)	Data 0.000 (0.005)	Loss 0.8412 (0.8076)	Acc@1 78.906 (80.805)	Acc@5 99.219 (98.907)
+Epoch: [35][192/196]	Time 0.895 (0.835)	Data 0.000 (0.004)	Loss 0.7238 (0.8065)	Acc@1 83.203 (80.853)	Acc@5 99.609 (98.921)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 160073 ; 161449 ; 0.9914771847456473
+[INFO] Storing checkpoint...
+
+  256
+  73.62
+Max memory: 69.370112
+ 164.305s  j: 36 bis 40
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 36
+count0: 160073
+
+Epoch: [36 | 40] LR: 0.200000
+Epoch: [36][0/196]	Time 2.246 (2.246)	Data 0.413 (0.413)	Loss 0.7784 (0.7784)	Acc@1 81.641 (81.641)	Acc@5 98.828 (98.828)
+Epoch: [36][64/196]	Time 0.857 (0.884)	Data 0.000 (0.007)	Loss 0.7588 (0.7693)	Acc@1 80.859 (82.230)	Acc@5 98.047 (99.056)
+Epoch: [36][128/196]	Time 0.524 (0.869)	Data 0.000 (0.004)	Loss 0.7771 (0.7880)	Acc@1 80.469 (81.513)	Acc@5 99.219 (98.995)
+Epoch: [36][192/196]	Time 0.952 (0.865)	Data 0.000 (0.003)	Loss 0.7432 (0.7952)	Acc@1 81.250 (81.205)	Acc@5 99.609 (99.024)
+[INFO] Storing checkpoint...
+
+Epoch: [37 | 40] LR: 0.200000
+Epoch: [37][0/196]	Time 0.862 (0.862)	Data 0.457 (0.457)	Loss 0.7225 (0.7225)	Acc@1 85.938 (85.938)	Acc@5 99.609 (99.609)
+Epoch: [37][64/196]	Time 0.841 (0.872)	Data 0.000 (0.008)	Loss 0.7600 (0.7867)	Acc@1 83.984 (81.575)	Acc@5 98.828 (98.960)
+Epoch: [37][128/196]	Time 0.736 (0.806)	Data 0.000 (0.004)	Loss 0.9502 (0.7953)	Acc@1 76.953 (81.165)	Acc@5 98.047 (98.946)
+Epoch: [37][192/196]	Time 0.763 (0.803)	Data 0.000 (0.003)	Loss 0.8079 (0.7999)	Acc@1 80.469 (80.983)	Acc@5 98.828 (98.903)
+[INFO] Storing checkpoint...
+
+Epoch: [38 | 40] LR: 0.200000
+Epoch: [38][0/196]	Time 0.888 (0.888)	Data 0.652 (0.652)	Loss 0.6891 (0.6891)	Acc@1 84.766 (84.766)	Acc@5 98.828 (98.828)
+Epoch: [38][64/196]	Time 0.533 (0.627)	Data 0.000 (0.011)	Loss 0.8013 (0.7975)	Acc@1 81.250 (80.956)	Acc@5 98.828 (99.002)
+Epoch: [38][128/196]	Time 0.862 (0.703)	Data 0.000 (0.006)	Loss 0.8470 (0.8036)	Acc@1 79.297 (80.723)	Acc@5 98.828 (99.013)
+Epoch: [38][192/196]	Time 0.889 (0.755)	Data 0.000 (0.004)	Loss 0.8377 (0.8084)	Acc@1 80.469 (80.661)	Acc@5 99.219 (98.976)
+[INFO] Storing checkpoint...
+
+Epoch: [39 | 40] LR: 0.200000
+Epoch: [39][0/196]	Time 0.989 (0.989)	Data 0.467 (0.467)	Loss 0.7583 (0.7583)	Acc@1 82.422 (82.422)	Acc@5 99.219 (99.219)
+Epoch: [39][64/196]	Time 0.835 (0.860)	Data 0.000 (0.008)	Loss 0.7949 (0.8054)	Acc@1 82.031 (80.655)	Acc@5 99.609 (99.123)
+Epoch: [39][128/196]	Time 0.882 (0.839)	Data 0.000 (0.004)	Loss 0.7845 (0.8009)	Acc@1 82.422 (80.911)	Acc@5 98.438 (98.986)
+Epoch: [39][192/196]	Time 0.926 (0.847)	Data 0.000 (0.003)	Loss 0.8680 (0.8027)	Acc@1 79.297 (80.908)	Acc@5 98.438 (98.976)
+[INFO] Storing checkpoint...
+
+Epoch: [40 | 40] LR: 0.200000
+Epoch: [40][0/196]	Time 0.930 (0.930)	Data 0.618 (0.618)	Loss 0.7805 (0.7805)	Acc@1 82.422 (82.422)	Acc@5 99.219 (99.219)
+Epoch: [40][64/196]	Time 0.599 (0.841)	Data 0.000 (0.010)	Loss 0.7531 (0.7860)	Acc@1 83.594 (81.412)	Acc@5 99.219 (99.081)
+Epoch: [40][128/196]	Time 0.736 (0.843)	Data 0.000 (0.005)	Loss 0.7468 (0.7968)	Acc@1 81.250 (81.059)	Acc@5 99.219 (99.046)
+Epoch: [40][192/196]	Time 0.860 (0.847)	Data 0.000 (0.004)	Loss 0.9257 (0.7966)	Acc@1 77.734 (81.021)	Acc@5 98.438 (99.010)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 158769 ; 160073 ; 0.9918537167417366
+[INFO] Storing checkpoint...
+
+  256
+  60.53
+Max memory: 68.518144
+ 166.931s  j: 41 bis 45
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 41
+count0: 158769
+
+Epoch: [41 | 45] LR: 0.200000
+Epoch: [41][0/196]	Time 2.035 (2.035)	Data 0.505 (0.505)	Loss 0.7048 (0.7048)	Acc@1 81.250 (81.250)	Acc@5 99.609 (99.609)
+Epoch: [41][64/196]	Time 0.903 (0.845)	Data 0.000 (0.008)	Loss 0.8404 (0.7806)	Acc@1 80.469 (81.532)	Acc@5 98.828 (99.038)
+Epoch: [41][128/196]	Time 0.844 (0.844)	Data 0.000 (0.004)	Loss 0.7691 (0.8005)	Acc@1 80.859 (80.923)	Acc@5 99.609 (98.977)
+Epoch: [41][192/196]	Time 0.739 (0.854)	Data 0.000 (0.003)	Loss 0.8048 (0.8003)	Acc@1 82.031 (80.977)	Acc@5 99.219 (98.960)
+[INFO] Storing checkpoint...
+
+Epoch: [42 | 45] LR: 0.200000
+Epoch: [42][0/196]	Time 1.003 (1.003)	Data 0.596 (0.596)	Loss 0.7546 (0.7546)	Acc@1 80.859 (80.859)	Acc@5 99.219 (99.219)
+Epoch: [42][64/196]	Time 0.365 (0.749)	Data 0.000 (0.010)	Loss 0.7557 (0.8009)	Acc@1 82.422 (80.817)	Acc@5 99.219 (98.954)
+Epoch: [42][128/196]	Time 0.929 (0.773)	Data 0.005 (0.005)	Loss 0.7882 (0.8009)	Acc@1 80.859 (80.865)	Acc@5 99.609 (98.952)
+Epoch: [42][192/196]	Time 0.944 (0.802)	Data 0.000 (0.004)	Loss 0.8472 (0.8010)	Acc@1 80.859 (80.789)	Acc@5 98.047 (98.943)
+[INFO] Storing checkpoint...
+
+Epoch: [43 | 45] LR: 0.200000
+Epoch: [43][0/196]	Time 1.032 (1.032)	Data 0.516 (0.516)	Loss 0.8699 (0.8699)	Acc@1 79.297 (79.297)	Acc@5 99.219 (99.219)
+Epoch: [43][64/196]	Time 0.248 (0.694)	Data 0.000 (0.008)	Loss 0.8156 (0.7905)	Acc@1 82.031 (81.262)	Acc@5 99.219 (99.038)
+Epoch: [43][128/196]	Time 0.727 (0.558)	Data 0.000 (0.004)	Loss 0.8652 (0.7988)	Acc@1 78.906 (80.896)	Acc@5 99.609 (99.013)
+Epoch: [43][192/196]	Time 0.843 (0.655)	Data 0.000 (0.003)	Loss 0.7620 (0.8007)	Acc@1 79.688 (80.910)	Acc@5 99.219 (98.998)
+[INFO] Storing checkpoint...
+
+Epoch: [44 | 45] LR: 0.200000
+Epoch: [44][0/196]	Time 0.968 (0.968)	Data 0.657 (0.657)	Loss 0.8133 (0.8133)	Acc@1 81.641 (81.641)	Acc@5 98.047 (98.047)
+Epoch: [44][64/196]	Time 0.946 (0.852)	Data 0.000 (0.011)	Loss 0.8002 (0.8027)	Acc@1 83.594 (80.769)	Acc@5 98.828 (98.906)
+Epoch: [44][128/196]	Time 0.857 (0.846)	Data 0.000 (0.006)	Loss 0.7765 (0.8021)	Acc@1 83.984 (81.008)	Acc@5 98.047 (98.970)
+Epoch: [44][192/196]	Time 0.852 (0.847)	Data 0.000 (0.004)	Loss 0.7212 (0.8034)	Acc@1 84.375 (80.914)	Acc@5 99.609 (98.954)
+[INFO] Storing checkpoint...
+
+Epoch: [45 | 45] LR: 0.200000
+Epoch: [45][0/196]	Time 1.084 (1.084)	Data 0.915 (0.915)	Loss 0.7707 (0.7707)	Acc@1 81.641 (81.641)	Acc@5 98.047 (98.047)
+Epoch: [45][64/196]	Time 0.670 (0.872)	Data 0.004 (0.015)	Loss 0.7889 (0.7942)	Acc@1 83.203 (80.793)	Acc@5 98.828 (98.960)
+Epoch: [45][128/196]	Time 0.640 (0.857)	Data 0.000 (0.008)	Loss 0.7544 (0.7962)	Acc@1 80.078 (81.005)	Acc@5 99.219 (98.970)
+Epoch: [45][192/196]	Time 0.948 (0.843)	Data 0.000 (0.005)	Loss 0.8900 (0.7940)	Acc@1 79.297 (81.133)	Acc@5 97.266 (98.946)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+
+ RM:  module.conv10.weight
+
+ RM:  module.conv11.weight
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(16, 10, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(10, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(10, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(16, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(12, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(16, 10, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(10, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(10, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(16, 24, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(24, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(16, 24, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(24, 9, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(9, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(9, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(24, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(8, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(24, 47, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(47, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(47, 59, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(24, 59, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(59, 39, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(39, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(39, 59, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(59, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(1, 59, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(59, 33, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(33, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(33, 59, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(59, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(1, 59, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(59, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): AdaptiveAvgPool2d(output_size=(1, 1))
+    (55): Linear(in_features=59, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+Count: 158157 ; 158769 ; 0.9961453432345105
+[INFO] Storing checkpoint...
+
+  256
+  69.04
+Max memory: 67.3380864
+ 166.532s  j: 46 bis 50
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 158157
+
+Epoch: [46 | 50] LR: 0.200000
+Epoch: [46][0/196]	Time 2.064 (2.064)	Data 0.672 (0.672)	Loss 0.8341 (0.8341)	Acc@1 77.344 (77.344)	Acc@5 99.219 (99.219)
+Epoch: [46][64/196]	Time 0.838 (0.819)	Data 0.009 (0.011)	Loss 0.8867 (0.7852)	Acc@1 78.125 (81.575)	Acc@5 98.047 (99.014)
+Epoch: [46][128/196]	Time 0.791 (0.811)	Data 0.000 (0.006)	Loss 0.8091 (0.7845)	Acc@1 82.031 (81.529)	Acc@5 98.828 (99.016)
+Epoch: [46][192/196]	Time 0.798 (0.807)	Data 0.000 (0.005)	Loss 0.7653 (0.7938)	Acc@1 80.078 (81.232)	Acc@5 99.219 (98.956)
+[INFO] Storing checkpoint...
+
+Epoch: [47 | 50] LR: 0.200000
+Epoch: [47][0/196]	Time 0.972 (0.972)	Data 0.490 (0.490)	Loss 0.6645 (0.6645)	Acc@1 85.938 (85.938)	Acc@5 99.609 (99.609)
+Epoch: [47][64/196]	Time 0.808 (0.661)	Data 0.000 (0.008)	Loss 0.7483 (0.8002)	Acc@1 82.812 (81.076)	Acc@5 99.219 (98.990)
+Epoch: [47][128/196]	Time 0.699 (0.729)	Data 0.000 (0.005)	Loss 0.7095 (0.7960)	Acc@1 85.547 (81.047)	Acc@5 100.000 (99.028)
+Epoch: [47][192/196]	Time 0.880 (0.745)	Data 0.000 (0.003)	Loss 0.7259 (0.7949)	Acc@1 82.422 (81.037)	Acc@5 99.219 (99.041)
+[INFO] Storing checkpoint...
+
+Epoch: [48 | 50] LR: 0.200000
+Epoch: [48][0/196]	Time 0.654 (0.654)	Data 0.451 (0.451)	Loss 0.7108 (0.7108)	Acc@1 83.594 (83.594)	Acc@5 99.219 (99.219)
+Epoch: [48][64/196]	Time 0.489 (0.690)	Data 0.000 (0.008)	Loss 0.7663 (0.7966)	Acc@1 80.859 (80.715)	Acc@5 99.609 (98.966)
+Epoch: [48][128/196]	Time 0.645 (0.670)	Data 0.000 (0.004)	Loss 0.8584 (0.7942)	Acc@1 77.734 (80.884)	Acc@5 98.828 (98.995)
+Epoch: [48][192/196]	Time 0.620 (0.675)	Data 0.000 (0.003)	Loss 0.8040 (0.8032)	Acc@1 80.078 (80.742)	Acc@5 97.266 (98.964)
+[INFO] Storing checkpoint...
+
+Epoch: [49 | 50] LR: 0.200000
+Epoch: [49][0/196]	Time 0.960 (0.960)	Data 0.540 (0.540)	Loss 0.8165 (0.8165)	Acc@1 82.031 (82.031)	Acc@5 98.828 (98.828)
+Epoch: [49][64/196]	Time 0.801 (0.771)	Data 0.000 (0.009)	Loss 0.9352 (0.7923)	Acc@1 76.953 (81.094)	Acc@5 98.438 (98.972)
+Epoch: [49][128/196]	Time 0.795 (0.778)	Data 0.000 (0.005)	Loss 0.7624 (0.7917)	Acc@1 85.547 (81.205)	Acc@5 98.438 (98.958)
+Epoch: [49][192/196]	Time 1.019 (0.779)	Data 0.000 (0.003)	Loss 0.7887 (0.7909)	Acc@1 82.031 (81.163)	Acc@5 99.219 (98.964)
+[INFO] Storing checkpoint...
+
+Epoch: [50 | 50] LR: 0.200000
+Epoch: [50][0/196]	Time 0.886 (0.886)	Data 0.652 (0.652)	Loss 0.8109 (0.8109)	Acc@1 79.688 (79.688)	Acc@5 100.000 (100.000)
+Epoch: [50][64/196]	Time 0.789 (0.760)	Data 0.000 (0.011)	Loss 0.8121 (0.8066)	Acc@1 80.078 (80.547)	Acc@5 99.609 (98.984)
+Epoch: [50][128/196]	Time 0.758 (0.780)	Data 0.000 (0.006)	Loss 0.8425 (0.7970)	Acc@1 77.734 (80.890)	Acc@5 98.047 (99.037)
+Epoch: [50][192/196]	Time 0.874 (0.783)	Data 0.000 (0.004)	Loss 0.7845 (0.7985)	Acc@1 81.641 (80.872)	Acc@5 99.609 (99.041)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 157505 ; 158157 ; 0.9958775141157205
+[INFO] Storing checkpoint...
+
+  256
+  71.52
+Max memory: 61.0454016
+ 154.379s  j: 51 bis 55
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 51
+count0: 157505
+
+Epoch: [51 | 55] LR: 0.200000
+Epoch: [51][0/196]	Time 2.334 (2.334)	Data 0.667 (0.667)	Loss 0.7149 (0.7149)	Acc@1 84.766 (84.766)	Acc@5 99.609 (99.609)
+Epoch: [51][64/196]	Time 0.675 (0.817)	Data 0.009 (0.011)	Loss 0.8260 (0.7850)	Acc@1 82.031 (81.490)	Acc@5 99.219 (99.093)
+Epoch: [51][128/196]	Time 0.797 (0.803)	Data 0.000 (0.006)	Loss 0.7656 (0.7872)	Acc@1 81.250 (81.389)	Acc@5 98.438 (99.028)
+Epoch: [51][192/196]	Time 0.956 (0.803)	Data 0.000 (0.005)	Loss 0.8486 (0.7894)	Acc@1 80.469 (81.270)	Acc@5 98.828 (99.010)
+[INFO] Storing checkpoint...
+
+Epoch: [52 | 55] LR: 0.200000
+Epoch: [52][0/196]	Time 0.937 (0.937)	Data 0.440 (0.440)	Loss 0.8514 (0.8514)	Acc@1 76.953 (76.953)	Acc@5 99.219 (99.219)
+Epoch: [52][64/196]	Time 0.641 (0.784)	Data 0.000 (0.007)	Loss 0.8045 (0.8006)	Acc@1 80.469 (80.781)	Acc@5 99.219 (98.906)
+Epoch: [52][128/196]	Time 0.783 (0.766)	Data 0.000 (0.004)	Loss 0.8601 (0.7940)	Acc@1 77.734 (80.911)	Acc@5 98.438 (98.949)
+Epoch: [52][192/196]	Time 0.764 (0.745)	Data 0.000 (0.003)	Loss 0.8270 (0.7921)	Acc@1 77.734 (81.090)	Acc@5 98.438 (98.952)
+[INFO] Storing checkpoint...
+
+Epoch: [53 | 55] LR: 0.200000
+Epoch: [53][0/196]	Time 0.955 (0.955)	Data 0.573 (0.573)	Loss 0.7876 (0.7876)	Acc@1 79.297 (79.297)	Acc@5 99.219 (99.219)
+Epoch: [53][64/196]	Time 1.084 (0.825)	Data 0.000 (0.010)	Loss 0.7743 (0.7996)	Acc@1 80.469 (81.052)	Acc@5 98.828 (98.942)
+Epoch: [53][128/196]	Time 0.811 (0.795)	Data 0.000 (0.005)	Loss 0.7711 (0.7995)	Acc@1 82.422 (81.117)	Acc@5 98.828 (98.901)
+Epoch: [53][192/196]	Time 0.731 (0.706)	Data 0.000 (0.004)	Loss 0.8518 (0.7971)	Acc@1 78.125 (81.084)	Acc@5 98.438 (98.915)
+[INFO] Storing checkpoint...
+
+Epoch: [54 | 55] LR: 0.200000
+Epoch: [54][0/196]	Time 0.971 (0.971)	Data 0.471 (0.471)	Loss 0.8800 (0.8800)	Acc@1 76.172 (76.172)	Acc@5 99.609 (99.609)
+Epoch: [54][64/196]	Time 0.849 (0.804)	Data 0.000 (0.008)	Loss 0.8299 (0.7981)	Acc@1 80.078 (80.913)	Acc@5 98.438 (99.008)
+Epoch: [54][128/196]	Time 0.827 (0.809)	Data 0.000 (0.004)	Loss 0.8285 (0.7962)	Acc@1 80.469 (80.929)	Acc@5 98.438 (99.028)
+Epoch: [54][192/196]	Time 0.823 (0.800)	Data 0.000 (0.003)	Loss 0.7835 (0.8008)	Acc@1 82.031 (80.803)	Acc@5 98.828 (99.026)
+[INFO] Storing checkpoint...
+
+Epoch: [55 | 55] LR: 0.200000
+Epoch: [55][0/196]	Time 0.906 (0.906)	Data 0.781 (0.781)	Loss 0.7486 (0.7486)	Acc@1 82.812 (82.812)	Acc@5 99.609 (99.609)
+Epoch: [55][64/196]	Time 1.052 (0.814)	Data 0.000 (0.012)	Loss 0.7574 (0.7873)	Acc@1 82.422 (81.310)	Acc@5 99.219 (99.062)
+Epoch: [55][128/196]	Time 0.842 (0.811)	Data 0.000 (0.006)	Loss 0.8590 (0.7881)	Acc@1 79.688 (81.235)	Acc@5 99.219 (99.055)
+Epoch: [55][192/196]	Time 0.864 (0.803)	Data 0.000 (0.005)	Loss 0.6686 (0.7891)	Acc@1 85.547 (81.260)	Acc@5 99.609 (99.057)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 156394 ; 157505 ; 0.9929462556744231
+[INFO] Storing checkpoint...
+
+  256
+  71.51
+Max memory: 61.0663424
+ 158.210s  j: 56 bis 60
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 56
+count0: 156394
+
+Epoch: [56 | 60] LR: 0.200000
+Epoch: [56][0/196]	Time 2.174 (2.174)	Data 0.547 (0.547)	Loss 0.7626 (0.7626)	Acc@1 82.422 (82.422)	Acc@5 98.828 (98.828)
+Epoch: [56][64/196]	Time 0.824 (0.819)	Data 0.000 (0.010)	Loss 0.7516 (0.7650)	Acc@1 82.422 (81.875)	Acc@5 98.828 (99.032)
+Epoch: [56][128/196]	Time 0.842 (0.808)	Data 0.000 (0.005)	Loss 0.8210 (0.7756)	Acc@1 78.125 (81.677)	Acc@5 99.609 (99.049)
+Epoch: [56][192/196]	Time 0.532 (0.799)	Data 0.000 (0.004)	Loss 0.7729 (0.7862)	Acc@1 82.031 (81.270)	Acc@5 100.000 (99.077)
+[INFO] Storing checkpoint...
+
+Epoch: [57 | 60] LR: 0.200000
+Epoch: [57][0/196]	Time 0.775 (0.775)	Data 0.582 (0.582)	Loss 0.7921 (0.7921)	Acc@1 78.516 (78.516)	Acc@5 98.828 (98.828)
+Epoch: [57][64/196]	Time 0.652 (0.742)	Data 0.005 (0.010)	Loss 0.7600 (0.7930)	Acc@1 81.250 (81.118)	Acc@5 98.828 (98.924)
+Epoch: [57][128/196]	Time 0.644 (0.650)	Data 0.000 (0.005)	Loss 0.7517 (0.7889)	Acc@1 83.984 (81.132)	Acc@5 98.828 (98.961)
+Epoch: [57][192/196]	Time 0.681 (0.702)	Data 0.000 (0.004)	Loss 0.8285 (0.7954)	Acc@1 80.859 (81.054)	Acc@5 98.828 (98.978)
+[INFO] Storing checkpoint...
+
+Epoch: [58 | 60] LR: 0.200000
+Epoch: [58][0/196]	Time 0.794 (0.794)	Data 0.434 (0.434)	Loss 0.8829 (0.8829)	Acc@1 78.906 (78.906)	Acc@5 99.219 (99.219)
+Epoch: [58][64/196]	Time 0.623 (0.792)	Data 0.000 (0.008)	Loss 0.6649 (0.7846)	Acc@1 85.156 (81.520)	Acc@5 100.000 (98.972)
+Epoch: [58][128/196]	Time 0.663 (0.726)	Data 0.000 (0.005)	Loss 0.8090 (0.7765)	Acc@1 80.078 (81.710)	Acc@5 98.047 (98.989)
+Epoch: [58][192/196]	Time 0.923 (0.754)	Data 0.000 (0.003)	Loss 0.9165 (0.7822)	Acc@1 77.344 (81.594)	Acc@5 98.438 (98.978)
+[INFO] Storing checkpoint...
+
+Epoch: [59 | 60] LR: 0.200000
+Epoch: [59][0/196]	Time 0.693 (0.693)	Data 0.489 (0.489)	Loss 0.8001 (0.8001)	Acc@1 82.031 (82.031)	Acc@5 98.828 (98.828)
+Epoch: [59][64/196]	Time 0.635 (0.677)	Data 0.012 (0.008)	Loss 0.8640 (0.7909)	Acc@1 79.688 (81.514)	Acc@5 99.219 (98.942)
+Epoch: [59][128/196]	Time 0.686 (0.714)	Data 0.000 (0.005)	Loss 0.7897 (0.7879)	Acc@1 85.156 (81.507)	Acc@5 98.438 (98.980)
+Epoch: [59][192/196]	Time 0.811 (0.746)	Data 0.000 (0.003)	Loss 0.9144 (0.7875)	Acc@1 77.734 (81.489)	Acc@5 97.656 (98.980)
+[INFO] Storing checkpoint...
+
+Epoch: [60 | 60] LR: 0.200000
+Epoch: [60][0/196]	Time 0.814 (0.814)	Data 0.538 (0.538)	Loss 0.6163 (0.6163)	Acc@1 88.672 (88.672)	Acc@5 100.000 (100.000)
+Epoch: [60][64/196]	Time 0.889 (0.805)	Data 0.000 (0.009)	Loss 0.7439 (0.7895)	Acc@1 82.422 (81.569)	Acc@5 98.828 (98.996)
+Epoch: [60][128/196]	Time 0.400 (0.803)	Data 0.000 (0.005)	Loss 0.8849 (0.7952)	Acc@1 77.734 (81.262)	Acc@5 98.828 (98.983)
+Epoch: [60][192/196]	Time 0.789 (0.790)	Data 0.000 (0.003)	Loss 0.7577 (0.7966)	Acc@1 82.812 (81.149)	Acc@5 99.609 (98.960)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  71.34
+Max memory: 60.763648
+ 155.818s  j: 61 bis 65
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 61
+count0: 156394
+
+Epoch: [61 | 65] LR: 0.200000
+Epoch: [61][0/196]	Time 2.427 (2.427)	Data 0.520 (0.520)	Loss 0.7629 (0.7629)	Acc@1 82.812 (82.812)	Acc@5 99.219 (99.219)
+Epoch: [61][64/196]	Time 0.900 (0.793)	Data 0.005 (0.009)	Loss 0.7405 (0.7604)	Acc@1 82.031 (81.953)	Acc@5 98.828 (99.123)
+Epoch: [61][128/196]	Time 0.835 (0.795)	Data 0.000 (0.005)	Loss 0.8025 (0.7739)	Acc@1 82.031 (81.798)	Acc@5 98.828 (99.079)
+Epoch: [61][192/196]	Time 0.880 (0.790)	Data 0.000 (0.003)	Loss 0.8197 (0.7834)	Acc@1 79.688 (81.428)	Acc@5 100.000 (99.035)
+[INFO] Storing checkpoint...
+
+Epoch: [62 | 65] LR: 0.200000
+Epoch: [62][0/196]	Time 1.012 (1.012)	Data 0.474 (0.474)	Loss 0.6865 (0.6865)	Acc@1 83.594 (83.594)	Acc@5 100.000 (100.000)
+Epoch: [62][64/196]	Time 0.661 (0.710)	Data 0.000 (0.008)	Loss 0.8050 (0.7894)	Acc@1 83.203 (81.178)	Acc@5 99.609 (98.990)
+Epoch: [62][128/196]	Time 0.572 (0.680)	Data 0.000 (0.004)	Loss 0.8031 (0.7866)	Acc@1 79.688 (81.320)	Acc@5 99.609 (99.034)
+Epoch: [62][192/196]	Time 0.569 (0.712)	Data 0.000 (0.003)	Loss 0.7892 (0.7920)	Acc@1 82.812 (81.181)	Acc@5 99.609 (99.016)
+[INFO] Storing checkpoint...
+
+Epoch: [63 | 65] LR: 0.200000
+Epoch: [63][0/196]	Time 0.881 (0.881)	Data 0.531 (0.531)	Loss 0.7593 (0.7593)	Acc@1 80.859 (80.859)	Acc@5 98.828 (98.828)
+Epoch: [63][64/196]	Time 0.657 (0.738)	Data 0.000 (0.009)	Loss 0.7750 (0.7953)	Acc@1 80.859 (81.136)	Acc@5 98.438 (99.038)
+Epoch: [63][128/196]	Time 0.703 (0.760)	Data 0.000 (0.005)	Loss 0.6977 (0.7863)	Acc@1 87.109 (81.244)	Acc@5 99.609 (99.055)
+Epoch: [63][192/196]	Time 0.810 (0.768)	Data 0.000 (0.003)	Loss 0.7169 (0.7871)	Acc@1 83.984 (81.266)	Acc@5 98.438 (99.037)
+[INFO] Storing checkpoint...
+
+Epoch: [64 | 65] LR: 0.200000
+Epoch: [64][0/196]	Time 0.837 (0.837)	Data 0.608 (0.608)	Loss 0.8229 (0.8229)	Acc@1 80.078 (80.078)	Acc@5 100.000 (100.000)
+Epoch: [64][64/196]	Time 0.827 (0.784)	Data 0.000 (0.010)	Loss 0.8801 (0.7721)	Acc@1 79.688 (82.127)	Acc@5 98.047 (98.990)
+Epoch: [64][128/196]	Time 0.655 (0.757)	Data 0.000 (0.005)	Loss 0.8615 (0.7808)	Acc@1 79.297 (81.753)	Acc@5 99.219 (98.995)
+Epoch: [64][192/196]	Time 0.943 (0.743)	Data 0.000 (0.004)	Loss 0.7968 (0.7913)	Acc@1 83.203 (81.382)	Acc@5 99.219 (98.980)
+[INFO] Storing checkpoint...
+
+Epoch: [65 | 65] LR: 0.200000
+Epoch: [65][0/196]	Time 0.950 (0.950)	Data 0.475 (0.475)	Loss 0.7775 (0.7775)	Acc@1 81.250 (81.250)	Acc@5 99.219 (99.219)
+Epoch: [65][64/196]	Time 0.876 (0.801)	Data 0.000 (0.008)	Loss 0.7795 (0.7811)	Acc@1 80.469 (81.593)	Acc@5 99.219 (99.008)
+Epoch: [65][128/196]	Time 0.786 (0.811)	Data 0.000 (0.004)	Loss 0.7981 (0.7770)	Acc@1 80.078 (81.686)	Acc@5 98.047 (99.004)
+Epoch: [65][192/196]	Time 0.632 (0.804)	Data 0.000 (0.003)	Loss 0.6889 (0.7851)	Acc@1 86.328 (81.388)	Acc@5 99.219 (99.031)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 156104 ; 156394 ; 0.9981457089146643
+[INFO] Storing checkpoint...
+
+  256
+  53.99
+Max memory: 60.8338944
+ 158.066s  j: 66 bis 70
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 66
+count0: 156104
+
+Epoch: [66 | 70] LR: 0.200000
+Epoch: [66][0/196]	Time 2.043 (2.043)	Data 0.483 (0.483)	Loss 0.8700 (0.8700)	Acc@1 79.297 (79.297)	Acc@5 99.219 (99.219)
+Epoch: [66][64/196]	Time 0.572 (0.779)	Data 0.000 (0.008)	Loss 0.7961 (0.7585)	Acc@1 81.250 (82.254)	Acc@5 98.047 (99.038)
+Epoch: [66][128/196]	Time 0.766 (0.787)	Data 0.000 (0.004)	Loss 0.7722 (0.7751)	Acc@1 80.469 (81.710)	Acc@5 99.219 (99.073)
+Epoch: [66][192/196]	Time 0.541 (0.776)	Data 0.000 (0.003)	Loss 0.7924 (0.7757)	Acc@1 81.641 (81.626)	Acc@5 99.609 (99.047)
+[INFO] Storing checkpoint...
+
+Epoch: [67 | 70] LR: 0.200000
+Epoch: [67][0/196]	Time 0.648 (0.648)	Data 0.460 (0.460)	Loss 0.7724 (0.7724)	Acc@1 80.078 (80.078)	Acc@5 98.828 (98.828)
+Epoch: [67][64/196]	Time 0.689 (0.722)	Data 0.000 (0.008)	Loss 0.9739 (0.7859)	Acc@1 76.562 (81.328)	Acc@5 98.828 (99.153)
+Epoch: [67][128/196]	Time 0.440 (0.710)	Data 0.000 (0.004)	Loss 0.7965 (0.7923)	Acc@1 78.906 (81.186)	Acc@5 98.438 (99.073)
+Epoch: [67][192/196]	Time 0.612 (0.722)	Data 0.000 (0.003)	Loss 0.6959 (0.7915)	Acc@1 85.156 (81.185)	Acc@5 99.219 (99.039)
+[INFO] Storing checkpoint...
+
+Epoch: [68 | 70] LR: 0.200000
+Epoch: [68][0/196]	Time 0.692 (0.692)	Data 0.354 (0.354)	Loss 0.7277 (0.7277)	Acc@1 83.594 (83.594)	Acc@5 99.609 (99.609)
+Epoch: [68][64/196]	Time 0.584 (0.731)	Data 0.000 (0.006)	Loss 0.7858 (0.7873)	Acc@1 80.078 (81.274)	Acc@5 99.219 (99.069)
+Epoch: [68][128/196]	Time 0.961 (0.757)	Data 0.000 (0.003)	Loss 0.8338 (0.7919)	Acc@1 80.859 (81.165)	Acc@5 98.828 (99.016)
+Epoch: [68][192/196]	Time 1.002 (0.773)	Data 0.000 (0.002)	Loss 0.6772 (0.7931)	Acc@1 83.984 (81.153)	Acc@5 99.219 (99.004)
+[INFO] Storing checkpoint...
+
+Epoch: [69 | 70] LR: 0.200000
+Epoch: [69][0/196]	Time 0.847 (0.847)	Data 0.613 (0.613)	Loss 0.6708 (0.6708)	Acc@1 86.328 (86.328)	Acc@5 99.609 (99.609)
+Epoch: [69][64/196]	Time 0.679 (0.773)	Data 0.000 (0.010)	Loss 0.8100 (0.7841)	Acc@1 80.469 (81.701)	Acc@5 99.219 (98.960)
+Epoch: [69][128/196]	Time 0.832 (0.786)	Data 0.000 (0.005)	Loss 0.7792 (0.7803)	Acc@1 82.031 (81.725)	Acc@5 99.609 (98.995)
+Epoch: [69][192/196]	Time 0.596 (0.772)	Data 0.000 (0.004)	Loss 0.8788 (0.7817)	Acc@1 78.516 (81.687)	Acc@5 98.828 (99.051)
+[INFO] Storing checkpoint...
+
+Epoch: [70 | 70] LR: 0.200000
+Epoch: [70][0/196]	Time 0.477 (0.477)	Data 0.772 (0.772)	Loss 0.7358 (0.7358)	Acc@1 80.469 (80.469)	Acc@5 99.219 (99.219)
+Epoch: [70][64/196]	Time 0.800 (0.702)	Data 0.000 (0.013)	Loss 0.8540 (0.7696)	Acc@1 79.688 (81.761)	Acc@5 99.609 (99.189)
+Epoch: [70][128/196]	Time 0.431 (0.761)	Data 0.004 (0.007)	Loss 0.8517 (0.7914)	Acc@1 78.906 (81.186)	Acc@5 98.828 (98.986)
+Epoch: [70][192/196]	Time 0.680 (0.764)	Data 0.000 (0.005)	Loss 0.7292 (0.7863)	Acc@1 82.812 (81.295)	Acc@5 98.047 (99.010)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  54.3
+Max memory: 60.4177408
+ 150.186s  j: 71 bis 75
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 71
+count0: 156104
+
+Epoch: [71 | 75] LR: 0.200000
+Epoch: [71][0/196]	Time 2.577 (2.577)	Data 0.698 (0.698)	Loss 0.7483 (0.7483)	Acc@1 83.984 (83.984)	Acc@5 99.609 (99.609)
+Epoch: [71][64/196]	Time 0.467 (0.807)	Data 0.000 (0.012)	Loss 0.7181 (0.7470)	Acc@1 85.156 (82.614)	Acc@5 99.219 (99.056)
+Epoch: [71][128/196]	Time 0.783 (0.778)	Data 0.000 (0.006)	Loss 0.8684 (0.7677)	Acc@1 78.125 (81.871)	Acc@5 99.609 (99.013)
+Epoch: [71][192/196]	Time 0.807 (0.737)	Data 0.000 (0.004)	Loss 0.7880 (0.7726)	Acc@1 79.688 (81.703)	Acc@5 98.828 (99.037)
+[INFO] Storing checkpoint...
+
+Epoch: [72 | 75] LR: 0.200000
+Epoch: [72][0/196]	Time 0.718 (0.718)	Data 0.407 (0.407)	Loss 0.7509 (0.7509)	Acc@1 83.984 (83.984)	Acc@5 99.219 (99.219)
+Epoch: [72][64/196]	Time 0.834 (0.829)	Data 0.000 (0.007)	Loss 0.8772 (0.7861)	Acc@1 77.734 (81.629)	Acc@5 99.609 (98.930)
+Epoch: [72][128/196]	Time 0.513 (0.752)	Data 0.000 (0.004)	Loss 0.8591 (0.7961)	Acc@1 80.469 (81.020)	Acc@5 98.828 (98.961)
+Epoch: [72][192/196]	Time 0.799 (0.717)	Data 0.000 (0.003)	Loss 0.7560 (0.7932)	Acc@1 81.250 (81.084)	Acc@5 99.219 (99.002)
+[INFO] Storing checkpoint...
+
+Epoch: [73 | 75] LR: 0.200000
+Epoch: [73][0/196]	Time 0.790 (0.790)	Data 1.046 (1.046)	Loss 0.8371 (0.8371)	Acc@1 79.688 (79.688)	Acc@5 99.219 (99.219)
+Epoch: [73][64/196]	Time 0.836 (0.780)	Data 0.000 (0.017)	Loss 0.7791 (0.8004)	Acc@1 81.250 (80.511)	Acc@5 99.219 (98.894)
+Epoch: [73][128/196]	Time 0.783 (0.795)	Data 0.000 (0.009)	Loss 0.7736 (0.7854)	Acc@1 82.812 (81.253)	Acc@5 98.438 (99.025)
+Epoch: [73][192/196]	Time 0.779 (0.784)	Data 0.000 (0.006)	Loss 0.7473 (0.7869)	Acc@1 80.859 (81.212)	Acc@5 99.609 (99.004)
+[INFO] Storing checkpoint...
+
+Epoch: [74 | 75] LR: 0.200000
+Epoch: [74][0/196]	Time 0.816 (0.816)	Data 0.582 (0.582)	Loss 0.8387 (0.8387)	Acc@1 80.078 (80.078)	Acc@5 98.828 (98.828)
+Epoch: [74][64/196]	Time 0.822 (0.807)	Data 0.000 (0.009)	Loss 0.7956 (0.7789)	Acc@1 81.250 (81.593)	Acc@5 99.609 (99.069)
+Epoch: [74][128/196]	Time 0.920 (0.804)	Data 0.000 (0.005)	Loss 0.7958 (0.7908)	Acc@1 80.078 (81.271)	Acc@5 99.609 (98.970)
+Epoch: [74][192/196]	Time 0.748 (0.800)	Data 0.000 (0.004)	Loss 0.8493 (0.7889)	Acc@1 79.688 (81.295)	Acc@5 98.047 (98.966)
+[INFO] Storing checkpoint...
+
+Epoch: [75 | 75] LR: 0.200000
+Epoch: [75][0/196]	Time 0.918 (0.918)	Data 0.496 (0.496)	Loss 0.7860 (0.7860)	Acc@1 80.469 (80.469)	Acc@5 100.000 (100.000)
+Epoch: [75][64/196]	Time 0.603 (0.774)	Data 0.000 (0.008)	Loss 0.6859 (0.7760)	Acc@1 87.500 (81.743)	Acc@5 100.000 (99.135)
+Epoch: [75][128/196]	Time 0.612 (0.736)	Data 0.000 (0.005)	Loss 0.7477 (0.7853)	Acc@1 81.250 (81.395)	Acc@5 98.828 (99.119)
+Epoch: [75][192/196]	Time 0.815 (0.747)	Data 0.000 (0.003)	Loss 0.7627 (0.7895)	Acc@1 82.031 (81.246)	Acc@5 98.828 (99.033)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 155742 ; 156104 ; 0.9976810331573822
+[INFO] Storing checkpoint...
+
+  256
+  75.66
+Max memory: 60.4177408
+ 147.111s  j: 76 bis 80
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 76
+count0: 155742
+
+Epoch: [76 | 80] LR: 0.200000
+Epoch: [76][0/196]	Time 2.429 (2.429)	Data 0.958 (0.958)	Loss 0.7164 (0.7164)	Acc@1 84.766 (84.766)	Acc@5 99.219 (99.219)
+Epoch: [76][64/196]	Time 0.821 (0.793)	Data 0.000 (0.016)	Loss 0.6695 (0.7604)	Acc@1 85.156 (81.977)	Acc@5 99.609 (99.123)
+Epoch: [76][128/196]	Time 0.798 (0.706)	Data 0.000 (0.008)	Loss 0.7359 (0.7627)	Acc@1 84.766 (81.989)	Acc@5 99.609 (99.122)
+Epoch: [76][192/196]	Time 0.807 (0.738)	Data 0.000 (0.006)	Loss 0.8006 (0.7755)	Acc@1 83.203 (81.493)	Acc@5 98.438 (99.035)
+[INFO] Storing checkpoint...
+
+Epoch: [77 | 80] LR: 0.200000
+Epoch: [77][0/196]	Time 0.682 (0.682)	Data 0.467 (0.467)	Loss 0.7871 (0.7871)	Acc@1 78.906 (78.906)	Acc@5 99.219 (99.219)
+Epoch: [77][64/196]	Time 0.783 (0.789)	Data 0.005 (0.008)	Loss 0.8391 (0.7820)	Acc@1 76.562 (81.070)	Acc@5 99.609 (98.894)
+Epoch: [77][128/196]	Time 0.666 (0.665)	Data 0.010 (0.005)	Loss 0.8149 (0.7897)	Acc@1 80.469 (80.962)	Acc@5 99.609 (98.916)
+Epoch: [77][192/196]	Time 0.574 (0.675)	Data 0.000 (0.004)	Loss 0.7950 (0.7864)	Acc@1 80.078 (81.187)	Acc@5 98.828 (98.925)
+[INFO] Storing checkpoint...
+
+Epoch: [78 | 80] LR: 0.200000
+Epoch: [78][0/196]	Time 0.951 (0.951)	Data 0.749 (0.749)	Loss 0.8152 (0.8152)	Acc@1 79.297 (79.297)	Acc@5 99.219 (99.219)
+Epoch: [78][64/196]	Time 0.843 (0.814)	Data 0.000 (0.012)	Loss 0.7722 (0.7790)	Acc@1 80.859 (81.569)	Acc@5 99.219 (98.984)
+Epoch: [78][128/196]	Time 0.886 (0.800)	Data 0.000 (0.007)	Loss 0.8228 (0.7776)	Acc@1 81.641 (81.465)	Acc@5 99.609 (99.049)
+Epoch: [78][192/196]	Time 0.844 (0.798)	Data 0.000 (0.005)	Loss 0.6880 (0.7822)	Acc@1 84.766 (81.317)	Acc@5 100.000 (99.018)
+[INFO] Storing checkpoint...
+
+Epoch: [79 | 80] LR: 0.200000
+Epoch: [79][0/196]	Time 0.853 (0.853)	Data 0.513 (0.513)	Loss 0.7150 (0.7150)	Acc@1 85.156 (85.156)	Acc@5 99.609 (99.609)
+Epoch: [79][64/196]	Time 0.602 (0.813)	Data 0.000 (0.008)	Loss 0.7934 (0.7835)	Acc@1 79.688 (81.454)	Acc@5 99.609 (99.020)
+Epoch: [79][128/196]	Time 0.813 (0.788)	Data 0.000 (0.005)	Loss 0.7398 (0.7784)	Acc@1 84.375 (81.468)	Acc@5 98.438 (99.067)
+Epoch: [79][192/196]	Time 0.719 (0.797)	Data 0.000 (0.004)	Loss 0.7628 (0.7843)	Acc@1 83.203 (81.438)	Acc@5 99.219 (99.028)
+[INFO] Storing checkpoint...
+
+Epoch: [80 | 80] LR: 0.200000
+Epoch: [80][0/196]	Time 0.955 (0.955)	Data 0.826 (0.826)	Loss 0.7394 (0.7394)	Acc@1 83.594 (83.594)	Acc@5 99.609 (99.609)
+Epoch: [80][64/196]	Time 0.773 (0.785)	Data 0.000 (0.014)	Loss 0.7433 (0.7817)	Acc@1 82.422 (81.364)	Acc@5 100.000 (99.165)
+Epoch: [80][128/196]	Time 0.631 (0.778)	Data 0.000 (0.007)	Loss 0.9215 (0.7967)	Acc@1 76.953 (80.932)	Acc@5 98.047 (99.052)
+Epoch: [80][192/196]	Time 0.663 (0.742)	Data 0.000 (0.005)	Loss 0.8590 (0.7931)	Acc@1 78.125 (81.062)	Acc@5 98.828 (99.024)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 154946 ; 155742 ; 0.9948889830617303
+[INFO] Storing checkpoint...
+
+  256
+  72.72
+Max memory: 60.6411264
+ 146.966s  j: 81 bis 85
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 81
+count0: 154946
+
+Epoch: [81 | 85] LR: 0.200000
+Epoch: [81][0/196]	Time 1.804 (1.804)	Data 0.735 (0.735)	Loss 0.7565 (0.7565)	Acc@1 81.641 (81.641)	Acc@5 99.219 (99.219)
+Epoch: [81][64/196]	Time 0.647 (0.708)	Data 0.000 (0.012)	Loss 0.7723 (0.7484)	Acc@1 82.031 (82.482)	Acc@5 98.828 (99.285)
+Epoch: [81][128/196]	Time 0.826 (0.748)	Data 0.000 (0.006)	Loss 0.7941 (0.7640)	Acc@1 79.297 (81.813)	Acc@5 99.219 (99.107)
+Epoch: [81][192/196]	Time 0.829 (0.768)	Data 0.000 (0.004)	Loss 0.8072 (0.7738)	Acc@1 80.469 (81.610)	Acc@5 98.438 (99.083)
+[INFO] Storing checkpoint...
+
+Epoch: [82 | 85] LR: 0.200000
+Epoch: [82][0/196]	Time 0.658 (0.658)	Data 0.738 (0.738)	Loss 0.7807 (0.7807)	Acc@1 80.469 (80.469)	Acc@5 99.609 (99.609)
+Epoch: [82][64/196]	Time 0.805 (0.672)	Data 0.000 (0.012)	Loss 0.8308 (0.7805)	Acc@1 79.688 (81.659)	Acc@5 98.438 (98.918)
+Epoch: [82][128/196]	Time 0.674 (0.717)	Data 0.010 (0.007)	Loss 0.8676 (0.7836)	Acc@1 76.562 (81.444)	Acc@5 98.438 (98.955)
+Epoch: [82][192/196]	Time 0.802 (0.720)	Data 0.000 (0.005)	Loss 0.8436 (0.7837)	Acc@1 79.297 (81.414)	Acc@5 98.047 (98.988)
+[INFO] Storing checkpoint...
+
+Epoch: [83 | 85] LR: 0.200000
+Epoch: [83][0/196]	Time 0.851 (0.851)	Data 0.577 (0.577)	Loss 0.8333 (0.8333)	Acc@1 79.688 (79.688)	Acc@5 98.438 (98.438)
+Epoch: [83][64/196]	Time 0.843 (0.791)	Data 0.000 (0.010)	Loss 0.7303 (0.7612)	Acc@1 83.594 (82.296)	Acc@5 98.438 (99.075)
+Epoch: [83][128/196]	Time 0.706 (0.782)	Data 0.000 (0.005)	Loss 0.8108 (0.7734)	Acc@1 82.031 (81.756)	Acc@5 97.266 (98.970)
+Epoch: [83][192/196]	Time 1.052 (0.782)	Data 0.000 (0.004)	Loss 0.6940 (0.7813)	Acc@1 84.375 (81.481)	Acc@5 99.609 (98.954)
+[INFO] Storing checkpoint...
+
+Epoch: [84 | 85] LR: 0.200000
+Epoch: [84][0/196]	Time 0.750 (0.750)	Data 1.015 (1.015)	Loss 0.8500 (0.8500)	Acc@1 80.078 (80.078)	Acc@5 98.438 (98.438)
+Epoch: [84][64/196]	Time 0.831 (0.805)	Data 0.000 (0.016)	Loss 0.8761 (0.7895)	Acc@1 79.688 (81.220)	Acc@5 98.438 (99.062)
+Epoch: [84][128/196]	Time 0.741 (0.802)	Data 0.000 (0.009)	Loss 0.7539 (0.7864)	Acc@1 83.594 (81.371)	Acc@5 98.047 (99.028)
+Epoch: [84][192/196]	Time 1.045 (0.796)	Data 0.000 (0.006)	Loss 0.7764 (0.7857)	Acc@1 80.859 (81.444)	Acc@5 98.438 (99.018)
+[INFO] Storing checkpoint...
+
+Epoch: [85 | 85] LR: 0.200000
+Epoch: [85][0/196]	Time 0.894 (0.894)	Data 0.450 (0.450)	Loss 0.7553 (0.7553)	Acc@1 82.422 (82.422)	Acc@5 100.000 (100.000)
+Epoch: [85][64/196]	Time 0.792 (0.806)	Data 0.000 (0.007)	Loss 0.7880 (0.7884)	Acc@1 81.250 (81.280)	Acc@5 98.438 (99.026)
+Epoch: [85][128/196]	Time 0.562 (0.777)	Data 0.000 (0.004)	Loss 0.7757 (0.7826)	Acc@1 82.031 (81.447)	Acc@5 99.219 (99.064)
+Epoch: [85][192/196]	Time 0.701 (0.736)	Data 0.000 (0.003)	Loss 0.7324 (0.7809)	Acc@1 85.547 (81.529)	Acc@5 99.219 (99.079)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 154294 ; 154946 ; 0.9957920824029016
+[INFO] Storing checkpoint...
+
+  256
+  73.33
+Max memory: 60.2574848
+ 144.681s  j: 86 bis 90
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 86
+count0: 154294
+
+Epoch: [86 | 90] LR: 0.200000
+Epoch: [86][0/196]	Time 2.262 (2.262)	Data 0.570 (0.570)	Loss 0.7246 (0.7246)	Acc@1 85.547 (85.547)	Acc@5 99.219 (99.219)
+Epoch: [86][64/196]	Time 0.688 (0.803)	Data 0.000 (0.009)	Loss 0.7864 (0.7564)	Acc@1 78.906 (82.314)	Acc@5 98.047 (98.984)
+Epoch: [86][128/196]	Time 0.909 (0.786)	Data 0.000 (0.005)	Loss 0.8066 (0.7728)	Acc@1 81.250 (81.710)	Acc@5 99.609 (99.004)
+Epoch: [86][192/196]	Time 0.776 (0.749)	Data 0.000 (0.004)	Loss 0.7325 (0.7785)	Acc@1 83.594 (81.495)	Acc@5 99.219 (99.008)
+[INFO] Storing checkpoint...
+
+Epoch: [87 | 90] LR: 0.200000
+Epoch: [87][0/196]	Time 0.607 (0.607)	Data 0.500 (0.500)	Loss 0.8313 (0.8313)	Acc@1 81.641 (81.641)	Acc@5 99.609 (99.609)
+Epoch: [87][64/196]	Time 0.874 (0.761)	Data 0.000 (0.009)	Loss 0.7328 (0.7778)	Acc@1 82.422 (81.827)	Acc@5 99.609 (99.087)
+Epoch: [87][128/196]	Time 0.659 (0.747)	Data 0.000 (0.005)	Loss 0.7373 (0.7853)	Acc@1 81.641 (81.559)	Acc@5 99.219 (99.016)
+Epoch: [87][192/196]	Time 0.864 (0.728)	Data 0.000 (0.003)	Loss 0.7408 (0.7820)	Acc@1 86.328 (81.541)	Acc@5 99.609 (98.998)
+[INFO] Storing checkpoint...
+
+Epoch: [88 | 90] LR: 0.200000
+Epoch: [88][0/196]	Time 0.840 (0.840)	Data 0.669 (0.669)	Loss 0.8677 (0.8677)	Acc@1 77.734 (77.734)	Acc@5 98.047 (98.047)
+Epoch: [88][64/196]	Time 0.912 (0.807)	Data 0.000 (0.011)	Loss 0.8787 (0.7948)	Acc@1 78.125 (81.214)	Acc@5 99.219 (98.960)
+Epoch: [88][128/196]	Time 0.925 (0.800)	Data 0.000 (0.006)	Loss 0.7096 (0.7848)	Acc@1 82.812 (81.601)	Acc@5 99.609 (99.016)
+Epoch: [88][192/196]	Time 0.725 (0.805)	Data 0.000 (0.004)	Loss 0.8777 (0.7832)	Acc@1 78.906 (81.574)	Acc@5 98.438 (99.041)
+[INFO] Storing checkpoint...
+
+Epoch: [89 | 90] LR: 0.200000
+Epoch: [89][0/196]	Time 0.755 (0.755)	Data 0.804 (0.804)	Loss 0.8166 (0.8166)	Acc@1 79.688 (79.688)	Acc@5 99.609 (99.609)
+Epoch: [89][64/196]	Time 0.812 (0.775)	Data 0.000 (0.013)	Loss 0.7573 (0.7836)	Acc@1 82.031 (81.382)	Acc@5 99.219 (99.069)
+Epoch: [89][128/196]	Time 0.666 (0.760)	Data 0.000 (0.007)	Loss 0.8177 (0.7907)	Acc@1 81.641 (81.226)	Acc@5 99.219 (99.022)
+Epoch: [89][192/196]	Time 0.833 (0.769)	Data 0.000 (0.005)	Loss 0.8140 (0.7882)	Acc@1 82.031 (81.260)	Acc@5 99.609 (99.053)
+[INFO] Storing checkpoint...
+
+Epoch: [90 | 90] LR: 0.200000
+Epoch: [90][0/196]	Time 0.870 (0.870)	Data 0.598 (0.598)	Loss 0.7092 (0.7092)	Acc@1 82.812 (82.812)	Acc@5 99.219 (99.219)
+Epoch: [90][64/196]	Time 0.787 (0.800)	Data 0.000 (0.010)	Loss 0.8526 (0.7754)	Acc@1 78.125 (81.581)	Acc@5 100.000 (99.014)
+Epoch: [90][128/196]	Time 0.729 (0.793)	Data 0.000 (0.006)	Loss 0.8763 (0.7801)	Acc@1 79.688 (81.353)	Acc@5 99.219 (99.043)
+Epoch: [90][192/196]	Time 0.366 (0.679)	Data 0.000 (0.004)	Loss 0.9456 (0.7778)	Acc@1 76.172 (81.531)	Acc@5 98.438 (99.039)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  74.66
+Max memory: 59.701248
+ 133.740s  j: 91 bis 95
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 91
+count0: 154294
+
+Epoch: [91 | 95] LR: 0.200000
+Epoch: [91][0/196]	Time 2.001 (2.001)	Data 0.668 (0.668)	Loss 0.6674 (0.6674)	Acc@1 82.812 (82.812)	Acc@5 99.219 (99.219)
+Epoch: [91][64/196]	Time 0.812 (0.813)	Data 0.000 (0.011)	Loss 0.8463 (0.7512)	Acc@1 78.125 (82.133)	Acc@5 99.609 (99.153)
+Epoch: [91][128/196]	Time 0.415 (0.724)	Data 0.000 (0.006)	Loss 0.8831 (0.7738)	Acc@1 78.125 (81.592)	Acc@5 98.828 (99.046)
+Epoch: [91][192/196]	Time 0.766 (0.736)	Data 0.000 (0.005)	Loss 0.8070 (0.7802)	Acc@1 80.078 (81.380)	Acc@5 98.047 (99.031)
+[INFO] Storing checkpoint...
+
+Epoch: [92 | 95] LR: 0.200000
+Epoch: [92][0/196]	Time 0.958 (0.958)	Data 0.568 (0.568)	Loss 0.7845 (0.7845)	Acc@1 81.641 (81.641)	Acc@5 97.656 (97.656)
+Epoch: [92][64/196]	Time 0.774 (0.797)	Data 0.000 (0.010)	Loss 0.8126 (0.7770)	Acc@1 82.031 (81.875)	Acc@5 99.219 (99.050)
+Epoch: [92][128/196]	Time 0.475 (0.772)	Data 0.000 (0.005)	Loss 0.8514 (0.7764)	Acc@1 76.562 (81.725)	Acc@5 99.609 (99.113)
+Epoch: [92][192/196]	Time 0.807 (0.739)	Data 0.000 (0.004)	Loss 0.7924 (0.7789)	Acc@1 79.688 (81.675)	Acc@5 98.828 (99.087)
+[INFO] Storing checkpoint...
+
+Epoch: [93 | 95] LR: 0.200000
+Epoch: [93][0/196]	Time 0.880 (0.880)	Data 0.527 (0.527)	Loss 0.7829 (0.7829)	Acc@1 82.031 (82.031)	Acc@5 98.828 (98.828)
+Epoch: [93][64/196]	Time 0.870 (0.767)	Data 0.000 (0.009)	Loss 0.7824 (0.7800)	Acc@1 82.422 (81.538)	Acc@5 98.438 (98.960)
+Epoch: [93][128/196]	Time 0.785 (0.765)	Data 0.002 (0.005)	Loss 0.7737 (0.7800)	Acc@1 80.078 (81.556)	Acc@5 99.609 (99.010)
+Epoch: [93][192/196]	Time 0.732 (0.762)	Data 0.000 (0.004)	Loss 0.8714 (0.7810)	Acc@1 77.344 (81.594)	Acc@5 98.828 (98.974)
+[INFO] Storing checkpoint...
+
+Epoch: [94 | 95] LR: 0.200000
+Epoch: [94][0/196]	Time 0.824 (0.824)	Data 0.609 (0.609)	Loss 0.7477 (0.7477)	Acc@1 83.594 (83.594)	Acc@5 100.000 (100.000)
+Epoch: [94][64/196]	Time 0.870 (0.780)	Data 0.000 (0.011)	Loss 0.6729 (0.7833)	Acc@1 85.547 (81.442)	Acc@5 99.609 (99.189)
+Epoch: [94][128/196]	Time 0.709 (0.788)	Data 0.000 (0.006)	Loss 0.8774 (0.7854)	Acc@1 79.297 (81.253)	Acc@5 97.656 (99.104)
+Epoch: [94][192/196]	Time 0.433 (0.779)	Data 0.000 (0.005)	Loss 0.7167 (0.7845)	Acc@1 80.078 (81.347)	Acc@5 99.609 (99.067)
+[INFO] Storing checkpoint...
+
+Epoch: [95 | 95] LR: 0.200000
+Epoch: [95][0/196]	Time 0.956 (0.956)	Data 0.746 (0.746)	Loss 0.8433 (0.8433)	Acc@1 79.297 (79.297)	Acc@5 98.438 (98.438)
+Epoch: [95][64/196]	Time 0.717 (0.768)	Data 0.000 (0.012)	Loss 0.8484 (0.7707)	Acc@1 78.906 (81.779)	Acc@5 98.828 (99.093)
+Epoch: [95][128/196]	Time 0.772 (0.746)	Data 0.000 (0.006)	Loss 0.7612 (0.7837)	Acc@1 81.641 (81.395)	Acc@5 99.609 (99.019)
+Epoch: [95][192/196]	Time 0.718 (0.704)	Data 0.000 (0.005)	Loss 0.7915 (0.7826)	Acc@1 84.766 (81.408)	Acc@5 98.047 (99.018)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 154004 ; 154294 ; 0.9981204713080224
+[INFO] Storing checkpoint...
+
+  256
+  70.43
+Max memory: 59.8796288
+ 138.478s  j: 96 bis 100
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 96
+count0: 154004
+
+Epoch: [96 | 100] LR: 0.200000
+Epoch: [96][0/196]	Time 1.845 (1.845)	Data 0.836 (0.836)	Loss 0.7219 (0.7219)	Acc@1 84.375 (84.375)	Acc@5 98.828 (98.828)
+Epoch: [96][64/196]	Time 0.647 (0.785)	Data 0.000 (0.014)	Loss 0.8030 (0.7485)	Acc@1 78.906 (82.740)	Acc@5 100.000 (99.008)
+Epoch: [96][128/196]	Time 0.686 (0.736)	Data 0.000 (0.008)	Loss 0.8003 (0.7678)	Acc@1 84.375 (82.019)	Acc@5 97.266 (98.998)
+Epoch: [96][192/196]	Time 0.612 (0.747)	Data 0.000 (0.005)	Loss 0.7654 (0.7799)	Acc@1 80.859 (81.572)	Acc@5 99.219 (98.980)
+[INFO] Storing checkpoint...
+
+Epoch: [97 | 100] LR: 0.200000
+Epoch: [97][0/196]	Time 0.862 (0.862)	Data 0.561 (0.561)	Loss 0.7116 (0.7116)	Acc@1 84.375 (84.375)	Acc@5 99.219 (99.219)
+Epoch: [97][64/196]	Time 0.541 (0.782)	Data 0.000 (0.009)	Loss 0.8758 (0.7721)	Acc@1 79.297 (81.845)	Acc@5 99.609 (99.056)
+Epoch: [97][128/196]	Time 0.518 (0.768)	Data 0.000 (0.005)	Loss 0.7910 (0.7830)	Acc@1 82.812 (81.495)	Acc@5 98.828 (99.010)
+Epoch: [97][192/196]	Time 0.863 (0.732)	Data 0.000 (0.004)	Loss 0.8751 (0.7830)	Acc@1 78.125 (81.444)	Acc@5 99.219 (98.998)
+[INFO] Storing checkpoint...
+
+Epoch: [98 | 100] LR: 0.200000
+Epoch: [98][0/196]	Time 0.720 (0.720)	Data 0.549 (0.549)	Loss 0.7741 (0.7741)	Acc@1 82.812 (82.812)	Acc@5 98.828 (98.828)
+Epoch: [98][64/196]	Time 0.577 (0.772)	Data 0.000 (0.010)	Loss 0.8098 (0.7987)	Acc@1 81.250 (80.757)	Acc@5 98.828 (98.954)
+Epoch: [98][128/196]	Time 1.019 (0.775)	Data 0.000 (0.005)	Loss 0.6917 (0.7891)	Acc@1 85.156 (81.329)	Acc@5 99.609 (98.907)
+Epoch: [98][192/196]	Time 0.716 (0.766)	Data 0.000 (0.004)	Loss 0.8932 (0.7859)	Acc@1 75.391 (81.373)	Acc@5 98.828 (98.946)
+[INFO] Storing checkpoint...
+
+Epoch: [99 | 100] LR: 0.200000
+Epoch: [99][0/196]	Time 1.014 (1.014)	Data 0.469 (0.469)	Loss 0.7586 (0.7586)	Acc@1 81.250 (81.250)	Acc@5 99.219 (99.219)
+Epoch: [99][64/196]	Time 0.730 (0.779)	Data 0.000 (0.009)	Loss 0.7463 (0.7759)	Acc@1 81.250 (81.178)	Acc@5 98.828 (99.141)
+Epoch: [99][128/196]	Time 0.622 (0.753)	Data 0.000 (0.005)	Loss 0.7735 (0.7713)	Acc@1 82.031 (81.613)	Acc@5 98.828 (99.098)
+Epoch: [99][192/196]	Time 0.672 (0.767)	Data 0.000 (0.003)	Loss 0.7747 (0.7785)	Acc@1 80.859 (81.329)	Acc@5 98.438 (99.047)
+[INFO] Storing checkpoint...
+
+Epoch: [100 | 100] LR: 0.200000
+Epoch: [100][0/196]	Time 0.781 (0.781)	Data 0.714 (0.714)	Loss 0.7909 (0.7909)	Acc@1 81.250 (81.250)	Acc@5 98.828 (98.828)
+Epoch: [100][64/196]	Time 0.771 (0.780)	Data 0.000 (0.011)	Loss 0.8137 (0.7808)	Acc@1 81.250 (81.701)	Acc@5 98.828 (98.912)
+Epoch: [100][128/196]	Time 0.551 (0.714)	Data 0.000 (0.006)	Loss 0.8144 (0.7776)	Acc@1 79.297 (81.834)	Acc@5 99.219 (98.964)
+Epoch: [100][192/196]	Time 0.616 (0.735)	Data 0.000 (0.005)	Loss 0.8254 (0.7864)	Acc@1 80.859 (81.489)	Acc@5 98.828 (98.948)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 153642 ; 154004 ; 0.9976494117035921
+[INFO] Storing checkpoint...
+
+  256
+  73.11
+Max memory: 59.346432
+ 144.751s  j: 101 bis 105
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 101
+count0: 153642
+
+Epoch: [101 | 105] LR: 0.200000
+Epoch: [101][0/196]	Time 1.547 (1.547)	Data 0.517 (0.517)	Loss 0.8231 (0.8231)	Acc@1 80.469 (80.469)	Acc@5 98.828 (98.828)
+Epoch: [101][64/196]	Time 0.770 (0.703)	Data 0.000 (0.008)	Loss 0.8914 (0.7442)	Acc@1 76.562 (82.794)	Acc@5 97.656 (99.189)
+Epoch: [101][128/196]	Time 0.697 (0.753)	Data 0.000 (0.005)	Loss 0.8092 (0.7601)	Acc@1 80.859 (82.264)	Acc@5 99.219 (99.098)
+Epoch: [101][192/196]	Time 0.798 (0.771)	Data 0.000 (0.004)	Loss 0.8900 (0.7695)	Acc@1 75.000 (81.871)	Acc@5 99.609 (99.122)
+[INFO] Storing checkpoint...
+
+Epoch: [102 | 105] LR: 0.200000
+Epoch: [102][0/196]	Time 0.729 (0.729)	Data 1.136 (1.136)	Loss 0.7342 (0.7342)	Acc@1 83.203 (83.203)	Acc@5 99.609 (99.609)
+Epoch: [102][64/196]	Time 0.547 (0.788)	Data 0.000 (0.018)	Loss 0.6936 (0.7816)	Acc@1 83.984 (81.154)	Acc@5 99.609 (99.165)
+Epoch: [102][128/196]	Time 0.827 (0.795)	Data 0.000 (0.009)	Loss 0.6435 (0.7845)	Acc@1 86.719 (81.274)	Acc@5 99.609 (99.119)
+Epoch: [102][192/196]	Time 0.640 (0.736)	Data 0.000 (0.006)	Loss 0.8063 (0.7829)	Acc@1 80.469 (81.335)	Acc@5 98.438 (99.114)
+[INFO] Storing checkpoint...
+
+Epoch: [103 | 105] LR: 0.200000
+Epoch: [103][0/196]	Time 0.733 (0.733)	Data 0.774 (0.774)	Loss 0.8844 (0.8844)	Acc@1 78.516 (78.516)	Acc@5 99.609 (99.609)
+Epoch: [103][64/196]	Time 0.899 (0.797)	Data 0.010 (0.013)	Loss 0.8041 (0.7687)	Acc@1 80.859 (81.869)	Acc@5 99.609 (98.972)
+Epoch: [103][128/196]	Time 0.806 (0.790)	Data 0.000 (0.007)	Loss 0.8636 (0.7811)	Acc@1 78.125 (81.353)	Acc@5 97.656 (98.977)
+Epoch: [103][192/196]	Time 0.534 (0.781)	Data 0.000 (0.005)	Loss 0.6825 (0.7848)	Acc@1 85.156 (81.284)	Acc@5 99.219 (98.972)
+[INFO] Storing checkpoint...
+
+Epoch: [104 | 105] LR: 0.200000
+Epoch: [104][0/196]	Time 0.934 (0.934)	Data 0.628 (0.628)	Loss 0.7982 (0.7982)	Acc@1 78.516 (78.516)	Acc@5 99.609 (99.609)
+Epoch: [104][64/196]	Time 0.817 (0.747)	Data 0.000 (0.011)	Loss 0.9041 (0.7746)	Acc@1 77.734 (81.719)	Acc@5 98.438 (99.165)
+Epoch: [104][128/196]	Time 1.234 (0.758)	Data 0.000 (0.006)	Loss 0.8823 (0.7837)	Acc@1 79.688 (81.426)	Acc@5 98.047 (99.098)
+Epoch: [104][192/196]	Time 0.774 (0.767)	Data 0.000 (0.004)	Loss 0.8199 (0.7773)	Acc@1 82.422 (81.645)	Acc@5 98.438 (99.077)
+[INFO] Storing checkpoint...
+
+Epoch: [105 | 105] LR: 0.200000
+Epoch: [105][0/196]	Time 0.916 (0.916)	Data 0.980 (0.980)	Loss 0.8076 (0.8076)	Acc@1 80.078 (80.078)	Acc@5 98.828 (98.828)
+Epoch: [105][64/196]	Time 0.549 (0.680)	Data 0.000 (0.016)	Loss 0.7997 (0.7966)	Acc@1 80.469 (81.028)	Acc@5 99.219 (98.924)
+Epoch: [105][128/196]	Time 0.920 (0.717)	Data 0.000 (0.008)	Loss 0.7968 (0.7876)	Acc@1 82.031 (81.308)	Acc@5 97.266 (98.958)
+Epoch: [105][192/196]	Time 0.621 (0.717)	Data 0.000 (0.006)	Loss 0.8426 (0.7890)	Acc@1 78.516 (81.284)	Acc@5 99.609 (98.966)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 153352 ; 153642 ; 0.9981124952812382
+[INFO] Storing checkpoint...
+
+  256
+  69.72
+Max memory: 59.4788352
+ 141.454s  j: 106 bis 110
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 106
+count0: 153352
+
+Epoch: [106 | 110] LR: 0.200000
+Epoch: [106][0/196]	Time 2.384 (2.384)	Data 0.568 (0.568)	Loss 0.6878 (0.6878)	Acc@1 87.109 (87.109)	Acc@5 100.000 (100.000)
+Epoch: [106][64/196]	Time 0.660 (0.807)	Data 0.000 (0.010)	Loss 0.7802 (0.7467)	Acc@1 82.422 (82.572)	Acc@5 99.219 (99.183)
+Epoch: [106][128/196]	Time 0.589 (0.767)	Data 0.000 (0.005)	Loss 0.7287 (0.7605)	Acc@1 80.859 (82.186)	Acc@5 98.438 (99.104)
+Epoch: [106][192/196]	Time 0.791 (0.776)	Data 0.000 (0.004)	Loss 0.7477 (0.7672)	Acc@1 82.422 (81.908)	Acc@5 99.219 (99.079)
+[INFO] Storing checkpoint...
+
+Epoch: [107 | 110] LR: 0.200000
+Epoch: [107][0/196]	Time 0.684 (0.684)	Data 0.924 (0.924)	Loss 0.8067 (0.8067)	Acc@1 80.859 (80.859)	Acc@5 98.828 (98.828)
+Epoch: [107][64/196]	Time 0.709 (0.799)	Data 0.000 (0.015)	Loss 0.8161 (0.7805)	Acc@1 79.688 (81.599)	Acc@5 98.828 (99.032)
+Epoch: [107][128/196]	Time 0.783 (0.721)	Data 0.000 (0.008)	Loss 0.8058 (0.7802)	Acc@1 80.078 (81.592)	Acc@5 99.219 (99.025)
+Epoch: [107][192/196]	Time 0.945 (0.738)	Data 0.000 (0.006)	Loss 0.8645 (0.7834)	Acc@1 78.516 (81.357)	Acc@5 98.828 (98.982)
+[INFO] Storing checkpoint...
+
+Epoch: [108 | 110] LR: 0.200000
+Epoch: [108][0/196]	Time 0.894 (0.894)	Data 0.576 (0.576)	Loss 0.8015 (0.8015)	Acc@1 80.469 (80.469)	Acc@5 97.656 (97.656)
+Epoch: [108][64/196]	Time 0.918 (0.787)	Data 0.000 (0.010)	Loss 0.8735 (0.7818)	Acc@1 79.297 (81.575)	Acc@5 99.219 (98.924)
+Epoch: [108][128/196]	Time 0.805 (0.774)	Data 0.000 (0.005)	Loss 0.7345 (0.7817)	Acc@1 81.641 (81.414)	Acc@5 99.219 (98.961)
+Epoch: [108][192/196]	Time 0.803 (0.777)	Data 0.000 (0.004)	Loss 0.8148 (0.7848)	Acc@1 80.078 (81.363)	Acc@5 97.266 (98.972)
+[INFO] Storing checkpoint...
+
+Epoch: [109 | 110] LR: 0.200000
+Epoch: [109][0/196]	Time 0.925 (0.925)	Data 0.647 (0.647)	Loss 0.8706 (0.8706)	Acc@1 78.906 (78.906)	Acc@5 99.219 (99.219)
+Epoch: [109][64/196]	Time 0.810 (0.786)	Data 0.000 (0.010)	Loss 0.7421 (0.7806)	Acc@1 86.719 (81.893)	Acc@5 98.047 (99.038)
+Epoch: [109][128/196]	Time 0.819 (0.792)	Data 0.000 (0.005)	Loss 0.7349 (0.7725)	Acc@1 84.375 (82.016)	Acc@5 98.047 (99.019)
+Epoch: [109][192/196]	Time 0.625 (0.761)	Data 0.000 (0.004)	Loss 0.8990 (0.7807)	Acc@1 74.609 (81.726)	Acc@5 98.828 (98.958)
+[INFO] Storing checkpoint...
+
+Epoch: [110 | 110] LR: 0.200000
+Epoch: [110][0/196]	Time 0.828 (0.828)	Data 0.569 (0.569)	Loss 0.6978 (0.6978)	Acc@1 83.203 (83.203)	Acc@5 99.219 (99.219)
+Epoch: [110][64/196]	Time 0.806 (0.794)	Data 0.000 (0.010)	Loss 0.8850 (0.7770)	Acc@1 76.953 (81.562)	Acc@5 99.219 (99.111)
+Epoch: [110][128/196]	Time 0.814 (0.798)	Data 0.000 (0.005)	Loss 0.8706 (0.7823)	Acc@1 78.516 (81.283)	Acc@5 99.219 (99.073)
+Epoch: [110][192/196]	Time 0.307 (0.758)	Data 0.000 (0.004)	Loss 0.7839 (0.7821)	Acc@1 82.031 (81.321)	Acc@5 99.219 (99.067)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 152918 ; 153352 ; 0.9971699097501173
+[INFO] Storing checkpoint...
+
+  256
+  71.05
+Max memory: 58.5446912
+ 148.470s  j: 111 bis 115
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 111
+count0: 152918
+
+Epoch: [111 | 115] LR: 0.200000
+Epoch: [111][0/196]	Time 2.097 (2.097)	Data 0.641 (0.641)	Loss 0.8099 (0.8099)	Acc@1 78.906 (78.906)	Acc@5 98.828 (98.828)
+Epoch: [111][64/196]	Time 0.793 (0.815)	Data 0.000 (0.010)	Loss 0.7989 (0.7506)	Acc@1 81.250 (82.338)	Acc@5 98.047 (99.117)
+Epoch: [111][128/196]	Time 0.807 (0.805)	Data 0.000 (0.005)	Loss 0.7624 (0.7645)	Acc@1 81.250 (81.847)	Acc@5 97.656 (99.037)
+Epoch: [111][192/196]	Time 0.816 (0.812)	Data 0.000 (0.004)	Loss 0.7153 (0.7718)	Acc@1 84.375 (81.598)	Acc@5 98.828 (99.022)
+[INFO] Storing checkpoint...
+
+Epoch: [112 | 115] LR: 0.200000
+Epoch: [112][0/196]	Time 0.795 (0.795)	Data 0.722 (0.722)	Loss 0.8825 (0.8825)	Acc@1 79.688 (79.688)	Acc@5 98.047 (98.047)
+Epoch: [112][64/196]	Time 0.926 (0.699)	Data 0.000 (0.012)	Loss 0.7711 (0.7828)	Acc@1 83.203 (81.298)	Acc@5 99.219 (98.954)
+Epoch: [112][128/196]	Time 0.787 (0.752)	Data 0.000 (0.006)	Loss 0.7506 (0.7746)	Acc@1 81.641 (81.625)	Acc@5 99.219 (99.055)
+Epoch: [112][192/196]	Time 0.767 (0.765)	Data 0.000 (0.004)	Loss 0.7558 (0.7791)	Acc@1 85.547 (81.428)	Acc@5 98.047 (99.041)
+[INFO] Storing checkpoint...
+
+Epoch: [113 | 115] LR: 0.200000
+Epoch: [113][0/196]	Time 0.842 (0.842)	Data 0.543 (0.543)	Loss 0.7107 (0.7107)	Acc@1 83.984 (83.984)	Acc@5 99.219 (99.219)
+Epoch: [113][64/196]	Time 0.817 (0.811)	Data 0.000 (0.009)	Loss 0.7560 (0.7862)	Acc@1 84.375 (81.496)	Acc@5 99.609 (98.954)
+Epoch: [113][128/196]	Time 0.845 (0.800)	Data 0.000 (0.005)	Loss 0.7622 (0.7834)	Acc@1 82.812 (81.441)	Acc@5 99.609 (98.958)
+Epoch: [113][192/196]	Time 0.838 (0.799)	Data 0.000 (0.003)	Loss 0.8313 (0.7770)	Acc@1 81.641 (81.677)	Acc@5 98.828 (98.990)
+[INFO] Storing checkpoint...
+
+Epoch: [114 | 115] LR: 0.200000
+Epoch: [114][0/196]	Time 0.983 (0.983)	Data 0.626 (0.626)	Loss 0.8075 (0.8075)	Acc@1 78.906 (78.906)	Acc@5 98.828 (98.828)
+Epoch: [114][64/196]	Time 0.854 (0.774)	Data 0.000 (0.010)	Loss 0.7501 (0.7768)	Acc@1 83.594 (81.316)	Acc@5 98.047 (99.014)
+Epoch: [114][128/196]	Time 0.698 (0.732)	Data 0.000 (0.005)	Loss 0.7892 (0.7736)	Acc@1 81.250 (81.423)	Acc@5 98.828 (99.046)
+Epoch: [114][192/196]	Time 0.796 (0.751)	Data 0.000 (0.003)	Loss 0.8116 (0.7765)	Acc@1 76.562 (81.363)	Acc@5 99.609 (99.039)
+[INFO] Storing checkpoint...
+
+Epoch: [115 | 115] LR: 0.200000
+Epoch: [115][0/196]	Time 0.954 (0.954)	Data 0.536 (0.536)	Loss 0.8048 (0.8048)	Acc@1 80.859 (80.859)	Acc@5 98.047 (98.047)
+Epoch: [115][64/196]	Time 0.812 (0.802)	Data 0.000 (0.009)	Loss 0.7435 (0.7916)	Acc@1 85.156 (81.274)	Acc@5 99.219 (98.984)
+Epoch: [115][128/196]	Time 0.459 (0.760)	Data 0.000 (0.005)	Loss 0.6412 (0.7894)	Acc@1 88.672 (81.220)	Acc@5 99.219 (98.916)
+Epoch: [115][192/196]	Time 0.804 (0.726)	Data 0.000 (0.003)	Loss 0.8046 (0.7826)	Acc@1 81.641 (81.485)	Acc@5 99.219 (98.982)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  69.74
+Max memory: 58.5416192
+ 143.206s  j: 116 bis 120
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 116
+count0: 152918
+
+Epoch: [116 | 120] LR: 0.200000
+Epoch: [116][0/196]	Time 2.404 (2.404)	Data 0.403 (0.403)	Loss 0.7968 (0.7968)	Acc@1 80.469 (80.469)	Acc@5 98.828 (98.828)
+Epoch: [116][64/196]	Time 0.808 (0.829)	Data 0.000 (0.006)	Loss 0.8332 (0.7472)	Acc@1 81.641 (82.578)	Acc@5 98.047 (99.105)
+Epoch: [116][128/196]	Time 0.874 (0.813)	Data 0.000 (0.003)	Loss 0.8486 (0.7625)	Acc@1 79.688 (82.098)	Acc@5 98.438 (99.101)
+Epoch: [116][192/196]	Time 0.714 (0.772)	Data 0.000 (0.002)	Loss 0.7993 (0.7664)	Acc@1 80.469 (81.966)	Acc@5 99.219 (99.103)
+[INFO] Storing checkpoint...
+
+Epoch: [117 | 120] LR: 0.200000
+Epoch: [117][0/196]	Time 0.825 (0.825)	Data 0.393 (0.393)	Loss 0.7365 (0.7365)	Acc@1 81.641 (81.641)	Acc@5 98.828 (98.828)
+Epoch: [117][64/196]	Time 0.803 (0.800)	Data 0.000 (0.006)	Loss 0.7472 (0.7803)	Acc@1 81.250 (81.412)	Acc@5 99.609 (98.966)
+Epoch: [117][128/196]	Time 0.771 (0.803)	Data 0.000 (0.003)	Loss 0.8809 (0.7811)	Acc@1 80.078 (81.223)	Acc@5 98.828 (98.998)
+Epoch: [117][192/196]	Time 0.802 (0.803)	Data 0.000 (0.002)	Loss 0.7979 (0.7806)	Acc@1 80.859 (81.276)	Acc@5 97.656 (99.018)
+[INFO] Storing checkpoint...
+
+Epoch: [118 | 120] LR: 0.200000
+Epoch: [118][0/196]	Time 0.902 (0.902)	Data 0.626 (0.626)	Loss 0.7271 (0.7271)	Acc@1 82.422 (82.422)	Acc@5 100.000 (100.000)
+Epoch: [118][64/196]	Time 0.723 (0.799)	Data 0.000 (0.010)	Loss 0.7919 (0.7984)	Acc@1 80.078 (80.853)	Acc@5 99.609 (99.032)
+Epoch: [118][128/196]	Time 0.801 (0.803)	Data 0.000 (0.005)	Loss 0.8132 (0.7894)	Acc@1 80.078 (81.147)	Acc@5 99.219 (99.055)
+Epoch: [118][192/196]	Time 0.809 (0.802)	Data 0.000 (0.003)	Loss 0.7867 (0.7849)	Acc@1 81.641 (81.329)	Acc@5 97.656 (99.020)
+[INFO] Storing checkpoint...
+
+Epoch: [119 | 120] LR: 0.200000
+Epoch: [119][0/196]	Time 0.907 (0.907)	Data 0.339 (0.339)	Loss 0.7813 (0.7813)	Acc@1 82.422 (82.422)	Acc@5 99.219 (99.219)
+Epoch: [119][64/196]	Time 0.641 (0.695)	Data 0.000 (0.006)	Loss 0.8095 (0.7898)	Acc@1 80.078 (81.148)	Acc@5 100.000 (99.008)
+Epoch: [119][128/196]	Time 0.777 (0.746)	Data 0.000 (0.003)	Loss 0.7580 (0.7873)	Acc@1 82.031 (81.292)	Acc@5 98.828 (98.992)
+Epoch: [119][192/196]	Time 0.814 (0.767)	Data 0.000 (0.002)	Loss 0.7499 (0.7907)	Acc@1 82.812 (81.100)	Acc@5 99.219 (98.974)
+[INFO] Storing checkpoint...
+
+Epoch: [120 | 120] LR: 0.200000
+Epoch: [120][0/196]	Time 0.847 (0.847)	Data 0.349 (0.349)	Loss 0.7592 (0.7592)	Acc@1 83.203 (83.203)	Acc@5 98.047 (98.047)
+Epoch: [120][64/196]	Time 0.263 (0.715)	Data 0.000 (0.006)	Loss 0.7471 (0.7760)	Acc@1 82.031 (81.623)	Acc@5 99.219 (99.075)
+Epoch: [120][128/196]	Time 0.812 (0.666)	Data 0.000 (0.003)	Loss 0.7625 (0.7660)	Acc@1 82.812 (82.028)	Acc@5 99.609 (99.086)
+Epoch: [120][192/196]	Time 0.803 (0.710)	Data 0.000 (0.002)	Loss 0.8446 (0.7772)	Acc@1 78.906 (81.675)	Acc@5 98.047 (99.016)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 152556 ; 152918 ; 0.9976327181888333
+[INFO] Storing checkpoint...
+
+  256
+  74.89
+Max memory: 58.6481152
+ 139.941s  j: 121 bis 125
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 121
+count0: 152556
+
+Epoch: [121 | 125] LR: 0.200000
+Epoch: [121][0/196]	Time 1.824 (1.824)	Data 0.287 (0.287)	Loss 0.6753 (0.6753)	Acc@1 84.766 (84.766)	Acc@5 99.219 (99.219)
+Epoch: [121][64/196]	Time 0.781 (0.821)	Data 0.000 (0.005)	Loss 0.8289 (0.7613)	Acc@1 80.469 (81.989)	Acc@5 99.219 (99.183)
+Epoch: [121][128/196]	Time 0.678 (0.760)	Data 0.000 (0.002)	Loss 0.7186 (0.7729)	Acc@1 82.031 (81.856)	Acc@5 98.828 (99.119)
+Epoch: [121][192/196]	Time 0.808 (0.776)	Data 0.000 (0.002)	Loss 0.7684 (0.7721)	Acc@1 80.859 (81.805)	Acc@5 98.828 (99.079)
+[INFO] Storing checkpoint...
+
+Epoch: [122 | 125] LR: 0.200000
+Epoch: [122][0/196]	Time 0.812 (0.812)	Data 0.338 (0.338)	Loss 0.7717 (0.7717)	Acc@1 82.031 (82.031)	Acc@5 98.828 (98.828)
+Epoch: [122][64/196]	Time 0.800 (0.806)	Data 0.000 (0.005)	Loss 0.8226 (0.7715)	Acc@1 79.297 (81.839)	Acc@5 98.828 (99.020)
+Epoch: [122][128/196]	Time 0.799 (0.804)	Data 0.000 (0.003)	Loss 0.8215 (0.7793)	Acc@1 80.078 (81.738)	Acc@5 98.438 (98.922)
+Epoch: [122][192/196]	Time 0.712 (0.802)	Data 0.000 (0.002)	Loss 0.7307 (0.7812)	Acc@1 83.594 (81.574)	Acc@5 100.000 (98.941)
+[INFO] Storing checkpoint...
+
+Epoch: [123 | 125] LR: 0.200000
+Epoch: [123][0/196]	Time 0.737 (0.737)	Data 0.310 (0.310)	Loss 0.7493 (0.7493)	Acc@1 82.812 (82.812)	Acc@5 98.828 (98.828)
+Epoch: [123][64/196]	Time 0.806 (0.808)	Data 0.000 (0.005)	Loss 0.7724 (0.7736)	Acc@1 83.203 (81.689)	Acc@5 99.219 (99.020)
+Epoch: [123][128/196]	Time 0.800 (0.807)	Data 0.000 (0.003)	Loss 0.8357 (0.7736)	Acc@1 78.906 (81.601)	Acc@5 99.609 (99.052)
+Epoch: [123][192/196]	Time 0.549 (0.777)	Data 0.000 (0.002)	Loss 0.7955 (0.7786)	Acc@1 79.688 (81.483)	Acc@5 98.828 (98.970)
+[INFO] Storing checkpoint...
+
+Epoch: [124 | 125] LR: 0.200000
+Epoch: [124][0/196]	Time 0.657 (0.657)	Data 0.310 (0.310)	Loss 0.7970 (0.7970)	Acc@1 83.594 (83.594)	Acc@5 98.047 (98.047)
+Epoch: [124][64/196]	Time 0.796 (0.771)	Data 0.000 (0.005)	Loss 0.9069 (0.7768)	Acc@1 77.344 (81.599)	Acc@5 98.047 (99.032)
+Epoch: [124][128/196]	Time 0.799 (0.785)	Data 0.000 (0.003)	Loss 0.6840 (0.7837)	Acc@1 85.938 (81.504)	Acc@5 99.609 (99.082)
+Epoch: [124][192/196]	Time 0.747 (0.784)	Data 0.000 (0.002)	Loss 0.7547 (0.7803)	Acc@1 83.984 (81.608)	Acc@5 98.047 (99.049)
+[INFO] Storing checkpoint...
+
+Epoch: [125 | 125] LR: 0.200000
+Epoch: [125][0/196]	Time 0.427 (0.427)	Data 0.451 (0.451)	Loss 0.7376 (0.7376)	Acc@1 82.422 (82.422)	Acc@5 99.219 (99.219)
+Epoch: [125][64/196]	Time 0.801 (0.561)	Data 0.000 (0.007)	Loss 0.8137 (0.7757)	Acc@1 80.859 (81.532)	Acc@5 97.656 (98.828)
+Epoch: [125][128/196]	Time 0.794 (0.678)	Data 0.000 (0.004)	Loss 0.7389 (0.7789)	Acc@1 83.984 (81.541)	Acc@5 98.828 (98.928)
+Epoch: [125][192/196]	Time 0.831 (0.717)	Data 0.000 (0.003)	Loss 0.8121 (0.7734)	Acc@1 79.297 (81.645)	Acc@5 99.219 (99.000)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  73.35
+Max memory: 58.6288128
+ 141.370s  j: 126 bis 130
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 126
+count0: 152556
+
+Epoch: [126 | 130] LR: 0.200000
+Epoch: [126][0/196]	Time 1.876 (1.876)	Data 0.588 (0.588)	Loss 0.8662 (0.8662)	Acc@1 76.562 (76.562)	Acc@5 99.219 (99.219)
+Epoch: [126][64/196]	Time 0.801 (0.709)	Data 0.000 (0.009)	Loss 0.7735 (0.7519)	Acc@1 81.250 (82.278)	Acc@5 99.609 (99.153)
+Epoch: [126][128/196]	Time 0.785 (0.750)	Data 0.000 (0.005)	Loss 0.7879 (0.7685)	Acc@1 80.859 (81.719)	Acc@5 99.219 (99.064)
+Epoch: [126][192/196]	Time 0.779 (0.767)	Data 0.000 (0.003)	Loss 0.7580 (0.7733)	Acc@1 83.984 (81.612)	Acc@5 99.609 (99.039)
+[INFO] Storing checkpoint...
+
+Epoch: [127 | 130] LR: 0.200000
+Epoch: [127][0/196]	Time 0.835 (0.835)	Data 0.352 (0.352)	Loss 0.6852 (0.6852)	Acc@1 83.984 (83.984)	Acc@5 99.609 (99.609)
+Epoch: [127][64/196]	Time 0.790 (0.795)	Data 0.000 (0.006)	Loss 0.7614 (0.7889)	Acc@1 82.422 (81.040)	Acc@5 98.828 (98.912)
+Epoch: [127][128/196]	Time 0.803 (0.799)	Data 0.000 (0.003)	Loss 0.8209 (0.7843)	Acc@1 81.250 (81.265)	Acc@5 98.438 (98.937)
+Epoch: [127][192/196]	Time 0.794 (0.797)	Data 0.000 (0.002)	Loss 0.7765 (0.7842)	Acc@1 84.766 (81.282)	Acc@5 97.656 (98.952)
+[INFO] Storing checkpoint...
+
+Epoch: [128 | 130] LR: 0.200000
+Epoch: [128][0/196]	Time 0.831 (0.831)	Data 0.364 (0.364)	Loss 0.7896 (0.7896)	Acc@1 80.078 (80.078)	Acc@5 98.047 (98.047)
+Epoch: [128][64/196]	Time 0.800 (0.800)	Data 0.000 (0.006)	Loss 0.7951 (0.7804)	Acc@1 84.766 (81.809)	Acc@5 98.828 (99.075)
+Epoch: [128][128/196]	Time 0.478 (0.762)	Data 0.000 (0.003)	Loss 0.7845 (0.7857)	Acc@1 81.641 (81.613)	Acc@5 98.047 (99.001)
+Epoch: [128][192/196]	Time 0.791 (0.760)	Data 0.000 (0.002)	Loss 0.7441 (0.7816)	Acc@1 83.594 (81.709)	Acc@5 99.609 (99.028)
+[INFO] Storing checkpoint...
+
+Epoch: [129 | 130] LR: 0.200000
+Epoch: [129][0/196]	Time 0.826 (0.826)	Data 0.325 (0.325)	Loss 0.7480 (0.7480)	Acc@1 81.641 (81.641)	Acc@5 99.219 (99.219)
+Epoch: [129][64/196]	Time 0.778 (0.797)	Data 0.000 (0.005)	Loss 0.7624 (0.7658)	Acc@1 83.984 (82.236)	Acc@5 98.828 (99.141)
+Epoch: [129][128/196]	Time 0.749 (0.790)	Data 0.000 (0.003)	Loss 0.7704 (0.7769)	Acc@1 81.250 (81.865)	Acc@5 98.828 (99.025)
+Epoch: [129][192/196]	Time 0.527 (0.708)	Data 0.000 (0.002)	Loss 0.9090 (0.7772)	Acc@1 75.391 (81.681)	Acc@5 99.219 (99.047)
+[INFO] Storing checkpoint...
+
+Epoch: [130 | 130] LR: 0.200000
+Epoch: [130][0/196]	Time 0.893 (0.893)	Data 0.321 (0.321)	Loss 0.7635 (0.7635)	Acc@1 83.594 (83.594)	Acc@5 98.828 (98.828)
+Epoch: [130][64/196]	Time 0.802 (0.801)	Data 0.000 (0.005)	Loss 0.7871 (0.7721)	Acc@1 82.812 (81.701)	Acc@5 98.047 (99.050)
+Epoch: [130][128/196]	Time 0.798 (0.798)	Data 0.000 (0.003)	Loss 0.8615 (0.7789)	Acc@1 80.859 (81.541)	Acc@5 98.438 (98.992)
+Epoch: [130][192/196]	Time 0.776 (0.795)	Data 0.000 (0.002)	Loss 0.8029 (0.7755)	Acc@1 82.812 (81.679)	Acc@5 99.219 (99.010)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 152194 ; 152556 ; 0.997627100867878
+[INFO] Storing checkpoint...
+
+  256
+  75.21
+Max memory: 58.3918592
+ 156.225s  j: 131 bis 135
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 131
+count0: 152194
+
+Epoch: [131 | 135] LR: 0.200000
+Epoch: [131][0/196]	Time 1.801 (1.801)	Data 0.329 (0.329)	Loss 0.7986 (0.7986)	Acc@1 81.641 (81.641)	Acc@5 99.219 (99.219)
+Epoch: [131][64/196]	Time 0.801 (0.811)	Data 0.000 (0.005)	Loss 0.7744 (0.7657)	Acc@1 80.859 (81.845)	Acc@5 99.219 (99.153)
+Epoch: [131][128/196]	Time 0.787 (0.798)	Data 0.000 (0.003)	Loss 0.7076 (0.7715)	Acc@1 82.812 (81.738)	Acc@5 99.609 (99.082)
+Epoch: [131][192/196]	Time 0.779 (0.799)	Data 0.000 (0.002)	Loss 0.7213 (0.7735)	Acc@1 80.859 (81.647)	Acc@5 99.609 (99.045)
+[INFO] Storing checkpoint...
+
+Epoch: [132 | 135] LR: 0.200000
+Epoch: [132][0/196]	Time 0.822 (0.822)	Data 0.435 (0.435)	Loss 0.7370 (0.7370)	Acc@1 83.984 (83.984)	Acc@5 98.828 (98.828)
+Epoch: [132][64/196]	Time 0.784 (0.793)	Data 0.000 (0.007)	Loss 0.7205 (0.7808)	Acc@1 84.375 (81.575)	Acc@5 100.000 (99.020)
+Epoch: [132][128/196]	Time 0.846 (0.788)	Data 0.000 (0.004)	Loss 0.8101 (0.7781)	Acc@1 80.859 (81.583)	Acc@5 98.047 (99.086)
+Epoch: [132][192/196]	Time 0.803 (0.791)	Data 0.000 (0.002)	Loss 0.7322 (0.7809)	Acc@1 80.078 (81.475)	Acc@5 99.219 (99.033)
+[INFO] Storing checkpoint...
+
+Epoch: [133 | 135] LR: 0.200000
+Epoch: [133][0/196]	Time 0.853 (0.853)	Data 0.483 (0.483)	Loss 0.7707 (0.7707)	Acc@1 80.469 (80.469)	Acc@5 99.219 (99.219)
+Epoch: [133][64/196]	Time 0.654 (0.712)	Data 0.000 (0.008)	Loss 0.7708 (0.7892)	Acc@1 80.469 (81.184)	Acc@5 98.828 (98.888)
+Epoch: [133][128/196]	Time 0.751 (0.731)	Data 0.000 (0.004)	Loss 0.7904 (0.7730)	Acc@1 78.516 (81.674)	Acc@5 99.219 (98.986)
+Epoch: [133][192/196]	Time 0.800 (0.755)	Data 0.000 (0.003)	Loss 0.8100 (0.7705)	Acc@1 79.297 (81.782)	Acc@5 98.828 (99.000)
+[INFO] Storing checkpoint...
+
+Epoch: [134 | 135] LR: 0.200000
+Epoch: [134][0/196]	Time 0.889 (0.889)	Data 0.623 (0.623)	Loss 0.7993 (0.7993)	Acc@1 76.562 (76.562)	Acc@5 99.219 (99.219)
+Epoch: [134][64/196]	Time 0.806 (0.787)	Data 0.000 (0.010)	Loss 0.8446 (0.7775)	Acc@1 78.906 (81.346)	Acc@5 99.219 (99.002)
+Epoch: [134][128/196]	Time 0.487 (0.685)	Data 0.000 (0.005)	Loss 0.8443 (0.7870)	Acc@1 78.906 (81.129)	Acc@5 99.609 (99.001)
+Epoch: [134][192/196]	Time 0.801 (0.703)	Data 0.000 (0.003)	Loss 0.7407 (0.7881)	Acc@1 82.031 (81.216)	Acc@5 98.828 (98.972)
+[INFO] Storing checkpoint...
+
+Epoch: [135 | 135] LR: 0.200000
+Epoch: [135][0/196]	Time 0.837 (0.837)	Data 0.318 (0.318)	Loss 0.9042 (0.9042)	Acc@1 79.688 (79.688)	Acc@5 97.266 (97.266)
+Epoch: [135][64/196]	Time 0.806 (0.798)	Data 0.000 (0.005)	Loss 0.8039 (0.7792)	Acc@1 79.688 (81.310)	Acc@5 98.828 (98.972)
+Epoch: [135][128/196]	Time 0.806 (0.796)	Data 0.000 (0.003)	Loss 0.7201 (0.7749)	Acc@1 84.375 (81.680)	Acc@5 99.609 (98.928)
+Epoch: [135][192/196]	Time 0.796 (0.759)	Data 0.000 (0.002)	Loss 0.6839 (0.7755)	Acc@1 83.984 (81.618)	Acc@5 99.219 (98.954)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  70.54
+Max memory: 58.21184
+ 149.467s  j: 136 bis 140
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 136
+count0: 152194
+
+Epoch: [136 | 140] LR: 0.200000
+Epoch: [136][0/196]	Time 1.851 (1.851)	Data 0.310 (0.310)	Loss 0.7965 (0.7965)	Acc@1 79.297 (79.297)	Acc@5 99.219 (99.219)
+Epoch: [136][64/196]	Time 0.807 (0.806)	Data 0.000 (0.005)	Loss 0.7762 (0.7502)	Acc@1 83.203 (82.488)	Acc@5 97.656 (99.062)
+Epoch: [136][128/196]	Time 0.801 (0.800)	Data 0.000 (0.003)	Loss 0.8171 (0.7676)	Acc@1 77.734 (81.965)	Acc@5 99.219 (99.049)
+Epoch: [136][192/196]	Time 0.796 (0.800)	Data 0.000 (0.002)	Loss 0.7941 (0.7726)	Acc@1 80.469 (81.718)	Acc@5 99.609 (99.077)
+[INFO] Storing checkpoint...
+
+Epoch: [137 | 140] LR: 0.200000
+Epoch: [137][0/196]	Time 0.855 (0.855)	Data 0.328 (0.328)	Loss 0.7525 (0.7525)	Acc@1 82.812 (82.812)	Acc@5 98.828 (98.828)
+Epoch: [137][64/196]	Time 0.804 (0.794)	Data 0.000 (0.005)	Loss 0.7839 (0.7845)	Acc@1 82.031 (81.346)	Acc@5 99.609 (98.936)
+Epoch: [137][128/196]	Time 0.804 (0.796)	Data 0.000 (0.003)	Loss 0.7208 (0.7803)	Acc@1 85.938 (81.474)	Acc@5 98.438 (99.010)
+Epoch: [137][192/196]	Time 0.636 (0.777)	Data 0.000 (0.002)	Loss 0.7041 (0.7763)	Acc@1 85.156 (81.612)	Acc@5 99.609 (99.016)
+[INFO] Storing checkpoint...
+
+Epoch: [138 | 140] LR: 0.200000
+Epoch: [138][0/196]	Time 0.720 (0.720)	Data 0.595 (0.595)	Loss 0.7262 (0.7262)	Acc@1 79.297 (79.297)	Acc@5 99.219 (99.219)
+Epoch: [138][64/196]	Time 0.803 (0.767)	Data 0.000 (0.009)	Loss 0.7628 (0.7853)	Acc@1 81.250 (81.322)	Acc@5 99.219 (98.930)
+Epoch: [138][128/196]	Time 0.790 (0.783)	Data 0.000 (0.005)	Loss 0.7682 (0.7733)	Acc@1 83.594 (81.856)	Acc@5 98.828 (99.007)
+Epoch: [138][192/196]	Time 0.798 (0.788)	Data 0.000 (0.003)	Loss 0.8937 (0.7788)	Acc@1 78.125 (81.722)	Acc@5 98.047 (99.010)
+[INFO] Storing checkpoint...
+
+Epoch: [139 | 140] LR: 0.200000
+Epoch: [139][0/196]	Time 0.923 (0.923)	Data 0.603 (0.603)	Loss 0.7339 (0.7339)	Acc@1 84.766 (84.766)	Acc@5 99.609 (99.609)
+Epoch: [139][64/196]	Time 0.489 (0.627)	Data 0.000 (0.009)	Loss 0.8406 (0.7808)	Acc@1 80.078 (81.382)	Acc@5 99.219 (99.050)
+Epoch: [139][128/196]	Time 0.797 (0.656)	Data 0.000 (0.005)	Loss 0.8399 (0.7892)	Acc@1 77.344 (81.108)	Acc@5 97.656 (98.977)
+Epoch: [139][192/196]	Time 0.796 (0.703)	Data 0.000 (0.003)	Loss 0.9399 (0.7843)	Acc@1 74.219 (81.293)	Acc@5 99.219 (98.982)
+[INFO] Storing checkpoint...
+
+Epoch: [140 | 140] LR: 0.200000
+Epoch: [140][0/196]	Time 0.831 (0.831)	Data 0.337 (0.337)	Loss 0.7460 (0.7460)	Acc@1 80.859 (80.859)	Acc@5 100.000 (100.000)
+Epoch: [140][64/196]	Time 0.774 (0.799)	Data 0.000 (0.005)	Loss 0.8194 (0.7804)	Acc@1 80.859 (81.094)	Acc@5 98.047 (99.020)
+Epoch: [140][128/196]	Time 0.779 (0.745)	Data 0.000 (0.003)	Loss 0.8087 (0.7853)	Acc@1 79.688 (81.153)	Acc@5 99.609 (98.961)
+Epoch: [140][192/196]	Time 0.784 (0.759)	Data 0.000 (0.002)	Loss 0.7379 (0.7824)	Acc@1 80.078 (81.309)	Acc@5 100.000 (99.026)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 151760 ; 152194 ; 0.9971483764143133
+[INFO] Storing checkpoint...
+
+  256
+  75.41
+Max memory: 58.4354816
+ 149.361s  j: 141 bis 145
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 141
+count0: 151760
+
+Epoch: [141 | 145] LR: 0.200000
+Epoch: [141][0/196]	Time 1.744 (1.744)	Data 0.505 (0.505)	Loss 0.7007 (0.7007)	Acc@1 85.547 (85.547)	Acc@5 99.219 (99.219)
+Epoch: [141][64/196]	Time 0.804 (0.814)	Data 0.000 (0.008)	Loss 0.7874 (0.7429)	Acc@1 78.516 (82.855)	Acc@5 99.609 (99.165)
+Epoch: [141][128/196]	Time 0.808 (0.807)	Data 0.000 (0.004)	Loss 0.7539 (0.7541)	Acc@1 81.641 (82.304)	Acc@5 99.609 (99.098)
+Epoch: [141][192/196]	Time 0.797 (0.802)	Data 0.000 (0.003)	Loss 0.7803 (0.7661)	Acc@1 80.859 (81.924)	Acc@5 98.438 (98.994)
+[INFO] Storing checkpoint...
+
+Epoch: [142 | 145] LR: 0.200000
+Epoch: [142][0/196]	Time 0.808 (0.808)	Data 0.457 (0.457)	Loss 0.7480 (0.7480)	Acc@1 83.203 (83.203)	Acc@5 99.219 (99.219)
+Epoch: [142][64/196]	Time 0.805 (0.799)	Data 0.000 (0.007)	Loss 0.7606 (0.7768)	Acc@1 81.641 (81.593)	Acc@5 100.000 (99.069)
+Epoch: [142][128/196]	Time 0.630 (0.757)	Data 0.000 (0.004)	Loss 0.8369 (0.7824)	Acc@1 79.297 (81.341)	Acc@5 98.828 (99.019)
+Epoch: [142][192/196]	Time 0.803 (0.760)	Data 0.000 (0.003)	Loss 0.8369 (0.7828)	Acc@1 77.734 (81.394)	Acc@5 98.828 (99.008)
+[INFO] Storing checkpoint...
+
+Epoch: [143 | 145] LR: 0.200000
+Epoch: [143][0/196]	Time 0.925 (0.925)	Data 0.535 (0.535)	Loss 0.7675 (0.7675)	Acc@1 82.422 (82.422)	Acc@5 99.609 (99.609)
+Epoch: [143][64/196]	Time 0.795 (0.801)	Data 0.000 (0.008)	Loss 0.6608 (0.7559)	Acc@1 85.547 (82.103)	Acc@5 99.219 (99.189)
+Epoch: [143][128/196]	Time 0.790 (0.800)	Data 0.000 (0.004)	Loss 0.6659 (0.7718)	Acc@1 87.500 (81.547)	Acc@5 100.000 (99.070)
+Epoch: [143][192/196]	Time 0.481 (0.770)	Data 0.000 (0.003)	Loss 0.8029 (0.7796)	Acc@1 79.297 (81.349)	Acc@5 98.828 (99.057)
+[INFO] Storing checkpoint...
+
+Epoch: [144 | 145] LR: 0.200000
+Epoch: [144][0/196]	Time 0.512 (0.512)	Data 0.343 (0.343)	Loss 0.9377 (0.9377)	Acc@1 76.172 (76.172)	Acc@5 97.656 (97.656)
+Epoch: [144][64/196]	Time 0.806 (0.648)	Data 0.000 (0.005)	Loss 0.8413 (0.7802)	Acc@1 81.641 (81.364)	Acc@5 96.875 (98.984)
+Epoch: [144][128/196]	Time 0.805 (0.722)	Data 0.000 (0.003)	Loss 0.8274 (0.7815)	Acc@1 80.078 (81.192)	Acc@5 98.828 (98.895)
+Epoch: [144][192/196]	Time 0.773 (0.747)	Data 0.000 (0.002)	Loss 0.7358 (0.7838)	Acc@1 81.641 (81.179)	Acc@5 99.219 (98.943)
+[INFO] Storing checkpoint...
+
+Epoch: [145 | 145] LR: 0.200000
+Epoch: [145][0/196]	Time 0.808 (0.808)	Data 0.294 (0.294)	Loss 0.7421 (0.7421)	Acc@1 82.031 (82.031)	Acc@5 100.000 (100.000)
+Epoch: [145][64/196]	Time 0.804 (0.670)	Data 0.000 (0.005)	Loss 0.8415 (0.7685)	Acc@1 76.172 (81.935)	Acc@5 98.828 (99.117)
+Epoch: [145][128/196]	Time 0.801 (0.733)	Data 0.000 (0.002)	Loss 0.8029 (0.7757)	Acc@1 80.859 (81.607)	Acc@5 98.438 (99.055)
+Epoch: [145][192/196]	Time 0.827 (0.756)	Data 0.000 (0.002)	Loss 0.9137 (0.7767)	Acc@1 77.344 (81.576)	Acc@5 98.828 (99.045)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 151326 ; 151760 ; 0.997140221402214
+[INFO] Storing checkpoint...
+
+  256
+  72.41
+Max memory: 58.2981632
+ 148.717s  j: 146 bis 150
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 146
+count0: 151326
+
+Epoch: [146 | 150] LR: 0.200000
+Epoch: [146][0/196]	Time 1.813 (1.813)	Data 0.349 (0.349)	Loss 0.7504 (0.7504)	Acc@1 81.641 (81.641)	Acc@5 99.609 (99.609)
+Epoch: [146][64/196]	Time 0.808 (0.815)	Data 0.000 (0.006)	Loss 1.0055 (0.7626)	Acc@1 75.000 (81.887)	Acc@5 98.828 (99.129)
+Epoch: [146][128/196]	Time 0.666 (0.806)	Data 0.000 (0.003)	Loss 0.7605 (0.7719)	Acc@1 82.031 (81.844)	Acc@5 99.219 (99.098)
+Epoch: [146][192/196]	Time 0.799 (0.804)	Data 0.000 (0.002)	Loss 0.7573 (0.7673)	Acc@1 83.594 (82.035)	Acc@5 98.047 (99.055)
+[INFO] Storing checkpoint...
+
+Epoch: [147 | 150] LR: 0.200000
+Epoch: [147][0/196]	Time 0.809 (0.809)	Data 0.537 (0.537)	Loss 0.7649 (0.7649)	Acc@1 84.766 (84.766)	Acc@5 98.047 (98.047)
+Epoch: [147][64/196]	Time 0.628 (0.700)	Data 0.000 (0.008)	Loss 0.7770 (0.7730)	Acc@1 80.859 (81.623)	Acc@5 98.438 (98.996)
+Epoch: [147][128/196]	Time 0.793 (0.738)	Data 0.000 (0.004)	Loss 0.7769 (0.7796)	Acc@1 79.297 (81.465)	Acc@5 98.047 (98.970)
+Epoch: [147][192/196]	Time 0.800 (0.758)	Data 0.000 (0.003)	Loss 0.7534 (0.7859)	Acc@1 82.031 (81.240)	Acc@5 98.438 (98.931)
+[INFO] Storing checkpoint...
+
+Epoch: [148 | 150] LR: 0.200000
+Epoch: [148][0/196]	Time 0.836 (0.836)	Data 0.317 (0.317)	Loss 0.7838 (0.7838)	Acc@1 82.422 (82.422)	Acc@5 98.828 (98.828)
+Epoch: [148][64/196]	Time 0.766 (0.798)	Data 0.000 (0.005)	Loss 0.8573 (0.7749)	Acc@1 81.250 (81.484)	Acc@5 99.609 (99.135)
+Epoch: [148][128/196]	Time 0.617 (0.783)	Data 0.000 (0.003)	Loss 0.7197 (0.7731)	Acc@1 83.203 (81.698)	Acc@5 99.219 (99.067)
+Epoch: [148][192/196]	Time 0.834 (0.703)	Data 0.000 (0.002)	Loss 0.7422 (0.7752)	Acc@1 81.641 (81.558)	Acc@5 99.609 (99.067)
+[INFO] Storing checkpoint...
+
+Epoch: [149 | 150] LR: 0.200000
+Epoch: [149][0/196]	Time 0.953 (0.953)	Data 0.580 (0.580)	Loss 0.7374 (0.7374)	Acc@1 82.031 (82.031)	Acc@5 99.219 (99.219)
+Epoch: [149][64/196]	Time 0.746 (0.786)	Data 0.000 (0.009)	Loss 0.7799 (0.7825)	Acc@1 81.641 (81.358)	Acc@5 98.438 (99.014)
+Epoch: [149][128/196]	Time 0.728 (0.794)	Data 0.000 (0.005)	Loss 0.8294 (0.7831)	Acc@1 77.344 (81.277)	Acc@5 98.828 (98.973)
+Epoch: [149][192/196]	Time 0.629 (0.760)	Data 0.000 (0.003)	Loss 0.7454 (0.7790)	Acc@1 85.156 (81.416)	Acc@5 98.828 (99.012)
+[INFO] Storing checkpoint...
+
+Epoch: [150 | 150] LR: 0.200000
+Epoch: [150][0/196]	Time 0.847 (0.847)	Data 0.699 (0.699)	Loss 0.7189 (0.7189)	Acc@1 82.812 (82.812)	Acc@5 100.000 (100.000)
+Epoch: [150][64/196]	Time 0.794 (0.799)	Data 0.000 (0.011)	Loss 0.7566 (0.7749)	Acc@1 83.203 (81.671)	Acc@5 99.219 (98.966)
+Epoch: [150][128/196]	Time 0.792 (0.798)	Data 0.000 (0.006)	Loss 0.7070 (0.7791)	Acc@1 87.500 (81.619)	Acc@5 99.609 (98.964)
+Epoch: [150][192/196]	Time 0.789 (0.795)	Data 0.000 (0.004)	Loss 0.8558 (0.7799)	Acc@1 77.344 (81.523)	Acc@5 98.828 (98.935)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  66.79
+Max memory: 58.1312512
+ 156.757s  j: 151 bis 155
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 151
+count0: 151326
+
+Epoch: [151 | 155] LR: 0.200000
+Epoch: [151][0/196]	Time 1.828 (1.828)	Data 0.372 (0.372)	Loss 0.6874 (0.6874)	Acc@1 84.375 (84.375)	Acc@5 100.000 (100.000)
+Epoch: [151][64/196]	Time 0.798 (0.811)	Data 0.000 (0.006)	Loss 0.6629 (0.7423)	Acc@1 85.547 (82.512)	Acc@5 98.828 (99.081)
+Epoch: [151][128/196]	Time 0.803 (0.801)	Data 0.000 (0.003)	Loss 0.8171 (0.7731)	Acc@1 80.469 (81.456)	Acc@5 98.828 (98.980)
+Epoch: [151][192/196]	Time 0.622 (0.777)	Data 0.000 (0.002)	Loss 0.7854 (0.7800)	Acc@1 82.422 (81.369)	Acc@5 98.828 (98.974)
+[INFO] Storing checkpoint...
+
+Epoch: [152 | 155] LR: 0.200000
+Epoch: [152][0/196]	Time 0.658 (0.658)	Data 0.377 (0.377)	Loss 0.7300 (0.7300)	Acc@1 84.375 (84.375)	Acc@5 98.047 (98.047)
+Epoch: [152][64/196]	Time 0.735 (0.773)	Data 0.000 (0.006)	Loss 0.7159 (0.7843)	Acc@1 82.812 (81.346)	Acc@5 99.219 (98.990)
+Epoch: [152][128/196]	Time 0.803 (0.785)	Data 0.000 (0.003)	Loss 0.7222 (0.7869)	Acc@1 81.641 (81.389)	Acc@5 98.438 (98.940)
+Epoch: [152][192/196]	Time 0.788 (0.790)	Data 0.000 (0.002)	Loss 0.8374 (0.7805)	Acc@1 81.641 (81.572)	Acc@5 98.047 (98.992)
+[INFO] Storing checkpoint...
+
+Epoch: [153 | 155] LR: 0.200000
+Epoch: [153][0/196]	Time 0.866 (0.866)	Data 0.483 (0.483)	Loss 0.7810 (0.7810)	Acc@1 84.375 (84.375)	Acc@5 99.219 (99.219)
+Epoch: [153][64/196]	Time 0.739 (0.777)	Data 0.000 (0.008)	Loss 0.7830 (0.7676)	Acc@1 83.203 (82.103)	Acc@5 98.438 (99.002)
+Epoch: [153][128/196]	Time 0.550 (0.651)	Data 0.000 (0.004)	Loss 0.7462 (0.7730)	Acc@1 82.422 (81.834)	Acc@5 98.828 (99.001)
+Epoch: [153][192/196]	Time 0.796 (0.696)	Data 0.000 (0.003)	Loss 0.7675 (0.7739)	Acc@1 82.031 (81.815)	Acc@5 98.438 (99.035)
+[INFO] Storing checkpoint...
+
+Epoch: [154 | 155] LR: 0.200000
+Epoch: [154][0/196]	Time 0.822 (0.822)	Data 0.390 (0.390)	Loss 0.7718 (0.7718)	Acc@1 82.812 (82.812)	Acc@5 97.266 (97.266)
+Epoch: [154][64/196]	Time 0.802 (0.798)	Data 0.000 (0.006)	Loss 0.7646 (0.7723)	Acc@1 83.594 (81.677)	Acc@5 98.828 (98.954)
+Epoch: [154][128/196]	Time 0.639 (0.755)	Data 0.000 (0.003)	Loss 0.8423 (0.7729)	Acc@1 78.906 (81.810)	Acc@5 98.438 (99.016)
+Epoch: [154][192/196]	Time 0.791 (0.758)	Data 0.000 (0.002)	Loss 0.7635 (0.7740)	Acc@1 82.031 (81.716)	Acc@5 99.219 (99.026)
+[INFO] Storing checkpoint...
+
+Epoch: [155 | 155] LR: 0.200000
+Epoch: [155][0/196]	Time 0.825 (0.825)	Data 0.454 (0.454)	Loss 0.7249 (0.7249)	Acc@1 82.422 (82.422)	Acc@5 98.047 (98.047)
+Epoch: [155][64/196]	Time 0.801 (0.800)	Data 0.000 (0.007)	Loss 0.7592 (0.7679)	Acc@1 80.469 (81.659)	Acc@5 98.438 (99.056)
+Epoch: [155][128/196]	Time 0.843 (0.796)	Data 0.000 (0.004)	Loss 0.8633 (0.7787)	Acc@1 79.688 (81.435)	Acc@5 98.047 (99.013)
+Epoch: [155][192/196]	Time 0.796 (0.796)	Data 0.000 (0.003)	Loss 0.7376 (0.7804)	Acc@1 82.031 (81.371)	Acc@5 98.828 (99.004)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  65.13
+Max memory: 58.1312512
+ 156.484s  j: 156 bis 160
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 156
+count0: 151326
+
+Epoch: [156 | 160] LR: 0.200000
+Epoch: [156][0/196]	Time 1.830 (1.830)	Data 0.330 (0.330)	Loss 0.7621 (0.7621)	Acc@1 82.031 (82.031)	Acc@5 98.047 (98.047)
+Epoch: [156][64/196]	Time 0.813 (0.805)	Data 0.000 (0.005)	Loss 0.8820 (0.7442)	Acc@1 78.906 (82.518)	Acc@5 98.438 (99.111)
+Epoch: [156][128/196]	Time 0.634 (0.774)	Data 0.000 (0.003)	Loss 0.7939 (0.7626)	Acc@1 76.562 (81.871)	Acc@5 100.000 (99.079)
+Epoch: [156][192/196]	Time 0.797 (0.765)	Data 0.000 (0.002)	Loss 0.7799 (0.7726)	Acc@1 82.422 (81.661)	Acc@5 99.219 (99.045)
+[INFO] Storing checkpoint...
+
+Epoch: [157 | 160] LR: 0.200000
+Epoch: [157][0/196]	Time 0.815 (0.815)	Data 0.300 (0.300)	Loss 0.8546 (0.8546)	Acc@1 77.734 (77.734)	Acc@5 98.438 (98.438)
+Epoch: [157][64/196]	Time 0.827 (0.795)	Data 0.000 (0.005)	Loss 0.7937 (0.7713)	Acc@1 81.250 (81.833)	Acc@5 99.219 (99.062)
+Epoch: [157][128/196]	Time 0.802 (0.798)	Data 0.000 (0.002)	Loss 0.7972 (0.7732)	Acc@1 78.125 (81.689)	Acc@5 99.609 (99.092)
+Epoch: [157][192/196]	Time 0.801 (0.798)	Data 0.000 (0.002)	Loss 0.9531 (0.7784)	Acc@1 75.781 (81.485)	Acc@5 98.438 (99.012)
+[INFO] Storing checkpoint...
+
+Epoch: [158 | 160] LR: 0.200000
+Epoch: [158][0/196]	Time 0.775 (0.775)	Data 0.553 (0.553)	Loss 0.7447 (0.7447)	Acc@1 82.422 (82.422)	Acc@5 99.219 (99.219)
+Epoch: [158][64/196]	Time 0.490 (0.567)	Data 0.000 (0.009)	Loss 0.9094 (0.7916)	Acc@1 76.953 (80.962)	Acc@5 98.438 (99.026)
+Epoch: [158][128/196]	Time 0.847 (0.653)	Data 0.000 (0.004)	Loss 0.8053 (0.7856)	Acc@1 80.078 (81.153)	Acc@5 99.609 (99.007)
+Epoch: [158][192/196]	Time 0.797 (0.701)	Data 0.000 (0.003)	Loss 0.9203 (0.7889)	Acc@1 77.734 (81.092)	Acc@5 97.266 (98.972)
+[INFO] Storing checkpoint...
+
+Epoch: [159 | 160] LR: 0.200000
+Epoch: [159][0/196]	Time 0.823 (0.823)	Data 0.313 (0.313)	Loss 0.7075 (0.7075)	Acc@1 83.203 (83.203)	Acc@5 98.438 (98.438)
+Epoch: [159][64/196]	Time 0.494 (0.701)	Data 0.000 (0.005)	Loss 0.7935 (0.7710)	Acc@1 81.641 (81.689)	Acc@5 98.828 (99.105)
+Epoch: [159][128/196]	Time 0.801 (0.727)	Data 0.000 (0.003)	Loss 0.8352 (0.7705)	Acc@1 81.641 (81.850)	Acc@5 97.656 (99.107)
+Epoch: [159][192/196]	Time 0.806 (0.752)	Data 0.000 (0.002)	Loss 0.7106 (0.7729)	Acc@1 84.375 (81.701)	Acc@5 98.438 (99.087)
+[INFO] Storing checkpoint...
+
+Epoch: [160 | 160] LR: 0.200000
+Epoch: [160][0/196]	Time 0.895 (0.895)	Data 0.520 (0.520)	Loss 0.6866 (0.6866)	Acc@1 83.984 (83.984)	Acc@5 99.219 (99.219)
+Epoch: [160][64/196]	Time 0.831 (0.790)	Data 0.000 (0.008)	Loss 0.6916 (0.7594)	Acc@1 85.547 (82.284)	Acc@5 99.219 (98.966)
+Epoch: [160][128/196]	Time 0.806 (0.796)	Data 0.000 (0.004)	Loss 0.7222 (0.7727)	Acc@1 80.859 (81.731)	Acc@5 99.609 (98.913)
+Epoch: [160][192/196]	Time 0.796 (0.798)	Data 0.000 (0.003)	Loss 0.6933 (0.7767)	Acc@1 83.594 (81.531)	Acc@5 98.828 (98.939)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  58.71
+Max memory: 58.1312512
+ 157.017s  j: 161 bis 165
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 161
+count0: 151326
+
+Epoch: [161 | 165] LR: 0.200000
+Epoch: [161][0/196]	Time 1.844 (1.844)	Data 0.565 (0.565)	Loss 0.7321 (0.7321)	Acc@1 83.984 (83.984)	Acc@5 99.609 (99.609)
+Epoch: [161][64/196]	Time 0.634 (0.740)	Data 0.000 (0.009)	Loss 0.8052 (0.7480)	Acc@1 80.469 (82.662)	Acc@5 99.219 (99.069)
+Epoch: [161][128/196]	Time 0.798 (0.755)	Data 0.000 (0.005)	Loss 0.6661 (0.7560)	Acc@1 87.109 (82.246)	Acc@5 99.609 (99.061)
+Epoch: [161][192/196]	Time 0.808 (0.763)	Data 0.000 (0.003)	Loss 0.8280 (0.7668)	Acc@1 78.125 (81.762)	Acc@5 98.828 (99.057)
+[INFO] Storing checkpoint...
+
+Epoch: [162 | 165] LR: 0.200000
+Epoch: [162][0/196]	Time 0.819 (0.819)	Data 0.417 (0.417)	Loss 0.6688 (0.6688)	Acc@1 85.156 (85.156)	Acc@5 99.219 (99.219)
+Epoch: [162][64/196]	Time 0.844 (0.797)	Data 0.000 (0.007)	Loss 0.7539 (0.7851)	Acc@1 82.031 (81.232)	Acc@5 99.219 (99.002)
+Epoch: [162][128/196]	Time 0.800 (0.797)	Data 0.000 (0.003)	Loss 0.7622 (0.7816)	Acc@1 80.469 (81.344)	Acc@5 98.828 (98.967)
+Epoch: [162][192/196]	Time 0.475 (0.760)	Data 0.000 (0.002)	Loss 0.8394 (0.7837)	Acc@1 78.906 (81.406)	Acc@5 98.438 (98.952)
+[INFO] Storing checkpoint...
+
+Epoch: [163 | 165] LR: 0.200000
+Epoch: [163][0/196]	Time 0.520 (0.520)	Data 0.408 (0.408)	Loss 0.7919 (0.7919)	Acc@1 81.250 (81.250)	Acc@5 99.219 (99.219)
+Epoch: [163][64/196]	Time 0.798 (0.677)	Data 0.000 (0.006)	Loss 0.8115 (0.7974)	Acc@1 80.078 (80.829)	Acc@5 99.609 (98.978)
+Epoch: [163][128/196]	Time 0.805 (0.738)	Data 0.000 (0.003)	Loss 0.8288 (0.7908)	Acc@1 79.297 (81.044)	Acc@5 98.438 (98.977)
+Epoch: [163][192/196]	Time 0.638 (0.732)	Data 0.000 (0.002)	Loss 0.6155 (0.7811)	Acc@1 87.500 (81.378)	Acc@5 99.609 (98.972)
+[INFO] Storing checkpoint...
+
+Epoch: [164 | 165] LR: 0.200000
+Epoch: [164][0/196]	Time 0.701 (0.701)	Data 0.373 (0.373)	Loss 0.9329 (0.9329)	Acc@1 77.344 (77.344)	Acc@5 97.266 (97.266)
+Epoch: [164][64/196]	Time 0.807 (0.776)	Data 0.000 (0.006)	Loss 0.8281 (0.7628)	Acc@1 80.078 (82.133)	Acc@5 99.219 (99.087)
+Epoch: [164][128/196]	Time 0.807 (0.788)	Data 0.000 (0.003)	Loss 0.8234 (0.7661)	Acc@1 78.906 (81.862)	Acc@5 98.438 (99.067)
+Epoch: [164][192/196]	Time 0.777 (0.792)	Data 0.000 (0.002)	Loss 0.8154 (0.7763)	Acc@1 78.516 (81.491)	Acc@5 97.656 (99.000)
+[INFO] Storing checkpoint...
+
+Epoch: [165 | 165] LR: 0.200000
+Epoch: [165][0/196]	Time 0.883 (0.883)	Data 0.315 (0.315)	Loss 0.7505 (0.7505)	Acc@1 80.078 (80.078)	Acc@5 99.219 (99.219)
+Epoch: [165][64/196]	Time 0.799 (0.800)	Data 0.000 (0.005)	Loss 0.8150 (0.7837)	Acc@1 79.688 (81.166)	Acc@5 98.828 (99.026)
+Epoch: [165][128/196]	Time 0.808 (0.802)	Data 0.000 (0.003)	Loss 0.7447 (0.7821)	Acc@1 82.812 (81.271)	Acc@5 98.438 (98.998)
+Epoch: [165][192/196]	Time 0.779 (0.800)	Data 0.000 (0.002)	Loss 0.8394 (0.7815)	Acc@1 78.906 (81.276)	Acc@5 99.609 (98.994)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 150602 ; 151326 ; 0.9952156271889827
+[INFO] Storing checkpoint...
+
+  256
+  66.04
+Max memory: 58.1312512
+ 157.245s  j: 166 bis 170
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 166
+count0: 150602
+
+Epoch: [166 | 170] LR: 0.200000
+Epoch: [166][0/196]	Time 1.716 (1.716)	Data 0.599 (0.599)	Loss 0.7774 (0.7774)	Acc@1 80.469 (80.469)	Acc@5 99.219 (99.219)
+Epoch: [166][64/196]	Time 0.788 (0.804)	Data 0.000 (0.009)	Loss 0.7654 (0.7490)	Acc@1 82.422 (82.055)	Acc@5 98.438 (99.177)
+Epoch: [166][128/196]	Time 0.787 (0.790)	Data 0.000 (0.005)	Loss 0.6477 (0.7707)	Acc@1 85.547 (81.625)	Acc@5 100.000 (99.095)
+Epoch: [166][192/196]	Time 0.631 (0.795)	Data 0.000 (0.003)	Loss 0.7692 (0.7741)	Acc@1 83.594 (81.574)	Acc@5 99.609 (99.057)
+[INFO] Storing checkpoint...
+
+Epoch: [167 | 170] LR: 0.200000
+Epoch: [167][0/196]	Time 0.866 (0.866)	Data 0.622 (0.622)	Loss 0.6656 (0.6656)	Acc@1 84.375 (84.375)	Acc@5 99.609 (99.609)
+Epoch: [167][64/196]	Time 0.795 (0.805)	Data 0.000 (0.010)	Loss 0.7774 (0.7810)	Acc@1 82.812 (81.490)	Acc@5 99.609 (99.111)
+Epoch: [167][128/196]	Time 0.476 (0.717)	Data 0.000 (0.005)	Loss 0.7407 (0.7801)	Acc@1 83.594 (81.305)	Acc@5 97.656 (99.092)
+Epoch: [167][192/196]	Time 0.784 (0.695)	Data 0.000 (0.004)	Loss 0.8983 (0.7802)	Acc@1 76.172 (81.345)	Acc@5 97.656 (99.067)
+[INFO] Storing checkpoint...
+
+Epoch: [168 | 170] LR: 0.200000
+Epoch: [168][0/196]	Time 0.780 (0.780)	Data 0.729 (0.729)	Loss 0.8583 (0.8583)	Acc@1 80.469 (80.469)	Acc@5 98.438 (98.438)
+Epoch: [168][64/196]	Time 0.737 (0.795)	Data 0.000 (0.011)	Loss 0.9195 (0.7720)	Acc@1 76.172 (81.887)	Acc@5 98.828 (98.984)
+Epoch: [168][128/196]	Time 0.757 (0.741)	Data 0.000 (0.006)	Loss 0.9398 (0.7826)	Acc@1 72.656 (81.453)	Acc@5 98.828 (98.986)
+Epoch: [168][192/196]	Time 0.838 (0.755)	Data 0.000 (0.004)	Loss 0.7447 (0.7798)	Acc@1 83.203 (81.539)	Acc@5 99.219 (98.978)
+[INFO] Storing checkpoint...
+
+Epoch: [169 | 170] LR: 0.200000
+Epoch: [169][0/196]	Time 0.855 (0.855)	Data 0.628 (0.628)	Loss 0.6726 (0.6726)	Acc@1 84.766 (84.766)	Acc@5 99.609 (99.609)
+Epoch: [169][64/196]	Time 0.796 (0.803)	Data 0.000 (0.010)	Loss 0.7505 (0.7848)	Acc@1 82.031 (81.250)	Acc@5 99.609 (99.050)
+Epoch: [169][128/196]	Time 0.656 (0.801)	Data 0.000 (0.005)	Loss 0.8594 (0.7740)	Acc@1 77.344 (81.622)	Acc@5 98.438 (99.028)
+Epoch: [169][192/196]	Time 0.820 (0.792)	Data 0.000 (0.004)	Loss 0.7988 (0.7758)	Acc@1 82.812 (81.533)	Acc@5 99.609 (99.016)
+[INFO] Storing checkpoint...
+
+Epoch: [170 | 170] LR: 0.200000
+Epoch: [170][0/196]	Time 0.835 (0.835)	Data 0.531 (0.531)	Loss 0.7462 (0.7462)	Acc@1 80.859 (80.859)	Acc@5 99.609 (99.609)
+Epoch: [170][64/196]	Time 0.783 (0.795)	Data 0.000 (0.008)	Loss 0.8178 (0.7655)	Acc@1 79.688 (81.827)	Acc@5 99.609 (99.002)
+Epoch: [170][128/196]	Time 0.764 (0.788)	Data 0.000 (0.004)	Loss 0.7206 (0.7791)	Acc@1 84.375 (81.362)	Acc@5 98.828 (98.961)
+Epoch: [170][192/196]	Time 0.643 (0.764)	Data 0.000 (0.003)	Loss 0.7191 (0.7736)	Acc@1 80.469 (81.511)	Acc@5 99.609 (99.004)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  72.67
+Max memory: 58.0100608
+ 150.050s  j: 171 bis 175
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 171
+count0: 150602
+
+Epoch: [171 | 175] LR: 0.200000
+Epoch: [171][0/196]	Time 1.990 (1.990)	Data 0.713 (0.713)	Loss 0.6584 (0.6584)	Acc@1 85.547 (85.547)	Acc@5 99.609 (99.609)
+Epoch: [171][64/196]	Time 0.782 (0.801)	Data 0.000 (0.011)	Loss 0.8699 (0.7580)	Acc@1 78.516 (81.971)	Acc@5 99.219 (99.099)
+Epoch: [171][128/196]	Time 0.694 (0.800)	Data 0.000 (0.006)	Loss 0.7787 (0.7663)	Acc@1 82.031 (81.665)	Acc@5 98.438 (99.098)
+Epoch: [171][192/196]	Time 0.802 (0.801)	Data 0.000 (0.004)	Loss 0.6969 (0.7665)	Acc@1 84.375 (81.631)	Acc@5 99.219 (99.081)
+[INFO] Storing checkpoint...
+
+Epoch: [172 | 175] LR: 0.200000
+Epoch: [172][0/196]	Time 0.839 (0.839)	Data 0.603 (0.603)	Loss 0.7930 (0.7930)	Acc@1 82.812 (82.812)	Acc@5 99.609 (99.609)
+Epoch: [172][64/196]	Time 0.463 (0.701)	Data 0.000 (0.009)	Loss 0.7494 (0.7699)	Acc@1 81.641 (81.635)	Acc@5 99.609 (99.026)
+Epoch: [172][128/196]	Time 0.782 (0.633)	Data 0.000 (0.005)	Loss 0.7512 (0.7728)	Acc@1 81.250 (81.513)	Acc@5 98.828 (99.001)
+Epoch: [172][192/196]	Time 0.787 (0.689)	Data 0.000 (0.003)	Loss 0.7759 (0.7719)	Acc@1 82.031 (81.622)	Acc@5 98.438 (98.986)
+[INFO] Storing checkpoint...
+
+Epoch: [173 | 175] LR: 0.200000
+Epoch: [173][0/196]	Time 0.848 (0.848)	Data 0.724 (0.724)	Loss 0.8462 (0.8462)	Acc@1 79.688 (79.688)	Acc@5 99.219 (99.219)
+Epoch: [173][64/196]	Time 0.810 (0.691)	Data 0.000 (0.011)	Loss 0.8046 (0.7793)	Acc@1 81.641 (81.328)	Acc@5 99.219 (98.954)
+Epoch: [173][128/196]	Time 0.780 (0.730)	Data 0.000 (0.006)	Loss 0.8357 (0.7821)	Acc@1 80.469 (81.317)	Acc@5 99.219 (98.973)
+Epoch: [173][192/196]	Time 0.796 (0.755)	Data 0.000 (0.004)	Loss 0.7529 (0.7766)	Acc@1 84.375 (81.509)	Acc@5 98.828 (99.014)
+[INFO] Storing checkpoint...
+
+Epoch: [174 | 175] LR: 0.200000
+Epoch: [174][0/196]	Time 0.909 (0.909)	Data 0.548 (0.548)	Loss 0.7573 (0.7573)	Acc@1 81.250 (81.250)	Acc@5 98.438 (98.438)
+Epoch: [174][64/196]	Time 0.806 (0.799)	Data 0.000 (0.009)	Loss 0.7244 (0.7795)	Acc@1 83.203 (81.238)	Acc@5 99.609 (98.978)
+Epoch: [174][128/196]	Time 0.777 (0.786)	Data 0.000 (0.004)	Loss 0.7469 (0.7779)	Acc@1 84.766 (81.247)	Acc@5 98.828 (99.013)
+Epoch: [174][192/196]	Time 0.794 (0.788)	Data 0.000 (0.003)	Loss 0.8001 (0.7740)	Acc@1 79.688 (81.570)	Acc@5 99.219 (98.994)
+[INFO] Storing checkpoint...
+
+Epoch: [175 | 175] LR: 0.200000
+Epoch: [175][0/196]	Time 0.816 (0.816)	Data 0.713 (0.713)	Loss 0.7621 (0.7621)	Acc@1 84.375 (84.375)	Acc@5 98.438 (98.438)
+Epoch: [175][64/196]	Time 0.790 (0.795)	Data 0.000 (0.011)	Loss 0.7622 (0.7692)	Acc@1 80.859 (81.785)	Acc@5 99.609 (99.002)
+Epoch: [175][128/196]	Time 0.638 (0.720)	Data 0.000 (0.006)	Loss 0.8701 (0.7716)	Acc@1 77.344 (81.795)	Acc@5 99.609 (99.040)
+Epoch: [175][192/196]	Time 0.628 (0.693)	Data 0.000 (0.004)	Loss 0.8542 (0.7775)	Acc@1 81.641 (81.592)	Acc@5 98.828 (99.018)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 149104 ; 150602 ; 0.990053252944848
+[INFO] Storing checkpoint...
+
+  256
+  77.37
+Max memory: 57.8636288
+ 136.662s  j: 176 bis 180
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 176
+count0: 149104
+
+Epoch: [176 | 180] LR: 0.200000
+Epoch: [176][0/196]	Time 1.572 (1.572)	Data 0.618 (0.618)	Loss 0.7421 (0.7421)	Acc@1 82.812 (82.812)	Acc@5 98.438 (98.438)
+Epoch: [176][64/196]	Time 0.645 (0.650)	Data 0.000 (0.010)	Loss 0.8469 (0.7318)	Acc@1 80.469 (83.167)	Acc@5 98.047 (98.972)
+Epoch: [176][128/196]	Time 0.631 (0.637)	Data 0.000 (0.005)	Loss 0.7523 (0.7516)	Acc@1 83.203 (82.410)	Acc@5 98.828 (98.973)
+Epoch: [176][192/196]	Time 0.288 (0.607)	Data 0.000 (0.003)	Loss 0.9060 (0.7654)	Acc@1 76.562 (81.886)	Acc@5 98.047 (98.970)
+[INFO] Storing checkpoint...
+
+Epoch: [177 | 180] LR: 0.200000
+Epoch: [177][0/196]	Time 0.354 (0.354)	Data 0.636 (0.636)	Loss 0.7605 (0.7605)	Acc@1 80.469 (80.469)	Acc@5 99.609 (99.609)
+Epoch: [177][64/196]	Time 0.314 (0.307)	Data 0.000 (0.010)	Loss 0.8574 (0.7777)	Acc@1 78.125 (81.514)	Acc@5 99.219 (99.026)
+Epoch: [177][128/196]	Time 0.295 (0.343)	Data 0.000 (0.005)	Loss 0.7312 (0.7896)	Acc@1 82.422 (81.023)	Acc@5 100.000 (98.970)
+Epoch: [177][192/196]	Time 0.310 (0.326)	Data 0.000 (0.003)	Loss 0.7835 (0.7875)	Acc@1 83.203 (81.094)	Acc@5 99.219 (98.976)
+[INFO] Storing checkpoint...
+
+Epoch: [178 | 180] LR: 0.200000
+Epoch: [178][0/196]	Time 0.327 (0.327)	Data 0.602 (0.602)	Loss 0.8024 (0.8024)	Acc@1 78.516 (78.516)	Acc@5 99.219 (99.219)
+Epoch: [178][64/196]	Time 0.323 (0.256)	Data 0.000 (0.009)	Loss 0.6618 (0.7860)	Acc@1 85.938 (81.238)	Acc@5 100.000 (98.750)
+Epoch: [178][128/196]	Time 0.305 (0.277)	Data 0.000 (0.005)	Loss 0.7634 (0.7770)	Acc@1 81.641 (81.489)	Acc@5 97.656 (98.913)
+Epoch: [178][192/196]	Time 0.313 (0.284)	Data 0.000 (0.003)	Loss 0.8299 (0.7789)	Acc@1 81.250 (81.398)	Acc@5 99.219 (98.941)
+[INFO] Storing checkpoint...
+
+Epoch: [179 | 180] LR: 0.200000
+Epoch: [179][0/196]	Time 0.340 (0.340)	Data 0.629 (0.629)	Loss 0.7339 (0.7339)	Acc@1 82.812 (82.812)	Acc@5 100.000 (100.000)
+Epoch: [179][64/196]	Time 0.305 (0.251)	Data 0.000 (0.010)	Loss 0.8124 (0.7584)	Acc@1 80.859 (82.061)	Acc@5 98.828 (99.044)
+Epoch: [179][128/196]	Time 0.313 (0.273)	Data 0.000 (0.005)	Loss 0.8342 (0.7640)	Acc@1 78.516 (81.940)	Acc@5 99.609 (98.980)
+Epoch: [179][192/196]	Time 0.294 (0.280)	Data 0.000 (0.003)	Loss 0.7878 (0.7755)	Acc@1 85.156 (81.511)	Acc@5 98.047 (98.960)
+[INFO] Storing checkpoint...
+
+Epoch: [180 | 180] LR: 0.200000
+Epoch: [180][0/196]	Time 0.318 (0.318)	Data 0.620 (0.620)	Loss 0.7256 (0.7256)	Acc@1 82.031 (82.031)	Acc@5 99.219 (99.219)
+Epoch: [180][64/196]	Time 0.286 (0.253)	Data 0.000 (0.010)	Loss 0.8758 (0.7621)	Acc@1 79.688 (81.893)	Acc@5 97.656 (99.056)
+Epoch: [180][128/196]	Time 0.290 (0.274)	Data 0.000 (0.005)	Loss 0.7528 (0.7820)	Acc@1 82.031 (81.247)	Acc@5 98.438 (98.946)
+Epoch: [180][192/196]	Time 0.305 (0.282)	Data 0.000 (0.003)	Loss 0.8202 (0.7836)	Acc@1 80.078 (81.210)	Acc@5 99.219 (98.941)
+[INFO] Storing checkpoint...
+
+  256
+  70.86
+Max memory: 57.7188352
+ 56.105s  
