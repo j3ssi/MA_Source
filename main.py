@@ -363,7 +363,7 @@ def main():
     if not args.lars:
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     else:
-        optimizer = LARS(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+        optimizer = LARS(model.parameters(),eta=args.larsLR, lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
 
     i = 1
     # for epochNet2Net in range(1, 4):
@@ -407,7 +407,7 @@ def main():
                     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                           weight_decay=args.weight_decay)
                 else:
-                    optimizer = LARS(model.parameters(), lr=args.lr, momentum=args.momentum,
+                    optimizer = LARS(model.parameters(),eta=args.larsLR, lr=args.lr, momentum=args.momentum,
                                      weight_decay=args.weight_decay)
             #     if args.fp16:
             #         model, optimizer = amp.initialize(model, optimizer)
