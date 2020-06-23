@@ -347,13 +347,14 @@ def main():
         y = 4.27*sizeX + 2.60
         # calculate now the batch size
         batch_size = int(0.999 * count0 / sizeX / y)
-        delta_bs = (batch_size - 4065)*0.8
+        delta_bs = (batch_size - 4065)*0.9
         batch_size = int(batch_size - delta_bs)
+        print(f'batch_size: {batch_size};{y} ; lr: {args.lr}: dellta bs: {delta_bs}')
+
         args.batch_size = batch_size
     else:
         batch_size = args.batch_size
     args.lr *= (batch_size / 256)
-    print(f'batch_size: {batch_size}; lr: {args.lr}')
 
     if not args.resume:
         start_batchSize = batch_size
@@ -555,7 +556,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         loss += lasso_penalty
         # measure accuracy and record loss
 
-        prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
+        prec1, prec5 = accuracy(outputs, targets, topk=(1, 5))
         losses.update(loss.item(), inputs.size(0))
         top1.update(prec1.item(), inputs.size(0))
         top5.update(prec5.item(), inputs.size(0))
@@ -624,7 +625,7 @@ def test(testloader, model, criterion, epoch, use_cuda):
         loss = criterion(outputs, targets)
         # print(f'Test nachdem loss')
         # measure accuracy and record loss
-        prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
+        prec1, prec5 = accuracy(outputs, targets, topk=(1, 5))
         losses.update(loss.item(), inputs.size(0))
         top1.update(prec1.item(), inputs.size(0))
         top5.update(prec5.item(), inputs.size(0))
