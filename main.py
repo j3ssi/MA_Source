@@ -24,6 +24,7 @@ import random
 import matplotlib
 import numpy as np
 from torch.nn.utils import clip_grad_norm_
+from src.lars import LARS
 
 from src.mem_reporter import *
 from copy import deepcopy
@@ -153,20 +154,9 @@ parser.add_argument('--gpu1080', default=False, action='store_true',
                     help='Use Geforce 1080 instead of geforce 2080')
 parser.add_argument('--test', default=False, action='store_true',
                     help='Should the Test run?')
+parser.add_argument('--lars', default=False, action='store_true',
+                    help='use lars')
 
-parser.add_argument('--largeBatch', default=False, action='store_true',
-                    help='Use Large Batch Optimizing')
-parser.add_argument('-mb', '--mini_batch_size', default=64, type=int,
-                    help='mini-mini-batch size (default: 64)')
-parser.add_argument('--lr_bb_fix', dest='lr_bb_fix', action='store_true',
-                    help='learning rate fix for big batch lr =  lr0*(batch_size/128)**0.5')
-parser.add_argument('--no-lr_bb_fix', dest='lr_bb_fix', action='store_false',
-                    help='learning rate fix for big batch lr =  lr0*(batch_size/128)**0.5')
-parser.set_defaults(lr_bb_fix=True)
-parser.add_argument('--regime_bb_fix', dest='regime_bb_fix', action='store_true',
-                    help='regime fix for big batch e = e0*(batch_size/128)')
-parser.add_argument('--no-regime_bb_fix', dest='regime_bb_fix', action='store_false',
-                    help='regime fix for big batch e = e0*(batch_size/128)')
 parser.add_argument('--saveModell', default=False, action='store_true',
                     help='Save Modell')
 
@@ -188,14 +178,6 @@ def main():
     if not os.path.isdir(args.checkpoint):
         mkdir_p(args.checkpoint)
 
-    # large batch
-    # if args.regime_bb_fix and args.largeBatch:
-    #     args.epochs *= torch.ceil(args.batch_size / args.mini_batch_size)
-    #
-    # if args.lr_bb_fix and args.largeBatch:
-    #     args.lr *= (args.batch_size / args.mini_batch_size) ** 0.5
-    # if args.regime_bb_fix and args.largeBatch:
-    #     e *= torch.ceil(args.batch_size / args.mini_batch_size)
 
     # torch
     # torch.backends.cudnn.deterministic = True
@@ -358,20 +340,13 @@ def main():
         sizeX = (count0 - 1306) / 97216
         print(f'sizeX: {sizeX}')
         # Gerade für niedrige Batch size
-        y = 53.13 * sizeX + 75.89
+        # y = 53.13 * sizeX + 75.89
 
-        # y = 4.27*sizeX + 2.60
+        y = 4.27*sizeX + 2.60
         # calculate now the batch size
         batch_size = int(0.999 * count0 / sizeX / y)
-        #delta_bs = (batch_size - 4065)*0.6
-        #batch_size = int(batch_size - delta_bs)
-        # ms = [0.2926, 4.4695, 0.889, 406.9735]
-        # m = ms[args.numOfStages - 1]
-        # y0s = [0.2392, 0.7999, 3.899, -51.4890]
-        # y0 = y0s[args.numOfStages - 1]
-        # print(f'count0: {count0}')
-        # y = m * min(listofBlocks) + y0
-        # batch_size = int(0.98 * count0 / min(listofBlocks) * 1 / y)
+        delta_bs = (batch_size - 4065)*0.6
+        batch_size = int(batch_size - delta_bs)
         print(f'batch_size: {batch_size} ; {y}')
         args.lr *= (batch_size / args.mini_batch_size)
         args.batch_size = batch_size
@@ -383,7 +358,10 @@ def main():
 
     trainloader = data.DataLoader(trainset, batch_size=batch_size, pin_memory=True,
                                   shuffle=True, num_workers=args.workers)
-    optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+    if not args.lars:
+        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+    else:
+        optimizer = torch.optim.LARS(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
 
     i = 1
     # for epochNet2Net in range(1, 4):
@@ -489,8 +467,7 @@ def main():
     if args.saveModell:
         torch.save(model, args.pathToModell)
     logger.close()
-    print("\n ",
-          args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
+    print("\n ", args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
     if args.test:
         print(" ", test_acc)
     print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
@@ -516,112 +493,20 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
     # for param in model.parameters():
     #    param.grad = None
+    for batch_idx, (inputs, targets) in enumerate(trainloader):
+        # measure data loading time
+        data_time.update(time.time() - end)
+        data_load_time = time.time() - end
 
-    if args.largeBatch:
-
-        for batch_idx, (inputs, targets) in enumerate(trainloader):
-            init_batch = batch_idx == 0 and epoch == 1
-
-            # measure data loading time
-            data_time.update(time.time() - end)
-            data_load_time = time.time() - end
-
-            if use_cuda:
-                inputs, targets = inputs.cuda(), targets.cuda()
-            with torch.no_grad():
-                inputs = Variable(inputs)
-            targets = torch.autograd.Variable(targets)
-            mini_inputs = inputs.chunk(args.batch_size // args.mini_batch_size)
-            mini_targets = targets.chunk(args.batch_size // args.mini_batch_size)
-            for k, mini_input_var in enumerate(mini_inputs):
-                # print(f'K: {k}')
-                mini_target_var = mini_targets[k]
-                # print(f'size of mini target var: {mini_target_var.size()}')
-                outputs = model.forward(mini_input_var)
-                optimizer.zero_grad()
-                # print(f'size of output: {outputs.size()}')
-                loss = criterion(outputs, mini_target_var)
-                if args.en_group_lasso:
-                    if args.global_group_lasso:
-                        lasso_penalty = get_group_lasso_global(model)
-                    else:
-                        lasso_penalty = get_group_lasso_group(model)
-                    if printLasso:
-                        print(f'Lasso Penalty1: {lasso_penalty}')
-                    # Auto-tune the group-lasso coefficient @first training iteration
-                    coeff_dir = os.path.join(args.coeff_container, 'cifar')
-                    if init_batch:
-                        args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
-                                lasso_penalty * (1 - args.var_group_lasso_coeff))
-                        grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
-
-                        if not os.path.exists(coeff_dir):
-                            os.makedirs(coeff_dir)
-                        with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
-                            f_coeff.write(str(grp_lasso_coeff.item()))
-                        if printLasso:
-                            print(f'Grp lasso coeff: {grp_lasso_coeff}')
-
-                    else:
-                        with open(os.path.join(coeff_dir, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
-                            for line in f_coeff:
-                                grp_lasso_coeff = float(line)
-                    lasso_penalty = lasso_penalty * grp_lasso_coeff
-                    if printLasso:
-                        print(f'Lasso Penalty2: {lasso_penalty}')
-                else:
-                    lasso_penalty = 0.
-                    # print(f'nach group lasso')
-                    # Group lasso calcution is not performance-optimized => Ignore from execution time
-                # lasso penalty
-                loss += lasso_penalty
-                # measure accuracy and record loss
-                prec1, prec5 = accuracy(outputs.data, mini_target_var.data, topk=(1, 5))
-                losses.update(loss.item(), mini_input_var.size(0))
-                top1.update(prec1.item(), mini_input_var.size(0))
-                top5.update(prec5.item(), mini_input_var.size(0))
-                lasso_ratio.update(lasso_penalty / loss.item(), mini_input_var.size(0))
-
-                # compute gradient and do SGD step
-                if args.O1 or args.O2 or args.O3:
-                    with amp.scale_loss(loss, optimizer) as scaled_loss:
-                        scaled_loss.backward()
-                else:
-                    loss.backward()
-                optimizer.step()
-                batch_time.update(time.time() - end - data_load_time)
-                end = time.time()
-
-            for p in model.parameters():
-                p.grad.data.div_(len(mini_inputs))
-            clip_grad_norm_(model.parameters(), 5.)
-
-            if batch_idx % args.print_freq == 0 and k == 0:
-                print('Epoch: [{0}][{1}/{2}]\t'
-                      'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-                      'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
-                      'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
-                      'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
-                      'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
-                    epoch, batch_idx, len(trainloader), batch_time=batch_time,
-                    data_time=data_time, loss=losses, top1=top1, top5=top5))
-
-    else:
-        for batch_idx, (inputs, targets) in enumerate(trainloader):
-
-            # measure data loading time
-            data_time.update(time.time() - end)
-            data_load_time = time.time() - end
-
-            if use_cuda:
-                inputs, targets = inputs.cuda(), targets.cuda()
-            with torch.no_grad():
-                inputs = Variable(inputs)
-            targets = torch.autograd.Variable(targets)
-            outputs = model.forward(inputs)
-            loss = criterion(outputs, targets)
-            if printLasso:
-                print(f'Loss: {loss}')
+        if use_cuda:
+            inputs, targets = inputs.cuda(), targets.cuda()
+        with torch.no_grad():
+            inputs = Variable(inputs)
+        targets = torch.autograd.Variable(targets)
+        outputs = model.forward(inputs)
+        loss = criterion(outputs, targets)
+        if printLasso:
+            print(f'Loss: {loss}')
 
             # if batch_idx == 0 and (epoch % args.sparse_interval == 0):
             #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
@@ -629,71 +514,71 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             #     dot.render(filename=filename)
 
             # lasso penalty
-            init_batch = batch_idx == 0 and epoch == 1
+        init_batch = batch_idx == 0 and epoch == 1
 
-            if args.en_group_lasso:
-                if args.global_group_lasso:
-                    lasso_penalty = get_group_lasso_global(model)
-                else:
-                    lasso_penalty = get_group_lasso_group(model)
-                if printLasso:
-                    print(f'Lasso Penalty1: {lasso_penalty}')
+        if args.en_group_lasso:
+            if args.global_group_lasso:
+                lasso_penalty = get_group_lasso_global(model)
+            else:
+                lasso_penalty = get_group_lasso_group(model)
+            if printLasso:
+                print(f'Lasso Penalty1: {lasso_penalty}')
                 # Auto-tune the group-lasso coefficient @first training iteration
                 # coeff_dir = os.path.join(args.coeff_container, 'cifar')
-                if init_batch:
-                    args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
+            if init_batch:
+                args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
                             lasso_penalty * (1 - args.var_group_lasso_coeff))
-                    grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
+                grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
 
-                    with open(os.path.join(args.checkpoint, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
-                        f_coeff.write(str(grp_lasso_coeff.item()))
-                    if printLasso:
-                        print(f'Grp lasso coeff: {grp_lasso_coeff}')
-
-                else:
-                    with open(os.path.join(args.checkpoint, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
-                        for line in f_coeff:
-                            grp_lasso_coeff = float(line)
-                lasso_penalty = lasso_penalty * grp_lasso_coeff
+                with open(os.path.join(args.checkpoint, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
+                    f_coeff.write(str(grp_lasso_coeff.item()))
                 if printLasso:
-                    print(f'Lasso Penalty2: {lasso_penalty}')
+                    print(f'Grp lasso coeff: {grp_lasso_coeff}')
+
             else:
-                lasso_penalty = 0
-                # print(f'nach group lasso')
-                # Group lasso calcution is not performance-optimized => Ignore from execution time
-            loss += lasso_penalty
-            # measure accuracy and record loss
+                with open(os.path.join(args.checkpoint, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
+                    for line in f_coeff:
+                        grp_lasso_coeff = float(line)
+            lasso_penalty = lasso_penalty * grp_lasso_coeff
+            if printLasso:
+                print(f'Lasso Penalty2: {lasso_penalty}')
+        else:
+            lasso_penalty = 0
+            # print(f'nach group lasso')
+            # Group lasso calcution is not performance-optimized => Ignore from execution time
+        loss += lasso_penalty
+        # measure accuracy and record loss
 
-            prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
-            losses.update(loss.item(), inputs.size(0))
-            top1.update(prec1.item(), inputs.size(0))
-            top5.update(prec5.item(), inputs.size(0))
-            lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
+        prec1, prec5 = accuracy(outputs.data, targets.data, topk=(1, 5))
+        losses.update(loss.item(), inputs.size(0))
+        top1.update(prec1.item(), inputs.size(0))
+        top5.update(prec5.item(), inputs.size(0))
+        lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
 
-            optimizer.zero_grad()
-            #   compute gradient and do SGD step
-            if args.O1 or args.O2 or args.O3:
-                with amp.scale_loss(loss, optimizer) as scaled_loss:
-                    scaled_loss.backward()
-            else:
-                loss.backward()
-                # print(f'After backward')
-            optimizer.step()
+        optimizer.zero_grad()
+        #   compute gradient and do SGD step
+        if args.O1 or args.O2 or args.O3:
+            with amp.scale_loss(loss, optimizer) as scaled_loss:
+                scaled_loss.backward()
+        else:
+            loss.backward()
+            # print(f'After backward')
+        optimizer.step()
 
-            # print(f'After Step')
-            # measure elapsed time
-            batch_time.update(time.time() - end - data_load_time)
-            end = time.time()
+        # print(f'After Step')
+        # measure elapsed time
+        batch_time.update(time.time() - end - data_load_time)
+        end = time.time()
 
-            if batch_idx % args.print_freq == 0:
-                print('Epoch: [{0}][{1}/{2}]\t'
-                      'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-                      'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
-                      'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
-                      'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
-                      'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
-                    epoch, batch_idx, len(trainloader), batch_time=batch_time,
-                    data_time=data_time, loss=losses, top1=top1, top5=top5))
+        if batch_idx % args.print_freq == 0:
+            print('Epoch: [{0}][{1}/{2}]\t'
+                  'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
+                  'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
+                  'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
+                  'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
+                  'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
+                  epoch, batch_idx, len(trainloader), batch_time=batch_time,
+                  data_time=data_time, loss=losses, top1=top1, top5=top5))
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
     return losses.avg, top1.avg, epoch_time
 
