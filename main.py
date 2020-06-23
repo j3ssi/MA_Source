@@ -345,7 +345,7 @@ def main():
         y = 4.27*sizeX + 2.60
         # calculate now the batch size
         batch_size = int(0.999 * count0 / sizeX / y)
-        delta_bs = (batch_size - 4065)*0.6
+        delta_bs = (batch_size - 4065)*0.7
         batch_size = int(batch_size - delta_bs)
         print(f'batch_size: {batch_size} ; {y}')
         args.lr *= (batch_size / 256)
