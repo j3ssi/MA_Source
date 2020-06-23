@@ -401,8 +401,12 @@ def main():
                 # use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
                 # print(f'use after new Model Creation')
                 model.cuda()
-                optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-                                      weight_decay=args.weight_decay)
+                if not args.lars:
+                    optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+                                          weight_decay=args.weight_decay)
+                else:
+                    optimizer = LARS(model.parameters(), lr=args.lr, momentum=args.momentum,
+                                     weight_decay=args.weight_decay)
             #     if args.fp16:
             #         model, optimizer = amp.initialize(model, optimizer)
             #
