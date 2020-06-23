@@ -361,7 +361,7 @@ def main():
     if not args.lars:
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     else:
-        optimizer = torch.optim.LARS(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+        optimizer = LARS(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
 
     i = 1
     # for epochNet2Net in range(1, 4):
