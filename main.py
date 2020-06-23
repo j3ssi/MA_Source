@@ -353,7 +353,7 @@ def main():
     else:
         batch_size = args.batch_size
     args.lr *= (batch_size / 256)
-    print(f'batch_size: {batch_size} ; {y}; lr: {args.lr}')
+    print(f'batch_size: {batch_size}; lr: {args.lr}')
 
     if not args.resume:
         start_batchSize = batch_size
