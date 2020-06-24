@@ -342,9 +342,9 @@ def main():
         sizeX = (count0 - 1306) / 97216
         print(f'sizeX: {sizeX}')
         # Gerade für niedrige Batch size
-        # y = 53.13 * sizeX + 75.89
+        y = 53.13 * sizeX + 75.89
 
-        y = 4.27*sizeX + 2.60
+        # y = 4.27*sizeX + 2.60
         # calculate now the batch size
         batch_size = int(0.999 * count0 / sizeX / y)
         delta_bs = (batch_size - 4065)*0.93
@@ -576,7 +576,6 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         # measure elapsed time
         batch_time.update(time.time() - end - data_load_time)
         end = time.time()
-        break
         if batch_idx % args.print_freq == 0:
             print('Epoch: [{0}][{1}/{2}]\t'
                   'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
