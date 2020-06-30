@@ -1,5 +1,8 @@
 #!/bin/sh
 
+CUDA_LAUNCH_BLOCKING=1 CUDA_VISIBLE_DEVICES=2 ./run_lr1.sh 5 &> experimente2/prune_zdynlr1_5.txt
+
+
 echo "j: 0 bis 5"
 python3 main.py -j 6 --checkpoint ./output/experimente2/prune_zdynlr1_$1 --epochs 5 -s 3 -l 2 -n 5,5,5 --sparse_interval 5 --en_group_lasso --var_group_lasso_coeff 0.2 --threshold 0.1 --deltalr --dynlr --lr 0.1 --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 0 --pathToModell ./output/experimente2/prune_zdynlr1_$1/model.nn 
 sleep 20

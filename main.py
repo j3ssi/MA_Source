@@ -157,7 +157,7 @@ parser.add_argument('--test', default=False, action='store_true',
 parser.add_argument('--lars', default=False, action='store_true',
                     help='use lars')
 parser.add_argument('--larsLR', default=0.001, type=float,
-                    help='Ratio = group-lasso / (group-lasso + loss)')
+                    help='')
 
 parser.add_argument('--saveModell', default=False, action='store_true',
                     help='Save Modell')
