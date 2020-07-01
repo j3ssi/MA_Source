@@ -340,111 +340,192 @@ baseline3Sum <- sum(baseline3$TrainEpochTime.s.)
 baseline4Sum <- sum(baseline4$TrainEpochTime.s.)
 baseline5Sum <- sum(baseline5$TrainEpochTime.s.)
 
-prune6 <- read.delim("prune6.txt", header = TRUE, sep = "\t", dec = ".")
-prune7 <- read.delim("prune7.txt", header = TRUE, sep = "\t", dec = ".")
-prune8 <- read.delim("prune8.txt", header = TRUE, sep = "\t", dec = ".")
-prune9 <- read.delim("prune9.txt", header = TRUE, sep = "\t", dec = ".")
-prune10 <- read.delim("prune10.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres11 <- read.delim("prune_thres1_1.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres12 <- read.delim("prune_thres1_2.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres13 <- read.delim("prune_thres1_3.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres14 <- read.delim("prune_thres1_4.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres15 <- read.delim("prune_thres1_5.txt", header = TRUE, sep = "\t", dec = ".")
 
-prune6Sum <- sum(prune6$TrainEpochTime.s.)
-prune7Sum <- sum(prune7$TrainEpochTime.s.)
-prune8Sum <- sum(prune8$TrainEpochTime.s.)
-prune9Sum <- sum(prune9$TrainEpochTime.s.)
-prune10Sum <- sum(prune10$TrainEpochTime.s.)
+prunethres11Sum <- sum(prunethres11$TrainEpochTime.s.)
+prunethres12Sum <- sum(prunethres12$TrainEpochTime.s.)
+prunethres13Sum <- sum(prunethres13$TrainEpochTime.s.)
+prunethres14Sum <- sum(prunethres14$TrainEpochTime.s.)
+prunethres15Sum <- sum(prunethres15$TrainEpochTime.s.)
 
-prune11 <- read.delim("prune11.txt", header = TRUE, sep = "\t", dec = ".")
-prune12 <- read.delim("prune12.txt", header = TRUE, sep = "\t", dec = ".")
-prune13 <- read.delim("prune13.txt", header = TRUE, sep = "\t", dec = ".")
-prune14 <- read.delim("prune14.txt", header = TRUE, sep = "\t", dec = ".")
-prune15 <- read.delim("prune15.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres21 <- read.delim("prune_thres2_1.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres22 <- read.delim("prune_thres2_2.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres23 <- read.delim("prune_thres2_3.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres24 <- read.delim("prune_thres2_4.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres25 <- read.delim("prune_thres2_5.txt", header = TRUE, sep = "\t", dec = ".")
 
-prune11Sum <- sum(prune11$TrainEpochTime.s.)
-prune12Sum <- sum(prune12$TrainEpochTime.s.)
-prune13Sum <- sum(prune13$TrainEpochTime.s.)
-prune14Sum <- sum(prune14$TrainEpochTime.s.)
-prune15Sum <- sum(prune15$TrainEpochTime.s.)
+prunethres21Sum <- sum(prunethres21$TrainEpochTime.s.)
+prunethres22Sum <- sum(prunethres22$TrainEpochTime.s.)
+prunethres23Sum <- sum(prunethres23$TrainEpochTime.s.)
+prunethres24Sum <- sum(prunethres24$TrainEpochTime.s.)
+prunethres25Sum <- sum(prunethres25$TrainEpochTime.s.)
 
+prunethres31 <- read.delim("prune_thres3_1.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres32 <- read.delim("prune_thres3_2.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres33 <- read.delim("prune_thres3_3.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres34 <- read.delim("prune_thres3_4.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres35 <- read.delim("prune_thres3_5.txt", header = TRUE, sep = "\t", dec = ".")
 
-prune31 <- read.delim("prune31.txt", header = TRUE, sep = "\t", dec = ".")
-prune32 <- read.delim("prune32.txt", header = TRUE, sep = "\t", dec = ".")
-prune33 <- read.delim("prune33.txt", header = TRUE, sep = "\t", dec = ".")
-prune34 <- read.delim("prune34.txt", header = TRUE, sep = "\t", dec = ".")
-prune35 <- read.delim("prune35.txt", header = TRUE, sep = "\t", dec = ".")
-
-prune36 <- read.delim("prune36.txt", header = TRUE, sep = "\t", dec = ".")
-prune37 <- read.delim("prune37.txt", header = TRUE, sep = "\t", dec = ".")
-prune38 <- read.delim("prune38.txt", header = TRUE, sep = "\t", dec = ".")
-prune39 <- read.delim("prune39.txt", header = TRUE, sep = "\t", dec = ".")
-prune40 <- read.delim("prune40.txt", header = TRUE, sep = "\t", dec = ".")
-
+prunethres31Sum <- sum(prunethres31$TrainEpochTime.s.)
+prunethres32Sum <- sum(prunethres32$TrainEpochTime.s.)
+prunethres33Sum <- sum(prunethres33$TrainEpochTime.s.)
+prunethres34Sum <- sum(prunethres34$TrainEpochTime.s.)
+prunethres35Sum <- sum(prunethres35$TrainEpochTime.s.)
 
 
-boxplot(baseline1$TrainEpochTime.s., baseline2$TrainEpochTime.s., baseline3$TrainEpochTime.s., baseline4$TrainEpochTime.s., baseline5$TrainEpochTime.s.,
-        prune1$TrainEpochTime.s., prune2$TrainEpochTime.s., prune3$TrainEpochTime.s., prune4$TrainEpochTime.s., prune5$TrainEpochTime.s., 
-        prune6$TrainEpochTime.s., prune7$TrainEpochTime.s., prune8$TrainEpochTime.s., prune9$TrainEpochTime.s., prune10$TrainEpochTime.s.,
-        prune11$TrainEpochTime.s., prune12$TrainEpochTime.s., prune13$TrainEpochTime.s., prune14$TrainEpochTime.s., prune15$TrainEpochTime.s.,
-        prune31$TrainEpochTime.s., prune32$TrainEpochTime.s., prune33$TrainEpochTime.s., prune34$TrainEpochTime.s., prune35$TrainEpochTime.s.,
-        prune36$TrainEpochTime.s., prune37$TrainEpochTime.s., prune38$TrainEpochTime.s., prune39$TrainEpochTime.s., prune40$TrainEpochTime.s.,
+prunethres41 <- read.delim("prune_thres4_1.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres42 <- read.delim("prune_thres4_2.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres43 <- read.delim("prune_thres4_3.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres44 <- read.delim("prune_thres4_4.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres45 <- read.delim("prune_thres4_5.txt", header = TRUE, sep = "\t", dec = ".")
+
+prunethres41Sum <- sum(prunethres41$TrainEpochTime.s.)
+prunethres42Sum <- sum(prunethres42$TrainEpochTime.s.)
+prunethres43Sum <- sum(prunethres43$TrainEpochTime.s.)
+prunethres44Sum <- sum(prunethres44$TrainEpochTime.s.)
+prunethres45Sum <- sum(prunethres45$TrainEpochTime.s.)
+
+
+boxplot(prunethres11$TrainEpochTime.s., prunethres12$TrainEpochTime.s., prunethres13$TrainEpochTime.s., prunethres14$TrainEpochTime.s., prunethres15$TrainEpochTime.s.,
+        prunethres21$TrainEpochTime.s., prunethres22$TrainEpochTime.s., prunethres23$TrainEpochTime.s., prunethres24$TrainEpochTime.s.,
+        prunethres31$TrainEpochTime.s., prunethres32$TrainEpochTime.s., prunethres33$TrainEpochTime.s., prunethres34$TrainEpochTime.s., prunethres35$TrainEpochTime.s.,
+        prunethres41$TrainEpochTime.s., prunethres42$TrainEpochTime.s., prunethres43$TrainEpochTime.s., prunethres44$TrainEpochTime.s., prunethres45$TrainEpochTime.s.,
         
         col=c('powderblue', 'powderblue', 'powderblue', 'powderblue', 'powderblue', 
-              'mistyrose', 'mistyrose', 'mistyrose', 'mistyrose', 'mistyrose',
+              'mistyrose', 'mistyrose', 'mistyrose', 'mistyrose',
               'lightsalmon', 'lightsalmon', 'lightsalmon', 'lightsalmon', 'lightsalmon',
-              'lightpink', 'lightpink', 'lightpink', 'lightpink', 'lightpink',
-              'lightsalmon4', 'lightsalmon4', 'lightsalmon4', 'lightsalmon4', 'lightsalmon4',       
-              'orange', 'orange', 'orange', 'orange', 'orange'              
-              ),ylim=c(0,120),
+              'lightpink', 'lightpink', 'lightpink', 'lightpink', 'lightpink')
+        ,ylim=c(0,240),
         ylab = "Trainingszeit in Sekunden",
         xlab="verschiedene Experimente"
         )
 
-legend(0,115, legend = c('baseline', 'prune1', 'prune2', 'prune3', 'prune4', 'prune5'), col= c('powderblue',
-                        'mistyrose', 'lightsalmon', 'lightpink', 'lightsalmon4', 'orange'), fill=c('powderblue',
-                                                                                                   'mistyrose', 'lightsalmon', 'lightpink', 'lightsalmon4', 'orange'), horiz=TRUE, cex=0.8)
+legend(0,10, legend = c('thres 0.1 ', 'thres 0.01', 'thres 0.001', 'thres 0.0001'), col= c('powderblue',
+                        'mistyrose', 'lightsalmon', 'lightpink'), fill=c('powderblue',
+                        'mistyrose', 'lightsalmon', 'lightpink'), horiz=TRUE, cex=0.65)
 
-prune36Sum <- sum(prune36$TrainEpochTime.s.)
-prune37Sum <- sum(prune37$TrainEpochTime.s.)
-prune38Sum <- sum(prune38$TrainEpochTime.s.)
-prune39Sum <- sum(prune39$TrainEpochTime.s.)
-prune40Sum <- sum(prune40$TrainEpochTime.s.)
+prunethres1Sum <- c(prunethres11Sum, prunethres12Sum, prunethres13Sum, prunethres14Sum, prunethres15Sum)
+prunethres2Sum <- c(prunethres21Sum, prunethres22Sum, prunethres23Sum, prunethres24Sum)
+prunethres3Sum <- c(prunethres31Sum, prunethres32Sum, prunethres33Sum, prunethres34Sum, prunethres35Sum)
+prunethres4Sum <- c(prunethres41Sum, prunethres42Sum, prunethres43Sum, prunethres44Sum, prunethres45Sum)
+par(mar=c(10,17,4,1)+.1)
+par(mgp=c(5,1,0))
+boxplot(prunethres1Sum, prunethres2Sum, prunethres3Sum, prunethres4Sum, ylab = "Summe der Trainingszeit in Sekunden",las=2,
+        names = c('thres 0.1','thres 0.01', 'thres 0.001', 'thres 0.0001') )
+
+accthres11 <- tail(prunethres11$ValidAcc.,n=1)
+accthres12 <- tail(prunethres21$ValidAcc.,n=1)
+accthres13 <- tail(prunethres31$ValidAcc.,n=1)
+accthres14 <- tail(prunethres41$ValidAcc.,n=1)
+
+accthres1 <- c(accthres11, accthres12, accthres13, accthres14)
+
+accthres21 <- tail(prunethres21$ValidAcc.,n=1)
+accthres22 <- tail(prunethres22$ValidAcc.,n=1)
+accthres23 <- tail(prunethres23$ValidAcc.,n=1)
+accthres24 <- tail(prunethres24$ValidAcc.,n=1)
+
+accthres2 <- c(accthres21, accthres22, accthres23, accthres24)
+
+accthres31 <- tail(prunethres31$ValidAcc.,n=1)
+accthres32 <- tail(prunethres32$ValidAcc.,n=1)
+accthres33 <- tail(prunethres33$ValidAcc.,n=1)
+accthres34 <- tail(prunethres34$ValidAcc.,n=1)
+
+accthres3 <- c(accthres31, accthres32, accthres33, accthres34)
 
 
-prune <- c(prune36Sum, prune37Sum, prune38Sum, prune39Sum, prune40Sum)
-baseline <- c(baseline1Sum, baseline2Sum, baseline3Sum, baseline4Sum, baseline5Sum)
-boxplot(baseline, prune, col=c('blue', 'orange'),ylab = "Summe der Trainingszeit in Sekunden",
-xlab="verschiedene Experimente")
+accthres41 <- tail(prunethres41$ValidAcc.,n=1)
+accthres42 <- tail(prunethres42$ValidAcc.,n=1)
+accthres43 <- tail(prunethres43$ValidAcc.,n=1)
+accthres44 <- tail(prunethres44$ValidAcc.,n=1)
+accthres45 <- tail(prunethres45$ValidAcc.,n=1)
 
-legend("bottomleft", legend = c('baseline', 'prune5'), col= c('blue', 'orange'), fill=c('blue', 'orange'), horiz=TRUE, cex=0.8)
+accthres4 <- c(accthres41, accthres42, accthres43, accthres44)
 
 
-baselineAcc <- c(baseline1$ValidAcc.[180], baseline2$ValidAcc.[180], baseline3$ValidAcc.[180], baseline4$ValidAcc.[180], baseline5$ValidAcc.[180])
-
-pruneAcc1 <- c(prune1$ValidAcc.[180], prune2$ValidAcc.[180], prune3$ValidAcc.[180], prune4$ValidAcc.[180],prune5$ValidAcc.[180])
-
-pruneAcc2 <- c(prune6$ValidAcc.[180], prune7$ValidAcc.[180], prune8$ValidAcc.[180], prune9$ValidAcc.[180],prune10$ValidAcc.[180])
-
-pruneAcc3 <- c(prune11$ValidAcc.[180], prune12$ValidAcc.[180], prune13$ValidAcc.[180], prune14$ValidAcc.[180], prune15$ValidAcc.[180])
-
-pruneAcc4 <- c(prune31$ValidAcc.[180], prune32$ValidAcc.[180], prune33$ValidAcc.[180], prune34$ValidAcc.[180], prune35$ValidAcc.[180])
-
-pruneAcc5 <- c(prune36$ValidAcc.[180], prune37$ValidAcc.[180], prune38$ValidAcc.[180], prune39$ValidAcc.[180], prune40$ValidAcc.[180])
-
-boxplot(baselineAcc, pruneAcc1, pruneAcc2, pruneAcc3, pruneAcc4, pruneAcc5, 
+boxplot(accthres1, accthres2, accthres3, accthres4, 
         col=c('powderblue', 'mistyrose', 'lightsalmon', 'lightpink', 'lightsalmon4', 'orange'),ylim=c(90.8,93.2),
         ylab = "Accuracy in Prozent",
-        xlab="verschiedene Experimente"
+        xlab="verschiedene Experimente",
+        names = c('thres 0.1','thres 0.01', 'thres 0.001', 'thres 0.0001')
 )
 
-legend("bottomleft", legend = c('baseline', 'prune1', 'prune2', 'prune3', 'prune4', 'prune5'), col= c('powderblue', 'mistyrose', 'lightsalmon', 'lightpink', 'lightsalmon4', 'orange'), fill=c('powderblue', 'mistyrose', 'lightsalmon', 'lightpink', 'lightsalmon4', 'orange'), horiz=TRUE, cex=0.8)
+prunelr21 <-read.delim("prune_lr2_1.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr22 <-read.delim("prune_lr2_2.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr23 <-read.delim("prune_lr2_3.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr24 <-read.delim("prune_lr2_4.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr25 <-read.delim("prune_lr2_5.txt", header = TRUE, sep = "\t", dec = ".")
 
-baseline11 <- read.delim("baseline11.txt", header = TRUE, sep = "\t", dec = ".")
-baseline11 <- read.delim("baseline11.txt", header = TRUE, sep = "\t", dec = ".")
+
+prunelr11 <-read.delim("prune_lr1_1.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr12 <-read.delim("prune_lr1_2.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr13 <-read.delim("prune_lr1_3.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr14 <-read.delim("prune_lr1_4.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr15 <-read.delim("prune_lr1_5.txt", header = TRUE, sep = "\t", dec = ".")
+
+prunelr11Sum <- sum(prunelr11$TrainEpochTime.s.)
+prunelr12Sum <- sum(prunelr12$TrainEpochTime.s.)
+prunelr13Sum <- sum(prunelr13$TrainEpochTime.s.)
+prunelr14Sum <- sum(prunelr14$TrainEpochTime.s.)
+prunelr15Sum <- sum(prunelr15$TrainEpochTime.s.)
+
+prunelr1 <- c(prunelr11Sum, prunelr12Sum, prunelr13Sum, prunelr14Sum, prunelr15Sum)
+
+prunelr051 <-read.delim("prune_lr05_1.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr052 <-read.delim("prune_lr05_2.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr053 <-read.delim("prune_lr05_3.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr054 <-read.delim("prune_lr05_4.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr055 <-read.delim("prune_lr05_5.txt", header = TRUE, sep = "\t", dec = ".")
+
+prunelr051Sum <- sum(prunelr051$TrainEpochTime.s.)
+prunelr052Sum <- sum(prunelr052$TrainEpochTime.s.)
+prunelr053Sum <- sum(prunelr053$TrainEpochTime.s.)
+prunelr054Sum <- sum(prunelr054$TrainEpochTime.s.)
+prunelr055Sum <- sum(prunelr055$TrainEpochTime.s.)
+
+prunelr05 <- c(prunelr051Sum, prunelr052Sum, prunelr053Sum, prunelr054Sum, prunelr055Sum)
+
+prunelr0251 <-read.delim("prune_lr025_1.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr0252 <-read.delim("prune_lr025_2.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr0253 <-read.delim("prune_lr025_3.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr0254 <-read.delim("prune_lr025_4.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr0255 <-read.delim("prune_lr025_5.txt", header = TRUE, sep = "\t", dec = ".")
+
+prunelr0251Sum <- sum(prunelr0251$TrainEpochTime.s.)
+prunelr0252Sum <- sum(prunelr0252$TrainEpochTime.s.)
+prunelr0253Sum <- sum(prunelr0253$TrainEpochTime.s.)
+prunelr0254Sum <- sum(prunelr0254$TrainEpochTime.s.)
+prunelr0255Sum <- sum(prunelr0255$TrainEpochTime.s.)
+
+prunelr025 <- c(prunelr0251Sum, prunelr0252Sum, prunelr0253Sum, prunelr0254Sum, prunelr0255Sum)
 
 
+prunelr01251 <-read.delim("prune_lr0125_1.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr01252 <-read.delim("prune_lr0125_2.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr01253 <-read.delim("prune_lr0125_3.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr01254 <-read.delim("prune_lr0125_4.txt", header = TRUE, sep = "\t", dec = ".")
+prunelr01255 <-read.delim("prune_lr0125_5.txt", header = TRUE, sep = "\t", dec = ".")
 
-boxplot(baseline1$TrainEpochTime.s., baseline2$TrainEpochTime.s., baseline3$TrainEpochTime.s., baseline4$TrainEpochTime.s., baseline5$TrainEpochTime.s., baseline11$TrainEpochTime.s.,
+prunelr01251Sum <- sum(prunelr01251$TrainEpochTime.s.)
+prunelr01252Sum <- sum(prunelr01252$TrainEpochTime.s.)
+prunelr01253Sum <- sum(prunelr01253$TrainEpochTime.s.)
+prunelr01254Sum <- sum(prunelr01254$TrainEpochTime.s.)
+prunelr01255Sum <- sum(prunelr01255$TrainEpochTime.s.)
+
+prunelr0125 <- c(prunelr01251Sum, prunelr01252Sum, prunelr01253Sum, prunelr01254Sum, prunelr01255Sum)
+
+boxplot(prunelr11$TrainEpochTime.s., prunelr12$TrainEpochTime.s., prunelr13$TrainEpochTime.s., prunelr14$TrainEpochTime.s., prunelr15$TrainEpochTime.s.,
+        prunelr051$TrainEpochTime.s., prunelr052$TrainEpochTime.s., prunelr053$TrainEpochTime.s., prunelr054$TrainEpochTime.s., prunelr055$TrainEpochTime.s.,
+        prunelr0251$TrainEpochTime.s., prunelr0252$TrainEpochTime.s., prunelr0253$TrainEpochTime.s., prunelr0254$TrainEpochTime.s., prunelr0255$TrainEpochTime.s.,
+        prunelr01251$TrainEpochTime.s., prunelr01252$TrainEpochTime.s., prunelr01253$TrainEpochTime.s., prunelr01254$TrainEpochTime.s., prunelr01255$TrainEpochTime.s.,
         col=c('powderblue', 'powderblue', 'powderblue', 'powderblue', 'powderblue', 
-              'mistyrose'              
-        ),ylim=c(10,60),
+              'mistyrose', 'mistyrose', 'mistyrose', 'mistyrose','mistyrose'               
+        ),ylim=c(10,250),
         ylab = "Trainingszeit in Sekunden pro Epoche",
         xlab="verschiedene Experimente"
 )
@@ -452,35 +533,7 @@ legend("bottomleft", legend = c('baseline ohne Synchronisation', 'baseline mit S
                                                                                                                                                                           
 
 
-
-
-setwd("/home/j3ssi/MA_Source/output/experimente2/")
-
-prune1x <- read.delim("prune1.txt", header = TRUE, sep = "\t", dec = ".")
-prune2x <- read.delim("prune2.txt", header = TRUE, sep = "\t", dec = ".")
-prune3x <- read.delim("prune3.txt", header = TRUE, sep = "\t", dec = ".")
-prune4x <- read.delim("prune4.txt", header = TRUE, sep = "\t", dec = ".")
-prune5x <- read.delim("prune5.txt", header = TRUE, sep = "\t", dec = ".")
-
-prune1Sum <- sum(prune1$TrainEpochTime.s.)
-prune2Sum <- sum(prune2$TrainEpochTime.s.)
-prune3Sum <- sum(prune3$TrainEpochTime.s.)
-prune4Sum <- sum(prune4$TrainEpochTime.s.)
-prune5Sum <- sum(prune5$TrainEpochTime.s.)
-
-prune6 <- read.delim("prune6.txt", header = TRUE, sep = "\t", dec = ".")
-prune7 <- read.delim("prune7.txt", header = TRUE, sep = "\t", dec = ".")
-prune8 <- read.delim("prune8.txt", header = TRUE, sep = "\t", dec = ".")
-prune9 <- read.delim("prune9.txt", header = TRUE, sep = "\t", dec = ".")
-prune10 <- read.delim("prune10.txt", header = TRUE, sep = "\t", dec = ".")
-
-prune6Sum <- sum(prune6$TrainEpochTime.s.)
-prune7Sum <- sum(prune7$TrainEpochTime.s.)
-prune8Sum <- sum(prune8$TrainEpochTime.s.)
-prune9Sum <- sum(prune9$TrainEpochTime.s.)
-prune10Sum <- sum(prune10$TrainEpochTime.s.)
-
-boxplot(prune1x$TrainEpochTime.s., prune2x$TrainEpochTime.s., prune3x$TrainEpochTime.s., prune4x$TrainEpochTime.s. , prune5x$TrainEpochTime.s.)
+boxplot(prunelr1, prunelr05, prunelr025, prunelr0125, names = c('lr 0.1', 'lr 0.5', 'lr 0.25', 'lr 0.125'))
 
 
 plot(baseline1$ValidAcc., col='red', xlim=c(90, 180), ylim=c(86,95), ylab="",xlab="")
