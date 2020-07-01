@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "j: 0 bis 5"
-CUDA_LAUNCH_BLOCKING=1 CUDA_VISIBLE_DEVICES=0  python3 --batchTrue --batch_size 10 main.py -j 6 --checkpoint ./output/experimente2/prune_test_1 --epochs 1 -s 3 -l 2 -n 5,5,5 --sparse_interval 5 --en_group_lasso --var_group_lasso_coeff 0.2 --threshold 0.1 --lr 0.1 --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 0 --pathToModell ./output/experimente2/prune_test_1/model.nn
+python3 main.py -j 6 --checkpoint ./output/experimente2/prune_bSize_$1 --epochs 5 -s 3 -l 2 -n 5,5,5 --sparse_interval 5 --en_group_lasso --var_group_lasso_coeff 0.2 --threshold 0.1 --lr 0.1 --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 0 --pathToModell ./output/experimente2/prune_bSize_$1/model.nn
 sleep 20
 
 echo "j: 6 bis 10"
