@@ -152,7 +152,7 @@ class N2N(nn.Module):
                     firstBlockInStage = True
                     sizeOfLayer = pow(2, stage)
                     sizeOfLayer *= self.widthofFirstLayer
-
+                    print(f'stage: {stage}; sizeof Layers: {sizeOfLayer}')
                     # print("\nStage: ", stage, " ; ", sizeOfLayer)
                     for block in range(0, len(self.archNums[stage])):
                         i = 0
