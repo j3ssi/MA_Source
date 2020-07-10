@@ -202,7 +202,6 @@ class N2N(nn.Module):
                     firstLayer = False
 
                     # 18
-                self.sizeOfFC = pow(2, self.numOfStages + 3)
 
                 # conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
                 #                  stride=1)
@@ -214,7 +213,7 @@ class N2N(nn.Module):
                 avgpool = nn.AdaptiveAvgPool2d((1, 1))
                 self.module_list.append(avgpool)
                 # 19
-                fc = nn.Linear(self.sizeOfFC, num_classes)
+                fc = nn.Linear(sizeOfLayer, num_classes)
                 self.module_list.append(fc)
                 self.relu = nn.ReLU(inplace=True)
 
