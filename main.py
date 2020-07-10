@@ -199,7 +199,7 @@ def main():
     # cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
     # os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
     use_cuda = torch.cuda.is_available()
-    # os.environ['CUDA_VISIBLE_DEVICES'] = str(args.gpu_id)
+    os.environ['CUDA_VISIBLE_DEVICES'] = str(0)
 
     # choose gpu
     # if int(args.gpu_id) < 5:
