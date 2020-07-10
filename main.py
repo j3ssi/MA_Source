@@ -317,6 +317,7 @@ def main():
         assert args.numOfStages == len(
             listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
         model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck, args.widthofFirstLayer )
+        print(f'device: {torch.cuda.current_device()}')
         model.cuda()
         criterion = nn.CrossEntropyLoss()
         start_epoch = 1
