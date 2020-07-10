@@ -55,24 +55,65 @@ import platform, psutil
 
 # Parser
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
-# Baseline
+# parameters for basic cuda
 parser.add_argument('-j', '--workers', default=4, type=int, metavar='N',
                     help='number of data loading workers (default: 4)')
+parser.add_argument('--O1', default=False, action='store_true',
+                    help='Use half precision apex methods O1')
+parser.add_argument('--O2', default=False, action='store_true',
+                    help='Use half precision apex methods O2')
+parser.add_argument('--O3', default=False, action='store_true',
+                    help='Use half precision apex methods O3')
+
+
+# model size
+parser.add_argument('-s', '--numOfStages', default=3, type=int, help='defines the number of stages in the network')
+# parser.add_argument('-n', '--numOfBlocksinStage', type=int, default=5, help='defines the number of Blocks per Stage')
+parser.add_argument('-l', '--layersInBlock', type=int, default=3, help='defines the number of')
+parser.add_argument('-n', type=str, help="#stage numbers separated by commas")
+parser.add_argument('-b', '--bottleneck', default=False, action='store_true',
+                    help='Set the bootleneck parameter')
+parser.add_argument('-w', '--widthofFirstLayer', default=3, type=int, help='defines the number of stages in the network')
+
+
+# epochs and stuff
 parser.add_argument('--epochs', default=8, type=int, metavar='N',
                     help='number of total epochs to run')
 parser.add_argument('--start-epoch', default=1, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
 parser.add_argument('--epochsFromBegin', default=0, type=int, metavar='N',
                     help='number of Epochs from begin (default: 0)')
+parser.add_argument('--lastEpoch', default=False, action='store_true',
+                    help='Last Epoch')
+parser.add_argument('--test', default=False, action='store_true',
+                    help='Should the Test run?')
 
+# folder stuff
+parser.add_argument('--pathToModell', type=str, help='Path to the location where the model will be stored')
+parser.add_argument('-c', '--checkpoint', default='checkpoint', type=str, metavar='PATH',
+                    help='path to save checkpoint (default: checkpoint)')
+parser.add_argument('--save_checkpoint', default=10, type=int,
+                    help='Interval to save checkpoint')
+parser.add_argument('--coeff_container', default='./coeff', type=str,
+                    help='Directory to store lasso coefficient')
+parser.add_argument('--resume', default='', type=str, metavar='PATH',
+                    help='path to latest checkpoint (default: none)')
+parser.add_argument('--saveModell', default=False, action='store_true',
+                    help='Save Modell')
+
+# batch size
 parser.add_argument('--test_batch', default=100, type=int, metavar='N',
                     help='test batchsize')
+parser.add_argument('--batchTrue', default=False, action='store_true',
+                    help='Set the batchsize')
+parser.add_argument('--batch_size', default=1000, type=int,
+                    metavar='N', help='batch size')
+
+# other model stuff
 parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
                     metavar='LR', help='initial learning rate')
 parser.add_argument('-dlr', '--delta_learning_rate', default=False, action='store_true',
                     help='No change in learning rate')
-
-
 parser.add_argument('--schedule', type=int, nargs='+', default=[93, 150],
                     help='Decrease learning rate at these epochs.')
 parser.add_argument('--gamma', type=float, default=0.1, help='LR is multiplied by gamma on schedule.')
@@ -80,32 +121,16 @@ parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
                     help='momentum')
 parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')
-parser.add_argument('-c', '--checkpoint', default='checkpoint', type=str, metavar='PATH',
-                    help='path to save checkpoint (default: checkpoint)')
-parser.add_argument('--resume', default='', type=str, metavar='PATH',
-                    help='path to latest checkpoint (default: none)')
 parser.add_argument('--manualSeed', type=int, help='manual seed')
 parser.add_argument('-e', '--evaluate', dest='evaluate', action='store_true',
                     help='evaluate model on validation set')
-parser.add_argument('--gpu_id', default='2', type=str, help='id(s) for CUDA_VISIBLE_DEVICES')
-parser.add_argument('-s', '--numOfStages', default=3, type=int, help='defines the number of stages in the network')
-# parser.add_argument('-n', '--numOfBlocksinStage', type=int, default=5, help='defines the number of Blocks per Stage')
-parser.add_argument('-l', '--layersInBlock', type=int, default=3, help='defines the number of')
-parser.add_argument('-n', type=str, help="#stage numbers separated by commas")
-parser.add_argument('-b', '--bottleneck', default=False, action='store_true',
-                    help='Set the bootleneck parameter')
-parser.add_argument('--lastEpoch', default=False, action='store_true',
-                    help='Last Epoch')
 parser.add_argument('--dynlr', default=False, action='store_true',
                     help='Dynamische LR')
 parser.add_argument('--deltalr', default=False, action='store_true',
                     help='Verändere die LR')
-
-parser.add_argument('--pathToModell', type=str, help='Path to the location where the model will be stored')
-# PruneTrain
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
-parser.add_argument('--save_checkpoint', default=10, type=int,
-                    help='Interval to save checkpoint')
+
+# PruneTrain
 parser.add_argument('--sparse_interval', default=0, type=int,
                     help='Interval to force the value under threshold')
 parser.add_argument('--threshold', default=0.0001, type=float,
@@ -123,44 +148,27 @@ parser.add_argument('--is_gating', default=False, action='store_true',
                     help='Use gating for residual network')
 parser.add_argument('--threshold_type', default='max', choices=['max', 'mean'], type=str,
                     help='Thresholding type')
-parser.add_argument('--coeff_container', default='./coeff', type=str,
-                    help='Directory to store lasso coefficient')
 parser.add_argument('--global_coeff', default=True, action='store_true',
                     help='Use a global group lasso regularizaiton coefficient')
+# divers
 parser.add_argument('--print-freq', default=64, type=int,
                     metavar='N', help='print frequency (default: 10)')
-parser.add_argument('--batchTrue', default=False, action='store_true',
-                    help='Set the batchsize')
-parser.add_argument('--batch_size', default=1000, type=int,
-                    metavar='N', help='batch size')
 parser.add_argument('--cifar10', default=False, action='store_true',
                     help='Set the batchsize')
 parser.add_argument('--cifar100', default=False, action='store_true',
                     help='Set the batchsize')
+parser.add_argument('--visual', default=False, action='store_true',
+                    help='Set the visual')
 
 # N2N
 parser.add_argument('--deeper', default=False, action='store_true',
                     help='Make network deeper')
-parser.add_argument('--visual', default=False, action='store_true',
-                    help='Set the visual')
-parser.add_argument('--O1', default=False, action='store_true',
-                    help='Use half precision apex methods O1')
-parser.add_argument('--O2', default=False, action='store_true',
-                    help='Use half precision apex methods O2')
-parser.add_argument('--O3', default=False, action='store_true',
-                    help='Use half precision apex methods O3')
-# optimize
-parser.add_argument('--gpu1080', default=False, action='store_true',
-                    help='Use Geforce 1080 instead of geforce 2080')
-parser.add_argument('--test', default=False, action='store_true',
-                    help='Should the Test run?')
+# lars
 parser.add_argument('--lars', default=False, action='store_true',
                     help='use lars')
 parser.add_argument('--larsLR', default=0.001, type=float,
                     help='')
 
-parser.add_argument('--saveModell', default=False, action='store_true',
-                    help='Save Modell')
 
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
@@ -308,7 +316,7 @@ def main():
              'TestEpochTime(s)'])
         assert args.numOfStages == len(
             listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
-        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck)
+        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.widthofFirstLayer ,args.bottleneck)
         model.cuda()
         criterion = nn.CrossEntropyLoss()
         start_epoch = 1

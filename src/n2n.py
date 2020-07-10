@@ -10,7 +10,7 @@ import numpy as np
 class N2N(nn.Module):
 
     def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock,
-                 first, bottleneck, model=None, archNums=None):
+                 first, bottleneck, widthofFirstLayer =16, model=None, archNums=None):
         super(N2N, self).__init__()
         self.device = torch.device("cuda:0")
         self.numOfStages = numOfStages
@@ -18,6 +18,7 @@ class N2N(nn.Module):
         self.numOfBlocksinStage = numOfBlocksinStage
         self.bottleneck = bottleneck
         self.layersInBlock = layersInBlock
+        self.widthofFirstLayer = widthofFirstLayer
         if first:
             self.archNums = [[]]
             for s in range(0, self.numOfStages):
@@ -37,10 +38,10 @@ class N2N(nn.Module):
 
             # first Layer
             # conv1
-            conv0 = nn.Conv2d(3, 16, kernel_size=3, padding=1, bias=False, stride=1)
+            conv0 = nn.Conv2d(3, self.widthofFirstLayer, kernel_size=3, padding=1, bias=False, stride=1)
             self.module_list.append(conv0)
             # bn1
-            bn1 = nn.BatchNorm2d(16)
+            bn1 = nn.BatchNorm2d(self.widthofFirstLayer)
             self.module_list.append(bn1)
             if self.bottleneck:
                 for stage in range(0, numOfStages):
@@ -149,7 +150,9 @@ class N2N(nn.Module):
                 firstLayer = True
                 for stage in range(0, numOfStages):
                     firstBlockInStage = True
-                    sizeOfLayer = pow(2, stage + 4)
+                    sizeOfLayer = pow(2, stage)
+                    sizeOfLayer *= self.widthofFirstLayer
+
                     # print("\nStage: ", stage, " ; ", sizeOfLayer)
                     for block in range(0, len(self.archNums[stage])):
                         i = 0
