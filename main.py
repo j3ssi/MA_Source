@@ -197,9 +197,9 @@ def main():
     # use_gpu = 'cuda:1'
     # use_gpu_num = 1
     # cudaArray = [torch.device('cuda:0'), torch.device('cuda:1'), torch.device('cuda:2'), torch.device('cuda:3')]
-    #os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+    # os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
     use_cuda = torch.cuda.is_available()
-    #os.environ['CUDA_VISIBLE_DEVICES'] = str(args.gpu_id)
+    # os.environ['CUDA_VISIBLE_DEVICES'] = str(args.gpu_id)
 
     # choose gpu
     # if int(args.gpu_id) < 5:
@@ -316,7 +316,7 @@ def main():
              'TestEpochTime(s)'])
         assert args.numOfStages == len(
             listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
-        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.widthofFirstLayer ,args.bottleneck)
+        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck, args.widthofFirstLayer )
         model.cuda()
         criterion = nn.CrossEntropyLoss()
         start_epoch = 1
