@@ -175,8 +175,8 @@ state = {k: v for k, v in args._get_kwargs()}
 
 listofBlocks = [int(i) for i in args.n.split(',')]
 print(listofBlocks)
-# dev = "cuda:0"
-# device = torch.device(dev)
+dev = "cuda:0"
+device = torch.device(dev)
 
 best_acc = 0  # best test accuracy
 
