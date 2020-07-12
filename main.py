@@ -410,7 +410,7 @@ def main():
                     visualizePruneTrain(model, epoch, args.threshold)
 
                 genDenseModel(model, dense_chs, optimizer, 'cifar')
-                model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, False, model,
+                model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, False,16, model,
                                 model.archNums)
                 # use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
                 # print(f'use after new Model Creation')
