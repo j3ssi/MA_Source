@@ -1,0 +1,35 @@
+j: 0 bis 5
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Startepoche: 1
+count0: 487386
+
+Epoch: [1 | 5] LR: 0.100000
+Epoch: [1][0/196]	Time 0.274 (0.274)	Data 0.268 (0.268)	Loss 3.7340 (3.7340)	Acc@1 10.938 (10.938)	Acc@5 52.344 (52.344)
+Epoch: [1][64/196]	Time 0.138 (0.135)	Data 0.000 (0.004)	Loss 2.7295 (3.0590)	Acc@1 21.094 (14.675)	Acc@5 78.516 (61.587)
+Epoch: [1][128/196]	Time 0.116 (0.137)	Data 0.000 (0.002)	Loss 2.4414 (2.8136)	Acc@1 33.203 (20.706)	Acc@5 87.109 (72.926)
+Epoch: [1][192/196]	Time 0.108 (0.137)	Data 0.000 (0.002)	Loss 2.3273 (2.6694)	Acc@1 39.062 (25.265)	Acc@5 86.719 (77.844)
+[INFO] Storing checkpoint...
+
+Epoch: [2 | 5] LR: 0.100000
+Epoch: [2][0/196]	Time 0.197 (0.197)	Data 0.222 (0.222)	Loss 2.3128 (2.3128)	Acc@1 40.234 (40.234)	Acc@5 87.891 (87.891)
+Epoch: [2][64/196]	Time 0.145 (0.136)	Data 0.000 (0.004)	Loss 2.1049 (2.2177)	Acc@1 42.969 (40.282)	Acc@5 89.453 (90.337)
+Epoch: [2][128/196]	Time 0.112 (0.134)	Data 0.000 (0.002)	Loss 1.9738 (2.1331)	Acc@1 47.656 (43.066)	Acc@5 96.094 (91.579)
+Epoch: [2][192/196]	Time 0.109 (0.134)	Data 0.000 (0.001)	Loss 1.8726 (2.0516)	Acc@1 52.344 (46.163)	Acc@5 92.188 (92.473)
+[INFO] Storing checkpoint...
+
+Epoch: [3 | 5] LR: 0.100000
+Epoch: [3][0/196]	Time 0.187 (0.187)	Data 0.291 (0.291)	Loss 1.7207 (1.7207)	Acc@1 60.938 (60.938)	Acc@5 92.578 (92.578)
+Traceback (most recent call last):
+  File "main.py", line 827, in <module>
+    main()
+  File "main.py", line 380, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 571, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+KeyboardInterrupt
