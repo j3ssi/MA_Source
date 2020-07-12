@@ -108,6 +108,8 @@ parser.add_argument('--batchTrue', default=False, action='store_true',
                     help='Set the batchsize')
 parser.add_argument('--batch_size', default=1000, type=int,
                     metavar='N', help='batch size')
+parser.add_argument('-lB' '--largeBatch', default=False, action='store_true',
+                    help='Use large or small batch size')
 
 # other model stuff
 parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
@@ -351,13 +353,14 @@ def main():
         sizeX = (count0 - 1306) / 97216
         print(f'sizeX: {sizeX}')
         # Gerade für niedrige Batch size
-        y = 36.304 * sizeX + 107.768
-
-        # y = 4.27*sizeX + 2.60
+        if not args.largeBatch:
+            y = 36.304 * sizeX + 107.768
+        else:
+            y = 4.27*sizeX + 2.60
         # calculate now the batch size
         batch_size = int(0.98 * count0 / sizeX / y)
-        delta_bs = (batch_size - 330)*0.3
-        batch_size = int(batch_size - delta_bs)
+        # delta_bs = (batch_size - 330)*0.3
+        # batch_size = int(batch_size - delta_bs)
         print(f'batch_size: {batch_size};{y} ; lr: {args.lr}')
 
         args.batch_size = batch_size
