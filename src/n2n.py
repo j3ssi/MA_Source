@@ -12,7 +12,7 @@ class N2N(nn.Module):
     def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock,
                  first, bottleneck, widthofFirstLayer =16, model=None, archNums=None):
         super(N2N, self).__init__()
-        # self.device = torch.device("cuda:0")
+        self.device = torch.device("cuda:0")
         self.numOfStages = numOfStages
         self.oddLayers = []
         self.numOfBlocksinStage = numOfBlocksinStage
@@ -931,5 +931,5 @@ def buildShareSameNodeLayers(module_list, numOfStages, archNums):
             sameNode.append(block)
         firstStage = False
     # print(f'oddLayers: {oddLayers}')
-    # print("\nSame Node: ", sameNode)
+    print("\nSame Node: ", sameNode)
     return sameNode, oddLayers
