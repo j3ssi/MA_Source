@@ -1,0 +1,1622 @@
+j: 0 bis 5
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+stage: 0; sizeof Layers: 3
+stage: 1; sizeof Layers: 6
+stage: 2; sizeof Layers: 12
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(3, 6, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(3, 6, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(6, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(6, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (59): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (60): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (61): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (62): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (63): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (64): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (65): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (66): AdaptiveAvgPool2d(output_size=(1, 1))
+    (67): Linear(in_features=12, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv12.weight', 'module.conv13.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv21.weight', 'module.conv22.weight'], ['module.conv23.weight', 'module.conv24.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight'], ['module.conv30.weight', 'module.conv31.weight'], ['module.conv32.weight', 'module.conv33.weight']]
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv12.weight', 'module.conv13.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv21.weight', 'module.conv22.weight'], ['module.conv23.weight', 'module.conv24.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight'], ['module.conv30.weight', 'module.conv31.weight'], ['module.conv32.weight', 'module.conv33.weight']]
+device count: 1
+Startepoche: 1
+count0: 17683
+
+Epoch: [1 | 5] LR: 8.333203
+Epoch: [1][0/3]	Time 2.212 (2.212)	Data 5.555 (5.555)	Loss 3.4225 (3.4225)	Acc@1 9.717 (9.717)	Acc@5 50.040 (50.040)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [2 | 5] LR: 8.333203
+Epoch: [2][0/3]	Time 1.183 (1.183)	Data 5.583 (5.583)	Loss 3.5559 (3.5559)	Acc@1 10.088 (10.088)	Acc@5 49.721 (49.721)
+[INFO] Storing checkpoint...
+
+Epoch: [3 | 5] LR: 8.333203
+Epoch: [3][0/3]	Time 1.129 (1.129)	Data 5.566 (5.566)	Loss 9.5948 (9.5948)	Acc@1 11.302 (11.302)	Acc@5 52.220 (52.220)
+[INFO] Storing checkpoint...
+
+Epoch: [4 | 5] LR: 8.333203
+Epoch: [4][0/3]	Time 1.131 (1.131)	Data 5.475 (5.475)	Loss 14.1348 (14.1348)	Acc@1 10.313 (10.313)	Acc@5 52.191 (52.191)
+[INFO] Storing checkpoint...
+
+Epoch: [5 | 5] LR: 8.333203
+Epoch: [5][0/3]	Time 1.107 (1.107)	Data 5.549 (5.549)	Loss 9.1559 (9.1559)	Acc@1 10.060 (10.060)	Acc@5 50.293 (50.293)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1048.723456
+ 8.244s  j: 6 bis 10
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 6
+count0: 17683
+
+Epoch: [6 | 10] LR: 8.333203
+Epoch: [6][0/3]	Time 2.219 (2.219)	Data 5.508 (5.508)	Loss 4.7211 (4.7211)	Acc@1 10.036 (10.036)	Acc@5 49.988 (49.988)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [7 | 10] LR: 8.333203
+Epoch: [7][0/3]	Time 1.190 (1.190)	Data 5.473 (5.473)	Loss 5.5541 (5.5541)	Acc@1 9.914 (9.914)	Acc@5 49.726 (49.726)
+[INFO] Storing checkpoint...
+
+Epoch: [8 | 10] LR: 8.333203
+Epoch: [8][0/3]	Time 1.139 (1.139)	Data 5.576 (5.576)	Loss 31.1456 (31.1456)	Acc@1 9.694 (9.694)	Acc@5 51.460 (51.460)
+[INFO] Storing checkpoint...
+
+Epoch: [9 | 10] LR: 8.333203
+Epoch: [9][0/3]	Time 1.138 (1.138)	Data 5.540 (5.540)	Loss 15.4650 (15.4650)	Acc@1 8.663 (8.663)	Acc@5 51.324 (51.324)
+[INFO] Storing checkpoint...
+
+Epoch: [10 | 10] LR: 8.333203
+Epoch: [10][0/3]	Time 1.151 (1.151)	Data 5.484 (5.484)	Loss 23.9710 (23.9710)	Acc@1 8.377 (8.377)	Acc@5 49.609 (49.609)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  9.26
+Max memory: 1048.7233536
+ 8.224s  j: 11 bis 15
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 11
+count0: 17683
+
+Epoch: [11 | 15] LR: 8.333203
+Epoch: [11][0/3]	Time 2.116 (2.116)	Data 5.742 (5.742)	Loss 66.4497 (66.4497)	Acc@1 7.739 (7.739)	Acc@5 47.452 (47.452)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [12 | 15] LR: 8.333203
+Epoch: [12][0/3]	Time 1.208 (1.208)	Data 5.571 (5.571)	Loss 1231.1155 (1231.1155)	Acc@1 9.235 (9.235)	Acc@5 47.494 (47.494)
+[INFO] Storing checkpoint...
+
+Epoch: [13 | 15] LR: 8.333203
+Epoch: [13][0/3]	Time 1.126 (1.126)	Data 5.585 (5.585)	Loss 3567.7656 (3567.7656)	Acc@1 10.627 (10.627)	Acc@5 50.621 (50.621)
+[INFO] Storing checkpoint...
+
+Epoch: [14 | 15] LR: 8.333203
+Epoch: [14][0/3]	Time 1.184 (1.184)	Data 5.543 (5.543)	Loss 10803.2617 (10803.2617)	Acc@1 10.050 (10.050)	Acc@5 50.166 (50.166)
+[INFO] Storing checkpoint...
+
+Epoch: [15 | 15] LR: 8.333203
+Epoch: [15][0/3]	Time 1.163 (1.163)	Data 5.577 (5.577)	Loss 5652.8223 (5652.8223)	Acc@1 10.003 (10.003)	Acc@5 48.882 (48.882)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1048.7233536
+ 8.350s  j: 16 bis 20
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 16
+count0: 17683
+
+Epoch: [16 | 20] LR: 8.333203
+Epoch: [16][0/3]	Time 2.238 (2.238)	Data 5.623 (5.623)	Loss 15838.2891 (15838.2891)	Acc@1 9.806 (9.806)	Acc@5 50.687 (50.687)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [17 | 20] LR: 8.333203
+Epoch: [17][0/3]	Time 1.208 (1.208)	Data 5.639 (5.639)	Loss 43941.5000 (43941.5000)	Acc@1 9.028 (9.028)	Acc@5 52.993 (52.993)
+[INFO] Storing checkpoint...
+
+Epoch: [18 | 20] LR: 8.333203
+Epoch: [18][0/3]	Time 1.149 (1.149)	Data 5.575 (5.575)	Loss 59870.0703 (59870.0703)	Acc@1 9.825 (9.825)	Acc@5 50.096 (50.096)
+[INFO] Storing checkpoint...
+
+Epoch: [19 | 20] LR: 8.333203
+Epoch: [19][0/3]	Time 1.166 (1.166)	Data 5.609 (5.609)	Loss 20791.5078 (20791.5078)	Acc@1 10.847 (10.847)	Acc@5 49.749 (49.749)
+[INFO] Storing checkpoint...
+
+Epoch: [20 | 20] LR: 8.333203
+Epoch: [20][0/3]	Time 1.148 (1.148)	Data 5.588 (5.588)	Loss 94594.5234 (94594.5234)	Acc@1 10.041 (10.041)	Acc@5 50.373 (50.373)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1048.7233536
+ 8.334s  j: 21 bis 25
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+count0: 17683
+
+Epoch: [21 | 25] LR: 8.333203
+Epoch: [21][0/3]	Time 2.234 (2.234)	Data 5.488 (5.488)	Loss 25311.0703 (25311.0703)	Acc@1 9.956 (9.956)	Acc@5 49.402 (49.402)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [22 | 25] LR: 8.333203
+Epoch: [22][0/3]	Time 1.213 (1.213)	Data 5.478 (5.478)	Loss 5664.4688 (5664.4688)	Acc@1 10.092 (10.092)	Acc@5 49.941 (49.941)
+[INFO] Storing checkpoint...
+
+Epoch: [23 | 25] LR: 8.333203
+Epoch: [23][0/3]	Time 1.132 (1.132)	Data 5.484 (5.484)	Loss 1345462.1250 (1345462.1250)	Acc@1 9.956 (9.956)	Acc@5 53.045 (53.045)
+[INFO] Storing checkpoint...
+
+Epoch: [24 | 25] LR: 8.333203
+Epoch: [24][0/3]	Time 1.135 (1.135)	Data 5.551 (5.551)	Loss 70318048.0000 (70318048.0000)	Acc@1 9.858 (9.858)	Acc@5 45.859 (45.859)
+[INFO] Storing checkpoint...
+
+Epoch: [25 | 25] LR: 8.333203
+Epoch: [25][0/3]	Time 1.154 (1.154)	Data 5.577 (5.577)	Loss 57020468.0000 (57020468.0000)	Acc@1 9.956 (9.956)	Acc@5 50.307 (50.307)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  9.65
+Max memory: 1048.7233536
+ 8.346s  j: 26 bis 30
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 26
+count0: 17683
+
+Epoch: [26 | 30] LR: 8.333203
+Epoch: [26][0/3]	Time 2.227 (2.227)	Data 5.508 (5.508)	Loss 3599090.7500 (3599090.7500)	Acc@1 10.392 (10.392)	Acc@5 48.807 (48.807)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [27 | 30] LR: 8.333203
+Epoch: [27][0/3]	Time 1.243 (1.243)	Data 5.513 (5.513)	Loss 310383008.0000 (310383008.0000)	Acc@1 10.270 (10.270)	Acc@5 50.326 (50.326)
+[INFO] Storing checkpoint...
+
+Epoch: [28 | 30] LR: 8.333203
+Epoch: [28][0/3]	Time 1.161 (1.161)	Data 5.463 (5.463)	Loss 1399425.3750 (1399425.3750)	Acc@1 9.816 (9.816)	Acc@5 50.162 (50.162)
+[INFO] Storing checkpoint...
+
+Epoch: [29 | 30] LR: 8.333203
+Epoch: [29][0/3]	Time 1.156 (1.156)	Data 5.495 (5.495)	Loss 61184086638592.0000 (61184086638592.0000)	Acc@1 10.008 (10.008)	Acc@5 49.871 (49.871)
+[INFO] Storing checkpoint...
+
+Epoch: [30 | 30] LR: 8.333203
+Epoch: [30][0/3]	Time 1.142 (1.142)	Data 5.477 (5.477)	Loss 20442622459904.0000 (20442622459904.0000)	Acc@1 9.370 (9.370)	Acc@5 47.513 (47.513)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1048.7233536
+ 8.235s  j: 31 bis 35
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 31
+count0: 17683
+
+Epoch: [31 | 35] LR: 8.333203
+Epoch: [31][0/3]	Time 2.223 (2.223)	Data 5.580 (5.580)	Loss 37848392663040.0000 (37848392663040.0000)	Acc@1 10.163 (10.163)	Acc@5 50.382 (50.382)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [32 | 35] LR: 8.333203
+Epoch: [32][0/3]	Time 1.231 (1.231)	Data 5.574 (5.574)	Loss 5985990606848.0000 (5985990606848.0000)	Acc@1 13.317 (13.317)	Acc@5 52.763 (52.763)
+[INFO] Storing checkpoint...
+
+Epoch: [33 | 35] LR: 8.333203
+Epoch: [33][0/3]	Time 1.133 (1.133)	Data 5.661 (5.661)	Loss 134740816429056.0000 (134740816429056.0000)	Acc@1 10.303 (10.303)	Acc@5 48.545 (48.545)
+[INFO] Storing checkpoint...
+
+Epoch: [34 | 35] LR: 8.333203
+Epoch: [34][0/3]	Time 1.121 (1.121)	Data 5.469 (5.469)	Loss 1564717088768.0000 (1564717088768.0000)	Acc@1 9.872 (9.872)	Acc@5 49.913 (49.913)
+[INFO] Storing checkpoint...
+
+Epoch: [35 | 35] LR: 8.333203
+Epoch: [35][0/3]	Time 1.121 (1.121)	Data 5.495 (5.495)	Loss 779816005533696.0000 (779816005533696.0000)	Acc@1 10.041 (10.041)	Acc@5 49.824 (49.824)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1048.7233536
+ 8.203s  j: 36 bis 40
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 36
+count0: 17683
+
+Epoch: [36 | 40] LR: 8.333203
+Epoch: [36][0/3]	Time 2.119 (2.119)	Data 5.661 (5.661)	Loss 1566026852298915840.0000 (1566026852298915840.0000)	Acc@1 9.694 (9.694)	Acc@5 50.101 (50.101)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [37 | 40] LR: 8.333203
+Epoch: [37][0/3]	Time 1.196 (1.196)	Data 5.487 (5.487)	Loss 205160366080.0000 (205160366080.0000)	Acc@1 10.092 (10.092)	Acc@5 50.185 (50.185)
+[INFO] Storing checkpoint...
+
+Epoch: [38 | 40] LR: 8.333203
+Epoch: [38][0/3]	Time 1.123 (1.123)	Data 5.478 (5.478)	Loss 321622540288.0000 (321622540288.0000)	Acc@1 9.825 (9.825)	Acc@5 49.923 (49.923)
+[INFO] Storing checkpoint...
+
+Epoch: [39 | 40] LR: 8.333203
+Epoch: [39][0/3]	Time 1.106 (1.106)	Data 5.289 (5.289)	Loss 481179271168.0000 (481179271168.0000)	Acc@1 10.125 (10.125)	Acc@5 50.059 (50.059)
+[INFO] Storing checkpoint...
+
+Epoch: [40 | 40] LR: 8.333203
+Epoch: [40][0/3]	Time 1.127 (1.127)	Data 5.319 (5.319)	Loss 233864855552.0000 (233864855552.0000)	Acc@1 9.989 (9.989)	Acc@5 50.279 (50.279)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1048.7233536
+ 8.008s  j: 41 bis 45
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 41
+count0: 17683
+
+Epoch: [41 | 45] LR: 8.333203
+Epoch: [41][0/3]	Time 2.188 (2.188)	Data 5.495 (5.495)	Loss 124084051968.0000 (124084051968.0000)	Acc@1 9.900 (9.900)	Acc@5 49.970 (49.970)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [42 | 45] LR: 8.333203
+Epoch: [42][0/3]	Time 1.158 (1.158)	Data 5.507 (5.507)	Loss 34172751872.0000 (34172751872.0000)	Acc@1 10.219 (10.219)	Acc@5 50.710 (50.710)
+[INFO] Storing checkpoint...
+
+Epoch: [43 | 45] LR: 8.333203
+Epoch: [43][0/3]	Time 1.109 (1.109)	Data 5.269 (5.269)	Loss 56367140864.0000 (56367140864.0000)	Acc@1 9.722 (9.722)	Acc@5 49.529 (49.529)
+[INFO] Storing checkpoint...
+
+Epoch: [44 | 45] LR: 8.333203
+Epoch: [44][0/3]	Time 1.132 (1.132)	Data 5.261 (5.261)	Loss 80343990272.0000 (80343990272.0000)	Acc@1 10.195 (10.195)	Acc@5 49.866 (49.866)
+[INFO] Storing checkpoint...
+
+Epoch: [45 | 45] LR: 8.333203
+Epoch: [45][0/3]	Time 1.128 (1.128)	Data 5.211 (5.211)	Loss 37002715136.0000 (37002715136.0000)	Acc@1 10.158 (10.158)	Acc@5 49.866 (49.866)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1048.7233536
+ 7.934s  j: 46 bis 50
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 17683
+
+Epoch: [46 | 50] LR: 8.333203
+Epoch: [46][0/3]	Time 2.156 (2.156)	Data 5.667 (5.667)	Loss 160445080010752.0000 (160445080010752.0000)	Acc@1 9.933 (9.933)	Acc@5 49.955 (49.955)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [47 | 50] LR: 8.333203
+Epoch: [47][0/3]	Time 1.186 (1.186)	Data 5.590 (5.590)	Loss 11517983534790737920.0000 (11517983534790737920.0000)	Acc@1 10.163 (10.163)	Acc@5 50.284 (50.284)
+[INFO] Storing checkpoint...
+
+Epoch: [48 | 50] LR: 8.333203
+Epoch: [48][0/3]	Time 1.151 (1.151)	Data 5.213 (5.213)	Loss 175499526144.0000 (175499526144.0000)	Acc@1 10.083 (10.083)	Acc@5 50.143 (50.143)
+[INFO] Storing checkpoint...
+
+Epoch: [49 | 50] LR: 8.333203
+Epoch: [49][0/3]	Time 1.122 (1.122)	Data 5.254 (5.254)	Loss 3386651705344.0000 (3386651705344.0000)	Acc@1 10.036 (10.036)	Acc@5 50.007 (50.007)
+[INFO] Storing checkpoint...
+
+Epoch: [50 | 50] LR: 8.333203
+Epoch: [50][0/3]	Time 1.159 (1.159)	Data 5.293 (5.293)	Loss 17109855848366080.0000 (17109855848366080.0000)	Acc@1 10.317 (10.317)	Acc@5 49.955 (49.955)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1048.7233536
+ 8.032s  j: 51 bis 55
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 51
+count0: 17683
+
+Epoch: [51 | 55] LR: 8.333203
+Epoch: [51][0/3]	Time 2.133 (2.133)	Data 5.599 (5.599)	Loss 1057595523072.0000 (1057595523072.0000)	Acc@1 9.938 (9.938)	Acc@5 49.899 (49.899)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [52 | 55] LR: 8.333203
+Epoch: [52][0/3]	Time 1.182 (1.182)	Data 5.433 (5.433)	Loss 291261841408.0000 (291261841408.0000)	Acc@1 9.928 (9.928)	Acc@5 50.349 (50.349)
+[INFO] Storing checkpoint...
+
+Epoch: [53 | 55] LR: 8.333203
+Epoch: [53][0/3]	Time 1.128 (1.128)	Data 5.125 (5.125)	Loss 487880589312.0000 (487880589312.0000)	Acc@1 9.886 (9.886)	Acc@5 50.560 (50.560)
+[INFO] Storing checkpoint...
+
+Epoch: [54 | 55] LR: 8.333203
+Epoch: [54][0/3]	Time 1.134 (1.134)	Data 5.159 (5.159)	Loss 686549893120.0000 (686549893120.0000)	Acc@1 10.195 (10.195)	Acc@5 50.195 (50.195)
+[INFO] Storing checkpoint...
+
+Epoch: [55 | 55] LR: 8.333203
+Epoch: [55][0/3]	Time 1.114 (1.114)	Data 5.366 (5.366)	Loss 311661461504.0000 (311661461504.0000)	Acc@1 10.017 (10.017)	Acc@5 50.391 (50.391)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1048.7233536
+ 8.064s  j: 56 bis 60
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 56
+count0: 17683
+
+Epoch: [56 | 60] LR: 8.333203
+Epoch: [56][0/3]	Time 2.125 (2.125)	Data 5.725 (5.725)	Loss 197559828480.0000 (197559828480.0000)	Acc@1 10.027 (10.027)	Acc@5 49.988 (49.988)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [57 | 60] LR: 8.333203
+Epoch: [57][0/3]	Time 1.179 (1.179)	Data 5.620 (5.620)	Loss 54407979008.0000 (54407979008.0000)	Acc@1 10.055 (10.055)	Acc@5 49.862 (49.862)
+[INFO] Storing checkpoint...
+
+Epoch: [58 | 60] LR: 8.333203
+Epoch: [58][0/3]	Time 1.156 (1.156)	Data 5.424 (5.424)	Loss 21324108897714176.0000 (21324108897714176.0000)	Acc@1 9.985 (9.985)	Acc@5 50.209 (50.209)
+[INFO] Storing checkpoint...
+
+Epoch: [59 | 60] LR: 8.333203
+Epoch: [59][0/3]	Time 1.136 (1.136)	Data 5.331 (5.331)	Loss 102363207643230222942208.0000 (102363207643230222942208.0000)	Acc@1 9.910 (9.910)	Acc@5 49.702 (49.702)
+[INFO] Storing checkpoint...
+
+Epoch: [60 | 60] LR: 8.333203
+Epoch: [60][0/3]	Time 1.111 (1.111)	Data 5.654 (5.654)	Loss 33061273893497932349440.0000 (33061273893497932349440.0000)	Acc@1 10.242 (10.242)	Acc@5 50.241 (50.241)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1048.7233536
+ 8.363s  j: 61 bis 65
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 61
+count0: 17683
+
+Epoch: [61 | 65] LR: 8.333203
+Epoch: [61][0/3]	Time 2.200 (2.200)	Data 5.378 (5.378)	Loss 4802194440192.0000 (4802194440192.0000)	Acc@1 10.078 (10.078)	Acc@5 50.105 (50.105)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [62 | 65] LR: 8.333203
+Epoch: [62][0/3]	Time 1.173 (1.173)	Data 5.533 (5.533)	Loss 1322524344320.0000 (1322524344320.0000)	Acc@1 9.961 (9.961)	Acc@5 49.838 (49.838)
+[INFO] Storing checkpoint...
+
+Epoch: [63 | 65] LR: 8.333203
+Epoch: [63][0/3]	Time 1.135 (1.135)	Data 5.442 (5.442)	Loss 2215305543680.0000 (2215305543680.0000)	Acc@1 10.055 (10.055)	Acc@5 50.616 (50.616)
+[INFO] Storing checkpoint...
+
+Epoch: [64 | 65] LR: 8.333203
+Epoch: [64][0/3]	Time 1.127 (1.127)	Data 5.366 (5.366)	Loss 3117397573632.0000 (3117397573632.0000)	Acc@1 9.853 (9.853)	Acc@5 49.810 (49.810)
+[INFO] Storing checkpoint...
+
+Epoch: [65 | 65] LR: 8.333203
+Epoch: [65][0/3]	Time 1.154 (1.154)	Data 5.404 (5.404)	Loss 1415152533504.0000 (1415152533504.0000)	Acc@1 9.952 (9.952)	Acc@5 50.012 (50.012)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 17573 ; 17683 ; 0.9937793360855058
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1048.7233536
+ 8.134s  j: 66 bis 70
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 66
+count0: 17573
+
+Epoch: [66 | 70] LR: 8.333203
+Epoch: [66][0/3]	Time 2.592 (2.592)	Data 5.237 (5.237)	Loss 897054408704.0000 (897054408704.0000)	Acc@1 10.060 (10.060)	Acc@5 50.284 (50.284)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [67 | 70] LR: 8.333203
+Epoch: [67][0/3]	Time 1.183 (1.183)	Data 5.367 (5.367)	Loss 247048847360.0000 (247048847360.0000)	Acc@1 10.041 (10.041)	Acc@5 50.223 (50.223)
+[INFO] Storing checkpoint...
+
+Epoch: [68 | 70] LR: 8.333203
+Epoch: [68][0/3]	Time 1.105 (1.105)	Data 5.490 (5.490)	Loss 413821239296.0000 (413821239296.0000)	Acc@1 10.031 (10.031)	Acc@5 49.876 (49.876)
+[INFO] Storing checkpoint...
+
+Epoch: [69 | 70] LR: 8.333203
+Epoch: [69][0/3]	Time 1.157 (1.157)	Data 5.339 (5.339)	Loss 582332776448.0000 (582332776448.0000)	Acc@1 10.149 (10.149)	Acc@5 50.265 (50.265)
+[INFO] Storing checkpoint...
+
+Epoch: [70 | 70] LR: 8.333203
+Epoch: [70][0/3]	Time 1.142 (1.142)	Data 5.437 (5.437)	Loss 264351793152.0000 (264351793152.0000)	Acc@1 9.947 (9.947)	Acc@5 50.180 (50.180)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1044.3543552
+ 8.163s  j: 71 bis 75
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 71
+count0: 17573
+
+Epoch: [71 | 75] LR: 8.333203
+Epoch: [71][0/3]	Time 2.489 (2.489)	Data 5.470 (5.470)	Loss 167570636800.0000 (167570636800.0000)	Acc@1 10.003 (10.003)	Acc@5 50.410 (50.410)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [72 | 75] LR: 8.333203
+Epoch: [72][0/3]	Time 1.196 (1.196)	Data 5.559 (5.559)	Loss 46148952064.0000 (46148952064.0000)	Acc@1 9.975 (9.975)	Acc@5 50.152 (50.152)
+[INFO] Storing checkpoint...
+
+Epoch: [73 | 75] LR: 8.333203
+Epoch: [73][0/3]	Time 1.106 (1.106)	Data 5.605 (5.605)	Loss 77302185984.0000 (77302185984.0000)	Acc@1 10.111 (10.111)	Acc@5 49.899 (49.899)
+[INFO] Storing checkpoint...
+
+Epoch: [74 | 75] LR: 8.333203
+Epoch: [74][0/3]	Time 1.149 (1.149)	Data 5.453 (5.453)	Loss 108780314624.0000 (108780314624.0000)	Acc@1 10.017 (10.017)	Acc@5 50.138 (50.138)
+[INFO] Storing checkpoint...
+
+Epoch: [75 | 75] LR: 8.333203
+Epoch: [75][0/3]	Time 1.120 (1.120)	Data 5.761 (5.761)	Loss 49381158912.0000 (49381158912.0000)	Acc@1 10.139 (10.139)	Acc@5 49.979 (49.979)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1044.3543552
+ 8.442s  j: 76 bis 80
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 76
+count0: 17573
+
+Epoch: [76 | 80] LR: 8.333203
+Epoch: [76][0/3]	Time 2.504 (2.504)	Data 5.428 (5.428)	Loss 31302348800.0000 (31302348800.0000)	Acc@1 9.961 (9.961)	Acc@5 50.110 (50.110)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [77 | 80] LR: 8.333203
+Epoch: [77][0/3]	Time 1.172 (1.172)	Data 5.488 (5.488)	Loss 8620666880.0000 (8620666880.0000)	Acc@1 10.299 (10.299)	Acc@5 49.880 (49.880)
+[INFO] Storing checkpoint...
+
+Epoch: [78 | 80] LR: 8.333203
+Epoch: [78][0/3]	Time 1.159 (1.159)	Data 5.355 (5.355)	Loss 14440122368.0000 (14440122368.0000)	Acc@1 9.989 (9.989)	Acc@5 49.993 (49.993)
+[INFO] Storing checkpoint...
+
+Epoch: [79 | 80] LR: 8.333203
+Epoch: [79][0/3]	Time 1.134 (1.134)	Data 5.419 (5.419)	Loss 20320266240.0000 (20320266240.0000)	Acc@1 9.905 (9.905)	Acc@5 49.937 (49.937)
+[INFO] Storing checkpoint...
+
+Epoch: [80 | 80] LR: 8.333203
+Epoch: [80][0/3]	Time 1.140 (1.140)	Data 5.365 (5.365)	Loss 9224448000.0000 (9224448000.0000)	Acc@1 9.877 (9.877)	Acc@5 50.345 (50.345)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1044.3543552
+ 8.097s  j: 81 bis 85
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 81
+count0: 17573
+
+Epoch: [81 | 85] LR: 8.333203
+Epoch: [81][0/3]	Time 2.584 (2.584)	Data 5.300 (5.300)	Loss 5847307776.0000 (5847307776.0000)	Acc@1 10.008 (10.008)	Acc@5 49.702 (49.702)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [82 | 85] LR: 8.333203
+Epoch: [82][0/3]	Time 1.202 (1.202)	Data 5.516 (5.516)	Loss 1610348672.0000 (1610348672.0000)	Acc@1 9.877 (9.877)	Acc@5 50.251 (50.251)
+[INFO] Storing checkpoint...
+
+Epoch: [83 | 85] LR: 8.333203
+Epoch: [83][0/3]	Time 1.137 (1.137)	Data 5.447 (5.447)	Loss 321548779520.0000 (321548779520.0000)	Acc@1 10.017 (10.017)	Acc@5 50.429 (50.429)
+[INFO] Storing checkpoint...
+
+Epoch: [84 | 85] LR: 8.333203
+Epoch: [84][0/3]	Time 1.109 (1.109)	Data 5.539 (5.539)	Loss 70278856048640.0000 (70278856048640.0000)	Acc@1 10.228 (10.228)	Acc@5 50.363 (50.363)
+[INFO] Storing checkpoint...
+
+Epoch: [85 | 85] LR: 8.333203
+Epoch: [85][0/3]	Time 1.137 (1.137)	Data 5.498 (5.498)	Loss 68076636733440.0000 (68076636733440.0000)	Acc@1 9.806 (9.806)	Acc@5 50.012 (50.012)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1044.3543552
+ 8.227s  j: 86 bis 90
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 86
+count0: 17573
+
+Epoch: [86 | 90] LR: 8.333203
+Epoch: [86][0/3]	Time 2.588 (2.588)	Data 5.241 (5.241)	Loss 14939238432768.0000 (14939238432768.0000)	Acc@1 10.022 (10.022)	Acc@5 50.471 (50.471)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [87 | 90] LR: 8.333203
+Epoch: [87][0/3]	Time 1.195 (1.195)	Data 5.454 (5.454)	Loss 4114267242496.0000 (4114267242496.0000)	Acc@1 9.933 (9.933)	Acc@5 50.213 (50.213)
+[INFO] Storing checkpoint...
+
+Epoch: [88 | 90] LR: 8.333203
+Epoch: [88][0/3]	Time 1.151 (1.151)	Data 5.446 (5.446)	Loss 6891415011328.0000 (6891415011328.0000)	Acc@1 9.835 (9.835)	Acc@5 49.571 (49.571)
+[INFO] Storing checkpoint...
+
+Epoch: [89 | 90] LR: 8.333203
+Epoch: [89][0/3]	Time 1.140 (1.140)	Data 5.388 (5.388)	Loss 9699023912960.0000 (9699023912960.0000)	Acc@1 10.224 (10.224)	Acc@5 49.843 (49.843)
+[INFO] Storing checkpoint...
+
+Epoch: [90 | 90] LR: 8.333203
+Epoch: [90][0/3]	Time 1.142 (1.142)	Data 5.444 (5.444)	Loss 4403609206784.0000 (4403609206784.0000)	Acc@1 10.055 (10.055)	Acc@5 50.354 (50.354)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1044.3543552
+ 8.159s  j: 91 bis 95
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 91
+count0: 17573
+
+Epoch: [91 | 95] LR: 8.333203
+Epoch: [91][0/3]	Time 2.622 (2.622)	Data 5.484 (5.484)	Loss 2790280134656.0000 (2790280134656.0000)	Acc@1 9.835 (9.835)	Acc@5 50.157 (50.157)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [92 | 95] LR: 8.333203
+Epoch: [92][0/3]	Time 1.165 (1.165)	Data 5.658 (5.658)	Loss 768443154432.0000 (768443154432.0000)	Acc@1 9.844 (9.844)	Acc@5 49.599 (49.599)
+[INFO] Storing checkpoint...
+
+Epoch: [93 | 95] LR: 8.333203
+Epoch: [93][0/3]	Time 1.162 (1.162)	Data 5.593 (5.593)	Loss 8501765079040.0000 (8501765079040.0000)	Acc@1 9.839 (9.839)	Acc@5 49.885 (49.885)
+[INFO] Storing checkpoint...
+
+Epoch: [94 | 95] LR: 8.333203
+Epoch: [94][0/3]	Time 1.139 (1.139)	Data 5.545 (5.545)	Loss 167313018650208763904.0000 (167313018650208763904.0000)	Acc@1 10.144 (10.144)	Acc@5 50.002 (50.002)
+[INFO] Storing checkpoint...
+
+Epoch: [95 | 95] LR: 8.333203
+Epoch: [95][0/3]	Time 1.179 (1.179)	Data 5.600 (5.600)	Loss 411245566654639243264.0000 (411245566654639243264.0000)	Acc@1 9.652 (9.652)	Acc@5 50.016 (50.016)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1044.3543552
+ 8.383s  j: 96 bis 100
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 96
+count0: 17573
+
+Epoch: [96 | 100] LR: 8.333203
+Epoch: [96][0/3]	Time 2.584 (2.584)	Data 5.502 (5.502)	Loss 453974206991130689536.0000 (453974206991130689536.0000)	Acc@1 9.961 (9.961)	Acc@5 49.913 (49.913)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [97 | 100] LR: 8.333203
+Epoch: [97][0/3]	Time 1.216 (1.216)	Data 5.544 (5.544)	Loss 3106757240577589248.0000 (3106757240577589248.0000)	Acc@1 9.713 (9.713)	Acc@5 49.918 (49.918)
+[INFO] Storing checkpoint...
+
+Epoch: [98 | 100] LR: 8.333203
+Epoch: [98][0/3]	Time 1.136 (1.136)	Data 5.579 (5.579)	Loss 1814338076672.0000 (1814338076672.0000)	Acc@1 9.947 (9.947)	Acc@5 49.998 (49.998)
+[INFO] Storing checkpoint...
+
+Epoch: [99 | 100] LR: 8.333203
+Epoch: [99][0/3]	Time 1.128 (1.128)	Data 5.625 (5.625)	Loss 2028715114496.0000 (2028715114496.0000)	Acc@1 10.027 (10.027)	Acc@5 50.091 (50.091)
+[INFO] Storing checkpoint...
+
+Epoch: [100 | 100] LR: 8.333203
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 526, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [100][0/3]	Time 1.123 (1.123)	Data 5.591 (5.591)	Loss 41231459549184.0000 (41231459549184.0000)	Acc@1 10.266 (10.266)	Acc@5 50.462 (50.462)
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 583, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 101 bis 105
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 101
+count0: 17573
+
+Epoch: [101 | 105] LR: 8.333203
+Epoch: [101][0/3]	Time 2.611 (2.611)	Data 5.471 (5.471)	Loss 453913619502393720832.0000 (453913619502393720832.0000)	Acc@1 10.135 (10.135)	Acc@5 49.712 (49.712)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [102 | 105] LR: 8.333203
+Epoch: [102][0/3]	Time 1.199 (1.199)	Data 5.485 (5.485)	Loss 3125569059895115776.0000 (3125569059895115776.0000)	Acc@1 9.567 (9.567)	Acc@5 49.402 (49.402)
+[INFO] Storing checkpoint...
+
+Epoch: [103 | 105] LR: 8.333203
+Epoch: [103][0/3]	Time 1.137 (1.137)	Data 5.467 (5.467)	Loss 1810587975680.0000 (1810587975680.0000)	Acc@1 9.867 (9.867)	Acc@5 49.749 (49.749)
+[INFO] Storing checkpoint...
+
+Epoch: [104 | 105] LR: 8.333203
+Epoch: [104][0/3]	Time 1.125 (1.125)	Data 5.356 (5.356)	Loss 2026941448192.0000 (2026941448192.0000)	Acc@1 10.144 (10.144)	Acc@5 50.270 (50.270)
+[INFO] Storing checkpoint...
+
+Epoch: [105 | 105] LR: 8.333203
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 526, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [105][0/3]	Time 1.150 (1.150)	Data 5.177 (5.177)	Loss 54083989798912.0000 (54083989798912.0000)	Acc@1 10.097 (10.097)	Acc@5 50.030 (50.030)
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 583, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 106 bis 110
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 106
+count0: 17573
+
+Epoch: [106 | 110] LR: 8.333203
+Epoch: [106][0/3]	Time 2.552 (2.552)	Data 5.727 (5.727)	Loss 453862109581655670784.0000 (453862109581655670784.0000)	Acc@1 9.788 (9.788)	Acc@5 49.988 (49.988)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [107 | 110] LR: 8.333203
+Epoch: [107][0/3]	Time 1.210 (1.210)	Data 5.640 (5.640)	Loss 4612910874380730368.0000 (4612910874380730368.0000)	Acc@1 9.797 (9.797)	Acc@5 49.857 (49.857)
+[INFO] Storing checkpoint...
+
+Epoch: [108 | 110] LR: 8.333203
+Epoch: [108][0/3]	Time 1.132 (1.132)	Data 5.620 (5.620)	Loss 1812128071680.0000 (1812128071680.0000)	Acc@1 9.970 (9.970)	Acc@5 49.876 (49.876)
+[INFO] Storing checkpoint...
+
+Epoch: [109 | 110] LR: 8.333203
+Epoch: [109][0/3]	Time 1.133 (1.133)	Data 5.477 (5.477)	Loss 2027688558592.0000 (2027688558592.0000)	Acc@1 10.008 (10.008)	Acc@5 49.904 (49.904)
+[INFO] Storing checkpoint...
+
+Epoch: [110 | 110] LR: 8.333203
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 526, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 583, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 111 bis 115
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 111
+count0: 17573
+
+Epoch: [111 | 115] LR: 8.333203
+Epoch: [111][0/3]	Time 2.532 (2.532)	Data 5.565 (5.565)	Loss 453769539498689953792.0000 (453769539498689953792.0000)	Acc@1 9.797 (9.797)	Acc@5 50.110 (50.110)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [112 | 115] LR: 8.333203
+Epoch: [112][0/3]	Time 1.205 (1.205)	Data 5.430 (5.430)	Loss 3390854002764677120.0000 (3390854002764677120.0000)	Acc@1 10.036 (10.036)	Acc@5 50.415 (50.415)
+[INFO] Storing checkpoint...
+
+Epoch: [113 | 115] LR: 8.333203
+Epoch: [113][0/3]	Time 1.109 (1.109)	Data 5.573 (5.573)	Loss 1815511564288.0000 (1815511564288.0000)	Acc@1 9.933 (9.933)	Acc@5 49.768 (49.768)
+[INFO] Storing checkpoint...
+
+Epoch: [114 | 115] LR: 8.333203
+Epoch: [114][0/3]	Time 1.115 (1.115)	Data 5.602 (5.602)	Loss 2029293404160.0000 (2029293404160.0000)	Acc@1 10.074 (10.074)	Acc@5 49.895 (49.895)
+[INFO] Storing checkpoint...
+
+Epoch: [115 | 115] LR: 8.333203
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 526, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 583, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 116 bis 120
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 116
+count0: 17573
+
+Epoch: [116 | 120] LR: 8.333203
+Epoch: [116][0/3]	Time 2.607 (2.607)	Data 5.527 (5.527)	Loss 454434383393680523264.0000 (454434383393680523264.0000)	Acc@1 9.628 (9.628)	Acc@5 49.941 (49.941)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [117 | 120] LR: 8.333203
+Epoch: [117][0/3]	Time 1.208 (1.208)	Data 5.328 (5.328)	Loss 4426091479315775488.0000 (4426091479315775488.0000)	Acc@1 10.013 (10.013)	Acc@5 49.749 (49.749)
+[INFO] Storing checkpoint...
+
+Epoch: [118 | 120] LR: 8.333203
+Epoch: [118][0/3]	Time 1.104 (1.104)	Data 5.640 (5.640)	Loss 1820114157568.0000 (1820114157568.0000)	Acc@1 9.741 (9.741)	Acc@5 49.590 (49.590)
+[INFO] Storing checkpoint...
+
+Epoch: [119 | 120] LR: 8.333203
+Epoch: [119][0/3]	Time 1.129 (1.129)	Data 5.495 (5.495)	Loss 2031473131520.0000 (2031473131520.0000)	Acc@1 10.064 (10.064)	Acc@5 50.105 (50.105)
+[INFO] Storing checkpoint...
+
+Epoch: [120 | 120] LR: 8.333203
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 526, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [120][0/3]	Time 1.160 (1.160)	Data 5.362 (5.362)	Loss 85451461361664.0000 (85451461361664.0000)	Acc@1 9.895 (9.895)	Acc@5 50.087 (50.087)
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 583, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 121 bis 125
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 121
+count0: 17573
+
+Epoch: [121 | 125] LR: 8.333203
+Epoch: [121][0/3]	Time 2.520 (2.520)	Data 5.568 (5.568)	Loss 452928386715162247168.0000 (452928386715162247168.0000)	Acc@1 9.914 (9.914)	Acc@5 49.941 (49.941)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [122 | 125] LR: 8.333203
+Epoch: [122][0/3]	Time 1.198 (1.198)	Data 5.480 (5.480)	Loss 4233242912239910912.0000 (4233242912239910912.0000)	Acc@1 9.989 (9.989)	Acc@5 49.932 (49.932)
+[INFO] Storing checkpoint...
+
+Epoch: [123 | 125] LR: 8.333203
+Epoch: [123][0/3]	Time 1.160 (1.160)	Data 5.374 (5.374)	Loss 1808780492800.0000 (1808780492800.0000)	Acc@1 10.078 (10.078)	Acc@5 49.754 (49.754)
+[INFO] Storing checkpoint...
+
+Epoch: [124 | 125] LR: 8.333203
+Epoch: [124][0/3]	Time 1.140 (1.140)	Data 5.454 (5.454)	Loss 2026104684544.0000 (2026104684544.0000)	Acc@1 10.266 (10.266)	Acc@5 50.012 (50.012)
+[INFO] Storing checkpoint...
+
+Epoch: [125 | 125] LR: 8.333203
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 526, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 583, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 126 bis 130
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 126
+count0: 17573
+
+Epoch: [126 | 130] LR: 8.333203
+Epoch: [126][0/3]	Time 2.559 (2.559)	Data 5.506 (5.506)	Loss 454167896959479709696.0000 (454167896959479709696.0000)	Acc@1 9.792 (9.792)	Acc@5 49.763 (49.763)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [127 | 130] LR: 8.333203
+Epoch: [127][0/3]	Time 1.201 (1.201)	Data 5.369 (5.369)	Loss 3649409659594342400.0000 (3649409659594342400.0000)	Acc@1 10.050 (10.050)	Acc@5 50.030 (50.030)
+[INFO] Storing checkpoint...
+
+Epoch: [128 | 130] LR: 8.333203
+Epoch: [128][0/3]	Time 1.140 (1.140)	Data 5.309 (5.309)	Loss 1815195156480.0000 (1815195156480.0000)	Acc@1 9.867 (9.867)	Acc@5 49.688 (49.688)
+[INFO] Storing checkpoint...
+
+Epoch: [129 | 130] LR: 8.333203
+Epoch: [129][0/3]	Time 1.121 (1.121)	Data 5.543 (5.543)	Loss 2028974374912.0000 (2028974374912.0000)	Acc@1 9.928 (9.928)	Acc@5 49.670 (49.670)
+[INFO] Storing checkpoint...
+
+Epoch: [130 | 130] LR: 8.333203
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 526, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 583, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 131 bis 135
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 131
+count0: 17573
+
+Epoch: [131 | 135] LR: 8.333203
+Epoch: [131][0/3]	Time 2.560 (2.560)	Data 5.628 (5.628)	Loss 453693119042513010688.0000 (453693119042513010688.0000)	Acc@1 9.900 (9.900)	Acc@5 49.880 (49.880)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [132 | 135] LR: 8.333203
+Epoch: [132][0/3]	Time 1.165 (1.165)	Data 5.501 (5.501)	Loss 3530415563434098688.0000 (3530415563434098688.0000)	Acc@1 9.825 (9.825)	Acc@5 50.040 (50.040)
+[INFO] Storing checkpoint...
+
+Epoch: [133 | 135] LR: 8.333203
+Epoch: [133][0/3]	Time 1.130 (1.130)	Data 5.481 (5.481)	Loss 1808298147840.0000 (1808298147840.0000)	Acc@1 10.261 (10.261)	Acc@5 50.105 (50.105)
+[INFO] Storing checkpoint...
+
+Epoch: [134 | 135] LR: 8.333203
+Epoch: [134][0/3]	Time 1.143 (1.143)	Data 5.475 (5.475)	Loss 2025910960128.0000 (2025910960128.0000)	Acc@1 10.158 (10.158)	Acc@5 49.904 (49.904)
+[INFO] Storing checkpoint...
+
+Epoch: [135 | 135] LR: 8.333203
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 526, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 583, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 136 bis 140
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 136
+count0: 17573
+
+Epoch: [136 | 140] LR: 8.333203
+Epoch: [136][0/3]	Time 2.599 (2.599)	Data 5.263 (5.263)	Loss 453438137897985245184.0000 (453438137897985245184.0000)	Acc@1 10.027 (10.027)	Acc@5 50.012 (50.012)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [137 | 140] LR: 8.333203
+Epoch: [137][0/3]	Time 1.205 (1.205)	Data 5.495 (5.495)	Loss 2610465179590197248.0000 (2610465179590197248.0000)	Acc@1 9.769 (9.769)	Acc@5 49.895 (49.895)
+[INFO] Storing checkpoint...
+
+Epoch: [138 | 140] LR: 8.333203
+Epoch: [138][0/3]	Time 1.126 (1.126)	Data 5.544 (5.544)	Loss 1814498115584.0000 (1814498115584.0000)	Acc@1 10.083 (10.083)	Acc@5 50.279 (50.279)
+[INFO] Storing checkpoint...
+
+Epoch: [139 | 140] LR: 8.333203
+Epoch: [139][0/3]	Time 1.112 (1.112)	Data 5.600 (5.600)	Loss 2028764266496.0000 (2028764266496.0000)	Acc@1 9.910 (9.910)	Acc@5 50.096 (50.096)
+[INFO] Storing checkpoint...
+
+Epoch: [140 | 140] LR: 8.333203
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 526, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 583, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 141 bis 145
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 141
+count0: 17573
+
+Epoch: [141 | 145] LR: 8.333203
+Epoch: [141][0/3]	Time 2.592 (2.592)	Data 5.448 (5.448)	Loss 452980389217109540864.0000 (452980389217109540864.0000)	Acc@1 9.797 (9.797)	Acc@5 50.321 (50.321)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [142 | 145] LR: 8.333203
+Epoch: [142][0/3]	Time 1.206 (1.206)	Data 5.352 (5.352)	Loss 4092604654808989696.0000 (4092604654808989696.0000)	Acc@1 10.224 (10.224)	Acc@5 50.012 (50.012)
+[INFO] Storing checkpoint...
+
+Epoch: [143 | 145] LR: 8.333203
+Epoch: [143][0/3]	Time 1.113 (1.113)	Data 5.561 (5.561)	Loss 1813764112384.0000 (1813764112384.0000)	Acc@1 10.045 (10.045)	Acc@5 49.777 (49.777)
+[INFO] Storing checkpoint...
+
+Epoch: [144 | 145] LR: 8.333203
+Epoch: [144][0/3]	Time 1.129 (1.129)	Data 5.498 (5.498)	Loss 2028434227200.0000 (2028434227200.0000)	Acc@1 10.186 (10.186)	Acc@5 50.199 (50.199)
+[INFO] Storing checkpoint...
+
+Epoch: [145 | 145] LR: 8.333203
+Epoch: [145][0/3]	Time 1.134 (1.134)	Data 5.521 (5.521)	Loss 997687427072.0000 (997687427072.0000)	Acc@1 9.863 (9.863)	Acc@5 49.726 (49.726)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 17517 ; 17573 ; 0.9968132931201275
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1044.3656704
+ 8.236s  j: 146 bis 150
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 146
+count0: 17517
+
+Epoch: [146 | 150] LR: 8.333203
+Epoch: [146][0/3]	Time 3.844 (3.844)	Data 5.474 (5.474)	Loss 56590522646528.0000 (56590522646528.0000)	Acc@1 9.895 (9.895)	Acc@5 49.857 (49.857)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [147 | 150] LR: 8.333203
+Epoch: [147][0/3]	Time 1.201 (1.201)	Data 5.214 (5.214)	Loss 212257603584.0000 (212257603584.0000)	Acc@1 9.886 (9.886)	Acc@5 49.435 (49.435)
+[INFO] Storing checkpoint...
+
+Epoch: [148 | 150] LR: 8.333203
+Epoch: [148][0/3]	Time 1.140 (1.140)	Data 5.163 (5.163)	Loss 355212984320.0000 (355212984320.0000)	Acc@1 9.802 (9.802)	Acc@5 49.965 (49.965)
+[INFO] Storing checkpoint...
+
+Epoch: [149 | 150] LR: 8.333203
+Epoch: [149][0/3]	Time 1.101 (1.101)	Data 5.451 (5.451)	Loss 498793086976.0000 (498793086976.0000)	Acc@1 10.013 (10.013)	Acc@5 50.096 (50.096)
+[INFO] Storing checkpoint...
+
+Epoch: [150 | 150] LR: 8.333203
+Epoch: [150][0/3]	Time 1.115 (1.115)	Data 5.457 (5.457)	Loss 226565341184.0000 (226565341184.0000)	Acc@1 9.774 (9.774)	Acc@5 49.899 (49.899)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1026.9310976
+ 8.129s  j: 151 bis 155
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 151
+count0: 17517
+
+Epoch: [151 | 155] LR: 8.333203
+Epoch: [151][0/3]	Time 3.780 (3.780)	Data 5.382 (5.382)	Loss 144068149248.0000 (144068149248.0000)	Acc@1 10.252 (10.252)	Acc@5 50.340 (50.340)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [152 | 155] LR: 8.333203
+Epoch: [152][0/3]	Time 1.228 (1.228)	Data 5.266 (5.266)	Loss 39676370944.0000 (39676370944.0000)	Acc@1 9.797 (9.797)	Acc@5 49.754 (49.754)
+[INFO] Storing checkpoint...
+
+Epoch: [153 | 155] LR: 8.333203
+Epoch: [153][0/3]	Time 1.184 (1.184)	Data 5.467 (5.467)	Loss 84317937664.0000 (84317937664.0000)	Acc@1 10.186 (10.186)	Acc@5 50.284 (50.284)
+[INFO] Storing checkpoint...
+
+Epoch: [154 | 155] LR: 8.333203
+Epoch: [154][0/3]	Time 1.155 (1.155)	Data 5.543 (5.543)	Loss 117471080087552.0000 (117471080087552.0000)	Acc@1 9.586 (9.586)	Acc@5 50.110 (50.110)
+[INFO] Storing checkpoint...
+
+Epoch: [155 | 155] LR: 8.333203
+Epoch: [155][0/3]	Time 1.161 (1.161)	Data 5.425 (5.425)	Loss 5534761812451754246144.0000 (5534761812451754246144.0000)	Acc@1 9.900 (9.900)	Acc@5 49.834 (49.834)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1026.9310976
+ 8.200s  j: 156 bis 160
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 156
+count0: 17517
+
+Epoch: [156 | 160] LR: 8.333203
+Epoch: [156][0/3]	Time 3.751 (3.751)	Data 5.616 (5.616)	Loss 3329237892312621645824.0000 (3329237892312621645824.0000)	Acc@1 10.003 (10.003)	Acc@5 50.635 (50.635)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [157 | 160] LR: 8.333203
+Epoch: [157][0/3]	Time 1.182 (1.182)	Data 5.527 (5.527)	Loss 392448351050552836096.0000 (392448351050552836096.0000)	Acc@1 9.895 (9.895)	Acc@5 49.890 (49.890)
+[INFO] Storing checkpoint...
+
+Epoch: [158 | 160] LR: 8.333203
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 526, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [158][0/3]	Time 1.149 (1.149)	Data 5.357 (5.357)	Loss 227444992913929404416.0000 (227444992913929404416.0000)	Acc@1 9.933 (9.933)	Acc@5 50.279 (50.279)
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 583, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 161 bis 165
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 161
+count0: 17517
+
+Epoch: [161 | 165] LR: 8.333203
+Epoch: [161][0/3]	Time 3.762 (3.762)	Data 5.658 (5.658)	Loss 3343620700672582746112.0000 (3343620700672582746112.0000)	Acc@1 9.849 (9.849)	Acc@5 50.115 (50.115)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [162 | 165] LR: 8.333203
+Epoch: [162][0/3]	Time 1.200 (1.200)	Data 5.477 (5.477)	Loss 378826017708919750656.0000 (378826017708919750656.0000)	Acc@1 9.961 (9.961)	Acc@5 49.960 (49.960)
+[INFO] Storing checkpoint...
+
+Epoch: [163 | 165] LR: 8.333203
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 526, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [163][0/3]	Time 1.186 (1.186)	Data 5.404 (5.404)	Loss 235319255387410006016.0000 (235319255387410006016.0000)	Acc@1 9.820 (9.820)	Acc@5 49.876 (49.876)
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 583, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 166 bis 170
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 166
+count0: 17517
+
+Epoch: [166 | 170] LR: 8.333203
+Epoch: [166][0/3]	Time 3.769 (3.769)	Data 5.687 (5.687)	Loss 3356514506405744476160.0000 (3356514506405744476160.0000)	Acc@1 10.200 (10.200)	Acc@5 49.852 (49.852)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [167 | 170] LR: 8.333203
+Epoch: [167][0/3]	Time 1.223 (1.223)	Data 5.426 (5.426)	Loss 551595147307687870464.0000 (551595147307687870464.0000)	Acc@1 10.097 (10.097)	Acc@5 49.941 (49.941)
+[INFO] Storing checkpoint...
+
+Epoch: [168 | 170] LR: 8.333203
+Epoch: [168][0/3]	Time 1.152 (1.152)	Data 5.485 (5.485)	Loss 57518140455380844544.0000 (57518140455380844544.0000)	Acc@1 9.910 (9.910)	Acc@5 50.087 (50.087)
+[INFO] Storing checkpoint...
+
+Epoch: [169 | 170] LR: 8.333203
+Epoch: [169][0/3]	Time 1.111 (1.111)	Data 5.613 (5.613)	Loss 33762370694152192.0000 (33762370694152192.0000)	Acc@1 9.708 (9.708)	Acc@5 50.105 (50.105)
+[INFO] Storing checkpoint...
+
+Epoch: [170 | 170] LR: 8.333203
+Epoch: [170][0/3]	Time 1.117 (1.117)	Data 5.600 (5.600)	Loss 34658081828765696.0000 (34658081828765696.0000)	Acc@1 9.994 (9.994)	Acc@5 49.843 (49.843)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1026.9424128
+ 8.273s  j: 171 bis 175
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 171
+count0: 17517
+
+Epoch: [171 | 175] LR: 8.333203
+Epoch: [171][0/3]	Time 3.813 (3.813)	Data 5.286 (5.286)	Loss 9074960953769984.0000 (9074960953769984.0000)	Acc@1 10.247 (10.247)	Acc@5 49.501 (49.501)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [172 | 175] LR: 8.333203
+Epoch: [172][0/3]	Time 1.230 (1.230)	Data 5.220 (5.220)	Loss 2499244959203328.0000 (2499244959203328.0000)	Acc@1 10.144 (10.144)	Acc@5 49.580 (49.580)
+[INFO] Storing checkpoint...
+
+Epoch: [173 | 175] LR: 8.333203
+Epoch: [173][0/3]	Time 1.194 (1.194)	Data 5.338 (5.338)	Loss 4186380053774336.0000 (4186380053774336.0000)	Acc@1 9.928 (9.928)	Acc@5 50.129 (50.129)
+[INFO] Storing checkpoint...
+
+Epoch: [174 | 175] LR: 8.333203
+Epoch: [174][0/3]	Time 1.129 (1.129)	Data 5.455 (5.455)	Loss 5891110287179776.0000 (5891110287179776.0000)	Acc@1 9.886 (9.886)	Acc@5 49.955 (49.955)
+[INFO] Storing checkpoint...
+
+Epoch: [175 | 175] LR: 8.333203
+Epoch: [175][0/3]	Time 1.139 (1.139)	Data 5.587 (5.587)	Loss 2674289035706368.0000 (2674289035706368.0000)	Acc@1 9.942 (9.942)	Acc@5 49.885 (49.885)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1026.9310976
+ 8.321s  j: 176 bis 180
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 176
+count0: 17517
+
+Epoch: [176 | 180] LR: 8.333203
+Epoch: [176][0/3]	Time 3.816 (3.816)	Data 5.415 (5.415)	Loss 1695211109482496.0000 (1695211109482496.0000)	Acc@1 10.097 (10.097)	Acc@5 49.599 (49.599)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [177 | 180] LR: 8.333203
+Epoch: [177][0/3]	Time 1.182 (1.182)	Data 5.420 (5.420)	Loss 466861233799168.0000 (466861233799168.0000)	Acc@1 9.708 (9.708)	Acc@5 49.810 (49.810)
+[INFO] Storing checkpoint...
+
+Epoch: [178 | 180] LR: 8.333203
+Epoch: [178][0/3]	Time 1.127 (1.127)	Data 5.194 (5.194)	Loss 782019793518592.0000 (782019793518592.0000)	Acc@1 9.877 (9.877)	Acc@5 49.782 (49.782)
+[INFO] Storing checkpoint...
+
+Epoch: [179 | 180] LR: 8.333203
+Epoch: [179][0/3]	Time 1.137 (1.137)	Data 5.135 (5.135)	Loss 1100464909189120.0000 (1100464909189120.0000)	Acc@1 9.699 (9.699)	Acc@5 49.726 (49.726)
+[INFO] Storing checkpoint...
+
+Epoch: [180 | 180] LR: 8.333203
+Epoch: [180][0/3]	Time 1.118 (1.118)	Data 5.449 (5.449)	Loss 499559524466688.0000 (499559524466688.0000)	Acc@1 10.125 (10.125)	Acc@5 49.857 (49.857)
+[INFO] Storing checkpoint...
+
+  21333
+  10.0
+Max memory: 1026.9310976
+ 8.170s  

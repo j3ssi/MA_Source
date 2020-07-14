@@ -1,0 +1,1825 @@
+j: 0 bis 5
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+stage: 0; sizeof Layers: 3
+stage: 1; sizeof Layers: 6
+stage: 2; sizeof Layers: 12
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(3, 6, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(3, 6, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(6, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(6, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (59): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (60): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (61): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (62): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (63): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (64): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (65): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (66): AdaptiveAvgPool2d(output_size=(1, 1))
+    (67): Linear(in_features=12, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv12.weight', 'module.conv13.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv21.weight', 'module.conv22.weight'], ['module.conv23.weight', 'module.conv24.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight'], ['module.conv30.weight', 'module.conv31.weight'], ['module.conv32.weight', 'module.conv33.weight']]
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv12.weight', 'module.conv13.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv21.weight', 'module.conv22.weight'], ['module.conv23.weight', 'module.conv24.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight'], ['module.conv30.weight', 'module.conv31.weight'], ['module.conv32.weight', 'module.conv33.weight']]
+device count: 1
+Startepoche: 1
+count0: 17683
+
+Epoch: [1 | 5] LR: 1.585938
+Epoch: [1][0/13]	Time 0.761 (0.761)	Data 1.606 (1.606)	Loss 3.1398 (3.1398)	Acc@1 9.089 (9.089)	Acc@5 49.557 (49.557)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [2 | 5] LR: 1.585938
+Epoch: [2][0/13]	Time 0.483 (0.483)	Data 1.259 (1.259)	Loss 3.1416 (3.1416)	Acc@1 13.300 (13.300)	Acc@5 56.059 (56.059)
+[INFO] Storing checkpoint...
+
+Epoch: [3 | 5] LR: 1.585938
+Epoch: [3][0/13]	Time 0.447 (0.447)	Data 1.246 (1.246)	Loss 2.8750 (2.8750)	Acc@1 17.783 (17.783)	Acc@5 68.768 (68.768)
+[INFO] Storing checkpoint...
+
+Epoch: [4 | 5] LR: 1.585938
+Epoch: [4][0/13]	Time 0.413 (0.413)	Data 1.316 (1.316)	Loss 2.5706 (2.5706)	Acc@1 21.995 (21.995)	Acc@5 73.571 (73.571)
+[INFO] Storing checkpoint...
+
+Epoch: [5 | 5] LR: 1.585938
+Epoch: [5][0/13]	Time 0.444 (0.444)	Data 1.250 (1.250)	Loss 2.3047 (2.3047)	Acc@1 22.241 (22.241)	Acc@5 78.744 (78.744)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 9541 ; 17683 ; 0.5395577673471696
+[INFO] Storing checkpoint...
+
+  4060
+  10.0
+Max memory: 241.7924608
+ 5.307s  j: 6 bis 10
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 6
+count0: 9541
+
+Epoch: [6 | 10] LR: 1.585938
+Epoch: [6][0/13]	Time 1.834 (1.834)	Data 1.217 (1.217)	Loss 2.1727 (2.1727)	Acc@1 24.286 (24.286)	Acc@5 80.099 (80.099)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [7 | 10] LR: 1.585938
+Epoch: [7][0/13]	Time 0.461 (0.461)	Data 1.205 (1.205)	Loss 2.0967 (2.0967)	Acc@1 25.961 (25.961)	Acc@5 81.478 (81.478)
+[INFO] Storing checkpoint...
+
+Epoch: [8 | 10] LR: 1.585938
+Epoch: [8][0/13]	Time 0.406 (0.406)	Data 1.327 (1.327)	Loss 2.0490 (2.0490)	Acc@1 25.690 (25.690)	Acc@5 82.438 (82.438)
+[INFO] Storing checkpoint...
+
+Epoch: [9 | 10] LR: 1.585938
+Epoch: [9][0/13]	Time 0.390 (0.390)	Data 1.223 (1.223)	Loss 2.0945 (2.0945)	Acc@1 25.271 (25.271)	Acc@5 81.478 (81.478)
+[INFO] Storing checkpoint...
+
+Epoch: [10 | 10] LR: 1.585938
+Epoch: [10][0/13]	Time 0.433 (0.433)	Data 1.202 (1.202)	Loss 2.0838 (2.0838)	Acc@1 26.478 (26.478)	Acc@5 82.438 (82.438)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+
+ RM:  module.conv10.weight
+
+ RM:  module.conv11.weight
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv21.weight', 'module.conv22.weight'], ['module.conv24.weight', 'module.conv25.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight'], ['module.conv30.weight', 'module.conv31.weight']]
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv21.weight', 'module.conv22.weight'], ['module.conv24.weight', 'module.conv25.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight'], ['module.conv30.weight', 'module.conv31.weight']]
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(3, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(2, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(3, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(2, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(3, 6, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(3, 6, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(6, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(3, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(6, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(2, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(6, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(5, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(6, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(1, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(6, 7, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(7, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(7, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(6, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(12, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(6, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(12, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(3, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(12, 7, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(7, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(7, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): Conv2d(12, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (59): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (60): Conv2d(6, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (61): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (62): AdaptiveAvgPool2d(output_size=(1, 1))
+    (63): Linear(in_features=12, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+Count: 6666 ; 9541 ; 0.6986689026307515
+[INFO] Storing checkpoint...
+
+  4060
+  15.45
+Max memory: 199.1353856
+ 5.699s  j: 11 bis 15
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 11
+count0: 6666
+
+Epoch: [11 | 15] LR: 1.585938
+Epoch: [11][0/13]	Time 1.415 (1.415)	Data 1.429 (1.429)	Loss 2.0175 (2.0175)	Acc@1 27.882 (27.882)	Acc@5 83.744 (83.744)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [12 | 15] LR: 1.585938
+Epoch: [12][0/13]	Time 0.421 (0.421)	Data 1.257 (1.257)	Loss 1.9787 (1.9787)	Acc@1 29.483 (29.483)	Acc@5 84.483 (84.483)
+[INFO] Storing checkpoint...
+
+Epoch: [13 | 15] LR: 1.585938
+Epoch: [13][0/13]	Time 0.590 (0.590)	Data 1.874 (1.874)	Loss 1.9055 (1.9055)	Acc@1 32.167 (32.167)	Acc@5 85.862 (85.862)
+[INFO] Storing checkpoint...
+
+Epoch: [14 | 15] LR: 1.585938
+Epoch: [14][0/13]	Time 0.379 (0.379)	Data 1.381 (1.381)	Loss 1.8463 (1.8463)	Acc@1 34.729 (34.729)	Acc@5 87.980 (87.980)
+[INFO] Storing checkpoint...
+
+Epoch: [15 | 15] LR: 1.585938
+Epoch: [15][0/13]	Time 0.368 (0.368)	Data 1.183 (1.183)	Loss 1.8731 (1.8731)	Acc@1 33.177 (33.177)	Acc@5 86.576 (86.576)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+
+ RM:  module.conv13.weight
+
+ RM:  module.conv14.weight
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv22.weight', 'module.conv23.weight'], ['module.conv24.weight', 'module.conv25.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight']]
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv22.weight', 'module.conv23.weight'], ['module.conv24.weight', 'module.conv25.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight']]
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(3, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(1, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(3, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(2, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(3, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(1, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(3, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(1, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(3, 4, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(4, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(3, 5, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(5, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(1, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(5, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(4, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(5, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(1, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(5, 4, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(4, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(5, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(12, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(2, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(12, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(3, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(12, 7, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(7, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(7, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(12, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(5, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): AdaptiveAvgPool2d(output_size=(1, 1))
+    (59): Linear(in_features=12, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+Count: 5090 ; 6666 ; 0.7635763576357636
+[INFO] Storing checkpoint...
+
+  4060
+  26.5
+Max memory: 155.86176
+ 4.855s  j: 16 bis 20
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 16
+count0: 5090
+
+Epoch: [16 | 20] LR: 1.585938
+Epoch: [16][0/13]	Time 1.388 (1.388)	Data 1.367 (1.367)	Loss 1.8166 (1.8166)	Acc@1 34.631 (34.631)	Acc@5 87.709 (87.709)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [17 | 20] LR: 1.585938
+Epoch: [17][0/13]	Time 0.588 (0.588)	Data 1.732 (1.732)	Loss 1.7283 (1.7283)	Acc@1 38.571 (38.571)	Acc@5 89.852 (89.852)
+[INFO] Storing checkpoint...
+
+Epoch: [18 | 20] LR: 1.585938
+Epoch: [18][0/13]	Time 0.296 (0.296)	Data 1.535 (1.535)	Loss 1.7164 (1.7164)	Acc@1 38.744 (38.744)	Acc@5 89.828 (89.828)
+[INFO] Storing checkpoint...
+
+Epoch: [19 | 20] LR: 1.585938
+Epoch: [19][0/13]	Time 0.387 (0.387)	Data 1.296 (1.296)	Loss 1.9048 (1.9048)	Acc@1 31.872 (31.872)	Acc@5 85.566 (85.566)
+[INFO] Storing checkpoint...
+
+Epoch: [20 | 20] LR: 1.585938
+Epoch: [20][0/13]	Time 0.372 (0.372)	Data 1.244 (1.244)	Loss 1.8550 (1.8550)	Acc@1 33.374 (33.374)	Acc@5 87.241 (87.241)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+
+ RM:  module.conv8.weight
+
+ RM:  module.conv9.weight
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv11.weight', 'module.conv12.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv20.weight', 'module.conv21.weight'], ['module.conv22.weight', 'module.conv23.weight'], ['module.conv24.weight', 'module.conv25.weight'], ['module.conv26.weight', 'module.conv27.weight']]
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv11.weight', 'module.conv12.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv20.weight', 'module.conv21.weight'], ['module.conv22.weight', 'module.conv23.weight'], ['module.conv24.weight', 'module.conv25.weight'], ['module.conv26.weight', 'module.conv27.weight']]
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(3, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(1, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(3, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(2, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(3, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(1, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(3, 3, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(3, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(3, 5, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(5, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(1, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(5, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(3, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(5, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(1, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(5, 4, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(4, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(5, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(12, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(1, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(12, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(1, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(12, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(6, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(12, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(3, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): AdaptiveAvgPool2d(output_size=(1, 1))
+    (55): Linear(in_features=12, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+Count: 4810 ; 5090 ; 0.9449901768172888
+[INFO] Storing checkpoint...
+
+  4060
+  18.4
+Max memory: 146.5388544
+ 4.956s  j: 21 bis 25
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+count0: 4810
+
+Epoch: [21 | 25] LR: 1.585938
+Epoch: [21][0/13]	Time 1.959 (1.959)	Data 1.656 (1.656)	Loss 1.8207 (1.8207)	Acc@1 35.493 (35.493)	Acc@5 88.103 (88.103)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [22 | 25] LR: 1.585938
+Epoch: [22][0/13]	Time 0.371 (0.371)	Data 1.271 (1.271)	Loss 1.7703 (1.7703)	Acc@1 35.567 (35.567)	Acc@5 89.557 (89.557)
+[INFO] Storing checkpoint...
+
+Epoch: [23 | 25] LR: 1.585938
+Epoch: [23][0/13]	Time 0.308 (0.308)	Data 1.554 (1.554)	Loss 1.7662 (1.7662)	Acc@1 37.906 (37.906)	Acc@5 88.990 (88.990)
+[INFO] Storing checkpoint...
+
+Epoch: [24 | 25] LR: 1.585938
+Epoch: [24][0/13]	Time 0.288 (0.288)	Data 1.572 (1.572)	Loss 1.7610 (1.7610)	Acc@1 36.970 (36.970)	Acc@5 89.951 (89.951)
+[INFO] Storing checkpoint...
+
+Epoch: [25 | 25] LR: 1.585938
+Epoch: [25][0/13]	Time 0.282 (0.282)	Data 1.452 (1.452)	Loss 1.6444 (1.6444)	Acc@1 42.217 (42.217)	Acc@5 90.837 (90.837)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 4363 ; 4810 ; 0.907068607068607
+[INFO] Storing checkpoint...
+
+  4060
+  34.51
+Max memory: 133.23392
+ 4.296s  j: 26 bis 30
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 26
+count0: 4363
+
+Epoch: [26 | 30] LR: 1.585938
+Epoch: [26][0/13]	Time 1.527 (1.527)	Data 1.197 (1.197)	Loss 1.6147 (1.6147)	Acc@1 43.350 (43.350)	Acc@5 91.749 (91.749)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [27 | 30] LR: 1.585938
+Epoch: [27][0/13]	Time 0.327 (0.327)	Data 1.199 (1.199)	Loss 1.6755 (1.6755)	Acc@1 41.502 (41.502)	Acc@5 90.049 (90.049)
+[INFO] Storing checkpoint...
+
+Epoch: [28 | 30] LR: 1.585938
+Epoch: [28][0/13]	Time 0.281 (0.281)	Data 1.239 (1.239)	Loss 1.6477 (1.6477)	Acc@1 39.803 (39.803)	Acc@5 91.182 (91.182)
+[INFO] Storing checkpoint...
+
+Epoch: [29 | 30] LR: 1.585938
+Epoch: [29][0/13]	Time 0.281 (0.281)	Data 1.246 (1.246)	Loss 1.5974 (1.5974)	Acc@1 44.828 (44.828)	Acc@5 91.921 (91.921)
+[INFO] Storing checkpoint...
+
+Epoch: [30 | 30] LR: 1.585938
+Epoch: [30][0/13]	Time 0.256 (0.256)	Data 1.297 (1.297)	Loss 1.5716 (1.5716)	Acc@1 44.926 (44.926)	Acc@5 92.118 (92.118)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 4307 ; 4363 ; 0.9871647948659179
+[INFO] Storing checkpoint...
+
+  4060
+  24.1
+Max memory: 130.0717056
+ 4.170s  j: 31 bis 35
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 31
+count0: 4307
+
+Epoch: [31 | 35] LR: 1.585938
+Epoch: [31][0/13]	Time 1.217 (1.217)	Data 1.334 (1.334)	Loss 1.5671 (1.5671)	Acc@1 45.714 (45.714)	Acc@5 92.315 (92.315)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [32 | 35] LR: 1.585938
+Epoch: [32][0/13]	Time 0.344 (0.344)	Data 1.273 (1.273)	Loss 1.5533 (1.5533)	Acc@1 46.305 (46.305)	Acc@5 91.921 (91.921)
+[INFO] Storing checkpoint...
+
+Epoch: [33 | 35] LR: 1.585938
+Epoch: [33][0/13]	Time 0.343 (0.343)	Data 1.241 (1.241)	Loss 1.5594 (1.5594)	Acc@1 47.118 (47.118)	Acc@5 91.478 (91.478)
+[INFO] Storing checkpoint...
+
+Epoch: [34 | 35] LR: 1.585938
+Epoch: [34][0/13]	Time 0.271 (0.271)	Data 1.314 (1.314)	Loss 1.5130 (1.5130)	Acc@1 48.793 (48.793)	Acc@5 92.808 (92.808)
+[INFO] Storing checkpoint...
+
+Epoch: [35 | 35] LR: 1.585938
+Epoch: [35][0/13]	Time 0.256 (0.256)	Data 1.307 (1.307)	Loss 1.5483 (1.5483)	Acc@1 45.911 (45.911)	Acc@5 92.833 (92.833)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  29.68
+Max memory: 126.7457536
+ 4.030s  j: 36 bis 40
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 36
+count0: 4307
+
+Epoch: [36 | 40] LR: 1.585938
+Epoch: [36][0/13]	Time 1.288 (1.288)	Data 1.197 (1.197)	Loss 1.5330 (1.5330)	Acc@1 47.857 (47.857)	Acc@5 93.005 (93.005)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [37 | 40] LR: 1.585938
+Epoch: [37][0/13]	Time 0.337 (0.337)	Data 1.191 (1.191)	Loss 1.5371 (1.5371)	Acc@1 45.271 (45.271)	Acc@5 93.227 (93.227)
+[INFO] Storing checkpoint...
+
+Epoch: [38 | 40] LR: 1.585938
+Epoch: [38][0/13]	Time 0.308 (0.308)	Data 1.256 (1.256)	Loss 1.4410 (1.4410)	Acc@1 50.345 (50.345)	Acc@5 93.818 (93.818)
+[INFO] Storing checkpoint...
+
+Epoch: [39 | 40] LR: 1.585938
+Epoch: [39][0/13]	Time 0.292 (0.292)	Data 1.189 (1.189)	Loss 1.4592 (1.4592)	Acc@1 50.369 (50.369)	Acc@5 93.498 (93.498)
+[INFO] Storing checkpoint...
+
+Epoch: [40 | 40] LR: 1.585938
+Epoch: [40][0/13]	Time 0.331 (0.331)	Data 1.220 (1.220)	Loss 1.4211 (1.4211)	Acc@1 53.054 (53.054)	Acc@5 94.113 (94.113)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  36.24
+Max memory: 126.7457536
+ 4.135s  j: 41 bis 45
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 41
+count0: 4307
+
+Epoch: [41 | 45] LR: 1.585938
+Epoch: [41][0/13]	Time 1.075 (1.075)	Data 1.296 (1.296)	Loss 1.5207 (1.5207)	Acc@1 47.635 (47.635)	Acc@5 93.596 (93.596)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [42 | 45] LR: 1.585938
+Epoch: [42][0/13]	Time 0.309 (0.309)	Data 1.267 (1.267)	Loss 1.7361 (1.7361)	Acc@1 40.591 (40.591)	Acc@5 91.478 (91.478)
+[INFO] Storing checkpoint...
+
+Epoch: [43 | 45] LR: 1.585938
+Epoch: [43][0/13]	Time 0.284 (0.284)	Data 1.265 (1.265)	Loss 1.5399 (1.5399)	Acc@1 47.241 (47.241)	Acc@5 93.177 (93.177)
+[INFO] Storing checkpoint...
+
+Epoch: [44 | 45] LR: 1.585938
+Epoch: [44][0/13]	Time 0.299 (0.299)	Data 1.217 (1.217)	Loss 1.4827 (1.4827)	Acc@1 49.901 (49.901)	Acc@5 93.744 (93.744)
+[INFO] Storing checkpoint...
+
+Epoch: [45 | 45] LR: 1.585938
+Epoch: [45][0/13]	Time 0.280 (0.280)	Data 1.276 (1.276)	Loss 1.4803 (1.4803)	Acc@1 51.108 (51.108)	Acc@5 93.153 (93.153)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  37.52
+Max memory: 126.7457536
+ 4.027s  j: 46 bis 50
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 4307
+
+Epoch: [46 | 50] LR: 1.585938
+Epoch: [46][0/13]	Time 1.313 (1.313)	Data 1.217 (1.217)	Loss 1.4644 (1.4644)	Acc@1 51.453 (51.453)	Acc@5 93.867 (93.867)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [47 | 50] LR: 1.585938
+Epoch: [47][0/13]	Time 0.364 (0.364)	Data 1.213 (1.213)	Loss 1.4752 (1.4752)	Acc@1 50.764 (50.764)	Acc@5 93.571 (93.571)
+[INFO] Storing checkpoint...
+
+Epoch: [48 | 50] LR: 1.585938
+Epoch: [48][0/13]	Time 0.322 (0.322)	Data 1.310 (1.310)	Loss 1.5034 (1.5034)	Acc@1 49.384 (49.384)	Acc@5 93.571 (93.571)
+[INFO] Storing checkpoint...
+
+Epoch: [49 | 50] LR: 1.585938
+Epoch: [49][0/13]	Time 0.309 (0.309)	Data 1.329 (1.329)	Loss 1.4441 (1.4441)	Acc@1 51.429 (51.429)	Acc@5 94.163 (94.163)
+[INFO] Storing checkpoint...
+
+Epoch: [50 | 50] LR: 1.585938
+Epoch: [50][0/13]	Time 0.330 (0.330)	Data 1.227 (1.227)	Loss 1.4102 (1.4102)	Acc@1 52.167 (52.167)	Acc@5 93.966 (93.966)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+
+ RM:  module.conv2.weight
+
+ RM:  module.conv3.weight
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv9.weight', 'module.conv10.weight'], ['module.conv11.weight', 'module.conv12.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv18.weight', 'module.conv19.weight'], ['module.conv20.weight', 'module.conv21.weight'], ['module.conv22.weight', 'module.conv23.weight'], ['module.conv24.weight', 'module.conv25.weight']]
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv9.weight', 'module.conv10.weight'], ['module.conv11.weight', 'module.conv12.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv18.weight', 'module.conv19.weight'], ['module.conv20.weight', 'module.conv21.weight'], ['module.conv22.weight', 'module.conv23.weight'], ['module.conv24.weight', 'module.conv25.weight']]
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(3, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(1, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(3, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(1, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(3, 2, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(2, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(3, 5, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(5, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(1, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(5, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(3, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(5, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(1, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(5, 3, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(3, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(5, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(12, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(1, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(12, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(1, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(12, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(5, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(12, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(2, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): AdaptiveAvgPool2d(output_size=(1, 1))
+    (51): Linear(in_features=12, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+Count: 4027 ; 4307 ; 0.9349895518922684
+[INFO] Storing checkpoint...
+
+  4060
+  29.03
+Max memory: 126.7457536
+ 4.207s  j: 51 bis 55
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 51
+count0: 4027
+
+Epoch: [51 | 55] LR: 1.585938
+Epoch: [51][0/13]	Time 1.149 (1.149)	Data 1.222 (1.222)	Loss 1.3813 (1.3813)	Acc@1 54.631 (54.631)	Acc@5 94.704 (94.704)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [52 | 55] LR: 1.585938
+Epoch: [52][0/13]	Time 0.323 (0.323)	Data 1.213 (1.213)	Loss 1.3743 (1.3743)	Acc@1 54.236 (54.236)	Acc@5 94.803 (94.803)
+[INFO] Storing checkpoint...
+
+Epoch: [53 | 55] LR: 1.585938
+Epoch: [53][0/13]	Time 0.311 (0.311)	Data 1.213 (1.213)	Loss 1.3545 (1.3545)	Acc@1 54.236 (54.236)	Acc@5 94.704 (94.704)
+[INFO] Storing checkpoint...
+
+Epoch: [54 | 55] LR: 1.585938
+Epoch: [54][0/13]	Time 0.296 (0.296)	Data 1.254 (1.254)	Loss 1.4327 (1.4327)	Acc@1 51.700 (51.700)	Acc@5 94.803 (94.803)
+[INFO] Storing checkpoint...
+
+Epoch: [55 | 55] LR: 1.585938
+Epoch: [55][0/13]	Time 0.278 (0.278)	Data 1.225 (1.225)	Loss 1.6486 (1.6486)	Acc@1 42.956 (42.956)	Acc@5 90.246 (90.246)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  23.72
+Max memory: 113.5447552
+ 3.836s  j: 56 bis 60
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 56
+count0: 4027
+
+Epoch: [56 | 60] LR: 1.585938
+Epoch: [56][0/13]	Time 1.156 (1.156)	Data 1.309 (1.309)	Loss 1.5671 (1.5671)	Acc@1 46.626 (46.626)	Acc@5 92.118 (92.118)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [57 | 60] LR: 1.585938
+Epoch: [57][0/13]	Time 0.283 (0.283)	Data 1.353 (1.353)	Loss 1.5110 (1.5110)	Acc@1 49.532 (49.532)	Acc@5 93.448 (93.448)
+[INFO] Storing checkpoint...
+
+Epoch: [58 | 60] LR: 1.585938
+Epoch: [58][0/13]	Time 0.284 (0.284)	Data 1.251 (1.251)	Loss 1.4483 (1.4483)	Acc@1 52.857 (52.857)	Acc@5 93.695 (93.695)
+[INFO] Storing checkpoint...
+
+Epoch: [59 | 60] LR: 1.585938
+Epoch: [59][0/13]	Time 0.287 (0.287)	Data 1.283 (1.283)	Loss 1.4685 (1.4685)	Acc@1 51.429 (51.429)	Acc@5 93.744 (93.744)
+[INFO] Storing checkpoint...
+
+Epoch: [60 | 60] LR: 1.585938
+Epoch: [60][0/13]	Time 0.234 (0.234)	Data 1.245 (1.245)	Loss 1.4175 (1.4175)	Acc@1 52.906 (52.906)	Acc@5 94.064 (94.064)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  46.98
+Max memory: 113.5447552
+ 3.669s  j: 61 bis 65
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 61
+count0: 4027
+
+Epoch: [61 | 65] LR: 1.585938
+Epoch: [61][0/13]	Time 1.152 (1.152)	Data 1.333 (1.333)	Loss 1.3964 (1.3964)	Acc@1 54.507 (54.507)	Acc@5 94.803 (94.803)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [62 | 65] LR: 1.585938
+Epoch: [62][0/13]	Time 0.230 (0.230)	Data 1.289 (1.289)	Loss 1.4589 (1.4589)	Acc@1 51.281 (51.281)	Acc@5 94.187 (94.187)
+[INFO] Storing checkpoint...
+
+Epoch: [63 | 65] LR: 1.585938
+Epoch: [63][0/13]	Time 0.312 (0.312)	Data 1.219 (1.219)	Loss 1.4890 (1.4890)	Acc@1 50.788 (50.788)	Acc@5 93.670 (93.670)
+[INFO] Storing checkpoint...
+
+Epoch: [64 | 65] LR: 1.585938
+Epoch: [64][0/13]	Time 0.251 (0.251)	Data 1.265 (1.265)	Loss 1.5029 (1.5029)	Acc@1 49.901 (49.901)	Acc@5 93.645 (93.645)
+[INFO] Storing checkpoint...
+
+Epoch: [65 | 65] LR: 1.585938
+Epoch: [65][0/13]	Time 0.255 (0.255)	Data 1.205 (1.205)	Loss 1.4243 (1.4243)	Acc@1 52.783 (52.783)	Acc@5 94.754 (94.754)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  45.42
+Max memory: 113.5447552
+ 3.590s  j: 66 bis 70
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 66
+count0: 4027
+
+Epoch: [66 | 70] LR: 1.585938
+Epoch: [66][0/13]	Time 1.119 (1.119)	Data 1.298 (1.298)	Loss 1.3831 (1.3831)	Acc@1 55.049 (55.049)	Acc@5 94.113 (94.113)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [67 | 70] LR: 1.585938
+Epoch: [67][0/13]	Time 0.249 (0.249)	Data 1.258 (1.258)	Loss 1.3585 (1.3585)	Acc@1 56.059 (56.059)	Acc@5 95.665 (95.665)
+[INFO] Storing checkpoint...
+
+Epoch: [68 | 70] LR: 1.585938
+Epoch: [68][0/13]	Time 0.285 (0.285)	Data 1.316 (1.316)	Loss 1.3186 (1.3186)	Acc@1 57.291 (57.291)	Acc@5 94.704 (94.704)
+[INFO] Storing checkpoint...
+
+Epoch: [69 | 70] LR: 1.585938
+Epoch: [69][0/13]	Time 0.289 (0.289)	Data 1.268 (1.268)	Loss 1.3870 (1.3870)	Acc@1 54.852 (54.852)	Acc@5 94.926 (94.926)
+[INFO] Storing checkpoint...
+
+Epoch: [70 | 70] LR: 1.585938
+Epoch: [70][0/13]	Time 0.269 (0.269)	Data 1.368 (1.368)	Loss 1.4184 (1.4184)	Acc@1 53.498 (53.498)	Acc@5 94.236 (94.236)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  35.07
+Max memory: 113.5447552
+ 3.967s  j: 71 bis 75
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 71
+count0: 4027
+
+Epoch: [71 | 75] LR: 1.585938
+Epoch: [71][0/13]	Time 1.227 (1.227)	Data 1.219 (1.219)	Loss 1.5310 (1.5310)	Acc@1 49.360 (49.360)	Acc@5 93.128 (93.128)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [72 | 75] LR: 1.585938
+Epoch: [72][0/13]	Time 0.285 (0.285)	Data 1.220 (1.220)	Loss 1.6071 (1.6071)	Acc@1 46.059 (46.059)	Acc@5 92.217 (92.217)
+[INFO] Storing checkpoint...
+
+Epoch: [73 | 75] LR: 1.585938
+Epoch: [73][0/13]	Time 0.266 (0.266)	Data 1.321 (1.321)	Loss 1.4717 (1.4717)	Acc@1 53.054 (53.054)	Acc@5 93.744 (93.744)
+[INFO] Storing checkpoint...
+
+Epoch: [74 | 75] LR: 1.585938
+Epoch: [74][0/13]	Time 0.267 (0.267)	Data 1.293 (1.293)	Loss 1.3787 (1.3787)	Acc@1 55.000 (55.000)	Acc@5 95.296 (95.296)
+[INFO] Storing checkpoint...
+
+Epoch: [75 | 75] LR: 1.585938
+Epoch: [75][0/13]	Time 0.289 (0.289)	Data 1.241 (1.241)	Loss 1.3762 (1.3762)	Acc@1 55.862 (55.862)	Acc@5 94.926 (94.926)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  42.3
+Max memory: 113.5447552
+ 3.827s  j: 76 bis 80
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 76
+count0: 4027
+
+Epoch: [76 | 80] LR: 1.585938
+Epoch: [76][0/13]	Time 1.011 (1.011)	Data 1.258 (1.258)	Loss 1.3931 (1.3931)	Acc@1 54.261 (54.261)	Acc@5 94.852 (94.852)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [77 | 80] LR: 1.585938
+Epoch: [77][0/13]	Time 0.235 (0.235)	Data 1.269 (1.269)	Loss 1.4232 (1.4232)	Acc@1 53.941 (53.941)	Acc@5 94.187 (94.187)
+[INFO] Storing checkpoint...
+
+Epoch: [78 | 80] LR: 1.585938
+Epoch: [78][0/13]	Time 0.206 (0.206)	Data 1.249 (1.249)	Loss 1.3433 (1.3433)	Acc@1 57.512 (57.512)	Acc@5 95.296 (95.296)
+[INFO] Storing checkpoint...
+
+Epoch: [79 | 80] LR: 1.585938
+Epoch: [79][0/13]	Time 0.302 (0.302)	Data 1.231 (1.231)	Loss 1.4177 (1.4177)	Acc@1 53.867 (53.867)	Acc@5 94.926 (94.926)
+[INFO] Storing checkpoint...
+
+Epoch: [80 | 80] LR: 1.585938
+Epoch: [80][0/13]	Time 0.303 (0.303)	Data 1.231 (1.231)	Loss 1.3215 (1.3215)	Acc@1 58.424 (58.424)	Acc@5 95.517 (95.517)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  11.25
+Max memory: 113.5447552
+ 3.869s  j: 81 bis 85
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 81
+count0: 4027
+
+Epoch: [81 | 85] LR: 1.585938
+Epoch: [81][0/13]	Time 1.031 (1.031)	Data 1.299 (1.299)	Loss 1.4411 (1.4411)	Acc@1 53.547 (53.547)	Acc@5 93.744 (93.744)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [82 | 85] LR: 1.585938
+Epoch: [82][0/13]	Time 0.287 (0.287)	Data 1.316 (1.316)	Loss 1.6601 (1.6601)	Acc@1 45.616 (45.616)	Acc@5 91.305 (91.305)
+[INFO] Storing checkpoint...
+
+Epoch: [83 | 85] LR: 1.585938
+Epoch: [83][0/13]	Time 0.277 (0.277)	Data 1.301 (1.301)	Loss 1.5543 (1.5543)	Acc@1 48.498 (48.498)	Acc@5 92.759 (92.759)
+[INFO] Storing checkpoint...
+
+Epoch: [84 | 85] LR: 1.585938
+Epoch: [84][0/13]	Time 0.284 (0.284)	Data 1.324 (1.324)	Loss 1.4605 (1.4605)	Acc@1 52.882 (52.882)	Acc@5 94.310 (94.310)
+[INFO] Storing checkpoint...
+
+Epoch: [85 | 85] LR: 1.585938
+Epoch: [85][0/13]	Time 0.229 (0.229)	Data 1.325 (1.325)	Loss 1.4201 (1.4201)	Acc@1 54.433 (54.433)	Acc@5 95.000 (95.000)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  27.94
+Max memory: 113.5447552
+ 3.896s  j: 86 bis 90
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 86
+count0: 4027
+
+Epoch: [86 | 90] LR: 1.585938
+Epoch: [86][0/13]	Time 0.962 (0.962)	Data 1.414 (1.414)	Loss 1.4116 (1.4116)	Acc@1 54.877 (54.877)	Acc@5 94.877 (94.877)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [87 | 90] LR: 1.585938
+Epoch: [87][0/13]	Time 0.318 (0.318)	Data 1.253 (1.253)	Loss 1.4240 (1.4240)	Acc@1 54.261 (54.261)	Acc@5 94.409 (94.409)
+[INFO] Storing checkpoint...
+
+Epoch: [88 | 90] LR: 1.585938
+Epoch: [88][0/13]	Time 0.248 (0.248)	Data 1.310 (1.310)	Loss 1.3826 (1.3826)	Acc@1 57.463 (57.463)	Acc@5 94.778 (94.778)
+[INFO] Storing checkpoint...
+
+Epoch: [89 | 90] LR: 1.585938
+Epoch: [89][0/13]	Time 0.270 (0.270)	Data 1.334 (1.334)	Loss 1.3752 (1.3752)	Acc@1 57.094 (57.094)	Acc@5 94.951 (94.951)
+[INFO] Storing checkpoint...
+
+Epoch: [90 | 90] LR: 1.585938
+Epoch: [90][0/13]	Time 0.214 (0.214)	Data 1.321 (1.321)	Loss 1.3464 (1.3464)	Acc@1 57.315 (57.315)	Acc@5 95.049 (95.049)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  44.05
+Max memory: 113.5447552
+ 3.688s  j: 91 bis 95
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 91
+count0: 4027
+
+Epoch: [91 | 95] LR: 1.585938
+Epoch: [91][0/13]	Time 1.114 (1.114)	Data 1.246 (1.246)	Loss 1.3968 (1.3968)	Acc@1 55.961 (55.961)	Acc@5 94.360 (94.360)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [92 | 95] LR: 1.585938
+Epoch: [92][0/13]	Time 0.296 (0.296)	Data 1.234 (1.234)	Loss 1.4645 (1.4645)	Acc@1 52.118 (52.118)	Acc@5 93.842 (93.842)
+[INFO] Storing checkpoint...
+
+Epoch: [93 | 95] LR: 1.585938
+Epoch: [93][0/13]	Time 0.226 (0.226)	Data 1.232 (1.232)	Loss 1.3556 (1.3556)	Acc@1 56.330 (56.330)	Acc@5 95.000 (95.000)
+[INFO] Storing checkpoint...
+
+Epoch: [94 | 95] LR: 1.585938
+Epoch: [94][0/13]	Time 0.245 (0.245)	Data 1.194 (1.194)	Loss 1.3300 (1.3300)	Acc@1 56.749 (56.749)	Acc@5 94.901 (94.901)
+[INFO] Storing checkpoint...
+
+Epoch: [95 | 95] LR: 1.585938
+Epoch: [95][0/13]	Time 0.243 (0.243)	Data 1.281 (1.281)	Loss 1.3083 (1.3083)	Acc@1 58.448 (58.448)	Acc@5 95.616 (95.616)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  36.73
+Max memory: 113.5447552
+ 3.649s  j: 96 bis 100
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 96
+count0: 4027
+
+Epoch: [96 | 100] LR: 1.585938
+Epoch: [96][0/13]	Time 1.176 (1.176)	Data 1.294 (1.294)	Loss 1.3505 (1.3505)	Acc@1 55.000 (55.000)	Acc@5 95.690 (95.690)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [97 | 100] LR: 1.585938
+Epoch: [97][0/13]	Time 0.303 (0.303)	Data 1.219 (1.219)	Loss 1.4443 (1.4443)	Acc@1 52.808 (52.808)	Acc@5 93.892 (93.892)
+[INFO] Storing checkpoint...
+
+Epoch: [98 | 100] LR: 1.585938
+Epoch: [98][0/13]	Time 0.270 (0.270)	Data 1.344 (1.344)	Loss 1.4196 (1.4196)	Acc@1 55.296 (55.296)	Acc@5 94.680 (94.680)
+[INFO] Storing checkpoint...
+
+Epoch: [99 | 100] LR: 1.585938
+Epoch: [99][0/13]	Time 0.297 (0.297)	Data 1.279 (1.279)	Loss 1.3795 (1.3795)	Acc@1 57.389 (57.389)	Acc@5 94.778 (94.778)
+[INFO] Storing checkpoint...
+
+Epoch: [100 | 100] LR: 1.585938
+Epoch: [100][0/13]	Time 0.300 (0.300)	Data 1.233 (1.233)	Loss 1.3991 (1.3991)	Acc@1 55.443 (55.443)	Acc@5 94.557 (94.557)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  31.94
+Max memory: 113.5447552
+ 3.890s  j: 101 bis 105
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 101
+count0: 4027
+
+Epoch: [101 | 105] LR: 1.585938
+Epoch: [101][0/13]	Time 1.147 (1.147)	Data 1.293 (1.293)	Loss 1.3434 (1.3434)	Acc@1 57.389 (57.389)	Acc@5 95.345 (95.345)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [102 | 105] LR: 1.585938
+Epoch: [102][0/13]	Time 0.302 (0.302)	Data 1.303 (1.303)	Loss 1.3832 (1.3832)	Acc@1 55.542 (55.542)	Acc@5 94.803 (94.803)
+[INFO] Storing checkpoint...
+
+Epoch: [103 | 105] LR: 1.585938
+Epoch: [103][0/13]	Time 0.227 (0.227)	Data 1.292 (1.292)	Loss 1.3870 (1.3870)	Acc@1 54.655 (54.655)	Acc@5 95.172 (95.172)
+[INFO] Storing checkpoint...
+
+Epoch: [104 | 105] LR: 1.585938
+Epoch: [104][0/13]	Time 0.250 (0.250)	Data 1.278 (1.278)	Loss 1.4793 (1.4793)	Acc@1 50.616 (50.616)	Acc@5 94.187 (94.187)
+[INFO] Storing checkpoint...
+
+Epoch: [105 | 105] LR: 1.585938
+Epoch: [105][0/13]	Time 0.265 (0.265)	Data 1.278 (1.278)	Loss 1.4550 (1.4550)	Acc@1 52.365 (52.365)	Acc@5 94.286 (94.286)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+
+ RM:  module.conv4.weight
+
+ RM:  module.conv5.weight
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv7.weight', 'module.conv8.weight'], ['module.conv9.weight', 'module.conv10.weight'], ['module.conv11.weight', 'module.conv12.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv16.weight', 'module.conv17.weight'], ['module.conv18.weight', 'module.conv19.weight'], ['module.conv20.weight', 'module.conv21.weight'], ['module.conv22.weight', 'module.conv23.weight']]
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv7.weight', 'module.conv8.weight'], ['module.conv9.weight', 'module.conv10.weight'], ['module.conv11.weight', 'module.conv12.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv16.weight', 'module.conv17.weight'], ['module.conv18.weight', 'module.conv19.weight'], ['module.conv20.weight', 'module.conv21.weight'], ['module.conv22.weight', 'module.conv23.weight']]
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(3, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(1, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(3, 2, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(2, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(3, 5, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(5, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(1, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(5, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(3, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(5, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(1, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(5, 3, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(3, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(5, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(12, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(1, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(12, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(1, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(12, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(5, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(12, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(1, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): AdaptiveAvgPool2d(output_size=(1, 1))
+    (47): Linear(in_features=12, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+Count: 3965 ; 4027 ; 0.9846039235162652
+[INFO] Storing checkpoint...
+
+  4060
+  26.05
+Max memory: 113.5447552
+ 3.909s  j: 106 bis 110
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 106
+count0: 3965
+
+Epoch: [106 | 110] LR: 1.585938
+Epoch: [106][0/13]	Time 1.128 (1.128)	Data 1.354 (1.354)	Loss 1.4319 (1.4319)	Acc@1 54.261 (54.261)	Acc@5 94.113 (94.113)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [107 | 110] LR: 1.585938
+Epoch: [107][0/13]	Time 0.254 (0.254)	Data 1.267 (1.267)	Loss 1.6666 (1.6666)	Acc@1 45.000 (45.000)	Acc@5 91.379 (91.379)
+[INFO] Storing checkpoint...
+
+Epoch: [108 | 110] LR: 1.585938
+Epoch: [108][0/13]	Time 0.257 (0.257)	Data 1.199 (1.199)	Loss 1.5787 (1.5787)	Acc@1 48.990 (48.990)	Acc@5 93.153 (93.153)
+[INFO] Storing checkpoint...
+
+Epoch: [109 | 110] LR: 1.585938
+Epoch: [109][0/13]	Time 0.251 (0.251)	Data 1.229 (1.229)	Loss 1.5923 (1.5923)	Acc@1 48.744 (48.744)	Acc@5 92.192 (92.192)
+[INFO] Storing checkpoint...
+
+Epoch: [110 | 110] LR: 1.585938
+Epoch: [110][0/13]	Time 0.242 (0.242)	Data 1.310 (1.310)	Loss 1.4660 (1.4660)	Acc@1 53.621 (53.621)	Acc@5 94.015 (94.015)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  33.5
+Max memory: 100.1360896
+ 3.677s  j: 111 bis 115
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 111
+count0: 3965
+
+Epoch: [111 | 115] LR: 1.585938
+Epoch: [111][0/13]	Time 1.204 (1.204)	Data 1.217 (1.217)	Loss 1.3536 (1.3536)	Acc@1 58.300 (58.300)	Acc@5 94.557 (94.557)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [112 | 115] LR: 1.585938
+Epoch: [112][0/13]	Time 0.252 (0.252)	Data 1.289 (1.289)	Loss 1.3628 (1.3628)	Acc@1 57.094 (57.094)	Acc@5 94.754 (94.754)
+[INFO] Storing checkpoint...
+
+Epoch: [113 | 115] LR: 1.585938
+Epoch: [113][0/13]	Time 0.233 (0.233)	Data 1.327 (1.327)	Loss 1.3522 (1.3522)	Acc@1 57.044 (57.044)	Acc@5 95.049 (95.049)
+[INFO] Storing checkpoint...
+
+Epoch: [114 | 115] LR: 1.585938
+Epoch: [114][0/13]	Time 0.240 (0.240)	Data 1.266 (1.266)	Loss 1.4210 (1.4210)	Acc@1 54.458 (54.458)	Acc@5 94.458 (94.458)
+[INFO] Storing checkpoint...
+
+Epoch: [115 | 115] LR: 1.585938
+Epoch: [115][0/13]	Time 0.232 (0.232)	Data 1.334 (1.334)	Loss 1.4218 (1.4218)	Acc@1 53.941 (53.941)	Acc@5 94.433 (94.433)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 3891 ; 3965 ; 0.9813366960907944
+[INFO] Storing checkpoint...
+
+  4060
+  38.03
+Max memory: 100.1360896
+ 3.659s  j: 116 bis 120
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 116
+count0: 3891
+
+Epoch: [116 | 120] LR: 1.585938
+Epoch: [116][0/13]	Time 1.087 (1.087)	Data 1.304 (1.304)	Loss 1.4155 (1.4155)	Acc@1 55.222 (55.222)	Acc@5 94.754 (94.754)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [117 | 120] LR: 1.585938
+Epoch: [117][0/13]	Time 0.236 (0.236)	Data 1.312 (1.312)	Loss 1.5289 (1.5289)	Acc@1 51.355 (51.355)	Acc@5 93.079 (93.079)
+[INFO] Storing checkpoint...
+
+Epoch: [118 | 120] LR: 1.585938
+Epoch: [118][0/13]	Time 0.234 (0.234)	Data 1.369 (1.369)	Loss 1.4688 (1.4688)	Acc@1 51.650 (51.650)	Acc@5 93.818 (93.818)
+[INFO] Storing checkpoint...
+
+Epoch: [119 | 120] LR: 1.585938
+Epoch: [119][0/13]	Time 0.234 (0.234)	Data 1.424 (1.424)	Loss 1.3977 (1.3977)	Acc@1 56.502 (56.502)	Acc@5 94.384 (94.384)
+[INFO] Storing checkpoint...
+
+Epoch: [120 | 120] LR: 1.585938
+Epoch: [120][0/13]	Time 0.237 (0.237)	Data 1.296 (1.296)	Loss 1.3850 (1.3850)	Acc@1 56.084 (56.084)	Acc@5 95.123 (95.123)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  48.48
+Max memory: 99.4930176
+ 3.642s  j: 121 bis 125
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 121
+count0: 3891
+
+Epoch: [121 | 125] LR: 1.585938
+Epoch: [121][0/13]	Time 1.045 (1.045)	Data 1.347 (1.347)	Loss 1.3412 (1.3412)	Acc@1 56.724 (56.724)	Acc@5 95.739 (95.739)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [122 | 125] LR: 1.585938
+Epoch: [122][0/13]	Time 0.265 (0.265)	Data 1.260 (1.260)	Loss 1.3179 (1.3179)	Acc@1 57.783 (57.783)	Acc@5 95.394 (95.394)
+[INFO] Storing checkpoint...
+
+Epoch: [123 | 125] LR: 1.585938
+Epoch: [123][0/13]	Time 0.266 (0.266)	Data 1.256 (1.256)	Loss 1.4030 (1.4030)	Acc@1 55.443 (55.443)	Acc@5 94.877 (94.877)
+[INFO] Storing checkpoint...
+
+Epoch: [124 | 125] LR: 1.585938
+Epoch: [124][0/13]	Time 0.238 (0.238)	Data 1.223 (1.223)	Loss 1.3673 (1.3673)	Acc@1 56.921 (56.921)	Acc@5 95.345 (95.345)
+[INFO] Storing checkpoint...
+
+Epoch: [125 | 125] LR: 1.585938
+Epoch: [125][0/13]	Time 0.210 (0.210)	Data 1.245 (1.245)	Loss 1.4128 (1.4128)	Acc@1 55.099 (55.099)	Acc@5 93.966 (93.966)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+
+ RM:  module.conv22.weight
+
+ RM:  module.conv23.weight
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv7.weight', 'module.conv8.weight'], ['module.conv9.weight', 'module.conv10.weight'], ['module.conv11.weight', 'module.conv12.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv16.weight', 'module.conv17.weight'], ['module.conv18.weight', 'module.conv19.weight'], ['module.conv20.weight', 'module.conv21.weight']]
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv7.weight', 'module.conv8.weight'], ['module.conv9.weight', 'module.conv10.weight'], ['module.conv11.weight', 'module.conv12.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv16.weight', 'module.conv17.weight'], ['module.conv18.weight', 'module.conv19.weight'], ['module.conv20.weight', 'module.conv21.weight']]
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(3, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(1, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(3, 1, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(1, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(3, 5, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(5, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(1, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(5, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(3, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(5, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(1, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(5, 3, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(3, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(5, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(12, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(1, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(12, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(1, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(12, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(5, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): AdaptiveAvgPool2d(output_size=(1, 1))
+    (43): Linear(in_features=12, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+Count: 3649 ; 3891 ; 0.9378051914674891
+[INFO] Storing checkpoint...
+
+  4060
+  33.86
+Max memory: 99.4930176
+ 3.511s  j: 126 bis 130
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 126
+count0: 3649
+
+Epoch: [126 | 130] LR: 1.585938
+Epoch: [126][0/13]	Time 1.179 (1.179)	Data 1.887 (1.887)	Loss 1.3646 (1.3646)	Acc@1 56.379 (56.379)	Acc@5 94.680 (94.680)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [127 | 130] LR: 1.585938
+Epoch: [127][0/13]	Time 0.225 (0.225)	Data 1.424 (1.424)	Loss 1.3486 (1.3486)	Acc@1 56.453 (56.453)	Acc@5 95.222 (95.222)
+[INFO] Storing checkpoint...
+
+Epoch: [128 | 130] LR: 1.585938
+Epoch: [128][0/13]	Time 0.212 (0.212)	Data 1.377 (1.377)	Loss 1.3569 (1.3569)	Acc@1 55.665 (55.665)	Acc@5 95.887 (95.887)
+[INFO] Storing checkpoint...
+
+Epoch: [129 | 130] LR: 1.585938
+Epoch: [129][0/13]	Time 0.426 (0.426)	Data 1.794 (1.794)	Loss 1.3856 (1.3856)	Acc@1 55.394 (55.394)	Acc@5 94.803 (94.803)
+[INFO] Storing checkpoint...
+
+Epoch: [130 | 130] LR: 1.585938
+Epoch: [130][0/13]	Time 0.224 (0.224)	Data 1.369 (1.369)	Loss 1.4401 (1.4401)	Acc@1 53.424 (53.424)	Acc@5 94.212 (94.212)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 3557 ; 3649 ; 0.9747876130446698
+[INFO] Storing checkpoint...
+
+  4060
+  33.77
+Max memory: 99.492096
+ 3.605s  j: 131 bis 135
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 131
+count0: 3557
+
+Epoch: [131 | 135] LR: 1.585938
+Epoch: [131][0/13]	Time 1.009 (1.009)	Data 1.308 (1.308)	Loss 1.3742 (1.3742)	Acc@1 54.901 (54.901)	Acc@5 95.148 (95.148)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [132 | 135] LR: 1.585938
+Epoch: [132][0/13]	Time 0.256 (0.256)	Data 2.013 (2.013)	Loss 1.5056 (1.5056)	Acc@1 51.158 (51.158)	Acc@5 92.414 (92.414)
+[INFO] Storing checkpoint...
+
+Epoch: [133 | 135] LR: 1.585938
+Epoch: [133][0/13]	Time 0.299 (0.299)	Data 1.517 (1.517)	Loss 1.4210 (1.4210)	Acc@1 53.571 (53.571)	Acc@5 94.064 (94.064)
+[INFO] Storing checkpoint...
+
+Epoch: [134 | 135] LR: 1.585938
+Epoch: [134][0/13]	Time 0.240 (0.240)	Data 1.210 (1.210)	Loss 1.4168 (1.4168)	Acc@1 53.793 (53.793)	Acc@5 95.148 (95.148)
+[INFO] Storing checkpoint...
+
+Epoch: [135 | 135] LR: 1.585938
+Epoch: [135][0/13]	Time 0.198 (0.198)	Data 1.895 (1.895)	Loss 1.4347 (1.4347)	Acc@1 53.300 (53.300)	Acc@5 93.892 (93.892)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  37.24
+Max memory: 98.4719872
+ 4.079s  j: 136 bis 140
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 136
+count0: 3557
+
+Epoch: [136 | 140] LR: 1.585938
+Epoch: [136][0/13]	Time 1.068 (1.068)	Data 1.231 (1.231)	Loss 1.3985 (1.3985)	Acc@1 55.148 (55.148)	Acc@5 94.704 (94.704)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [137 | 140] LR: 1.585938
+Epoch: [137][0/13]	Time 0.220 (0.220)	Data 1.213 (1.213)	Loss 1.3928 (1.3928)	Acc@1 55.419 (55.419)	Acc@5 94.507 (94.507)
+[INFO] Storing checkpoint...
+
+Epoch: [138 | 140] LR: 1.585938
+Epoch: [138][0/13]	Time 0.217 (0.217)	Data 1.579 (1.579)	Loss 1.3036 (1.3036)	Acc@1 58.079 (58.079)	Acc@5 95.566 (95.566)
+[INFO] Storing checkpoint...
+
+Epoch: [139 | 140] LR: 1.585938
+Epoch: [139][0/13]	Time 0.358 (0.358)	Data 1.871 (1.871)	Loss 1.3010 (1.3010)	Acc@1 59.409 (59.409)	Acc@5 95.468 (95.468)
+[INFO] Storing checkpoint...
+
+Epoch: [140 | 140] LR: 1.585938
+Epoch: [140][0/13]	Time 0.233 (0.233)	Data 1.479 (1.479)	Loss 1.3781 (1.3781)	Acc@1 55.123 (55.123)	Acc@5 95.148 (95.148)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  18.62
+Max memory: 98.4719872
+ 4.132s  j: 141 bis 145
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 141
+count0: 3557
+
+Epoch: [141 | 145] LR: 1.585938
+Epoch: [141][0/13]	Time 1.059 (1.059)	Data 1.269 (1.269)	Loss 1.3605 (1.3605)	Acc@1 55.813 (55.813)	Acc@5 95.000 (95.000)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [142 | 145] LR: 1.585938
+Epoch: [142][0/13]	Time 0.204 (0.204)	Data 1.272 (1.272)	Loss 1.8545 (1.8545)	Acc@1 38.645 (38.645)	Acc@5 89.163 (89.163)
+[INFO] Storing checkpoint...
+
+Epoch: [143 | 145] LR: 1.585938
+Epoch: [143][0/13]	Time 0.259 (0.259)	Data 1.209 (1.209)	Loss 1.9460 (1.9460)	Acc@1 35.788 (35.788)	Acc@5 86.379 (86.379)
+[INFO] Storing checkpoint...
+
+Epoch: [144 | 145] LR: 1.585938
+Epoch: [144][0/13]	Time 0.178 (0.178)	Data 1.209 (1.209)	Loss 1.9903 (1.9903)	Acc@1 35.862 (35.862)	Acc@5 88.079 (88.079)
+[INFO] Storing checkpoint...
+
+Epoch: [145 | 145] LR: 1.585938
+Epoch: [145][0/13]	Time 0.229 (0.229)	Data 1.234 (1.234)	Loss 1.9223 (1.9223)	Acc@1 40.320 (40.320)	Acc@5 90.000 (90.000)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  24.34
+Max memory: 98.4719872
+ 3.476s  j: 146 bis 150
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 146
+count0: 3557
+
+Epoch: [146 | 150] LR: 1.585938
+Epoch: [146][0/13]	Time 1.031 (1.031)	Data 1.348 (1.348)	Loss 1.8611 (1.8611)	Acc@1 42.118 (42.118)	Acc@5 89.236 (89.236)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [147 | 150] LR: 1.585938
+Epoch: [147][0/13]	Time 0.274 (0.274)	Data 1.235 (1.235)	Loss 1.7364 (1.7364)	Acc@1 44.064 (44.064)	Acc@5 91.305 (91.305)
+[INFO] Storing checkpoint...
+
+Epoch: [148 | 150] LR: 1.585938
+Epoch: [148][0/13]	Time 0.242 (0.242)	Data 1.237 (1.237)	Loss 1.6189 (1.6189)	Acc@1 48.916 (48.916)	Acc@5 92.463 (92.463)
+[INFO] Storing checkpoint...
+
+Epoch: [149 | 150] LR: 1.585938
+Epoch: [149][0/13]	Time 0.201 (0.201)	Data 1.259 (1.259)	Loss 1.5478 (1.5478)	Acc@1 49.951 (49.951)	Acc@5 93.153 (93.153)
+[INFO] Storing checkpoint...
+
+Epoch: [150 | 150] LR: 1.585938
+Epoch: [150][0/13]	Time 0.188 (0.188)	Data 1.300 (1.300)	Loss 1.4890 (1.4890)	Acc@1 53.300 (53.300)	Acc@5 93.670 (93.670)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  24.88
+Max memory: 98.4719872
+ 3.246s  j: 151 bis 155
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 151
+count0: 3557
+
+Epoch: [151 | 155] LR: 1.585938
+Epoch: [151][0/13]	Time 0.965 (0.965)	Data 1.421 (1.421)	Loss 1.4753 (1.4753)	Acc@1 53.030 (53.030)	Acc@5 93.768 (93.768)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [152 | 155] LR: 1.585938
+Epoch: [152][0/13]	Time 0.296 (0.296)	Data 1.844 (1.844)	Loss 1.5431 (1.5431)	Acc@1 49.975 (49.975)	Acc@5 93.030 (93.030)
+[INFO] Storing checkpoint...
+
+Epoch: [153 | 155] LR: 1.585938
+Epoch: [153][0/13]	Time 0.220 (0.220)	Data 1.304 (1.304)	Loss 1.5575 (1.5575)	Acc@1 50.320 (50.320)	Acc@5 93.325 (93.325)
+[INFO] Storing checkpoint...
+
+Epoch: [154 | 155] LR: 1.585938
+Epoch: [154][0/13]	Time 0.224 (0.224)	Data 1.204 (1.204)	Loss 1.5648 (1.5648)	Acc@1 50.665 (50.665)	Acc@5 92.833 (92.833)
+[INFO] Storing checkpoint...
+
+Epoch: [155 | 155] LR: 1.585938
+Epoch: [155][0/13]	Time 0.262 (0.262)	Data 1.201 (1.201)	Loss 1.5092 (1.5092)	Acc@1 51.773 (51.773)	Acc@5 93.399 (93.399)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  27.71
+Max memory: 98.4719872
+ 3.445s  j: 156 bis 160
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 156
+count0: 3557
+
+Epoch: [156 | 160] LR: 1.585938
+Epoch: [156][0/13]	Time 1.287 (1.287)	Data 1.483 (1.483)	Loss 1.4737 (1.4737)	Acc@1 53.473 (53.473)	Acc@5 93.719 (93.719)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [157 | 160] LR: 1.585938
+Epoch: [157][0/13]	Time 0.245 (0.245)	Data 1.389 (1.389)	Loss 1.4714 (1.4714)	Acc@1 52.512 (52.512)	Acc@5 93.916 (93.916)
+[INFO] Storing checkpoint...
+
+Epoch: [158 | 160] LR: 1.585938
+Epoch: [158][0/13]	Time 0.234 (0.234)	Data 1.347 (1.347)	Loss 1.5451 (1.5451)	Acc@1 49.138 (49.138)	Acc@5 93.448 (93.448)
+[INFO] Storing checkpoint...
+
+Epoch: [159 | 160] LR: 1.585938
+Epoch: [159][0/13]	Time 0.201 (0.201)	Data 1.257 (1.257)	Loss 1.4620 (1.4620)	Acc@1 52.709 (52.709)	Acc@5 93.498 (93.498)
+[INFO] Storing checkpoint...
+
+Epoch: [160 | 160] LR: 1.585938
+Epoch: [160][0/13]	Time 0.254 (0.254)	Data 1.252 (1.252)	Loss 1.3958 (1.3958)	Acc@1 55.197 (55.197)	Acc@5 94.852 (94.852)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  38.64
+Max memory: 98.4719872
+ 3.455s  j: 161 bis 165
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 161
+count0: 3557
+
+Epoch: [161 | 165] LR: 1.585938
+Epoch: [161][0/13]	Time 0.908 (0.908)	Data 1.475 (1.475)	Loss 1.4546 (1.4546)	Acc@1 53.892 (53.892)	Acc@5 93.768 (93.768)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [162 | 165] LR: 1.585938
+Epoch: [162][0/13]	Time 0.253 (0.253)	Data 1.203 (1.203)	Loss 1.4679 (1.4679)	Acc@1 52.512 (52.512)	Acc@5 94.015 (94.015)
+[INFO] Storing checkpoint...
+
+Epoch: [163 | 165] LR: 1.585938
+Epoch: [163][0/13]	Time 0.211 (0.211)	Data 2.059 (2.059)	Loss 1.4230 (1.4230)	Acc@1 54.557 (54.557)	Acc@5 94.409 (94.409)
+[INFO] Storing checkpoint...
+
+Epoch: [164 | 165] LR: 1.585938
+Epoch: [164][0/13]	Time 0.178 (0.178)	Data 1.301 (1.301)	Loss 1.4264 (1.4264)	Acc@1 53.300 (53.300)	Acc@5 94.778 (94.778)
+[INFO] Storing checkpoint...
+
+Epoch: [165 | 165] LR: 1.585938
+Epoch: [165][0/13]	Time 0.227 (0.227)	Data 1.284 (1.284)	Loss 1.4626 (1.4626)	Acc@1 53.177 (53.177)	Acc@5 94.138 (94.138)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  45.24
+Max memory: 98.4719872
+ 3.433s  j: 166 bis 170
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 166
+count0: 3557
+
+Epoch: [166 | 170] LR: 1.585938
+Epoch: [166][0/13]	Time 1.022 (1.022)	Data 1.313 (1.313)	Loss 1.4050 (1.4050)	Acc@1 54.532 (54.532)	Acc@5 94.606 (94.606)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [167 | 170] LR: 1.585938
+Epoch: [167][0/13]	Time 0.244 (0.244)	Data 1.234 (1.234)	Loss 1.5130 (1.5130)	Acc@1 50.837 (50.837)	Acc@5 93.547 (93.547)
+[INFO] Storing checkpoint...
+
+Epoch: [168 | 170] LR: 1.585938
+Epoch: [168][0/13]	Time 0.227 (0.227)	Data 1.307 (1.307)	Loss 1.4049 (1.4049)	Acc@1 54.384 (54.384)	Acc@5 94.138 (94.138)
+[INFO] Storing checkpoint...
+
+Epoch: [169 | 170] LR: 1.585938
+Epoch: [169][0/13]	Time 0.236 (0.236)	Data 1.222 (1.222)	Loss 1.4056 (1.4056)	Acc@1 54.507 (54.507)	Acc@5 95.246 (95.246)
+[INFO] Storing checkpoint...
+
+Epoch: [170 | 170] LR: 1.585938
+Epoch: [170][0/13]	Time 0.390 (0.390)	Data 1.858 (1.858)	Loss 1.4764 (1.4764)	Acc@1 52.020 (52.020)	Acc@5 94.064 (94.064)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  23.49
+Max memory: 98.4719872
+ 4.824s  j: 171 bis 175
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 171
+count0: 3557
+
+Epoch: [171 | 175] LR: 1.585938
+Epoch: [171][0/13]	Time 0.976 (0.976)	Data 1.328 (1.328)	Loss 1.5098 (1.5098)	Acc@1 51.453 (51.453)	Acc@5 92.709 (92.709)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [172 | 175] LR: 1.585938
+Epoch: [172][0/13]	Time 0.319 (0.319)	Data 1.688 (1.688)	Loss 1.5537 (1.5537)	Acc@1 49.926 (49.926)	Acc@5 92.783 (92.783)
+[INFO] Storing checkpoint...
+
+Epoch: [173 | 175] LR: 1.585938
+Epoch: [173][0/13]	Time 0.213 (0.213)	Data 1.215 (1.215)	Loss 1.5015 (1.5015)	Acc@1 50.887 (50.887)	Acc@5 93.867 (93.867)
+[INFO] Storing checkpoint...
+
+Epoch: [174 | 175] LR: 1.585938
+Epoch: [174][0/13]	Time 0.223 (0.223)	Data 1.872 (1.872)	Loss 1.3910 (1.3910)	Acc@1 55.394 (55.394)	Acc@5 95.542 (95.542)
+[INFO] Storing checkpoint...
+
+Epoch: [175 | 175] LR: 1.585938
+Epoch: [175][0/13]	Time 0.347 (0.347)	Data 1.561 (1.561)	Loss 1.3606 (1.3606)	Acc@1 56.478 (56.478)	Acc@5 94.803 (94.803)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 3454 ; 3557 ; 0.9710430137756536
+[INFO] Storing checkpoint...
+
+  4060
+  28.34
+Max memory: 98.4719872
+ 4.542s  j: 176 bis 180
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 176
+count0: 3454
+
+Epoch: [176 | 180] LR: 1.585938
+Epoch: [176][0/13]	Time 1.072 (1.072)	Data 1.391 (1.391)	Loss 1.3473 (1.3473)	Acc@1 55.690 (55.690)	Acc@5 95.566 (95.566)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [177 | 180] LR: 1.585938
+Epoch: [177][0/13]	Time 0.393 (0.393)	Data 1.597 (1.597)	Loss 1.5085 (1.5085)	Acc@1 51.330 (51.330)	Acc@5 93.030 (93.030)
+[INFO] Storing checkpoint...
+
+Epoch: [178 | 180] LR: 1.585938
+Epoch: [178][0/13]	Time 0.199 (0.199)	Data 1.487 (1.487)	Loss 1.4150 (1.4150)	Acc@1 55.197 (55.197)	Acc@5 94.606 (94.606)
+[INFO] Storing checkpoint...
+
+Epoch: [179 | 180] LR: 1.585938
+Epoch: [179][0/13]	Time 0.206 (0.206)	Data 1.881 (1.881)	Loss 1.4401 (1.4401)	Acc@1 53.202 (53.202)	Acc@5 94.212 (94.212)
+[INFO] Storing checkpoint...
+
+Epoch: [180 | 180] LR: 1.585938
+Epoch: [180][0/13]	Time 0.342 (0.342)	Data 1.403 (1.403)	Loss 1.3868 (1.3868)	Acc@1 56.453 (56.453)	Acc@5 94.433 (94.433)
+[INFO] Storing checkpoint...
+
+  4060
+  26.41
+Max memory: 91.9936512
+ 4.439s  
