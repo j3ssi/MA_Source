@@ -1,0 +1,1439 @@
+j: 0 bis 5
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+stage: 0; sizeof Layers: 3
+stage: 1; sizeof Layers: 6
+stage: 2; sizeof Layers: 12
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(3, 6, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(3, 6, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(6, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(6, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (59): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (60): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (61): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (62): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (63): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (64): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (65): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (66): AdaptiveAvgPool2d(output_size=(1, 1))
+    (67): Linear(in_features=12, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv12.weight', 'module.conv13.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv21.weight', 'module.conv22.weight'], ['module.conv23.weight', 'module.conv24.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight'], ['module.conv30.weight', 'module.conv31.weight'], ['module.conv32.weight', 'module.conv33.weight']]
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv12.weight', 'module.conv13.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv21.weight', 'module.conv22.weight'], ['module.conv23.weight', 'module.conv24.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight'], ['module.conv30.weight', 'module.conv31.weight'], ['module.conv32.weight', 'module.conv33.weight']]
+device count: 1
+Startepoche: 1
+count0: 17683
+
+Epoch: [1 | 5] LR: 1.585938
+Epoch: [1][0/13]	Time 0.725 (0.725)	Data 1.236 (1.236)	Loss 3.0441 (3.0441)	Acc@1 11.133 (11.133)	Acc@5 47.340 (47.340)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [2 | 5] LR: 1.585938
+Epoch: [2][0/13]	Time 0.397 (0.397)	Data 1.307 (1.307)	Loss 2.5326 (2.5326)	Acc@1 23.300 (23.300)	Acc@5 80.493 (80.493)
+[INFO] Storing checkpoint...
+
+Epoch: [3 | 5] LR: 1.585938
+Epoch: [3][0/13]	Time 0.448 (0.448)	Data 1.236 (1.236)	Loss 2.5267 (2.5267)	Acc@1 18.670 (18.670)	Acc@5 77.635 (77.635)
+[INFO] Storing checkpoint...
+
+Epoch: [4 | 5] LR: 1.585938
+Epoch: [4][0/13]	Time 0.360 (0.360)	Data 1.277 (1.277)	Loss 2.4253 (2.4253)	Acc@1 24.409 (24.409)	Acc@5 82.069 (82.069)
+[INFO] Storing checkpoint...
+
+Epoch: [5 | 5] LR: 1.585938
+Epoch: [5][0/13]	Time 0.379 (0.379)	Data 1.196 (1.196)	Loss 2.3661 (2.3661)	Acc@1 21.970 (21.970)	Acc@5 78.892 (78.892)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 9773 ; 17683 ; 0.552677713057739
+[INFO] Storing checkpoint...
+
+  4060
+  18.76
+Max memory: 241.7924608
+ 5.244s  j: 6 bis 10
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 6
+count0: 9773
+
+Epoch: [6 | 10] LR: 1.585938
+Epoch: [6][0/13]	Time 1.487 (1.487)	Data 1.474 (1.474)	Loss 2.1826 (2.1826)	Acc@1 25.369 (25.369)	Acc@5 81.823 (81.823)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [7 | 10] LR: 1.585938
+Epoch: [7][0/13]	Time 0.484 (0.484)	Data 1.209 (1.209)	Loss 2.0957 (2.0957)	Acc@1 26.527 (26.527)	Acc@5 83.448 (83.448)
+[INFO] Storing checkpoint...
+
+Epoch: [8 | 10] LR: 1.585938
+Epoch: [8][0/13]	Time 0.383 (0.383)	Data 1.234 (1.234)	Loss 2.0986 (2.0986)	Acc@1 25.714 (25.714)	Acc@5 83.498 (83.498)
+[INFO] Storing checkpoint...
+
+Epoch: [9 | 10] LR: 1.585938
+Epoch: [9][0/13]	Time 0.361 (0.361)	Data 1.259 (1.259)	Loss 2.0368 (2.0368)	Acc@1 29.803 (29.803)	Acc@5 85.443 (85.443)
+[INFO] Storing checkpoint...
+
+Epoch: [10 | 10] LR: 1.585938
+Epoch: [10][0/13]	Time 0.431 (0.431)	Data 1.207 (1.207)	Loss 1.9932 (1.9932)	Acc@1 29.704 (29.704)	Acc@5 84.951 (84.951)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+
+ RM:  module.conv8.weight
+
+ RM:  module.conv9.weight
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv21.weight', 'module.conv22.weight'], ['module.conv24.weight', 'module.conv25.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight'], ['module.conv30.weight', 'module.conv31.weight']]
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv21.weight', 'module.conv22.weight'], ['module.conv24.weight', 'module.conv25.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight'], ['module.conv30.weight', 'module.conv31.weight']]
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(3, 6, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(3, 6, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(6, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(3, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(6, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(4, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(6, 10, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(10, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(10, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(6, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(12, 7, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(7, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(7, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(12, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(3, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(12, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(4, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): Conv2d(12, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (59): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (60): Conv2d(2, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (61): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (62): AdaptiveAvgPool2d(output_size=(1, 1))
+    (63): Linear(in_features=12, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+Count: 6913 ; 9773 ; 0.7073570039905863
+[INFO] Storing checkpoint...
+
+  4060
+  16.03
+Max memory: 208.7685632
+ 5.615s  j: 11 bis 15
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 11
+count0: 6913
+
+Epoch: [11 | 15] LR: 1.585938
+Epoch: [11][0/13]	Time 1.470 (1.470)	Data 1.425 (1.425)	Loss 1.9428 (1.9428)	Acc@1 30.936 (30.936)	Acc@5 85.468 (85.468)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [12 | 15] LR: 1.585938
+Epoch: [12][0/13]	Time 0.394 (0.394)	Data 1.288 (1.288)	Loss 2.0026 (2.0026)	Acc@1 27.635 (27.635)	Acc@5 83.990 (83.990)
+[INFO] Storing checkpoint...
+
+Epoch: [13 | 15] LR: 1.585938
+Epoch: [13][0/13]	Time 0.377 (0.377)	Data 1.324 (1.324)	Loss 2.0214 (2.0214)	Acc@1 26.798 (26.798)	Acc@5 83.300 (83.300)
+[INFO] Storing checkpoint...
+
+Epoch: [14 | 15] LR: 1.585938
+Epoch: [14][0/13]	Time 0.418 (0.418)	Data 1.213 (1.213)	Loss 2.0203 (2.0203)	Acc@1 28.818 (28.818)	Acc@5 84.384 (84.384)
+[INFO] Storing checkpoint...
+
+Epoch: [15 | 15] LR: 1.585938
+Epoch: [15][0/13]	Time 0.331 (0.331)	Data 1.136 (1.136)	Loss 1.9795 (1.9795)	Acc@1 29.433 (29.433)	Acc@5 85.788 (85.788)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 6087 ; 6913 ; 0.8805149717922754
+[INFO] Storing checkpoint...
+
+  4060
+  28.17
+Max memory: 170.4587776
+ 5.094s  j: 16 bis 20
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 16
+count0: 6087
+
+Epoch: [16 | 20] LR: 1.585938
+Epoch: [16][0/13]	Time 1.795 (1.795)	Data 1.784 (1.784)	Loss 1.9138 (1.9138)	Acc@1 31.970 (31.970)	Acc@5 87.438 (87.438)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [17 | 20] LR: 1.585938
+Epoch: [17][0/13]	Time 0.409 (0.409)	Data 1.214 (1.214)	Loss 1.8610 (1.8610)	Acc@1 34.951 (34.951)	Acc@5 88.621 (88.621)
+[INFO] Storing checkpoint...
+
+Epoch: [18 | 20] LR: 1.585938
+Epoch: [18][0/13]	Time 0.381 (0.381)	Data 1.342 (1.342)	Loss 1.8179 (1.8179)	Acc@1 36.872 (36.872)	Acc@5 88.153 (88.153)
+[INFO] Storing checkpoint...
+
+Epoch: [19 | 20] LR: 1.585938
+Epoch: [19][0/13]	Time 0.299 (0.299)	Data 1.330 (1.330)	Loss 1.8382 (1.8382)	Acc@1 34.163 (34.163)	Acc@5 88.448 (88.448)
+[INFO] Storing checkpoint...
+
+Epoch: [20 | 20] LR: 1.585938
+Epoch: [20][0/13]	Time 0.372 (0.372)	Data 1.307 (1.307)	Loss 1.8408 (1.8408)	Acc@1 35.099 (35.099)	Acc@5 88.030 (88.030)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 5441 ; 6087 ; 0.8938721866272383
+[INFO] Storing checkpoint...
+
+  4060
+  22.37
+Max memory: 161.8630144
+ 4.846s  j: 21 bis 25
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+count0: 5441
+
+Epoch: [21 | 25] LR: 1.585938
+Epoch: [21][0/13]	Time 1.395 (1.395)	Data 1.465 (1.465)	Loss 1.9163 (1.9163)	Acc@1 33.916 (33.916)	Acc@5 86.256 (86.256)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [22 | 25] LR: 1.585938
+Epoch: [22][0/13]	Time 0.392 (0.392)	Data 1.594 (1.594)	Loss 1.9648 (1.9648)	Acc@1 29.926 (29.926)	Acc@5 83.768 (83.768)
+[INFO] Storing checkpoint...
+
+Epoch: [23 | 25] LR: 1.585938
+Epoch: [23][0/13]	Time 0.316 (0.316)	Data 1.265 (1.265)	Loss 1.9812 (1.9812)	Acc@1 30.542 (30.542)	Acc@5 86.133 (86.133)
+[INFO] Storing checkpoint...
+
+Epoch: [24 | 25] LR: 1.585938
+Epoch: [24][0/13]	Time 0.293 (0.293)	Data 1.274 (1.274)	Loss 2.1210 (2.1210)	Acc@1 27.709 (27.709)	Acc@5 84.039 (84.039)
+[INFO] Storing checkpoint...
+
+Epoch: [25 | 25] LR: 1.585938
+Epoch: [25][0/13]	Time 0.352 (0.352)	Data 1.182 (1.182)	Loss 2.2092 (2.2092)	Acc@1 33.103 (33.103)	Acc@5 85.616 (85.616)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 4905 ; 5441 ; 0.9014886969307113
+[INFO] Storing checkpoint...
+
+  4060
+  14.19
+Max memory: 158.5472512
+ 4.685s  j: 26 bis 30
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 26
+count0: 4905
+
+Epoch: [26 | 30] LR: 1.585938
+Epoch: [26][0/13]	Time 1.424 (1.424)	Data 1.721 (1.721)	Loss 1.9637 (1.9637)	Acc@1 36.798 (36.798)	Acc@5 87.635 (87.635)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [27 | 30] LR: 1.585938
+Epoch: [27][0/13]	Time 0.393 (0.393)	Data 1.241 (1.241)	Loss 1.8991 (1.8991)	Acc@1 35.197 (35.197)	Acc@5 88.596 (88.596)
+[INFO] Storing checkpoint...
+
+Epoch: [28 | 30] LR: 1.585938
+Epoch: [28][0/13]	Time 0.408 (0.408)	Data 1.208 (1.208)	Loss 1.8951 (1.8951)	Acc@1 34.951 (34.951)	Acc@5 86.675 (86.675)
+[INFO] Storing checkpoint...
+
+Epoch: [29 | 30] LR: 1.585938
+Epoch: [29][0/13]	Time 0.351 (0.351)	Data 1.253 (1.253)	Loss 1.8269 (1.8269)	Acc@1 36.133 (36.133)	Acc@5 88.941 (88.941)
+[INFO] Storing checkpoint...
+
+Epoch: [30 | 30] LR: 1.585938
+Epoch: [30][0/13]	Time 0.293 (0.293)	Data 1.295 (1.295)	Loss 1.8577 (1.8577)	Acc@1 33.867 (33.867)	Acc@5 88.670 (88.670)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 4302 ; 4905 ; 0.8770642201834863
+[INFO] Storing checkpoint...
+
+  4060
+  23.09
+Max memory: 158.590976
+ 4.670s  j: 31 bis 35
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 31
+count0: 4302
+
+Epoch: [31 | 35] LR: 1.585938
+Epoch: [31][0/13]	Time 1.685 (1.685)	Data 1.876 (1.876)	Loss 1.8918 (1.8918)	Acc@1 32.685 (32.685)	Acc@5 86.527 (86.527)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [32 | 35] LR: 1.585938
+Epoch: [32][0/13]	Time 0.628 (0.628)	Data 1.742 (1.742)	Loss 1.9008 (1.9008)	Acc@1 33.153 (33.153)	Acc@5 85.443 (85.443)
+[INFO] Storing checkpoint...
+
+Epoch: [33 | 35] LR: 1.585938
+Epoch: [33][0/13]	Time 0.370 (0.370)	Data 1.323 (1.323)	Loss 1.7774 (1.7774)	Acc@1 38.498 (38.498)	Acc@5 88.941 (88.941)
+[INFO] Storing checkpoint...
+
+Epoch: [34 | 35] LR: 1.585938
+Epoch: [34][0/13]	Time 0.310 (0.310)	Data 1.318 (1.318)	Loss 1.7773 (1.7773)	Acc@1 38.005 (38.005)	Acc@5 89.458 (89.458)
+[INFO] Storing checkpoint...
+
+Epoch: [35 | 35] LR: 1.585938
+Epoch: [35][0/13]	Time 0.368 (0.368)	Data 1.289 (1.289)	Loss 1.7379 (1.7379)	Acc@1 39.187 (39.187)	Acc@5 90.099 (90.099)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+
+ RM:  module.conv15.weight
+
+ RM:  module.conv16.weight
+
+ RM:  module.conv17.weight
+
+ RM:  module.conv18.weight
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv22.weight', 'module.conv23.weight'], ['module.conv24.weight', 'module.conv25.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight']]
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv22.weight', 'module.conv23.weight'], ['module.conv24.weight', 'module.conv25.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight']]
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(2, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(1, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(2, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(2, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(2, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(2, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(2, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(1, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(2, 2, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(2, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(2, 4, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(4, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(1, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(4, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(1, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(4, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(1, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(4, 7, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(7, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(7, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(4, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(12, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(4, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(12, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(2, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(12, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(1, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(12, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(1, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): AdaptiveAvgPool2d(output_size=(1, 1))
+    (59): Linear(in_features=12, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv20.weight', 'module.conv21.weight'], ['module.conv22.weight', 'module.conv23.weight'], ['module.conv24.weight', 'module.conv25.weight'], ['module.conv26.weight', 'module.conv27.weight']]
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv20.weight', 'module.conv21.weight'], ['module.conv22.weight', 'module.conv23.weight'], ['module.conv24.weight', 'module.conv25.weight'], ['module.conv26.weight', 'module.conv27.weight']]
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(2, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(1, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(2, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(2, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(2, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(2, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(2, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(1, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(2, 2, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(2, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(2, 4, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(4, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(1, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(4, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(1, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(4, 7, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(7, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(7, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(4, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(12, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(4, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(12, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(2, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(12, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(1, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(12, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(1, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): AdaptiveAvgPool2d(output_size=(1, 1))
+    (55): Linear(in_features=12, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+Count: 4082 ; 4302 ; 0.9488609948860995
+[INFO] Storing checkpoint...
+
+  4060
+  21.82
+Max memory: 124.4250624
+ 4.629s  j: 36 bis 40
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 36
+count0: 4082
+
+Epoch: [36 | 40] LR: 1.585938
+Epoch: [36][0/13]	Time 1.088 (1.088)	Data 1.490 (1.490)	Loss 1.8348 (1.8348)	Acc@1 36.675 (36.675)	Acc@5 88.054 (88.054)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [37 | 40] LR: 1.585938
+Epoch: [37][0/13]	Time 0.355 (0.355)	Data 1.176 (1.176)	Loss 1.8624 (1.8624)	Acc@1 34.409 (34.409)	Acc@5 85.911 (85.911)
+[INFO] Storing checkpoint...
+
+Epoch: [38 | 40] LR: 1.585938
+Epoch: [38][0/13]	Time 0.310 (0.310)	Data 1.678 (1.678)	Loss 1.7175 (1.7175)	Acc@1 39.975 (39.975)	Acc@5 90.665 (90.665)
+[INFO] Storing checkpoint...
+
+Epoch: [39 | 40] LR: 1.585938
+Epoch: [39][0/13]	Time 0.320 (0.320)	Data 1.256 (1.256)	Loss 1.7028 (1.7028)	Acc@1 39.384 (39.384)	Acc@5 90.296 (90.296)
+[INFO] Storing checkpoint...
+
+Epoch: [40 | 40] LR: 1.585938
+Epoch: [40][0/13]	Time 0.310 (0.310)	Data 1.201 (1.201)	Loss 1.7274 (1.7274)	Acc@1 39.655 (39.655)	Acc@5 89.286 (89.286)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  4060
+  20.61
+Max memory: 115.6315648
+ 4.056s  j: 41 bis 45
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 41
+count0: 4082
+
+Epoch: [41 | 45] LR: 1.585938
+Epoch: [41][0/13]	Time 1.190 (1.190)	Data 1.431 (1.431)	Loss 1.7139 (1.7139)	Acc@1 41.576 (41.576)	Acc@5 90.099 (90.099)
+/pytorch/torch/csrc/utils/python_arg_parser.cpp:756: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha)
+[INFO] Storing checkpoint...
+
+Epoch: [42 | 45] LR: 1.585938
+Epoch: [42][0/13]	Time 0.371 (0.371)	Data 1.166 (1.166)	Loss 1.8764 (1.8764)	Acc@1 32.562 (32.562)	Acc@5 86.749 (86.749)
+[INFO] Storing checkpoint...
+
+Epoch: [43 | 45] LR: 1.585938
+Epoch: [43][0/13]	Time 0.322 (0.322)	Data 1.274 (1.274)	Loss 1.8168 (1.8168)	Acc@1 37.340 (37.340)	Acc@5 88.054 (88.054)
+[INFO] Storing checkpoint...
+
+Epoch: [44 | 45] LR: 1.585938
+Epoch: [44][0/13]	Time 0.329 (0.329)	Data 1.435 (1.435)	Loss 1.7708 (1.7708)	Acc@1 38.695 (38.695)	Acc@5 88.842 (88.842)
+[INFO] Storing checkpoint...
+
+Epoch: [45 | 45] LR: 1.585938
+Epoch: [45][0/13]	Time 0.279 (0.279)	Data 1.262 (1.262)	Loss 1.7877 (1.7877)	Acc@1 38.251 (38.251)	Acc@5 88.128 (88.128)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+
+ RM:  module.conv10.weight
+
+ RM:  module.conv11.weight
+
+ RM:  module.conv13.weight
+
+ RM:  module.conv14.weight
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv18.weight', 'module.conv19.weight'], ['module.conv20.weight', 'module.conv21.weight'], ['module.conv22.weight', 'module.conv23.weight'], ['module.conv24.weight', 'module.conv25.weight']]
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv13.weight', 'module.conv14.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv18.weight', 'module.conv19.weight'], ['module.conv20.weight', 'module.conv21.weight'], ['module.conv22.weight', 'module.conv23.weight'], ['module.conv24.weight', 'module.conv25.weight']]
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(2, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(1, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(2, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(2, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(2, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(2, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(2, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(1, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(2, 1, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(1, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(2, 4, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(4, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(1, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(4, 7, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(7, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(7, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(4, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(12, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(4, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(12, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(2, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(12, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(1, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(12, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(1, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): AdaptiveAvgPool2d(output_size=(1, 1))
+    (51): Linear(in_features=12, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight'], ['module.conv12.weight', 'module.conv13.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv21.weight', 'module.conv22.weight']]
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight'], ['module.conv12.weight', 'module.conv13.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv21.weight', 'module.conv22.weight']]
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(2, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(1, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(2, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(2, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(2, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(2, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(2, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(1, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(4, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(1, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(4, 7, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(7, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(7, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(4, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(12, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(4, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(12, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(2, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(12, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(1, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(12, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(1, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): AdaptiveAvgPool2d(output_size=(1, 1))
+    (45): Linear(in_features=12, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+Count: 3818 ; 4082 ; 0.9353258206761391
+[INFO] Storing checkpoint...
+
+  4060
+  17.75
+Max memory: 115.6315648
+ 4.235s  j: 46 bis 50
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 51 bis 55
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 56 bis 60
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 61 bis 65
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 66 bis 70
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 71 bis 75
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 76 bis 80
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 81 bis 85
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 86 bis 90
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 91 bis 95
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 96 bis 100
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 101 bis 105
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 106 bis 110
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 111 bis 115
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 116 bis 120
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 121 bis 125
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 126 bis 130
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 131 bis 135
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 136 bis 140
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 141 bis 145
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 146 bis 150
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 151 bis 155
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 156 bis 160
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 161 bis 165
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 166 bis 170
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 171 bis 175
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
+j: 176 bis 180
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 3818
+
+Epoch: [46 | 50] LR: 1.585938
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [1, 4, 3, 3], expected input[4060, 2, 32, 32] to have 4 channels, but got 2 channels instead
