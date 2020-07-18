@@ -681,7 +681,7 @@ class N2N(nn.Module):
                 # Do nothing
                 continue
             else:
-                j = int(name.split('v')[1])
+                j = int(layer.split('v')[1])
                 i = 2 * j - 2
                 m1 = self.module_list[j]
                 bn = self.module_list[j + 1]
