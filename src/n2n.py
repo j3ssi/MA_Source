@@ -224,7 +224,7 @@ class N2N(nn.Module):
                     elif isinstance(m, nn.BatchNorm2d):
                         m.weight.data.fill_(1)
                         m.bias.data.zero_()
-            print(self)
+            # print(self)
             self.sameNode, self.oddLayers  = buildShareSameNodeLayers(self.module_list, self.numOfStages, self.archNums)
             self.stageI, self.stageO = buildResidualPath(self.module_list, self.numOfStages, self.archNums)
         else:
@@ -641,6 +641,7 @@ class N2N(nn.Module):
     """
 
     def wider(self, layers, delta_width, out_size=None, weight_norm=True, random_init=True, noise=True):
+        print(f'Model before wider: {self}')
         altList = []
         paramList = []
         printName = False
@@ -795,6 +796,7 @@ class N2N(nn.Module):
                         bn.weight.data = nweight
                         bn.bias.data = nbias
 
+        print(f'Model after wider: {self}')
         # def deeper(self, model, optimizer):
         #     # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
         #     # for stage in self.archNums[i]:

@@ -6,7 +6,7 @@ python3 main.py -j 6 --checkpoint ./output/experimente2/net2net1_$1 --epochs 5 -
 
 
 echo "j: 0 bis 5"
-python3 main.py -j 6 --checkpoint ./output/experimente2/net2net1_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 5,5,5 --n2n --wider --sparse_interval 0 --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 0 --pathToModell ./output/experimente2/net2net1_$1/model.nn
+python3 main.py -j 6 --checkpoint ./output/experimente2/net2net1_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 5,5,5 --n2n --wider --sparse_interval 0 --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 0 --pathToModell ./output/experimente2/net2net1_$1/model.nn --resume ./output/experimente2/net2net1_$1/checkpoint.pth.tar
 sleep 20
 
 echo "j: 6 bis 10"
