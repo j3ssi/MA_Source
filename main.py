@@ -185,8 +185,9 @@ state = {k: v for k, v in args._get_kwargs()}
 
 listofBlocks = [int(i) for i in args.n.split(',')]
 print(listofBlocks)
-listOfWidths =[int(i) for i in args.widthOfAllLayers.split(',')]
-print(listOfWidths)
+if args.widthOfAllLayers is not None:
+    listOfWidths =[int(i) for i in args.widthOfAllLayers.split(',')]
+    print(listOfWidths)
 
 dev = "cuda:0"
 device = torch.device(dev)
