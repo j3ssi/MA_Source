@@ -696,6 +696,8 @@ class N2N(nn.Module):
                 old_width = w1.size(0)
                 dw1 = torch.tensor([delta_width,w1.size(1),w1.size(2),w1.size(3)], )
                 dw2 = torch.tensor([w2.size(0),delta_width,w2.size(2), w2.size(3)])
+                print(f'dw1 dim: {dw1.dim()}; {dw2.dim()}')
+
                 dbn1rm = torch.tensor(delta_width)
                 dbn1rv = torch.tensor(delta_width)
                 dbn1w = torch.tensor(delta_width)
