@@ -715,11 +715,11 @@ class N2N(nn.Module):
                     nw1.resize_(nw1.size(0) + delta_width, nw1.size(1))
                     nw2.resize_(nw2.size(0), nw1.size(0) + delta_width)
 
-                nrunning_mean = bn.running_mean.clone().resize(nw1.size(0) + delta_width)
-                nrunning_var = bn.running_var.clone().resize_(nw1.size(0) + delta_width)
+                nrunning_mean = bn.running_mean.clone().resize(nw1.size(0))
+                nrunning_var = bn.running_var.clone().resize_(nw1.size(0))
                 if bn.affine:
-                    nweight = bn.data.clone().resize_(nw1.size(0) + delta_width)
-                    nbias = bn.bias.data.clone().resize_(nw1.size(0) + delta_width)
+                    nweight = bn.data.clone().resize_(nw1.size(0))
+                    nbias = bn.bias.data.clone().resize_(nw1.size(0))
 
                 w2 = w2.transpose(0, 1)
                 nw2 = nw2.transpose(0, 1)
