@@ -690,58 +690,19 @@ class N2N(nn.Module):
                 m2 = self.module_list[i + 2]
                 w1 = m1.weight.data
                 w2 = m2.weight.data
-                # if w1.dim() == 4:
-                #     factor = int(np.sqrt(w2.size(1) // w1.size(0)))
-                #     w2 = w2.view(w2.size(0), w2.size(1) // factor ** 2, factor, factor)
-                # elif w1.dim() == 5:
-                #     assert out_size is not None, \
-                #         "For conv3d -> linear out_size is necessary"
-                #     factor = out_size[0] * out_size[1] * out_size[2]
-                #     w2 = w2.view(w2.size(0), w2.size(1) // factor, out_size[0],
-                #                  out_size[1], out_size[2])
+
                 assert delta_width > 0, "New size should be larger"
 
                 old_width = w1.size(0)
-                nw1 = w1.clone()
-                nw2 = w2.clone()
-                print(f'dim new w: {nw1.dim()}; {nw2.dim()}')
-                if nw1.dim() == 4:
-                    nw1.resize_(nw1.size(0) + delta_width, nw1.size(1), nw1.size(2), nw1.size(3))
-                    nw2.resize_(nw2.size(0), nw1.size(0) + delta_width, nw2.size(2), nw2.size(3))
-                elif nw1.dim() == 5:
-                    nw1.resize_(nw1.size(0) + delta_width, nw1.size(1), nw1.size(2), nw1.size(3), nw1.size(4))
-                    nw2.resize_(nw2.size(0), nw1.size(0) + delta_width, nw2.size(2), nw2.size(3), nw2.size(4))
-                else:
-                    nw1.resize_(nw1.size(0) + delta_width, nw1.size(1))
-                    nw2.resize_(nw2.size(0), nw1.size(0) + delta_width)
+                dw1 = torch.tensor([delta_width,w1.size(1),w1.size(2),w1.size(3)], )
+                dw2 = torch.tensor([w2.size(0),delta_width,w2.size(2), w2.size(3)])
+                dbn1rm = torch.tensor(delta_width)
+                dbn1rv = torch.tensor(delta_width)
+                dbn1w = torch.tensor(delta_width)
+                dbn1b = torch.tensor(delta_width)
 
-                nrunning_mean = bn.running_mean.clone().resize(nw1.size(0))
-                nrunning_var = bn.running_var.clone().resize_(nw1.size(0))
-                if bn.affine:
-                    nweight = bn.data.clone().resize_(nw1.size(0))
-                    nbias = bn.bias.data.clone().resize_(nw1.size(0))
-
-                w2 = w2.transpose(0, 1)
-                nw2 = nw2.transpose(0, 1)
-
-                nw1.narrow(0, 0, old_width).copy_(w1)
-                nw2.narrow(0, 0, old_width).copy_(w2)
-                if bn is not None:
-                    nrunning_var.narrow(0, 0, old_width).copy_(bn.running_var)
-                    nrunning_mean.narrow(0, 0, old_width).copy_(bn.running_mean)
-                    if bn.affine:
-                        nweight.narrow(0, 0, old_width).copy_(bn.weight.data)
-                        nbias.narrow(0, 0, old_width).copy_(bn.bias.data)
-
-                # TEST:normalize weights
-                if weight_norm:
-                    for i in range(old_width):
-                        norm = w1.select(0, i).norm()
-                        w1.select(0, i).div_(norm)
-
-                # select weights randomly
                 tracking = dict()
-                for i in range(old_width, nw1.size(0) + delta_width):
+                for i in range(0, dw1.size(0) ):
                     idx = np.random.randint(0, old_width)
                     try:
                         tracking[idx].append(i)
@@ -758,30 +719,40 @@ class N2N(nn.Module):
                             n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.kernel_size[2] * m2.out_channels
                         elif m2.weight.dim() == 2:
                             n2 = m2.out_features * m2.in_features
-                        nw1.select(0, i).normal_(0, np.sqrt(2. / n))
-                        nw2.select(0, i).normal_(0, np.sqrt(2. / n2))
+                        dw1.select(0, i).normal_(0, np.sqrt(2. / n))
+                        dw2.select(0, i).normal_(0, np.sqrt(2. / n2))
                     else:
-                        nw1.select(0, i).copy_(w1.select(0, idx).clone())
-                        nw2.select(0, i).copy_(w2.select(0, idx).clone())
+                        dw1.select(0, i).copy_(w1.select(0, idx).clone())
+                        dw2.select(0, i).copy_(w2.select(0, idx).clone())
 
-                if bn is not None:
-                    nrunning_mean[i] = bn.running_mean[idx]
-                    nrunning_var[i] = bn.running_var[idx]
+                    if bn is not None:
+                        dbn1rm[i] = bn.running_mean[idx]
+                        dbn1rv[i] = bn.running_var[idx]
                     if bn.affine:
-                        nweight[i] = bn.weight.data[idx]
-                        nbias[i] = bn.bias.data[idx]
+                        dbn1w[i] = bn.weight.data[idx]
+                        dbn1b[i] = bn.bias.data[idx]
                     bn.num_features = nw1.size(0) + delta_width
 
-                if not random_init:
-                    for idx, d in tracking.items():
-                        for item in d:
-                            nw2[item].div_(len(d))
+                    if not random_init:
+                        for idx, d in tracking.items():
+                            for item in d:
+                                dw2[item].div_(len(d))
+
+
+                nw1 = torch.cat(w1,dw1,dim=1)
+                nw2 = torch.cat(w2,dw2,dim=0)
+                nbn1rm = torch.cat(bn.running_mean, dbn1rm)
+                nbn1rv = torch.cat(bn.running_var, dbn1rv)
+                nbn1w = torch.cat(bn.weight.data, dbn1w)
+                nbn1b = torch.cat(bn.bias.data, dbn1b)
+
 
                 w2.transpose_(0, 1)
                 nw2.transpose_(0, 1)
 
-                m1.out_channels = nw1.size(0) + delta_width
-                m2.in_channels = nw1.size(0) + delta_width
+
+                m1.out_channels = nw1.size(0)
+                m2.in_channels = nw1.size(1)
 
                 if noise:
                     noise = np.random.normal(scale=5e-2 * nw1.std(),
@@ -792,11 +763,11 @@ class N2N(nn.Module):
                 m2.weight.data = nw2
 
                 if bn is not None:
-                    bn.running_var = nrunning_var
-                    bn.running_mean = nrunning_mean
+                    bn.running_var = nbn1rv
+                    bn.running_mean = nbn1rv
                     if bn.affine:
-                        bn.weight.data = nweight
-                        bn.bias.data = nbias
+                        bn.weight.data = nbn1w
+                        bn.bias.data = nbn1b
 
         print(f'Model after wider: {self}')
         # def deeper(self, model, optimizer):
