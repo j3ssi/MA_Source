@@ -732,11 +732,11 @@ class N2N(nn.Module):
                         # dw2.select(0, i).copy_(w2.select(0, idx).clone())
 
                     if bn is not None:
-                        dbn1rm[i] = bn.running_mean[idx]
-                        dbn1rv[i] = bn.running_var[idx]
-                    if bn.affine:
-                        dbn1w[i] = bn.weight.data[idx]
-                        dbn1b[i] = bn.bias.data[idx]
+                        dbn1rm[i] = bn.running_mean.data[idx]
+                        dbn1rv[i] = bn.running_var.data[idx]
+                        if bn.affine:
+                            dbn1w[i] = bn.weight.data[idx]
+                            dbn1b[i] = bn.bias.data[idx]
                     bn.num_features = nw1.size(0) + delta_width
 
                     if not random_init:
