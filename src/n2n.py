@@ -641,7 +641,7 @@ class N2N(nn.Module):
     """
 
     def wider(self, layers, delta_width, out_size=None, weight_norm=True, random_init=True, noise=True):
-        listofLayer = [int(i) for i in layers.split(',')]
+        listofLayer = [i for i in layers.split(',')]
         print(f'Model before wider: {self}')
         altList = []
         paramList = []
