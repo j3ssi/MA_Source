@@ -704,7 +704,7 @@ class N2N(nn.Module):
                 old_width = w1.size(0)
                 nw1 = w1.clone()
                 nw2 = w2.clone()
-                print(f'dim new w: {nw1.dim}; {nw2.dim}')
+                print(f'dim new w: {nw1.dim()}; {nw2.dim()}')
                 if nw1.dim() == 4:
                     nw1.resize_(nw1.size(0) + delta_width, nw1.size(1), nw1.size(2), nw1.size(3))
                     nw2.resize_(nw2.size(0), nw1.size(0) + delta_width, nw2.size(2), nw2.size(3))
