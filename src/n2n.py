@@ -723,7 +723,7 @@ class N2N(nn.Module):
                         dw2.select(0, i).normal_(0, np.sqrt(2. / n2))
                     else:
                         dw1[i,:,:,:] = w1[idx,:,:,:]
-                        dw2[:,i,:,:] = w2[]
+                        dw2[:,i,:,:] = w2[idx,:,:,:]
                         # dw1.select(0, i).copy_(w1.select(0, idx).clone())
                         # dw2.select(0, i).copy_(w2.select(0, idx).clone())
 
