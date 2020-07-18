@@ -690,7 +690,7 @@ class N2N(nn.Module):
                 m2 = self.module_list[i + 2]
                 w1 = m1.weight.data
                 w2 = m2.weight.data
-
+                print(f'w1 dim: {w1.dim()}; {w2.dim()}')
                 assert delta_width > 0, "New size should be larger"
 
                 old_width = w1.size(0)
