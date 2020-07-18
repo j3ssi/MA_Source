@@ -503,7 +503,7 @@ def main():
         i = 2
 
     if args.wider:
-        model.wider('conv3', 2, out_size=None, weight_norm=None, random_init=False )
+        model.wider('conv2', 2, out_size=None, weight_norm=None, random_init=False )
 
     if args.saveModell:
         torch.save(model, args.pathToModell)
