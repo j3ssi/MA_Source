@@ -73,7 +73,7 @@ parser.add_argument('-l', '--layersInBlock', type=int, default=3, help='defines 
 parser.add_argument('-n', type=str, help="#stage numbers separated by commas")
 parser.add_argument('-b', '--bottleneck', default=False, action='store_true',
                     help='Set the bootleneck parameter')
-parser.add_argument('-w', '--widthofFirstLayer', default=3, type=int, help='defines the number of stages in the network')
+parser.add_argument('-w', '--widthofFirstLayer', default=3, type=int, help='defines the width of the first stage in net')
 
 
 # epochs and stuff
@@ -163,8 +163,16 @@ parser.add_argument('--visual', default=False, action='store_true',
                     help='Set the visual')
 
 # N2N
+parser.add_argument('--n2n', default=False, action='store_true',
+                    help='Use net2net functionality')
 parser.add_argument('--deeper', default=False, action='store_true',
                     help='Make network deeper')
+parser.add_argument('--wider', default=False, action='store_true',
+                    help='Make network wider')
+parser.add_argument('--widthOfAllLayers', type=str, help="#width of stages separated by commas")
+
+
+
 # lars
 parser.add_argument('--lars', default=False, action='store_true',
                     help='use lars')
@@ -177,6 +185,9 @@ state = {k: v for k, v in args._get_kwargs()}
 
 listofBlocks = [int(i) for i in args.n.split(',')]
 print(listofBlocks)
+listOfWidths =[int(i) for i in args.widthOfAllLayers.split(',')]
+print(listOfWidths)
+
 dev = "cuda:0"
 device = torch.device(dev)
 
@@ -295,6 +306,7 @@ def main():
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
     # dynamic resnet modell
+    print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
 
     title = 'prune' + str(args.epochsFromBegin)
     if args.resume:
@@ -318,13 +330,18 @@ def main():
              'TestEpochTime(s)'])
         assert args.numOfStages == len(
             listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
-        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck, args.widthofFirstLayer )
+        if not args.n2n:
+            model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck, args.widthofFirstLayer )
+        else:
+            model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
+                            args.widthofFirstLayer,model=None, archNums=None, widthOfLayers=listOfWidths)
         print(f'device count: {torch.cuda.device_count()}')
         model.cuda()
         criterion = nn.CrossEntropyLoss()
         start_epoch = 1
 
     print(f'Startepoche: {start_epoch}')
+    print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
 
     if args.evaluate:
         print('\nEvaluation only')
@@ -483,6 +500,10 @@ def main():
                     filename='checkpoint' + str(epoch) + '.tar')
 
         i = 2
+
+    if args.wider:
+        model.wider('conv3', 2, out_size=None, weight_norm=None, random_init=False )
+
     if args.saveModell:
         torch.save(model, args.pathToModell)
     logger.close()

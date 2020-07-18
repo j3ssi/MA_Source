@@ -10,7 +10,7 @@ import numpy as np
 class N2N(nn.Module):
 
     def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock,
-                 first, bottleneck, widthofFirstLayer =16, model=None, archNums=None):
+                 first, bottleneck, widthofFirstLayer =16, model=None, archNums=None, widthOfLayers =None):
         super(N2N, self).__init__()
         self.device = torch.device("cuda:0")
         self.numOfStages = numOfStages
@@ -640,11 +640,11 @@ class N2N(nn.Module):
     layers = 'conv 3, conv6'
     """
 
-    def wider(self, model, layers, delta_width, out_size=None, weight_norm=True, random_init=True, noise=True):
+    def wider(self, layers, delta_width, out_size=None, weight_norm=True, random_init=True, noise=True):
         altList = []
         paramList = []
         printName = False
-        for name, param in model.named_parameters():
+        for name, param in self.named_parameters():
             # print("\nName: {}", name)
             paramList.append(param)
             # print("\nName: ", name)
@@ -654,27 +654,27 @@ class N2N(nn.Module):
                 altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
                 if printName:
                     print("\nI:", i, " ; ", altList[-1])
-            elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
+            elif (i % 2 == 1) and ('weight' in name) and (i < (len(self.module_list) - 2)):
                 altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
                 if printName:
                     print("\nI:", i, " ; ", altList[-1])
-            elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
+            elif (i % 2 == 1) and ('weight' in name) and (i > (len(self.module_list) - 3)):
                 altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
                 if printName:
                     print("\nI:", i, " ; ", altList[-1])
-            elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
+            elif (i % 2 == 1) and ('bias' in name) and (i < (len(self.module_list) - 1)):
                 altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
                 if printName:
                     print("\nI:", i, " ; ", altList[-1])
-            elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
+            elif (i % 2 == 1) and ('bias' in name) and (i > (len(self.module_list) - 2)):
                 altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
                 if printName:
                     print("\nI:", i, " ; ", altList[-1])
             else:
                 assert True, print("Hier fehlt noch was!!")
         j = 0
-        residualPathI, residualPathO = model.getResidualPath()
-        sameNodes = model.getShareSameNodeLayers()
+        residualPathI, residualPathO = self.getResidualPath()
+        sameNodes = self.getShareSameNodeLayers()
         for layer in layers:
             if layer in residualPathO:
                 # Do nothing
@@ -682,9 +682,9 @@ class N2N(nn.Module):
             else:
                 j = int(name.split('.')[1].split('v')[1])
                 i = 2 * j - 2
-                m1 = model.module_list[j]
-                bn = model.module_list[j + 1]
-                m2 = model.module_list[j + 2]
+                m1 = self.module_list[j]
+                bn = self.module_list[j + 1]
+                m2 = self.module_list[j + 2]
                 w1 = m1.weight.data
                 w2 = m2.weight.data
                 if w1.dim() == 4:
@@ -794,7 +794,6 @@ class N2N(nn.Module):
                     if bn.affine:
                         bn.weight.data = nweight
                         bn.bias.data = nbias
-        return model
 
         # def deeper(self, model, optimizer):
         #     # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
