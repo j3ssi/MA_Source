@@ -685,9 +685,9 @@ class N2N(nn.Module):
             else:
                 j = int(layer.split('v')[1])
                 i = 2 * j - 2
-                m1 = self.module_list[j]
-                bn = self.module_list[j + 1]
-                m2 = self.module_list[j + 2]
+                m1 = self.module_list[i]
+                bn = self.module_list[i + 1]
+                m2 = self.module_list[i + 2]
                 w1 = m1.weight.data
                 w2 = m2.weight.data
                 if w1.dim() == 4:
