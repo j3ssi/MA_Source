@@ -690,15 +690,15 @@ class N2N(nn.Module):
                 m2 = self.module_list[i + 2]
                 w1 = m1.weight.data
                 w2 = m2.weight.data
-                if w1.dim() == 4:
-                    factor = int(np.sqrt(w2.size(1) // w1.size(0)))
-                    w2 = w2.view(w2.size(0), w2.size(1) // factor ** 2, factor, factor)
-                elif w1.dim() == 5:
-                    assert out_size is not None, \
-                        "For conv3d -> linear out_size is necessary"
-                    factor = out_size[0] * out_size[1] * out_size[2]
-                    w2 = w2.view(w2.size(0), w2.size(1) // factor, out_size[0],
-                                 out_size[1], out_size[2])
+                # if w1.dim() == 4:
+                #     factor = int(np.sqrt(w2.size(1) // w1.size(0)))
+                #     w2 = w2.view(w2.size(0), w2.size(1) // factor ** 2, factor, factor)
+                # elif w1.dim() == 5:
+                #     assert out_size is not None, \
+                #         "For conv3d -> linear out_size is necessary"
+                #     factor = out_size[0] * out_size[1] * out_size[2]
+                #     w2 = w2.view(w2.size(0), w2.size(1) // factor, out_size[0],
+                #                  out_size[1], out_size[2])
                 assert delta_width > 0, "New size should be larger"
 
                 old_width = w1.size(0)
