@@ -702,7 +702,7 @@ class N2N(nn.Module):
                 dbn1b = torch.tensor(delta_width)
 
                 tracking = dict()
-                for i in range(0, dw1.size(0) ):
+                for i in range(0, dw1.size(0)):
                     idx = np.random.randint(0, old_width)
                     try:
                         tracking[idx].append(i)
@@ -722,8 +722,10 @@ class N2N(nn.Module):
                         dw1.select(0, i).normal_(0, np.sqrt(2. / n))
                         dw2.select(0, i).normal_(0, np.sqrt(2. / n2))
                     else:
-                        dw1.select(0, i).copy_(w1.select(0, idx).clone())
-                        dw2.select(0, i).copy_(w2.select(0, idx).clone())
+                        dw1[i,:,:,:] = w1[idx,:,:,:]
+                        dw2[:,i,:,:] = w2[]
+                        # dw1.select(0, i).copy_(w1.select(0, idx).clone())
+                        # dw2.select(0, i).copy_(w2.select(0, idx).clone())
 
                     if bn is not None:
                         dbn1rm[i] = bn.running_mean[idx]
@@ -745,11 +747,6 @@ class N2N(nn.Module):
                 nbn1rv = torch.cat(bn.running_var, dbn1rv)
                 nbn1w = torch.cat(bn.weight.data, dbn1w)
                 nbn1b = torch.cat(bn.bias.data, dbn1b)
-
-
-                w2.transpose_(0, 1)
-                nw2.transpose_(0, 1)
-
 
                 m1.out_channels = nw1.size(0)
                 m2.in_channels = nw1.size(1)
