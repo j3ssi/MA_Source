@@ -331,10 +331,10 @@ def main():
              'TestEpochTime(s)'])
         assert args.numOfStages == len(
             listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
-        if not args.n2n:
-            model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck, args.widthofFirstLayer )
-        else:
-            model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
+        # if not args.n2n:
+        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck, args.widthofFirstLayer )
+        # else:
+        #    model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
                             args.widthofFirstLayer,model=None, archNums=None, widthOfLayers=listOfWidths)
         print(f'device count: {torch.cuda.device_count()}')
         model.cuda()
