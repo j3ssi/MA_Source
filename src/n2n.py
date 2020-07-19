@@ -732,7 +732,7 @@ class N2N(nn.Module):
                         # dw2.select(0, i).copy_(w2.select(0, idx).clone())
 
                     if bn is not None:
-                        print(f'dim of running mean: {bn.running_mean.dim()}')
+                        print(f'dim of running mean: {bn.running_mean.item().dim()}')
                         dbn1rm[i] = bn.running_mean[idx]
                         dbn1rv[i] = bn.running_var[idx]
                         if bn.affine:
