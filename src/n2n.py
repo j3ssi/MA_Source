@@ -728,7 +728,7 @@ class N2N(nn.Module):
                         listOfBuf.append(buffer)
                         listOfRunningVar.append(listOfBuf)
 
-                print(f'List of buf: {listOfRunningMean} ')
+                # print(f'List of buf: {listOfRunningMean} ')
                 for i in range(0, dw1.size(0)):
                     idx = np.random.randint(0, old_width)
                     print(f'idx: {idx}')
@@ -759,7 +759,7 @@ class N2N(nn.Module):
                         number = listOfNumbers.pop(0)
                         # print(f'listofRunning mean: {listOfRunningMean.pop(0)}')
                         dbn1 = listOfRunningMean.pop(0)
-                        print(f'length of dbn1: {len(dbn1)}')
+                        print(f'length of dbn1: {dbn1}')
                         dbn1rm.append(dbn1[idx])
                         dbn1 = listOfRunningVar.pop(0)
                         dbn1rv[i].append(dbn1[idx])
