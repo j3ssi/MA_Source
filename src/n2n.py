@@ -717,7 +717,7 @@ class N2N(nn.Module):
                         listOfBuf =[]
                         # print(f'buf[i]: {buf[2]}')
                         for i in range(0,len(buf)):
-                            listOfBuf.append(buf[i].item().numpy())
+                            listOfBuf.append(buf[i].numpy())
                         listOfRunningMean.append(listOfBuf)
 
                     if 'running_var' in name:
