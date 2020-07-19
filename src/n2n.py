@@ -761,7 +761,7 @@ class N2N(nn.Module):
                         dbn1 = listOfRunningMean.pop(0)[0]
                         print(f'length of dbn1: {dbn1}')
                         dbn1rm.append(dbn1[idx])
-                        dbn1 = listOfRunningVar.pop(0)
+                        dbn1 = listOfRunningVar.pop(0)[0]
                         dbn1rv[i].append(dbn1[idx])
                         print(f'running mean: {dbn1rm}')
                         # dbn1rm[i] = bn.running_mean.data()[idx]
