@@ -729,6 +729,7 @@ class N2N(nn.Module):
                 # print(f'List of buf: {listOfRunningMean} ')
                 for i in range(0, dw1.size(0)):
                     idx = np.random.randint(0, old_width)
+                    print(f'idx: {idx}')
                     try:
                         tracking[idx].append(i)
                     except:
