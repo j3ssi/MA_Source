@@ -721,7 +721,11 @@ class N2N(nn.Module):
                         listOfRunningMean.append(listOfBuf)
 
                     if 'running_var' in name:
-                        listOfRunningVar.append(buf)
+                        listOfBuf = []
+                        for i in range(0, len(buf)):
+                            listOfBuf.append(buf[i].item())
+                        listOfRunningVar.append(listOfBuf)
+
                 # print(f'List of buf: {listOfRunningMean} ')
                 for i in range(0, dw1.size(0)):
                     idx = np.random.randint(0, old_width)
@@ -750,8 +754,8 @@ class N2N(nn.Module):
 
                     if bn is not None:
                         number = listOfNumbers.pop(0)
-                        print(f'listofRunning mean: {listOfRunningMean.pop(0)}')
-                       # dbn1rm[i] = listOfRunningMean.pop(0)[idx]
+                        # print(f'listofRunning mean: {listOfRunningMean.pop(0)}')
+                        dbn1rm[i] = listOfRunningMean.pop(0)[idx]
                         dbn1rv[i] = listOfRunningVar.pop(0)[idx]
                         print(f'running mean: {dbn1rm}')
                         # dbn1rm[i] = bn.running_mean.data()[idx]
