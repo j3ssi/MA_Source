@@ -715,6 +715,7 @@ class N2N(nn.Module):
                         i = int(name.split('.')[1])
                         listOfNumbers.append(i)
                         listOfBuf =[]
+                        print(f'buf[i]: {buf[2]}')
                         for i in range(0,len(buf)):
                             listOfBuf.append(buf[i])
                         listOfRunningMean.append(listOfBuf)
