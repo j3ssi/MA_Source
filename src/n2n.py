@@ -692,7 +692,6 @@ class N2N(nn.Module):
                 w2 = m2.weight.data
                 w1numpy = m1.weight.data.cpu().numpy().tolist()
                 w2numpy = m2.weight.data.cpu().numpy().tolist()
-                print(f'w1: {w1numpy}}')
                 assert delta_width > 0, "New size should be larger"
 
                 old_width = w1.size(0)
