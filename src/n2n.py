@@ -715,7 +715,7 @@ class N2N(nn.Module):
                         i = int(name.split('.')[1])
                         listOfNumbers.append(i)
                         listOfBuf =[]
-                        buffer =buf.item().cpu().numpy()
+                        buffer =buf.cpu().numpy()
                         # for i in range(0,len(buf)):
                         listOfBuf.append(buffer)
                         listOfRunningMean.append(listOfBuf)
