@@ -715,6 +715,7 @@ class N2N(nn.Module):
                         i = int(name.split('.')[1])
                         listOfNumbers.append(i)
                         listOfRunningMean.append(buf)
+                        print(f'buf: {buf[3]}')
                     if 'running_var' in name:
                         listOfRunningVar.append(buf)
                 for i in range(0, dw1.size(0)):
