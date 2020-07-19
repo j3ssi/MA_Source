@@ -716,8 +716,8 @@ class N2N(nn.Module):
                         listOfNumbers.append(i)
                         listOfBuf =[]
                         buffer =buf.cpu().numpy()
-                        for i in range(0,len(buf)):
-                            listOfBuf.append(buffer[i])
+                        # for i in range(0,len(buf)):
+                        listOfBuf.append(buffer)
                         listOfRunningMean.append(listOfBuf)
 
                     if 'running_var' in name:
