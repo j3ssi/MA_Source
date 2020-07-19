@@ -715,14 +715,14 @@ class N2N(nn.Module):
                         i = int(name.split('.')[1])
                         listOfNumbers.append(i)
                         listOfBuf =[]
-                        print(f'buf[i]: {buf[2]}')
+                        # print(f'buf[i]: {buf[2]}')
                         for i in range(0,len(buf)):
                             listOfBuf.append(buf[i].item())
                         listOfRunningMean.append(listOfBuf)
 
                     if 'running_var' in name:
                         listOfRunningVar.append(buf)
-                print(f'List of buf: {listOfRunningMean} ')
+                # print(f'List of buf: {listOfRunningMean} ')
                 for i in range(0, dw1.size(0)):
                     idx = np.random.randint(0, old_width)
                     try:
@@ -750,7 +750,8 @@ class N2N(nn.Module):
 
                     if bn is not None:
                         number = listOfNumbers.pop(0)
-                        dbn1rm[i] = listOfRunningMean.pop(0)[idx]
+                        print(f'listofRunning mean: {listOfRunningMean.pop(0)}')
+                       # dbn1rm[i] = listOfRunningMean.pop(0)[idx]
                         dbn1rv[i] = listOfRunningVar.pop(0)[idx]
                         print(f'running mean: {dbn1rm}')
                         # dbn1rm[i] = bn.running_mean.data()[idx]
