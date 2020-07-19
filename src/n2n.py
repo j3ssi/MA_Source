@@ -722,7 +722,7 @@ class N2N(nn.Module):
 
                     if 'running_var' in name:
                         listOfBuf = []
-                        buffer = buf.cpu().numpy()
+                        buffer = buf.cpu().numpy().tolist()
                         listOfBuf.append(buffer)
                         listOfRunningVar.append(listOfBuf)
 
@@ -758,8 +758,8 @@ class N2N(nn.Module):
                         # print(f'listofRunning mean: {listOfRunningMean.pop(0)}')
                         dbn1 = listOfRunningMean.pop(0)
                         dbn1rm.append(dbn1[idx])
-                        dbn1 = listOfRunningVar.pop(0).tolist()
-                        dbn1rv[i] = dbn1[idx]
+                        dbn1 = listOfRunningVar.pop(0)
+                        dbn1rv[i].append(dbn1[idx])
                         print(f'running mean: {dbn1rm}')
                         # dbn1rm[i] = bn.running_mean.data()[idx]
                         # dbn1rv[i] = bn.running_var.data()[idx]
