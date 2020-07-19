@@ -706,6 +706,12 @@ class N2N(nn.Module):
 
 
                 tracking = dict()
+
+                for name, buf in self.named_buffers():
+                    # print("\nBuffer Name: ", name)
+                    if 'running_mean' in name or 'running_var' in name:
+                        print(f'Name: {name}')
+
                 for i in range(0, dw1.size(0)):
                     idx = np.random.randint(0, old_width)
                     try:
@@ -744,6 +750,8 @@ class N2N(nn.Module):
                         for idx, d in tracking.items():
                             for item in d:
                                 dw2[item].div_(len(d))
+
+
 
 
                 nw1 = torch.cat(w1,dw1,dim=1)
