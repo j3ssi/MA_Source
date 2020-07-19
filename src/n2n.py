@@ -723,7 +723,6 @@ class N2N(nn.Module):
                         listOfBuf = []
                         buffer = buf.cpu().numpy()
                         listOfBuf.append(buffer)
-                        listOfBuf.append(buf[i].item())
                         listOfRunningVar.append(listOfBuf)
 
                 print(f'List of buf: {listOfRunningMean} ')
