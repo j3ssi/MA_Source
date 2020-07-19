@@ -690,20 +690,21 @@ class N2N(nn.Module):
                 m2 = self.module_list[i + 2]
                 w1 = m1.weight.data
                 w2 = m2.weight.data
-                w1numpy = m1.weight.data.cpu().numpy()
-                w2numpy = m2.weight.data.cpu().numpy()
-                print(f'w1 dim: {w1.dim()}; {w2.dim()}')
+                w1numpy = m1.weight.data.cpu().numpy().tolist()
+                w2numpy = m2.weight.data.cpu().numpy().tolist()
+                print(f'w1: {w1numpy}}')
                 assert delta_width > 0, "New size should be larger"
 
                 old_width = w1.size(0)
-                dw1 = torch.ones([delta_width,w1.size(1),w1.size(2),w1.size(3)])
-                dw2 = torch.ones([w2.size(0),delta_width,w2.size(2), w2.size(3)])
+                #dw1 = torch.ones([delta_width,w1.size(1),w1.size(2),w1.size(3)])
+                #dw2 = torch.ones([w2.size(0),delta_width,w2.size(2), w2.size(3)])
                 print(f'dw1 dim: {dw1.dim()}; {dw2.dim()}')
-
+                dw1 = [[]]
+                dw2 = [[]]
                 dbn1rm = []
                 dbn1rv = []
-                dbn1w = torch.tensor(delta_width)
-                dbn1b = torch.tensor(delta_width)
+                dbn1w =  [[]]
+                dbn1b = []
 
 
 
@@ -729,6 +730,10 @@ class N2N(nn.Module):
                         buffer = buf.cpu().numpy().tolist()
                         listOfBuf.append(buffer)
                         listOfRunningVar.append(listOfBuf)
+
+                for module in self.module_list:
+
+
 
                 # print(f'List of buf: {listOfRunningMean} ')
                 for i in range(0, dw1.size(0)):
