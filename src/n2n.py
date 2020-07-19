@@ -745,8 +745,8 @@ class N2N(nn.Module):
                     if bn is not None:
                         number = listOfNumbers.pop(0)
                         dbn1rm[i] = listOfRunningMean.pop(0)
-                        dbn1rv[i] = listOfRunningVar.pop(0)
-                        print(f'dim of running mean: {dbn1rm[i].dim()}')
+                        dbn1rv[i] = listOfRunningVar.pop(0).item()
+                        print(f'dim of running mean: {dbn1rm[i]}')
                         # dbn1rm[i] = bn.running_mean.data()[idx]
                         # dbn1rv[i] = bn.running_var.data()[idx]
 
