@@ -726,7 +726,7 @@ class N2N(nn.Module):
                             listOfBuf.append(buf[i].item())
                         listOfRunningVar.append(listOfBuf)
 
-                # print(f'List of buf: {listOfRunningMean} ')
+                print(f'List of buf: {listOfRunningMean} ')
                 for i in range(0, dw1.size(0)):
                     idx = np.random.randint(0, old_width)
                     try:
