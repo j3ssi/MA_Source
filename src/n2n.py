@@ -712,7 +712,7 @@ class N2N(nn.Module):
                     # print("\nBuffer Name: ", name)
                     if 'running_mean' in name:
                         k = int(name.split('.')[1])
-                        if (k==(i+2)):
+                        if (k==(i+1)):
                             print(f'k: {k}')
                         listOfNumbers.append(i)
                         listOfBuf =[]
