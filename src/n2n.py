@@ -701,10 +701,7 @@ class N2N(nn.Module):
                 print(f'dw1 dim: {dw1.dim()}; {dw2.dim()}')
                 dw1 = [[]]
                 dw2 = [[]]
-                dbn1rm = []
-                dbn1rv = []
                 dbn1w =  [[]]
-                dbn1b = []
 
 
 
@@ -715,7 +712,9 @@ class N2N(nn.Module):
                 for name, buf in self.named_buffers():
                     # print("\nBuffer Name: ", name)
                     if 'running_mean' in name:
-                        i = int(name.split('.')[1])
+                        k = int(name.split('.')[1])
+                        if (k==(i+2)):
+                            print(f'k: {k}')
                         listOfNumbers.append(i)
                         listOfBuf =[]
                         buffer =buf.cpu().numpy().tolist()
@@ -730,8 +729,6 @@ class N2N(nn.Module):
                         buffer = buf.cpu().numpy().tolist()
                         listOfBuf.append(buffer)
                         listOfRunningVar.append(listOfBuf)
-
-                for module in self.module_list:
 
 
 
