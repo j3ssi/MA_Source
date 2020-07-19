@@ -706,12 +706,17 @@ class N2N(nn.Module):
 
 
                 tracking = dict()
-
+                listOfNumbers = []
+                listOfRunningMean = []
+                listOfRunningVar = []
                 for name, buf in self.named_buffers():
                     # print("\nBuffer Name: ", name)
-                    if 'running_mean' in name or 'running_var' in name:
-                        print(f'Name: {name}')
-
+                    if 'running_mean' in name:
+                        i = int(name.split('.')[1])
+                        listOfNumbers.append(i)
+                        listOfRunningMean.append(buf)
+                    if 'running_var' in name:
+                        listOfRunningVar.append(buf)
                 for i in range(0, dw1.size(0)):
                     idx = np.random.randint(0, old_width)
                     try:
@@ -738,9 +743,14 @@ class N2N(nn.Module):
                         # dw2.select(0, i).copy_(w2.select(0, idx).clone())
 
                     if bn is not None:
-                        print(f'dim of running mean: {bn.running_mean.data().dim()}')
-                        dbn1rm[i] = bn.running_mean.data()[idx]
-                        dbn1rv[i] = bn.running_var.data()[idx]
+                        number = listOfNumbers.pop(0)
+                        dbn1rm[i] = listOfRunningMean.pop(0)
+                        dbn1rv[i] = listOfRunningVar.pop(0)
+                        print(f'dim of running mean: {dbn1rm[i].dim()}')
+                        # dbn1rm[i] = bn.running_mean.data()[idx]
+                        # dbn1rv[i] = bn.running_var.data()[idx]
+
+
                         if bn.affine:
                             dbn1w[i] = bn.weight.data[idx]
                             dbn1b[i] = bn.bias.data[idx]
