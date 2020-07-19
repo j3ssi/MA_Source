@@ -714,10 +714,14 @@ class N2N(nn.Module):
                     if 'running_mean' in name:
                         i = int(name.split('.')[1])
                         listOfNumbers.append(i)
-                        listOfRunningMean.append(buf)
-                        print(f'buf: {buf[2]}')
+                        listOfBuf =[]
+                        for i in range(0,len(buf)):
+                            listOfBuf.append(buf[i])
+                        listOfRunningMean.append(listOfBuf)
+
                     if 'running_var' in name:
                         listOfRunningVar.append(buf)
+                print(f'List of buf: {listOfRunningMean} ')
                 for i in range(0, dw1.size(0)):
                     idx = np.random.randint(0, old_width)
                     try:
