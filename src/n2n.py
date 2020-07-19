@@ -698,8 +698,8 @@ class N2N(nn.Module):
                 dw2 = torch.ones([w2.size(0),delta_width,w2.size(2), w2.size(3)])
                 print(f'dw1 dim: {dw1.dim()}; {dw2.dim()}')
 
-                dbn1rm = torch.tensor(delta_width)
-                dbn1rv = torch.tensor(delta_width)
+                dbn1rm = []
+                dbn1rv = []
                 dbn1w = torch.tensor(delta_width)
                 dbn1b = torch.tensor(delta_width)
 
@@ -716,14 +716,14 @@ class N2N(nn.Module):
                         listOfNumbers.append(i)
                         listOfBuf =[]
                         buffer =buf.cpu().numpy()
-                        # for i in range(0,len(buf)):
                         listOfBuf.append(buffer)
                         listOfRunningMean.append(listOfBuf)
 
                     if 'running_var' in name:
                         listOfBuf = []
-                        for i in range(0, len(buf)):
-                            listOfBuf.append(buf[i].item())
+                        buffer = buf.cpu().numpy()
+                        listOfBuf.append(buffer)
+                        listOfBuf.append(buf[i].item())
                         listOfRunningVar.append(listOfBuf)
 
                 print(f'List of buf: {listOfRunningMean} ')
@@ -755,11 +755,11 @@ class N2N(nn.Module):
                     if bn is not None:
                         number = listOfNumbers.pop(0)
                         # print(f'listofRunning mean: {listOfRunningMean.pop(0)}')
-                        dbn1 = listOfRunningMean.pop(0)
-                        print(f'dbn: {dbn1[0]}; {dbn1[0].tolist()}')
-
-                        dbn1rm[i].append(dbn1[0].tolist())
-                        dbn1rv[i] = listOfRunningVar.pop(0)[idx]
+                        dbn1 = listOfRunningMean.pop(0).tolist()
+                        print(f'dbn: {dbn1[idx]}')
+                        dbn1rm[i]=dbn1[idx]
+                        dbn1 = listOfRunningVar.pop(0).tolist()
+                        dbn1rv[i] = dbn1[idx]
                         print(f'running mean: {dbn1rm}')
                         # dbn1rm[i] = bn.running_mean.data()[idx]
                         # dbn1rv[i] = bn.running_var.data()[idx]
