@@ -728,7 +728,7 @@ class N2N(nn.Module):
 
 
                 listindices = []
-                # print(f'List of buf: {listOfRunningMean} ')
+                print(f'List of buf: {listOfRunningMean} ')
                 for o in range(0, delta_width):
                     idx = np.random.randint(0, old_width)
                     m1list = m1.weight[idx,:,:,:].data.cpu().numpy().tolist()
@@ -764,11 +764,11 @@ class N2N(nn.Module):
                     if bn is not None:
                         # print(f'listofRunning mean: {listOfRunningMean.pop(0)}')
                         dbn1 = listOfRunningMean[idx]
-                        print(f'length of dbn1: {dbn1}')
+                        # print(f'length of dbn1: {dbn1}')
                         dbn1rm.append(dbn1)
                         dbn1 = listOfRunningVar[idx]
                         dbn1rv.append(dbn1)
-                        print(f'running mean: {dbn1rm}')
+                        # print(f'running mean: {dbn1rm}')
                         # dbn1rm[i] = bn.running_mean.data()[idx]
                         # dbn1rv[i] = bn.running_var.data()[idx]
 
@@ -782,6 +782,7 @@ class N2N(nn.Module):
 
                 if not random_init:
                     for idx, d in tracking.items():
+                        print(f'd: {d}')
                         for item in d.reverse():
                             print(f'item:{item}')
                             # itemIndex = listindices.index(item)
