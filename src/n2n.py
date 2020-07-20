@@ -785,14 +785,14 @@ class N2N(nn.Module):
                             dbn1b.append(bn1list[idx])
                     bn.num_features = w1.size(0) + delta_width
 
-                    if not random_init:
-                        for idx, d in tracking.items():
-                            for item in d:
-                                # print(f'item:{item}')
-                                c= dw2[item]
-                                print(f'c:{c}')
-                                for k in range(len(c)):
-                                    print(f'c[k]: {c[k]}')
+                if not random_init:
+                    for idx, d in tracking.items():
+                        for item in d:
+                            print(f'item:{item}')
+                            c= dw2[item]
+                            print(f'c:{c}')
+                            for k in range(len(c)):
+                                print(f'c[k]: {c[k]}')
 
                 # print(f'len: {len(listOfRunningMean)}')
                 # print(f'm1list: {m1list}')
