@@ -790,15 +790,17 @@ class N2N(nn.Module):
                         for item in d:
                             # print(f'item:{item}')
                             c= dw2[item]
-                            print(f'c:{c}')
+                            # print(f'c:{c}')
                             for k in range(len(c)):
                                 e = c[k]
                                 # print(f'c[k]: {c[k]}')
                                 for l in range(len(e)):
-                                    print(f'e[l]: {e[l]}')
+                                    print(f' before e[l]: {e[l]}')
+                                    f = e(l)
+                                    for m in range(len(f)):
+                                        f[m] = f[m] / len(d)
+                                    print(f' after e[l]: {e[l]}')
 
-
-                                    
                 # print(f'len: {len(listOfRunningMean)}')
                 # print(f'm1list: {m1list}')
 
