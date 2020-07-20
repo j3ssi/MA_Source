@@ -719,20 +719,12 @@ class N2N(nn.Module):
                     if 'running_mean' in name:
                         k = int(name.split('.')[1])
                         if (k==(i+1)):
-                            buffer =buf.cpu().numpy().tolist()
-
-                            print(f'len of buffer: {len(buffer)}')
-                            print(f'buffer: {buffer}')
-                            listOfRunningMean.append(buffer)
-                            print(f'buffer: {listOfRunningMean}')
-
+                            listOfRunningMean =buf.cpu().numpy().tolist()
+                        
                     if 'running_var' in name:
                         k = int(name.split('.')[1])
                         if(k==(i+1)):
-                            listOfBuf = []
-                            buffer = buf.cpu().numpy().tolist()
-                            listOfBuf.append(buffer)
-                            listOfRunningVar.append(listOfBuf)
+                            listOfRunningVar = buf.cpu().numpy().tolist()
 
 
                 listindices = []
