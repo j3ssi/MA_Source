@@ -735,13 +735,13 @@ class N2N(nn.Module):
                             listOfRunningVar.append(listOfBuf)
 
 
-
+                listindices = []
                 # print(f'List of buf: {listOfRunningMean} ')
                 for i in range(0, delta_width-1):
                     idx = np.random.randint(0, old_width)
                     m1list = m1.weight[idx,:,:,:].data.cpu().numpy().tolist()
                     m2list = m2.weight[:,idx,:,:].data.cpu().numpy().tolist()
-
+                    listindices.append(idx)
                     # print(f'm1list: {m1list}')
                     # print(f'm2list: {m2list}')
                     print(f'idx: {idx}')
@@ -789,7 +789,9 @@ class N2N(nn.Module):
                     for idx, d in tracking.items():
                         for item in d:
                             print(f'item:{item}')
-                            c= dw2[item]
+                            itemIndex = listindices.index(item)
+                            listindices.remove(itemIndex)
+                            c= dw2[itemIndex]
                             # print(f'c:{c}')
                             for k in range(len(c)):
                                 e = c[k]
