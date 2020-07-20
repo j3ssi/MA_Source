@@ -781,8 +781,8 @@ class N2N(nn.Module):
 
 
                         if bn.affine:
-                            dbn1w[i] = bn.weight.data[idx]
-                            dbn1b[i] = bn1list[idx]
+                            dbn1w.append(bn.weight.data[idx])
+                            dbn1b.append(bn1list[idx])
                     bn.num_features = nw1.size(0)
 
                     if not random_init:
