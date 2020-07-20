@@ -778,7 +778,7 @@ class N2N(nn.Module):
 
                 print(f'tracking dict: {tracking}')
                 ct = {}
-                for key, dif_k in tracking:
+                for key, dif_k in tracking.items():
                     for k, v in dif_k.iteritems():
                         dictcounter = k.count(k)
                         ct.update({key:dictcounter})
