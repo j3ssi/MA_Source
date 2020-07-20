@@ -786,9 +786,11 @@ class N2N(nn.Module):
                     bn.num_features = w1.size(0) + delta_width
 
                     if not random_init:
-                        for k in range(0,len(dw2)):
-                            d = dw2[k]
-                            print(f'dw2: {dw2}')
+                        for idx, d in tracking.items():
+                            for item in d:
+                                print(f'item:{item}')
+#                                dw2[item].div_(len(d))
+
 
 
                 print(f'm1list: {m1list}')
