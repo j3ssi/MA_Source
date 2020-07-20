@@ -784,6 +784,8 @@ class N2N(nn.Module):
                     for idx, d in tracking.items():
                         print(f'd: {d}')
                         d = d.reverse()
+                        print(f'e: {d}')
+
                         for item in d:
                             print(f'item:{item}')
                             # itemIndex = listindices.index(item)
