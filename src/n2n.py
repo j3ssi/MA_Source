@@ -783,10 +783,10 @@ class N2N(nn.Module):
                 if not random_init:
                     for idx, d in tracking.items():
                         print(f'd: {d}')
-                        d = d.reverse()
-                        print(f'e: {d}')
+                        x = d.reverse()
+                        print(f'e: {x}')
 
-                        for item in d:
+                        for item in x:
                             print(f'item:{item}')
                             # itemIndex = listindices.index(item)
                             print(f'item index: {item}; len d: {len(d)}')
