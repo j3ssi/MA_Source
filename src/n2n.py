@@ -798,7 +798,7 @@ class N2N(nn.Module):
                                 # print(f'c[k]: {c[k]}')
                                 for l in range(len(e)):
                                     print(f' before e[l]: {e[l]}')
-                                    f = e(l)
+                                    f = e[l]
                                     for m in range(len(f)):
                                         f[m] = f[m] / len(d)
                                     print(f' after e[l]: {e[l]}')
