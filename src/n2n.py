@@ -721,7 +721,9 @@ class N2N(nn.Module):
                         if (k==(i+1)):
                             listOfBuf =[]
                             buffer =buf.cpu().numpy().tolist()
+
                             print(f'len of buffer: {len(buffer)}')
+                            print(f'buffer: {buffer}')
                             # print(f'type of buffer: {buffer.type()}')
                             listOfBuf.append(buffer)
                             listOfRunningMean.append(listOfBuf)
@@ -737,7 +739,7 @@ class N2N(nn.Module):
 
                 listindices = []
                 # print(f'List of buf: {listOfRunningMean} ')
-                for i in range(0, delta_width):
+                for o in range(0, delta_width):
                     idx = np.random.randint(0, old_width)
                     m1list = m1.weight[idx,:,:,:].data.cpu().numpy().tolist()
                     m2list = m2.weight[:,idx,:,:].data.cpu().numpy().tolist()
@@ -747,10 +749,10 @@ class N2N(nn.Module):
                     # print(f'm2list: {m2list}')
                     print(f'idx: {idx}')
                     try:
-                        tracking[idx].append(i)
+                        tracking[idx].append(o)
                     except:
                         tracking[idx] = [idx]
-                        tracking[idx].append(i)
+                        tracking[idx].append(o)
 
                     # TEST:random init for new units
                     if random_init:
@@ -771,7 +773,7 @@ class N2N(nn.Module):
 
                     if bn is not None:
                         # print(f'listofRunning mean: {listOfRunningMean.pop(0)}')
-                        dbn1 = listOfRunningMean.pop(0)[0]
+                        dbn1 = listOfRunningMean[0][0]
                         print(f'length of dbn1: {dbn1}')
                         dbn1rm.append(dbn1[idx])
                         dbn1 = listOfRunningVar.pop(0)[0]
