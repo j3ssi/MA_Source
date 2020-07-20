@@ -739,7 +739,7 @@ class N2N(nn.Module):
                 for i in range(0, delta_width):
                     idx = np.random.randint(0, old_width)
                     m1list = m1.weight[idx,:,:,:].data.cpu().numpy().tolist()
-                    m2list = m2.weight[:,idx,:,:]
+                    m2list = m2.weight[:,idx,:,:].data.cpu().numpy().tolist()
                     print(f'm1list: {m1list}')
                     print(f'm2list: {m2list}')
                     print(f'idx: {idx}')
