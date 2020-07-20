@@ -790,6 +790,7 @@ class N2N(nn.Module):
                         for item in d:
                             print(f'item:{item}')
                             itemIndex = listindices.index(int(item))
+                            print(f'item index: {itemIndex}')
                             listindices.remove(itemIndex)
                             c= dw2[itemIndex]
                             # print(f'c:{c}')
