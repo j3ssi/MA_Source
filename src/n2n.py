@@ -805,6 +805,8 @@ class N2N(nn.Module):
                 nw1 = torch.cat((w1, w11),dim=0)
                 nw2 = torch.cat((w2, w22),dim=0)
                 print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
+                print(f'dim w2: {w2.size()}; dim w22: {w22.size()}')
+
                 print(f'dim w1: {nw1.size()}; dim w2: {nw2.size()}')
                 rm = torch.FloatTensor(dbn1rm).cuda()
                 rm1 = torch.FloatTensor(listOfRunningMean).cuda()
