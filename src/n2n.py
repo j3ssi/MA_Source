@@ -818,7 +818,7 @@ class N2N(nn.Module):
                 nbn1rv = torch.cat((rv1, rv))
 
                 # dbn1wa = torch.FloatTensor(dbn1w).cuda()
-                nbn1w = torch.cat((bn.weight.data, dbn1w))
+                nbn1w = torch.cat((bn.weight, dbn1w))
 
 
                 nbn1b = torch.cat(bn.bias.data, dbn1b)
