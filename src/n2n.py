@@ -737,7 +737,7 @@ class N2N(nn.Module):
 
                 listindices = []
                 # print(f'List of buf: {listOfRunningMean} ')
-                for i in range(0, delta_width-1):
+                for i in range(0, delta_width):
                     idx = np.random.randint(0, old_width)
                     m1list = m1.weight[idx,:,:,:].data.cpu().numpy().tolist()
                     m2list = m2.weight[:,idx,:,:].data.cpu().numpy().tolist()
