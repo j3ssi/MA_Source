@@ -695,15 +695,15 @@ class N2N(nn.Module):
                 w2 = m2.weight.data
                 w1list = m1.weight.data.cpu().numpy().tolist()
                 w2list = m2.weight.data.cpu().numpy().tolist()
-                print(f'w1 List: {w1list}')
+                # print(f'w1 List: {w1list}')
                 #Fehlersuche
                 assert delta_width > 0, "New size should be larger"
 
                 old_width = w1.size(0)
 
 
-                dw1 = [[]]
-                dw2 = [[]]
+                dw1 = [[[]]]
+                dw2 = [[[]]]
                 dbn1w =  [[]]
 
 
@@ -757,7 +757,8 @@ class N2N(nn.Module):
                         # dw1.select(0, i).normal_(0, np.sqrt(2. / n))
                         # dw2.select(0, i).normal_(0, np.sqrt(2. / n2))
                     else:
-                        dw1[i,:,:,:] = w1[idx,:,:,:]
+                        print(f'w1[idx]: {w1[idx,:,:,:]}')
+                        dw1[i,:,:] = w1[idx,:,:,:]
                         dw2[:,i,:,:] = w2[:,idx,:,:]
                         # dw1.select(0, i).copy_(w1.select(0, idx).clone())
                         # dw2.select(0, i).copy_(w2.select(0, idx).clone())
