@@ -683,21 +683,25 @@ class N2N(nn.Module):
                 # Do nothing
                 continue
             else:
+                # get the layers to change
                 j = int(layer.split('v')[1])
                 i = 2 * j - 2
                 m1 = self.module_list[i]
                 bn = self.module_list[i + 1]
                 m2 = self.module_list[i + 2]
+
+                #get the weights to change
                 w1 = m1.weight.data
                 w2 = m2.weight.data
-                w1numpy = m1.weight.data.cpu().numpy().tolist()
-                w2numpy = m2.weight.data.cpu().numpy().tolist()
+                w1list = m1.weight.data.cpu().numpy().tolist()
+                w2list = m2.weight.data.cpu().numpy().tolist()
+                print(f'w1 List: {w1list}')
+                #Fehlersuche
                 assert delta_width > 0, "New size should be larger"
 
                 old_width = w1.size(0)
-                #dw1 = torch.ones([delta_width,w1.size(1),w1.size(2),w1.size(3)])
-                #dw2 = torch.ones([w2.size(0),delta_width,w2.size(2), w2.size(3)])
-                # print(f'dw1 dim: {dw1.dim()}; {dw2.dim()}')
+
+
                 dw1 = [[]]
                 dw2 = [[]]
                 dbn1w =  [[]]
@@ -708,6 +712,7 @@ class N2N(nn.Module):
                 listOfNumbers = []
                 listOfRunningMean = []
                 listOfRunningVar = []
+
                 for name, buf in self.named_buffers():
                     # print("\nBuffer Name: ", name)
                     if 'running_mean' in name:
@@ -721,15 +726,17 @@ class N2N(nn.Module):
                             listOfRunningMean.append(listOfBuf)
 
                     if 'running_var' in name:
-                        listOfBuf = []
-                        buffer = buf.cpu().numpy().tolist()
-                        listOfBuf.append(buffer)
-                        listOfRunningVar.append(listOfBuf)
+                        k = int(name.split('.')[1])
+                        if(k==(i+1)):
+                            listOfBuf = []
+                            buffer = buf.cpu().numpy().tolist()
+                            listOfBuf.append(buffer)
+                            listOfRunningVar.append(listOfBuf)
 
 
 
                 # print(f'List of buf: {listOfRunningMean} ')
-                for i in range(0, dw1.size(0)):
+                for i in range(0, delta_width):
                     idx = np.random.randint(0, old_width)
                     print(f'idx: {idx}')
                     try:
@@ -747,8 +754,8 @@ class N2N(nn.Module):
                             n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.kernel_size[2] * m2.out_channels
                         elif m2.weight.dim() == 2:
                             n2 = m2.out_features * m2.in_features
-                        dw1.select(0, i).normal_(0, np.sqrt(2. / n))
-                        dw2.select(0, i).normal_(0, np.sqrt(2. / n2))
+                        # dw1.select(0, i).normal_(0, np.sqrt(2. / n))
+                        # dw2.select(0, i).normal_(0, np.sqrt(2. / n2))
                     else:
                         dw1[i,:,:,:] = w1[idx,:,:,:]
                         dw2[:,i,:,:] = w2[:,idx,:,:]
