@@ -738,6 +738,8 @@ class N2N(nn.Module):
                 # print(f'List of buf: {listOfRunningMean} ')
                 for i in range(0, delta_width):
                     idx = np.random.randint(0, old_width)
+                    m1list = m1.weight[idx].data.cpu().numpy().tolist()
+                    print(f'm1list: {m1list}')
                     print(f'idx: {idx}')
                     try:
                         tracking[idx].append(i)
