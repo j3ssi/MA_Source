@@ -788,12 +788,17 @@ class N2N(nn.Module):
                 if not random_init:
                     for idx, d in tracking.items():
                         for item in d:
-                            print(f'item:{item}')
+                            # print(f'item:{item}')
                             c= dw2[item]
                             print(f'c:{c}')
                             for k in range(len(c)):
-                                print(f'c[k]: {c[k]}')
+                                e = c[k]
+                                # print(f'c[k]: {c[k]}')
+                                for l in range(len(e)):
+                                    print(f'e[l]: {e[l]}')
 
+
+                                    
                 # print(f'len: {len(listOfRunningMean)}')
                 # print(f'm1list: {m1list}')
 
