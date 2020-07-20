@@ -742,6 +742,7 @@ class N2N(nn.Module):
                     m1list = m1.weight[idx,:,:,:].data.cpu().numpy().tolist()
                     m2list = m2.weight[:,idx,:,:].data.cpu().numpy().tolist()
                     listindices.append(idx)
+                    print(f'listindices beim befüllen: {listindices}')
                     # print(f'm1list: {m1list}')
                     # print(f'm2list: {m2list}')
                     print(f'idx: {idx}')
