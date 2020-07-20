@@ -804,11 +804,14 @@ class N2N(nn.Module):
                 w22 = torch.FloatTensor(dw2).cuda()
                 nw1 = torch.cat((w1, w11),dim=0)
                 nw2 = torch.cat((w2, w22),dim=0)
-                print(f'dim w1: {nw1.dim()}; dim w2: {nw2.dim()}')
+                print(f'dim w1: {nw1.shape()}; dim w2: {nw2.shape()}')
                 rm = torch.FloatTensor(dbn1rm).cuda()
                 rm1 = torch.FloatTensor(listOfRunningMean).cuda()
                 nbn1rm = torch.cat((rm1, rm), dim=0)
-                nbn1rv = torch.cat(bn.running_var, dbn1rv)
+
+                rv = torch.FloatTensor(dbn1rv).cuda()
+                rv1 = torch.FloatTensor(listOfRunningVar).cuda()
+                nbn1rv = torch.cat(listOfRunningVar, rv1)
                 nbn1w = torch.cat(bn.weight.data, dbn1w)
                 nbn1b = torch.cat(bn.bias.data, dbn1b)
 
