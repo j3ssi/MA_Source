@@ -792,6 +792,7 @@ class N2N(nn.Module):
                             itemIndex = listindices.index(item)
                             print(f'item index: {itemIndex}; len d: {len(d)}')
                             del listindices[itemIndex]
+                            print(f'listindices: {listindices}')
                             c= dw2[itemIndex]
                             # print(f'c:{c}')
                             for k in range(len(c)):
