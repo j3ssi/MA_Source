@@ -804,7 +804,7 @@ class N2N(nn.Module):
                 w22 = torch.FloatTensor(dw2).cuda()
                 w22 = torch.transpose(w22,0,1)
                 nw1 = torch.cat((w1, w11),dim=0)
-                nw2 = torch.cat((w2, w22),dim=0)
+                nw2 = torch.cat((w2, w22),dim=1)
                 print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
                 print(f'dim w2: {w2.size()}; dim w22: {w22.size()}')
 
