@@ -702,8 +702,8 @@ class N2N(nn.Module):
                 old_width = w1.size(0)
 
 
-                dw1 = [[[]]]
-                dw2 = [[[]]]
+                dw1 = []
+                dw2 = []
                 dbn1w =  [[]]
 
 
@@ -738,7 +738,8 @@ class N2N(nn.Module):
                 # print(f'List of buf: {listOfRunningMean} ')
                 for i in range(0, delta_width):
                     idx = np.random.randint(0, old_width)
-                    m1list = m1.weight[idx].data.cpu().numpy().tolist()
+                    m1list = m1.weight[idx,:,:,:].data.cpu().numpy().tolist()
+                    m2list = m2.weight[:,idx,:,:]
                     print(f'm1list: {m1list}')
                     print(f'idx: {idx}')
                     try:
@@ -760,8 +761,8 @@ class N2N(nn.Module):
                         # dw2.select(0, i).normal_(0, np.sqrt(2. / n2))
                     else:
                         print(f'w1[idx]: {w1list[idx,:,:,:]}')
-                        dw1[i,:,:] = w1[idx,:,:,:]
-                        dw2[:,i,:,:] = w2[:,idx,:,:]
+                        dw1.append(m1list)
+
                         # dw1.select(0, i).copy_(w1.select(0, idx).clone())
                         # dw2.select(0, i).copy_(w2.select(0, idx).clone())
 
