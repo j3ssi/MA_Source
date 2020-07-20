@@ -788,15 +788,15 @@ class N2N(nn.Module):
                         c= dw2[idx]
 
                         # print(f'c:{c}')
-                            for k in range(len(c)):
-                                e = c[k]
-                                # print(f'c[k]: {c[k]}')
-                                for l in range(len(e)):
-                                    print(f' before e[l]: {e[l]}')
-                                    f = e[l]
-                                    for m in range(len(f)):
-                                        f[m] = f[m] / len(d)
-                                    print(f' after e[l]: {e[l]}')
+                        for k in range(len(c)):
+                            e = c[k]
+                            # print(f'c[k]: {c[k]}')
+                            for l in range(len(e)):
+                                print(f' before e[l]: {e[l]}')
+                                f = e[l]
+                                for m in range(len(f)):
+                                    f[m] = f[m] / len(d)
+                                print(f' after e[l]: {e[l]}')
 
                 # print(f'len: {len(listOfRunningMean)}')
                 # print(f'm1list: {m1list}')
