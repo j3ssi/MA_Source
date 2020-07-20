@@ -789,7 +789,7 @@ class N2N(nn.Module):
                         for idx, d in tracking.items():
                             for item in d:
                                 print(f'item:{item}')
-#                                dw2[item].div_(len(d))
+#                                dw2[item]
 
 
                 print(f'len: {len(listOfRunningMean)}')
