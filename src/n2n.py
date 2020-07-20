@@ -712,6 +712,7 @@ class N2N(nn.Module):
                 listOfNumbers = []
                 listOfRunningMean = []
                 listOfRunningVar = []
+                bn1list = bn.bias.data.cpu().numpy().tolist()
 
                 for name, buf in self.named_buffers():
                     # print("\nBuffer Name: ", name)
@@ -740,6 +741,7 @@ class N2N(nn.Module):
                     idx = np.random.randint(0, old_width)
                     m1list = m1.weight[idx,:,:,:].data.cpu().numpy().tolist()
                     m2list = m2.weight[:,idx,:,:].data.cpu().numpy().tolist()
+
                     # print(f'm1list: {m1list}')
                     # print(f'm2list: {m2list}')
                     print(f'idx: {idx}')
@@ -780,7 +782,7 @@ class N2N(nn.Module):
 
                         if bn.affine:
                             dbn1w[i] = bn.weight.data[idx]
-                            dbn1b[i] = bn.bias.data[idx]
+                            dbn1b[i] = bn1list[idx]
                     bn.num_features = nw1.size(0)
 
                     if not random_init:
