@@ -788,12 +788,12 @@ class N2N(nn.Module):
                     if not random_init:
                         for idx, d in tracking.items():
                             for item in d:
-                                print(f'item:{item}')
-#                                dw2[item]
+                                # print(f'item:{item}')
+                                d= dw2[item]
+                                print(f'd:{d}')
 
-
-                print(f'len: {len(listOfRunningMean)}')
-                print(f'm1list: {m1list}')
+                # print(f'len: {len(listOfRunningMean)}')
+                # print(f'm1list: {m1list}')
 
                 nw1 = torch.cat(w1,dw1,dim=1)
                 nw2 = torch.cat(w2,dw2,dim=0)
