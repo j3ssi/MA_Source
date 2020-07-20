@@ -741,6 +741,7 @@ class N2N(nn.Module):
                     m1list = m1.weight[idx,:,:,:].data.cpu().numpy().tolist()
                     m2list = m2.weight[:,idx,:,:]
                     print(f'm1list: {m1list}')
+                    print(f'm2list: {m2list}')
                     print(f'idx: {idx}')
                     try:
                         tracking[idx].append(i)
@@ -760,9 +761,8 @@ class N2N(nn.Module):
                         # dw1.select(0, i).normal_(0, np.sqrt(2. / n))
                         # dw2.select(0, i).normal_(0, np.sqrt(2. / n2))
                     else:
-                        print(f'w1[idx]: {w1list[idx,:,:,:]}')
                         dw1.append(m1list)
-
+                        dw2.append(m2list)
                         # dw1.select(0, i).copy_(w1.select(0, idx).clone())
                         # dw2.select(0, i).copy_(w2.select(0, idx).clone())
 
