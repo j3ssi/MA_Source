@@ -780,8 +780,8 @@ class N2N(nn.Module):
                 ct = {}
                 for key, dif_k in tracking.items():
                     print(f'key: {key}; difk: {dif_k}')
-                    #dictcounter = k.count(k)
-                    #ct.update({key:dictcounter})
+                    dictcounter = len(dif_k)
+                    ct.update({key:dictcounter})
                 print(f'ct: {ct}')
                 if not random_init:
                     for idx in range(len(listindices)):
