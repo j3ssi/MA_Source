@@ -742,7 +742,7 @@ class N2N(nn.Module):
                         tracking[idx].append(o)
                     except:
                         tracking[idx] = [idx]
-                        tracking[idx].append(o)
+                        # tracking[idx].append(o)
 
                     # TEST:random init for new units
                     if random_init:
