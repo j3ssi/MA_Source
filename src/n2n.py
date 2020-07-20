@@ -704,7 +704,7 @@ class N2N(nn.Module):
 
                 dw1 = []
                 dw2 = []
-                dbn1w =  [[]]
+                dbn1w =  []
                 dbn1rv= []
                 dbn1rm = []
                 dbn1b = []
