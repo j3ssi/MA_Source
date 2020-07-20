@@ -737,7 +737,7 @@ class N2N(nn.Module):
 
 
                 # print(f'List of buf: {listOfRunningMean} ')
-                for i in range(0, delta_width):
+                for i in range(0, delta_width-1):
                     idx = np.random.randint(0, old_width)
                     m1list = m1.weight[idx,:,:,:].data.cpu().numpy().tolist()
                     m2list = m2.weight[:,idx,:,:].data.cpu().numpy().tolist()
@@ -792,7 +792,7 @@ class N2N(nn.Module):
 #                                dw2[item].div_(len(d))
 
 
-
+                print(f'len: {len(listOfRunningMean)}')
                 print(f'm1list: {m1list}')
 
                 nw1 = torch.cat(w1,dw1,dim=1)
