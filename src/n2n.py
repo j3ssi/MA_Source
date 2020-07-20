@@ -775,11 +775,11 @@ class N2N(nn.Module):
                             dbn1w.append(bn.weight.data[idx])
                             dbn1b.append(bn1list[idx])
                     bn.num_features = w1.size(0) + delta_width
-
+                print(f'indices: {listindices}')
                 print(f'tracking dict: {tracking}')
                 ct = {}
                 for key, dif_k in tracking.items():
-                    print(f'kye: {key}; difk: {dif_k}')
+                    print(f'key: {key}; difk: {dif_k}')
                     #dictcounter = k.count(k)
                     #ct.update({key:dictcounter})
                 print(f'ct: {ct}')
