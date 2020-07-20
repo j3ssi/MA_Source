@@ -788,7 +788,7 @@ class N2N(nn.Module):
                 if not random_init:
                     for idx, d in tracking.items():
                         for item in d:
-                            # print(f'item:{item}')
+                            print(f'item:{item}')
                             c= dw2[item]
                             # print(f'c:{c}')
                             for k in range(len(c)):
