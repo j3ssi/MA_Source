@@ -783,7 +783,7 @@ class N2N(nn.Module):
                         if bn.affine:
                             dbn1w.append(bn.weight.data[idx])
                             dbn1b.append(bn1list[idx])
-                    bn.num_features = nw1.size(0)
+                    bn.num_features = w1.size(0) + delta_width
 
                     if not random_init:
                         for idx, d in tracking.items():
