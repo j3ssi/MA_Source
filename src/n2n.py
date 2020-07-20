@@ -734,10 +734,10 @@ class N2N(nn.Module):
                     m1list = m1.weight[idx,:,:,:].data.cpu().numpy().tolist()
                     m2list = m2.weight[:,idx,:,:].data.cpu().numpy().tolist()
                     listindices.append(idx)
-                    print(f'listindices beim befüllen: {listindices}')
+                    # print(f'listindices beim befüllen: {listindices}')
                     # print(f'm1list: {m1list}')
                     # print(f'm2list: {m2list}')
-                    print(f'idx: {idx}')
+                    # print(f'idx: {idx}')
                     try:
                         tracking[idx].append(o)
                     except:
@@ -792,11 +792,11 @@ class N2N(nn.Module):
                             e = c[k]
                             # print(f'c[k]: {c[k]}')
                             for l in range(len(e)):
-                                print(f' before e[l]: {e[l]}')
+                                # print(f' before e[l]: {e[l]}')
                                 f = e[l]
                                 for m in range(len(f)):
                                     f[m] = f[m] / ct.get(listindices[idx])
-                                print(f' after e[l]: {e[l]}')
+                                # print(f' after e[l]: {e[l]}')
 
                 # print(f'len: {len(listOfRunningMean)}')
                 # print(f'm1list: {m1list}')
