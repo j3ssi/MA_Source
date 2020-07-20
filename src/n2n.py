@@ -705,9 +705,9 @@ class N2N(nn.Module):
                 dw1 = []
                 dw2 = []
                 dbn1w =  [[]]
-
-
-
+                dbn1rv= []
+                dbn1rm = []
+                dbn1b = []
                 tracking = dict()
                 listOfNumbers = []
                 listOfRunningMean = []
@@ -740,8 +740,8 @@ class N2N(nn.Module):
                     idx = np.random.randint(0, old_width)
                     m1list = m1.weight[idx,:,:,:].data.cpu().numpy().tolist()
                     m2list = m2.weight[:,idx,:,:].data.cpu().numpy().tolist()
-                    print(f'm1list: {m1list}')
-                    print(f'm2list: {m2list}')
+                    # print(f'm1list: {m1list}')
+                    # print(f'm2list: {m2list}')
                     print(f'idx: {idx}')
                     try:
                         tracking[idx].append(i)
@@ -767,7 +767,6 @@ class N2N(nn.Module):
                         # dw2.select(0, i).copy_(w2.select(0, idx).clone())
 
                     if bn is not None:
-                        number = listOfNumbers.pop(0)
                         # print(f'listofRunning mean: {listOfRunningMean.pop(0)}')
                         dbn1 = listOfRunningMean.pop(0)[0]
                         print(f'length of dbn1: {dbn1}')
@@ -790,7 +789,7 @@ class N2N(nn.Module):
                                 dw2[item].div_(len(d))
 
 
-
+                print(f'm1list: {m1list}')
 
                 nw1 = torch.cat(w1,dw1,dim=1)
                 nw2 = torch.cat(w2,dw2,dim=0)
