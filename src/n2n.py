@@ -771,28 +771,23 @@ class N2N(nn.Module):
                         # print(f'running mean: {dbn1rm}')
                         # dbn1rm[i] = bn.running_mean.data()[idx]
                         # dbn1rv[i] = bn.running_var.data()[idx]
-
-
                         if bn.affine:
                             dbn1w.append(bn.weight.data[idx])
                             dbn1b.append(bn1list[idx])
                     bn.num_features = w1.size(0) + delta_width
 
                 print(f'tracking dict: {tracking}')
-
+                ct = {}
+                for key, dif_k in dictsample.iteritems():
+                    for k, v in dif_k.iteritems():
+                        dictcounter = k.count(k)
+                        ct.update({key:dictcounter})
+                print(f'ct: {ct}')
                 if not random_init:
-                    for idx, d in tracking.items():
-                        print(f'd: {d}')
-                        print(f'e: {reversed(sorted(d))}')
+                    for idx in range(len(listindices)):
+                        c= dw2[idx]
 
-                        for item in reversed(sorted(d)):
-                            print(f'item:{item}')
-                            # itemIndex = listindices.index(item)
-                            print(f'item index: {item}; len d: {len(d)}')
-                            del listindices[item]
-                            print(f'listindices: {listindices}')
-                            c= dw2[item]
-                            # print(f'c:{c}')
+                        # print(f'c:{c}')
                             for k in range(len(c)):
                                 e = c[k]
                                 # print(f'c[k]: {c[k]}')
