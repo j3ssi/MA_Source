@@ -800,8 +800,8 @@ class N2N(nn.Module):
 
                 # print(f'len: {len(listOfRunningMean)}')
                 # print(f'm1list: {m1list}')
-
-                nw1 = torch.cat((w1,torch.FloatTensor(dw1, device = 'cuda:0')),dim=1)
+                w11 = torch.FloatTensor(dw1).cuda()
+                nw1 = torch.cat((w1,w11,dim=1)
                 nw2 = torch.cat((w2,torch.FloatTensor(dw2)),dim=0)
                 nbn1rm = torch.cat(bn.running_mean, dbn1rm)
                 nbn1rv = torch.cat(bn.running_var, dbn1rv)
