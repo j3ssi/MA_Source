@@ -784,11 +784,11 @@ class N2N(nn.Module):
                     for idx, d in tracking.items():
                         for item in d:
                             print(f'item:{item}')
-                            itemIndex = listindices.index(item)
-                            print(f'item index: {itemIndex}; len d: {len(d)}')
-                            del listindices[itemIndex]
+                            # itemIndex = listindices.index(item)
+                            print(f'item index: {item}; len d: {len(d)}')
+                            del listindices[item]
                             print(f'listindices: {listindices}')
-                            c= dw2[itemIndex]
+                            c= dw2[item]
                             # print(f'c:{c}')
                             for k in range(len(c)):
                                 e = c[k]
