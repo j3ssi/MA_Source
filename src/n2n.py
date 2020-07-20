@@ -713,7 +713,7 @@ class N2N(nn.Module):
                 listOfRunningMean = []
                 listOfRunningVar = []
                 bn1list = bn.bias.data.cpu().numpy().tolist()
-
+                bn1wlist = bn.weight.data.cpu().numpy.tolist()
                 for name, buf in self.named_buffers():
                     # print("\nBuffer Name: ", name)
                     if 'running_mean' in name:
@@ -772,7 +772,7 @@ class N2N(nn.Module):
                         # dbn1rm[i] = bn.running_mean.data()[idx]
                         # dbn1rv[i] = bn.running_var.data()[idx]
                         if bn.affine:
-                            dbn1w.append(bn.weight.data[idx].cpu().numpy())
+                            dbn1w.append(bn1wlist[idx])
                             dbn1b.append(bn1list[idx])
                     bn.num_features = w1.size(0) + delta_width
                 print(f'indices: {listindices}')
