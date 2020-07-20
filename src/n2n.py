@@ -778,6 +778,8 @@ class N2N(nn.Module):
                             dbn1b.append(bn1list[idx])
                     bn.num_features = w1.size(0) + delta_width
 
+                print(f'tracking dict: {tracking}')
+
                 if not random_init:
                     for idx, d in tracking.items():
                         for item in d:
