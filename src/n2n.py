@@ -795,7 +795,7 @@ class N2N(nn.Module):
                                 print(f' before e[l]: {e[l]}')
                                 f = e[l]
                                 for m in range(len(f)):
-                                    f[m] = f[m] / len(d)
+                                    f[m] = f[m] / ct.get(listindices[idx])
                                 print(f' after e[l]: {e[l]}')
 
                 # print(f'len: {len(listOfRunningMean)}')
