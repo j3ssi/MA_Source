@@ -713,7 +713,7 @@ class N2N(nn.Module):
                 listOfRunningMean = []
                 listOfRunningVar = []
                 bn1list = bn.bias.data.cpu().numpy().tolist()
-                bn1wlist = bn.weight.data.cpu().numpy.tolist()
+                bn1wlist = bn.weight.data.cpu().numpy().tolist()
                 for name, buf in self.named_buffers():
                     # print("\nBuffer Name: ", name)
                     if 'running_mean' in name:
