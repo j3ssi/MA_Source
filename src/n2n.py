@@ -679,7 +679,7 @@ class N2N(nn.Module):
         sameNodes = self.getShareSameNodeLayers()
         for layer in listofLayer:
             print(f'layer: {layer}')
-            if layer in residualPathO:
+            if False:
                 # Do nothing
                 continue
             else:
