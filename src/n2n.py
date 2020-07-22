@@ -800,6 +800,7 @@ class N2N(nn.Module):
 
                 # print(f'len: {len(listOfRunningMean)}')
                 # print(f'm1list: {m1list}')
+
                 w11 = torch.FloatTensor(dw1).cuda()
                 w22 = torch.FloatTensor(dw2).cuda()
                 w22 = torch.transpose(w22,0,1)
@@ -825,7 +826,8 @@ class N2N(nn.Module):
 
                 m1.out_channels = nw1.size(0)
                 m2.in_channels = nw1.size(1)
-                i0 = int(nw1.size()[0])
+                i0 = dw1.shape
+                print(f'i0: {i0}')
                 i1 = int(nw1.size()[1])
                 i2 = int(nw1.size()[2])
                 i3 = int(nw1.size()[3])
