@@ -828,7 +828,8 @@ class N2N(nn.Module):
                 print(f'nw1 size: {nw1.size()}')
                 if noise:
                     noise = np.random.normal(scale=5e-2 * nw1.std(),
-                                             size=list(nw1.size()))
+                                             size=(nw1.size()[0], nw1.size()[1],
+                                                   nw1.size()[2], nw1.size()[3]))
                     nw1 += th.FloatTensor(noise).type_as(nw1)
 
                 m1.weight.data = nw1
