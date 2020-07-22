@@ -829,10 +829,7 @@ class N2N(nn.Module):
                 i0 = len(dw1)+delta_width
                 i1 = len(dw1[0])
                 i2 = len(dw1[0][0])
-                print(f'i2: {i2}')
-                i1 = int(nw1.size()[1])
-                i2 = int(nw1.size()[2])
-                i3 = int(nw1.size()[3])
+                i3 = len(dw1[0][0][0])
                 x = nw1.std()
                 print(f'nw1 size: {nw1.size()[0]}')
                 if noise:
