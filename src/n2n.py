@@ -689,7 +689,7 @@ class N2N(nn.Module):
                 m1 = self.module_list[i]
                 bn = self.module_list[i + 1]
                 m2 = self.module_list[i + 2]
-
+                print(f'm2 before: {m2}')
                 #get the weights to change
                 w1 = m1.weight.data
                 w2 = m2.weight.data
@@ -847,6 +847,7 @@ class N2N(nn.Module):
                         bn.weight.data = nbn1w
                         bn.bias.data = nbn1b
 
+        print(f'm2 before: {m2}')
         print(f'Model after wider: {self}')
         # def deeper(self, model, optimizer):
         #     # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
