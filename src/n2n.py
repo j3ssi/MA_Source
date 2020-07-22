@@ -825,11 +825,14 @@ class N2N(nn.Module):
 
                 m1.out_channels = nw1.size(0)
                 m2.in_channels = nw1.size(1)
+                i0 = nw1.size()[0]
+                i1 = nw1.size()[1]
+                i2 = nw1.size()[2]
+                i3 = nw1.size()[3]
                 print(f'nw1 size: {nw1.size()[0]}')
                 if noise:
                     noise = np.random.normal(scale=5e-2 * nw1.std(),
-                                             size=(nw1.size()[0], nw1.size()[1],
-                                                   nw1.size()[2], nw1.size()[3]))
+                                             size=(i0 ,i1 , i2, i3))
                     nw1 += th.FloatTensor(noise).type_as(nw1)
 
                 m1.weight.data = nw1
