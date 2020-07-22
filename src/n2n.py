@@ -839,7 +839,7 @@ class N2N(nn.Module):
 
                 m1.weight.data = nw1
                 m2.weight.data = nw2
-
+                print(f'm2 size: {m2.weight.size()}')
                 if bn is not None:
                     bn.running_var = nbn1rv
                     bn.running_mean = nbn1rv
@@ -847,7 +847,7 @@ class N2N(nn.Module):
                         bn.weight.data = nbn1w
                         bn.bias.data = nbn1b
 
-        print(f'm2 before: {m2}')
+        print(f'm2 after: {m2}')
         print(f'Model after wider: {self}')
         # def deeper(self, model, optimizer):
         #     # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
