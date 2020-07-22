@@ -825,7 +825,7 @@ class N2N(nn.Module):
 
                 m1.out_channels = nw1.size(0)
                 m2.in_channels = nw1.size(1)
-
+                print(f'nw1 size: {nw1.size()}')
                 if noise:
                     noise = np.random.normal(scale=5e-2 * nw1.std(),
                                              size=list(nw1.size()))
