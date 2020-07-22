@@ -826,7 +826,7 @@ class N2N(nn.Module):
 
                 m1.out_channels = nw1.size(0)
                 m2.in_channels = nw1.size(1)
-                i0 = len(dw1)+delta_width
+                i0 = len(w1list)+delta_width
                 i1 = len(dw1[0])
                 i2 = len(dw1[0][0])
                 i3 = len(dw1[0][0][0])
