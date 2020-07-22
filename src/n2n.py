@@ -825,7 +825,7 @@ class N2N(nn.Module):
                 nbn1b = torch.cat((bn.bias.data, dbn1x))
 
                 m1.out_channels = nw1.size(0)
-                m2.in_channels = nw1.size(1)
+                m2.in_channels = nw1.size(0)
                 i0 = len(w1list)+delta_width
                 i1 = len(dw1[0])
                 i2 = len(dw1[0][0])
