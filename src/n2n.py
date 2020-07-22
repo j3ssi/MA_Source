@@ -831,7 +831,7 @@ class N2N(nn.Module):
                 i2 = len(dw1[0][0])
                 i3 = len(dw1[0][0][0])
                 x = nw1.std()
-                print(f'nw1 size: {nw1.size()[0]}')
+                print(f'nw1 std: {x}')
                 if noise:
                     noise = np.random.normal(scale=5e-2 * x,
                                              size=(i0 ,i1 , i2, i3))
