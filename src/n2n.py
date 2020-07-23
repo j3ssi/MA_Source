@@ -183,7 +183,13 @@ class N2N(nn.Module):
 
                             elif firstBlockInStage and not firstLayer and (i + 1) % self.archNums[stage][block] == 0:
 
-                                conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
+                                if widthOfLayers is not None:
+                                    conv = nn.Conv2d(widthOfLayers[stage-1], sizeOfLayer, kernel_size=3, padding=1,
+                                                 bias=False,
+                                                 stride=2)
+
+                                else:
+                                    conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                                  bias=False,
                                                  stride=2)
                                 self.module_list.append(conv)
