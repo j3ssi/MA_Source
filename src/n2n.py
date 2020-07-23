@@ -154,7 +154,7 @@ class N2N(nn.Module):
                 for stage in range(0, numOfStages):
                     firstBlockInStage = True
                     sizeOfLayer = pow(2, stage)
-                    if widthofFirstLayer is not None:
+                    if widthOfLayers is not None:
                         sizeOfLayer = widthOfLayers[stage]
                     else:
                        sizeOfLayer *= self.widthofFirstLayer

@@ -332,7 +332,7 @@ def main():
         assert args.numOfStages == len(
             listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
         # if not args.n2n:
-        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck, args.widthofFirstLayer )
+        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck, listOfWidths)
         # else:
         #    model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
         #                    args.widthofFirstLayer,model=None, archNums=None, widthOfLayers=listOfWidths)
