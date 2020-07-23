@@ -307,7 +307,7 @@ def main():
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
     # dynamic resnet modell
-    print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
+    # print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
 
     title = 'prune' + str(args.epochsFromBegin)
     if args.resume:

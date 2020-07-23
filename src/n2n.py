@@ -18,7 +18,10 @@ class N2N(nn.Module):
         self.numOfBlocksinStage = numOfBlocksinStage
         self.bottleneck = bottleneck
         self.layersInBlock = layersInBlock
-        self.widthofFirstLayer = widthofFirstLayer
+        if widthOfLayers is not None:
+            self.widthofFirstLayer = widthOfLayers[0]
+        else:
+            self.widthofFirstLayer = widthofFirstLayer
         if first:
             self.archNums = [[]]
             for s in range(0, self.numOfStages):
@@ -151,7 +154,10 @@ class N2N(nn.Module):
                 for stage in range(0, numOfStages):
                     firstBlockInStage = True
                     sizeOfLayer = pow(2, stage)
-                    sizeOfLayer *= self.widthofFirstLayer
+                    if widthofFirstLayer is not None:
+                        sizeOfLayer = widthofFirstLayer[stage]
+                    else:
+                       sizeOfLayer *= self.widthofFirstLayer
                     print(f'stage: {stage}; sizeof Layers: {sizeOfLayer}')
                     # print("\nStage: ", stage, " ; ", sizeOfLayer)
                     for block in range(0, len(self.archNums[stage])):
