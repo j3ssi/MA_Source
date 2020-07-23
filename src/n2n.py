@@ -12,6 +12,7 @@ class N2N(nn.Module):
     def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock,
                  first, bottleneck, widthofFirstLayer =16, model=None, archNums=None, widthOfLayers =None):
         super(N2N, self).__init__()
+        print(f'width: {widthOfLayers}')
         self.device = torch.device("cuda:0")
         self.numOfStages = numOfStages
         self.oddLayers = []
