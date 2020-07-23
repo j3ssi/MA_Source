@@ -501,7 +501,71 @@ def main():
         i = 2
 
     if args.wider:
-        model.wider('conv2', 2, out_size=None, weight_norm=None, random_init=False )
+        model.wider('conv1', 5, out_size=None, weight_norm=None, random_init=False )
+
+        model.wider('conv2', 5, out_size=None, weight_norm=None, random_init=False )
+
+        model.wider('conv3', 5, out_size=None, weight_norm=None, random_init=False )
+
+        model.wider('conv4', 5, out_size=None, weight_norm=None, random_init=False )
+
+        model.wider('conv5', 5, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv6', 5, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv7', 5, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv8', 5, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv9', 5, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv10', 5, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv11', 5, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv12', 14, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv13', 14, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv14', 14, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv15', 14, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv16', 14, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv17', 14, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv18', 14, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv19', 14, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv20', 14, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv21', 14, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv22', 14, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv23', 29, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv24', 29, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv25', 29, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv26', 29, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv27', 29, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv28', 29, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv29', 29, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv30', 29, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv31', 29, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv32', 29, out_size=None, weight_norm=None, random_init=False)
+
+        model.wider('conv33', 29, out_size=None, weight_norm=None, random_init=False)
 
     if args.saveModell:
         torch.save(model, args.pathToModell)
