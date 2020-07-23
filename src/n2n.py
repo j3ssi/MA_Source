@@ -20,6 +20,7 @@ class N2N(nn.Module):
         self.layersInBlock = layersInBlock
         if widthOfLayers is not None:
             self.widthofFirstLayer = widthOfLayers[0]
+            print(f'width: {self.widthofFirstLayer}')
         else:
             self.widthofFirstLayer = widthofFirstLayer
         if first:
