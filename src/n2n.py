@@ -700,7 +700,7 @@ class N2N(nn.Module):
         residualListI = map(lambda x: x,residualListI)
         residualListO = residualPathO[layers - 1]
         residualList = sorted(list(residualListI) + residualListO)
-        print(f'residualList: {list(residualListI)}')
+        print(f'residualList: {residualListI}')
         for element in residualList:
                 print(f'layer: {element}')
                 # get the layers to change
