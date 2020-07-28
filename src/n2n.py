@@ -949,7 +949,7 @@ class N2N(nn.Module):
 
             if len(residualList) == 0:
                 index = 1
-        print(f'Model after wider: {self}')
+            print(f'Model after wider: {self}')
         # def deeper(self, model, optimizer):
         #     # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
         #     # for stage in self.archNums[i]:
