@@ -717,6 +717,8 @@ class N2N(nn.Module):
             i = 2 * j - 2
             m1 = self.module_list[i]
             bn = self.module_list[i + 1]
+            print(f'm1: {m1}')
+            print(f'bn1: {bn}')
             w1 = m1.weight.data
             w1list = m1.weight.data.cpu().numpy().tolist()
 
