@@ -803,11 +803,11 @@ class N2N(nn.Module):
                 m1.weight.data = w1
 
             if j in mapListO or layerinbetween:
-                print(f'in maplistO j: {j}')
+                # print(f'in maplistO j: {j}')
 
                 old_width = w1.size(1)
                 new_width = old_width * delta_width
-
+                print(f'new width: {new_width}; old width: {old_width}')
                 dw1 = []
                 dbn1w = []
                 dbn1rv = []
