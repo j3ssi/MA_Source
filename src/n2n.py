@@ -661,7 +661,6 @@ class N2N(nn.Module):
     """
 
     def wider(self, layers, delta_width, out_size=None, weight_norm=True, random_init=True, noise=True):
-        listofLayer = [i for i in layers.split(',')]
         print(f'Model before wider: {self}')
         altList = []
         paramList = []
@@ -697,178 +696,175 @@ class N2N(nn.Module):
         j = 0
         residualPathI, residualPathO = self.getResidualPath()
         sameNodes = self.getShareSameNodeLayers()
-        for layer in listofLayer:
-            print(f'layer: {layer}')
-            if False:
-                # Do nothing
-                continue
-            else:
-                # get the layers to change
-                j = int(layer.split('v')[1])
-                i = 2 * j - 2
-                m1 = self.module_list[i]
-                bn = self.module_list[i + 1]
-                m2 = self.module_list[i + 2]
-                print(f'm2 before: {m2}')
-                #get the weights to change
-                w1 = m1.weight.data
-                w2 = m2.weight.data
-                w1list = m1.weight.data.cpu().numpy().tolist()
-                w2list = m2.weight.data.cpu().numpy().tolist()
-                # print(f'w1 List: {w1list}')
-                #Fehlersuche
-                assert delta_width > 0, "New size should be larger"
 
-                old_width = w1.size(0)
-
-
-                dw1 = []
-                dw2 = []
-                dbn1w =  []
-                dbn1rv= []
-                dbn1rm = []
-                dbn1b = []
-                tracking = dict()
-                listOfNumbers = []
-                listOfRunningMean = []
-                listOfRunningVar = []
-                bn1list = bn.bias.data.cpu().numpy().tolist()
-                bn1wlist = bn.weight.data.cpu().numpy().tolist()
-                for name, buf in self.named_buffers():
-                    # print("\nBuffer Name: ", name)
-                    if 'running_mean' in name:
-                        k = int(name.split('.')[1])
-                        if (k==(i+1)):
-                            listOfRunningMean =buf.cpu().numpy().tolist()
-
-                    if 'running_var' in name:
-                        k = int(name.split('.')[1])
-                        if(k==(i+1)):
-                            listOfRunningVar = buf.cpu().numpy().tolist()
-
-
-                listindices = []
-                print(f'List of buf: {listOfRunningMean} ')
-                for o in range(0, delta_width):
-                    idx = np.random.randint(0, old_width)
-                    m1list = m1.weight[idx,:,:,:].data.cpu().numpy().tolist()
-                    m2list = m2.weight[:,idx,:,:].data.cpu().numpy().tolist()
-                    listindices.append(idx)
-                    # print(f'listindices beim befüllen: {listindices}')
-                    # print(f'm1list: {m1list}')
-                    # print(f'm2list: {m2list}')
-                    # print(f'idx: {idx}')
-                    try:
-                        tracking[idx].append(o)
-                    except:
-                        tracking[idx] = []
-                        tracking[idx].append(o)
-
-                    # TEST:random init for new units
-                    if random_init:
-                        n = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
-                        if m2.weight.dim() == 4:
-                            n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.out_channels
-                        elif m2.weight.dim() == 5:
-                            n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.kernel_size[2] * m2.out_channels
-                        elif m2.weight.dim() == 2:
-                            n2 = m2.out_features * m2.in_features
-                        # dw1.select(0, i).normal_(0, np.sqrt(2. / n))
-                        # dw2.select(0, i).normal_(0, np.sqrt(2. / n2))
-                    else:
-                        dw1.append(m1list)
-                        dw2.append(m2list)
-                        # dw1.select(0, i).copy_(w1.select(0, idx).clone())
-                        # dw2.select(0, i).copy_(w2.select(0, idx).clone())
-
-                    if bn is not None:
-                        # print(f'listofRunning mean: {listOfRunningMean.pop(0)}')
-                        dbn1 = listOfRunningMean[idx]
-                        # print(f'length of dbn1: {dbn1}')
-                        dbn1rm.append(dbn1)
-                        dbn1 = listOfRunningVar[idx]
-                        dbn1rv.append(dbn1)
-                        # print(f'running mean: {dbn1rm}')
-                        # dbn1rm[i] = bn.running_mean.data()[idx]
-                        # dbn1rv[i] = bn.running_var.data()[idx]
-                        if bn.affine:
-                            dbn1w.append(bn1wlist[idx])
-                            dbn1b.append(bn1list[idx])
-                    bn.num_features = w1.size(0) + delta_width
-                print(f'indices: {listindices}')
-                print(f'tracking dict: {tracking}')
-                ct = {}
-                for key, dif_k in tracking.items():
-                    print(f'key: {key}; difk: {dif_k}')
-                    dictcounter = len(dif_k)
-                    ct.update({key:dictcounter})
-                print(f'ct: {ct}')
-                if not random_init:
-                    for idx in range(len(listindices)):
-                        c= dw2[idx]
-
-                        # print(f'c:{c}')
-                        for k in range(len(c)):
-                            e = c[k]
-                            # print(f'c[k]: {c[k]}')
-                            for l in range(len(e)):
-                                # print(f' before e[l]: {e[l]}')
-                                f = e[l]
-                                for m in range(len(f)):
-                                    f[m] = f[m] / ct.get(listindices[idx])
-                                # print(f' after e[l]: {e[l]}')
-
-                # print(f'len: {len(listOfRunningMean)}')
-                # print(f'm1list: {m1list}')
-
-                w11 = torch.FloatTensor(dw1).cuda()
-                w22 = torch.FloatTensor(dw2).cuda()
-                w22 = torch.transpose(w22,0,1)
-                nw1 = torch.cat((w1, w11),dim=0)
-                nw2 = torch.cat((w2, w22),dim=1)
-                print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
-                print(f'dim w2: {w2.size()}; dim w22: {w22.size()}')
-
-                print(f'dim w1: {nw1.size()}; dim w2: {nw2.size()}')
-                rm = torch.FloatTensor(dbn1rm).cuda()
-                rm1 = torch.FloatTensor(listOfRunningMean).cuda()
-                nbn1rm = torch.cat((rm1, rm), dim=0)
-
-                rv = torch.FloatTensor(dbn1rv).cuda()
-                rv1 = torch.FloatTensor(listOfRunningVar).cuda()
-                nbn1rv = torch.cat((rv1, rv))
-
-                dbn1wa = torch.FloatTensor(dbn1w).cuda()
-                nbn1w = torch.cat((bn.weight, dbn1wa))
-
-                dbn1x = torch.FloatTensor(dbn1b).cuda()
-                nbn1b = torch.cat((bn.bias.data, dbn1x))
-
-                m1.out_channels = nw1.size(0)
-                m2.in_channels = nw1.size(0)
-                i0 = len(w1list)+delta_width
-                i1 = len(dw1[0])
-                i2 = len(dw1[0][0])
-                i3 = len(dw1[0][0][0])
-                x = nw1.std()
-                print(f'i0: {i0}')
-                if noise:
-                    noise = np.random.normal(scale=5e-2 * 0.3,
-                                             size=(i0 ,i1 , i2, i3))
-                    nw1 += th.FloatTensor(noise).type_as(nw1)
-
-                m1.weight.data = nw1
-                m2.weight.data = nw2
-                print(f'm2 size: {m2.weight.size()}')
-                if bn is not None:
-                    bn.running_var = nbn1rv
-                    bn.running_mean = nbn1rv
-                    if bn.affine:
-                        bn.weight.data = nbn1w
-                        bn.bias.data = nbn1b
-
-        print(f'm2 after: {m2}')
-        print(f'Model after wider: {self}')
+        for element in residualPathI:
+            print(f'layer: {element}')
+            # get the layers to change
+            j = int(element.split('.')[1].split('v')[1])
+            i = 2 * j - 2
+            m1 = self.module_list[i]
+            bn = self.module_list[i + 1]
+            m2 = self.module_list[i + 2]
+            print(f'm2 before: {m2}')
+            #get the weights to change
+            w1 = m1.weight.data
+            w2 = m2.weight.data
+        #         w1list = m1.weight.data.cpu().numpy().tolist()
+        #         w2list = m2.weight.data.cpu().numpy().tolist()
+        #         # print(f'w1 List: {w1list}')
+        #         #Fehlersuche
+        #         assert delta_width > 0, "New size should be larger"
+        #
+        #         old_width = w1.size(0)
+        #
+        #
+        #         dw1 = []
+        #         dw2 = []
+        #         dbn1w =  []
+        #         dbn1rv= []
+        #         dbn1rm = []
+        #         dbn1b = []
+        #         tracking = dict()
+        #         listOfNumbers = []
+        #         listOfRunningMean = []
+        #         listOfRunningVar = []
+        #         bn1list = bn.bias.data.cpu().numpy().tolist()
+        #         bn1wlist = bn.weight.data.cpu().numpy().tolist()
+        #         for name, buf in self.named_buffers():
+        #             # print("\nBuffer Name: ", name)
+        #             if 'running_mean' in name:
+        #                 k = int(name.split('.')[1])
+        #                 if (k==(i+1)):
+        #                     listOfRunningMean =buf.cpu().numpy().tolist()
+        #
+        #             if 'running_var' in name:
+        #                 k = int(name.split('.')[1])
+        #                 if(k==(i+1)):
+        #                     listOfRunningVar = buf.cpu().numpy().tolist()
+        #
+        #
+        #         listindices = []
+        #         print(f'List of buf: {listOfRunningMean} ')
+        #         for o in range(0, delta_width):
+        #             idx = np.random.randint(0, old_width)
+        #             m1list = m1.weight[idx,:,:,:].data.cpu().numpy().tolist()
+        #             m2list = m2.weight[:,idx,:,:].data.cpu().numpy().tolist()
+        #             listindices.append(idx)
+        #             # print(f'listindices beim befüllen: {listindices}')
+        #             # print(f'm1list: {m1list}')
+        #             # print(f'm2list: {m2list}')
+        #             # print(f'idx: {idx}')
+        #             try:
+        #                 tracking[idx].append(o)
+        #             except:
+        #                 tracking[idx] = []
+        #                 tracking[idx].append(o)
+        #
+        #             # TEST:random init for new units
+        #             if random_init:
+        #                 n = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
+        #                 if m2.weight.dim() == 4:
+        #                     n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.out_channels
+        #                 elif m2.weight.dim() == 5:
+        #                     n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.kernel_size[2] * m2.out_channels
+        #                 elif m2.weight.dim() == 2:
+        #                     n2 = m2.out_features * m2.in_features
+        #                 # dw1.select(0, i).normal_(0, np.sqrt(2. / n))
+        #                 # dw2.select(0, i).normal_(0, np.sqrt(2. / n2))
+        #             else:
+        #                 dw1.append(m1list)
+        #                 dw2.append(m2list)
+        #                 # dw1.select(0, i).copy_(w1.select(0, idx).clone())
+        #                 # dw2.select(0, i).copy_(w2.select(0, idx).clone())
+        #
+        #             if bn is not None:
+        #                 # print(f'listofRunning mean: {listOfRunningMean.pop(0)}')
+        #                 dbn1 = listOfRunningMean[idx]
+        #                 # print(f'length of dbn1: {dbn1}')
+        #                 dbn1rm.append(dbn1)
+        #                 dbn1 = listOfRunningVar[idx]
+        #                 dbn1rv.append(dbn1)
+        #                 # print(f'running mean: {dbn1rm}')
+        #                 # dbn1rm[i] = bn.running_mean.data()[idx]
+        #                 # dbn1rv[i] = bn.running_var.data()[idx]
+        #                 if bn.affine:
+        #                     dbn1w.append(bn1wlist[idx])
+        #                     dbn1b.append(bn1list[idx])
+        #             bn.num_features = w1.size(0) + delta_width
+        #         print(f'indices: {listindices}')
+        #         print(f'tracking dict: {tracking}')
+        #         ct = {}
+        #         for key, dif_k in tracking.items():
+        #             print(f'key: {key}; difk: {dif_k}')
+        #             dictcounter = len(dif_k)
+        #             ct.update({key:dictcounter})
+        #         print(f'ct: {ct}')
+        #         if not random_init:
+        #             for idx in range(len(listindices)):
+        #                 c= dw2[idx]
+        #
+        #                 # print(f'c:{c}')
+        #                 for k in range(len(c)):
+        #                     e = c[k]
+        #                     # print(f'c[k]: {c[k]}')
+        #                     for l in range(len(e)):
+        #                         # print(f' before e[l]: {e[l]}')
+        #                         f = e[l]
+        #                         for m in range(len(f)):
+        #                             f[m] = f[m] / ct.get(listindices[idx])
+        #                         # print(f' after e[l]: {e[l]}')
+        #
+        #         # print(f'len: {len(listOfRunningMean)}')
+        #         # print(f'm1list: {m1list}')
+        #
+        #         w11 = torch.FloatTensor(dw1).cuda()
+        #         w22 = torch.FloatTensor(dw2).cuda()
+        #         w22 = torch.transpose(w22,0,1)
+        #         nw1 = torch.cat((w1, w11),dim=0)
+        #         nw2 = torch.cat((w2, w22),dim=1)
+        #         print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
+        #         print(f'dim w2: {w2.size()}; dim w22: {w22.size()}')
+        #
+        #         print(f'dim w1: {nw1.size()}; dim w2: {nw2.size()}')
+        #         rm = torch.FloatTensor(dbn1rm).cuda()
+        #         rm1 = torch.FloatTensor(listOfRunningMean).cuda()
+        #         nbn1rm = torch.cat((rm1, rm), dim=0)
+        #
+        #         rv = torch.FloatTensor(dbn1rv).cuda()
+        #         rv1 = torch.FloatTensor(listOfRunningVar).cuda()
+        #         nbn1rv = torch.cat((rv1, rv))
+        #
+        #         dbn1wa = torch.FloatTensor(dbn1w).cuda()
+        #         nbn1w = torch.cat((bn.weight, dbn1wa))
+        #
+        #         dbn1x = torch.FloatTensor(dbn1b).cuda()
+        #         nbn1b = torch.cat((bn.bias.data, dbn1x))
+        #
+        #         m1.out_channels = nw1.size(0)
+        #         m2.in_channels = nw1.size(0)
+        #         i0 = len(w1list)+delta_width
+        #         i1 = len(dw1[0])
+        #         i2 = len(dw1[0][0])
+        #         i3 = len(dw1[0][0][0])
+        #         x = nw1.std()
+        #         print(f'i0: {i0}')
+        #         if noise:
+        #             noise = np.random.normal(scale=5e-2 * 0.3,
+        #                                      size=(i0 ,i1 , i2, i3))
+        #             nw1 += th.FloatTensor(noise).type_as(nw1)
+        #
+        #         m1.weight.data = nw1
+        #         m2.weight.data = nw2
+        #         print(f'm2 size: {m2.weight.size()}')
+        #         if bn is not None:
+        #             bn.running_var = nbn1rv
+        #             bn.running_mean = nbn1rv
+        #             if bn.affine:
+        #                 bn.weight.data = nbn1w
+        #                 bn.bias.data = nbn1b
+        #
+        # print(f'm2 after: {m2}')
+        # print(f'Model after wider: {self}')
         # def deeper(self, model, optimizer):
         #     # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
         #     # for stage in self.archNums[i]:
