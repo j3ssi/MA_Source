@@ -703,8 +703,12 @@ class N2N(nn.Module):
         residualListO = []
 
         for layer in self.module_list:
-            width = layer.in_channels
-            print(f'width: {width}')
+            if(isinstance(layer,nn.Conv2d)):
+                width = layer.in_channels
+                print(f'width: {width}')
+                if self.widthofLayers.index(width) is not None:
+                    stage = self.widthofLayers.index(width) + 1
+                    print(f'stage: {stage}')
         sameNodes = self.getShareSameNodeLayers()
         print(f'last: {residualListI[-1]}')
         lastElementI = residualListI.pop(-1)
