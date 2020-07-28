@@ -921,7 +921,7 @@ class N2N(nn.Module):
                 dbn1x = torch.FloatTensor(dbn1b).cuda()
                 nbn1b = torch.cat((bn.bias.data, dbn1x))
 
-                m1.out_channels = w1.size(0)
+                m1.out_channels = new_width
                 # i0 = len(w1list) * delta_width
                 # i1 = len(dw1[0])
                 # i2 = len(dw1[0][0])
