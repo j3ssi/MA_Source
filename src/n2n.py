@@ -725,7 +725,9 @@ class N2N(nn.Module):
             layerinbetween = False
             if j not in mapListO and j not in mapListI:
                 layerinbetween = True
+
             if j in mapListI or layerinbetween:
+                print(f'maplistI: {mapListI}; layerin: {layerinbetween}')
                 print(f'in maplistI j: {j}')
                 old_width = w1.size(0)
                 new_width = old_width * delta_width
