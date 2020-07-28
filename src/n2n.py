@@ -790,7 +790,7 @@ class N2N(nn.Module):
                 w1 = torch.cat((w1, w11), dim=1)
                 print(f'dim w1: {w1.size()}')
                 m1.in_channels = new_width
-                i1 = len(w1list) * delta_width
+                i1 = len(w1list)
                 i0 = len(dw1[0])
                 i2 = len(dw1[0][0])
                 i3 = len(dw1[0][0][0])
