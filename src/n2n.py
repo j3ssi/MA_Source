@@ -784,7 +784,7 @@ class N2N(nn.Module):
                 # print(f'len: {len(listOfRunningMean)}')
                 # print(f'm1list: {m1list}')
 
-                w11 = torch.FloatTensor(dw1).cuda()
+                w11 = torch.FloatTensor(dw1).transpose(0,1).cuda()
                 print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
 
                 w1 = torch.cat((w1, w11), dim=1)
