@@ -875,7 +875,7 @@ class N2N(nn.Module):
                         if bn.affine:
                             dbn1w.append(bn1wlist[idx])
                             dbn1b.append(bn1list[idx])
-                    bn.num_features = w1.size(1) * delta_width
+                    bn.num_features = new_width
                 print(f'indices: {listindices}')
                 print(f'tracking dict: {tracking}')
                 ct = {}
