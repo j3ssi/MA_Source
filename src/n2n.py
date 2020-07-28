@@ -697,7 +697,7 @@ class N2N(nn.Module):
         residualPathI, residualPathO = self.getResidualPath()
         sameNodes = self.getShareSameNodeLayers()
         residualListI = residualPathI[layers - 1]
-        residualListI = map(lambda x: x.split('.')[1].split('v')[1],residualListI)
+        residualListI = map(lambda x: x,residualListI)
         residualListO = residualPathO[layers - 1]
         residualList = sorted(list(residualListI) + residualListO)
         print(f'residualList: {list(residualListI)}')
