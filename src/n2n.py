@@ -717,13 +717,13 @@ class N2N(nn.Module):
             i = 2 * j - 2
             m1 = self.module_list[i]
             bn = self.module_list[i + 1]
-            # m2 = self.module_list[i + 2]
-            # get the weights to change
             w1 = m1.weight.data
             w1list = m1.weight.data.cpu().numpy().tolist()
-            # print(f'w1 List: {w1list}')
+
             # Fehlersuche
             assert delta_width > 0, "New size should be larger"
+
+            print(f'dim w1: {w1.dim()}')
 
             layerinbetween = False
             if (j not in mapListO) and (j not in mapListI):
