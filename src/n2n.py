@@ -790,10 +790,10 @@ class N2N(nn.Module):
                 w1 = torch.cat((w1, w11), dim=1)
                 print(f'dim w1: {w1.size()}')
                 m1.in_channels = new_width
-                i1 = len(w1list)
-                i0 = len(dw1[0])
-                i2 = len(dw1[0][0])
-                i3 = len(dw1[0][0][0])
+                i0 = w1.size()[0]
+                i1 = w1.size()[1]
+                i2 = w1.size()[2]
+                i3 = w1.size()[3]
                 x = w1.std()
                 print(f'i0: {i0}; i1: {i1}; i2: {i2}; i3: {i3}')
                 if addNoise:
