@@ -21,9 +21,16 @@ class N2N(nn.Module):
         self.layersInBlock = layersInBlock
         if widthOfLayers is not None:
             self.widthofFirstLayer = widthOfLayers[0]
+            self.widthofLayers = widthOfLayers
             # print(f'width: {self.widthofFirstLayer}')
         else:
             self.widthofFirstLayer = widthofFirstLayer
+            self.widthofLayers = []
+            s = widthofFirstLayer
+            for stage in numOfStages:
+                self.widthofLayers.append(s)
+                s *= 2
+
         if first:
             self.archNums = [[]]
             for s in range(0, self.numOfStages):
@@ -658,7 +665,7 @@ class N2N(nn.Module):
     layers = 'conv 3, conv6'
     """
 
-    def wider(self, layers, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
+    def wider(self, stage, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
         # print(f'Model before wider: {self}')
         altList = []
         paramList = []
@@ -692,9 +699,13 @@ class N2N(nn.Module):
             else:
                 assert True, print("Hier fehlt noch was!!")
 
-        residualPathI, residualPathO = self.getResidualPath()
+        residualListI = []
+        residualListO = []
+
+        for layer in self.module_list:
+            width = layer.in_channels()
+            print(f'width: {width}')
         sameNodes = self.getShareSameNodeLayers()
-        residualListI = residualPathI[layers - 1]
         print(f'last: {residualListI[-1]}')
         lastElementI = residualListI.pop(-1)
         print(f'lastElement: {lastElementI}')
@@ -949,7 +960,7 @@ class N2N(nn.Module):
 
             if len(residualList) == 0:
                 index = 1
-            print(f'Model after wider: {self}')
+            # print(f'Model after wider: {self}')
         # def deeper(self, model, optimizer):
         #     # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
         #     # for stage in self.archNums[i]:
