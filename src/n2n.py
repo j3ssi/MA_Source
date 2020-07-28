@@ -837,9 +837,9 @@ class N2N(nn.Module):
                             listOfRunningVar = buf.cpu().numpy().tolist()
 
                 listindices = []
-                print(f'List of buf: {listOfRunningMean} ')
+                print(f'oldwidth: {old_width} ')
                 for o in range(0, (new_width - old_width)):
-                    idx = np.random.randint(0, old_width-1)
+                    idx = np.random.randint(0, old_width)
                     m1list = m1.weight[idx, :, :, :].data.cpu().numpy().tolist()
                     listindices.append(idx)
                     # print(f'listindices beim befüllen: {listindices}')
