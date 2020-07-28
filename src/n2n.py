@@ -731,7 +731,7 @@ class N2N(nn.Module):
                 print(f'j in maplistO: {j not in mapListO}')
                 layerinbetween = True
 
-            if(j+1 in residualList):
+            if j+1 in residualList:
                 layerinbetween = True
 
             if j in mapListI or layerinbetween:
@@ -944,7 +944,8 @@ class N2N(nn.Module):
                         bn.weight.data = nbn1w
                         bn.bias.data = nbn1b
 
-
+            if len(residualList) ==0:
+                index = 1
         print(f'Model after wider: {self}')
         # def deeper(self, model, optimizer):
         #     # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
