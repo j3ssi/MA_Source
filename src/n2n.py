@@ -844,7 +844,7 @@ class N2N(nn.Module):
                     listindices.append(idx)
                     # print(f'listindices beim befüllen: {listindices}')
                     # print(f'm1list: {m1list}')
-                    # print(f'idx: {idx}')
+                    print(f'idx: {idx}')
                     try:
                         tracking[idx].append(o)
                     except:
