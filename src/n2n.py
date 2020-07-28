@@ -891,15 +891,10 @@ class N2N(nn.Module):
                 # print(f'len: {len(listOfRunningMean)}')
                 # print(f'm1list: {m1list}')
 
-                w11 = torch.FloatTensor(dw1).cuda()
-                w22 = torch.FloatTensor(dw2).cuda()
-                w22 = torch.transpose(w22, 0, 1)
-                nw1 = torch.cat((w1, w11), dim=0)
-                nw2 = torch.cat((w2, w22), dim=1)
+                w1 = torch.FloatTensor(dw1).cuda()
+                w1 = torch.cat((w1, w11), dim=0)
                 print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
-                print(f'dim w2: {w2.size()}; dim w22: {w22.size()}')
 
-                print(f'dim w1: {nw1.size()}; dim w2: {nw2.size()}')
                 rm = torch.FloatTensor(dbn1rm).cuda()
                 rm1 = torch.FloatTensor(listOfRunningMean).cuda()
                 nbn1rm = torch.cat((rm1, rm), dim=0)
@@ -914,22 +909,19 @@ class N2N(nn.Module):
                 dbn1x = torch.FloatTensor(dbn1b).cuda()
                 nbn1b = torch.cat((bn.bias.data, dbn1x))
 
-                m1.out_channels = nw1.size(0)
-                m2.in_channels = nw1.size(0)
-                i0 = len(w1list) + delta_width
+                m1.out_channels = w1.size(1)
+                i0 = len(w1list) * delta_width
                 i1 = len(dw1[0])
                 i2 = len(dw1[0][0])
                 i3 = len(dw1[0][0][0])
-                x = nw1.std()
+                x = w1.std()
                 print(f'i0: {i0}')
                 if noise:
                     noise = np.random.normal(scale=5e-2 * 0.3,
                                              size=(i0, i1, i2, i3))
-                    nw1 += th.FloatTensor(noise).type_as(nw1)
+                    w1 += th.FloatTensor(noise).type_as(w1)
 
-                m1.weight.data = nw1
-                m2.weight.data = nw2
-                print(f'm2 size: {m2.weight.size()}')
+                m1.weight.data = w1
                 if bn is not None:
                     bn.running_var = nbn1rv
                     bn.running_mean = nbn1rv
@@ -938,7 +930,6 @@ class N2N(nn.Module):
                         bn.bias.data = nbn1b
 
 
-        print(f'm2 after: {m2}')
         print(f'Model after wider: {self}')
         # def deeper(self, model, optimizer):
         #     # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
