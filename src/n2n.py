@@ -12,7 +12,7 @@ class N2N(nn.Module):
     def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock,
                  first, bottleneck, widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=None):
         super(N2N, self).__init__()
-        print(f'width: {widthOfLayers}')
+        # print(f'width: {widthOfLayers}')
         self.device = torch.device("cuda:0")
         self.numOfStages = numOfStages
         self.oddLayers = []
@@ -21,7 +21,7 @@ class N2N(nn.Module):
         self.layersInBlock = layersInBlock
         if widthOfLayers is not None:
             self.widthofFirstLayer = widthOfLayers[0]
-            print(f'width: {self.widthofFirstLayer}')
+            # print(f'width: {self.widthofFirstLayer}')
         else:
             self.widthofFirstLayer = widthofFirstLayer
         if first:
@@ -160,7 +160,7 @@ class N2N(nn.Module):
                         sizeOfLayer = widthOfLayers[stage]
                     else:
                         sizeOfLayer *= self.widthofFirstLayer
-                    print(f'stage: {stage}; sizeof Layers: {sizeOfLayer}')
+                    # print(f'stage: {stage}; sizeof Layers: {sizeOfLayer}')
                     # print("\nStage: ", stage, " ; ", sizeOfLayer)
                     for block in range(0, len(self.archNums[stage])):
                         i = 0
@@ -244,7 +244,7 @@ class N2N(nn.Module):
                     elif isinstance(m, nn.BatchNorm2d):
                         m.weight.data.fill_(1)
                         m.bias.data.zero_()
-            print(self)
+            # print(self)
             self.sameNode, self.oddLayers = buildShareSameNodeLayers(self.module_list, self.numOfStages, self.archNums)
             self.stageI, self.stageO = buildResidualPath(self.module_list, self.numOfStages, self.archNums)
         else:

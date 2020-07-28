@@ -359,7 +359,7 @@ def main():
     count0 = 0
     for p in model.parameters():
         count0 += p.data.nelement()
-    print(f'count0: {count0}')
+    # print(f'count0: {count0}')
     count1 = count0
 
     # Calculate Size of Trainings Batch size
@@ -367,7 +367,7 @@ def main():
 
         # calculate first how many blocks is equal to the count0
         sizeX = (count0 - 1306) / 97216
-        print(f'sizeX: {sizeX}')
+        # print(f'sizeX: {sizeX}')
         # Gerade für niedrige Batch size
         if not args.largeBatch:
             y = 36.304 * sizeX + 107.768
@@ -377,7 +377,7 @@ def main():
         batch_size = int(0.98 * count0 / sizeX / y)
         # delta_bs = (batch_size - 330)*0.3
         # batch_size = int(batch_size - delta_bs)
-        print(f'batch_size: {batch_size};{y} ; lr: {args.lr}')
+        # print(f'batch_size: {batch_size};{y} ; lr: {args.lr}')
 
         args.batch_size = batch_size
     else:
