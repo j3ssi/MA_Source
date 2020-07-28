@@ -731,6 +731,9 @@ class N2N(nn.Module):
                 print(f'j in maplistO: {j not in mapListO}')
                 layerinbetween = True
 
+            if(j+1 in residualList):
+                layerinbetween = True
+
             if j in mapListI or layerinbetween:
                 print(f'maplistI: {list(mapListI)}; layerin: {layerinbetween}')
                 print(f'in maplistI j: {j}')
