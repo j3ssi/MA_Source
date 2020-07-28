@@ -658,7 +658,7 @@ class N2N(nn.Module):
     layers = 'conv 3, conv6'
     """
 
-    def wider(self, layers, delta_width, out_size=None, weight_norm=True, random_init=True, noise=True):
+    def wider(self, layers, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
         # print(f'Model before wider: {self}')
         altList = []
         paramList = []
@@ -795,7 +795,7 @@ class N2N(nn.Module):
                 i3 = len(dw1[0][0][0])
                 x = w1.std()
                 print(f'i0: {i0}; i1: {i1}; i2: {i2}; i3: {i3}')
-                if noise:
+                if addNoise:
                     noise = np.random.normal(scale=5e-2 * 0.3,
                                              size=(i0, i1, i2, i3))
                     w1 += th.FloatTensor(noise).type_as(w1)
