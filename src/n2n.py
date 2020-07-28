@@ -704,6 +704,7 @@ class N2N(nn.Module):
 
         for index in range(0, len(altList)):
             if 'conv' in altList[index]:
+                print(f'size: {paramList[index].size()}')
                 width = paramList[index].in_channels
                 # print(f'width: {width}')
                 if self.widthofLayers.count(width) >0:
