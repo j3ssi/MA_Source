@@ -661,7 +661,7 @@ class N2N(nn.Module):
     """
 
     def wider(self, layers, delta_width, out_size=None, weight_norm=True, random_init=True, noise=True):
-        print(f'Model before wider: {self}')
+        # print(f'Model before wider: {self}')
         altList = []
         paramList = []
         printName = False
@@ -697,18 +697,19 @@ class N2N(nn.Module):
         residualPathI, residualPathO = self.getResidualPath()
         sameNodes = self.getShareSameNodeLayers()
 
-        for element in residualPathI:
-            print(f'layer: {element}')
-            # get the layers to change
-            j = int(element.split('.')[1].split('v')[1])
-            i = 2 * j - 2
-            m1 = self.module_list[i]
-            bn = self.module_list[i + 1]
-            m2 = self.module_list[i + 2]
-            print(f'm2 before: {m2}')
-            #get the weights to change
-            w1 = m1.weight.data
-            w2 = m2.weight.data
+        for list in residualPathI:
+            for element in list:
+                print(f'layer: {element}')
+                # get the layers to change
+                j = int(element.split('.')[1].split('v')[1])
+                i = 2 * j - 2
+                m1 = self.module_list[i]
+                bn = self.module_list[i + 1]
+                m2 = self.module_list[i + 2]
+                print(f'm2 before: {m2}')
+                #get the weights to change
+                w1 = m1.weight.data
+                w2 = m2.weight.data
         #         w1list = m1.weight.data.cpu().numpy().tolist()
         #         w2list = m2.weight.data.cpu().numpy().tolist()
         #         # print(f'w1 List: {w1list}')
