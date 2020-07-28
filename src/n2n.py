@@ -693,7 +693,7 @@ class N2N(nn.Module):
                     print("\nI:", i, " ; ", altList[-1])
             else:
                 assert True, print("Hier fehlt noch was!!")
-        j = 0
+
         residualPathI, residualPathO = self.getResidualPath()
         sameNodes = self.getShareSameNodeLayers()
         residualListI = residualPathI[layers - 1]
@@ -702,18 +702,23 @@ class N2N(nn.Module):
         mapListO = map(lambda x: int(x.split('.')[1].split('v')[1]),residualListO)
         residualList = sorted(list(mapListI) + list(mapListO))
         print(f'residualList: {list(residualList)}')
-        for element in residualList:
-                print(f'layer: {element}')
-                # get the layers to change
-                j = int(element.split('.')[1].split('v')[1])
-                i = 2 * j - 2
-                m1 = self.module_list[i]
-                bn = self.module_list[i + 1]
-                m2 = self.module_list[i + 2]
-                print(f'm2 before: {m2}')
-                #get the weights to change
-                w1 = m1.weight.data
-                w2 = m2.weight.data
+        l = 0
+        while l==0:
+            j = residualList.pop(0)
+            sameNode = sameNodes[0][0]
+            if int(sameNode.split('.')[1].split('v')[1]) == j:
+                nodes = sameNode.pop(0)
+                mapNodes = map(lambda x: int(x.split('.')[1].split('v')[1]),nodes)
+                residualList = sorted(list(residualList), list(nodes))
+            print(f'layer: {j}')
+            i = 2 * j - 2
+            m1 = self.module_list[i]
+            bn = self.module_list[i + 1]
+            m2 = self.module_list[i + 2]
+            print(f'm2 before: {m2}')
+            #get the weights to change
+            w1 = m1.weight.data
+            w2 = m2.weight.data
         #         w1list = m1.weight.data.cpu().numpy().tolist()
         #         w2list = m2.weight.data.cpu().numpy().tolist()
         #         # print(f'w1 List: {w1list}')
