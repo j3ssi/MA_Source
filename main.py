@@ -500,11 +500,13 @@ def main():
         i = 2
 
     if args.wider:
-        model.wider(1 ,2 , out_size=None, weight_norm=None, random_init=False )
+        model.wider(3, 2, out_size=None, weight_norm=None, random_init=False )
 
         model.wider(2, 2, out_size=None, weight_norm=None, random_init=False )
 
-        model.wider(3, 2, out_size=None, weight_norm=None, random_init=False )
+        model.wider(1 ,2 , out_size=None, weight_norm=None, random_init=False )
+
+
 
 
     if args.saveModell:
