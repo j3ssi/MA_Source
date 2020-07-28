@@ -696,10 +696,11 @@ class N2N(nn.Module):
         sameNodes = self.getShareSameNodeLayers()
         residualListI = residualPathI[layers - 1]
         mapListI = map(lambda x: int(x.split('.')[1].split('v')[1]), residualListI)
+        print(f'mapList: {list(mapListI)}')
+
         residualListO = residualPathO[layers - 1]
         mapListO = map(lambda x: int(x.split('.')[1].split('v')[1]), residualListO)
         residualList = sorted(list(mapListI) + list(mapListO))
-        print(f'mapList: {list(mapListI)}')
         l = 0
         while l == 0:
             j = residualList.pop(0)
@@ -729,7 +730,7 @@ class N2N(nn.Module):
                 layerinbetween = True
 
             if j in mapListI or layerinbetween:
-                print(f'maplistI: {mapListI}; layerin: {layerinbetween}')
+                print(f'maplistI: {list(mapListI)}; layerin: {layerinbetween}')
                 print(f'in maplistI j: {j}')
                 old_width = w1.size(0)
                 new_width = old_width * delta_width
