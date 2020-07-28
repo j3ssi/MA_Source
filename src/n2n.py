@@ -731,8 +731,7 @@ class N2N(nn.Module):
                 print(f'j in maplistO: {j not in mapListO}')
                 layerinbetween = True
 
-            if j+1 in residualList:
-                layerinbetween = True
+
 
             if j in mapListI or layerinbetween:
                 print(f'maplistI: {list(mapListI)}; layerin: {layerinbetween}')
@@ -804,6 +803,9 @@ class N2N(nn.Module):
                     w1 += th.FloatTensor(noise).type_as(w1)
 
                 m1.weight.data = w1
+
+            if j + 1 in residualList:
+                layerinbetween = True
 
             if j in mapListO or layerinbetween:
                 # print(f'in maplistO j: {j}')
