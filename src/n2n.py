@@ -697,14 +697,12 @@ class N2N(nn.Module):
         residualListI = residualPathI[layers - 1]
         mapListI = list(map(lambda x: int(x.split('.')[1].split('v')[1]), residualListI))
         tmpListI = copy.copy(mapListI)
-        print(f'mapList: {mapListI}')
 
         residualListO = residualPathO[layers - 1]
         mapListO = list(map(lambda x: int(x.split('.')[1].split('v')[1]), residualListO))
         tmpListO = copy. copy(mapListO)
         residualList = sorted(tmpListI + tmpListO)
 
-        print(f'mapList: {mapListI}')
         l = 0
         while l == 0:
             j = residualList.pop(0)
@@ -805,6 +803,8 @@ class N2N(nn.Module):
                 m1.weight.data = w1
 
             if j in mapListO or layerinbetween:
+                print(f'in maplistO j: {j}')
+
                 old_width = w1.size(1)
                 new_width = old_width * delta_width
 
