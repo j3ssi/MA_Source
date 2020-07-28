@@ -709,19 +709,19 @@ class N2N(nn.Module):
                 if self.widthofLayers.count(width) >0:
                     stage = self.widthofLayers.index(width) + 1
                     # print(f'stage: {stage}')
-                    num = altList[index].split('.')[1].split('v')[1]
+                    num = int(altList[index].split('.')[1].split('v')[1])
                     residualListI.append(num)
 
                 width = paramList[index].size()[0]
                 if self.widthofLayers.count(width) > 0:
                     stage = self.widthofLayers.index(width) + 1
                     # print(f'stage: {stage}')
-                    num = altList[index].split('.')[1].split('v')[1]
+                    num = int(altList[index].split('.')[1].split('v')[1])
                     residualListO.append(num)
             if 'fc' in altList[index]:
                     stage = self.widthofLayers[-1]
-                    num = altList[index].split('.')[1].split('c')[1]
-                    print('num: {num}')
+                    num = int(altList[index].split('.')[1].split('c')[1])
+                    print(f'num: {num}')
 
 
         sameNodes = self.getShareSameNodeLayers()
