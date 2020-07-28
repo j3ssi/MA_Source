@@ -703,7 +703,7 @@ class N2N(nn.Module):
         residualListO = []
 
         for layer in self.module_list:
-            width = layer.in_channels()
+            width = layer.in_channels
             print(f'width: {width}')
         sameNodes = self.getShareSameNodeLayers()
         print(f'last: {residualListI[-1]}')
