@@ -720,7 +720,7 @@ class N2N(nn.Module):
                     residualListO.append(num)
             if 'fc' in altList[index]:
                     stage = self.widthofLayers[-1]
-                    num = paramList[index].split('.')[1].split('c')[1]
+                    num = altList[index].split('.')[1].split('c')[1]
                     print('num: {num}')
 
 
