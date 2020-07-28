@@ -705,22 +705,30 @@ class N2N(nn.Module):
         for layer in self.module_list:
             if(isinstance(layer,nn.Conv2d)):
                 width = layer.in_channels
-                print(f'width: {width}')
+                # print(f'width: {width}')
                 if self.widthofLayers.count(width) >0:
                     stage = self.widthofLayers.index(width) + 1
-                    print(f'stage: {stage}')
+                    # print(f'stage: {stage}')
+                    num = layer.split('.')[1].split('v')[1]
+                    residualListI.append(num)
+                width = layer.out_channels
+                if self.widthofLayers.count(width) > 0:
+                    stage = self.widthofLayers.index(width) + 1
+                    # print(f'stage: {stage}')
+                    num = layer.split('.')[1].split('v')[1]
+                    residualListO.append(num)
+            if isinstance(layer,nn.Linear):
+                    stage = self.widthofLayers[-1]
+                    num = layer.split('.')[1].split('c')[1]
+                    print('num: {num}')
+
+
         sameNodes = self.getShareSameNodeLayers()
-        print(f'last: {residualListI[-1]}')
-        lastElementI = residualListI.pop(-1)
-        print(f'lastElement: {lastElementI}')
-        mapListI = list(map(lambda x: int(x.split('.')[1].split('v')[1]), residualListI))
-        tmpListI = copy.copy(mapListI)
-
-        residualListO = residualPathO[layers - 1]
-        mapListO = list(map(lambda x: int(x.split('.')[1].split('v')[1]), residualListO))
-        tmpListO = copy.copy(mapListO)
+        tmpListI = copy.copy(residualListI)
+        tmpListO = copy.copy(residualListO)
         residualList = sorted(tmpListI + tmpListO)
-
+        print(f'residualI: {residualListI}')
+        print(f'residualO: {residualListO}')
         index = 0
         while index == 0:
             j = residualList.pop(0)
