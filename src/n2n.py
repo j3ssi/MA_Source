@@ -1085,5 +1085,5 @@ def buildShareSameNodeLayers(module_list, numOfStages, archNums):
             sameNode.append(block)
         firstStage = False
     # print(f'oddLayers: {oddLayers}')
-    print("\nSame Node: ", sameNode)
+    # print("\nSame Node: ", sameNode)
     return sameNode, oddLayers
