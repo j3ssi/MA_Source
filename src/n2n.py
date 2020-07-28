@@ -703,8 +703,8 @@ class N2N(nn.Module):
         tmpListO = copy. copy(mapListO)
         residualList = sorted(tmpListI + tmpListO)
 
-        l = 0
-        while l == 0:
+        index = 0
+        while index == 0:
             j = residualList.pop(0)
             if int(sameNodes[0][0].split('.')[1].split('v')[1]) == j:
                 sameNode = sameNodes.pop(0)
