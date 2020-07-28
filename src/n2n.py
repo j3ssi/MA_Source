@@ -696,9 +696,11 @@ class N2N(nn.Module):
         j = 0
         residualPathI, residualPathO = self.getResidualPath()
         sameNodes = self.getShareSameNodeLayers()
-
-        for list in residualPathI:
-            for element in list:
+        residualListI = residualPathI[layers - 1]
+        residualListO = residualPathO[layers - 1]
+        residualList = sorted(residualListI + residualListO)
+        print(f'residualList: {residualList}')
+        for element in residualList:
                 print(f'layer: {element}')
                 # get the layers to change
                 j = int(element.split('.')[1].split('v')[1])
