@@ -723,7 +723,7 @@ class N2N(nn.Module):
             assert delta_width > 0, "New size should be larger"
 
             layerinbetween = False
-            if j not in mapListO and j not in mapListI:
+            if (j not in mapListO) and (j not in mapListI):
                 layerinbetween = True
 
             if j in mapListI or layerinbetween:
