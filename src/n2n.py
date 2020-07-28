@@ -699,7 +699,7 @@ class N2N(nn.Module):
         residualListO = residualPathO[layers - 1]
         mapListO = map(lambda x: int(x.split('.')[1].split('v')[1]), residualListO)
         residualList = sorted(list(mapListI) + list(mapListO))
-        print(f'residualList: {list(residualList)}')
+        # print(f'residualList: {list(residualList)}')
         l = 0
         while l == 0:
             j = residualList.pop(0)
@@ -708,7 +708,7 @@ class N2N(nn.Module):
                 sameNode.pop(0)
                 mapNodes = map(lambda x: int(x.split('.')[1].split('v')[1]), sameNode)
                 residualList = sorted(list(set(residualList) | set(mapNodes)))
-                print(f'sameNodes: {sameNode}')
+                # print(f'sameNodes: {sameNode}')
 
             print(f'list: {residualList}; j: {j}')
             i = 2 * j - 2
@@ -726,6 +726,7 @@ class N2N(nn.Module):
             if j not in mapListO and j not in mapListI:
                 layerinbetween = True
             if j in mapListI or layerinbetween:
+                print(f'in maplistI j: {j}')
                 old_width = w1.size(0)
                 new_width = old_width * delta_width
 
@@ -764,21 +765,22 @@ class N2N(nn.Module):
                         # dw1.select(0, i).copy_(w1.select(0, idx).clone())
                         # dw2.select(0, i).copy_(w2.select(0, idx).clone())
 
-                print(f'indices: {listindices}')
-                print(f'tracking dict: {tracking}')
+                # print(f'indices: {listindices}')
+                # print(f'tracking dict: {tracking}')
                 ct = {}
                 for key, dif_k in tracking.items():
-                    print(f'key: {key}; difk: {dif_k}')
+                    # print(f'key: {key}; difk: {dif_k}')
                     dictcounter = len(dif_k)
                     ct.update({key: dictcounter})
-                print(f'ct: {ct}')
+                # print(f'ct: {ct}')
 
                 # print(f'len: {len(listOfRunningMean)}')
                 # print(f'm1list: {m1list}')
 
                 w11 = torch.FloatTensor(dw1).cuda()
-                w1 = torch.cat((w1, w11), dim=0)
                 print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
+
+                w1 = torch.cat((w1, w11), dim=0)
                 m1.out_channels = w1.size(0)
                 i0 = len(w1list) * delta_width
                 i1 = len(dw1[0])
