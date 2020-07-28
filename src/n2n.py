@@ -705,9 +705,10 @@ class N2N(nn.Module):
         l = 0
         while l==0:
             j = residualList.pop(0)
-            sameNode = sameNodes[0][0]
+            sameNode = sameNodes.pop(0)
+            print(f'sameNodes: {sameNode}')
             if int(sameNode.split('.')[1].split('v')[1]) == j:
-                mapNodes = map(lambda x: int(x.split('.')[1].split('v')[1]),sameNode)
+                mapNodes = map(lambda x: int(x.split('.')[1].split('v')[1]),sameNodes[0])
                 residualList = sorted(list(residualList), list(mapNodes))
             print(f'layer: {j}')
             i = 2 * j - 2
