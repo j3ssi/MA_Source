@@ -711,7 +711,7 @@ class N2N(nn.Module):
                 residualList = sorted(list(set(residualList)| set(mapNodes)))
                 print(f'sameNodes: {sameNode}')
 
-            print(f'list: {residualList}')
+            print(f'list: {residualList}; j: {j}')
             i = 2 * j - 2
             m1 = self.module_list[i]
             bn = self.module_list[i + 1]
