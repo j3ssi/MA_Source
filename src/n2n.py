@@ -699,7 +699,7 @@ class N2N(nn.Module):
         residualListO = residualPathO[layers - 1]
         mapListO = map(lambda x: int(x.split('.')[1].split('v')[1]), residualListO)
         residualList = sorted(list(mapListI) + list(mapListO))
-        # print(f'residualList: {list(residualList)}')
+        print(f'mapList: {list(mapListI)}')
         l = 0
         while l == 0:
             j = residualList.pop(0)
