@@ -789,9 +789,9 @@ class N2N(nn.Module):
                 if noise:
                     noise = np.random.normal(scale=5e-2 * 0.3,
                                              size=(i0, i1, i2, i3))
-                    nw1 += th.FloatTensor(noise).type_as(w1)
+                    w1 += th.FloatTensor(noise).type_as(w1)
 
-                m1.weight.data = nw1
+                m1.weight.data = w1
 
             if j in mapListO or layerinbetween:
                 old_width = w1.size(1)
