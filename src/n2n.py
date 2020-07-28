@@ -723,7 +723,7 @@ class N2N(nn.Module):
             # Fehlersuche
             assert delta_width > 0, "New size should be larger"
 
-            print(f'dim w1: {w1.dim()}')
+            print(f'dim w1: {w1.size()}')
 
             layerinbetween = False
             if (j not in mapListO) and (j not in mapListI):
