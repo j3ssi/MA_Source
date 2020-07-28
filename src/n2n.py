@@ -702,24 +702,24 @@ class N2N(nn.Module):
         residualListI = []
         residualListO = []
 
-        for layer in self.module_list:
-            if(isinstance(layer,nn.Conv2d)):
-                width = layer.in_channels
+        for index in range(0, len(altList)):
+            if 'conv' in altList[index]:
+                width = paramList[index].in_channels
                 # print(f'width: {width}')
                 if self.widthofLayers.count(width) >0:
                     stage = self.widthofLayers.index(width) + 1
                     # print(f'stage: {stage}')
-                    num = layer.split('.')[1].split('v')[1]
+                    num = altList[index].split('.')[1].split('v')[1]
                     residualListI.append(num)
-                width = layer.out_channels
+                width = paramList[index].out_channels
                 if self.widthofLayers.count(width) > 0:
                     stage = self.widthofLayers.index(width) + 1
                     # print(f'stage: {stage}')
-                    num = layer.split('.')[1].split('v')[1]
+                    num = altList[index].split('.')[1].split('v')[1]
                     residualListO.append(num)
-            if isinstance(layer,nn.Linear):
+            if 'fc' in altList[index]:
                     stage = self.widthofLayers[-1]
-                    num = layer.split('.')[1].split('c')[1]
+                    num = paramList[index].split('.')[1].split('c')[1]
                     print('num: {num}')
 
 
