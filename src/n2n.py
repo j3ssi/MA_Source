@@ -700,7 +700,7 @@ class N2N(nn.Module):
 
         residualListO = residualPathO[layers - 1]
         mapListO = list(map(lambda x: int(x.split('.')[1].split('v')[1]), residualListO))
-        tmpListO = copy. copy(mapListO)
+        tmpListO = copy.copy(mapListO)
         residualList = sorted(tmpListI + tmpListO)
 
         index = 0
@@ -726,12 +726,11 @@ class N2N(nn.Module):
             print(f'dim w1: {w1.size()}')
 
             layerinbetween = False
+
             if (j not in mapListO) and (j not in mapListI):
                 print(f'j in maplistI: {j not in mapListI}')
                 print(f'j in maplistO: {j not in mapListO}')
                 layerinbetween = True
-
-
 
             if j in mapListI or layerinbetween:
                 print(f'maplistI: {list(mapListI)}; layerin: {layerinbetween}')
@@ -790,6 +789,7 @@ class N2N(nn.Module):
                 print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
 
                 w1 = torch.cat((w1, w11), dim=0)
+                print(f'dim w1: {w1.size()}')
                 m1.out_channels = w1.size(0)
                 i0 = len(w1list) * delta_width
                 i1 = len(dw1[0])
@@ -947,7 +947,7 @@ class N2N(nn.Module):
                         bn.weight.data = nbn1w
                         bn.bias.data = nbn1b
 
-            if len(residualList) ==0:
+            if len(residualList) == 0:
                 index = 1
         print(f'Model after wider: {self}')
         # def deeper(self, model, optimizer):
