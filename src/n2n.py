@@ -784,12 +784,12 @@ class N2N(nn.Module):
                 i1 = len(dw1[0])
                 i2 = len(dw1[0][0])
                 i3 = len(dw1[0][0][0])
-                x = nw1.std()
+                x = w1.std()
                 print(f'i0: {i0}')
                 if noise:
                     noise = np.random.normal(scale=5e-2 * 0.3,
                                              size=(i0, i1, i2, i3))
-                    nw1 += th.FloatTensor(noise).type_as(nw1)
+                    nw1 += th.FloatTensor(noise).type_as(w1)
 
                 m1.weight.data = nw1
 
