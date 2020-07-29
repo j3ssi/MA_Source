@@ -721,11 +721,7 @@ class N2N(nn.Module):
                     if tobestage ==stage:
                         num = int(altList[index].split('.')[1].split('v')[1])
                         residualListO.append(num)
-            if 'fc' in altList[index]:
-                stage = self.widthofLayers[-1]
-                num = int(altList[index].split('.')[1].split('c')[1])
-                # print(f'num: {num}')
-
+ 
         sameNodes = self.getShareSameNodeLayers()
         tmpListI = copy.copy(residualListI)
         tmpListO = copy.copy(residualListO)
@@ -923,9 +919,6 @@ class N2N(nn.Module):
                                 for m in range(len(f)):
                                     f[m] = f[m] / ct.get(listindices[idx])
                                 # print(f' after e[l]: {e[l]}')
-
-                # print(f'len: {len(listOfRunningMean)}')
-                # print(f'm1list: {m1list}')
 
                 w11 = torch.FloatTensor(dw1).cuda()
                 # print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
