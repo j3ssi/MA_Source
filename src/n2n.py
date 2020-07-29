@@ -1021,10 +1021,10 @@ class N2N(nn.Module):
             w11 = torch.FloatTensor(dw1).transpose(0, 1).cuda()
             print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
 
-            w1 = torch.cat((w1, w11), dim=1)
+            w1x = torch.cat((w1, w11), dim=1)
             print(f'dim w1: {w1.size()}')
-            m1.in_channels = new_width
-            m1.weight.data = w1
+            w1.in_channels = new_width
+            w1.weight.data = w1x
 
             # print(f'Model after wider: {self}')
 
