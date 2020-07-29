@@ -970,6 +970,8 @@ class N2N(nn.Module):
                 index = 1
 
         print(f'Bis Hier!')
+        print(f'stage: {stage}')
+        print(f'self num of stages: {self.numOfStages}')
         if(int(stage) == int(self.numOfStages)):
             print(f'Drin!!')
             module = self.module_list[-1]
