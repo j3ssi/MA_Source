@@ -721,7 +721,7 @@ class N2N(nn.Module):
                     if tobestage ==stage:
                         num = int(altList[index].split('.')[1].split('v')[1])
                         residualListO.append(num)
- 
+
         sameNodes = self.getShareSameNodeLayers()
         tmpListI = copy.copy(residualListI)
         tmpListO = copy.copy(residualListO)
@@ -970,7 +970,7 @@ class N2N(nn.Module):
             module = self.module_list[-1]
             w1 = module.weight.data
             w1list = module.weight.data.cpu().numpy().tolist()
-            print(f'module: {w1.dim()}')
+            print(f'fc: {w1}')
         # print(f'Model after wider: {self}')
         # def deeper(self, model, optimizer):
         #     # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
