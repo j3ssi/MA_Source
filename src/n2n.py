@@ -667,7 +667,7 @@ class N2N(nn.Module):
     """
 
     def wider(self, stage, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
-        print(f'Stage: {stage}')
+        print(f'Stage: {stage}; numOfStage: {self.numOfStages}')
         altList = []
         paramList = []
         printName = False
