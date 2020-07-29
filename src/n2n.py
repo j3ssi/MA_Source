@@ -699,14 +699,14 @@ class N2N(nn.Module):
             else:
                 assert True, print("Hier fehlt noch was!!")
 
-        residualListI = []
-        residualListO = []
+        residualListI = [[]]
+        residualListO = [[]]
 
         for index in range(0, len(altList)):
             if 'conv' in altList[index]:
                 width = paramList[index].size()[1]
                 # print(f'width: {width}')
-                if self.widthofLayers.count(width) >0:
+                if self.widthofLayers.count(width) > 0:
                     stage = self.widthofLayers.index(width) + 1
                     # print(f'stage: {stage}')
                     num = int(altList[index].split('.')[1].split('v')[1])
@@ -719,10 +719,9 @@ class N2N(nn.Module):
                     num = int(altList[index].split('.')[1].split('v')[1])
                     residualListO.append(num)
             if 'fc' in altList[index]:
-                    stage = self.widthofLayers[-1]
-                    num = int(altList[index].split('.')[1].split('c')[1])
-                    print(f'num: {num}')
-
+                stage = self.widthofLayers[-1]
+                num = int(altList[index].split('.')[1].split('c')[1])
+                print(f'num: {num}')
 
         sameNodes = self.getShareSameNodeLayers()
         tmpListI = copy.copy(residualListI)
@@ -756,10 +755,10 @@ class N2N(nn.Module):
 
             layerinbetween = False
 
-            if w1.size(0) ==w1.size(1):
+            if w1.size(0) == w1.size(1):
                 layerinbetween = True
-            if j in mapListI or layerinbetween:
-                print(f'maplistI: {list(mapListI)}; layerin: {layerinbetween}')
+            if j in residualListI or layerinbetween:
+                print(f'maplistI: {list(residualListI)}; layerin: {layerinbetween}')
                 print(f'in maplistI j: {j}')
                 old_width = w1.size(1)
                 new_width = old_width * delta_width
@@ -811,7 +810,7 @@ class N2N(nn.Module):
                 # print(f'len: {len(listOfRunningMean)}')
                 # print(f'm1list: {m1list}')
 
-                w11 = torch.FloatTensor(dw1).transpose(0,1).cuda()
+                w11 = torch.FloatTensor(dw1).transpose(0, 1).cuda()
                 print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
 
                 w1 = torch.cat((w1, w11), dim=1)
@@ -830,8 +829,7 @@ class N2N(nn.Module):
 
                 m1.weight.data = w1
 
-
-            if j in mapListO or layerinbetween:
+            if j in residualListO or layerinbetween:
                 print(f'in maplistO j: {j}')
 
                 old_width = w1.size(0)
