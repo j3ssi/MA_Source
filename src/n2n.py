@@ -1022,7 +1022,7 @@ class N2N(nn.Module):
             print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
 
             w1x = torch.cat((w1, w11), dim=1)
-            print(f'dim w1: {w1.size()}')
+            print(f'dim w1: {w1x.size()}')
             w1.in_channels = new_width
             w1.weight.data = w1x
 
