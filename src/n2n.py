@@ -971,6 +971,7 @@ class N2N(nn.Module):
 
         print(f'Bis Hier!')
         if(stage == self.numOfStages):
+            print(f'Drin!!')
             module = self.module_list[-1]
             w1 = module.weight.data
             w1list = module.weight.data.cpu().numpy().tolist()
