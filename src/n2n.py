@@ -970,7 +970,7 @@ class N2N(nn.Module):
                 index = 1
 
         print(f'Bis Hier!')
-        if(stage == self.numOfStages):
+        if(int(stage) == int(self.numOfStages)):
             print(f'Drin!!')
             module = self.module_list[-1]
             w1 = module.weight.data
