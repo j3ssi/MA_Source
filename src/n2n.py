@@ -667,7 +667,7 @@ class N2N(nn.Module):
     """
 
     def wider(self, stage, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
-        print(f'Stage: {stage}; numOfStage: {self.numOfStages}')
+        # print(f'Stage: {stage}; numOfStage: {self.numOfStages}')
         altList = []
         paramList = []
         printName = False
@@ -731,7 +731,7 @@ class N2N(nn.Module):
         index = 0
         while index == 0:
             j = residualList.pop(0)
-     
+
             # print(f'list: {list(residualList)}; j: {j}')
             i = 2 * j - 2
             m1 = self.module_list[i]
@@ -962,40 +962,108 @@ class N2N(nn.Module):
             if len(residualList) == 0:
                 index = 1
 
-        print(f'Bis Hier!')
-        print(f'stage: {stage}')
-        print(f'self num of stages: {self.numOfStages}')
+        # print(f'Bis Hier!')
+        # print(f'stage: {stage}')
+        # print(f'self num of stages: {self.numOfStages}')
         if(int(stage) == int(self.numOfStages)):
-            print(f'Drin!!')
             module = self.module_list[-1]
             w1 = module.weight.data
             w1list = module.weight.data.cpu().numpy().tolist()
             print(f'fc: {w1}')
-        # print(f'Model after wider: {self}')
-        # def deeper(self, model, optimizer):
-        #     # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
-        #     # for stage in self.archNums[i]:
-        #         # print("\n\nposition:")
-        #         # print(pos)
-        #     conv = model.module_list[pos * 2 - 2]
-        #     bn = model.module_list[pos * 2 - 1]
-        #     conv1 = model.module_list[pos * 2]
-        #     bn1 = model.module_list[pos * 2 + 1]
-        #     conv2 = copy.deepcopy(conv)
-        #     conv3 = copy.deepcopy(conv1)
-        #     noise = torch.Tensor(conv2.weight.shape).random_(0, 1).to(self.device)
-        #     # noise = torch.rand(0,0.5)
-        #     conv2.weight.data += noise
-        #     bn2 = copy.deepcopy(bn)
-        #     noise = torch.Tensor(conv1.weight.shape).random_(0, 1).to(self.device)
-        #     conv3.weight.data += noise
-        #     bn3 = copy.deepcopy(bn1)
-        #     model.module_list.insert(pos * 2 + 2, conv2)
-        #     model.module_list.insert(pos * 2 + 3, bn2)
-        #     model.module_list.insert(pos * 2 + 4, conv3)
-        #     model.module_list.insert(pos * 2 + 5, bn3)
 
-        # return model
+            old_width = w1.size(1)
+            new_width = old_width * delta_width
+            # print(f'old width: {old_width}')
+            dw1 = []
+            tracking = dict()
+            listOfNumbers = []
+            listindices = []
+            for o in range(0, (new_width - old_width)):
+                idx = np.random.randint(0, old_width)
+                m1list = m1.weight[:, idx, :, :].data.cpu().numpy().tolist()
+                listindices.append(idx)
+
+                try:
+                    tracking[idx].append(o)
+                except:
+                    tracking[idx] = []
+                    tracking[idx].append(o)
+
+                # TEST:random init for new units
+                if random_init:
+                    n = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
+                    # if m2.weight.dim() == 4:
+                    #    n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.out_channels
+                    # elif m2.weight.dim() == 5:
+                    #    n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.kernel_size[2] * m2.out_channels
+                    # elif m2.weight.dim() == 2:
+                    #    n2 = m2.out_features * m2.in_features
+                    # dw1.select(0, i).normal_(0, np.sqrt(2. / n))
+                    # dw2.select(0, i).normal_(0, np.sqrt(2. / n2))
+                else:
+                    dw1.append(m1list)
+                    # dw2.append(m2list)
+                    # dw1.select(0, i).copy_(w1.select(0, idx).clone())
+                    # dw2.select(0, i).copy_(w2.select(0, idx).clone())
+
+            # print(f'indices: {listindices}')
+            # print(f'tracking dict: {tracking}')
+            ct = {}
+            for key, dif_k in tracking.items():
+                # print(f'key: {key}; difk: {dif_k}')
+                dictcounter = len(dif_k)
+                ct.update({key: dictcounter})
+            # print(f'ct: {ct}')
+
+            # print(f'len: {len(listOfRunningMean)}')
+            # print(f'm1list: {m1list}')
+
+            w11 = torch.FloatTensor(dw1).transpose(0, 1).cuda()
+            # print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
+
+            w1 = torch.cat((w1, w11), dim=1)
+            # print(f'dim w1: {w1.size()}')
+            m1.in_channels = new_width
+            i0 = w1.size()[0]
+            i1 = w1.size()[1]
+            i2 = w1.size()[2]
+            i3 = w1.size()[3]
+            x = w1.std()
+            # print(f'i0: {i0}; i1: {i1}; i2: {i2}; i3: {i3}')
+            if addNoise:
+                noise = np.random.normal(scale=5e-2 * 0.3,
+                                     size=(i0, i1, i2, i3))
+                w1 += th.FloatTensor(noise).type_as(w1)
+
+            m1.weight.data = w1
+
+            # print(f'Model after wider: {self}')
+
+
+        def deeper(self, model, optimizer):
+            # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
+            # for stage in self.archNums[i]:
+                # print("\n\nposition:")
+                # print(pos)
+            conv = model.module_list[pos * 2 - 2]
+            bn = model.module_list[pos * 2 - 1]
+            conv1 = model.module_list[pos * 2]
+            bn1 = model.module_list[pos * 2 + 1]
+            conv2 = copy.deepcopy(conv)
+            conv3 = copy.deepcopy(conv1)
+            noise = torch.Tensor(conv2.weight.shape).random_(0, 1).to(self.device)
+            # noise = torch.rand(0,0.5)
+            conv2.weight.data += noise
+            bn2 = copy.deepcopy(bn)
+            noise = torch.Tensor(conv1.weight.shape).random_(0, 1).to(self.device)
+            conv3.weight.data += noise
+            bn3 = copy.deepcopy(bn1)
+            model.module_list.insert(pos * 2 + 2, conv2)
+            model.module_list.insert(pos * 2 + 3, bn2)
+            model.module_list.insert(pos * 2 + 4, conv3)
+            model.module_list.insert(pos * 2 + 5, bn3)
+
+        return model
 
 
 def compare(layer, oddLayer):
