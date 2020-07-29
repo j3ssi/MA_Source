@@ -760,8 +760,8 @@ class N2N(nn.Module):
             if w1.size(0) == w1.size(1):
                 layerinbetween = True
             if j in residualListI or layerinbetween:
-                print(f'maplistI: {list(residualListI)}; layerin: {layerinbetween}')
-                print(f'in maplistI j: {j}')
+                # print(f'maplistI: {list(residualListI)}; layerin: {layerinbetween}')
+                # print(f'in maplistI j: {j}')
                 old_width = w1.size(1)
                 new_width = old_width * delta_width
                 print(f'old width: {old_width}')
@@ -823,7 +823,7 @@ class N2N(nn.Module):
                 i2 = w1.size()[2]
                 i3 = w1.size()[3]
                 x = w1.std()
-                print(f'i0: {i0}; i1: {i1}; i2: {i2}; i3: {i3}')
+                # print(f'i0: {i0}; i1: {i1}; i2: {i2}; i3: {i3}')
                 if addNoise:
                     noise = np.random.normal(scale=5e-2 * 0.3,
                                              size=(i0, i1, i2, i3))
@@ -832,7 +832,7 @@ class N2N(nn.Module):
                 m1.weight.data = w1
 
             if j in residualListO or layerinbetween:
-                print(f'in maplistO j: {j}')
+                # print(f'in maplistO j: {j}')
 
                 old_width = w1.size(0)
                 new_width = old_width * delta_width
@@ -862,14 +862,14 @@ class N2N(nn.Module):
                             listOfRunningVar = buf.cpu().numpy().tolist()
 
                 listindices = []
-                print(f'oldwidth: {old_width} ')
+                # print(f'oldwidth: {old_width} ')
                 for o in range(0, (new_width - old_width)):
                     idx = np.random.randint(0, old_width)
                     m1list = m1.weight[idx, :, :, :].data.cpu().numpy().tolist()
                     listindices.append(idx)
                     # print(f'listindices beim befüllen: {listindices}')
                     # print(f'm1list: {m1list}')
-                    print(f'idx: {idx}')
+                    # print(f'idx: {idx}')
                     try:
                         tracking[idx].append(o)
                     except:
@@ -906,14 +906,14 @@ class N2N(nn.Module):
                             dbn1w.append(bn1wlist[idx])
                             dbn1b.append(bn1list[idx])
                     bn.num_features = new_width
-                print(f'indices: {listindices}')
-                print(f'tracking dict: {tracking}')
+                # print(f'indices: {listindices}')
+                # print(f'tracking dict: {tracking}')
                 ct = {}
                 for key, dif_k in tracking.items():
-                    print(f'key: {key}; difk: {dif_k}')
+                    # print(f'key: {key}; difk: {dif_k}')
                     dictcounter = len(dif_k)
                     ct.update({key: dictcounter})
-                print(f'ct: {ct}')
+                # print(f'ct: {ct}')
                 if not random_init:
                     for idx in range(len(listindices)):
                         c = dw1[idx]
@@ -973,7 +973,7 @@ class N2N(nn.Module):
 
             if len(residualList) == 0:
                 index = 1
-            # print(f'Model after wider: {self}')
+        print(f'Model after wider: {self}')
         # def deeper(self, model, optimizer):
         #     # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
         #     # for stage in self.archNums[i]:
