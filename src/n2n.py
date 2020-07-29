@@ -699,25 +699,27 @@ class N2N(nn.Module):
             else:
                 assert True, print("Hier fehlt noch was!!")
 
-        residualListI = [[]]
-        residualListO = [[]]
+        residualListI = []
+        residualListO = []
 
         for index in range(0, len(altList)):
             if 'conv' in altList[index]:
                 width = paramList[index].size()[1]
                 # print(f'width: {width}')
                 if self.widthofLayers.count(width) > 0:
-                    stage = self.widthofLayers.index(width) + 1
+                    tobestage = self.widthofLayers.index(width) + 1
                     # print(f'stage: {stage}')
-                    num = int(altList[index].split('.')[1].split('v')[1])
-                    residualListI.append(num)
+                    if tobestage == stage:
+                        num = int(altList[index].split('.')[1].split('v')[1])
+                        residualListI.append(num)
 
                 width = paramList[index].size()[0]
                 if self.widthofLayers.count(width) > 0:
-                    stage = self.widthofLayers.index(width) + 1
+                    tobestage = self.widthofLayers.index(width) + 1
                     # print(f'stage: {stage}')
-                    num = int(altList[index].split('.')[1].split('v')[1])
-                    residualListO.append(num)
+                    if tobestage ==stage:
+                        num = int(altList[index].split('.')[1].split('v')[1])
+                        residualListO.append(num)
             if 'fc' in altList[index]:
                 stage = self.widthofLayers[-1]
                 num = int(altList[index].split('.')[1].split('c')[1])
