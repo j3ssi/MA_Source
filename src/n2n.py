@@ -1023,7 +1023,7 @@ class N2N(nn.Module):
 
             w1x = torch.cat((w1, w11), dim=1)
             print(f'dim w1: {w1x.size()}')
-            w1.in_channels = new_width
+            module.in_channels = new_width
             module.weight.data = w1x
 
             # print(f'Model after wider: {self}')
