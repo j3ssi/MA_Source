@@ -728,7 +728,7 @@ class N2N(nn.Module):
         sameNodes = self.getShareSameNodeLayers()
         tmpListI = copy.copy(residualListI)
         tmpListO = copy.copy(residualListO)
-        residualList = sorted(tmpListI + tmpListO)
+        residualList = sorted(tmpListI | tmpListO)
         print(f'residualI: {residualListI}')
         print(f'residualO: {residualListO}')
         index = 0
