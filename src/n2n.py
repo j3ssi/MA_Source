@@ -980,7 +980,7 @@ class N2N(nn.Module):
             listindices = []
             for o in range(0, (new_width - old_width)):
                 idx = np.random.randint(0, old_width)
-                m1list = m1.weight[:, idx].data.cpu().numpy().tolist()
+                m1list = w1[:, idx].data.cpu().numpy().tolist()
                 listindices.append(idx)
 
                 try:
