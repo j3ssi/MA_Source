@@ -969,7 +969,7 @@ class N2N(nn.Module):
             module = self.module_list[-1]
             w1 = module.weight.data
             w1list = module.weight.data.cpu().numpy().tolist()
-            print(f'fc: {w1}')
+            print(f'size: {w1.size()}')
 
             old_width = w1.size(1)
             new_width = old_width * delta_width
