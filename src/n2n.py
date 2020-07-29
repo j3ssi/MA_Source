@@ -724,31 +724,31 @@ class N2N(nn.Module):
             if 'fc' in altList[index]:
                 stage = self.widthofLayers[-1]
                 num = int(altList[index].split('.')[1].split('c')[1])
-                print(f'num: {num}')
+                # print(f'num: {num}')
 
         sameNodes = self.getShareSameNodeLayers()
         tmpListI = copy.copy(residualListI)
         tmpListO = copy.copy(residualListO)
         residualList = sorted(list(set(tmpListI) | set(tmpListO)))
-        print(f'residualI: {residualListI}')
-        print(f'residualO: {residualListO}')
+        # print(f'residualI: {residualListI}')
+        # print(f'residualO: {residualListO}')
         index = 0
         while index == 0:
             j = residualList.pop(0)
      
-            print(f'list: {list(residualList)}; j: {j}')
+            # print(f'list: {list(residualList)}; j: {j}')
             i = 2 * j - 2
             m1 = self.module_list[i]
             bn = self.module_list[i + 1]
-            print(f'm1: {m1}')
-            print(f'bn1: {bn}')
+            # print(f'm1: {m1}')
+            # print(f'bn1: {bn}')
             w1 = m1.weight.data
             w1list = m1.weight.data.cpu().numpy().tolist()
 
             # Fehlersuche
             assert delta_width > 0, "New size should be larger"
 
-            print(f'dim w1: {w1.size()}')
+            # print(f'dim w1: {w1.size()}')
 
             layerinbetween = False
 
@@ -759,7 +759,7 @@ class N2N(nn.Module):
                 # print(f'in maplistI j: {j}')
                 old_width = w1.size(1)
                 new_width = old_width * delta_width
-                print(f'old width: {old_width}')
+                # print(f'old width: {old_width}')
                 dw1 = []
                 tracking = dict()
                 listOfNumbers = []
@@ -808,10 +808,10 @@ class N2N(nn.Module):
                 # print(f'm1list: {m1list}')
 
                 w11 = torch.FloatTensor(dw1).transpose(0, 1).cuda()
-                print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
+                # print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
 
                 w1 = torch.cat((w1, w11), dim=1)
-                print(f'dim w1: {w1.size()}')
+                # print(f'dim w1: {w1.size()}')
                 m1.in_channels = new_width
                 i0 = w1.size()[0]
                 i1 = w1.size()[1]
@@ -831,7 +831,7 @@ class N2N(nn.Module):
 
                 old_width = w1.size(0)
                 new_width = old_width * delta_width
-                print(f'old width1: {old_width}; new width: {new_width}')
+                # print(f'old width1: {old_width}; new width: {new_width}')
 
                 dw1 = []
                 dbn1w = []
@@ -928,10 +928,10 @@ class N2N(nn.Module):
                 # print(f'm1list: {m1list}')
 
                 w11 = torch.FloatTensor(dw1).cuda()
-                print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
+                # print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
 
                 w1 = torch.cat((w1, w11), dim=0)
-                print(f'dim w1: {w1.size()}')
+                # print(f'dim w1: {w1.size()}')
                 rm = torch.FloatTensor(dbn1rm).cuda()
                 rm1 = torch.FloatTensor(listOfRunningMean).cuda()
                 nbn1rm = torch.cat((rm1, rm), dim=0)
