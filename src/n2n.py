@@ -969,7 +969,7 @@ class N2N(nn.Module):
             if len(residualList) == 0:
                 index = 1
 
-
+        print(f'Bis Hier!')
         if(stage == self.numOfStages):
             module = self.module_list[-1]
             w1 = module.weight.data
