@@ -251,10 +251,10 @@ class N2N(nn.Module):
                     elif isinstance(m, nn.BatchNorm2d):
                         m.weight.data.fill_(1)
                         m.bias.data.zero_()
-            print(self)
+            # print(self)
             self.sameNode, self.oddLayers = buildShareSameNodeLayers(self.module_list, self.numOfStages, self.archNums)
             self.stageI, self.stageO = buildResidualPath(self.module_list, self.numOfStages, self.archNums)
-            print(f'sameNode: {self.sameNode}')
+            # print(f'sameNode: {self.sameNode}')
         else:
             self.archNums = archNums
             self.sameNode = model.sameNode
