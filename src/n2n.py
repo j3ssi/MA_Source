@@ -1029,30 +1029,29 @@ class N2N(nn.Module):
             # print(f'Model after wider: {self}')
 
 
-        def deeper(self, model, optimizer):
-            # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
-            # for stage in self.archNums[i]:
-                # print("\n\nposition:")
-                # print(pos)
-            conv = model.module_list[pos * 2 - 2]
-            bn = model.module_list[pos * 2 - 1]
-            conv1 = model.module_list[pos * 2]
-            bn1 = model.module_list[pos * 2 + 1]
-            conv2 = copy.deepcopy(conv)
-            conv3 = copy.deepcopy(conv1)
-            noise = torch.Tensor(conv2.weight.shape).random_(0, 1).to(self.device)
-            # noise = torch.rand(0,0.5)
-            conv2.weight.data += noise
-            bn2 = copy.deepcopy(bn)
-            noise = torch.Tensor(conv1.weight.shape).random_(0, 1).to(self.device)
-            conv3.weight.data += noise
-            bn3 = copy.deepcopy(bn1)
-            model.module_list.insert(pos * 2 + 2, conv2)
-            model.module_list.insert(pos * 2 + 3, bn2)
-            model.module_list.insert(pos * 2 + 4, conv3)
-            model.module_list.insert(pos * 2 + 5, bn3)
+    def deeper(self, model, optimizer):
+        # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
+        # for stage in self.archNums[i]:
+        # print("\n\nposition:")
+        # print(pos)
+        conv = model.module_list[pos * 2 - 2]
+        bn = model.module_list[pos * 2 - 1]
+        conv1 = model.module_list[pos * 2]
+        bn1 = model.module_list[pos * 2 + 1]
+        conv2 = copy.deepcopy(conv)
+        conv3 = copy.deepcopy(conv1)
+        noise = torch.Tensor(conv2.weight.shape).random_(0, 1).to(self.device)
+        # noise = torch.rand(0,0.5)
+        conv2.weight.data += noise
+        bn2 = copy.deepcopy(bn)
+        noise = torch.Tensor(conv1.weight.shape).random_(0, 1).to(self.device)
+        conv3.weight.data += noise
+        bn3 = copy.deepcopy(bn1)
+        model.module_list.insert(pos * 2 + 2, conv2)
+        model.module_list.insert(pos * 2 + 3, bn2)
+        model.module_list.insert(pos * 2 + 4, conv3)
+        model.module_list.insert(pos * 2 + 5, bn3)
 
-        return model
 
 
 def compare(layer, oddLayer):
