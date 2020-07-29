@@ -652,7 +652,7 @@ class N2N(nn.Module):
         # print(f'stageO: {self.stageO}')
 
         # print(f'archnums nachher: {self.archNums}')
-        print(self)
+        # print(self)
         return model
 
     def getResidualPath(self):
@@ -975,7 +975,7 @@ class N2N(nn.Module):
             w1 = module.weight.data
             w1list = module.weight.data.cpu().numpy().tolist()
             print(f'module: {w1.dim()}')
-        print(f'Model after wider: {self}')
+        # print(f'Model after wider: {self}')
         # def deeper(self, model, optimizer):
         #     # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
         #     # for stage in self.archNums[i]:
