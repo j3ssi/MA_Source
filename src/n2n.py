@@ -254,6 +254,7 @@ class N2N(nn.Module):
             # print(self)
             self.sameNode, self.oddLayers = buildShareSameNodeLayers(self.module_list, self.numOfStages, self.archNums)
             self.stageI, self.stageO = buildResidualPath(self.module_list, self.numOfStages, self.archNums)
+            print(f'sameNode: {self.sameNode}')
         else:
             self.archNums = archNums
             self.sameNode = model.sameNode
