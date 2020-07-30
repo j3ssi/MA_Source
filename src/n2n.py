@@ -992,6 +992,7 @@ class N2N(nn.Module):
                 # TEST:random init for new units
                 if random_init:
                     n = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
+
                     # if m2.weight.dim() == 4:
                     #    n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.out_channels
                     # elif m2.weight.dim() == 5:
@@ -1023,7 +1024,7 @@ class N2N(nn.Module):
 
             w1x = torch.cat((w1, w11), dim=1)
             print(f'dim w1: {w1x.size()}')
-            module.in_channels = new_width
+            module.in_features = new_width
             module.weight.data = w1x
 
             # print(f'Model after wider: {self}')
