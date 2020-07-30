@@ -1,5 +1,6 @@
 import copy
 
+import numpy
 import torch
 import torch as th
 import torch.nn as nn
@@ -672,9 +673,7 @@ class N2N(nn.Module):
         paramList = []
         printName = False
         for name, param in self.named_parameters():
-            # print("\nName: {}", name)
             paramList.append(param)
-            # print("\nName: ", name)
             i = int(name.split('.')[1])
 
             if i % 2 == 0:
@@ -722,7 +721,6 @@ class N2N(nn.Module):
                         num = int(altList[index].split('.')[1].split('v')[1])
                         residualListO.append(num)
 
-        sameNodes = self.getShareSameNodeLayers()
         tmpListI = copy.copy(residualListI)
         tmpListO = copy.copy(residualListO)
         residualList = sorted(list(set(tmpListI) | set(tmpListO)))
@@ -746,11 +744,8 @@ class N2N(nn.Module):
 
             # print(f'dim w1: {w1.size()}')
 
-            layerinbetween = False
 
-            if w1.size(0) == w1.size(1):
-                layerinbetween = True
-            if j in residualListI or layerinbetween:
+            if j in residualListI:
                 # print(f'maplistI: {list(residualListI)}; layerin: {layerinbetween}')
                 # print(f'in maplistI j: {j}')
                 old_width = w1.size(1)
@@ -777,31 +772,11 @@ class N2N(nn.Module):
                     # TEST:random init for new units
                     if random_init:
                         n = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
-                        # if m2.weight.dim() == 4:
-                        #    n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.out_channels
-                        # elif m2.weight.dim() == 5:
-                        #    n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.kernel_size[2] * m2.out_channels
-                        # elif m2.weight.dim() == 2:
-                        #    n2 = m2.out_features * m2.in_features
-                        # dw1.select(0, i).normal_(0, np.sqrt(2. / n))
-                        # dw2.select(0, i).normal_(0, np.sqrt(2. / n2))
+                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=w1.size())
+
                     else:
                         dw1.append(m1list)
-                        # dw2.append(m2list)
-                        # dw1.select(0, i).copy_(w1.select(0, idx).clone())
-                        # dw2.select(0, i).copy_(w2.select(0, idx).clone())
 
-                # print(f'indices: {listindices}')
-                # print(f'tracking dict: {tracking}')
-                ct = {}
-                for key, dif_k in tracking.items():
-                    # print(f'key: {key}; difk: {dif_k}')
-                    dictcounter = len(dif_k)
-                    ct.update({key: dictcounter})
-                # print(f'ct: {ct}')
-
-                # print(f'len: {len(listOfRunningMean)}')
-                # print(f'm1list: {m1list}')
 
                 w11 = torch.FloatTensor(dw1).transpose(0, 1).cuda()
                 # print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
@@ -822,7 +797,7 @@ class N2N(nn.Module):
 
                 m1.weight.data = w1
 
-            if j in residualListO or layerinbetween:
+            if j in residualListO:
                 # print(f'in maplistO j: {j}')
 
                 old_width = w1.size(0)
@@ -858,9 +833,6 @@ class N2N(nn.Module):
                     idx = np.random.randint(0, old_width)
                     m1list = m1.weight[idx, :, :, :].data.cpu().numpy().tolist()
                     listindices.append(idx)
-                    # print(f'listindices beim befüllen: {listindices}')
-                    # print(f'm1list: {m1list}')
-                    # print(f'idx: {idx}')
                     try:
                         tracking[idx].append(o)
                     except:
@@ -870,18 +842,9 @@ class N2N(nn.Module):
                     # TEST:random init for new units
                     if random_init:
                         n = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
-                        # if m2.weight.dim() == 4:
-                        #    n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.out_channels
-                        # elif m2.weight.dim() == 5:
-                        #    n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.kernel_size[2] * m2.out_channels
-                        # elif m2.weight.dim() == 2:
-                        #    n2 = m2.out_features * m2.in_features
-                        # dw1.select(0, i).normal_(0, np.sqrt(2. / n))
-                        # dw2.select(0, i).normal_(0, np.sqrt(2. / n2))
+                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=w1.size())
                     else:
                         dw1.append(m1list)
-                        # dw1.select(0, i).copy_(w1.select(0, idx).clone())
-                        # dw2.select(0, i).copy_(w2.select(0, idx).clone())
 
                     if bn is not None:
                         # print(f'listofRunning mean: {listOfRunningMean.pop(0)}')
@@ -965,7 +928,7 @@ class N2N(nn.Module):
         # print(f'Bis Hier!')
         # print(f'stage: {stage}')
         # print(f'self num of stages: {self.numOfStages}')
-        if(int(stage) == int(self.numOfStages)):
+        if int(stage) == int(self.numOfStages):
             module = self.module_list[-1]
             w1 = module.weight.data
             w1list = module.weight.data.cpu().numpy().tolist()
@@ -991,15 +954,15 @@ class N2N(nn.Module):
 
                 # TEST:random init for new units
                 if random_init:
-                    n = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
-
+                    n = module.kernel_size[0] * module.kernel_size[1] * module.out_channels
+                    dw1 = numpy.random.normal(loc=0, scale =np.sqrt(2. / n), size=w1.size() )
                     # if m2.weight.dim() == 4:
                     #    n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.out_channels
                     # elif m2.weight.dim() == 5:
                     #    n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.kernel_size[2] * m2.out_channels
                     # elif m2.weight.dim() == 2:
                     #    n2 = m2.out_features * m2.in_features
-                    # dw1.select(0, i).normal_(0, np.sqrt(2. / n))
+                    # dw1.select(0, i).normal_(0, )
                     # dw2.select(0, i).normal_(0, np.sqrt(2. / n2))
                 else:
                     dw1.append(m1list)
@@ -1009,15 +972,6 @@ class N2N(nn.Module):
 
             # print(f'indices: {listindices}')
             # print(f'tracking dict: {tracking}')
-            ct = {}
-            for key, dif_k in tracking.items():
-                # print(f'key: {key}; difk: {dif_k}')
-                dictcounter = len(dif_k)
-                ct.update({key: dictcounter})
-            # print(f'ct: {ct}')
-
-            # print(f'len: {len(listOfRunningMean)}')
-            # print(f'm1list: {m1list}')
 
             w11 = torch.FloatTensor(dw1).transpose(0, 1).cuda()
             print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
