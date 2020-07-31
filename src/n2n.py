@@ -888,8 +888,8 @@ class N2N(nn.Module):
                 # print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
 
                 w1 = torch.cat((w1, w11), dim=0)
-                print(f'w11:{w11}')
-                print(f'w1: {w1}')
+                # print(f'w11:{w11}')
+                # print(f'w1: {w1}')
                 # print(f'dim w1: {w1.size()}')
                 rm = torch.FloatTensor(dbn1rm).cuda()
                 rm1 = torch.FloatTensor(listOfRunningMean).cuda()
