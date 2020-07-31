@@ -815,18 +815,21 @@ class N2N(nn.Module):
                 listOfRunningVar = []
                 bn1 = bn.bias.data.clone()
                 bn1list = bn1.cpu().numpy().tolist()
-                bn1wlist = bn.weight.data.cpu().numpy().tolist()
+                bn1 = bn.weight.data.clone()
+                bn1wlist = bn1.cpu().numpy().tolist()
                 for name, buf in self.named_buffers():
                     # print("\nBuffer Name: ", name)
                     if 'running_mean' in name:
                         k = int(name.split('.')[1])
                         if (k == (i + 1)):
-                            listOfRunningMean = buf.cpu().numpy().tolist()
+                            mean = buf.clone()
+                            listOfRunningMean = mean.cpu().numpy().tolist()
 
                     if 'running_var' in name:
                         k = int(name.split('.')[1])
                         if (k == (i + 1)):
-                            listOfRunningVar = buf.cpu().numpy().tolist()
+                            var = buf.clone()
+                            listOfRunningVar = var.cpu().numpy().tolist()
 
                 listindices = []
                 # print(f'oldwidth: {old_width} ')
