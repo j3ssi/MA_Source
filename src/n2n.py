@@ -736,7 +736,7 @@ class N2N(nn.Module):
             bn = self.module_list[i + 1]
             # print(f'm1: {m1}')
             # print(f'bn1: {bn}')
-            w1 = m1.weight.data
+            w1 = m1.weight.data.clone()
             w1list = m1.weight.data.cpu().numpy().tolist()
 
             # Fehlersuche
@@ -813,7 +813,8 @@ class N2N(nn.Module):
                 listOfNumbers = []
                 listOfRunningMean = []
                 listOfRunningVar = []
-                bn1list = bn.bias.data.cpu().numpy().tolist()
+                bn1 = bn.bias.data.clone()
+                bn1list = bn1.cpu().numpy().tolist()
                 bn1wlist = bn.weight.data.cpu().numpy().tolist()
                 for name, buf in self.named_buffers():
                     # print("\nBuffer Name: ", name)
