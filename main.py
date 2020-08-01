@@ -479,15 +479,6 @@ def main():
             is_best = test_acc > best_acc
             best_acc = max(test_acc, best_acc)
 
-            print("[INFO] Storing checkpoint...")
-            save_checkpoint({
-                'epoch': args.epochs + start_epoch,
-                'acc': test_acc,
-                'best_acc': best_acc,
-                'optimizer': optimizer.state_dict(),},
-                is_best,
-                checkpoint=args.checkpoint)
-            # Leave unique checkpoint of pruned models druing training
         i = 2
 
     if args.wider:
