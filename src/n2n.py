@@ -802,7 +802,7 @@ class N2N(nn.Module):
                 # print(f'in maplistO j: {j}')
                 w1 = m1.weight.data.clone()
 
-                old_width = w1x.size(0)
+                old_width = w1.size(0)
                 new_width = old_width * delta_width
                 # print(f'old width1: {old_width}; new width: {new_width}')
 
