@@ -887,7 +887,8 @@ class N2N(nn.Module):
                                     f[m] = f[m] / ct.get(listindices[idx])
                                 # print(f' after e[l]: {e[l]}')
 
-                w11 = torch.FloatTensor(dw1).cuda()
+                w11 = torch.FloatTensor(dw1)
+                w11.cuda()
                 # print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
 
                 w1 = torch.cat((w1, w11), dim=0)
