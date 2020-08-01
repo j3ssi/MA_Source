@@ -475,7 +475,6 @@ def main():
                                       weight_decay=args.weight_decay)
             # print("\n Verhältnis Modell Größe: ", count / count0)
 
-            # save model
             is_best = test_acc > best_acc
             best_acc = max(test_acc, best_acc)
 

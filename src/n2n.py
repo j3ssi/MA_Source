@@ -757,7 +757,7 @@ class N2N(nn.Module):
                 listindices = []
                 for o in range(0, (new_width - old_width)):
                     idx = np.random.randint(0, old_width)
-                    m1list = m1.weight[:, idx, :, :].data.cpu().numpy().tolist()
+                    m1list = w1[:, idx, :, :]
                     listindices.append(idx)
                     # print(f'listindices beim befüllen: {listindices}')
                     # print(f'm1list: {m1list}')
@@ -777,7 +777,7 @@ class N2N(nn.Module):
                     else:
                         dw1.append(m1list)
 
-                print(f'dw1 size len ')
+                # print(f'dw1 size len ')
                 w11 = torch.FloatTensor(dw1).transpose(0, 1).cuda()
                 # print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
 
@@ -835,7 +835,7 @@ class N2N(nn.Module):
                 # print(f'oldwidth: {old_width} ')
                 for o in range(0, (new_width - old_width)):
                     idx = np.random.randint(0, old_width)
-                    m1list = w1[idx, :, :, :].cpu().numpy().tolist()
+                    m1list = w1[idx, :, :, :]
                     listindices.append(idx)
                     try:
                         tracking[idx].append(o)
