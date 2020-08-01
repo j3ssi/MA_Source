@@ -737,7 +737,6 @@ class N2N(nn.Module):
             # print(f'm1: {m1}')
             # print(f'bn1: {bn}')
             w1 = m1.weight.data.clone().cpu().numpy()
-            nw1 = w1.clone()
             # Fehlersuche
             assert delta_width > 0, "New size should be larger"
 
