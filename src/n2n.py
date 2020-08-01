@@ -717,7 +717,7 @@ class N2N(nn.Module):
                 if self.widthofLayers.count(width) > 0:
                     tobestage = self.widthofLayers.index(width) + 1
                     # print(f'stage: {stage}')
-                    if tobestage ==stage:
+                    if tobestage == stage:
                         num = int(altList[index].split('.')[1].split('v')[1])
                         residualListO.append(num)
 
@@ -744,7 +744,6 @@ class N2N(nn.Module):
 
             # print(f'dim w1: {w1.size()}')
 
-
             if j in residualListI:
                 # print(f'maplistI: {list(residualListI)}; layerin: {layerinbetween}')
                 # print(f'in maplistI j: {j}')
@@ -768,7 +767,6 @@ class N2N(nn.Module):
                     except:
                         tracking[idx] = []
                         tracking[idx].append(o)
-
                     # TEST:random init for new units
                     if random_init:
                         n = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
@@ -778,7 +776,8 @@ class N2N(nn.Module):
                         dw1.append(m1list)
 
                 # print(f'dw1 size len ')
-                w11 = torch.FloatTensor(dw1).transpose(0, 1).cuda()
+                w11 = torch.FloatTensor(dw1).transpose(0, 1)
+                w11.cuda()
                 # print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
 
                 w1 = torch.cat((w1, w11), dim=1)
@@ -961,7 +960,7 @@ class N2N(nn.Module):
                 # TEST:random init for new units
                 if random_init:
                     n = module.kernel_size[0] * module.kernel_size[1] * module.out_channels
-                    dw1 = numpy.random.normal(loc=0, scale =np.sqrt(2. / n), size=w1.size() )
+                    dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=w1.size())
                     # if m2.weight.dim() == 4:
                     #    n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.out_channels
                     # elif m2.weight.dim() == 5:
@@ -1014,7 +1013,6 @@ class N2N(nn.Module):
         model.module_list.insert(pos * 2 + 3, bn2)
         model.module_list.insert(pos * 2 + 4, conv3)
         model.module_list.insert(pos * 2 + 5, bn3)
-
 
 
 def compare(layer, oddLayer):
