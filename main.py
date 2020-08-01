@@ -500,11 +500,11 @@ def main():
         i = 2
 
     if args.wider:
-        model.wider(3, 2, out_size=None, weight_norm=None, random_init=False, addNoise = False )
+        model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=False, addNoise = False )
 
-        model.wider(2, 2, out_size=None, weight_norm=None, random_init=False, addNoise = False )
+        model = model.wider(2, 2, out_size=None, weight_norm=None, random_init=False, addNoise = False )
 
-        model.wider(1 ,2 , out_size=None, weight_norm=None, random_init=False, addNoise = False )
+        model = model.wider(1 ,2 , out_size=None, weight_norm=None, random_init=False, addNoise = False )
 
         model.cuda()
         criterion = nn.CrossEntropyLoss()

@@ -990,6 +990,7 @@ class N2N(nn.Module):
             # print(f'Model after wider: {self}')
 
         print(self)
+        return self
 
     def deeper(self, model, optimizer):
         # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
