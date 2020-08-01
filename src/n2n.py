@@ -746,7 +746,7 @@ class N2N(nn.Module):
             if j in residualListI:
                 # print(f'maplistI: {list(residualListI)}; layerin: {layerinbetween}')
                 # print(f'in maplistI j: {j}')
-                old_width = m1.size(1)
+                old_width = m1.weight.size(1)
                 new_width = old_width * delta_width
                 # print(f'old width: {old_width}')
                 dw1 = []
@@ -803,7 +803,7 @@ class N2N(nn.Module):
                 # print(f'in maplistO j: {j}')
                 w1 = m1.weight.data.clone().cpu().numpy()
 
-                old_width = x1.size(0)
+                old_width = x1.weight.size(0)
                 new_width = old_width * delta_width
                 # print(f'old width1: {old_width}; new width: {new_width}')
 
