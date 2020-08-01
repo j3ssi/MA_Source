@@ -736,6 +736,7 @@ class N2N(nn.Module):
             bn = self.module_list[i + 1]
             # print(f'm1: {m1}')
             # print(f'bn1: {bn}')
+            x1 = m1.weight
             w1 = m1.weight.data.clone().cpu().numpy()
             # Fehlersuche
             assert delta_width > 0, "New size should be larger"
@@ -745,7 +746,7 @@ class N2N(nn.Module):
             if j in residualListI:
                 # print(f'maplistI: {list(residualListI)}; layerin: {layerinbetween}')
                 # print(f'in maplistI j: {j}')
-                old_width = w1.size(1)
+                old_width = m1.size(1)
                 new_width = old_width * delta_width
                 # print(f'old width: {old_width}')
                 dw1 = []
@@ -754,7 +755,7 @@ class N2N(nn.Module):
                 listindices = []
                 for o in range(0, (new_width - old_width)):
                     idx = np.random.randint(0, old_width)
-                    m1list = nw1[:, idx, :, :]
+                    m1list = w1[:, idx, :, :]
                     listindices.append(idx)
                     # print(f'listindices beim befüllen: {listindices}')
                     # print(f'm1list: {m1list}')
@@ -801,7 +802,7 @@ class N2N(nn.Module):
                 # print(f'in maplistO j: {j}')
                 w1 = m1.weight.data.clone().cpu().numpy()
 
-                old_width = w1.size(0)
+                old_width = x1.size(0)
                 new_width = old_width * delta_width
                 # print(f'old width1: {old_width}; new width: {new_width}')
 
