@@ -737,8 +737,7 @@ class N2N(nn.Module):
             # print(f'm1: {m1}')
             # print(f'bn1: {bn}')
             w1 = m1.weight.data.clone()
-            w1list = m1.weight.data.cpu().numpy().tolist()
-
+            nw1 = w1.clone()
             # Fehlersuche
             assert delta_width > 0, "New size should be larger"
 
@@ -756,7 +755,7 @@ class N2N(nn.Module):
                 listindices = []
                 for o in range(0, (new_width - old_width)):
                     idx = np.random.randint(0, old_width)
-                    m1list = w1[:, idx, :, :]
+                    m1list = nw1[:, idx, :, :]
                     listindices.append(idx)
                     # print(f'listindices beim befüllen: {listindices}')
                     # print(f'm1list: {m1list}')
@@ -782,6 +781,7 @@ class N2N(nn.Module):
                 # print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
 
                 w1x = torch.cat((w1, w11), dim=1)
+                w1x.requires_grad=True
                 # print(f'dim w1: {w1.size()}')
                 m1.in_channels = new_width
                 i0 = w1x.size()[0]
@@ -794,6 +794,7 @@ class N2N(nn.Module):
                     noise = np.random.normal(scale=5e-2 * 0.3,
                                              size=(i0, i1, i2, i3))
                     w1x += th.FloatTensor(noise).type_as(w1x)
+                w1x.requires_grad = True
 
                 m1.weight.data = w1x
 
@@ -801,7 +802,7 @@ class N2N(nn.Module):
                 # print(f'in maplistO j: {j}')
                 w1 = m1.weight.data.clone()
 
-                old_width = w1.size(0)
+                old_width = w1x.size(0)
                 new_width = old_width * delta_width
                 # print(f'old width1: {old_width}; new width: {new_width}')
 
@@ -922,7 +923,10 @@ class N2N(nn.Module):
                 #                              size=(i0, i1, i2, i3))
                 #     w1 += th.FloatTensor(noise).type_as(w1)
 
+                w1x.requires_grad = True
+
                 m1.weight.data = w1x
+
                 if bn is not None:
                     bn.running_var = nbn1rv
                     bn.running_mean = nbn1rv
@@ -985,6 +989,8 @@ class N2N(nn.Module):
             print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
 
             w1x = torch.cat((w1, w11), dim=1)
+            w1x.requires_grad = True
+
             print(f'dim w1: {w1x.size()}')
             module.in_features = new_width
             module.weight.data = w1x
