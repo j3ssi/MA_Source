@@ -777,7 +777,7 @@ class N2N(nn.Module):
                     else:
                         dw1.append(m1list)
 
-
+                print(f'dw1 size len ')
                 w11 = torch.FloatTensor(dw1).transpose(0, 1).cuda()
                 # print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
 

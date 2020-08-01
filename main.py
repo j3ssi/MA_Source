@@ -506,8 +506,10 @@ def main():
 
         model.wider(1 ,2 , out_size=None, weight_norm=None, random_init=False, addNoise = False )
 
-
-
+        model.cuda()
+        criterion = nn.CrossEntropyLoss()
+        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+                          weight_decay=args.weight_decay)
 
     if args.saveModell:
         torch.save(model, args.pathToModell)
