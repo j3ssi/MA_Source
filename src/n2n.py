@@ -799,6 +799,7 @@ class N2N(nn.Module):
 
             if j in residualListO:
                 # print(f'in maplistO j: {j}')
+                w1 = m1.weight.data.clone()
 
                 old_width = w1.size(0)
                 new_width = old_width * delta_width
