@@ -871,20 +871,20 @@ class N2N(nn.Module):
                     dictcounter = len(dif_k)
                     ct.update({key: dictcounter})
                 # print(f'ct: {ct}')
-                if not random_init:
-                    for idx in range(len(listindices)):
-                        c = dw1[idx]
-
-                        # print(f'c:{c}')
-                        for k in range(len(c)):
-                            e = c[k]
-                            # print(f'c[k]: {c[k]}')
-                            for l in range(len(e)):
-                                # print(f' before e[l]: {e[l]}')
-                                f = e[l]
-                                for m in range(len(f)):
-                                    f[m] = f[m] / ct.get(listindices[idx])
-                                # print(f' after e[l]: {e[l]}')
+                # if not random_init:
+                #     for idx in range(len(listindices)):
+                #         c = dw1[idx]
+                #
+                #         # print(f'c:{c}')
+                #         for k in range(len(c)):
+                #             e = c[k]
+                #             # print(f'c[k]: {c[k]}')
+                #             for l in range(len(e)):
+                #                 # print(f' before e[l]: {e[l]}')
+                #                 f = e[l]
+                #                 for m in range(len(f)):
+                #                     f[m] = f[m] / ct.get(listindices[idx])
+                #                 # print(f' after e[l]: {e[l]}')
 
                 w11 = torch.FloatTensor(dw1).cuda()
                 # print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
