@@ -488,15 +488,6 @@ def main():
                 is_best,
                 checkpoint=args.checkpoint)
             # Leave unique checkpoint of pruned models druing training
-            if epoch % args.save_checkpoint == 0:
-                save_checkpoint({
-                    'epoch': args.epochs + start_epoch - 1,
-                    'acc': test_acc,
-                    'best_acc': best_acc,
-                    'optimizer': optimizer.state_dict(), },
-                    is_best,
-                    checkpoint=args.checkpoint,
-                    filename='checkpoint' + str(epoch) + '.tar')
         i = 2
 
     if args.wider:
@@ -510,6 +501,15 @@ def main():
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                           weight_decay=args.weight_decay)
+
+    save_checkpoint({
+        'epoch': args.epochs + start_epoch - 1,
+        'acc': test_acc,
+        'best_acc': best_acc,
+        'optimizer': optimizer.state_dict(), },
+        is_best,
+        checkpoint=args.checkpoint,
+        filename='checkpoint' + str(epoch) + '.tar')
 
     if args.saveModell:
         torch.save(model, args.pathToModell)
