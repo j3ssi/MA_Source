@@ -724,8 +724,8 @@ class N2N(nn.Module):
         tmpListI = copy.copy(residualListI)
         tmpListO = copy.copy(residualListO)
         residualList = sorted(list(set(tmpListI) | set(tmpListO)))
-        # print(f'residualI: {residualListI}')
-        # print(f'residualO: {residualListO}')
+        print(f'residualI: {residualListI}')
+        print(f'residualO: {residualListO}')
         index = 0
         while index == 0:
             j = residualList.pop(0)
