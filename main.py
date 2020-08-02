@@ -65,7 +65,6 @@ parser.add_argument('--O2', default=False, action='store_true',
 parser.add_argument('--O3', default=False, action='store_true',
                     help='Use half precision apex methods O3')
 
-
 # model size
 parser.add_argument('-s', '--numOfStages', default=3, type=int, help='defines the number of stages in the network')
 # parser.add_argument('-n', '--numOfBlocksinStage', type=int, default=5, help='defines the number of Blocks per Stage')
@@ -73,8 +72,8 @@ parser.add_argument('-l', '--layersInBlock', type=int, default=3, help='defines 
 parser.add_argument('-n', type=str, help="#stage numbers separated by commas")
 parser.add_argument('-b', '--bottleneck', default=False, action='store_true',
                     help='Set the bootleneck parameter')
-parser.add_argument('-w', '--widthofFirstLayer', default=3, type=int, help='defines the width of the first stage in net')
-
+parser.add_argument('-w', '--widthofFirstLayer', default=3, type=int,
+                    help='defines the width of the first stage in net')
 
 # epochs and stuff
 parser.add_argument('--epochs', default=8, type=int, metavar='N',
@@ -171,14 +170,11 @@ parser.add_argument('--wider', default=False, action='store_true',
                     help='Make network wider')
 parser.add_argument('--widthOfAllLayers', type=str, help="#width of stages separated by commas")
 
-
-
 # lars
 parser.add_argument('--lars', default=False, action='store_true',
                     help='use lars')
 parser.add_argument('--larsLR', default=0.001, type=float,
                     help='')
-
 
 args = parser.parse_args()
 state = {k: v for k, v in args._get_kwargs()}
@@ -186,7 +182,7 @@ state = {k: v for k, v in args._get_kwargs()}
 listofBlocks = [int(i) for i in args.n.split(',')]
 print(listofBlocks)
 if args.widthOfAllLayers is not None:
-    listOfWidths =[int(i) for i in args.widthOfAllLayers.split(',')]
+    listOfWidths = [int(i) for i in args.widthOfAllLayers.split(',')]
     print(listOfWidths)
 
 dev = "cuda:0"
@@ -201,7 +197,6 @@ def main():
     # checkpoint
     if not os.path.isdir(args.checkpoint):
         mkdir_p(args.checkpoint)
-
 
     # torch
     # torch.backends.cudnn.deterministic = True
@@ -332,7 +327,8 @@ def main():
         assert args.numOfStages == len(
             listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
 
-        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,  widthofFirstLayer =16, model=None, archNums=None, widthOfLayers = listOfWidths)
+        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
+                        widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
 
         print(f'device count: {torch.cuda.device_count()}')
         model.cuda()
@@ -372,7 +368,7 @@ def main():
         if not args.largeBatch:
             y = 36.304 * sizeX + 107.768
         else:
-            y = 4.27*sizeX + 2.60
+            y = 4.27 * sizeX + 2.60
         # calculate now the batch size
         batch_size = int(0.98 * count0 / sizeX / y)
         # delta_bs = (batch_size - 330)*0.3
@@ -392,7 +388,8 @@ def main():
     if not args.lars:
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
     else:
-        optimizer = LARS(model.parameters(),eta=args.larsLR, lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+        optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
+                         weight_decay=args.weight_decay)
 
     i = 1
     # for epochNet2Net in range(1, 4):
@@ -426,20 +423,20 @@ def main():
                     visualizePruneTrain(model, epoch, args.threshold)
 
                 genDenseModel(model, dense_chs, optimizer, 'cifar')
-                model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, False,16, model,
+                model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, False, 16,
+                                model,
                                 model.archNums)
-                # use_after_model_creation = torch.cuda.memory_allocated(use_gpu)
-                # print(f'use after new Model Creation')
                 gc.collect()
                 model.cuda()
                 if not args.lars:
                     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                           weight_decay=args.weight_decay)
                 else:
-                    optimizer = LARS(model.parameters(),eta=args.larsLR, lr=args.lr, momentum=args.momentum,
+                    optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
                                      weight_decay=args.weight_decay)
-            #     if args.fp16:
-            #         model, optimizer = amp.initialize(model, optimizer)
+
+            # if args.fp16:
+            #   model, optimizer = amp.initialize(model, optimizer)
             #
             count = 0
             for p in model.parameters():
@@ -481,11 +478,11 @@ def main():
         i = 2
 
     if args.wider:
-        model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=False, addNoise = False )
+        model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=False, addNoise=False)
 
-        model = model.wider(2, 2, out_size=None, weight_norm=None, random_init=False, addNoise = False )
+        model = model.wider(2, 2, out_size=None, weight_norm=None, random_init=False, addNoise=False)
 
-        model = model.wider(1 ,2 , out_size=None, weight_norm=None, random_init=False, addNoise = False )
+        model = model.wider(1, 2, out_size=None, weight_norm=None, random_init=False, addNoise=False)
 
         model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, False, 16, model,
                         model.archNums)
@@ -493,8 +490,9 @@ def main():
         model.cuda()
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-                          weight_decay=args.weight_decay)
+                              weight_decay=args.weight_decay)
 
+    print("[INFO] Storing checkpoint...")
     save_checkpoint({
         'epoch': args.epochs + start_epoch,
         'acc': test_acc,
@@ -502,20 +500,22 @@ def main():
         'optimizer': optimizer.state_dict(), },
         is_best,
         checkpoint=args.checkpoint)
-
-    save_checkpoint({
-        'epoch': args.epochs + start_epoch - 1,
-        'acc': test_acc,
-        'best_acc': best_acc,
-        'optimizer': optimizer.state_dict(), },
-        is_best,
-        checkpoint=args.checkpoint,
-        filename='checkpoint' + str(epoch) + '.tar')
+    # Leave unique checkpoint of pruned models druing training
+    if epoch % args.save_checkpoint == 0:
+        save_checkpoint({
+            'epoch': args.epochs + start_epoch - 1,
+            'acc': test_acc,
+            'best_acc': best_acc,
+            'optimizer': optimizer.state_dict(), },
+            is_best,
+            checkpoint=args.checkpoint,
+            filename='checkpoint' + str(epoch) + '.tar')
 
     if args.saveModell:
         torch.save(model, args.pathToModell)
     logger.close()
-    print("\n ", args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
+    print("\n ",
+          args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
     if args.test:
         print(" ", test_acc)
     print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
@@ -575,7 +575,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 # coeff_dir = os.path.join(args.coeff_container, 'cifar')
             if init_batch:
                 args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
-                            lasso_penalty * (1 - args.var_group_lasso_coeff))
+                        lasso_penalty * (1 - args.var_group_lasso_coeff))
                 grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
 
                 with open(os.path.join(args.checkpoint, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
@@ -624,8 +624,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                   'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
                   'Acc@1 {top1.val:.3f} ({top1.avg:.3f})\t'
                   'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
-                  epoch, batch_idx, len(trainloader), batch_time=batch_time,
-                  data_time=data_time, loss=losses, top1=top1, top5=top5))
+                epoch, batch_idx, len(trainloader), batch_time=batch_time,
+                data_time=data_time, loss=losses, top1=top1, top5=top5))
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
     return losses.avg, top1.avg, epoch_time
 
