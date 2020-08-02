@@ -28,6 +28,9 @@ class N2N(nn.Module):
             self.widthofFirstLayer = widthofFirstLayer
             self.widthofLayers = []
             s = widthofFirstLayer
+
+            print(f'numoFStages: {numOfStages}')
+
             for stage in numOfStages:
                 self.widthofLayers.append(s)
                 s *= 2
