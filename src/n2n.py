@@ -668,7 +668,7 @@ class N2N(nn.Module):
     """
 
     def wider(self, stage, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
-        # print(f'Stage: {stage}; numOfStage: {self.numOfStages}')
+        #get names for modules
         altList = []
         paramList = []
         printName = False
@@ -699,6 +699,7 @@ class N2N(nn.Module):
             else:
                 assert True, print("Hier fehlt noch was!!")
 
+        # fill lists with numbers of input or output numbers for each stage
         residualListI = []
         residualListO = []
 
@@ -724,18 +725,18 @@ class N2N(nn.Module):
         tmpListI = copy.copy(residualListI)
         tmpListO = copy.copy(residualListO)
         residualList = sorted(list(set(tmpListI) | set(tmpListO)))
-        # print(f'residualI: {residualListI}')
-        # print(f'residualO: {residualListO}')
+
+        # fill numpy arra with random elemente from original weight
         index = 0
         while index == 0:
+            # get next elemente to widen
             j = residualList.pop(0)
+            # transform to numbetr in moduleList
             i = 2 * j - 2
 
+            # get modules
             m1 = self.module_list[i]
             w1 = m1.weight.data.clone().cpu().numpy()
-
-            bn1 = self.module_list[i + 1]
-            bn1x = bn1.weight.data.clone().cpu().numpy()
 
             assert delta_width > 0, "New size should be larger"
 
@@ -750,10 +751,6 @@ class N2N(nn.Module):
                     idx = np.random.randint(0, old_width)
                     m1list = w1[:, idx, :, :]
                     listindices.append(idx)
-                    # print(f'listindices beim befüllen: {listindices}')
-                    # print(f'm1list: {m1list}')
-                    # print(f'm2list: {m2list}')
-                    # print(f'idx: {idx}')
                     try:
                         tracking[idx].append(o)
                     except:
@@ -767,7 +764,7 @@ class N2N(nn.Module):
                     else:
                         dw1.append(m1list)
 
-                # print(f'dw1 size len ')
+                print(f'dw1:{dw1}')
                 w11 = torch.FloatTensor(dw1)
                 w11 = w11.transpose(0, 1)
                 w11.cuda()
@@ -775,7 +772,7 @@ class N2N(nn.Module):
                 w1y = torch.FloatTensor(w1)
                 w1y.cuda()
                 w1x = torch.cat((w1y, w11), dim=1)
-                w1x.requires_grad=True
+                w1x.requires_grad = True
                 # print(f'dim w1: {w1.size()}')
                 m1.in_channels = new_width
                 i0 = w1x.size()[0]
