@@ -668,7 +668,7 @@ class N2N(nn.Module):
     """
 
     def wider(self, stage, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
-        #get names for modules
+        # get names for modules
         altList = []
         paramList = []
         printName = False
@@ -737,7 +737,7 @@ class N2N(nn.Module):
             # get modules
             m1 = self.module_list[i]
             w1 = m1.weight.data.clone().cpu().numpy()
-            bn = self.module_list[i+1]
+            bn = self.module_list[i + 1]
             bnw1 = bn.weight.data.clone().cpu().numpy()
             bnb1 = bn.bias.data.clone().cpu().numpy()
             assert delta_width > 0, "New size should be larger"
@@ -766,7 +766,7 @@ class N2N(nn.Module):
                     else:
                         dw1.append(m1list)
 
-                print(f'dw1:{dw1}')
+                # print(f'dw1:{dw1}')
                 w11 = torch.FloatTensor(dw1)
                 w11 = w11.transpose(0, 1)
                 w11.cuda()
@@ -841,7 +841,7 @@ class N2N(nn.Module):
                         dw1.append(m1list)
 
                     dbn1 = listOfRunningMean[idx]
-                        # print(f'length of dbn1: {dbn1}')
+                    # print(f'length of dbn1: {dbn1}')
                     dbn1rm.append(dbn1)
                     dbn1 = listOfRunningVar[idx]
                     dbn1rv.append(dbn1)
