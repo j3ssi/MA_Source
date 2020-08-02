@@ -724,34 +724,27 @@ class N2N(nn.Module):
         tmpListI = copy.copy(residualListI)
         tmpListO = copy.copy(residualListO)
         residualList = sorted(list(set(tmpListI) | set(tmpListO)))
-        print(f'residualI: {residualListI}')
-        print(f'residualO: {residualListO}')
+        # print(f'residualI: {residualListI}')
+        # print(f'residualO: {residualListO}')
         index = 0
         while index == 0:
             j = residualList.pop(0)
-
-            # print(f'list: {list(residualList)}; j: {j}')
             i = 2 * j - 2
+
             m1 = self.module_list[i]
-            bn = self.module_list[i + 1]
-            # print(f'm1: {m1}')
-            # print(f'bn1: {bn}')
-            x1 = m1.weight
             w1 = m1.weight.data.clone().cpu().numpy()
-            # Fehlersuche
+
+            bn1 = self.module_list[i + 1]
+            bn1x = bn1.weight.data.clone().cpu().numpy()
+
             assert delta_width > 0, "New size should be larger"
 
-            # print(f'dim w1: {w1.size()}')
-
             if j in residualListI:
-                # print(f'maplistI: {list(residualListI)}; layerin: {layerinbetween}')
-                # print(f'in maplistI j: {j}')
                 old_width = m1.weight.size(1)
                 new_width = old_width * delta_width
-                # print(f'old width: {old_width}')
+
                 dw1 = []
                 tracking = dict()
-                listOfNumbers = []
                 listindices = []
                 for o in range(0, (new_width - old_width)):
                     idx = np.random.randint(0, old_width)
