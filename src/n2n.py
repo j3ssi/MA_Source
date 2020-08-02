@@ -737,6 +737,7 @@ class N2N(nn.Module):
             # get modules
             m1 = self.module_list[i]
             w1 = m1.weight.data.clone().cpu().numpy()
+            bn = self.module_list[i+1]
 
             assert delta_width > 0, "New size should be larger"
 
@@ -792,7 +793,6 @@ class N2N(nn.Module):
             if j in residualListO:
                 # print(f'in maplistO j: {j}')
                 w1 = m1.weight.data.clone().cpu().numpy()
-
                 old_width = m1.weight.size(0)
                 new_width = old_width * delta_width
                 # print(f'old width1: {old_width}; new width: {new_width}')
@@ -806,10 +806,6 @@ class N2N(nn.Module):
                 listOfNumbers = []
                 listOfRunningMean = []
                 listOfRunningVar = []
-                bn1 = bn.bias.data.clone()
-                bn1list = bn1.cpu().numpy().tolist()
-                bn1 = bn.weight.data.clone()
-                bn1wlist = bn1.cpu().numpy().tolist()
                 for name, buf in self.named_buffers():
                     # print("\nBuffer Name: ", name)
                     if 'running_mean' in name:
@@ -843,19 +839,13 @@ class N2N(nn.Module):
                     else:
                         dw1.append(m1list)
 
-                    if bn is not None:
-                        # print(f'listofRunning mean: {listOfRunningMean.pop(0)}')
-                        dbn1 = listOfRunningMean[idx]
+                    dbn1 = listOfRunningMean[idx]
                         # print(f'length of dbn1: {dbn1}')
-                        dbn1rm.append(dbn1)
-                        dbn1 = listOfRunningVar[idx]
-                        dbn1rv.append(dbn1)
-                        # print(f'running mean: {dbn1rm}')
-                        # dbn1rm[i] = bn.running_mean.data()[idx]
-                        # dbn1rv[i] = bn.running_var.data()[idx]
-                        if bn.affine:
-                            dbn1w.append(bn1wlist[idx])
-                            dbn1b.append(bn1list[idx])
+                    dbn1rm.append(dbn1)
+                    dbn1 = listOfRunningVar[idx]
+                    dbn1rv.append(dbn1)
+                    dbn1w.append(bn1wlist[idx])
+                    dbn1b.append(bn1list[idx])
                     bn.num_features = new_width
                 # print(f'indices: {listindices}')
                 # print(f'tracking dict: {tracking}')
