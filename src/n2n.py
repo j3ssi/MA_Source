@@ -738,7 +738,8 @@ class N2N(nn.Module):
             m1 = self.module_list[i]
             w1 = m1.weight.data.clone().cpu().numpy()
             bn = self.module_list[i+1]
-
+            bnw1 = bn.weight.data.clone().cpu().numpy()
+            bnb1 = bn.bias.data.clone().cpu().numpy()
             assert delta_width > 0, "New size should be larger"
 
             if j in residualListI:
@@ -844,8 +845,8 @@ class N2N(nn.Module):
                     dbn1rm.append(dbn1)
                     dbn1 = listOfRunningVar[idx]
                     dbn1rv.append(dbn1)
-                    dbn1w.append(bn1wlist[idx])
-                    dbn1b.append(bn1list[idx])
+                    dbn1w.append(bnw1[idx])
+                    dbn1b.append(bnb1[idx])
                     bn.num_features = new_width
                 # print(f'indices: {listindices}')
                 # print(f'tracking dict: {tracking}')
