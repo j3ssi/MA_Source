@@ -496,6 +496,14 @@ def main():
                           weight_decay=args.weight_decay)
 
     save_checkpoint({
+        'epoch': args.epochs + start_epoch,
+        'acc': test_acc,
+        'best_acc': best_acc,
+        'optimizer': optimizer.state_dict(), },
+        is_best,
+        checkpoint=args.checkpoint)
+
+    save_checkpoint({
         'epoch': args.epochs + start_epoch - 1,
         'acc': test_acc,
         'best_acc': best_acc,
