@@ -729,7 +729,7 @@ class N2N(nn.Module):
         tmpListO = copy.copy(residualListO)
         residualList = sorted(list(set(tmpListI) | set(tmpListO)))
 
-        # fill numpy arra with random elemente from original weight
+        # fill numpy array with random elemente from original weight
         index = 0
         while index == 0:
             # get next elemente to widen
