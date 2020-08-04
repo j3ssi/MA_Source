@@ -900,9 +900,9 @@ class N2N(nn.Module):
                         bn.weight.data = nbn1w
                         bn.bias.data = nbn1b
 
-            m1x = torch.FloatTensor(w1)
+            m1x = torch.FloatTensor(w1).cuda()
             m1x.requires_grad = True
-            m1.weight = m1x
+            m1.weight = torch.nn.Parameter(m1x)
 
 
             if len(residualList) == 0:
@@ -960,7 +960,7 @@ class N2N(nn.Module):
             w1.requires_grad=True
 
             module.in_features = new_width
-            module.weight = w1
+            module.weight = torch.nn.Parameter(w1)
 
             # print(f'Model after wider: {self}')
 
