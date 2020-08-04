@@ -671,6 +671,7 @@ class N2N(nn.Module):
     """
 
     def wider(self, stage, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
+        print(f'Stage: {stage}')
         # get names for modules
         altList = []
         paramList = []
@@ -935,7 +936,7 @@ class N2N(nn.Module):
             module = self.module_list[-1]
             w1 = module.weight.data
             w1list = module.weight.data.cpu().numpy().tolist()
-            print(f'size: {w1.size()}')
+            # print(f'size: {w1.size()}')
 
             old_width = w1.size(1)
             new_width = old_width * delta_width
@@ -977,7 +978,7 @@ class N2N(nn.Module):
             # print(f'tracking dict: {tracking}')
 
             w11 = torch.FloatTensor(dw1).transpose(0, 1).cuda()
-            print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
+            # print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
 
             w1x = torch.cat((w1, w11), dim=1)
             w1x.requires_grad = True
