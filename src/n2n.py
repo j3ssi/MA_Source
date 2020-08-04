@@ -772,20 +772,20 @@ class N2N(nn.Module):
 
                 # print(f'dw1:{dw1}')
                 dw1x = np. array(dw1)
-                print(f'dw1 shape before T: {dw1x.shape}')
                 dw1x = np.transpose(dw1x, [1,0,2,3])
-                print(f'dw1 shape after T: {dw1x.shape}')
+
+                w1 = np.concatenate((w1, dw1x), axis =1 )
+                print(f'shape after concat: {w1.shape}')
+
+                m1.in_channels = new_width
 
                 w11 = torch.FloatTensor(dw1)
-                w11 = w11.transpose(0, 1)
                 w11.cuda()
-                # print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
                 w1y = torch.FloatTensor(w1)
                 w1y.cuda()
                 w1x = torch.cat((w1y, w11), dim=1)
                 w1x.requires_grad = True
                 # print(f'dim w1: {w1.size()}')
-                m1.in_channels = new_width
                 i0 = w1x.size()[0]
                 i1 = w1x.size()[1]
                 i2 = w1x.size()[2]
