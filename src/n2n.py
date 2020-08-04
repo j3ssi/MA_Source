@@ -770,9 +770,10 @@ class N2N(nn.Module):
                         dw1.append(m1list)
 
                 # print(f'dw1:{dw1}')
-                print(f'dw1 shape before T: {dw1.shape}')
-                dw1 = dw1.transpose()
-                print(f'dw1 shape after T: {dw1.shape}')
+                dw1x = np. array(dw1)
+                print(f'dw1 shape before T: {dw1x.shape}')
+                dw1x = dw1x.transpose()
+                print(f'dw1 shape after T: {dw1x.shape}')
 
                 w11 = torch.FloatTensor(dw1)
                 w11 = w11.transpose(0, 1)
