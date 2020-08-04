@@ -914,7 +914,7 @@ class N2N(nn.Module):
         # print(f'self num of stages: {self.numOfStages}')
         if int(stage) == int(self.numOfStages):
             module = self.module_list[-1]
-            w1 = module.weight.data
+            w1 = module.weight.data.clone().cpu().numpy()
             w1list = module.weight.data.cpu().numpy()
             # print(f'size: {w1.size()}')
 
