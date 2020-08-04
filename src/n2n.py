@@ -771,7 +771,7 @@ class N2N(nn.Module):
                         dw1.append(m1list)
 
                 # print(f'dw1:{dw1}')
-                dw1x = np. array(dw1)
+                dw1x = np.array(dw1)
                 dw1x = np.transpose(dw1x, [1,0,2,3])
 
                 w1 = np.concatenate((w1, dw1x), axis =1 )
@@ -779,30 +779,14 @@ class N2N(nn.Module):
 
                 m1.in_channels = new_width
 
-                w11 = torch.FloatTensor(dw1)
-                w11.cuda()
-                w1y = torch.FloatTensor(w1)
-                w1y.cuda()
-                w1x = torch.cat((w1y, w11), dim=1)
-                w1x.requires_grad = True
-                # print(f'dim w1: {w1.size()}')
-                i0 = w1x.size()[0]
-                i1 = w1x.size()[1]
-                i2 = w1x.size()[2]
-                i3 = w1x.size()[3]
-                x = w1x.std()
-                # print(f'i0: {i0}; i1: {i1}; i2: {i2}; i3: {i3}')
+                std = w1.std()
                 if addNoise:
-                    noise = np.random.normal(scale=5e-2 * 0.3,
-                                             size=(i0, i1, i2, i3))
-                    w1x += th.FloatTensor(noise).type_as(w1x)
-                w1x.requires_grad = True
-
-                m1.weight.data = w1x
+                    noise = np.random.normal(scale=5e-2 * std,
+                                             size=w1.shape)
+                    w1x += noise
+                print(f'w1: {m1.weight.size(0)}; w2: {w1.shape[0]}')
 
             if j in residualListO:
-                # print(f'in maplistO j: {j}')
-                w1 = m1.weight.data.clone().cpu().numpy()
                 old_width = m1.weight.size(0)
                 new_width = old_width * delta_width
                 # print(f'old width1: {old_width}; new width: {new_width}')
