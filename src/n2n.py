@@ -900,7 +900,7 @@ class N2N(nn.Module):
                         bn.weight.data = nbn1w
                         bn.bias.data = nbn1b
 
-            m1x = torch.FloatTensor(w1).cuda()
+            m1x = torch.FloatTensor(w1)
             m1x.requires_grad = True
             m1.weight = m1x
 
