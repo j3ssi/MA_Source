@@ -775,7 +775,7 @@ class N2N(nn.Module):
                 dw1x = np.transpose(dw1x, [1,0,2,3])
 
                 w1 = np.concatenate((w1, dw1x), axis =1 )
-                print(f'shape after concat: {w1.shape}')
+                # print(f'shape after concat: {w1.shape}')
 
                 m1.in_channels = new_width
 
@@ -783,8 +783,7 @@ class N2N(nn.Module):
                 if addNoise:
                     noise = np.random.normal(scale=5e-2 * std,
                                              size=w1.shape)
-                    w1x += noise
-                print(f'w1: {m1.weight.size(0)}; w2: {w1.shape[0]}')
+                    w1 += noise
 
             if j in residualListO:
                 old_width = m1.weight.size(0)
@@ -864,15 +863,10 @@ class N2N(nn.Module):
                                     f[m] = f[m] / ct.get(listindices[idx])
                                 # print(f' after e[l]: {e[l]}')
 
-                w11 = torch.FloatTensor(dw1)
-                w11.cuda()
-                # print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
-                w1y = torch.FloatTensor(w1)
-                w1y.cuda()
-                w1x = torch.cat((w1y, w11), dim=0)
-                # print(f'w11:{w11}')
-                # print(f'w1: {w1}')
-                # print(f'dim w1: {w1.size()}')
+                dw1x = np.array(dw1)
+
+                w1 = np.concatenate((w1, dw1x), axis=0)
+
                 rm = torch.FloatTensor(dbn1rm).cuda()
                 rm1 = torch.FloatTensor(listOfRunningMean).cuda()
                 nbn1rm = torch.cat((rm1, rm), dim=0)
@@ -899,10 +893,6 @@ class N2N(nn.Module):
                 #                              size=(i0, i1, i2, i3))
                 #     w1 += th.FloatTensor(noise).type_as(w1)
 
-                w1x.requires_grad = True
-
-                m1.weight.data = w1x
-
                 if bn is not None:
                     bn.running_var = nbn1rv
                     bn.running_mean = nbn1rv
@@ -910,8 +900,14 @@ class N2N(nn.Module):
                         bn.weight.data = nbn1w
                         bn.bias.data = nbn1b
 
+            m1x = torch.FloatTensor(w1).cuda()
+            m1x.requires_grad = True
+            m1.weight = m1x
+
+
             if len(residualList) == 0:
                 index = 1
+
 
         # print(f'Bis Hier!')
         # print(f'stage: {stage}')
@@ -919,7 +915,7 @@ class N2N(nn.Module):
         if int(stage) == int(self.numOfStages):
             module = self.module_list[-1]
             w1 = module.weight.data
-            w1list = module.weight.data.cpu().numpy().tolist()
+            w1list = module.weight.data.cpu().numpy()
             # print(f'size: {w1.size()}')
 
             old_width = w1.size(1)
@@ -943,7 +939,7 @@ class N2N(nn.Module):
                 # TEST:random init for new units
                 if random_init:
                     n = module.kernel_size[0] * module.kernel_size[1] * module.out_channels
-                    dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=w1.size())
+                    dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=w1.shape)
                     # if m2.weight.dim() == 4:
                     #    n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.out_channels
                     # elif m2.weight.dim() == 5:
@@ -958,18 +954,13 @@ class N2N(nn.Module):
                     # dw1.select(0, i).copy_(w1.select(0, idx).clone())
                     # dw2.select(0, i).copy_(w2.select(0, idx).clone())
 
-            # print(f'indices: {listindices}')
-            # print(f'tracking dict: {tracking}')
+            dw1x = np.transpose(dw1, [1,0])
+            dw1y = np.concatenate((w1,dw1x), axis =1)
+            w1 = torch.FloatTensor(dw1y).cuda()
+            w1.requires_grad=True
 
-            w11 = torch.FloatTensor(dw1).transpose(0, 1).cuda()
-            # print(f'dim w1: {w1.size()}; dim w11: {w11.size()}')
-
-            w1x = torch.cat((w1, w11), dim=1)
-            w1x.requires_grad = True
-
-            print(f'dim w1: {w1x.size()}')
             module.in_features = new_width
-            module.weight.data = w1x
+            module.weight = w1
 
             # print(f'Model after wider: {self}')
 
