@@ -168,6 +168,8 @@ parser.add_argument('--deeper', default=False, action='store_true',
                     help='Make network deeper')
 parser.add_argument('--wider', default=False, action='store_true',
                     help='Make network wider')
+parser.add_argument('--widerRnd', default=False, action='store_true',
+                    help='Make network wider')
 parser.add_argument('--widthOfAllLayers', type=str, help="#width of stages separated by commas")
 
 # lars
@@ -477,12 +479,28 @@ def main():
 
         i = 2
 
-    if args.wider:
+    if args.wider and args.widerRnd:
         model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=False, addNoise=False)
 
         model = model.wider(2, 2, out_size=None, weight_norm=None, random_init=False, addNoise=False)
 
         model = model.wider(1, 2, out_size=None, weight_norm=None, random_init=False, addNoise=False)
+
+        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
+                        widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
+
+        model.cuda()
+        criterion = nn.CrossEntropyLoss()
+        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+                              weight_decay=args.weight_decay)
+
+    if args.widerRnd and not args.wider:
+
+        model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=True, addNoise=False)
+
+        model = model.wider(2, 2, out_size=None, weight_norm=None, random_init=True, addNoise=False)
+
+        model = model.wider(1, 2, out_size=None, weight_norm=None, random_init=True, addNoise=False)
 
         model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
                         widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
