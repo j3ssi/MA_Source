@@ -765,7 +765,7 @@ class N2N(nn.Module):
                     # TEST:random init for new units
                     if random_init:
                         n = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
-                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=w1.size())
+                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=(w1.shape[0],new_width, w1.shape[2]))
 
                     else:
                         dw1.append(m1list)
@@ -828,7 +828,7 @@ class N2N(nn.Module):
                     # TEST:random init for new units
                     if random_init:
                         n1 = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
-                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n1), size=w1.size())
+                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n1), size=(new_width,w1.shape[1], w1.shape[2]))
                     else:
                         dw1.append(m1list)
 
