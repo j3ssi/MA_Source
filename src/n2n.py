@@ -829,7 +829,7 @@ class N2N(nn.Module):
                     # TEST:random init for new units
                     if random_init:
                         n1 = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
-                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n1), size=(new_width, w1.shape[1], w1.shape[2]))
+                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n1), size=(new_width, w1.shape[1], w1.shape[2],w.shape[3]))
                         print(f'dw1: {dw1.shape}')
                     else:
                         dw1.append(m1list)
