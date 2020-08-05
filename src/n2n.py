@@ -736,6 +736,7 @@ class N2N(nn.Module):
             # get next elemente to widen
             j = residualList.pop(0)
             # transform to numbetr in moduleList
+            print(f'j: {j}')
             i = 2 * j - 2
 
             # get modules
@@ -803,15 +804,15 @@ class N2N(nn.Module):
                     # print("\nBuffer Name: ", name)
                     if 'running_mean' in name:
                         k = int(name.split('.')[1])
-                        if (k == (i + 1)):
+                        if k == (i + 1):
                             mean = buf.clone()
-                            listOfRunningMean = mean.cpu().numpy().tolist()
+                            listOfRunningMean = mean.cpu().numpy()
 
                     if 'running_var' in name:
                         k = int(name.split('.')[1])
                         if (k == (i + 1)):
                             var = buf.clone()
-                            listOfRunningVar = var.cpu().numpy().tolist()
+                            listOfRunningVar = var.cpu().numpy()
 
                 listindices = []
                 # print(f'oldwidth: {old_width} ')
@@ -828,7 +829,8 @@ class N2N(nn.Module):
                     # TEST:random init for new units
                     if random_init:
                         n1 = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
-                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n1), size=(new_width,w1.shape[1], w1.shape[2]))
+                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n1), size=(new_width, w1.shape[1], w1.shape[2]))
+                        print(f'dw1: {dw1.shape}')
                     else:
                         dw1.append(m1list)
 
