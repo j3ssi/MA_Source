@@ -882,16 +882,11 @@ class N2N(nn.Module):
                 nbn1b = torch.cat((bn.bias.data, dbn1x))
 
                 m1.out_channels = new_width
-                # i0 = len(w1list) * delta_width
-                # i1 = len(dw1[0])
-                # i2 = len(dw1[0][0])
-                # i3 = len(dw1[0][0][0])
-                # x = w1.std()
-                # print(f'i0: {i0}')
-                # if noise:
-                #     noise = np.random.normal(scale=5e-2 * 0.3,
-                #                              size=(i0, i1, i2, i3))
-                #     w1 += th.FloatTensor(noise).type_as(w1)
+                x = w1.std()
+                if noise:
+                    noise = np.random.normal(scale=5e-2 * x,
+                                             size=(w1.shape))
+                    w1 += noise
 
                 if bn is not None:
                     bn.running_var = nbn1rv
@@ -903,7 +898,6 @@ class N2N(nn.Module):
             m1x = torch.FloatTensor(w1).cuda()
             m1x.requires_grad = True
             m1.weight = torch.nn.Parameter(m1x)
-
 
             if len(residualList) == 0:
                 index = 1
