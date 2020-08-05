@@ -766,14 +766,15 @@ class N2N(nn.Module):
                     # TEST:random init for new units
                     if random_init:
                         n = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
-                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=(w1.shape[0],new_width, w1.shape[2]))
+                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=(w1.shape[0],new_width, w1.shape[2], w1.shape[3]))
 
                     else:
                         dw1.append(m1list)
 
                 # print(f'dw1:{dw1}')
-                dw1x = np.array(dw1)
-                dw1x = np.transpose(dw1x, [1,0,2,3])
+                if not random_init:
+                    dw1x = np.array(dw1)
+                    dw1x = np.transpose(dw1x, [1,0,2,3])
 
                 w1 = np.concatenate((w1, dw1x), axis =1 )
                 # print(f'shape after concat: {w1.shape}')
