@@ -1,0 +1,1621 @@
+j: 0 bis 5
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+stage: 0; sizeof Layers: 3
+stage: 1; sizeof Layers: 6
+stage: 2; sizeof Layers: 12
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(3, 6, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(3, 6, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(6, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(6, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (59): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (60): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (61): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (62): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (63): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (64): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (65): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (66): AdaptiveAvgPool2d(output_size=(1, 1))
+    (67): Linear(in_features=12, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv12.weight', 'module.conv13.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv21.weight', 'module.conv22.weight'], ['module.conv23.weight', 'module.conv24.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight'], ['module.conv30.weight', 'module.conv31.weight'], ['module.conv32.weight', 'module.conv33.weight']]
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv12.weight', 'module.conv13.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv21.weight', 'module.conv22.weight'], ['module.conv23.weight', 'module.conv24.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight'], ['module.conv30.weight', 'module.conv31.weight'], ['module.conv32.weight', 'module.conv33.weight']]
+device count: 1
+Startepoche: 1
+count0: 17683
+
+Epoch: [1 | 5] LR: 0.100000
+Epoch: [1][0/196]	Time 0.875 (0.875)	Data 0.536 (0.536)	Loss 3.3232 (3.3232)	Acc@1 5.859 (5.859)	Acc@5 43.359 (43.359)
+Epoch: [1][64/196]	Time 0.861 (0.839)	Data 0.000 (0.008)	Loss 2.4872 (2.6930)	Acc@1 24.609 (20.547)	Acc@5 82.422 (74.898)
+Epoch: [1][128/196]	Time 0.839 (0.848)	Data 0.000 (0.004)	Loss 2.2673 (2.5347)	Acc@1 31.641 (25.282)	Acc@5 87.891 (80.227)
+Epoch: [1][192/196]	Time 0.881 (0.846)	Data 0.000 (0.003)	Loss 2.1608 (2.4231)	Acc@1 37.109 (28.396)	Acc@5 87.500 (82.989)
+[INFO] Storing checkpoint...
+
+Epoch: [2 | 5] LR: 0.100000
+Epoch: [2][0/196]	Time 0.803 (0.803)	Data 0.453 (0.453)	Loss 2.1524 (2.1524)	Acc@1 34.766 (34.766)	Acc@5 86.719 (86.719)
+Epoch: [2][64/196]	Time 0.843 (0.849)	Data 0.000 (0.007)	Loss 1.9347 (2.0438)	Acc@1 41.797 (39.573)	Acc@5 91.016 (89.958)
+Epoch: [2][128/196]	Time 0.871 (0.852)	Data 0.000 (0.004)	Loss 1.8262 (1.9809)	Acc@1 45.703 (41.391)	Acc@5 93.750 (90.689)
+Epoch: [2][192/196]	Time 0.855 (0.847)	Data 0.000 (0.003)	Loss 1.8079 (1.9231)	Acc@1 45.703 (43.151)	Acc@5 93.750 (91.214)
+[INFO] Storing checkpoint...
+
+Epoch: [3 | 5] LR: 0.100000
+Epoch: [3][0/196]	Time 0.963 (0.963)	Data 0.463 (0.463)	Loss 1.6920 (1.6920)	Acc@1 55.078 (55.078)	Acc@5 92.969 (92.969)
+Epoch: [3][64/196]	Time 0.875 (0.865)	Data 0.000 (0.007)	Loss 1.5561 (1.7055)	Acc@1 55.859 (50.421)	Acc@5 96.094 (93.215)
+Epoch: [3][128/196]	Time 0.860 (0.867)	Data 0.000 (0.004)	Loss 1.6469 (1.6771)	Acc@1 51.562 (51.351)	Acc@5 94.922 (93.550)
+Epoch: [3][192/196]	Time 0.865 (0.861)	Data 0.000 (0.003)	Loss 1.5884 (1.6555)	Acc@1 48.047 (52.143)	Acc@5 94.141 (93.681)
+[INFO] Storing checkpoint...
+
+Epoch: [4 | 5] LR: 0.100000
+Epoch: [4][0/196]	Time 0.915 (0.915)	Data 0.423 (0.423)	Loss 1.4623 (1.4623)	Acc@1 58.984 (58.984)	Acc@5 96.875 (96.875)
+Epoch: [4][64/196]	Time 0.865 (0.864)	Data 0.000 (0.007)	Loss 1.4940 (1.5555)	Acc@1 57.812 (55.655)	Acc@5 96.094 (94.820)
+Epoch: [4][128/196]	Time 0.874 (0.865)	Data 0.000 (0.003)	Loss 1.5087 (1.5533)	Acc@1 57.812 (55.878)	Acc@5 94.531 (94.828)
+Epoch: [4][192/196]	Time 0.856 (0.861)	Data 0.000 (0.002)	Loss 1.4761 (1.5376)	Acc@1 57.812 (56.450)	Acc@5 95.312 (94.926)
+[INFO] Storing checkpoint...
+
+Epoch: [5 | 5] LR: 0.100000
+Epoch: [5][0/196]	Time 0.906 (0.906)	Data 0.478 (0.478)	Loss 1.5789 (1.5789)	Acc@1 55.078 (55.078)	Acc@5 94.531 (94.531)
+Epoch: [5][64/196]	Time 0.864 (0.860)	Data 0.000 (0.008)	Loss 1.5747 (1.4897)	Acc@1 55.859 (58.167)	Acc@5 94.531 (95.270)
+Epoch: [5][128/196]	Time 0.864 (0.865)	Data 0.000 (0.004)	Loss 1.5041 (1.4822)	Acc@1 55.859 (58.403)	Acc@5 94.141 (95.473)
+Epoch: [5][192/196]	Time 0.316 (0.826)	Data 0.000 (0.003)	Loss 1.3849 (1.4732)	Acc@1 64.453 (58.782)	Acc@5 97.266 (95.519)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  45.41
+Max memory: 19.8310912
+ 160.861s  j: 6 bis 10
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 6
+count0: 17683
+
+Epoch: [6 | 10] LR: 0.100000
+Epoch: [6][0/196]	Time 0.960 (0.960)	Data 0.412 (0.412)	Loss 1.3945 (1.3945)	Acc@1 62.500 (62.500)	Acc@5 96.484 (96.484)
+Epoch: [6][64/196]	Time 0.861 (0.859)	Data 0.000 (0.007)	Loss 1.5677 (1.4320)	Acc@1 57.031 (60.673)	Acc@5 94.922 (95.829)
+Epoch: [6][128/196]	Time 0.894 (0.856)	Data 0.000 (0.003)	Loss 1.4069 (1.4351)	Acc@1 61.719 (60.280)	Acc@5 94.531 (95.794)
+Epoch: [6][192/196]	Time 0.869 (0.854)	Data 0.000 (0.002)	Loss 1.5233 (1.4353)	Acc@1 55.859 (60.450)	Acc@5 95.703 (95.835)
+[INFO] Storing checkpoint...
+
+Epoch: [7 | 10] LR: 0.100000
+Epoch: [7][0/196]	Time 0.809 (0.809)	Data 0.371 (0.371)	Loss 1.3739 (1.3739)	Acc@1 64.062 (64.062)	Acc@5 96.484 (96.484)
+Epoch: [7][64/196]	Time 0.865 (0.867)	Data 0.000 (0.006)	Loss 1.3999 (1.4360)	Acc@1 58.594 (61.082)	Acc@5 96.875 (95.643)
+Epoch: [7][128/196]	Time 0.807 (0.863)	Data 0.000 (0.003)	Loss 1.3975 (1.4234)	Acc@1 60.156 (61.531)	Acc@5 98.047 (95.830)
+Epoch: [7][192/196]	Time 0.867 (0.863)	Data 0.000 (0.002)	Loss 1.3473 (1.4151)	Acc@1 66.016 (61.854)	Acc@5 94.922 (95.964)
+[INFO] Storing checkpoint...
+
+Epoch: [8 | 10] LR: 0.100000
+Epoch: [8][0/196]	Time 0.969 (0.969)	Data 0.442 (0.442)	Loss 1.2561 (1.2561)	Acc@1 66.797 (66.797)	Acc@5 96.875 (96.875)
+Epoch: [8][64/196]	Time 0.870 (0.866)	Data 0.000 (0.007)	Loss 1.4044 (1.3888)	Acc@1 61.719 (62.776)	Acc@5 97.266 (96.250)
+Epoch: [8][128/196]	Time 0.907 (0.864)	Data 0.000 (0.004)	Loss 1.4138 (1.3956)	Acc@1 62.500 (62.791)	Acc@5 98.438 (96.263)
+Epoch: [8][192/196]	Time 0.841 (0.863)	Data 0.000 (0.002)	Loss 1.5038 (1.3935)	Acc@1 58.594 (62.917)	Acc@5 94.141 (96.278)
+[INFO] Storing checkpoint...
+
+Epoch: [9 | 10] LR: 0.100000
+Epoch: [9][0/196]	Time 0.957 (0.957)	Data 0.399 (0.399)	Loss 1.4227 (1.4227)	Acc@1 63.672 (63.672)	Acc@5 94.531 (94.531)
+Epoch: [9][64/196]	Time 0.862 (0.864)	Data 0.000 (0.007)	Loss 1.3363 (1.3865)	Acc@1 64.453 (63.227)	Acc@5 95.703 (96.538)
+Epoch: [9][128/196]	Time 0.900 (0.863)	Data 0.000 (0.003)	Loss 1.4063 (1.3792)	Acc@1 62.500 (63.705)	Acc@5 96.484 (96.454)
+Epoch: [9][192/196]	Time 0.851 (0.863)	Data 0.000 (0.002)	Loss 1.3208 (1.3763)	Acc@1 66.016 (63.781)	Acc@5 96.875 (96.422)
+[INFO] Storing checkpoint...
+
+Epoch: [10 | 10] LR: 0.100000
+Epoch: [10][0/196]	Time 0.870 (0.870)	Data 0.410 (0.410)	Loss 1.3847 (1.3847)	Acc@1 62.891 (62.891)	Acc@5 97.656 (97.656)
+Epoch: [10][64/196]	Time 0.863 (0.862)	Data 0.000 (0.007)	Loss 1.4051 (1.3693)	Acc@1 64.453 (64.447)	Acc@5 94.141 (96.544)
+Epoch: [10][128/196]	Time 0.859 (0.810)	Data 0.000 (0.003)	Loss 1.4062 (1.3593)	Acc@1 65.625 (64.562)	Acc@5 96.875 (96.627)
+Epoch: [10][192/196]	Time 0.703 (0.814)	Data 0.000 (0.002)	Loss 1.3014 (1.3559)	Acc@1 67.188 (64.767)	Acc@5 96.484 (96.606)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 17299 ; 17683 ; 0.9782842277894023
+[INFO] Storing checkpoint...
+
+  256
+  48.44
+Max memory: 19.8309888
+ 159.464s  j: 11 bis 15
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 11
+count0: 17299
+
+Epoch: [11 | 15] LR: 0.100000
+Epoch: [11][0/196]	Time 1.289 (1.289)	Data 0.444 (0.444)	Loss 1.3069 (1.3069)	Acc@1 65.625 (65.625)	Acc@5 96.484 (96.484)
+Epoch: [11][64/196]	Time 0.854 (0.867)	Data 0.000 (0.007)	Loss 1.3420 (1.3491)	Acc@1 64.844 (64.730)	Acc@5 96.484 (96.599)
+Epoch: [11][128/196]	Time 0.855 (0.866)	Data 0.000 (0.004)	Loss 1.2595 (1.3455)	Acc@1 69.531 (64.892)	Acc@5 97.266 (96.721)
+Epoch: [11][192/196]	Time 0.862 (0.862)	Data 0.000 (0.003)	Loss 1.4000 (1.3414)	Acc@1 63.281 (65.192)	Acc@5 96.484 (96.713)
+[INFO] Storing checkpoint...
+
+Epoch: [12 | 15] LR: 0.100000
+Epoch: [12][0/196]	Time 0.801 (0.801)	Data 0.424 (0.424)	Loss 1.4510 (1.4510)	Acc@1 62.500 (62.500)	Acc@5 97.656 (97.656)
+Epoch: [12][64/196]	Time 0.851 (0.864)	Data 0.000 (0.007)	Loss 1.3553 (1.3454)	Acc@1 66.406 (65.355)	Acc@5 96.484 (96.562)
+Epoch: [12][128/196]	Time 0.850 (0.864)	Data 0.000 (0.003)	Loss 1.3686 (1.3535)	Acc@1 64.062 (65.013)	Acc@5 96.094 (96.581)
+Epoch: [12][192/196]	Time 0.879 (0.863)	Data 0.000 (0.002)	Loss 1.3453 (1.3494)	Acc@1 67.188 (65.162)	Acc@5 96.484 (96.598)
+[INFO] Storing checkpoint...
+
+Epoch: [13 | 15] LR: 0.100000
+Epoch: [13][0/196]	Time 0.820 (0.820)	Data 0.560 (0.560)	Loss 1.2664 (1.2664)	Acc@1 66.797 (66.797)	Acc@5 96.875 (96.875)
+Epoch: [13][64/196]	Time 0.894 (0.865)	Data 0.000 (0.009)	Loss 1.3467 (1.3401)	Acc@1 66.016 (65.270)	Acc@5 96.484 (96.767)
+Epoch: [13][128/196]	Time 0.862 (0.861)	Data 0.000 (0.005)	Loss 1.2417 (1.3338)	Acc@1 70.703 (65.719)	Acc@5 96.484 (96.757)
+Epoch: [13][192/196]	Time 0.703 (0.858)	Data 0.000 (0.003)	Loss 1.2454 (1.3331)	Acc@1 71.484 (65.728)	Acc@5 97.266 (96.790)
+[INFO] Storing checkpoint...
+
+Epoch: [14 | 15] LR: 0.100000
+Epoch: [14][0/196]	Time 0.537 (0.537)	Data 0.425 (0.425)	Loss 1.3366 (1.3366)	Acc@1 63.672 (63.672)	Acc@5 96.094 (96.094)
+Epoch: [14][64/196]	Time 0.864 (0.859)	Data 0.000 (0.007)	Loss 1.3859 (1.3496)	Acc@1 63.672 (64.952)	Acc@5 96.484 (96.839)
+Epoch: [14][128/196]	Time 0.850 (0.860)	Data 0.000 (0.004)	Loss 1.3102 (1.3367)	Acc@1 64.453 (65.501)	Acc@5 97.266 (96.884)
+Epoch: [14][192/196]	Time 0.850 (0.860)	Data 0.000 (0.003)	Loss 1.2721 (1.3313)	Acc@1 68.750 (65.783)	Acc@5 95.312 (96.835)
+[INFO] Storing checkpoint...
+
+Epoch: [15 | 15] LR: 0.100000
+Epoch: [15][0/196]	Time 0.644 (0.644)	Data 0.510 (0.510)	Loss 1.3316 (1.3316)	Acc@1 69.141 (69.141)	Acc@5 96.484 (96.484)
+Epoch: [15][64/196]	Time 0.850 (0.765)	Data 0.000 (0.008)	Loss 1.2780 (1.3091)	Acc@1 66.016 (66.671)	Acc@5 95.703 (96.749)
+Epoch: [15][128/196]	Time 0.778 (0.813)	Data 0.000 (0.004)	Loss 1.2669 (1.3044)	Acc@1 65.625 (66.951)	Acc@5 98.438 (96.760)
+Epoch: [15][192/196]	Time 0.848 (0.794)	Data 0.000 (0.003)	Loss 1.2496 (1.3082)	Acc@1 67.969 (66.645)	Acc@5 96.484 (96.816)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 16531 ; 17299 ; 0.9556043701948089
+[INFO] Storing checkpoint...
+
+  256
+  63.13
+Max memory: 19.6922368
+ 156.568s  j: 16 bis 20
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 16
+count0: 16531
+
+Epoch: [16 | 20] LR: 0.100000
+Epoch: [16][0/196]	Time 0.971 (0.971)	Data 0.496 (0.496)	Loss 1.2607 (1.2607)	Acc@1 67.578 (67.578)	Acc@5 98.438 (98.438)
+Epoch: [16][64/196]	Time 0.860 (0.846)	Data 0.000 (0.008)	Loss 1.2481 (1.2986)	Acc@1 69.922 (67.115)	Acc@5 96.875 (97.055)
+Epoch: [16][128/196]	Time 0.825 (0.850)	Data 0.000 (0.004)	Loss 1.2890 (1.3054)	Acc@1 71.875 (66.906)	Acc@5 95.703 (96.960)
+Epoch: [16][192/196]	Time 0.868 (0.851)	Data 0.000 (0.003)	Loss 1.1882 (1.3066)	Acc@1 72.266 (66.967)	Acc@5 98.438 (96.841)
+[INFO] Storing checkpoint...
+
+Epoch: [17 | 20] LR: 0.100000
+Epoch: [17][0/196]	Time 0.913 (0.913)	Data 0.467 (0.467)	Loss 1.3247 (1.3247)	Acc@1 65.625 (65.625)	Acc@5 94.922 (94.922)
+Epoch: [17][64/196]	Time 0.886 (0.851)	Data 0.000 (0.007)	Loss 1.2684 (1.3048)	Acc@1 69.922 (66.803)	Acc@5 96.875 (96.701)
+Epoch: [17][128/196]	Time 0.916 (0.854)	Data 0.000 (0.004)	Loss 1.2783 (1.3027)	Acc@1 64.844 (66.994)	Acc@5 96.094 (96.836)
+Epoch: [17][192/196]	Time 0.859 (0.855)	Data 0.000 (0.003)	Loss 1.2901 (1.3066)	Acc@1 66.406 (66.787)	Acc@5 98.438 (96.826)
+[INFO] Storing checkpoint...
+
+Epoch: [18 | 20] LR: 0.100000
+Epoch: [18][0/196]	Time 0.986 (0.986)	Data 0.500 (0.500)	Loss 1.3114 (1.3114)	Acc@1 67.578 (67.578)	Acc@5 96.875 (96.875)
+Epoch: [18][64/196]	Time 0.864 (0.851)	Data 0.000 (0.008)	Loss 1.3174 (1.3034)	Acc@1 67.188 (66.575)	Acc@5 96.484 (97.031)
+Epoch: [18][128/196]	Time 0.852 (0.858)	Data 0.000 (0.004)	Loss 1.3267 (1.3020)	Acc@1 65.234 (66.712)	Acc@5 95.703 (96.963)
+Epoch: [18][192/196]	Time 0.853 (0.860)	Data 0.000 (0.003)	Loss 1.2111 (1.2979)	Acc@1 67.969 (66.908)	Acc@5 98.438 (96.954)
+[INFO] Storing checkpoint...
+
+Epoch: [19 | 20] LR: 0.100000
+Epoch: [19][0/196]	Time 0.981 (0.981)	Data 0.436 (0.436)	Loss 1.2656 (1.2656)	Acc@1 69.141 (69.141)	Acc@5 98.047 (98.047)
+Epoch: [19][64/196]	Time 0.857 (0.850)	Data 0.000 (0.007)	Loss 1.2777 (1.3023)	Acc@1 71.875 (67.001)	Acc@5 97.656 (97.037)
+Epoch: [19][128/196]	Time 0.861 (0.860)	Data 0.000 (0.004)	Loss 1.3790 (1.3014)	Acc@1 62.500 (67.066)	Acc@5 97.266 (97.045)
+Epoch: [19][192/196]	Time 0.647 (0.830)	Data 0.000 (0.003)	Loss 1.2886 (1.2942)	Acc@1 67.188 (67.222)	Acc@5 97.656 (96.994)
+[INFO] Storing checkpoint...
+
+Epoch: [20 | 20] LR: 0.100000
+Epoch: [20][0/196]	Time 0.548 (0.548)	Data 0.377 (0.377)	Loss 1.2689 (1.2689)	Acc@1 65.625 (65.625)	Acc@5 97.266 (97.266)
+Epoch: [20][64/196]	Time 0.747 (0.746)	Data 0.000 (0.006)	Loss 1.2463 (1.2976)	Acc@1 67.578 (67.181)	Acc@5 98.047 (96.917)
+Epoch: [20][128/196]	Time 0.862 (0.801)	Data 0.000 (0.003)	Loss 1.2635 (1.2978)	Acc@1 69.141 (66.954)	Acc@5 98.047 (96.833)
+Epoch: [20][192/196]	Time 0.870 (0.821)	Data 0.000 (0.002)	Loss 1.3869 (1.3056)	Acc@1 65.625 (66.783)	Acc@5 95.312 (96.810)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+
+ RM:  module.conv21.weight
+
+ RM:  module.conv22.weight
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv12.weight', 'module.conv13.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv21.weight', 'module.conv22.weight'], ['module.conv24.weight', 'module.conv25.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight'], ['module.conv30.weight', 'module.conv31.weight']]
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv12.weight', 'module.conv13.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv21.weight', 'module.conv22.weight'], ['module.conv24.weight', 'module.conv25.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight'], ['module.conv30.weight', 'module.conv31.weight']]
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(3, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(2, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(3, 6, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(3, 6, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(6, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(5, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(6, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(6, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): Conv2d(12, 10, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (59): BatchNorm2d(10, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (60): Conv2d(10, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (61): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (62): AdaptiveAvgPool2d(output_size=(1, 1))
+    (63): Linear(in_features=12, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+Count: 16025 ; 16531 ; 0.9693908414493981
+[INFO] Storing checkpoint...
+
+  256
+  44.28
+Max memory: 19.3841152
+ 161.641s  j: 21 bis 25
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+count0: 16025
+
+Epoch: [21 | 25] LR: 0.100000
+Epoch: [21][0/196]	Time 0.892 (0.892)	Data 0.405 (0.405)	Loss 1.1414 (1.1414)	Acc@1 74.609 (74.609)	Acc@5 98.828 (98.828)
+Epoch: [21][64/196]	Time 0.802 (0.771)	Data 0.000 (0.006)	Loss 1.2055 (1.2788)	Acc@1 71.875 (67.951)	Acc@5 97.266 (97.037)
+Epoch: [21][128/196]	Time 0.811 (0.792)	Data 0.000 (0.003)	Loss 1.3095 (1.2835)	Acc@1 65.234 (67.911)	Acc@5 96.094 (96.960)
+Epoch: [21][192/196]	Time 0.803 (0.796)	Data 0.000 (0.002)	Loss 1.3598 (1.2862)	Acc@1 67.578 (67.596)	Acc@5 94.922 (96.972)
+[INFO] Storing checkpoint...
+
+Epoch: [22 | 25] LR: 0.100000
+Epoch: [22][0/196]	Time 0.916 (0.916)	Data 0.487 (0.487)	Loss 1.2693 (1.2693)	Acc@1 70.312 (70.312)	Acc@5 95.312 (95.312)
+Epoch: [22][64/196]	Time 0.813 (0.807)	Data 0.000 (0.008)	Loss 1.2686 (1.2913)	Acc@1 70.312 (67.398)	Acc@5 96.875 (96.845)
+Epoch: [22][128/196]	Time 0.812 (0.811)	Data 0.000 (0.004)	Loss 1.1825 (1.2820)	Acc@1 69.531 (67.630)	Acc@5 97.656 (97.063)
+Epoch: [22][192/196]	Time 0.807 (0.807)	Data 0.000 (0.003)	Loss 1.1756 (1.2842)	Acc@1 71.094 (67.576)	Acc@5 97.656 (97.079)
+[INFO] Storing checkpoint...
+
+Epoch: [23 | 25] LR: 0.100000
+Epoch: [23][0/196]	Time 0.863 (0.863)	Data 0.485 (0.485)	Loss 1.0913 (1.0913)	Acc@1 76.953 (76.953)	Acc@5 97.266 (97.266)
+Epoch: [23][64/196]	Time 0.819 (0.812)	Data 0.000 (0.008)	Loss 1.3797 (1.2687)	Acc@1 62.500 (68.371)	Acc@5 96.484 (97.248)
+Epoch: [23][128/196]	Time 0.800 (0.814)	Data 0.000 (0.004)	Loss 1.2483 (1.2775)	Acc@1 68.750 (67.748)	Acc@5 95.703 (97.151)
+Epoch: [23][192/196]	Time 0.811 (0.808)	Data 0.000 (0.003)	Loss 1.1886 (1.2767)	Acc@1 70.703 (67.898)	Acc@5 97.656 (97.104)
+[INFO] Storing checkpoint...
+
+Epoch: [24 | 25] LR: 0.100000
+Epoch: [24][0/196]	Time 0.862 (0.862)	Data 0.599 (0.599)	Loss 1.3067 (1.3067)	Acc@1 68.359 (68.359)	Acc@5 96.484 (96.484)
+Epoch: [24][64/196]	Time 0.808 (0.798)	Data 0.000 (0.009)	Loss 1.3306 (1.2757)	Acc@1 66.406 (68.053)	Acc@5 96.875 (97.031)
+Epoch: [24][128/196]	Time 0.810 (0.805)	Data 0.000 (0.005)	Loss 1.2199 (1.2803)	Acc@1 73.438 (67.908)	Acc@5 97.266 (97.154)
+Epoch: [24][192/196]	Time 0.481 (0.779)	Data 0.000 (0.003)	Loss 1.1755 (1.2763)	Acc@1 70.312 (67.969)	Acc@5 98.438 (97.126)
+[INFO] Storing checkpoint...
+
+Epoch: [25 | 25] LR: 0.100000
+Epoch: [25][0/196]	Time 0.463 (0.463)	Data 0.520 (0.520)	Loss 1.3171 (1.3171)	Acc@1 67.969 (67.969)	Acc@5 97.656 (97.656)
+Epoch: [25][64/196]	Time 0.814 (0.684)	Data 0.000 (0.008)	Loss 1.2959 (1.2729)	Acc@1 69.531 (68.179)	Acc@5 98.047 (97.019)
+Epoch: [25][128/196]	Time 0.834 (0.749)	Data 0.000 (0.004)	Loss 1.3152 (1.2843)	Acc@1 66.016 (67.521)	Acc@5 98.828 (97.045)
+Epoch: [25][192/196]	Time 0.813 (0.771)	Data 0.000 (0.003)	Loss 1.3149 (1.2834)	Acc@1 66.797 (67.532)	Acc@5 96.484 (97.067)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 15371 ; 16025 ; 0.959188767550702
+[INFO] Storing checkpoint...
+
+  256
+  48.03
+Max memory: 18.7493376
+ 151.859s  j: 26 bis 30
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 26
+count0: 15371
+
+Epoch: [26 | 30] LR: 0.100000
+Epoch: [26][0/196]	Time 1.227 (1.227)	Data 0.457 (0.457)	Loss 1.3200 (1.3200)	Acc@1 69.141 (69.141)	Acc@5 95.703 (95.703)
+Epoch: [26][64/196]	Time 0.501 (0.598)	Data 0.000 (0.007)	Loss 1.2796 (1.2642)	Acc@1 69.531 (68.431)	Acc@5 97.266 (97.169)
+Epoch: [26][128/196]	Time 0.757 (0.682)	Data 0.000 (0.004)	Loss 1.0682 (1.2620)	Acc@1 76.172 (68.465)	Acc@5 98.047 (97.084)
+Epoch: [26][192/196]	Time 0.826 (0.725)	Data 0.000 (0.003)	Loss 1.3267 (1.2561)	Acc@1 65.234 (68.590)	Acc@5 95.703 (97.094)
+[INFO] Storing checkpoint...
+
+Epoch: [27 | 30] LR: 0.100000
+Epoch: [27][0/196]	Time 0.879 (0.879)	Data 0.505 (0.505)	Loss 1.2626 (1.2626)	Acc@1 67.188 (67.188)	Acc@5 97.656 (97.656)
+Epoch: [27][64/196]	Time 0.822 (0.814)	Data 0.000 (0.008)	Loss 1.2418 (1.2713)	Acc@1 70.312 (67.849)	Acc@5 98.047 (97.163)
+Epoch: [27][128/196]	Time 0.813 (0.805)	Data 0.000 (0.004)	Loss 1.2364 (1.2691)	Acc@1 68.750 (68.166)	Acc@5 96.875 (97.138)
+Epoch: [27][192/196]	Time 0.804 (0.808)	Data 0.000 (0.003)	Loss 1.2596 (1.2637)	Acc@1 70.312 (68.139)	Acc@5 97.266 (97.193)
+[INFO] Storing checkpoint...
+
+Epoch: [28 | 30] LR: 0.100000
+Epoch: [28][0/196]	Time 0.808 (0.808)	Data 0.518 (0.518)	Loss 1.3870 (1.3870)	Acc@1 65.625 (65.625)	Acc@5 98.438 (98.438)
+Epoch: [28][64/196]	Time 0.819 (0.815)	Data 0.000 (0.008)	Loss 1.3753 (1.2713)	Acc@1 64.062 (67.776)	Acc@5 95.312 (97.188)
+Epoch: [28][128/196]	Time 0.814 (0.813)	Data 0.000 (0.004)	Loss 1.2398 (1.2620)	Acc@1 69.922 (68.290)	Acc@5 98.047 (97.226)
+Epoch: [28][192/196]	Time 0.806 (0.811)	Data 0.000 (0.003)	Loss 1.3531 (1.2653)	Acc@1 63.672 (68.088)	Acc@5 96.094 (97.215)
+[INFO] Storing checkpoint...
+
+Epoch: [29 | 30] LR: 0.100000
+Epoch: [29][0/196]	Time 0.906 (0.906)	Data 0.474 (0.474)	Loss 1.1348 (1.1348)	Acc@1 70.312 (70.312)	Acc@5 98.828 (98.828)
+Epoch: [29][64/196]	Time 0.815 (0.810)	Data 0.000 (0.008)	Loss 1.1441 (1.2735)	Acc@1 71.484 (68.179)	Acc@5 98.438 (97.025)
+Epoch: [29][128/196]	Time 0.860 (0.805)	Data 0.000 (0.004)	Loss 1.3473 (1.2707)	Acc@1 66.016 (68.229)	Acc@5 97.266 (97.039)
+Epoch: [29][192/196]	Time 0.652 (0.803)	Data 0.000 (0.003)	Loss 1.1963 (1.2675)	Acc@1 73.438 (68.238)	Acc@5 97.656 (97.102)
+[INFO] Storing checkpoint...
+
+Epoch: [30 | 30] LR: 0.100000
+Epoch: [30][0/196]	Time 0.717 (0.717)	Data 0.488 (0.488)	Loss 1.1512 (1.1512)	Acc@1 70.703 (70.703)	Acc@5 97.266 (97.266)
+Epoch: [30][64/196]	Time 0.650 (0.653)	Data 0.000 (0.008)	Loss 1.2737 (1.2537)	Acc@1 67.969 (68.335)	Acc@5 97.266 (97.037)
+Epoch: [30][128/196]	Time 0.807 (0.715)	Data 0.000 (0.004)	Loss 1.2035 (1.2557)	Acc@1 70.703 (68.362)	Acc@5 97.266 (97.244)
+Epoch: [30][192/196]	Time 0.814 (0.747)	Data 0.000 (0.003)	Loss 1.1511 (1.2584)	Acc@1 73.047 (68.333)	Acc@5 97.266 (97.183)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 14495 ; 15371 ; 0.9430095634636654
+[INFO] Storing checkpoint...
+
+  256
+  51.36
+Max memory: 18.3907328
+ 147.369s  j: 31 bis 35
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 31
+count0: 14495
+
+Epoch: [31 | 35] LR: 0.100000
+Epoch: [31][0/196]	Time 1.460 (1.460)	Data 0.676 (0.676)	Loss 1.2508 (1.2508)	Acc@1 69.141 (69.141)	Acc@5 97.656 (97.656)
+Epoch: [31][64/196]	Time 0.644 (0.731)	Data 0.000 (0.011)	Loss 1.2511 (1.2370)	Acc@1 67.578 (68.708)	Acc@5 98.047 (97.368)
+Epoch: [31][128/196]	Time 0.797 (0.707)	Data 0.000 (0.005)	Loss 1.2676 (1.2542)	Acc@1 68.750 (68.408)	Acc@5 97.656 (97.269)
+Epoch: [31][192/196]	Time 0.803 (0.740)	Data 0.000 (0.004)	Loss 1.3571 (1.2511)	Acc@1 69.922 (68.463)	Acc@5 98.047 (97.312)
+[INFO] Storing checkpoint...
+
+Epoch: [32 | 35] LR: 0.100000
+Epoch: [32][0/196]	Time 0.922 (0.922)	Data 0.566 (0.566)	Loss 1.3973 (1.3973)	Acc@1 66.406 (66.406)	Acc@5 97.266 (97.266)
+Epoch: [32][64/196]	Time 0.873 (0.813)	Data 0.000 (0.009)	Loss 1.2433 (1.2662)	Acc@1 69.141 (68.017)	Acc@5 98.047 (97.079)
+Epoch: [32][128/196]	Time 0.777 (0.801)	Data 0.000 (0.005)	Loss 1.2026 (1.2642)	Acc@1 69.922 (68.017)	Acc@5 97.656 (97.066)
+Epoch: [32][192/196]	Time 0.749 (0.804)	Data 0.000 (0.003)	Loss 1.3237 (1.2664)	Acc@1 68.359 (67.991)	Acc@5 95.312 (97.049)
+[INFO] Storing checkpoint...
+
+Epoch: [33 | 35] LR: 0.100000
+Epoch: [33][0/196]	Time 0.842 (0.842)	Data 0.489 (0.489)	Loss 1.2001 (1.2001)	Acc@1 70.312 (70.312)	Acc@5 98.047 (98.047)
+Epoch: [33][64/196]	Time 0.775 (0.806)	Data 0.000 (0.008)	Loss 1.4107 (1.2569)	Acc@1 64.062 (67.993)	Acc@5 96.484 (97.332)
+Epoch: [33][128/196]	Time 0.782 (0.809)	Data 0.000 (0.004)	Loss 1.2890 (1.2521)	Acc@1 64.453 (68.456)	Acc@5 96.094 (97.347)
+Epoch: [33][192/196]	Time 0.792 (0.804)	Data 0.000 (0.003)	Loss 1.2838 (1.2543)	Acc@1 66.016 (68.365)	Acc@5 96.875 (97.294)
+[INFO] Storing checkpoint...
+
+Epoch: [34 | 35] LR: 0.100000
+Epoch: [34][0/196]	Time 0.942 (0.942)	Data 0.520 (0.520)	Loss 1.3518 (1.3518)	Acc@1 66.797 (66.797)	Acc@5 96.484 (96.484)
+Epoch: [34][64/196]	Time 0.804 (0.819)	Data 0.000 (0.008)	Loss 1.2096 (1.2664)	Acc@1 67.969 (67.957)	Acc@5 98.047 (97.206)
+Epoch: [34][128/196]	Time 0.860 (0.808)	Data 0.000 (0.004)	Loss 1.2149 (1.2652)	Acc@1 72.266 (67.981)	Acc@5 97.656 (97.163)
+Epoch: [34][192/196]	Time 0.645 (0.799)	Data 0.000 (0.003)	Loss 1.2485 (1.2663)	Acc@1 70.312 (68.005)	Acc@5 99.219 (97.233)
+[INFO] Storing checkpoint...
+
+Epoch: [35 | 35] LR: 0.100000
+Epoch: [35][0/196]	Time 0.620 (0.620)	Data 0.460 (0.460)	Loss 1.2533 (1.2533)	Acc@1 68.750 (68.750)	Acc@5 97.656 (97.656)
+Epoch: [35][64/196]	Time 0.651 (0.654)	Data 0.000 (0.008)	Loss 1.2598 (1.2746)	Acc@1 71.094 (67.542)	Acc@5 95.703 (97.115)
+Epoch: [35][128/196]	Time 0.768 (0.714)	Data 0.000 (0.004)	Loss 1.2528 (1.2623)	Acc@1 68.750 (68.093)	Acc@5 98.047 (97.157)
+Epoch: [35][192/196]	Time 0.777 (0.744)	Data 0.000 (0.003)	Loss 1.2547 (1.2574)	Acc@1 65.234 (68.272)	Acc@5 97.266 (97.164)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 14059 ; 14495 ; 0.9699206622973439
+[INFO] Storing checkpoint...
+
+  256
+  60.86
+Max memory: 17.5514624
+ 146.688s  j: 36 bis 40
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 36
+count0: 14059
+
+Epoch: [36 | 40] LR: 0.100000
+Epoch: [36][0/196]	Time 1.582 (1.582)	Data 0.450 (0.450)	Loss 1.1954 (1.1954)	Acc@1 73.047 (73.047)	Acc@5 98.047 (98.047)
+Epoch: [36][64/196]	Time 0.647 (0.730)	Data 0.000 (0.008)	Loss 1.2697 (1.2233)	Acc@1 65.234 (69.297)	Acc@5 98.047 (97.380)
+Epoch: [36][128/196]	Time 0.814 (0.698)	Data 0.000 (0.004)	Loss 1.2924 (1.2453)	Acc@1 66.797 (68.614)	Acc@5 96.094 (97.263)
+Epoch: [36][192/196]	Time 0.749 (0.730)	Data 0.000 (0.003)	Loss 1.3376 (1.2440)	Acc@1 63.672 (68.718)	Acc@5 95.703 (97.292)
+[INFO] Storing checkpoint...
+
+Epoch: [37 | 40] LR: 0.100000
+Epoch: [37][0/196]	Time 0.884 (0.884)	Data 0.560 (0.560)	Loss 1.2504 (1.2504)	Acc@1 67.578 (67.578)	Acc@5 96.484 (96.484)
+Epoch: [37][64/196]	Time 0.838 (0.800)	Data 0.000 (0.009)	Loss 1.1789 (1.2515)	Acc@1 71.484 (68.269)	Acc@5 96.094 (97.139)
+Epoch: [37][128/196]	Time 0.766 (0.805)	Data 0.000 (0.005)	Loss 1.2651 (1.2514)	Acc@1 69.531 (68.356)	Acc@5 97.656 (97.157)
+Epoch: [37][192/196]	Time 0.800 (0.804)	Data 0.000 (0.003)	Loss 1.2450 (1.2511)	Acc@1 70.703 (68.400)	Acc@5 98.047 (97.150)
+[INFO] Storing checkpoint...
+
+Epoch: [38 | 40] LR: 0.100000
+Epoch: [38][0/196]	Time 0.771 (0.771)	Data 0.615 (0.615)	Loss 1.3521 (1.3521)	Acc@1 65.234 (65.234)	Acc@5 96.875 (96.875)
+Epoch: [38][64/196]	Time 0.836 (0.807)	Data 0.000 (0.010)	Loss 1.1160 (1.2554)	Acc@1 73.047 (68.371)	Acc@5 98.047 (97.254)
+Epoch: [38][128/196]	Time 0.792 (0.808)	Data 0.000 (0.005)	Loss 1.3103 (1.2523)	Acc@1 67.969 (68.381)	Acc@5 96.484 (97.278)
+Epoch: [38][192/196]	Time 0.827 (0.808)	Data 0.000 (0.003)	Loss 1.2897 (1.2502)	Acc@1 65.234 (68.307)	Acc@5 97.656 (97.296)
+[INFO] Storing checkpoint...
+
+Epoch: [39 | 40] LR: 0.100000
+Epoch: [39][0/196]	Time 0.769 (0.769)	Data 0.646 (0.646)	Loss 1.2519 (1.2519)	Acc@1 68.359 (68.359)	Acc@5 98.047 (98.047)
+Epoch: [39][64/196]	Time 0.794 (0.803)	Data 0.000 (0.010)	Loss 1.2227 (1.2491)	Acc@1 70.703 (68.918)	Acc@5 97.656 (97.037)
+Epoch: [39][128/196]	Time 0.853 (0.802)	Data 0.000 (0.005)	Loss 1.2809 (1.2565)	Acc@1 65.625 (68.368)	Acc@5 97.656 (97.042)
+Epoch: [39][192/196]	Time 0.649 (0.801)	Data 0.000 (0.004)	Loss 1.1929 (1.2515)	Acc@1 71.484 (68.651)	Acc@5 96.875 (97.156)
+[INFO] Storing checkpoint...
+
+Epoch: [40 | 40] LR: 0.100000
+Epoch: [40][0/196]	Time 0.664 (0.664)	Data 0.510 (0.510)	Loss 1.2033 (1.2033)	Acc@1 70.703 (70.703)	Acc@5 96.484 (96.484)
+Epoch: [40][64/196]	Time 0.653 (0.660)	Data 0.000 (0.008)	Loss 1.3102 (1.2504)	Acc@1 67.969 (68.924)	Acc@5 95.703 (97.109)
+Epoch: [40][128/196]	Time 0.848 (0.716)	Data 0.000 (0.004)	Loss 1.1293 (1.2548)	Acc@1 72.656 (68.453)	Acc@5 97.656 (97.241)
+Epoch: [40][192/196]	Time 0.817 (0.749)	Data 0.000 (0.003)	Loss 1.2144 (1.2545)	Acc@1 69.141 (68.412)	Acc@5 96.875 (97.253)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 13949 ; 14059 ; 0.9921758304289068
+[INFO] Storing checkpoint...
+
+  256
+  61.2
+Max memory: 17.632768
+ 147.812s  j: 41 bis 45
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 41
+count0: 13949
+
+Epoch: [41 | 45] LR: 0.100000
+Epoch: [41][0/196]	Time 1.585 (1.585)	Data 0.553 (0.553)	Loss 1.2681 (1.2681)	Acc@1 66.797 (66.797)	Acc@5 98.438 (98.438)
+Epoch: [41][64/196]	Time 0.655 (0.731)	Data 0.000 (0.009)	Loss 1.2991 (1.2202)	Acc@1 64.453 (69.519)	Acc@5 97.266 (97.560)
+Epoch: [41][128/196]	Time 0.809 (0.698)	Data 0.000 (0.005)	Loss 1.2585 (1.2266)	Acc@1 65.234 (69.268)	Acc@5 96.875 (97.390)
+Epoch: [41][192/196]	Time 0.844 (0.734)	Data 0.000 (0.003)	Loss 1.2710 (1.2373)	Acc@1 66.797 (68.963)	Acc@5 97.656 (97.310)
+[INFO] Storing checkpoint...
+
+Epoch: [42 | 45] LR: 0.100000
+Epoch: [42][0/196]	Time 0.829 (0.829)	Data 0.466 (0.466)	Loss 1.3666 (1.3666)	Acc@1 66.406 (66.406)	Acc@5 94.531 (94.531)
+Epoch: [42][64/196]	Time 0.782 (0.795)	Data 0.000 (0.007)	Loss 1.2100 (1.2754)	Acc@1 71.484 (67.855)	Acc@5 98.438 (97.163)
+Epoch: [42][128/196]	Time 0.826 (0.798)	Data 0.000 (0.004)	Loss 1.2080 (1.2566)	Acc@1 69.141 (68.359)	Acc@5 98.828 (97.247)
+Epoch: [42][192/196]	Time 0.772 (0.801)	Data 0.000 (0.003)	Loss 1.2208 (1.2542)	Acc@1 74.609 (68.479)	Acc@5 95.703 (97.221)
+[INFO] Storing checkpoint...
+
+Epoch: [43 | 45] LR: 0.100000
+Epoch: [43][0/196]	Time 0.780 (0.780)	Data 0.456 (0.456)	Loss 1.2622 (1.2622)	Acc@1 72.656 (72.656)	Acc@5 96.484 (96.484)
+Epoch: [43][64/196]	Time 0.798 (0.811)	Data 0.000 (0.007)	Loss 1.3204 (1.2744)	Acc@1 64.844 (67.885)	Acc@5 94.922 (97.019)
+Epoch: [43][128/196]	Time 0.819 (0.804)	Data 0.000 (0.004)	Loss 1.2175 (1.2611)	Acc@1 67.969 (68.287)	Acc@5 96.484 (97.087)
+Epoch: [43][192/196]	Time 0.546 (0.805)	Data 0.000 (0.003)	Loss 1.2937 (1.2558)	Acc@1 67.969 (68.465)	Acc@5 95.703 (97.116)
+[INFO] Storing checkpoint...
+
+Epoch: [44 | 45] LR: 0.100000
+Epoch: [44][0/196]	Time 0.832 (0.832)	Data 0.419 (0.419)	Loss 1.3214 (1.3214)	Acc@1 63.672 (63.672)	Acc@5 97.656 (97.656)
+Epoch: [44][64/196]	Time 0.790 (0.796)	Data 0.000 (0.007)	Loss 1.4169 (1.2631)	Acc@1 62.891 (68.498)	Acc@5 95.703 (97.109)
+Epoch: [44][128/196]	Time 0.804 (0.792)	Data 0.000 (0.003)	Loss 1.2237 (1.2582)	Acc@1 71.094 (68.387)	Acc@5 98.438 (97.160)
+Epoch: [44][192/196]	Time 0.478 (0.784)	Data 0.000 (0.002)	Loss 1.1799 (1.2493)	Acc@1 71.094 (68.691)	Acc@5 99.219 (97.270)
+[INFO] Storing checkpoint...
+
+Epoch: [45 | 45] LR: 0.100000
+Epoch: [45][0/196]	Time 0.518 (0.518)	Data 0.440 (0.440)	Loss 1.1799 (1.1799)	Acc@1 71.484 (71.484)	Acc@5 98.047 (98.047)
+Epoch: [45][64/196]	Time 0.783 (0.610)	Data 0.000 (0.007)	Loss 1.2295 (1.2590)	Acc@1 69.141 (68.401)	Acc@5 98.047 (97.169)
+Epoch: [45][128/196]	Time 0.794 (0.709)	Data 0.000 (0.004)	Loss 1.3076 (1.2490)	Acc@1 67.188 (68.617)	Acc@5 97.266 (97.247)
+Epoch: [45][192/196]	Time 0.785 (0.743)	Data 0.000 (0.002)	Loss 1.2834 (1.2494)	Acc@1 67.578 (68.523)	Acc@5 97.656 (97.276)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 13839 ; 13949 ; 0.9921141300451646
+[INFO] Storing checkpoint...
+
+  256
+  52.49
+Max memory: 17.509888
+ 146.452s  j: 46 bis 50
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 46
+count0: 13839
+
+Epoch: [46 | 50] LR: 0.100000
+Epoch: [46][0/196]	Time 1.416 (1.416)	Data 0.428 (0.428)	Loss 1.2998 (1.2998)	Acc@1 67.578 (67.578)	Acc@5 98.047 (98.047)
+Epoch: [46][64/196]	Time 0.645 (0.632)	Data 0.000 (0.007)	Loss 1.2400 (1.2288)	Acc@1 68.359 (69.237)	Acc@5 98.438 (97.374)
+Epoch: [46][128/196]	Time 0.919 (0.698)	Data 0.000 (0.004)	Loss 1.1840 (1.2411)	Acc@1 75.000 (68.926)	Acc@5 97.656 (97.281)
+Epoch: [46][192/196]	Time 0.817 (0.731)	Data 0.000 (0.002)	Loss 1.3051 (1.2461)	Acc@1 66.406 (68.809)	Acc@5 97.656 (97.284)
+[INFO] Storing checkpoint...
+
+Epoch: [47 | 50] LR: 0.100000
+Epoch: [47][0/196]	Time 0.967 (0.967)	Data 0.503 (0.503)	Loss 1.2209 (1.2209)	Acc@1 71.484 (71.484)	Acc@5 97.266 (97.266)
+Epoch: [47][64/196]	Time 0.763 (0.804)	Data 0.000 (0.008)	Loss 1.1810 (1.2501)	Acc@1 68.750 (69.050)	Acc@5 98.828 (97.055)
+Epoch: [47][128/196]	Time 0.758 (0.806)	Data 0.000 (0.004)	Loss 1.2155 (1.2519)	Acc@1 68.750 (68.662)	Acc@5 97.266 (97.057)
+Epoch: [47][192/196]	Time 0.763 (0.801)	Data 0.000 (0.003)	Loss 1.3122 (1.2508)	Acc@1 64.844 (68.649)	Acc@5 96.094 (97.110)
+[INFO] Storing checkpoint...
+
+Epoch: [48 | 50] LR: 0.100000
+Epoch: [48][0/196]	Time 0.996 (0.996)	Data 0.510 (0.510)	Loss 1.1534 (1.1534)	Acc@1 71.484 (71.484)	Acc@5 98.438 (98.438)
+Epoch: [48][64/196]	Time 0.826 (0.805)	Data 0.000 (0.008)	Loss 1.3429 (1.2679)	Acc@1 67.188 (68.251)	Acc@5 95.703 (97.049)
+Epoch: [48][128/196]	Time 0.805 (0.800)	Data 0.000 (0.004)	Loss 1.3788 (1.2591)	Acc@1 60.547 (68.320)	Acc@5 94.922 (97.138)
+Epoch: [48][192/196]	Time 0.874 (0.791)	Data 0.000 (0.003)	Loss 1.3361 (1.2522)	Acc@1 65.234 (68.414)	Acc@5 96.094 (97.219)
+[INFO] Storing checkpoint...
+
+Epoch: [49 | 50] LR: 0.100000
+Epoch: [49][0/196]	Time 0.825 (0.825)	Data 0.580 (0.580)	Loss 1.2700 (1.2700)	Acc@1 67.578 (67.578)	Acc@5 96.094 (96.094)
+Epoch: [49][64/196]	Time 0.878 (0.800)	Data 0.000 (0.009)	Loss 1.3148 (1.2672)	Acc@1 66.016 (67.668)	Acc@5 95.312 (97.115)
+Epoch: [49][128/196]	Time 0.783 (0.804)	Data 0.000 (0.005)	Loss 1.3312 (1.2577)	Acc@1 67.578 (68.184)	Acc@5 96.094 (97.160)
+Epoch: [49][192/196]	Time 0.470 (0.724)	Data 0.000 (0.003)	Loss 1.3264 (1.2500)	Acc@1 65.625 (68.501)	Acc@5 96.094 (97.166)
+[INFO] Storing checkpoint...
+
+Epoch: [50 | 50] LR: 0.100000
+Epoch: [50][0/196]	Time 0.536 (0.536)	Data 0.688 (0.688)	Loss 1.2302 (1.2302)	Acc@1 69.531 (69.531)	Acc@5 96.094 (96.094)
+Epoch: [50][64/196]	Time 0.806 (0.812)	Data 0.000 (0.011)	Loss 1.1973 (1.2384)	Acc@1 70.312 (68.846)	Acc@5 96.484 (97.392)
+Epoch: [50][128/196]	Time 0.809 (0.813)	Data 0.000 (0.006)	Loss 1.3137 (1.2426)	Acc@1 66.016 (68.823)	Acc@5 95.703 (97.341)
+Epoch: [50][192/196]	Time 0.771 (0.806)	Data 0.000 (0.004)	Loss 1.3453 (1.2432)	Acc@1 64.844 (68.835)	Acc@5 96.094 (97.336)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 13619 ; 13839 ; 0.9841028976082087
+[INFO] Storing checkpoint...
+
+  256
+  59.34
+Max memory: 17.3047808
+ 158.952s  j: 51 bis 55
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 51
+count0: 13619
+
+Epoch: [51 | 55] LR: 0.100000
+Epoch: [51][0/196]	Time 1.307 (1.307)	Data 0.544 (0.544)	Loss 1.3158 (1.3158)	Acc@1 64.453 (64.453)	Acc@5 98.828 (98.828)
+Epoch: [51][64/196]	Time 0.664 (0.753)	Data 0.000 (0.009)	Loss 1.2483 (1.2217)	Acc@1 71.875 (69.375)	Acc@5 98.438 (97.350)
+Epoch: [51][128/196]	Time 0.849 (0.749)	Data 0.000 (0.004)	Loss 1.2135 (1.2402)	Acc@1 73.828 (68.953)	Acc@5 97.266 (97.235)
+Epoch: [51][192/196]	Time 0.802 (0.769)	Data 0.000 (0.003)	Loss 1.2751 (1.2383)	Acc@1 68.359 (69.029)	Acc@5 98.438 (97.276)
+[INFO] Storing checkpoint...
+
+Epoch: [52 | 55] LR: 0.100000
+Epoch: [52][0/196]	Time 0.957 (0.957)	Data 0.605 (0.605)	Loss 1.2588 (1.2588)	Acc@1 67.969 (67.969)	Acc@5 97.656 (97.656)
+Epoch: [52][64/196]	Time 0.822 (0.817)	Data 0.000 (0.010)	Loss 1.2400 (1.2675)	Acc@1 70.312 (68.029)	Acc@5 96.094 (97.103)
+Epoch: [52][128/196]	Time 0.772 (0.806)	Data 0.000 (0.005)	Loss 1.1447 (1.2616)	Acc@1 73.047 (68.317)	Acc@5 98.047 (97.084)
+Epoch: [52][192/196]	Time 0.807 (0.808)	Data 0.000 (0.003)	Loss 1.0914 (1.2518)	Acc@1 77.344 (68.594)	Acc@5 98.047 (97.083)
+[INFO] Storing checkpoint...
+
+Epoch: [53 | 55] LR: 0.100000
+Epoch: [53][0/196]	Time 0.893 (0.893)	Data 0.632 (0.632)	Loss 1.2070 (1.2070)	Acc@1 69.531 (69.531)	Acc@5 97.266 (97.266)
+Epoch: [53][64/196]	Time 0.854 (0.819)	Data 0.000 (0.010)	Loss 1.1843 (1.2464)	Acc@1 72.266 (68.786)	Acc@5 98.438 (97.218)
+Epoch: [53][128/196]	Time 0.928 (0.807)	Data 0.010 (0.005)	Loss 1.2036 (1.2556)	Acc@1 70.312 (68.338)	Acc@5 98.047 (97.187)
+Epoch: [53][192/196]	Time 0.789 (0.807)	Data 0.000 (0.004)	Loss 1.1340 (1.2507)	Acc@1 71.875 (68.588)	Acc@5 97.266 (97.215)
+[INFO] Storing checkpoint...
+
+Epoch: [54 | 55] LR: 0.100000
+Epoch: [54][0/196]	Time 0.816 (0.816)	Data 0.620 (0.620)	Loss 1.2098 (1.2098)	Acc@1 69.141 (69.141)	Acc@5 98.438 (98.438)
+Epoch: [54][64/196]	Time 0.803 (0.813)	Data 0.000 (0.010)	Loss 1.2186 (1.2556)	Acc@1 69.141 (68.323)	Acc@5 97.266 (97.061)
+Epoch: [54][128/196]	Time 0.497 (0.685)	Data 0.000 (0.005)	Loss 1.2401 (1.2558)	Acc@1 70.312 (68.293)	Acc@5 97.266 (97.051)
+Epoch: [54][192/196]	Time 0.812 (0.699)	Data 0.000 (0.003)	Loss 1.2761 (1.2458)	Acc@1 63.281 (68.861)	Acc@5 99.219 (97.122)
+[INFO] Storing checkpoint...
+
+Epoch: [55 | 55] LR: 0.100000
+Epoch: [55][0/196]	Time 0.863 (0.863)	Data 0.521 (0.521)	Loss 1.4149 (1.4149)	Acc@1 64.062 (64.062)	Acc@5 95.703 (95.703)
+Epoch: [55][64/196]	Time 0.906 (0.819)	Data 0.000 (0.008)	Loss 1.2041 (1.2446)	Acc@1 68.750 (68.822)	Acc@5 98.047 (97.272)
+Epoch: [55][128/196]	Time 0.670 (0.762)	Data 0.000 (0.004)	Loss 1.2088 (1.2447)	Acc@1 69.922 (68.729)	Acc@5 98.828 (97.129)
+Epoch: [55][192/196]	Time 0.811 (0.770)	Data 0.000 (0.003)	Loss 1.1941 (1.2426)	Acc@1 71.484 (68.778)	Acc@5 97.656 (97.128)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 13509 ; 13619 ; 0.9919230486819884
+[INFO] Storing checkpoint...
+
+  256
+  40.91
+Max memory: 17.1409408
+ 151.755s  j: 56 bis 60
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 56
+count0: 13509
+
+Epoch: [56 | 60] LR: 0.100000
+Epoch: [56][0/196]	Time 1.598 (1.598)	Data 0.571 (0.571)	Loss 1.1897 (1.1897)	Acc@1 69.922 (69.922)	Acc@5 97.656 (97.656)
+Epoch: [56][64/196]	Time 0.614 (0.744)	Data 0.000 (0.009)	Loss 1.2420 (1.2240)	Acc@1 67.969 (69.423)	Acc@5 96.875 (97.344)
+Epoch: [56][128/196]	Time 0.881 (0.743)	Data 0.000 (0.005)	Loss 1.3016 (1.2333)	Acc@1 66.406 (69.289)	Acc@5 96.484 (97.178)
+Epoch: [56][192/196]	Time 0.790 (0.768)	Data 0.000 (0.003)	Loss 1.3392 (1.2395)	Acc@1 63.281 (68.845)	Acc@5 96.875 (97.181)
+[INFO] Storing checkpoint...
+
+Epoch: [57 | 60] LR: 0.100000
+Epoch: [57][0/196]	Time 0.880 (0.880)	Data 0.538 (0.538)	Loss 1.3632 (1.3632)	Acc@1 64.844 (64.844)	Acc@5 94.531 (94.531)
+Epoch: [57][64/196]	Time 0.650 (0.802)	Data 0.000 (0.009)	Loss 1.1708 (1.2580)	Acc@1 69.922 (68.347)	Acc@5 97.656 (97.212)
+Epoch: [57][128/196]	Time 0.894 (0.795)	Data 0.000 (0.004)	Loss 1.2970 (1.2525)	Acc@1 66.016 (68.674)	Acc@5 95.703 (97.232)
+Epoch: [57][192/196]	Time 0.787 (0.801)	Data 0.000 (0.003)	Loss 1.1914 (1.2478)	Acc@1 71.484 (68.815)	Acc@5 98.047 (97.310)
+[INFO] Storing checkpoint...
+
+Epoch: [58 | 60] LR: 0.100000
+Epoch: [58][0/196]	Time 0.945 (0.945)	Data 0.576 (0.576)	Loss 1.0699 (1.0699)	Acc@1 74.609 (74.609)	Acc@5 97.656 (97.656)
+Epoch: [58][64/196]	Time 0.818 (0.777)	Data 0.000 (0.009)	Loss 1.2259 (1.2289)	Acc@1 68.750 (69.165)	Acc@5 96.094 (97.434)
+Epoch: [58][128/196]	Time 0.825 (0.795)	Data 0.000 (0.005)	Loss 1.3240 (1.2314)	Acc@1 66.406 (69.125)	Acc@5 96.875 (97.438)
+Epoch: [58][192/196]	Time 0.578 (0.801)	Data 0.000 (0.003)	Loss 1.2108 (1.2342)	Acc@1 71.875 (69.126)	Acc@5 97.656 (97.355)
+[INFO] Storing checkpoint...
+
+Epoch: [59 | 60] LR: 0.100000
+Epoch: [59][0/196]	Time 0.949 (0.949)	Data 0.565 (0.565)	Loss 1.2722 (1.2722)	Acc@1 68.359 (68.359)	Acc@5 96.484 (96.484)
+Epoch: [59][64/196]	Time 0.534 (0.693)	Data 0.000 (0.009)	Loss 1.1531 (1.2263)	Acc@1 71.484 (69.477)	Acc@5 97.266 (97.278)
+Epoch: [59][128/196]	Time 0.803 (0.663)	Data 0.000 (0.005)	Loss 1.2722 (1.2410)	Acc@1 67.578 (68.974)	Acc@5 98.047 (97.269)
+Epoch: [59][192/196]	Time 0.653 (0.698)	Data 0.000 (0.003)	Loss 1.3838 (1.2464)	Acc@1 62.109 (68.667)	Acc@5 95.703 (97.213)
+[INFO] Storing checkpoint...
+
+Epoch: [60 | 60] LR: 0.100000
+Epoch: [60][0/196]	Time 0.805 (0.805)	Data 0.488 (0.488)	Loss 1.1882 (1.1882)	Acc@1 66.406 (66.406)	Acc@5 97.656 (97.656)
+Epoch: [60][64/196]	Time 0.803 (0.770)	Data 0.000 (0.008)	Loss 1.0966 (1.2338)	Acc@1 73.047 (69.255)	Acc@5 98.828 (97.350)
+Epoch: [60][128/196]	Time 0.852 (0.785)	Data 0.000 (0.004)	Loss 1.2543 (1.2331)	Acc@1 72.266 (69.313)	Acc@5 95.312 (97.208)
+Epoch: [60][192/196]	Time 0.664 (0.795)	Data 0.000 (0.003)	Loss 1.2134 (1.2332)	Acc@1 68.359 (69.209)	Acc@5 97.656 (97.189)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  50.98
+Max memory: 17.2176384
+ 156.714s  j: 61 bis 65
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 61
+count0: 13509
+
+Epoch: [61 | 65] LR: 0.100000
+Epoch: [61][0/196]	Time 1.200 (1.200)	Data 0.582 (0.582)	Loss 1.2386 (1.2386)	Acc@1 68.750 (68.750)	Acc@5 97.266 (97.266)
+Epoch: [61][64/196]	Time 0.819 (0.734)	Data 0.000 (0.009)	Loss 1.1857 (1.2052)	Acc@1 71.875 (70.000)	Acc@5 96.484 (97.230)
+Epoch: [61][128/196]	Time 0.819 (0.773)	Data 0.000 (0.005)	Loss 1.1816 (1.2231)	Acc@1 73.047 (69.507)	Acc@5 96.875 (97.257)
+Epoch: [61][192/196]	Time 0.961 (0.789)	Data 0.000 (0.003)	Loss 1.1534 (1.2354)	Acc@1 71.484 (68.956)	Acc@5 98.438 (97.191)
+[INFO] Storing checkpoint...
+
+Epoch: [62 | 65] LR: 0.100000
+Epoch: [62][0/196]	Time 0.871 (0.871)	Data 0.457 (0.457)	Loss 1.2414 (1.2414)	Acc@1 67.578 (67.578)	Acc@5 97.656 (97.656)
+Epoch: [62][64/196]	Time 0.813 (0.785)	Data 0.000 (0.007)	Loss 1.3062 (1.2446)	Acc@1 66.406 (68.564)	Acc@5 96.875 (96.971)
+Epoch: [62][128/196]	Time 0.804 (0.795)	Data 0.000 (0.004)	Loss 1.2194 (1.2386)	Acc@1 66.406 (68.856)	Acc@5 98.828 (97.184)
+Epoch: [62][192/196]	Time 0.803 (0.803)	Data 0.000 (0.003)	Loss 1.2564 (1.2340)	Acc@1 66.406 (69.064)	Acc@5 98.047 (97.251)
+[INFO] Storing checkpoint...
+
+Epoch: [63 | 65] LR: 0.100000
+Epoch: [63][0/196]	Time 0.871 (0.871)	Data 0.723 (0.723)	Loss 1.2746 (1.2746)	Acc@1 68.750 (68.750)	Acc@5 95.312 (95.312)
+Epoch: [63][64/196]	Time 0.785 (0.815)	Data 0.000 (0.011)	Loss 1.2225 (1.2400)	Acc@1 70.703 (69.026)	Acc@5 97.656 (97.127)
+Epoch: [63][128/196]	Time 0.825 (0.813)	Data 0.000 (0.006)	Loss 1.2366 (1.2380)	Acc@1 66.797 (69.047)	Acc@5 97.656 (97.151)
+Epoch: [63][192/196]	Time 0.592 (0.804)	Data 0.000 (0.004)	Loss 1.1802 (1.2420)	Acc@1 73.047 (68.869)	Acc@5 97.656 (97.181)
+[INFO] Storing checkpoint...
+
+Epoch: [64 | 65] LR: 0.100000
+Epoch: [64][0/196]	Time 0.553 (0.553)	Data 0.369 (0.369)	Loss 1.3944 (1.3944)	Acc@1 61.328 (61.328)	Acc@5 96.484 (96.484)
+Epoch: [64][64/196]	Time 0.656 (0.543)	Data 0.000 (0.006)	Loss 1.1851 (1.2385)	Acc@1 69.141 (68.281)	Acc@5 98.047 (97.404)
+Epoch: [64][128/196]	Time 0.787 (0.652)	Data 0.000 (0.003)	Loss 1.3640 (1.2353)	Acc@1 61.328 (68.820)	Acc@5 94.531 (97.247)
+Epoch: [64][192/196]	Time 0.839 (0.705)	Data 0.000 (0.002)	Loss 1.1306 (1.2397)	Acc@1 71.875 (68.740)	Acc@5 97.266 (97.217)
+[INFO] Storing checkpoint...
+
+Epoch: [65 | 65] LR: 0.100000
+Epoch: [65][0/196]	Time 0.930 (0.930)	Data 0.563 (0.563)	Loss 1.2685 (1.2685)	Acc@1 64.062 (64.062)	Acc@5 96.875 (96.875)
+Epoch: [65][64/196]	Time 0.799 (0.795)	Data 0.000 (0.009)	Loss 1.4062 (1.2470)	Acc@1 63.281 (68.480)	Acc@5 95.312 (97.157)
+Epoch: [65][128/196]	Time 0.830 (0.807)	Data 0.000 (0.005)	Loss 1.3057 (1.2463)	Acc@1 64.453 (68.550)	Acc@5 98.047 (97.266)
+Epoch: [65][192/196]	Time 0.652 (0.789)	Data 0.000 (0.003)	Loss 1.2409 (1.2435)	Acc@1 68.359 (68.732)	Acc@5 98.438 (97.308)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+Count: 13343 ; 13509 ; 0.9877118957731883
+[INFO] Storing checkpoint...
+
+  256
+  44.95
+Max memory: 17.1815936
+ 155.001s  j: 66 bis 70
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 66
+count0: 13343
+
+Epoch: [66 | 70] LR: 0.100000
+Epoch: [66][0/196]	Time 1.562 (1.562)	Data 0.501 (0.501)	Loss 1.3263 (1.3263)	Acc@1 66.797 (66.797)	Acc@5 95.703 (95.703)
+Epoch: [66][64/196]	Time 0.765 (0.823)	Data 0.000 (0.008)	Loss 1.1182 (1.2273)	Acc@1 72.656 (69.243)	Acc@5 98.438 (97.097)
+Epoch: [66][128/196]	Time 0.806 (0.819)	Data 0.000 (0.004)	Loss 1.2902 (1.2367)	Acc@1 65.625 (68.929)	Acc@5 97.266 (97.029)
+Epoch: [66][192/196]	Time 0.811 (0.806)	Data 0.000 (0.003)	Loss 1.2886 (1.2320)	Acc@1 67.578 (68.880)	Acc@5 96.094 (97.170)
+[INFO] Storing checkpoint...
+
+Epoch: [67 | 70] LR: 0.100000
+Epoch: [67][0/196]	Time 0.910 (0.910)	Data 0.405 (0.405)	Loss 1.2197 (1.2197)	Acc@1 66.406 (66.406)	Acc@5 97.266 (97.266)
+Epoch: [67][64/196]	Time 0.806 (0.816)	Data 0.000 (0.006)	Loss 1.3873 (1.2415)	Acc@1 63.672 (68.648)	Acc@5 96.875 (97.175)
+Epoch: [67][128/196]	Time 0.817 (0.815)	Data 0.000 (0.003)	Loss 1.2700 (1.2414)	Acc@1 65.625 (68.805)	Acc@5 97.266 (97.235)
+Epoch: [67][192/196]	Time 0.819 (0.802)	Data 0.000 (0.002)	Loss 1.2657 (1.2356)	Acc@1 67.188 (68.884)	Acc@5 97.266 (97.249)
+[INFO] Storing checkpoint...
+
+Epoch: [68 | 70] LR: 0.100000
+Epoch: [68][0/196]	Time 0.843 (0.843)	Data 0.533 (0.533)	Loss 1.1316 (1.1316)	Acc@1 71.875 (71.875)	Acc@5 98.828 (98.828)
+Epoch: [68][64/196]	Time 0.809 (0.816)	Data 0.000 (0.008)	Loss 1.3888 (1.2291)	Acc@1 62.891 (69.056)	Acc@5 95.703 (97.103)
+Epoch: [68][128/196]	Time 0.513 (0.799)	Data 0.000 (0.004)	Loss 1.0979 (1.2272)	Acc@1 71.484 (69.101)	Acc@5 98.828 (97.223)
+Epoch: [68][192/196]	Time 0.502 (0.652)	Data 0.000 (0.003)	Loss 1.2778 (1.2289)	Acc@1 66.406 (69.096)	Acc@5 96.484 (97.233)
+[INFO] Storing checkpoint...
+
+Epoch: [69 | 70] LR: 0.100000
+Epoch: [69][0/196]	Time 0.647 (0.647)	Data 0.425 (0.425)	Loss 1.3095 (1.3095)	Acc@1 69.141 (69.141)	Acc@5 97.266 (97.266)
+Epoch: [69][64/196]	Time 0.811 (0.781)	Data 0.000 (0.007)	Loss 1.2813 (1.2399)	Acc@1 67.578 (69.044)	Acc@5 98.438 (97.049)
+Epoch: [69][128/196]	Time 0.688 (0.794)	Data 0.000 (0.004)	Loss 1.1836 (1.2367)	Acc@1 70.312 (68.923)	Acc@5 98.047 (97.193)
+Epoch: [69][192/196]	Time 0.667 (0.797)	Data 0.000 (0.002)	Loss 1.1345 (1.2339)	Acc@1 70.703 (69.005)	Acc@5 98.047 (97.268)
+[INFO] Storing checkpoint...
+
+Epoch: [70 | 70] LR: 0.100000
+Epoch: [70][0/196]	Time 0.953 (0.953)	Data 0.490 (0.490)	Loss 1.1064 (1.1064)	Acc@1 70.703 (70.703)	Acc@5 98.438 (98.438)
+Epoch: [70][64/196]	Time 0.837 (0.814)	Data 0.000 (0.008)	Loss 1.3032 (1.2242)	Acc@1 67.188 (69.291)	Acc@5 97.266 (97.554)
+Epoch: [70][128/196]	Time 0.481 (0.800)	Data 0.000 (0.004)	Loss 1.2009 (1.2259)	Acc@1 69.922 (69.368)	Acc@5 99.609 (97.438)
+Epoch: [70][192/196]	Time 0.774 (0.769)	Data 0.000 (0.003)	Loss 1.3106 (1.2318)	Acc@1 64.062 (69.187)	Acc@5 94.922 (97.304)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+
+ RM:  module.conv19.weight
+
+ RM:  module.conv20.weight
+
+ RM:  module.conv30.weight
+
+ RM:  module.conv31.weight
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv12.weight', 'module.conv13.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv21.weight', 'module.conv22.weight'], ['module.conv24.weight', 'module.conv25.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight']]
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv12.weight', 'module.conv13.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv21.weight', 'module.conv22.weight'], ['module.conv24.weight', 'module.conv25.weight'], ['module.conv26.weight', 'module.conv27.weight'], ['module.conv28.weight', 'module.conv29.weight']]
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(3, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(1, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(3, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(2, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(3, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(1, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(3, 6, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(3, 6, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(6, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(5, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(6, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(3, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(6, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(1, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(6, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(6, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): AdaptiveAvgPool2d(output_size=(1, 1))
+    (59): Linear(in_features=12, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv12.weight', 'module.conv13.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv22.weight', 'module.conv23.weight'], ['module.conv24.weight', 'module.conv25.weight'], ['module.conv26.weight', 'module.conv27.weight']]
+
+Same Node:  [['module.conv2.weight', 'module.conv3.weight'], ['module.conv4.weight', 'module.conv5.weight'], ['module.conv6.weight', 'module.conv7.weight'], ['module.conv8.weight', 'module.conv9.weight'], ['module.conv10.weight', 'module.conv11.weight'], ['module.conv12.weight', 'module.conv13.weight'], ['module.conv15.weight', 'module.conv16.weight'], ['module.conv17.weight', 'module.conv18.weight'], ['module.conv19.weight', 'module.conv20.weight'], ['module.conv22.weight', 'module.conv23.weight'], ['module.conv24.weight', 'module.conv25.weight'], ['module.conv26.weight', 'module.conv27.weight']]
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(3, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(1, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(3, 2, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(2, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(3, 1, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(1, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(1, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(3, 6, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(6, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(3, 6, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(6, 5, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(5, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(6, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(3, 6, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(6, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(6, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(6, 12, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(12, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(12, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): AdaptiveAvgPool2d(output_size=(1, 1))
+    (55): Linear(in_features=12, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+Count: 12979 ; 13343 ; 0.9727197781608334
+[INFO] Storing checkpoint...
+
+  256
+  56.36
+Max memory: 16.4443136
+ 151.693s  j: 71 bis 75
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 71
+count0: 12979
+
+Epoch: [71 | 75] LR: 0.100000
+Epoch: [71][0/196]	Time 1.276 (1.276)	Data 0.510 (0.510)	Loss 1.2306 (1.2306)	Acc@1 69.922 (69.922)	Acc@5 97.266 (97.266)
+Epoch: [71][64/196]	Time 0.735 (0.726)	Data 0.000 (0.008)	Loss 1.2205 (1.2174)	Acc@1 69.922 (69.633)	Acc@5 97.266 (97.194)
+Epoch: [71][128/196]	Time 0.754 (0.718)	Data 0.000 (0.004)	Loss 1.2528 (1.2235)	Acc@1 67.188 (69.201)	Acc@5 97.266 (97.217)
+Epoch: [71][192/196]	Time 0.713 (0.712)	Data 0.000 (0.003)	Loss 1.1601 (1.2230)	Acc@1 71.484 (69.116)	Acc@5 96.875 (97.264)
+[INFO] Storing checkpoint...
+
+Epoch: [72 | 75] LR: 0.100000
+Epoch: [72][0/196]	Time 0.820 (0.820)	Data 0.415 (0.415)	Loss 1.1946 (1.1946)	Acc@1 70.312 (70.312)	Acc@5 97.266 (97.266)
+Epoch: [72][64/196]	Time 0.697 (0.718)	Data 0.000 (0.007)	Loss 1.3522 (1.2397)	Acc@1 67.188 (68.654)	Acc@5 94.141 (97.163)
+Epoch: [72][128/196]	Time 0.719 (0.714)	Data 0.000 (0.003)	Loss 1.2556 (1.2363)	Acc@1 64.844 (68.841)	Acc@5 97.266 (97.254)
+Epoch: [72][192/196]	Time 0.715 (0.704)	Data 0.000 (0.002)	Loss 1.3420 (1.2377)	Acc@1 63.281 (68.795)	Acc@5 96.875 (97.256)
+[INFO] Storing checkpoint...
+
+Epoch: [73 | 75] LR: 0.100000
+Epoch: [73][0/196]	Time 0.787 (0.787)	Data 0.524 (0.524)	Loss 1.2485 (1.2485)	Acc@1 65.625 (65.625)	Acc@5 99.219 (99.219)
+Epoch: [73][64/196]	Time 0.715 (0.718)	Data 0.000 (0.008)	Loss 1.1979 (1.2390)	Acc@1 69.531 (69.008)	Acc@5 96.875 (97.067)
+Epoch: [73][128/196]	Time 0.710 (0.661)	Data 0.000 (0.004)	Loss 1.2996 (1.2435)	Acc@1 67.969 (68.808)	Acc@5 95.312 (97.069)
+Epoch: [73][192/196]	Time 0.418 (0.649)	Data 0.000 (0.003)	Loss 1.3145 (1.2428)	Acc@1 66.016 (68.752)	Acc@5 96.484 (97.124)
+[INFO] Storing checkpoint...
+
+Epoch: [74 | 75] LR: 0.100000
+Epoch: [74][0/196]	Time 0.469 (0.469)	Data 0.491 (0.491)	Loss 1.1631 (1.1631)	Acc@1 73.047 (73.047)	Acc@5 97.656 (97.656)
+Epoch: [74][64/196]	Time 0.711 (0.555)	Data 0.000 (0.008)	Loss 1.2698 (1.2499)	Acc@1 66.797 (68.480)	Acc@5 97.656 (97.019)
+Epoch: [74][128/196]	Time 0.737 (0.630)	Data 0.000 (0.004)	Loss 1.2108 (1.2350)	Acc@1 72.656 (69.001)	Acc@5 96.875 (97.187)
+Epoch: [74][192/196]	Time 0.669 (0.655)	Data 0.000 (0.003)	Loss 1.2376 (1.2297)	Acc@1 69.141 (69.169)	Acc@5 95.312 (97.217)
+[INFO] Storing checkpoint...
+
+Epoch: [75 | 75] LR: 0.100000
+Epoch: [75][0/196]	Time 0.797 (0.797)	Data 0.438 (0.438)	Loss 1.3778 (1.3778)	Acc@1 64.062 (64.062)	Acc@5 96.484 (96.484)
+Epoch: [75][64/196]	Time 0.727 (0.707)	Data 0.000 (0.007)	Loss 1.3149 (1.2596)	Acc@1 66.016 (68.293)	Acc@5 95.703 (97.175)
+Epoch: [75][128/196]	Time 0.705 (0.709)	Data 0.000 (0.004)	Loss 1.1579 (1.2422)	Acc@1 72.656 (68.914)	Acc@5 97.656 (97.178)
+Epoch: [75][192/196]	Time 0.592 (0.700)	Data 0.000 (0.002)	Loss 1.2278 (1.2359)	Acc@1 68.750 (69.203)	Acc@5 96.875 (97.239)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  43.99
+Max memory: 15.847936
+ 137.337s  j: 76 bis 80
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 76
+count0: 12979
+
+Epoch: [76 | 80] LR: 0.100000
+Epoch: [76][0/196]	Time 1.207 (1.207)	Data 0.470 (0.470)	Loss 1.2600 (1.2600)	Acc@1 69.922 (69.922)	Acc@5 98.828 (98.828)
+Epoch: [76][64/196]	Time 0.699 (0.711)	Data 0.000 (0.007)	Loss 1.2601 (1.2068)	Acc@1 67.188 (70.066)	Acc@5 94.922 (97.494)
+Epoch: [76][128/196]	Time 0.687 (0.713)	Data 0.000 (0.004)	Loss 1.1054 (1.2219)	Acc@1 71.484 (69.459)	Acc@5 98.047 (97.260)
+Epoch: [76][192/196]	Time 0.451 (0.709)	Data 0.000 (0.003)	Loss 1.2917 (1.2297)	Acc@1 65.625 (69.213)	Acc@5 97.266 (97.282)
+[INFO] Storing checkpoint...
+
+Epoch: [77 | 80] LR: 0.100000
+Epoch: [77][0/196]	Time 0.801 (0.801)	Data 0.512 (0.512)	Loss 1.2219 (1.2219)	Acc@1 68.750 (68.750)	Acc@5 96.875 (96.875)
+Epoch: [77][64/196]	Time 0.721 (0.700)	Data 0.000 (0.008)	Loss 1.2639 (1.2154)	Acc@1 68.359 (69.784)	Acc@5 96.875 (97.452)
+Epoch: [77][128/196]	Time 0.712 (0.705)	Data 0.000 (0.004)	Loss 1.1148 (1.2168)	Acc@1 73.438 (69.613)	Acc@5 96.875 (97.423)
+Epoch: [77][192/196]	Time 0.692 (0.708)	Data 0.000 (0.003)	Loss 1.2662 (1.2255)	Acc@1 65.234 (69.379)	Acc@5 96.484 (97.316)
+[INFO] Storing checkpoint...
+
+Epoch: [78 | 80] LR: 0.100000
+Epoch: [78][0/196]	Time 0.683 (0.683)	Data 0.465 (0.465)	Loss 1.3643 (1.3643)	Acc@1 67.969 (67.969)	Acc@5 95.703 (95.703)
+Epoch: [78][64/196]	Time 0.559 (0.681)	Data 0.000 (0.007)	Loss 1.1372 (1.2374)	Acc@1 73.828 (69.207)	Acc@5 96.875 (97.025)
+Epoch: [78][128/196]	Time 0.731 (0.651)	Data 0.000 (0.004)	Loss 1.2856 (1.2364)	Acc@1 67.188 (69.216)	Acc@5 97.266 (97.208)
+Epoch: [78][192/196]	Time 0.576 (0.663)	Data 0.000 (0.003)	Loss 1.2713 (1.2332)	Acc@1 68.359 (69.319)	Acc@5 95.703 (97.213)
+[INFO] Storing checkpoint...
+
+Epoch: [79 | 80] LR: 0.100000
+Epoch: [79][0/196]	Time 0.628 (0.628)	Data 0.477 (0.477)	Loss 1.1712 (1.1712)	Acc@1 69.141 (69.141)	Acc@5 98.438 (98.438)
+Epoch: [79][64/196]	Time 0.543 (0.610)	Data 0.000 (0.008)	Loss 1.2089 (1.2250)	Acc@1 70.312 (68.828)	Acc@5 96.484 (97.326)
+Epoch: [79][128/196]	Time 0.707 (0.626)	Data 0.000 (0.004)	Loss 1.1820 (1.2312)	Acc@1 71.484 (68.935)	Acc@5 98.047 (97.305)
+Epoch: [79][192/196]	Time 0.709 (0.654)	Data 0.000 (0.003)	Loss 1.3097 (1.2344)	Acc@1 68.750 (68.914)	Acc@5 97.266 (97.288)
+[INFO] Storing checkpoint...
+
+Epoch: [80 | 80] LR: 0.100000
+Epoch: [80][0/196]	Time 0.734 (0.734)	Data 0.640 (0.640)	Loss 1.1755 (1.1755)	Acc@1 73.047 (73.047)	Acc@5 96.484 (96.484)
+Epoch: [80][64/196]	Time 0.713 (0.698)	Data 0.000 (0.010)	Loss 1.1431 (1.2312)	Acc@1 72.266 (68.906)	Acc@5 98.047 (97.368)
+Epoch: [80][128/196]	Time 0.708 (0.699)	Data 0.000 (0.005)	Loss 1.2131 (1.2337)	Acc@1 69.922 (68.795)	Acc@5 98.047 (97.356)
+Epoch: [80][192/196]	Time 0.692 (0.703)	Data 0.000 (0.004)	Loss 1.1589 (1.2308)	Acc@1 71.094 (69.003)	Acc@5 98.438 (97.306)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  51.1
+Max memory: 15.847936
+ 138.696s  j: 81 bis 85
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 81
+count0: 12979
+
+Epoch: [81 | 85] LR: 0.100000
+Epoch: [81][0/196]	Time 1.222 (1.222)	Data 0.464 (0.464)	Loss 1.2180 (1.2180)	Acc@1 71.094 (71.094)	Acc@5 97.266 (97.266)
+Epoch: [81][64/196]	Time 0.797 (0.608)	Data 0.000 (0.007)	Loss 1.1713 (1.2204)	Acc@1 69.922 (69.020)	Acc@5 97.656 (97.055)
+Epoch: [81][128/196]	Time 0.711 (0.664)	Data 0.000 (0.004)	Loss 1.1625 (1.2309)	Acc@1 72.656 (68.756)	Acc@5 97.266 (97.184)
+Epoch: [81][192/196]	Time 0.702 (0.679)	Data 0.000 (0.003)	Loss 1.2681 (1.2366)	Acc@1 68.750 (68.625)	Acc@5 96.484 (97.201)
+[INFO] Storing checkpoint...
+
+Epoch: [82 | 85] LR: 0.100000
+Epoch: [82][0/196]	Time 0.756 (0.756)	Data 0.537 (0.537)	Loss 1.1725 (1.1725)	Acc@1 71.875 (71.875)	Acc@5 97.656 (97.656)
+Epoch: [82][64/196]	Time 0.769 (0.707)	Data 0.000 (0.008)	Loss 1.2022 (1.2407)	Acc@1 71.484 (68.978)	Acc@5 96.094 (97.374)
+Epoch: [82][128/196]	Time 0.761 (0.716)	Data 0.000 (0.005)	Loss 1.1373 (1.2269)	Acc@1 71.094 (69.468)	Acc@5 99.219 (97.350)
+Epoch: [82][192/196]	Time 0.678 (0.715)	Data 0.000 (0.003)	Loss 1.2304 (1.2353)	Acc@1 67.188 (69.062)	Acc@5 97.656 (97.266)
+[INFO] Storing checkpoint...
+
+Epoch: [83 | 85] LR: 0.100000
+Epoch: [83][0/196]	Time 0.768 (0.768)	Data 0.511 (0.511)	Loss 1.1554 (1.1554)	Acc@1 71.484 (71.484)	Acc@5 97.266 (97.266)
+Epoch: [83][64/196]	Time 0.590 (0.686)	Data 0.000 (0.008)	Loss 1.2853 (1.2221)	Acc@1 66.016 (69.014)	Acc@5 96.484 (97.374)
+Epoch: [83][128/196]	Time 0.718 (0.651)	Data 0.000 (0.004)	Loss 1.2778 (1.2300)	Acc@1 67.969 (68.995)	Acc@5 97.656 (97.278)
+Epoch: [83][192/196]	Time 0.565 (0.661)	Data 0.000 (0.003)	Loss 1.3245 (1.2360)	Acc@1 65.234 (68.803)	Acc@5 95.312 (97.239)
+[INFO] Storing checkpoint...
+
+Epoch: [84 | 85] LR: 0.100000
+Epoch: [84][0/196]	Time 0.635 (0.635)	Data 0.414 (0.414)	Loss 1.3288 (1.3288)	Acc@1 66.797 (66.797)	Acc@5 95.312 (95.312)
+Epoch: [84][64/196]	Time 0.731 (0.682)	Data 0.000 (0.007)	Loss 1.1465 (1.2526)	Acc@1 74.609 (68.636)	Acc@5 97.266 (97.019)
+Epoch: [84][128/196]	Time 0.523 (0.668)	Data 0.000 (0.003)	Loss 1.2023 (1.2420)	Acc@1 69.141 (68.871)	Acc@5 98.438 (97.199)
+Epoch: [84][192/196]	Time 0.725 (0.662)	Data 0.000 (0.002)	Loss 1.3034 (1.2421)	Acc@1 67.188 (68.809)	Acc@5 95.312 (97.205)
+[INFO] Storing checkpoint...
+
+Epoch: [85 | 85] LR: 0.100000
+Epoch: [85][0/196]	Time 0.877 (0.877)	Data 0.626 (0.626)	Loss 1.1034 (1.1034)	Acc@1 71.875 (71.875)	Acc@5 99.219 (99.219)
+Epoch: [85][64/196]	Time 0.622 (0.622)	Data 0.000 (0.010)	Loss 1.2106 (1.2428)	Acc@1 71.875 (68.666)	Acc@5 98.047 (97.266)
+Epoch: [85][128/196]	Time 0.719 (0.665)	Data 0.000 (0.005)	Loss 1.1635 (1.2320)	Acc@1 71.484 (69.225)	Acc@5 99.219 (97.278)
+Epoch: [85][192/196]	Time 0.789 (0.681)	Data 0.000 (0.003)	Loss 1.1729 (1.2307)	Acc@1 73.047 (69.043)	Acc@5 96.094 (97.302)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  42.98
+Max memory: 15.847936
+ 134.480s  j: 86 bis 90
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 301, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 593, in load
+    return _legacy_load(opened_file, map_location, pickle_module, **pickle_load_args)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 773, in _legacy_load
+    result = unpickler.load()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 729, in persistent_load
+    deserialized_objects[root_key] = restore_location(obj, location)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 178, in default_restore_location
+    result = fn(storage, location)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 158, in _cuda_deserialize
+    return storage_type(obj.size())
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/cuda/__init__.py", line 433, in _lazy_new
+    return super(_CudaBase, cls).__new__(cls, *args, **kwargs)
+RuntimeError: CUDA error: out of memory
+j: 91 bis 95
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 301, in main
+    model = torch.load(args.pathToModell)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 593, in load
+    return _legacy_load(opened_file, map_location, pickle_module, **pickle_load_args)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 773, in _legacy_load
+    result = unpickler.load()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 729, in persistent_load
+    deserialized_objects[root_key] = restore_location(obj, location)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 178, in default_restore_location
+    result = fn(storage, location)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/serialization.py", line 158, in _cuda_deserialize
+    return storage_type(obj.size())
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/cuda/__init__.py", line 433, in _lazy_new
+    return super(_CudaBase, cls).__new__(cls, *args, **kwargs)
+RuntimeError: CUDA error: out of memory
+j: 96 bis 100
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 86
+count0: 12979
+
+Epoch: [86 | 90] LR: 0.100000
+Epoch: [86][0/196]	Time 0.996 (0.996)	Data 0.541 (0.541)	Loss 1.3294 (1.3294)	Acc@1 66.797 (66.797)	Acc@5 96.875 (96.875)
+Epoch: [86][64/196]	Time 0.574 (0.578)	Data 0.000 (0.009)	Loss 1.2023 (1.2146)	Acc@1 69.922 (69.790)	Acc@5 97.656 (97.416)
+Epoch: [86][128/196]	Time 0.570 (0.573)	Data 0.000 (0.004)	Loss 1.3420 (1.2244)	Acc@1 66.016 (69.098)	Acc@5 98.047 (97.402)
+Epoch: [86][192/196]	Time 0.785 (0.591)	Data 0.000 (0.003)	Loss 1.2769 (1.2281)	Acc@1 68.359 (68.973)	Acc@5 97.266 (97.347)
+[INFO] Storing checkpoint...
+
+Epoch: [87 | 90] LR: 0.100000
+Epoch: [87][0/196]	Time 0.677 (0.677)	Data 0.537 (0.537)	Loss 1.0462 (1.0462)	Acc@1 74.609 (74.609)	Acc@5 98.438 (98.438)
+Epoch: [87][64/196]	Time 0.703 (0.700)	Data 0.000 (0.009)	Loss 1.2226 (1.2385)	Acc@1 69.922 (68.155)	Acc@5 96.484 (97.296)
+Epoch: [87][128/196]	Time 0.754 (0.706)	Data 0.000 (0.005)	Loss 1.1614 (1.2367)	Acc@1 71.875 (68.541)	Acc@5 97.656 (97.341)
+Epoch: [87][192/196]	Time 0.566 (0.686)	Data 0.000 (0.003)	Loss 1.3014 (1.2282)	Acc@1 65.234 (68.904)	Acc@5 94.531 (97.312)
+[INFO] Storing checkpoint...
+
+Epoch: [88 | 90] LR: 0.100000
+Epoch: [88][0/196]	Time 0.658 (0.658)	Data 0.473 (0.473)	Loss 1.2298 (1.2298)	Acc@1 69.141 (69.141)	Acc@5 97.266 (97.266)
+Epoch: [88][64/196]	Time 0.709 (0.688)	Data 0.000 (0.008)	Loss 1.1882 (1.2293)	Acc@1 70.312 (69.062)	Acc@5 96.484 (97.284)
+Epoch: [88][128/196]	Time 0.703 (0.699)	Data 0.000 (0.004)	Loss 1.2489 (1.2335)	Acc@1 68.750 (68.714)	Acc@5 98.047 (97.281)
+Epoch: [88][192/196]	Time 0.591 (0.701)	Data 0.000 (0.003)	Loss 1.2314 (1.2351)	Acc@1 69.531 (68.813)	Acc@5 96.484 (97.243)
+[INFO] Storing checkpoint...
+
+Epoch: [89 | 90] LR: 0.100000
+Epoch: [89][0/196]	Time 0.756 (0.756)	Data 0.583 (0.583)	Loss 1.2006 (1.2006)	Acc@1 72.656 (72.656)	Acc@5 97.656 (97.656)
+Epoch: [89][64/196]	Time 0.607 (0.704)	Data 0.000 (0.009)	Loss 1.1694 (1.2314)	Acc@1 70.312 (69.117)	Acc@5 98.047 (97.350)
+Epoch: [89][128/196]	Time 0.570 (0.638)	Data 0.000 (0.005)	Loss 1.1837 (1.2289)	Acc@1 71.094 (69.219)	Acc@5 98.438 (97.257)
+Epoch: [89][192/196]	Time 0.796 (0.635)	Data 0.000 (0.003)	Loss 1.2706 (1.2325)	Acc@1 65.234 (68.989)	Acc@5 96.484 (97.276)
+[INFO] Storing checkpoint...
+
+Epoch: [90 | 90] LR: 0.100000
+Epoch: [90][0/196]	Time 0.695 (0.695)	Data 0.513 (0.513)	Loss 1.3123 (1.3123)	Acc@1 62.500 (62.500)	Acc@5 96.484 (96.484)
+Epoch: [90][64/196]	Time 0.697 (0.700)	Data 0.000 (0.008)	Loss 1.2110 (1.2392)	Acc@1 70.312 (68.804)	Acc@5 96.875 (97.163)
+Epoch: [90][128/196]	Time 0.708 (0.704)	Data 0.000 (0.004)	Loss 1.1933 (1.2371)	Acc@1 67.188 (69.016)	Acc@5 98.047 (97.135)
+Epoch: [90][192/196]	Time 0.702 (0.704)	Data 0.000 (0.003)	Loss 1.2455 (1.2379)	Acc@1 69.141 (68.910)	Acc@5 96.484 (97.209)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  51.72
+Max memory: 15.847936
+ 138.827s  j: 101 bis 105
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 91
+count0: 12979
+
+Epoch: [91 | 95] LR: 0.100000
+Epoch: [91][0/196]	Time 1.273 (1.273)	Data 0.548 (0.548)	Loss 1.2377 (1.2377)	Acc@1 67.969 (67.969)	Acc@5 96.875 (96.875)
+Epoch: [91][64/196]	Time 0.738 (0.724)	Data 0.000 (0.009)	Loss 1.1878 (1.2257)	Acc@1 73.438 (69.225)	Acc@5 97.266 (97.272)
+Epoch: [91][128/196]	Time 0.715 (0.714)	Data 0.000 (0.004)	Loss 1.2130 (1.2340)	Acc@1 69.141 (69.065)	Acc@5 96.875 (97.308)
+Epoch: [91][192/196]	Time 0.560 (0.708)	Data 0.000 (0.003)	Loss 1.1716 (1.2410)	Acc@1 69.141 (68.710)	Acc@5 98.828 (97.239)
+[INFO] Storing checkpoint...
+
+Epoch: [92 | 95] LR: 0.100000
+Epoch: [92][0/196]	Time 0.700 (0.700)	Data 0.550 (0.550)	Loss 1.1851 (1.1851)	Acc@1 72.266 (72.266)	Acc@5 97.656 (97.656)
+Epoch: [92][64/196]	Time 0.590 (0.577)	Data 0.000 (0.009)	Loss 1.2623 (1.2530)	Acc@1 68.359 (68.185)	Acc@5 97.266 (97.428)
+Epoch: [92][128/196]	Time 0.630 (0.558)	Data 0.000 (0.005)	Loss 1.2746 (1.2474)	Acc@1 66.406 (68.456)	Acc@5 96.484 (97.323)
+Epoch: [92][192/196]	Time 0.405 (0.540)	Data 0.000 (0.003)	Loss 1.2992 (1.2360)	Acc@1 67.188 (68.924)	Acc@5 96.094 (97.300)
+[INFO] Storing checkpoint...
+
+Epoch: [93 | 95] LR: 0.100000
+Epoch: [93][0/196]	Time 0.493 (0.493)	Data 0.513 (0.513)	Loss 1.2132 (1.2132)	Acc@1 71.875 (71.875)	Acc@5 97.266 (97.266)
+Epoch: [93][64/196]	Time 0.413 (0.429)	Data 0.000 (0.008)	Loss 1.2960 (1.2237)	Acc@1 67.578 (69.189)	Acc@5 97.266 (97.470)
+Epoch: [93][128/196]	Time 0.832 (0.463)	Data 0.000 (0.004)	Loss 1.2777 (1.2320)	Acc@1 66.406 (68.965)	Acc@5 97.266 (97.356)
+Epoch: [93][192/196]	Time 0.457 (0.528)	Data 0.000 (0.003)	Loss 1.2331 (1.2334)	Acc@1 67.578 (69.100)	Acc@5 97.656 (97.304)
+[INFO] Storing checkpoint...
+
+Epoch: [94 | 95] LR: 0.100000
+Epoch: [94][0/196]	Time 0.564 (0.564)	Data 0.594 (0.594)	Loss 1.2185 (1.2185)	Acc@1 67.578 (67.578)	Acc@5 96.484 (96.484)
+Epoch: [94][64/196]	Time 0.441 (0.710)	Data 0.000 (0.010)	Loss 1.1865 (1.2268)	Acc@1 73.828 (69.087)	Acc@5 98.828 (97.284)
+Epoch: [94][128/196]	Time 1.417 (0.677)	Data 0.000 (0.005)	Loss 1.1991 (1.2212)	Acc@1 73.438 (69.407)	Acc@5 96.875 (97.317)
+Epoch: [94][192/196]	Time 0.107 (0.559)	Data 0.000 (0.003)	Loss 1.2537 (1.2255)	Acc@1 69.141 (69.153)	Acc@5 97.656 (97.326)
+[INFO] Storing checkpoint...
+
+Epoch: [95 | 95] LR: 0.100000
+Epoch: [95][0/196]	Time 0.251 (0.251)	Data 0.520 (0.520)	Loss 1.2637 (1.2637)	Acc@1 64.062 (64.062)	Acc@5 98.047 (98.047)
+Epoch: [95][64/196]	Time 0.231 (0.242)	Data 0.000 (0.008)	Loss 1.1302 (1.2493)	Acc@1 74.219 (68.498)	Acc@5 98.438 (97.278)
+Epoch: [95][128/196]	Time 0.864 (0.401)	Data 0.000 (0.004)	Loss 1.1198 (1.2349)	Acc@1 74.609 (68.950)	Acc@5 100.000 (97.229)
+Epoch: [95][192/196]	Time 0.506 (0.427)	Data 0.000 (0.003)	Loss 1.3580 (1.2412)	Acc@1 63.281 (68.671)	Acc@5 97.266 (97.237)
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+[INFO] Storing checkpoint...
+
+  256
+  51.76
+Max memory: 15.847936
+ 84.040s  j: 106 bis 110
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 96
+count0: 12979
+
+Epoch: [96 | 100] LR: 0.100000
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 28.00 MiB (GPU 0; 10.76 GiB total capacity; 25.13 MiB already allocated; 30.94 MiB free; 50.00 MiB reserved in total by PyTorch)
+j: 111 bis 115
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 96
+count0: 12979
+
+Epoch: [96 | 100] LR: 0.100000
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 28.00 MiB (GPU 0; 10.76 GiB total capacity; 25.13 MiB already allocated; 30.94 MiB free; 50.00 MiB reserved in total by PyTorch)
+j: 116 bis 120
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 96
+count0: 12979
+
+Epoch: [96 | 100] LR: 0.100000
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 28.00 MiB (GPU 0; 10.76 GiB total capacity; 25.13 MiB already allocated; 30.94 MiB free; 50.00 MiB reserved in total by PyTorch)
+j: 121 bis 125
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 96
+count0: 12979
+
+Epoch: [96 | 100] LR: 0.100000
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/multiprocessing/queues.py", line 240, in _feed
+    send_bytes(obj)
+  File "/usr/lib/python3.6/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/usr/lib/python3.6/multiprocessing/connection.py", line 404, in _send_bytes
+    self._send(header + buf)
+  File "/usr/lib/python3.6/multiprocessing/connection.py", line 368, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 28.00 MiB (GPU 0; 10.76 GiB total capacity; 25.13 MiB already allocated; 30.94 MiB free; 50.00 MiB reserved in total by PyTorch)
+j: 126 bis 130
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 96
+count0: 12979
+
+Epoch: [96 | 100] LR: 0.100000
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 461, in forward
+    x = self.module_list[j](_x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 28.00 MiB (GPU 0; 10.76 GiB total capacity; 25.13 MiB already allocated; 30.94 MiB free; 50.00 MiB reserved in total by PyTorch)
+j: 131 bis 135
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 96
+count0: 12979
+
+Epoch: [96 | 100] LR: 0.100000
+Epoch: [96][0/196]	Time 1.449 (1.449)	Data 0.518 (0.518)	Loss 1.2556 (1.2556)	Acc@1 66.797 (66.797)	Acc@5 98.438 (98.438)
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 505, in forward
+    x = self.module_list[j](x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/batchnorm.py", line 106, in forward
+    exponential_average_factor, self.eps)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1923, in batch_norm
+    training, momentum, eps, torch.backends.cudnn.enabled
+RuntimeError: CUDA out of memory. Tried to allocate 2.00 MiB (GPU 0; 10.76 GiB total capacity; 90.33 MiB already allocated; 6.94 MiB free; 114.00 MiB reserved in total by PyTorch)
+j: 136 bis 140
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 96
+count0: 12979
+
+Epoch: [96 | 100] LR: 0.100000
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 505, in forward
+    x = self.module_list[j](x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/batchnorm.py", line 106, in forward
+    exponential_average_factor, self.eps)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1923, in batch_norm
+    training, momentum, eps, torch.backends.cudnn.enabled
+RuntimeError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.76 GiB total capacity; 18.13 MiB already allocated; 24.94 MiB free; 22.00 MiB reserved in total by PyTorch)
+j: 141 bis 145
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 96
+count0: 12979
+
+Epoch: [96 | 100] LR: 0.100000
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 340, in forward
+    x = self.module_list[0](x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 28.00 MiB (GPU 0; 10.76 GiB total capacity; 6.13 MiB already allocated; 28.94 MiB free; 22.00 MiB reserved in total by PyTorch)
+j: 146 bis 150
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 96
+count0: 12979
+
+Epoch: [96 | 100] LR: 0.100000
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 340, in forward
+    x = self.module_list[0](x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 28.00 MiB (GPU 0; 10.76 GiB total capacity; 6.13 MiB already allocated; 28.94 MiB free; 22.00 MiB reserved in total by PyTorch)
+j: 151 bis 155
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 96
+count0: 12979
+
+Epoch: [96 | 100] LR: 0.100000
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 340, in forward
+    x = self.module_list[0](x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 28.00 MiB (GPU 0; 10.76 GiB total capacity; 6.13 MiB already allocated; 28.94 MiB free; 22.00 MiB reserved in total by PyTorch)
+j: 156 bis 160
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 96
+count0: 12979
+
+Epoch: [96 | 100] LR: 0.100000
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 525, in train
+    outputs = model.forward(inputs)
+  File "/home/jessica.buehler/MA_Source/src/n2n.py", line 340, in forward
+    x = self.module_list[0](x)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 349, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/conv.py", line 346, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: CUDA out of memory. Tried to allocate 28.00 MiB (GPU 0; 10.76 GiB total capacity; 6.13 MiB already allocated; 28.94 MiB free; 22.00 MiB reserved in total by PyTorch)
+j: 161 bis 165
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 96
+count0: 12979
+
+Epoch: [96 | 100] LR: 0.100000
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 521, in train
+    inputs, targets = inputs.cuda(), targets.cuda()
+RuntimeError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.76 GiB total capacity; 127.00 KiB already allocated; 24.94 MiB free; 2.00 MiB reserved in total by PyTorch)
+j: 166 bis 170
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 96
+count0: 12979
+
+Epoch: [96 | 100] LR: 0.100000
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 521, in train
+    inputs, targets = inputs.cuda(), targets.cuda()
+RuntimeError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.76 GiB total capacity; 127.00 KiB already allocated; 24.94 MiB free; 2.00 MiB reserved in total by PyTorch)
+j: 171 bis 175
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 96
+count0: 12979
+
+Epoch: [96 | 100] LR: 0.100000
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 521, in train
+    inputs, targets = inputs.cuda(), targets.cuda()
+RuntimeError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.76 GiB total capacity; 127.00 KiB already allocated; 24.94 MiB free; 2.00 MiB reserved in total by PyTorch)
+j: 176 bis 180
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 96
+count0: 12979
+
+Epoch: [96 | 100] LR: 0.100000
+Traceback (most recent call last):
+  File "main.py", line 839, in <module>
+    main()
+  File "main.py", line 392, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 521, in train
+    inputs, targets = inputs.cuda(), targets.cuda()
+RuntimeError: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 10.76 GiB total capacity; 127.00 KiB already allocated; 24.94 MiB free; 2.00 MiB reserved in total by PyTorch)
