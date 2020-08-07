@@ -31,7 +31,7 @@ class N2N(nn.Module):
 
             print(f'numoFStages: {numOfStages}')
 
-            for stage in numOfStages:
+            for stage in range(0, numOfStages):
                 self.widthofLayers.append(s)
                 s *= 2
 
