@@ -183,6 +183,7 @@ state = {k: v for k, v in args._get_kwargs()}
 
 listofBlocks = [int(i) for i in args.n.split(',')]
 print(listofBlocks)
+listOfWidths = []
 if args.widthOfAllLayers is not None:
     listOfWidths = [int(i) for i in args.widthOfAllLayers.split(',')]
     print(listOfWidths)
@@ -329,7 +330,7 @@ def main():
         assert args.numOfStages == len(
             listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
 
-        if listOfWidths is not None:
+        if len(listOfWidths)>0:
             model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
                         widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
         else:
