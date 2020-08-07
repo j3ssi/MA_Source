@@ -329,8 +329,12 @@ def main():
         assert args.numOfStages == len(
             listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
 
-        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
+        if listOfWidths is not None:
+            model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
                         widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
+        else:
+            model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
+                        widthofFirstLayer=16, model=None, archNums=None, widthOfLayers= None)
 
         print(f'device count: {torch.cuda.device_count()}')
         model.cuda()
