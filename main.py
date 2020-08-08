@@ -78,6 +78,9 @@ parser.add_argument('-w', '--widthofFirstLayer', default=3, type=int,
 # epochs and stuff
 parser.add_argument('--epochs', default=8, type=int, metavar='N',
                     help='number of total epochs to run')
+parser.add_argument('-r','--reset', default=False, action='store_true',
+                    help='Last Epoch')
+
 parser.add_argument('--start-epoch', default=1, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
 parser.add_argument('--epochsFromBegin', default=0, type=int, metavar='N',
@@ -516,6 +519,9 @@ def main():
                               weight_decay=args.weight_decay)
 
     print("[INFO] Storing checkpoint...")
+    if not args.reset:
+        args.epoch = 0
+        start_epoch = 1
     save_checkpoint({
         'epoch': args.epochs + start_epoch,
         'acc': test_acc,
