@@ -846,7 +846,7 @@ def visualizePruneTrain(model, epoch, threshold):
             # ax.set_yticks([])
             # pyplot.imshow(weight[:,0],cmap=my_cmap,vmin=threshold)
             # ix += 1
-            fileName = '/img/' + altList[a] + '_' + str(epoch) + '.png'
+            fileName = altList[a] + '_' + str(epoch) + '.png'
             pyplot.savefig(fileName)
 
         elif 'fc' in altList[a]:
