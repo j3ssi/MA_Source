@@ -519,7 +519,7 @@ def main():
                               weight_decay=args.weight_decay)
 
     print("[INFO] Storing checkpoint...")
-    if not args.reset:
+    if args.reset:
         args.epoch = 0
         start_epoch = 1
     save_checkpoint({
