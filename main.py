@@ -798,7 +798,7 @@ def visualizePruneTrain(model, epoch, threshold):
         weight = (weight - f_min) / (f_max - f_min)
 
         # threshold = (threshold-f_min)/(f_max-f_min)
-        if 'conv' in altList[a]:
+        if 'conv21' in altList[a] or 'conv22' in altList[a]:
             # print("\naltList[", a, "]: ", altList[a])
             dims = paramList[a].shape
             if printParam:
@@ -849,7 +849,7 @@ def visualizePruneTrain(model, epoch, threshold):
             fileName = altList[a] + '_' + str(epoch) + '.png'
             pyplot.savefig(fileName)
 
-        
+
         #     ax = pyplot.subplot(dims[0], 1, ix)
         #     ax.set_xticks([])
         #     ax.set_yticks([])
