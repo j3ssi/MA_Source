@@ -849,21 +849,7 @@ def visualizePruneTrain(model, epoch, threshold):
             fileName = altList[a] + '_' + str(epoch) + '.png'
             pyplot.savefig(fileName)
 
-        elif 'fc' in altList[a]:
-            print("\naltList[", a, "]: ", altList[a])
-            dims = paramList[a].shape
-            if printParam:
-                print("\nParamListShape: ", paramList[a].shape)
-            weight = paramList[a].cpu()
-            weight = weight.detach().numpy()
-            if printParam:
-                print("\nDims: ", dims)
-            ix = 1
-            for i in range(0, dims[0]):  # out channels
-                ax = None
-            #    if printParam:
-            #       print("\nWeight: ", filterMaps)
-
+        
         #     ax = pyplot.subplot(dims[0], 1, ix)
         #     ax.set_xticks([])
         #     ax.set_yticks([])
