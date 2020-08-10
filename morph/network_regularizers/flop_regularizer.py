@@ -21,7 +21,7 @@ import sys
 sys.path.append('../')
 
 from framework import op_regularizer_manager
-import bilinear_cost_utils
+from network_regularizers import bilinear_cost_utils
 from op_regularizers import conv_group_lasso_regularizer
 from op_regularizers import gamma_l1_regularizer
 
