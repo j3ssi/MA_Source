@@ -29,7 +29,7 @@ import cifar10
 import wideresnet
 from network_regularizers.flop_regularizer import GammaFlopsRegularizer, GroupLassoFlopsRegularizer
 
-tf.app.flags.DEFINE_string('base_dir', '/home/nathan/Documents/TFE/morph_net',
+tf.app.flags.DEFINE_string('base_dir', '/home/jessica.buehler/MA_Source/morph',
                            """parent directory of train_dir""")
 tf.app.flags.DEFINE_string('train_dir', 'checkpoints5e-8_tresh=1e-3_Group',
                            """Directory where to write event logs and checkpoint. (relative to base_dir)""")
