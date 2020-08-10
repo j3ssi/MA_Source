@@ -17,6 +17,8 @@
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
+import sys
+sys.path.append('../')
 
 from .framework import op_regularizer_manager
 import bilinear_cost_utils
