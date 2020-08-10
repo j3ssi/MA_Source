@@ -294,5 +294,5 @@ python3 main.py -j 6 --checkpoint ./output/experimente2/net2netwider1_$1 --epoch
 sleep 20
 
 echo "j: 375 bis 380"
-python3 main.py -j 6 --checkpoint ./output/experimente2/net2netwider1_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 5,5,5 --sparse_interval 0 --widthOfAllLayers 12,24,48<  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 170 --pathToModell ./output/experimente2/net2netwider1_$1/model.nn  --resume ./output/experimente2/net2netwider1_$1/checkpoint.pth.tar
+python3 main.py -j 6 --checkpoint ./output/experimente2/net2netwider1_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 5,5,5 --sparse_interval 0 --widthOfAllLayers 12,24,48  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 170 --pathToModell ./output/experimente2/net2netwider1_$1/model.nn  --resume ./output/experimente2/net2netwider1_$1/checkpoint.pth.tar
 sleep 20
