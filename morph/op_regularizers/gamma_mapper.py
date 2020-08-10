@@ -22,8 +22,9 @@ import abc
 import collections
 
 import tensorflow as tf
-
-from morph_net.framework import op_regularizer_manager
+import sys
+sys.path.append('../')
+from framework import op_regularizer_manager
 
 
 class GenericConvGammaMapper(object):
