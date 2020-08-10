@@ -18,10 +18,10 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from morph.framework import op_regularizer_manager
-from morph.network_regularizers import bilinear_cost_utils
-from morph.op_regularizers import conv_group_lasso_regularizer
-from morph.op_regularizers import gamma_l1_regularizer
+from .framework import op_regularizer_manager
+from .network_regularizers import bilinear_cost_utils
+from .op_regularizers import conv_group_lasso_regularizer
+from .op_regularizers import gamma_l1_regularizer
 
 
 class GammaFlopsRegularizer(bilinear_cost_utils.BilinearNetworkRegularizer):
