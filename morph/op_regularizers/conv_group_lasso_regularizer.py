@@ -21,10 +21,12 @@ group (https://arxiv.org/pdf/1611.06321.pdf).
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
+import sys
+sys.path.append('../')
 
 import tensorflow as tf
 
-from morph_net.framework import generic_regularizers
+from framework import generic_regularizers
 
 
 class ConvGroupLassoRegularizer(generic_regularizers.OpRegularizer):
