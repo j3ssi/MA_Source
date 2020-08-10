@@ -25,9 +25,9 @@ import os
 import tensorflow as tf
 import pickle
 
-from morph import cifar10
-from morph import wideresnet
-from morph.network_regularizers.flop_regularizer import GammaFlopsRegularizer, GroupLassoFlopsRegularizer
+import cifar10
+import wideresnet
+from network_regularizers.flop_regularizer import GammaFlopsRegularizer, GroupLassoFlopsRegularizer
 
 tf.app.flags.DEFINE_string('base_dir', '/home/nathan/Documents/TFE/morph_net',
                            """parent directory of train_dir""")
