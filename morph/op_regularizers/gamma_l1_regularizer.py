@@ -19,9 +19,11 @@ from __future__ import division
 from __future__ import print_function
 
 import tensorflow as tf
+import sys
+sys.path.append('../')
 
-from morph_net.framework import generic_regularizers
-from morph_net.op_regularizers import gamma_mapper
+from framework import generic_regularizers
+from op_regularizers import gamma_mapper
 
 
 class GammaL1Regularizer(generic_regularizers.OpRegularizer):
