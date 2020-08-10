@@ -20,10 +20,10 @@ from __future__ import print_function
 import sys
 sys.path.append('../')
 
-from .framework import op_regularizer_manager
+from framework import op_regularizer_manager
 import bilinear_cost_utils
-from .op_regularizers import conv_group_lasso_regularizer
-from .op_regularizers import gamma_l1_regularizer
+from op_regularizers import conv_group_lasso_regularizer
+from op_regularizers import gamma_l1_regularizer
 
 
 class GammaFlopsRegularizer(bilinear_cost_utils.BilinearNetworkRegularizer):
