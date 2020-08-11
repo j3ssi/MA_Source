@@ -256,7 +256,7 @@ if __name__ == '__main__':
     model = model = n2n.N2N(10, 3, [5,5,5], 2, True, False,
                         widthofFirstLayer=8, model=None, archNums=None, widthOfLayers=None)
 
-
+    model.cuda()
     transform_train = transforms.Compose([
         transforms.RandomCrop(32, padding=4),
         transforms.RandomHorizontalFlip(),
