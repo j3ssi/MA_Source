@@ -272,15 +272,18 @@ if __name__ == '__main__':
 
     dataloader = datasets.CIFAR10
     num_classes = 10
-    trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
+    train_set = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
 
-    testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
+    train_loader = data.DataLoader(train_set, batch_size=256, pin_memory=True,
+                                  shuffle=True, num_workers=6)
+
+    test_set = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=100, shuffle=False, num_workers=6)
 
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                      std=[0.229, 0.224, 0.225])
 
-    num_train = len(trainset)
+    num_train = len(train_set)
     indices = list(range(num_train))
     split = int(np.floor(0.1 * num_train))
 
@@ -291,28 +294,9 @@ if __name__ == '__main__':
     train_sampler = SubsetRandomSampler(train_idx)
     valid_sampler = SubsetRandomSampler(valid_idx)
 
-    test_set = eval(args.dataset)(args.datapath, False, transforms.Compose([
-            transforms.ToTensor(),
-            normalize,
-        ]))
-    train_loader = torch.utils.data.DataLoader(
-        train_set, batch_size=args.batch_size, shuffle=True,
-        num_workers=0, pin_memory=True
-    )
-    val_loader = torch.utils.data.DataLoader(
-        val_set, batch_size=args.batch_size, sampler=valid_sampler,
-        num_workers=0, pin_memory=True
-    )
-    test_loader = torch.utils.data.DataLoader(
-        test_set, batch_size=125, shuffle=False,
-        num_workers=0, pin_memory=False
-    )
 
-    if 'CIFAR10' in args.dataset:
-        train_set.num_classes = 10
-    elif 'CIFAR100' in args.dataset:
-        train_set.num_classes = 100
-    pruner = eval(args.pruner)(model, 'l2_weight', num_cls=train_set.num_classes) 
+    train_set.num_classes = 10
+    pruner = eval(args.pruner)(model, 'l2_weight', num_cls=train_set.num_classes)
     flops, num_params = measure_model(pruner.model, pruner, 32)
     maps = pruner.omap_size
     cbns = get_cbns(pruner.model)
