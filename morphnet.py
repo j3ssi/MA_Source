@@ -278,7 +278,7 @@ if __name__ == '__main__':
                                   shuffle=True, num_workers=6)
 
     test_set = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
-    testloader = data.DataLoader(testset, batch_size=100, shuffle=False, num_workers=6)
+    testloader = data.DataLoader(test_set, batch_size=100, shuffle=False, num_workers=6)
 
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                      std=[0.229, 0.224, 0.225])
