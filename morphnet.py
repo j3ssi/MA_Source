@@ -30,7 +30,7 @@ def get_valid_flops(model, cbns, out_maps):
     residual_chain = {}
     chain_max_dim = 0
     for m in model.modules():
-        if isinstance(m, BasicBlock):
+        if isinstance(m, resnet.BasicBlock):
             residual_chain[lastConv] = m.conv[3]
             lastConv = m.conv[3]
             chain_max_dim = np.maximum(chain_max_dim, lastConv.weight.size(1))
@@ -109,7 +109,7 @@ def truncate_smallbeta(model, cbns):
     residual_chain = {}
     chain_max_dim = 0
     for m in model.modules():
-        if isinstance(m, BasicBlock):
+        if isinstance(m, resnet.BasicBlock):
             residual_chain[lastConv] = m.conv[3]
             lastConv = m.conv[3]
             chain_max_dim = np.maximum(chain_max_dim, lastConv.weight.size(1))
