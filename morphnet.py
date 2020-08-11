@@ -1,12 +1,15 @@
 import torch
+
 import sys
 import numpy as np
 import torchvision
+
+import torch.utils.data as data
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torch.utils.data.sampler import SubsetRandomSampler
-from torchvision import transforms
+from torchvision import transforms, datasets
 import src.n2n as n2n
 from pruner.fp_mbnetv2 import FilterPrunerMBNetV2
 from pruner.fp_resnet import FilterPrunerResNet
@@ -253,21 +256,17 @@ if __name__ == '__main__':
     model = model = n2n.N2N(10, 3, [5,5,5], 2, True, False,
                         widthofFirstLayer=8, model=None, archNums=None, widthOfLayers=None)
 
+    dataloader = datasets.CIFAR10
+    num_classes = 10
+    trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
+
+    testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
+    testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                      std=[0.229, 0.224, 0.225])
-    train_set = eval(args.dataset)(args.datapath, True, transforms.Compose([
-            transforms.RandomCrop(32, padding=4),
-            transforms.RandomHorizontalFlip(),
-            transforms.ToTensor(),
-            normalize,
-        ]))
-    val_set = eval(args.dataset)(args.datapath, True, transforms.Compose([
-            transforms.ToTensor(),
-            normalize,
-        ]))
 
-    num_train = len(train_set)
+    num_train = len(trainset)
     indices = list(range(num_train))
     split = int(np.floor(0.1 * num_train))
 
