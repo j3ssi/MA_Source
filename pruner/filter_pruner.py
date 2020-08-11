@@ -3,11 +3,11 @@ import numpy as np
 import torch.nn as nn
 
 from random import shuffle
-from model.MobileNetV2 import MobileNetV2_CIFAR10
-from model.resnet_cifar10 import DownsampleA
+
 
 class FilterPruner(object):
-    def __init__(self, model, rank_type='l2_weight', num_cls=100, safeguard=0, random=False, device='cuda', resource='FLOPs'):
+    def __init__(self, model, rank_type='l2_weight', num_cls=100, safeguard=0, random=False, device='cuda',
+                 resource='FLOPs'):
         self.model = model
         self.rank_type = rank_type
         # Chainning convolutions
@@ -29,9 +29,9 @@ class FilterPruner(object):
                 conv_p += np.prod(m.weight.shape)
                 all_p += np.prod(m.weight.shape)
             if isinstance(m, nn.Linear):
-                all_p += np.prod(m.weight.shape) 
+                all_p += np.prod(m.weight.shape)
         return all_p, conv_p
-    
+
     def reset(self):
         self.amc_checked = []
         self.cur_flops = 0
@@ -49,46 +49,49 @@ class FilterPruner(object):
 
     def flop_regularize(self, l):
         for key in self.filter_ranks:
-#            print(self.filter_ranks[key], l*self.cost_map[key])
-            self.filter_ranks[key] -= l*self.rates[key]
+            #            print(self.filter_ranks[key], l*self.cost_map[key])
+            self.filter_ranks[key] -= l * self.rates[key]
 
     def compute_rank(self, grad):
         activation_index = len(self.activations) - self.grad_index - 1
-        activation = self.activations[activation_index] 
+        activation = self.activations[activation_index]
         if self.rank_type == 'analysis':
             if activation_index not in self.filter_ranks:
-                self.filter_ranks[activation_index] = activation*grad
+                self.filter_ranks[activation_index] = activation * grad
             else:
-                self.filter_ranks[activation_index] = torch.cat((self.filter_ranks[activation_index], activation*grad), 0)
+                self.filter_ranks[activation_index] = torch.cat(
+                    (self.filter_ranks[activation_index], activation * grad), 0)
 
 
         else:
             # This is NVIDIA's approach
             if self.rank_type == 'meanAbsMeanImpact':
-                values = torch.abs((activation*grad).sum(2).sum(2).data / (activation.size(2)*activation.size(3)))
+                values = torch.abs((activation * grad).sum(2).sum(2).data / (activation.size(2) * activation.size(3)))
 
             # This is equivalent to NVIDIA's approach when E[mean_impact] = 0 
             elif self.rank_type == 'madMeanImpact':
-                mean_impact = (activation*grad).sum(2).sum(2).data / (activation.size(2)*activation.size(3))
+                mean_impact = (activation * grad).sum(2).sum(2).data / (activation.size(2) * activation.size(3))
                 values = torch.abs(mean_impact - mean_impact.mean(dim=0))
 
             elif self.rank_type == 'varMeanImpact':
-                mean_impact = (activation*grad).sum(2).sum(2).data / (activation.size(2)*activation.size(3))
+                mean_impact = (activation * grad).sum(2).sum(2).data / (activation.size(2) * activation.size(3))
                 values = torch.pow(mean_impact - mean_impact.mean(dim=0), 2)
 
             elif self.rank_type == 'MAIVarMAI':
-                mean_impact = torch.abs(activation*grad).sum(2).sum(2).data / (activation.size(2)*activation.size(3))
+                mean_impact = torch.abs(activation * grad).sum(2).sum(2).data / (
+                            activation.size(2) * activation.size(3))
                 values = mean_impact.mean(dim=0) * torch.pow(mean_impact - mean_impact.mean(dim=0), 2)
 
             elif self.rank_type == 'MSIVarMSI':
-                mean_impact = torch.pow(activation*grad, 2).sum(2).sum(2).data / (activation.size(2)*activation.size(3))
+                mean_impact = torch.pow(activation * grad, 2).sum(2).sum(2).data / (
+                            activation.size(2) * activation.size(3))
                 values = mean_impact.mean(dim=0) * torch.pow(mean_impact - mean_impact.mean(dim=0), 2)
 
             elif self.rank_type == 'meanL1Impact':
-                values = torch.abs(activation*grad).sum(2).sum(2).data / (activation.size(2) * activation.size(3))
+                values = torch.abs(activation * grad).sum(2).sum(2).data / (activation.size(2) * activation.size(3))
 
             elif self.rank_type == 'meanL1ImpactRaw':
-                values = torch.abs(activation*grad).sum(2).sum(2).data
+                values = torch.abs(activation * grad).sum(2).sum(2).data
 
             elif self.rank_type == 'meanL1Act':
                 values = torch.abs(activation).sum(2).sum(2).data / (activation.size(2) * activation.size(3))
@@ -100,22 +103,25 @@ class FilterPruner(object):
                 values = grad.sum(2).sum(2).data / (activation.size(2) * activation.size(3))
 
             elif self.rank_type == 'meanL2Impact':
-                values = torch.pow(activation*grad, 2).sum(2).sum(2).data / (activation.size(2) * activation.size(3))
+                values = torch.pow(activation * grad, 2).sum(2).sum(2).data / (activation.size(2) * activation.size(3))
 
             elif self.rank_type == 'madL2Impact':
-                l2_impact = torch.pow(activation*grad, 2).sum(2).sum(2).data / (activation.size(2) * activation.size(3))
+                l2_impact = torch.pow(activation * grad, 2).sum(2).sum(2).data / (
+                            activation.size(2) * activation.size(3))
                 values = torch.abs(l2_impact - l2_impact.mean(dim=0))
 
             elif self.rank_type == 'varL2Impact':
-                l2_impact = torch.pow(activation*grad, 2).sum(2).sum(2).data / (activation.size(2) * activation.size(3))
+                l2_impact = torch.pow(activation * grad, 2).sum(2).sum(2).data / (
+                            activation.size(2) * activation.size(3))
                 values = torch.pow(l2_impact - l2_impact.mean(dim=0), 2)
 
             elif self.rank_type == 'varMSImpact':
-                ms_impact = torch.pow(activation*grad, 2).sum(2).sum(2).data / (activation.size(2) * activation.size(3))
+                ms_impact = torch.pow(activation * grad, 2).sum(2).sum(2).data / (
+                            activation.size(2) * activation.size(3))
                 values = torch.pow(ms_impact - ms_impact.mean(dim=0), 2)
 
             elif self.rank_type == 'L2IVarL2I':
-                l2_impact = torch.sqrt(torch.pow(activation*grad, 2).sum(2).sum(2).data)
+                l2_impact = torch.sqrt(torch.pow(activation * grad, 2).sum(2).sum(2).data)
                 values = l2_impact.mean(dim=0) * torch.pow(l2_impact - l2_impact.mean(dim=0), 2)
 
             elif self.rank_type == 'meanSquaredImpact':
@@ -132,26 +138,27 @@ class FilterPruner(object):
                 impact = activation * grad
                 impact = impact.reshape((impact.size(0), impact.size(1), -1))
                 mean = impact.mean(dim=2)
-                values = torch.pow(impact - mean.reshape((impact.size(0), impact.size(1), 1)), 2).sum(2) / impact.size(2)
+                values = torch.pow(impact - mean.reshape((impact.size(0), impact.size(1), 1)), 2).sum(2) / impact.size(
+                    2)
 
             elif self.rank_type == 'meanVarAct':
                 std = activation.reshape((activation.size(0), activation.size(1), -1))
                 values = torch.pow(std - std.mean(dim=2).reshape((std.size(0), std.size(1), 1)), 2).sum(2) / std.size(2)
 
             elif self.rank_type == 'meanAct':
-                values = activation.sum(2).sum(2).data / (activation.size(2)*activation.size(3))
+                values = activation.sum(2).sum(2).data / (activation.size(2) * activation.size(3))
 
             elif self.rank_type == 'varF2Act':
-                f2 = torch.sqrt(torch.pow(activation, 2).sum(2).sum(2).data) / (activation.size(2)*activation.size(3))
+                f2 = torch.sqrt(torch.pow(activation, 2).sum(2).sum(2).data) / (activation.size(2) * activation.size(3))
                 values = torch.pow(f2 - f2.mean(dim=0), 2)
 
             elif self.rank_type == '2-taylor':
-                values1 = (activation*grad).sum(2).sum(2).data
-                values2 = (torch.pow(activation*grad, 2)*0.5).sum(2).sum(2).data
-                values = torch.abs(values1 + values2) / (activation.size(2)*activation.size(3))
+                values1 = (activation * grad).sum(2).sum(2).data
+                values2 = (torch.pow(activation * grad, 2) * 0.5).sum(2).sum(2).data
+                values = torch.abs(values1 + values2) / (activation.size(2) * activation.size(3))
 
             values = values.sum(0) / activation.size(0)
-            
+
             if activation_index not in self.filter_ranks:
                 self.filter_ranks[activation_index] = torch.zeros(activation.size(1), device=self.device)
 
@@ -165,38 +172,39 @@ class FilterPruner(object):
         for i in encoding:
             tmp_out_channels[i] = int(tmp_out_channels[i] * encoding[i])
             next_conv_idx = self.next_conv[i] if i in self.next_conv else None
-            #if not i in self.downsample_conv and next_conv_idx:
+            # if not i in self.downsample_conv and next_conv_idx:
             if next_conv_idx:
                 for j in next_conv_idx:
                     tmp_in_channels[j] = tmp_out_channels[i]
         cost = 0
         for key in self.cost_map:
-            cost += self.cost_map[key]*tmp_in_channels[key]*tmp_out_channels[key]
-        cost += tmp_out_channels[key]*self.num_cls
+            cost += self.cost_map[key] * tmp_in_channels[key] * tmp_out_channels[key]
+        cost += tmp_out_channels[key] * self.num_cls
         return cost
 
     def get_unit_flops_for_layer(self, layer_id):
         flops = 0
         k = layer_id
         while k in self.chains:
-            flops += self.cost_map[k]*self.conv_in_channels[k]*self.conv_out_channels[k]
+            flops += self.cost_map[k] * self.conv_in_channels[k] * self.conv_out_channels[k]
             next_conv_idx = self.next_conv[k] if k in self.next_conv else None
             if next_conv_idx:
                 for next_conv_i in next_conv_idx:
                     next_conv = self.activation_to_conv[next_conv_i]
                     if (next_conv.groups != next_conv.out_channels or next_conv.groups != next_conv.in_channels):
-                        flops += self.cost_map[next_conv_i]*self.conv_in_channels[next_conv_i]*self.conv_out_channels[next_conv_i]
+                        flops += self.cost_map[next_conv_i] * self.conv_in_channels[next_conv_i] * \
+                                 self.conv_out_channels[next_conv_i]
             k = self.chains[k]
 
-        flops += self.cost_map[k]*self.conv_in_channels[k]*self.conv_out_channels[k]
+        flops += self.cost_map[k] * self.conv_in_channels[k] * self.conv_out_channels[k]
         next_conv_idx = self.next_conv[k] if k in self.next_conv else None
         if next_conv_idx:
             for next_conv_i in next_conv_idx:
                 next_conv = self.activation_to_conv[next_conv_i]
                 if (next_conv.groups != next_conv.out_channels or next_conv.groups != next_conv.in_channels):
-                    flops += self.cost_map[next_conv_i]*self.conv_in_channels[next_conv_i]*self.conv_out_channels[next_conv_i]
+                    flops += self.cost_map[next_conv_i] * self.conv_in_channels[next_conv_i] * self.conv_out_channels[
+                        next_conv_i]
         return flops
-
 
     def get_unit_filters_for_layer(self, layer_id):
         filters = 0
@@ -227,10 +235,10 @@ class FilterPruner(object):
             current_chain = []
             k = i
             while k in self.chains:
-               current_chain.append(k) 
-               checked.append(k)
-               k = self.chains[k]
-            current_chain.append(k) 
+                current_chain.append(k)
+                checked.append(k)
+                k = self.chains[k]
+            current_chain.append(k)
             checked.append(k)
 
             sizes = np.array([self.filter_ranks[j].size(0) for j in current_chain])
@@ -243,13 +251,14 @@ class FilterPruner(object):
                 # The padding residual
                 rank = ranks[idx]
                 if rank.size(0) < max_size:
-                    cnt += torch.cat((torch.ones(int(rank.size(0)), device=self.device), torch.zeros(int(max_size-rank.size(0)), device=self.device)))
-                    ranks[idx] = torch.cat((ranks[idx], torch.zeros(int(max_size-rank.size(0)), device=self.device)))
+                    cnt += torch.cat((torch.ones(int(rank.size(0)), device=self.device),
+                                      torch.zeros(int(max_size - rank.size(0)), device=self.device)))
+                    ranks[idx] = torch.cat((ranks[idx], torch.zeros(int(max_size - rank.size(0)), device=self.device)))
                 else:
                     cnt += torch.ones(int(max_size), device=self.device)
 
             ranks = torch.stack(ranks, dim=1)
-            sum_ranks = ranks.sum(dim=1) #/ cnt
+            sum_ranks = ranks.sum(dim=1)  # / cnt
             weight = len(current_chain)
             layers_index = current_chain
 
@@ -269,7 +278,7 @@ class FilterPruner(object):
         while idx < len(s):
             # make each layer index an instance to prune
             for lj, l in enumerate(s[idx][0]):
-                index = s[idx][1] 
+                index = s[idx][1]
                 if self.quota[s[idx][0][lj]] > 0 and index < og_filter_size[l]:
                     selected.append((l, index, s[idx][2]))
                     self.quota[l] -= 1
@@ -282,17 +291,18 @@ class FilterPruner(object):
                 for f in tmp:
                     tmp_out_channels[f[0]] -= 1
                     next_conv_idx = self.next_conv[f[0]] if f[0] in self.next_conv else None
-                    #if not f[0] in self.downsample_conv and next_conv_idx:
+                    # if not f[0] in self.downsample_conv and next_conv_idx:
                     if next_conv_idx:
                         for i in next_conv_idx:
                             next_conv = self.activation_to_conv[i]
-                            if (next_conv.groups != next_conv.out_channels or next_conv.groups != next_conv.in_channels):
+                            if (
+                                    next_conv.groups != next_conv.out_channels or next_conv.groups != next_conv.in_channels):
                                 tmp_in_channels[i] -= 1
 
                 cost = 0
                 for key in self.cost_map:
-                    cost += self.cost_map[key]*tmp_in_channels[key]*tmp_out_channels[key]
-                cost += tmp_out_channels[key]*self.num_cls
+                    cost += self.cost_map[key] * tmp_in_channels[key] * tmp_out_channels[key]
+                cost += tmp_out_channels[key] * self.num_cls
 
                 if cost < target:
                     break
@@ -321,10 +331,10 @@ class FilterPruner(object):
             current_chain = []
             k = i
             while k in self.chains:
-               current_chain.append(k) 
-               checked.append(k)
-               k = self.chains[k]
-            current_chain.append(k) 
+                current_chain.append(k)
+                checked.append(k)
+                k = self.chains[k]
+            current_chain.append(k)
             checked.append(k)
 
             sizes = np.array([self.filter_ranks[j].size(0) for j in current_chain])
@@ -337,8 +347,9 @@ class FilterPruner(object):
                 # The padding residual
                 rank = ranks[idx]
                 if rank.size(0) < max_size:
-                    cnt += torch.cat((torch.ones(int(rank.size(0)), device=self.device), torch.zeros(int(max_size-rank.size(0)), device=self.device)))
-                    ranks[idx] = torch.cat((ranks[idx], torch.zeros(int(max_size-rank.size(0)), device=self.device)))
+                    cnt += torch.cat((torch.ones(int(rank.size(0)), device=self.device),
+                                      torch.zeros(int(max_size - rank.size(0)), device=self.device)))
+                    ranks[idx] = torch.cat((ranks[idx], torch.zeros(int(max_size - rank.size(0)), device=self.device)))
                 else:
                     cnt += torch.ones(int(max_size), device=self.device)
 
@@ -364,7 +375,7 @@ class FilterPruner(object):
         while idx < len(s):
             # make each layer index an instance to prune
             for lj, l in enumerate(s[idx][0]):
-                index = s[idx][1] 
+                index = s[idx][1]
                 if self.quota[s[idx][0][lj]] > 0 and index < og_filter_size[l]:
                     selected.append((l, index, s[idx][2]))
                     self.quota[l] -= 1
@@ -377,32 +388,32 @@ class FilterPruner(object):
                 for f in tmp:
                     tmp_out_channels[f[0]] -= 1
                     next_conv_idx = self.next_conv[f[0]] if f[0] in self.next_conv else None
-                    #if not f[0] in self.downsample_conv and next_conv_idx:
+                    # if not f[0] in self.downsample_conv and next_conv_idx:
                     if next_conv_idx:
                         for i in next_conv_idx:
                             next_conv = self.activation_to_conv[i]
-                            if (next_conv.groups != next_conv.out_channels or next_conv.groups != next_conv.in_channels):
+                            if (
+                                    next_conv.groups != next_conv.out_channels or next_conv.groups != next_conv.in_channels):
                                 tmp_in_channels[i] -= 1
 
                 cost = 0
                 for key in self.cost_map:
-                    cost += self.cost_map[key]*tmp_in_channels[key]*tmp_out_channels[key]
-                cost += tmp_out_channels[key]*self.num_cls
+                    cost += self.cost_map[key] * tmp_in_channels[key] * tmp_out_channels[key]
+                cost += tmp_out_channels[key] * self.num_cls
 
                 if target_idx < len(targets) and cost < targets[target_idx]:
                     output[target_idx] = selected.copy()
                     target_idx += 1
-                
+
                 if target_idx == len(targets):
                     break
 
             idx += 1
         return output
 
-
     def pruning_with_transformations(self, original_dist, perturbation, target, masking=False):
         target = target * self.resource_usage
-        print('Targeting resource usage: {:.2f}MFLOPs'.format(target/1e6))
+        print('Targeting resource usage: {:.2f}MFLOPs'.format(target / 1e6))
         for k in sorted(self.filter_ranks.keys()):
             self.filter_ranks[k] = original_dist[k] * perturbation[k][0] + perturbation[k][1]
         prune_targets = self.get_pruning_plan(target, progressive=(not masking), get_segment=True)
@@ -410,7 +421,7 @@ class FilterPruner(object):
         for layer_index, filter_index in prune_targets:
             if layer_index not in layers_pruned:
                 layers_pruned[layer_index] = 0
-            layers_pruned[layer_index] = layers_pruned[layer_index] + (filter_index[1]-filter_index[0]+1)
+            layers_pruned[layer_index] = layers_pruned[layer_index] + (filter_index[1] - filter_index[0] + 1)
         filters_left = {}
         for k in sorted(self.filter_ranks.keys()):
             if k not in layers_pruned:
@@ -456,9 +467,9 @@ class FilterPruner(object):
             current_chain = []
             k = layer
             while k in self.chains:
-               current_chain.append(k) 
-               k = self.chains[k]
-            current_chain.append(k) 
+                current_chain.append(k)
+                k = self.chains[k]
+            current_chain.append(k)
 
             sizes = np.array([self.filter_ranks[j].size(0) for j in current_chain])
             max_size = np.max(sizes)
@@ -468,13 +479,14 @@ class FilterPruner(object):
                 # The padding residual
                 rank = ranks[idx]
                 if rank.size(0) < max_size:
-                    cnt += torch.cat((torch.ones(int(rank.size(0)), device=self.device), torch.zeros(int(max_size-rank.size(0)), device=self.device)))
-                    ranks[idx] = torch.cat((ranks[idx], torch.zeros(int(max_size-rank.size(0)), device=self.device)))
+                    cnt += torch.cat((torch.ones(int(rank.size(0)), device=self.device),
+                                      torch.zeros(int(max_size - rank.size(0)), device=self.device)))
+                    ranks[idx] = torch.cat((ranks[idx], torch.zeros(int(max_size - rank.size(0)), device=self.device)))
                 else:
                     cnt += torch.ones(int(max_size), device=self.device)
 
             ranks = torch.stack(ranks, dim=1)
-            sum_ranks = ranks.sum(dim=1) #/ cnt
+            sum_ranks = ranks.sum(dim=1)  # / cnt
 
             rank = sum_ranks.cpu().numpy()
 
@@ -483,10 +495,10 @@ class FilterPruner(object):
             for k in current_chain:
                 if not k in filters_to_prune_per_layer:
                     cur_layer_size = self.filter_ranks[k].size(0)
-                    valid_ind = tbp[tbp < cur_layer_size][:(cur_layer_size-layer_budget[k])]
+                    valid_ind = tbp[tbp < cur_layer_size][:(cur_layer_size - layer_budget[k])]
                     filters_to_prune_per_layer[k] = valid_ind
         return filters_to_prune_per_layer
-            
+
     def sort_weights(self):
         # Sort by filters and also sort the subsequent channels
         checked = []
@@ -497,12 +509,12 @@ class FilterPruner(object):
             next_convs = []
             k = layer_index
             while k in self.chains:
-               current_chain.append(k) 
-               checked.append(k)
-               if k in self.next_conv:
+                current_chain.append(k)
+                checked.append(k)
+                if k in self.next_conv:
                     next_convs = next_convs + self.next_conv[k]
-               k = self.chains[k]
-            current_chain.append(k) 
+                k = self.chains[k]
+            current_chain.append(k)
             if k in self.next_conv:
                 next_convs = next_convs + self.next_conv[k]
             checked.append(k)
@@ -514,32 +526,36 @@ class FilterPruner(object):
 
             last_conv = False
             for k in current_chain:
-                if k == len(self.activation_to_conv)-1:
+                if k == len(self.activation_to_conv) - 1:
                     last_conv = True
                 conv = self.activation_to_conv[k]
                 next_bn = self.bn_for_conv[k]
 
-                conv.weight.data = torch.from_numpy(conv.weight.data.cpu().numpy()[sorted_indices,:,:,:]).to(self.device)
-                #conv.weight = conv.weight[sorted_indices,:,:,:]
+                conv.weight.data = torch.from_numpy(conv.weight.data.cpu().numpy()[sorted_indices, :, :, :]).to(
+                    self.device)
+                # conv.weight = conv.weight[sorted_indices,:,:,:]
 
-                next_bn.weight.data = torch.from_numpy(next_bn.weight.data.cpu().numpy()[sorted_indices]).to(self.device)
+                next_bn.weight.data = torch.from_numpy(next_bn.weight.data.cpu().numpy()[sorted_indices]).to(
+                    self.device)
                 next_bn.bias.data = torch.from_numpy(next_bn.bias.data.cpu().numpy()[sorted_indices]).to(self.device)
-                next_bn.running_mean.data = torch.from_numpy(next_bn.running_mean.data.cpu().numpy()[sorted_indices]).to(self.device)
-                next_bn.running_var.data = torch.from_numpy(next_bn.running_var.data.cpu().numpy()[sorted_indices]).to(self.device)
+                next_bn.running_mean.data = torch.from_numpy(
+                    next_bn.running_mean.data.cpu().numpy()[sorted_indices]).to(self.device)
+                next_bn.running_var.data = torch.from_numpy(next_bn.running_var.data.cpu().numpy()[sorted_indices]).to(
+                    self.device)
 
             if next_convs:
                 for next_conv_i in next_convs:
                     next_conv = self.activation_to_conv[next_conv_i]
                     if (next_conv.groups != next_conv.out_channels or next_conv.groups != next_conv.in_channels):
-                        tmp_weight = next_conv.weight.data.cpu().numpy().transpose([1,0,2,3])
-                        tmp_weight = tmp_weight[sorted_indices,:,:,:]
-                        tmp_weight = tmp_weight.transpose([1,0,2,3])
+                        tmp_weight = next_conv.weight.data.cpu().numpy().transpose([1, 0, 2, 3])
+                        tmp_weight = tmp_weight[sorted_indices, :, :, :]
+                        tmp_weight = tmp_weight.transpose([1, 0, 2, 3])
                         next_conv.weight.data = torch.from_numpy(tmp_weight).to(self.device)
 
             if last_conv:
-                tmp_weight = self.linear.weight.data.cpu().numpy().transpose([1,0])
-                tmp_weight = tmp_weight[sorted_indices,:]
-                tmp_weight = tmp_weight.transpose([1,0])
+                tmp_weight = self.linear.weight.data.cpu().numpy().transpose([1, 0])
+                tmp_weight = tmp_weight[sorted_indices, :]
+                tmp_weight = tmp_weight.transpose([1, 0])
                 self.linear.weight.data = torch.from_numpy(tmp_weight).to(self.device)
 
     def get_pruning_plan_from_importance(self, target, importance):
@@ -547,7 +563,7 @@ class FilterPruner(object):
 
         for key in self.cost_map:
             cost += self.cost_map[key] * self.conv_in_channels[key] * self.conv_out_channels[key] * importance[key]
-        alpha = float(target)/cost
+        alpha = float(target) / cost
 
         reject = False
         theta = {}
@@ -558,7 +574,8 @@ class FilterPruner(object):
         new_out_channels = self.conv_out_channels.copy()
 
         for key in importance:
-            new_out_channels[key] = int((theta[key] / (float(new_in_channels[key])/self.conv_in_channels[key])) * new_out_channels[key])
+            new_out_channels[key] = int(
+                (theta[key] / (float(new_in_channels[key]) / self.conv_in_channels[key])) * new_out_channels[key])
             print(new_out_channels[key])
 
             next_conv_idx = self.next_conv[key] if key in self.next_conv else None
@@ -569,7 +586,7 @@ class FilterPruner(object):
                         new_in_channels[i] = new_out_channels[key]
 
         filters_to_prune_per_layer = self.get_pruning_plan_from_layer_budget(new_out_channels)
-        return filters_to_prune_per_layer 
+        return filters_to_prune_per_layer
 
     def pack_pruning_target(self, filters_to_prune_per_layer, get_segment=True, progressive=True):
         if get_segment:
@@ -579,25 +596,25 @@ class FilterPruner(object):
                     filters_to_prune_per_layer[l] = sorted(filters_to_prune_per_layer[l])
                     prev_len = 0
                     first_ptr = 0
-                    j = first_ptr+1
+                    j = first_ptr + 1
                     while j < len(filters_to_prune_per_layer[l]):
-                        if filters_to_prune_per_layer[l][j] != filters_to_prune_per_layer[l][j-1]+1:
+                        if filters_to_prune_per_layer[l][j] != filters_to_prune_per_layer[l][j - 1] + 1:
                             if progressive:
                                 begin = filters_to_prune_per_layer[l][first_ptr] - prev_len
-                                end = filters_to_prune_per_layer[l][j-1] - prev_len
+                                end = filters_to_prune_per_layer[l][j - 1] - prev_len
                             else:
                                 begin = filters_to_prune_per_layer[l][first_ptr]
-                                end = filters_to_prune_per_layer[l][j-1]
+                                end = filters_to_prune_per_layer[l][j - 1]
                             filters_to_prune.append((l, (begin, end)))
-                            prev_len += (end-begin+1)
+                            prev_len += (end - begin + 1)
                             first_ptr = j
                         j += 1
                     if progressive:
                         begin = filters_to_prune_per_layer[l][first_ptr] - prev_len
-                        end = filters_to_prune_per_layer[l][j-1] - prev_len
+                        end = filters_to_prune_per_layer[l][j - 1] - prev_len
                     else:
                         begin = filters_to_prune_per_layer[l][first_ptr]
-                        end = filters_to_prune_per_layer[l][j-1]
+                        end = filters_to_prune_per_layer[l][j - 1]
                     filters_to_prune.append((l, (begin, end)))
         else:
             for l in filters_to_prune_per_layer:
@@ -622,7 +639,8 @@ class FilterPruner(object):
                     self.quota[k] = int(self.filter_ranks[k].size(0)) - 1
             else:
                 for k in self.filter_ranks:
-                    self.quota[k] = np.minimum(int(np.floor(self.filter_ranks[k].size(0) * (1-self.safeguard))), int(self.filter_ranks[k].size(0)) - 2)
+                    self.quota[k] = np.minimum(int(np.floor(self.filter_ranks[k].size(0) * (1 - self.safeguard))),
+                                               int(self.filter_ranks[k].size(0)) - 2)
         filters_to_prune = self.one_shot_lowest_ranking_filters(num_filters_to_prune)
 
         filters_to_prune_per_layer = {}
@@ -631,7 +649,8 @@ class FilterPruner(object):
                 filters_to_prune_per_layer[l] = []
             filters_to_prune_per_layer[l].append(f)
 
-        filters_to_prune = self.pack_pruning_target(filters_to_prune_per_layer, get_segment=get_segment, progressive=progressive)
+        filters_to_prune = self.pack_pruning_target(filters_to_prune_per_layer, get_segment=get_segment,
+                                                    progressive=progressive)
 
         return filters_to_prune
 
@@ -640,7 +659,7 @@ class FilterPruner(object):
         second = 0
         for conv_idx in self.activation_to_conv:
             conv = self.activation_to_conv[conv_idx]
-            layer_cost = self.cost_map[conv_idx]*conv.weight.size(0)*conv.weight.size(1)
+            layer_cost = self.cost_map[conv_idx] * conv.weight.size(0) * conv.weight.size(1)
             if conv_idx == 0:
                 first += layer_cost
             else:
@@ -648,7 +667,7 @@ class FilterPruner(object):
 
         # TODO: this is wrong if there are multiple linear layers
         first += self.base_flops
-        ratio = (np.sqrt(first**2+4*second*target)-first) / (2.*second)
+        ratio = (np.sqrt(first ** 2 + 4 * second * target) - first) / (2. * second)
         return ratio
 
     def uniform_grow(self, growth_rate):
@@ -657,34 +676,34 @@ class FilterPruner(object):
         first = self.activation_to_conv[0]
         for m in self.model.modules():
             if isinstance(m, DownsampleA):
-                m.out_channels = int(np.round(m.out_channels*growth_rate))
+                m.out_channels = int(np.round(m.out_channels * growth_rate))
 
             elif isinstance(m, nn.Conv2d):
                 conv = m
                 if conv.groups == conv.out_channels and conv.groups == conv.in_channels:
-                    new_conv = torch.nn.Conv2d(in_channels = int(np.round(conv.out_channels*growth_rate)), \
-                                    out_channels = int(np.round(conv.out_channels*growth_rate)),
-                                    kernel_size = conv.kernel_size, \
-                                    stride = conv.stride,
-                                    padding = conv.padding,
-                                    dilation = conv.dilation,
-                                    groups = int(np.round(conv.out_channels*growth_rate)),
-                                    bias = conv.bias)
-                    conv.in_channels = int(np.round(conv.out_channels*growth_rate))
-                    conv.groups = int(np.round(conv.out_channels*growth_rate))
-                    conv.out_channels = int(np.round(conv.out_channels*growth_rate))
+                    new_conv = torch.nn.Conv2d(in_channels=int(np.round(conv.out_channels * growth_rate)), \
+                                               out_channels=int(np.round(conv.out_channels * growth_rate)),
+                                               kernel_size=conv.kernel_size, \
+                                               stride=conv.stride,
+                                               padding=conv.padding,
+                                               dilation=conv.dilation,
+                                               groups=int(np.round(conv.out_channels * growth_rate)),
+                                               bias=conv.bias)
+                    conv.in_channels = int(np.round(conv.out_channels * growth_rate))
+                    conv.groups = int(np.round(conv.out_channels * growth_rate))
+                    conv.out_channels = int(np.round(conv.out_channels * growth_rate))
                 else:
-                    in_grown = int(np.round(conv.in_channels*growth_rate)) if conv != first else 3
-                    new_conv = torch.nn.Conv2d(in_channels = in_grown, \
-                                    out_channels = int(np.round(conv.out_channels*growth_rate)),
-                                    kernel_size = conv.kernel_size, \
-                                    stride = conv.stride,
-                                    padding = conv.padding,
-                                    dilation = conv.dilation,
-                                    groups = conv.groups,
-                                    bias = conv.bias)
+                    in_grown = int(np.round(conv.in_channels * growth_rate)) if conv != first else 3
+                    new_conv = torch.nn.Conv2d(in_channels=in_grown, \
+                                               out_channels=int(np.round(conv.out_channels * growth_rate)),
+                                               kernel_size=conv.kernel_size, \
+                                               stride=conv.stride,
+                                               padding=conv.padding,
+                                               dilation=conv.dilation,
+                                               groups=conv.groups,
+                                               bias=conv.bias)
                     conv.in_channels = in_grown
-                    conv.out_channels = int(np.round(conv.out_channels*growth_rate))
+                    conv.out_channels = int(np.round(conv.out_channels * growth_rate))
 
                 old_weights = conv.weight.data.cpu().numpy()
                 new_weights = new_conv.weight.data.cpu().numpy()
@@ -709,12 +728,12 @@ class FilterPruner(object):
                 next_bn = m
                 # Surgery on next batchnorm layer
                 next_new_bn = \
-                    torch.nn.BatchNorm2d(num_features = int(np.round(next_bn.num_features*growth_rate)),\
-                            eps =  next_bn.eps, \
-                            momentum = next_bn.momentum, \
-                            affine = next_bn.affine,
-                            track_running_stats = next_bn.track_running_stats)
-                next_bn.num_features = int(np.round(next_bn.num_features*growth_rate))
+                    torch.nn.BatchNorm2d(num_features=int(np.round(next_bn.num_features * growth_rate)), \
+                                         eps=next_bn.eps, \
+                                         momentum=next_bn.momentum, \
+                                         affine=next_bn.affine,
+                                         track_running_stats=next_bn.track_running_stats)
+                next_bn.num_features = int(np.round(next_bn.num_features * growth_rate))
 
                 old_weights = next_bn.weight.data.cpu().numpy()
                 new_weights = next_new_bn.weight.data.cpu().numpy()
@@ -744,15 +763,15 @@ class FilterPruner(object):
                 next_bn.running_var.data = torch.from_numpy(new_running_var).to(self.device)
 
             elif isinstance(m, nn.Linear):
-                new_linear_layer = torch.nn.Linear(int(np.round(m.in_features*growth_rate)), m.out_features)
-                m.in_features = int(np.round(m.in_features*growth_rate))
-        
+                new_linear_layer = torch.nn.Linear(int(np.round(m.in_features * growth_rate)), m.out_features)
+                m.in_features = int(np.round(m.in_features * growth_rate))
+
                 old_weights = m.weight.data.cpu().numpy()
-                new_weights = new_linear_layer.weight.data.cpu().numpy()	 	
+                new_weights = new_linear_layer.weight.data.cpu().numpy()
 
                 new_weights[:, : old_weights.shape[1]] = old_weights
                 new_weights[:, old_weights.shape[1]:] = 0
-                
+
                 m.weight.data = torch.from_numpy(new_weights).to(self.device)
                 m.weight.grad = None
 
@@ -764,7 +783,8 @@ class FilterPruner(object):
                     self.quota[k] = int(self.filter_ranks[k].size(0)) - 1
             else:
                 for k in self.filter_ranks:
-                    self.quota[k] = np.minimum(int(np.floor(self.filter_ranks[k].size(0) * (1-self.safeguard))), int(self.filter_ranks[k].size(0)) - 2)
+                    self.quota[k] = np.minimum(int(np.floor(self.filter_ranks[k].size(0) * (1 - self.safeguard))),
+                                               int(self.filter_ranks[k].size(0)) - 2)
         multi_filters_to_prune = self.one_shot_lowest_ranking_filters_multi_targets(targets)
 
         filters_to_prune_per_layer = [{} for _ in range(len(multi_filters_to_prune))]
