@@ -1,16 +1,13 @@
 import torch
-
 import sys
 import numpy as np
 import torchvision
-
-import torch.utils.data as data
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torch.utils.data.sampler import SubsetRandomSampler
-from torchvision import transforms, datasets
-import src.n2n as n2n
+from torchvision import transforms
+from model.resnet_cifar10 import BasicBlock
 from pruner.fp_mbnetv2 import FilterPrunerMBNetV2
 from pruner.fp_resnet import FilterPrunerResNet
 import argparse
@@ -236,10 +233,10 @@ def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--datapath", type=str, default='/data')
     parser.add_argument("--dataset", type=str, default='torchvision.datasets.CIFAR10')
-    parser.add_argument("--epoch", type=int, default=180)
+    parser.add_argument("--epoch", type=int, default=60)
     parser.add_argument("--name", type=str, default='ft_mbnetv2')
     parser.add_argument("--model", type=str, default='ft_mbnetv2')
-    parser.add_argument("--batch_size", type=int, default=256)
+    parser.add_argument("--batch_size", type=int, default=128)
     parser.add_argument("--lr", type=float, default=1e-2)
     parser.add_argument("--lbda", type=float, default=3e-9)
     parser.add_argument("--prune_away", type=float, default=0.5, help='The constraint level in portion to the original network, e.g. 0.5 is prune away 50%')
@@ -253,35 +250,20 @@ def get_args():
 if __name__ == '__main__':
     args = get_args()
     print(args)
-    model = model = n2n.N2N(10, 3, [5,5,5], 2, True, False,
-                        widthofFirstLayer=8, model=None, archNums=None, widthOfLayers=None)
-
-    model.cuda()
-    transform_train = transforms.Compose([
-        transforms.RandomCrop(32, padding=4),
-        transforms.RandomHorizontalFlip(),
-        transforms.ToTensor(),
-        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
-    ])
-
-    transform_test = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
-    ])
-
-
-    dataloader = datasets.CIFAR10
-    num_classes = 10
-    train_set = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
-
-    train_loader = data.DataLoader(train_set, batch_size=256, pin_memory=True,
-                                  shuffle=True, num_workers=6)
-
-    test_set = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
-    testloader = data.DataLoader(test_set, batch_size=100, shuffle=False, num_workers=6)
+    model = torch.load(args.model)
 
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                      std=[0.229, 0.224, 0.225])
+    train_set = eval(args.dataset)(args.datapath, True, transforms.Compose([
+            transforms.RandomCrop(32, padding=4),
+            transforms.RandomHorizontalFlip(),
+            transforms.ToTensor(),
+            normalize,
+        ]))
+    val_set = eval(args.dataset)(args.datapath, True, transforms.Compose([
+            transforms.ToTensor(),
+            normalize,
+        ]))
 
     num_train = len(train_set)
     indices = list(range(num_train))
@@ -294,9 +276,28 @@ if __name__ == '__main__':
     train_sampler = SubsetRandomSampler(train_idx)
     valid_sampler = SubsetRandomSampler(valid_idx)
 
+    test_set = eval(args.dataset)(args.datapath, False, transforms.Compose([
+            transforms.ToTensor(),
+            normalize,
+        ]))
+    train_loader = torch.utils.data.DataLoader(
+        train_set, batch_size=args.batch_size, shuffle=True,
+        num_workers=0, pin_memory=True
+    )
+    val_loader = torch.utils.data.DataLoader(
+        val_set, batch_size=args.batch_size, sampler=valid_sampler,
+        num_workers=0, pin_memory=True
+    )
+    test_loader = torch.utils.data.DataLoader(
+        test_set, batch_size=125, shuffle=False,
+        num_workers=0, pin_memory=False
+    )
 
-    train_set.num_classes = 10
-    pruner = FilterPrunerResNet(model, 'l2_weight', num_cls=train_set.num_classes)
+    if 'CIFAR10' in args.dataset:
+        train_set.num_classes = 10
+    elif 'CIFAR100' in args.dataset:
+        train_set.num_classes = 100
+    pruner = eval(args.pruner)(model, 'l2_weight', num_cls=train_set.num_classes) 
     flops, num_params = measure_model(pruner.model, pruner, 32)
     maps = pruner.omap_size
     cbns = get_cbns(pruner.model)

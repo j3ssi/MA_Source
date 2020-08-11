@@ -5,11 +5,14 @@ import torch.nn as nn
 from pruner.filter_pruner import FilterPruner
 from torchvision.models.resnet import Bottleneck
 
+
 def get_num_gen(gen):
     return sum(1 for x in gen)
 
+
 def is_leaf(model):
     return get_num_gen(model.children()) == 0
+
 
 class FilterPrunerResNet(FilterPruner):
     def trace_layer(self, layer, x):
@@ -23,46 +26,48 @@ class FilterPrunerResNet(FilterPruner):
             self.cost_map[self.activation_index] = h * w * layer.weight.size(2) * layer.weight.size(3) / layer.groups
 
             self.in_params[self.activation_index] = layer.weight.size(1) * layer.weight.size(2) * layer.weight.size(3)
-            self.cur_flops += h * w * layer.weight.size(0) * layer.weight.size(1) * layer.weight.size(2) * layer.weight.size(3)
+            self.cur_flops += h * w * layer.weight.size(0) * layer.weight.size(1) * layer.weight.size(
+                2) * layer.weight.size(3)
 
             if self.rank_type == 'l1_weight':
                 if self.activation_index not in self.filter_ranks:
                     self.filter_ranks[self.activation_index] = torch.zeros(layer.weight.size(0), device=self.device)
                 values = (torch.abs(layer.weight.data)).sum(1).sum(1).sum(1)
                 # Normalize the rank by the filter dimensions
-                #values = values / (layer.weight.size(1) * layer.weight.size(2) * layer.weight.size(3))
+                # values = values / (layer.weight.size(1) * layer.weight.size(2) * layer.weight.size(3))
                 self.filter_ranks[self.activation_index] = values
-            elif self.rank_type == 'l2_weight': 
+            elif self.rank_type == 'l2_weight':
                 if self.activation_index not in self.filter_ranks:
                     self.filter_ranks[self.activation_index] = torch.zeros(layer.weight.size(0), device=self.device)
                 values = (torch.pow(layer.weight.data, 2)).sum(1).sum(1).sum(1)
                 # Normalize the rank by the filter dimensions
-                #values = values / (layer.weight.size(1) * layer.weight.size(2) * layer.weight.size(3))
+                # values = values / (layer.weight.size(1) * layer.weight.size(2) * layer.weight.size(3))
                 self.filter_ranks[self.activation_index] = values
-            elif self.rank_type == 'l2_bn' or self.rank_type == 'l1_bn' or self.rank_type == 'l2_bn_param': 
+            elif self.rank_type == 'l2_bn' or self.rank_type == 'l1_bn' or self.rank_type == 'l2_bn_param':
                 pass
             else:
                 y.register_hook(self.compute_rank)
                 self.activations.append(y)
 
-            self.rates[self.activation_index] = self.conv_in_channels[self.activation_index] * self.cost_map[self.activation_index]
+            self.rates[self.activation_index] = self.conv_in_channels[self.activation_index] * self.cost_map[
+                self.activation_index]
             self.activation_to_conv[self.activation_index] = layer
             self.conv_to_index[layer] = self.activation_index
             self.activation_index += 1
-            
-        elif isinstance(layer, nn.BatchNorm2d):
-            self.bn_for_conv[self.activation_index-1] = layer
-            if self.rank_type == 'l2_bn': 
-                if self.activation_index-1 not in self.filter_ranks:
-                    self.filter_ranks[self.activation_index-1] = torch.zeros(layer.weight.size(0), device=self.device)
-                values = torch.pow(layer.weight.data, 2)
-                self.filter_ranks[self.activation_index-1] = values
 
-            elif self.rank_type == 'l2_bn_param': 
-                if self.activation_index-1 not in self.filter_ranks:
-                    self.filter_ranks[self.activation_index-1] = torch.zeros(layer.weight.size(0), device=self.device)
+        elif isinstance(layer, nn.BatchNorm2d):
+            self.bn_for_conv[self.activation_index - 1] = layer
+            if self.rank_type == 'l2_bn':
+                if self.activation_index - 1 not in self.filter_ranks:
+                    self.filter_ranks[self.activation_index - 1] = torch.zeros(layer.weight.size(0), device=self.device)
                 values = torch.pow(layer.weight.data, 2)
-                self.filter_ranks[self.activation_index-1] = values * self.in_params[self.activation_index-1]
+                self.filter_ranks[self.activation_index - 1] = values
+
+            elif self.rank_type == 'l2_bn_param':
+                if self.activation_index - 1 not in self.filter_ranks:
+                    self.filter_ranks[self.activation_index - 1] = torch.zeros(layer.weight.size(0), device=self.device)
+                values = torch.pow(layer.weight.data, 2)
+                self.filter_ranks[self.activation_index - 1] = values * self.in_params[self.activation_index - 1]
 
         elif isinstance(layer, nn.Linear):
             self.base_flops += np.prod(layer.weight.shape)
@@ -145,7 +150,9 @@ class FilterPrunerResNet(FilterPruner):
                     def new_forward(m):
                         def lambda_forward(x):
                             return self.trace_layer(m, x)
+
                         return lambda_forward
+
                     child.old_forward = child.forward
                     child.forward = new_forward(child)
                 else:
@@ -167,10 +174,10 @@ class FilterPrunerResNet(FilterPruner):
         self.btnk = False
         for m in self.model.modules():
             if isinstance(m, nn.Linear):
-                self.linear = m 
+                self.linear = m
             if isinstance(m, Bottleneck):
                 self.btnk = True
-    
+
         if self.btnk:
             self.parse_dependency_btnk()
         else:
@@ -219,10 +226,10 @@ class FilterPrunerResNet(FilterPruner):
                 if len(inactive_filter) > 0:
                     filters_to_prune_per_layer[self.chains[conv_idx]] = list(inactive_filter.astype(int))
                     if len(inactive_filter) == bn.weight.size(0):
-                        filters_to_prune_per_layer[self.chains[conv_idx]] = filters_to_prune_per_layer[self.chains[conv_idx]][:-2]
+                        filters_to_prune_per_layer[self.chains[conv_idx]] = filters_to_prune_per_layer[
+                                                                                self.chains[conv_idx]][:-2]
                 visited.append(self.chains[conv_idx])
             conv_idx = self.chains[conv_idx]
-            
 
         for conv_idx in self.activation_to_conv:
             if conv_idx not in visited:
@@ -233,7 +240,7 @@ class FilterPrunerResNet(FilterPruner):
                     filters_to_prune_per_layer[conv_idx] = list(inactive_filter.astype(int))
                     if len(inactive_filter) == bn.weight.size(0):
                         filters_to_prune_per_layer[conv_idx] = filters_to_prune_per_layer[conv_idx][:-2]
-            
+
         return filters_to_prune_per_layer
 
     def get_valid_flops(self):
@@ -278,7 +285,6 @@ class FilterPrunerResNet(FilterPruner):
                         out_channels[self.chains[conv_idx]] = 2
                 visited.append(self.chains[conv_idx])
             conv_idx = self.chains[conv_idx]
-            
 
         for conv_idx in self.activation_to_conv:
             if conv_idx not in visited:
@@ -289,12 +295,12 @@ class FilterPrunerResNet(FilterPruner):
                     out_channels[conv_idx] -= len(inactive_filter)
                     if len(inactive_filter) == bn.weight.size(0):
                         out_channels[conv_idx] = 2
-            
+
         flops = 0
         for k in self.activation_to_conv:
             flops += self.cost_map[k] * in_channels[k] * out_channels[k]
         flops += out_channels[k] * self.num_cls
-                
+
         return flops
 
     def mask_conv_layer_segment(self, layer_index, filter_range):
@@ -304,32 +310,32 @@ class FilterPrunerResNet(FilterPruner):
         # Retrive conv based on layer_index
         conv = self.activation_to_conv[layer_index]
 
-        #if layer_index in self.pre_padding:
+        # if layer_index in self.pre_padding:
         #    self.pre_padding[layer_index].out_channels -= pruned_filters
         next_bn = self.bn_for_conv[layer_index]
         next_conv_idx = self.next_conv[layer_index] if layer_index in self.next_conv else None
 
         # Surgery on the conv layer to be pruned
         # dw-conv, reduce groups as well
-        conv.weight.data[filters_begin:filters_end+1,:,:,:] = 0
+        conv.weight.data[filters_begin:filters_end + 1, :, :, :] = 0
         conv.weight.grad = None
 
         if not conv.bias is None:
-            conv.bias.data[filters_begin:filters_end+1] = 0
+            conv.bias.data[filters_begin:filters_end + 1] = 0
             conv.bias.grad = None
-            
-        next_bn.weight.data[filters_begin:filters_end+1] = 0
+
+        next_bn.weight.data[filters_begin:filters_end + 1] = 0
         next_bn.weight.grad = None
 
-        next_bn.bias.data[filters_begin:filters_end+1] = 0
+        next_bn.bias.data[filters_begin:filters_end + 1] = 0
         next_bn.bias.grad = None
 
-        next_bn.running_mean.data[filters_begin:filters_end+1] = 0
+        next_bn.running_mean.data[filters_begin:filters_end + 1] = 0
         next_bn.running_mean.grad = None
 
-        next_bn.running_var.data[filters_begin:filters_end+1] = 0
+        next_bn.running_var.data[filters_begin:filters_end + 1] = 0
         next_bn.running_var.grad = None
-        
+
     def prune_conv_layer_segment(self, layer_index, filter_range):
         filters_begin = filter_range[0]
         filters_end = filter_range[1]
@@ -346,28 +352,28 @@ class FilterPrunerResNet(FilterPruner):
         # dw-conv, reduce groups as well
         if conv.groups == conv.out_channels and conv.groups == conv.in_channels:
             new_conv = \
-                torch.nn.Conv2d(in_channels = conv.out_channels - pruned_filters, \
-                        out_channels = conv.out_channels - pruned_filters,
-                        kernel_size = conv.kernel_size, \
-                        stride = conv.stride,
-                        padding = conv.padding,
-                        dilation = conv.dilation,
-                        groups = conv.groups - pruned_filters,
-                        bias = conv.bias)
+                torch.nn.Conv2d(in_channels=conv.out_channels - pruned_filters, \
+                                out_channels=conv.out_channels - pruned_filters,
+                                kernel_size=conv.kernel_size, \
+                                stride=conv.stride,
+                                padding=conv.padding,
+                                dilation=conv.dilation,
+                                groups=conv.groups - pruned_filters,
+                                bias=conv.bias)
 
             conv.in_channels -= pruned_filters
             conv.out_channels -= pruned_filters
             conv.groups -= pruned_filters
         else:
             new_conv = \
-                torch.nn.Conv2d(in_channels = conv.in_channels, \
-                        out_channels = conv.out_channels - pruned_filters,
-                        kernel_size = conv.kernel_size, \
-                        stride = conv.stride,
-                        padding = conv.padding,
-                        dilation = conv.dilation,
-                        groups = conv.groups,
-                        bias = conv.bias)
+                torch.nn.Conv2d(in_channels=conv.in_channels, \
+                                out_channels=conv.out_channels - pruned_filters,
+                                kernel_size=conv.kernel_size, \
+                                stride=conv.stride,
+                                padding=conv.padding,
+                                dilation=conv.dilation,
+                                groups=conv.groups,
+                                bias=conv.bias)
 
             conv.out_channels -= pruned_filters
 
@@ -375,7 +381,7 @@ class FilterPrunerResNet(FilterPruner):
         new_weights = new_conv.weight.data.cpu().numpy()
 
         new_weights[: filters_begin, :, :, :] = old_weights[: filters_begin, :, :, :]
-        new_weights[filters_begin : , :, :, :] = old_weights[filters_end + 1 :, :, :, :]
+        new_weights[filters_begin:, :, :, :] = old_weights[filters_end + 1:, :, :, :]
 
         conv.weight.data = torch.from_numpy(new_weights).to(self.device)
         conv.weight.grad = None
@@ -383,19 +389,19 @@ class FilterPrunerResNet(FilterPruner):
         if not conv.bias is None:
             bias_numpy = conv.bias.data.cpu().numpy()
 
-            bias = np.zeros(shape = (bias_numpy.shape[0] - pruned_filters), dtype = np.float32)
+            bias = np.zeros(shape=(bias_numpy.shape[0] - pruned_filters), dtype=np.float32)
             bias[:filters_begin] = bias_numpy[:filters_begin]
-            bias[filters_begin : ] = bias_numpy[filters_end + 1 :]
+            bias[filters_begin:] = bias_numpy[filters_end + 1:]
             conv.bias.data = torch.from_numpy(bias).to(self.device)
             conv.bias.grad = None
-            
+
         # Surgery on next batchnorm layer
         next_new_bn = \
-            torch.nn.BatchNorm2d(num_features = next_bn.num_features-pruned_filters,\
-                    eps =  next_bn.eps, \
-                    momentum = next_bn.momentum, \
-                    affine = next_bn.affine,
-                    track_running_stats = next_bn.track_running_stats)
+            torch.nn.BatchNorm2d(num_features=next_bn.num_features - pruned_filters, \
+                                 eps=next_bn.eps, \
+                                 momentum=next_bn.momentum, \
+                                 affine=next_bn.affine,
+                                 track_running_stats=next_bn.track_running_stats)
         next_bn.num_features -= pruned_filters
 
         old_weights = next_bn.weight.data.cpu().numpy()
@@ -408,25 +414,24 @@ class FilterPrunerResNet(FilterPruner):
         new_running_var = next_new_bn.running_var.data.cpu().numpy()
 
         new_weights[: filters_begin] = old_weights[: filters_begin]
-        new_weights[filters_begin :] = old_weights[filters_end + 1 :]
+        new_weights[filters_begin:] = old_weights[filters_end + 1:]
         next_bn.weight.data = torch.from_numpy(new_weights).to(self.device)
         next_bn.weight.grad = None
 
         new_bias[: filters_begin] = old_bias[: filters_begin]
-        new_bias[filters_begin :] = old_bias[filters_end + 1 :]
+        new_bias[filters_begin:] = old_bias[filters_end + 1:]
         next_bn.bias.data = torch.from_numpy(new_bias).to(self.device)
         next_bn.bias.grad = None
 
         new_running_mean[: filters_begin] = old_running_mean[: filters_begin]
-        new_running_mean[filters_begin :] = old_running_mean[filters_end + 1 :]
+        new_running_mean[filters_begin:] = old_running_mean[filters_end + 1:]
         next_bn.running_mean.data = torch.from_numpy(new_running_mean).to(self.device)
         next_bn.running_mean.grad = None
 
         new_running_var[: filters_begin] = old_running_var[: filters_begin]
-        new_running_var[filters_begin :] = old_running_var[filters_end + 1 :]
+        new_running_var[filters_begin:] = old_running_var[filters_end + 1:]
         next_bn.running_var.data = torch.from_numpy(new_running_var).to(self.device)
         next_bn.running_var.grad = None
-        
 
         # Found next convolution layer
         if next_conv_idx:
@@ -434,43 +439,43 @@ class FilterPrunerResNet(FilterPruner):
                 for next_conv_i in next_conv_idx:
                     next_conv = self.activation_to_conv[next_conv_i]
                     next_new_conv = \
-                        torch.nn.Conv2d(in_channels = next_conv.in_channels - pruned_filters,\
-                                out_channels =  next_conv.out_channels, \
-                                kernel_size = next_conv.kernel_size, \
-                                stride = next_conv.stride,
-                                padding = next_conv.padding,
-                                dilation = next_conv.dilation,
-                                groups = next_conv.groups,
-                                bias = next_conv.bias)
+                        torch.nn.Conv2d(in_channels=next_conv.in_channels - pruned_filters, \
+                                        out_channels=next_conv.out_channels, \
+                                        kernel_size=next_conv.kernel_size, \
+                                        stride=next_conv.stride,
+                                        padding=next_conv.padding,
+                                        dilation=next_conv.dilation,
+                                        groups=next_conv.groups,
+                                        bias=next_conv.bias)
                     next_conv.in_channels -= pruned_filters
 
                     old_weights = next_conv.weight.data.cpu().numpy()
                     new_weights = next_new_conv.weight.data.cpu().numpy()
 
                     new_weights[:, : filters_begin, :, :] = old_weights[:, : filters_begin, :, :]
-                    new_weights[:, filters_begin : , :, :] = old_weights[:, filters_end + 1 :, :, :]
+                    new_weights[:, filters_begin:, :, :] = old_weights[:, filters_end + 1:, :, :]
                     next_conv.weight.data = torch.from_numpy(new_weights).to(self.device)
                     next_conv.weight.grad = None
         else:
-            #Prunning the last conv layer. This affects the first linear layer of the classifier.
+            # Prunning the last conv layer. This affects the first linear layer of the classifier.
             if self.linear is None:
                 raise BaseException("No linear laye found in classifier")
-            params_per_input_channel = int(self.linear.in_features / (conv.out_channels+pruned_filters))
+            params_per_input_channel = int(self.linear.in_features / (conv.out_channels + pruned_filters))
 
             new_linear_layer = \
-                    torch.nn.Linear(self.linear.in_features - pruned_filters*params_per_input_channel, 
-                            self.linear.out_features)
+                torch.nn.Linear(self.linear.in_features - pruned_filters * params_per_input_channel,
+                                self.linear.out_features)
 
-            self.linear.in_features -= pruned_filters*params_per_input_channel
-            
+            self.linear.in_features -= pruned_filters * params_per_input_channel
+
             old_weights = self.linear.weight.data.cpu().numpy()
-            new_weights = new_linear_layer.weight.data.cpu().numpy()	 	
+            new_weights = new_linear_layer.weight.data.cpu().numpy()
 
             new_weights[:, : int(filters_begin * params_per_input_channel)] = \
-                    old_weights[:, : int(filters_begin * params_per_input_channel)]
-            new_weights[:, int(filters_begin * params_per_input_channel) :] = \
-                    old_weights[:, int((filters_end + 1) * params_per_input_channel) :]
-            
+                old_weights[:, : int(filters_begin * params_per_input_channel)]
+            new_weights[:, int(filters_begin * params_per_input_channel):] = \
+                old_weights[:, int((filters_end + 1) * params_per_input_channel):]
+
             self.linear.weight.data = torch.from_numpy(new_weights).to(self.device)
             self.linear.weight.grad = None
 
@@ -482,13 +487,13 @@ class FilterPrunerResNet(FilterPruner):
             current_chains.append(t)
             t = self.chains[t]
         current_chains.append(t)
-        prune_away = int(action*self.conv_out_channels[layer_id])
+        prune_away = int(action * self.conv_out_channels[layer_id])
         if (not self.btnk) and (len(current_chains) > 1):
-            top_pruning = 16 if current_chains[0] == 0 else int(current_chains[0] / 18)*16
+            top_pruning = 16 if current_chains[0] == 0 else int(current_chains[0] / 18) * 16
             prune_away = np.minimum(prune_away, top_pruning)
         # Used to identify which layer cannot make decision later on
         # If it is chained with same size, it is determined by the first one.
-        cur_filter_size = self.conv_out_channels[layer_id] 
+        cur_filter_size = self.conv_out_channels[layer_id]
         for layer in current_chains:
             if self.conv_out_channels[layer] == cur_filter_size:
                 self.amc_checked.append(layer)
@@ -521,7 +526,7 @@ class FilterPrunerResNet(FilterPruner):
                     if max_sparsity == 1:
                         tmp_out_channels[i] = 1
                     else:
-                        tmp_out_channels[i] = int(np.ceil(tmp_out_channels[i] * (1-max_sparsity)))
+                        tmp_out_channels[i] = int(np.ceil(tmp_out_channels[i] * (1 - max_sparsity)))
 
                     rest_total_filters += self.conv_out_channels[i]
                     rest_min_filters += tmp_out_channels[i]
@@ -531,7 +536,7 @@ class FilterPrunerResNet(FilterPruner):
         for key in self.cost_map:
             cost += self.conv_out_channels[key]
 
-        return next_layer, cost, rest_max_filters 
+        return next_layer, cost, rest_max_filters
 
     def amc_compress(self, layer_id, action, max_sparsity):
         # Chain residual connections
@@ -541,13 +546,13 @@ class FilterPrunerResNet(FilterPruner):
             current_chains.append(t)
             t = self.chains[t]
         current_chains.append(t)
-        prune_away = int(action*self.conv_out_channels[layer_id])
+        prune_away = int(action * self.conv_out_channels[layer_id])
         if (not self.btnk) and (len(current_chains) > 1):
-            top_pruning = 16 if current_chains[0] == 0 else int(current_chains[0] / 18)*16
+            top_pruning = 16 if current_chains[0] == 0 else int(current_chains[0] / 18) * 16
             prune_away = np.minimum(prune_away, top_pruning)
         # Used to identify which layer cannot make decision later on
         # If it is chained with same size, it is determined by the first one.
-        cur_filter_size = self.conv_out_channels[layer_id] 
+        cur_filter_size = self.conv_out_channels[layer_id]
         for layer in current_chains:
             if self.conv_out_channels[layer] == cur_filter_size:
                 self.amc_checked.append(layer)
@@ -586,32 +591,33 @@ class FilterPrunerResNet(FilterPruner):
                 for next_conv_i in next_conv_idx:
                     next_conv = self.activation_to_conv[next_conv_i]
                     if (next_conv.groups != next_conv.out_channels or next_conv.groups != next_conv.in_channels):
-                        tmp_in_channels[next_conv_i] = self.og_conv_in_channels[next_conv_i] * (1-max_sparsity)
-                        init_in[next_conv_i] = self.og_conv_in_channels[next_conv_i] * (1-max_sparsity)
+                        tmp_in_channels[next_conv_i] = self.og_conv_in_channels[next_conv_i] * (1 - max_sparsity)
+                        init_in[next_conv_i] = self.og_conv_in_channels[next_conv_i] * (1 - max_sparsity)
 
         for i in range(next_layer, len(self.activation_to_conv)):
             if not i in self.amc_checked:
-                rest += self.cost_map[i]*self.conv_in_channels[i]*self.conv_out_channels[i]
+                rest += self.cost_map[i] * self.conv_in_channels[i] * self.conv_out_channels[i]
 
                 if not i in next_chains:
-                    tmp_out_channels[i] *= (1-max_sparsity)
+                    tmp_out_channels[i] *= (1 - max_sparsity)
                     next_conv_idx = self.next_conv[i] if i in self.next_conv else None
                     if next_conv_idx:
                         for next_conv_i in next_conv_idx:
                             next_conv = self.activation_to_conv[next_conv_i]
-                            if (next_conv.groups != next_conv.out_channels or next_conv.groups != next_conv.in_channels):
+                            if (
+                                    next_conv.groups != next_conv.out_channels or next_conv.groups != next_conv.in_channels):
                                 tmp_in_channels[next_conv_i] = tmp_out_channels[i]
 
                     if i in init_in:
-                        rest_total_flops += self.cost_map[i]*init_in[i]*self.conv_out_channels[i]
+                        rest_total_flops += self.cost_map[i] * init_in[i] * self.conv_out_channels[i]
                     else:
-                        rest_total_flops += self.cost_map[i]*self.conv_in_channels[i]*self.conv_out_channels[i]
-                    rest_min_flops += self.cost_map[i]*tmp_in_channels[i]*tmp_out_channels[i]
+                        rest_total_flops += self.cost_map[i] * self.conv_in_channels[i] * self.conv_out_channels[i]
+                    rest_min_flops += self.cost_map[i] * tmp_in_channels[i] * tmp_out_channels[i]
         rest_max_flops = rest_total_flops - rest_min_flops
 
         cost = 0
         for key in self.cost_map:
-            cost += self.cost_map[key]*self.conv_in_channels[key]*self.conv_out_channels[key]
-        cost += self.conv_out_channels[key]*self.num_cls
+            cost += self.cost_map[key] * self.conv_in_channels[key] * self.conv_out_channels[key]
+        cost += self.conv_out_channels[key] * self.num_cls
 
-        return next_layer, cost, rest, rest_max_flops 
+        return next_layer, cost, rest, rest_max_flops
