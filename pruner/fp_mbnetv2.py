@@ -3,7 +3,6 @@ import numpy as np
 import torch.nn as nn
 
 from pruner.filter_pruner import FilterPruner
-from model.MobileNetV2 import InvertedResidual
 
 class FilterPrunerMBNetV2(FilterPruner):
     def parse_dependency(self):

@@ -3,7 +3,6 @@ import numpy as np
 import torch.nn as nn
 
 from pruner.filter_pruner import FilterPruner
-from model.resnet_cifar10 import BasicBlock, DownsampleA
 from torchvision.models.resnet import Bottleneck
 
 def get_num_gen(gen):
