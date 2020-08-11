@@ -7,7 +7,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torch.utils.data.sampler import SubsetRandomSampler
 from torchvision import transforms
-from model.resnet_cifar10 import BasicBlock
+import model.resnet_cifar10 as resnet
 from pruner.fp_mbnetv2 import FilterPrunerMBNetV2
 from pruner.fp_resnet import FilterPrunerResNet
 import argparse
@@ -250,7 +250,7 @@ def get_args():
 if __name__ == '__main__':
     args = get_args()
     print(args)
-    model = torch.load(args.model)
+    model = resnet.ResNet32(10)
 
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                      std=[0.229, 0.224, 0.225])
