@@ -256,6 +256,20 @@ if __name__ == '__main__':
     model = model = n2n.N2N(10, 3, [5,5,5], 2, True, False,
                         widthofFirstLayer=8, model=None, archNums=None, widthOfLayers=None)
 
+
+    transform_train = transforms.Compose([
+        transforms.RandomCrop(32, padding=4),
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor(),
+        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+    ])
+
+    transform_test = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+    ])
+
+
     dataloader = datasets.CIFAR10
     num_classes = 10
     trainset = dataloader(root='./dataset/data/torch', train=True, download=True, transform=transform_train)
