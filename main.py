@@ -130,8 +130,6 @@ parser.add_argument('-e', '--evaluate', dest='evaluate', action='store_true',
                     help='evaluate model on validation set')
 parser.add_argument('--dynlr', default=False, action='store_true',
                     help='Dynamische LR')
-parser.add_argument('--deltalr', default=False, action='store_true',
-                    help='Verändere die LR')
 parser.add_argument('--schedule-exp', type=int, default=0, help='Exponential LR decay.')
 
 # PruneTrain
@@ -406,9 +404,10 @@ def main():
     while i == 1:
         for epoch in range(start_epoch, args.epochs + start_epoch):
             # adjust learning rate when epoch is the scheduled epoch
-            if not args.delta_learning_rate:
-                adjust_learning_rate(optimizer, epoch)
-
+            if args.delta_learning_rate :
+                adjust_learning_rate(optimizer, epoch, True)
+            elif args.dynlr:
+                adjust_learning_rate(optimizer, epoch, False)
             print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs + start_epoch - 1, args.lr))
             start = time.time()
             train_loss, train_acc, train_epoch_time = train(trainloader, model, criterion,
@@ -711,9 +710,9 @@ def test(testloader, model, criterion, epoch, use_cuda):
     return (losses.avg, top1.avg, epoch_time)
 
 
-def adjust_learning_rate(optimizer, epoch):
+def adjust_learning_rate(optimizer, epoch, change_lr):
     global state
-    if args.dynlr and args.deltalr:
+    if not change_lr:
         if args.schedule_exp == 0:
             # Step-wise LR decay
             set_lr = args.lr
@@ -728,7 +727,7 @@ def adjust_learning_rate(optimizer, epoch):
             exp = int((epoch - 1) / args.schedule_exp)
             state['lr'] = set_lr * (args.gamma ** exp)
             args.lr = set_lr
-    elif args.deltalr:
+    else:
         if args.schedule_exp == 0:
             # Step-wise LR decay
             set_lr = args.lr
