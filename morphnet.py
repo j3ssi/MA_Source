@@ -252,7 +252,7 @@ if __name__ == '__main__':
     args = get_args()
     print(args)
     model = resnet.ResNet32(10)
-
+    model.cuda()
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                      std=[0.229, 0.224, 0.225])
     train_set = eval(args.dataset)(args.datapath, True, transforms.Compose([
