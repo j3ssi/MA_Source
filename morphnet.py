@@ -298,7 +298,7 @@ if __name__ == '__main__':
         train_set.num_classes = 10
     elif 'CIFAR100' in args.dataset:
         train_set.num_classes = 100
-    pruner = eval(args.pruner)(model, 'l2_weight', num_cls=train_set.num_classes) 
+    pruner = FilterPrunerResNet(model, 'l2_weight', num_cls=train_set.num_classes)
     flops, num_params = measure_model(pruner.model, pruner, 32)
     maps = pruner.omap_size
     cbns = get_cbns(pruner.model)
