@@ -8,8 +8,9 @@ import torch.optim as optim
 from torch.utils.data.sampler import SubsetRandomSampler
 from torchvision import transforms
 import model.resnet_cifar10 as resnet
-from pruner.fp_mbnetv2 import FilterPrunerMBNetV2
-from pruner.fp_resnet import FilterPrunerResNet
+# from pruner.fp_mbnetv2 import FilterPrunerMBNetV2
+# from pruner.fp_resnet import FilterPrunerResNet
+import pruner.fp_resnet
 import argparse
 
 def measure_model(model, pruner, img_size):
