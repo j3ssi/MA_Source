@@ -118,7 +118,7 @@ parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
                     metavar='LR', help='initial learning rate')
 parser.add_argument('-dlr', '--delta_learning_rate', default=False, action='store_true',
                     help='No change in learning rate')
-parser.add_argument('--schedule', type=int, nargs='+', default=[93, 150],
+parser.add_argument('--schedule', type=int, nargs='+', default=[3, 150],
                     help='Decrease learning rate at these epochs.')
 parser.add_argument('--gamma', type=float, default=0.1, help='LR is multiplied by gamma on schedule.')
 parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
@@ -408,6 +408,7 @@ def main():
                 adjust_learning_rate(optimizer, epoch, True)
             elif args.dynlr:
                 adjust_learning_rate(optimizer, epoch, False)
+            print(f'lr: {args.lr}')
             print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs + start_epoch - 1, args.lr))
             start = time.time()
             train_loss, train_acc, train_epoch_time = train(trainloader, model, criterion,
@@ -714,6 +715,7 @@ def adjust_learning_rate(optimizer, epoch, change_lr):
     global state
     if not change_lr:
         if args.schedule_exp == 0:
+            print(f'1')
             # Step-wise LR decay
             set_lr = args.lr
             for lr_decay in args.schedule:
@@ -722,6 +724,7 @@ def adjust_learning_rate(optimizer, epoch, change_lr):
             state['lr'] = set_lr
             args.lr = set_lr
         else:
+            print(f'2')
             # Exponential LR decay
             set_lr = args.lr
             exp = int((epoch - 1) / args.schedule_exp)
@@ -729,6 +732,7 @@ def adjust_learning_rate(optimizer, epoch, change_lr):
             args.lr = set_lr
     else:
         if args.schedule_exp == 0:
+            print(f'3')
             # Step-wise LR decay
             set_lr = args.lr
             for lr_decay in args.schedule:
@@ -737,6 +741,7 @@ def adjust_learning_rate(optimizer, epoch, change_lr):
             state['lr'] = set_lr
             args.lr = set_lr
         else:
+            print(f'4')
             # Exponential LR decay
             set_lr = args.lr
             exp = int((epoch - 1) / args.schedule_exp)
