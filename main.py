@@ -320,6 +320,7 @@ def main():
         args.checkpoint = os.path.dirname(args.resume)
         checkpoint = torch.load(args.resume)
         best_acc = checkpoint['best_acc']
+        args.lr = checkpoint['lr']
         start_epoch = checkpoint['epoch']
         # start_batchSize = checkpoint['start_batchSize']
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
@@ -528,6 +529,7 @@ def main():
         start_epoch = 1
     save_checkpoint({
         'epoch': args.epochs + start_epoch,
+        'lr': args.lr,
         'acc': test_acc,
         'best_acc': best_acc,
         'optimizer': optimizer.state_dict(), },
