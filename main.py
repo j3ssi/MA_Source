@@ -523,6 +523,9 @@ def main():
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                               weight_decay=args.weight_decay)
 
+    if args.epoch + start_epoch == 180:
+        print(f'Model: {model}')
+
     print("[INFO] Storing checkpoint...")
     if args.reset:
         args.epoch = 0
