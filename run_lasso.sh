@@ -1,7 +1,4 @@
 #!/bin/sh
-echo "baseline"
-CUDA_LAUNCH_BLOCKING=1 CUDA_VISIBLE_DEVICES=2 ./baseline.sh $1
-sleep 20
 
 echo "Lasso 0.05"
 CUDA_LAUNCH_BLOCKING=1 CUDA_VISIBLE_DEVICES=2 ./run_lasso_005.sh $1
