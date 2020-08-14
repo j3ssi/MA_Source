@@ -416,8 +416,7 @@ def main():
                                                             optimizer, epoch, use_cuda)
             ende = time.time()
 
-            if args.test:
-                test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
+            test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
             # append logger file
             logger.append([state['lr'], train_loss, test_loss, train_acc, test_acc, train_epoch_time,
@@ -523,7 +522,7 @@ def main():
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                               weight_decay=args.weight_decay)
 
-    if args.epochs + start_epoch == 180:
+    if start_epoch == 176:
         print(f'Model: {model}')
 
     print("[INFO] Storing checkpoint...")
@@ -554,8 +553,7 @@ def main():
     logger.close()
     print("\n ",
           args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
-    if args.test:
-        print(" ", test_acc)
+    print(" ", test_acc)
     print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
     print(' {:5.3f}s'.format(ende - start), end='  ')
 
