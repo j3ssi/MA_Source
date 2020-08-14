@@ -716,7 +716,7 @@ def test(testloader, model, criterion, epoch, use_cuda):
 
 def adjust_learning_rate(optimizer, epoch, change_lr):
     global state
-    if not change_lr:
+    if change_lr:
         if args.schedule_exp == 0:
             print(f'1')
             # Step-wise LR decay
