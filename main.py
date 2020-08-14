@@ -400,6 +400,8 @@ def main():
         optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
                          weight_decay=args.weight_decay)
 
+
+
     i = 1
     # for epochNet2Net in range(1, 4):
     while i == 1:
