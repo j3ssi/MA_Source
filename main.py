@@ -414,10 +414,12 @@ def main():
             print(f'lr: {args.lr}')
             print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs + start_epoch - 1, args.lr))
             start = time.time()
+            torch.cuda.reset_max_memory_allocated()
+
             train_loss, train_acc, train_epoch_time = train(trainloader, model, criterion,
                                                             optimizer, epoch, use_cuda)
             ende = time.time()
-
+            print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated()}')
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
             # append logger file
