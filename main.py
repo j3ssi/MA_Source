@@ -457,6 +457,7 @@ def main():
             #   model, optimizer = amp.initialize(model, optimizer)
             #
             count = 0
+            print(f'count0: {count0}')
             for p in model.parameters():
                 count += p.data.nelement()
             if count < count1:
