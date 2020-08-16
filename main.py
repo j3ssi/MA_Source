@@ -419,7 +419,7 @@ def main():
             train_loss, train_acc, train_epoch_time = train(trainloader, model, criterion,
                                                             optimizer, epoch, use_cuda)
             ende = time.time()
-            print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated()}')
+            print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated()/ 10000000}')
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
             # append logger file
