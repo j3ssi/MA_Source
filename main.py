@@ -72,7 +72,7 @@ parser.add_argument('-l', '--layersInBlock', type=int, default=3, help='defines 
 parser.add_argument('-n', type=str, help="#stage numbers separated by commas")
 parser.add_argument('-b', '--bottleneck', default=False, action='store_true',
                     help='Set the bootleneck parameter')
-parser.add_argument('-w', '--widthofFirstLayer', default=3, type=int,
+parser.add_argument('-w', '--widthofFirstLayer', default=16, type=int,
                     help='defines the width of the first stage in net')
 
 # epochs and stuff
