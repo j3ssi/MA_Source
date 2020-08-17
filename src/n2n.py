@@ -211,8 +211,6 @@ class N2N(nn.Module):
 
                                 firstBlockInStage = False
 
-
-
                             elif firstBlockInStage and not firstLayer:
                                 conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1,
                                                  bias=False,
@@ -233,6 +231,8 @@ class N2N(nn.Module):
                     firstLayer = False
 
                     # 18
+
+
 
                 # conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
                 #                  stride=1)
@@ -255,7 +255,7 @@ class N2N(nn.Module):
                     elif isinstance(m, nn.BatchNorm2d):
                         m.weight.data.fill_(1)
                         m.bias.data.zero_()
-            # print(self)
+            print(self)
             self.sameNode, self.oddLayers = buildShareSameNodeLayers(self.module_list, self.numOfStages, self.archNums)
             self.stageI, self.stageO = buildResidualPath(self.module_list, self.numOfStages, self.archNums)
             # print(f'sameNode: {self.sameNode}')
