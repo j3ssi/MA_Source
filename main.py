@@ -110,7 +110,7 @@ parser.add_argument('--batchTrue', default=False, action='store_true',
                     help='Set the batchsize')
 parser.add_argument('--batch_size', default=1000, type=int,
                     metavar='N', help='batch size')
-parser.add_argument('-lB' '--largeBatch', default=False, action='store_true',
+parser.add_argument('-dB' '--dynBatch', default=False, action='store_true',
                     help='Use large or small batch size')
 
 # other model stuff
@@ -197,14 +197,13 @@ best_acc = 0  # best test accuracy
 
 def main():
     global best_acc
-
     # checkpoint
     if not os.path.isdir(args.checkpoint):
         mkdir_p(args.checkpoint)
 
     # torch
-    # torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = True
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
     # choose which gpu to use
     # not_enough_memory = True
     # use_gpu = 'cuda:1'
@@ -265,9 +264,12 @@ def main():
     #         time.sleep(600)
 
     # Random seed
+    random_numbers= [38886, 16527, 29245, 43782, 19381]
     if args.manualSeed is None:
         args.manualSeed = random.randint(1, 10000)
-    random.seed(args.manualSeed)
+    else:
+        if args.manualSeed - 1 < len(random_numbers):
+            random.seed(random_numbers[args.manualSeed])
     torch.manual_seed(args.manualSeed)
     if use_cuda:
         torch.manual_seed(args.manualSeed)
