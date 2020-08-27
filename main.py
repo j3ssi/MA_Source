@@ -265,12 +265,10 @@ def main():
 
     # Random seed
     random_numbers= [38886, 16527, 29245, 43782, 19381]
-    if args.manualSeed is None:
-        args.manualSeed = random.randint(1, 10000)
-    else:
+    if args.manualSeed is not None:
         if args.manualSeed - 1 < len(random_numbers):
             random.seed(random_numbers[args.manualSeed])
-    torch.manual_seed(args.manualSeed)
+            print(f'Random number: {random_numbers[args.manualSeed]}')
     if use_cuda:
         torch.manual_seed(args.manualSeed)
 
