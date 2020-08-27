@@ -58,16 +58,17 @@ class BasicBlock(nn.Module):
 class ResNet(nn.Module):
     def __init__(self, block, num_blocks, num_classes=10):
         super(ResNet, self).__init__()
-        self.in_planes = 16
+        inPlanes = 16
+        self.in_planes = inPlanes
 
-        self.features = [conv_bn(3, 16, 1)]
-        self.features.append(self._make_layer(block, 16, num_blocks[0], stride=1))
-        self.features.append(self._make_layer(block, 32, num_blocks[1], stride=2))
-        self.features.append(self._make_layer(block, 64, num_blocks[2], stride=2))
+        self.features = [conv_bn(3, inPlanes, 1)]
+        self.features.append(self._make_layer(block, inPlanes, num_blocks[0], stride=1))
+        self.features.append(self._make_layer(block, inPlanes*2, num_blocks[1], stride=2))
+        self.features.append(self._make_layer(block, inPlanes*4, num_blocks[2], stride=2))
         self.features.append(nn.AvgPool2d(8))
         self.features = nn.Sequential(*self.features)
         
-        self.classifier = nn.Sequential(nn.Linear(64, num_classes))
+        self.classifier = nn.Sequential(nn.Linear(inPlanes*4, num_classes))
         self._initialize_weights()
 
     def _initialize_weights(self):

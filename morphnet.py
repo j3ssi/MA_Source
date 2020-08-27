@@ -237,10 +237,10 @@ def get_args():
     parser.add_argument("--epoch", type=int, default=180)
     parser.add_argument("--name", type=str, default='ft_mbnetv2')
     parser.add_argument("--model", type=str, default='ft_mbnetv2')
-    parser.add_argument("--batch_size", type=int, default=128)
-    parser.add_argument("--lr", type=float, default=1e-2)
+    parser.add_argument("--batch_size", type=int, default=256)
+    parser.add_argument("--lr", type=float, default=1e-1)
     parser.add_argument("--lbda", type=float, default=3e-9)
-    parser.add_argument("--prune_away", type=float, default=1, help='The constraint level in portion to the original network, e.g. 0.5 is prune away 50%')
+    parser.add_argument("--prune_away", type=float, default=0.5, help='The constraint level in portion to the original network, e.g. 0.5 is prune away 50%')
     parser.add_argument("--constraint", type=str, default='flops')
     parser.add_argument("--large_input", action='store_true', default=False)
     parser.add_argument("--no_grow", action='store_true', default=False)
@@ -300,6 +300,7 @@ if __name__ == '__main__':
         train_set.num_classes = 100
     pruner = FilterPrunerResNet(model, 'l2_weight', num_cls=train_set.num_classes)
     flops, num_params = measure_model(pruner.model, pruner, 32)
+    print(f'flops: {flops}')
     maps = pruner.omap_size
     cbns = get_cbns(pruner.model)
     print('Before Pruning | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops/1000000., num_params/1000000.))
