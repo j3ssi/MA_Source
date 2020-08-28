@@ -2,7 +2,7 @@
 
 
 echo "Thres 0.1 1"
-./run_thres11.sh 1
+time ./run_thres11.sh 1
 sleep 20
 
 echo "Thres 0.1 2"
