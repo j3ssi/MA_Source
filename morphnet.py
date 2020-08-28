@@ -234,7 +234,7 @@ def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--datapath", type=str, default='/home/jessica.buehler/MA_Source/dataset/data/torch')
     parser.add_argument("--dataset", type=str, default='torchvision.datasets.CIFAR10')
-    parser.add_argument("--epoch", type=int, default=180)
+    parser.add_argument("--epoch", type=int, default=60)
     parser.add_argument("--name", type=str, default='ft_mbnetv2')
     parser.add_argument("--model", type=str, default='ft_mbnetv2')
     parser.add_argument("--batch_size", type=int, default=256)
