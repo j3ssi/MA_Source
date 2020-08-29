@@ -1,0 +1,314 @@
+Namespace(batch_size=256, constraint='flops', datapath='/home/jessica.buehler/MA_Source/dataset/data/torch', dataset='torchvision.datasets.CIFAR10', epoch=60, large_input=False, lbda=3e-08, lr=0.1, model='ft_mbnetv2', name='ft_mbnetv2', no_grow=False, prune_away=3.97, pruner='FilterPrunnerResNet')
+flops: 17326400
+Before Pruning | FLOPs: 17.326M | #Params: 0.116M
+Epoch 0
+Train | Batch (1/196) | Top-1: 8.20 (21/256)
+Train | Batch (101/196) | Top-1: 20.66 (5341/25856)
+Train | Batch (196/196) | Top-1: 25.28 (12640/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 31.52
+Epoch 1
+Train | Batch (1/196) | Top-1: 29.69 (76/256)
+Train | Batch (101/196) | Top-1: 33.69 (8710/25856)
+Train | Batch (196/196) | Top-1: 35.31 (17654/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 36.48
+Epoch 2
+Train | Batch (1/196) | Top-1: 40.23 (103/256)
+Train | Batch (101/196) | Top-1: 38.82 (10038/25856)
+Train | Batch (196/196) | Top-1: 39.93 (19966/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 38.84
+Epoch 3
+Train | Batch (1/196) | Top-1: 43.75 (112/256)
+Train | Batch (101/196) | Top-1: 42.01 (10863/25856)
+Train | Batch (196/196) | Top-1: 42.93 (21466/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 45.64
+Epoch 4
+Train | Batch (1/196) | Top-1: 42.19 (108/256)
+Train | Batch (101/196) | Top-1: 45.64 (11800/25856)
+Train | Batch (196/196) | Top-1: 46.08 (23038/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 48.18
+Epoch 5
+Train | Batch (1/196) | Top-1: 50.78 (130/256)
+Train | Batch (101/196) | Top-1: 48.53 (12547/25856)
+Train | Batch (196/196) | Top-1: 49.30 (24650/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 49.94
+Epoch 6
+Train | Batch (1/196) | Top-1: 52.34 (134/256)
+Train | Batch (101/196) | Top-1: 51.05 (13199/25856)
+Train | Batch (196/196) | Top-1: 51.26 (25630/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 52.80
+Epoch 7
+Train | Batch (1/196) | Top-1: 51.17 (131/256)
+Train | Batch (101/196) | Top-1: 52.42 (13555/25856)
+Train | Batch (196/196) | Top-1: 52.77 (26387/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 52.78
+Epoch 8
+Train | Batch (1/196) | Top-1: 50.39 (129/256)
+Train | Batch (101/196) | Top-1: 54.39 (14064/25856)
+Train | Batch (196/196) | Top-1: 54.39 (27194/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 55.42
+Epoch 9
+Train | Batch (1/196) | Top-1: 55.47 (142/256)
+Train | Batch (101/196) | Top-1: 55.50 (14349/25856)
+Train | Batch (196/196) | Top-1: 55.55 (27775/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 56.24
+Epoch 10
+Train | Batch (1/196) | Top-1: 48.44 (124/256)
+Train | Batch (101/196) | Top-1: 56.34 (14567/25856)
+Train | Batch (196/196) | Top-1: 56.97 (28487/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 54.70
+Epoch 11
+Train | Batch (1/196) | Top-1: 64.06 (164/256)
+Train | Batch (101/196) | Top-1: 57.86 (14960/25856)
+Train | Batch (196/196) | Top-1: 58.20 (29100/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 58.88
+Epoch 12
+Train | Batch (1/196) | Top-1: 55.86 (143/256)
+Train | Batch (101/196) | Top-1: 58.71 (15181/25856)
+Train | Batch (196/196) | Top-1: 59.17 (29587/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 58.16
+Epoch 13
+Train | Batch (1/196) | Top-1: 55.86 (143/256)
+Train | Batch (101/196) | Top-1: 60.59 (15665/25856)
+Train | Batch (196/196) | Top-1: 60.51 (30257/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 58.88
+Epoch 14
+Train | Batch (1/196) | Top-1: 60.16 (154/256)
+Train | Batch (101/196) | Top-1: 61.18 (15818/25856)
+Train | Batch (196/196) | Top-1: 61.32 (30658/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 61.68
+Epoch 15
+Train | Batch (1/196) | Top-1: 56.64 (145/256)
+Train | Batch (101/196) | Top-1: 61.76 (15969/25856)
+Train | Batch (196/196) | Top-1: 62.00 (31000/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 62.14
+Epoch 16
+Train | Batch (1/196) | Top-1: 67.19 (172/256)
+Train | Batch (101/196) | Top-1: 62.90 (16264/25856)
+Train | Batch (196/196) | Top-1: 63.06 (31531/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 63.00
+Epoch 17
+Train | Batch (1/196) | Top-1: 67.97 (174/256)
+Train | Batch (101/196) | Top-1: 63.93 (16529/25856)
+Train | Batch (196/196) | Top-1: 63.80 (31898/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 59.96
+Epoch 18
+Train | Batch (1/196) | Top-1: 62.50 (160/256)
+Train | Batch (101/196) | Top-1: 64.67 (16722/25856)
+Train | Batch (196/196) | Top-1: 64.81 (32404/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 64.46
+Epoch 19
+Train | Batch (1/196) | Top-1: 65.23 (167/256)
+Train | Batch (101/196) | Top-1: 65.17 (16851/25856)
+Train | Batch (196/196) | Top-1: 65.28 (32640/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 61.46
+Epoch 20
+Train | Batch (1/196) | Top-1: 65.62 (168/256)
+Train | Batch (101/196) | Top-1: 65.75 (17001/25856)
+Train | Batch (196/196) | Top-1: 65.92 (32960/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 66.60
+Epoch 21
+Train | Batch (1/196) | Top-1: 65.62 (168/256)
+Train | Batch (101/196) | Top-1: 66.80 (17272/25856)
+Train | Batch (196/196) | Top-1: 66.57 (33286/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 65.44
+Epoch 22
+Train | Batch (1/196) | Top-1: 67.97 (174/256)
+Train | Batch (101/196) | Top-1: 67.20 (17375/25856)
+Train | Batch (196/196) | Top-1: 67.35 (33676/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 65.18
+Epoch 23
+Train | Batch (1/196) | Top-1: 62.50 (160/256)
+Train | Batch (101/196) | Top-1: 68.00 (17583/25856)
+Train | Batch (196/196) | Top-1: 68.07 (34035/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 66.90
+Epoch 24
+Train | Batch (1/196) | Top-1: 69.14 (177/256)
+Train | Batch (101/196) | Top-1: 68.36 (17674/25856)
+Train | Batch (196/196) | Top-1: 68.66 (34331/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 65.96
+Epoch 25
+Train | Batch (1/196) | Top-1: 67.58 (173/256)
+Train | Batch (101/196) | Top-1: 69.16 (17881/25856)
+Train | Batch (196/196) | Top-1: 69.12 (34561/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 68.48
+Epoch 26
+Train | Batch (1/196) | Top-1: 67.97 (174/256)
+Train | Batch (101/196) | Top-1: 69.52 (17974/25856)
+Train | Batch (196/196) | Top-1: 69.72 (34862/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 68.60
+Epoch 27
+Train | Batch (1/196) | Top-1: 73.83 (189/256)
+Train | Batch (101/196) | Top-1: 69.89 (18072/25856)
+Train | Batch (196/196) | Top-1: 70.35 (35175/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 70.90
+Epoch 28
+Train | Batch (1/196) | Top-1: 71.09 (182/256)
+Train | Batch (101/196) | Top-1: 70.81 (18308/25856)
+Train | Batch (196/196) | Top-1: 70.91 (35454/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 71.18
+Epoch 29
+Train | Batch (1/196) | Top-1: 69.14 (177/256)
+Train | Batch (101/196) | Top-1: 71.65 (18525/25856)
+Train | Batch (196/196) | Top-1: 71.30 (35651/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 72.70
+Epoch 30
+Train | Batch (1/196) | Top-1: 68.75 (176/256)
+Train | Batch (101/196) | Top-1: 72.20 (18667/25856)
+Train | Batch (196/196) | Top-1: 72.12 (36058/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 72.18
+Epoch 31
+Train | Batch (1/196) | Top-1: 73.05 (187/256)
+Train | Batch (101/196) | Top-1: 72.48 (18741/25856)
+Train | Batch (196/196) | Top-1: 72.59 (36294/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 72.16
+Epoch 32
+Train | Batch (1/196) | Top-1: 67.19 (172/256)
+Train | Batch (101/196) | Top-1: 72.83 (18831/25856)
+Train | Batch (196/196) | Top-1: 73.03 (36513/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 73.70
+Epoch 33
+Train | Batch (1/196) | Top-1: 76.17 (195/256)
+Train | Batch (101/196) | Top-1: 73.48 (18998/25856)
+Train | Batch (196/196) | Top-1: 73.35 (36675/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 73.84
+Epoch 34
+Train | Batch (1/196) | Top-1: 71.48 (183/256)
+Train | Batch (101/196) | Top-1: 73.80 (19082/25856)
+Train | Batch (196/196) | Top-1: 73.93 (36963/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 74.56
+Epoch 35
+Train | Batch (1/196) | Top-1: 77.73 (199/256)
+Train | Batch (101/196) | Top-1: 74.25 (19199/25856)
+Train | Batch (196/196) | Top-1: 74.22 (37112/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 74.38
+Epoch 36
+Train | Batch (1/196) | Top-1: 68.36 (175/256)
+Train | Batch (101/196) | Top-1: 74.46 (19253/25856)
+Train | Batch (196/196) | Top-1: 74.55 (37275/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 75.76
+Epoch 37
+Train | Batch (1/196) | Top-1: 75.00 (192/256)
+Train | Batch (101/196) | Top-1: 74.64 (19299/25856)
+Train | Batch (196/196) | Top-1: 74.90 (37450/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 74.34
+Epoch 38
+Train | Batch (1/196) | Top-1: 75.39 (193/256)
+Train | Batch (101/196) | Top-1: 75.42 (19500/25856)
+Train | Batch (196/196) | Top-1: 75.46 (37729/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 76.40
+Epoch 39
+Train | Batch (1/196) | Top-1: 76.17 (195/256)
+Train | Batch (101/196) | Top-1: 75.84 (19609/25856)
+Train | Batch (196/196) | Top-1: 75.81 (37905/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 74.98
+Epoch 40
+Train | Batch (1/196) | Top-1: 76.17 (195/256)
+Train | Batch (101/196) | Top-1: 75.84 (19609/25856)
+Train | Batch (196/196) | Top-1: 75.87 (37933/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 76.70
+Epoch 41
+Train | Batch (1/196) | Top-1: 72.66 (186/256)
+Train | Batch (101/196) | Top-1: 76.44 (19765/25856)
+Train | Batch (196/196) | Top-1: 76.31 (38155/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 77.40
+Epoch 42
+Train | Batch (1/196) | Top-1: 77.73 (199/256)
+Train | Batch (101/196) | Top-1: 76.78 (19851/25856)
+Train | Batch (196/196) | Top-1: 76.70 (38352/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 76.70
+Epoch 43
+Train | Batch (1/196) | Top-1: 75.00 (192/256)
+Train | Batch (101/196) | Top-1: 76.74 (19842/25856)
+Train | Batch (196/196) | Top-1: 76.70 (38349/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 77.76
+Epoch 44
+Train | Batch (1/196) | Top-1: 77.34 (198/256)
+Train | Batch (101/196) | Top-1: 77.38 (20007/25856)
+Train | Batch (196/196) | Top-1: 77.05 (38527/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 77.96
+Epoch 45
+Train | Batch (1/196) | Top-1: 78.52 (201/256)
+Train | Batch (101/196) | Top-1: 77.03 (19917/25856)
+Train | Batch (196/196) | Top-1: 77.40 (38702/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 75.80
+Epoch 46
+Train | Batch (1/196) | Top-1: 78.12 (200/256)
+Train | Batch (101/196) | Top-1: 77.97 (20160/25856)
+Train | Batch (196/196) | Top-1: 77.78 (38891/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 76.42
+Epoch 47
+Train | Batch (1/196) | Top-1: 78.12 (200/256)
+Train | Batch (101/196) | Top-1: 77.60 (20065/25856)
+Train | Batch (196/196) | Top-1: 77.67 (38836/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 78.80
+Epoch 48
+Train | Batch (1/196) | Top-1: 79.30 (203/256)
+Train | Batch (101/196) | Top-1: 78.42 (20276/25856)
+Train | Batch (196/196) | Top-1: 78.21 (39107/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 76.10
+Epoch 49
+Train | Batch (1/196) | Top-1: 79.30 (203/256)
+Train | Batch (101/196) | Top-1: 78.39 (20269/25856)
+Train | Batch (196/196) | Top-1: 78.45 (39224/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 79.52
+Epoch 50
+Train | Batch (1/196) | Top-1: 77.34 (198/256)
+Train | Batch (101/196) | Top-1: 78.76 (20365/25856)
+Train | Batch (196/196) | Top-1: 78.50 (39249/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 79.10
+Epoch 51
+Train | Batch (1/196) | Top-1: 78.91 (202/256)
+Train | Batch (101/196) | Top-1: 79.05 (20439/25856)
+Train | Batch (196/196) | Top-1: 78.90 (39449/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 77.96
+Epoch 52
+Train | Batch (1/196) | Top-1: 74.22 (190/256)
+Train | Batch (101/196) | Top-1: 79.41 (20531/25856)
+Train | Batch (196/196) | Top-1: 79.08 (39539/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 79.16
+Epoch 53
+Train | Batch (1/196) | Top-1: 79.69 (204/256)
+Train | Batch (101/196) | Top-1: 79.21 (20480/25856)
+Train | Batch (196/196) | Top-1: 79.17 (39586/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 77.74
+Epoch 54
+Train | Batch (1/196) | Top-1: 81.25 (208/256)
+Train | Batch (101/196) | Top-1: 79.27 (20497/25856)
+Train | Batch (196/196) | Top-1: 79.37 (39683/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 74.74
+Epoch 55
+Train | Batch (1/196) | Top-1: 78.91 (202/256)
+Train | Batch (101/196) | Top-1: 79.34 (20514/25856)
+Train | Batch (196/196) | Top-1: 79.56 (39779/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 76.78
+Epoch 56
+Train | Batch (1/196) | Top-1: 80.86 (207/256)
+Train | Batch (101/196) | Top-1: 79.54 (20565/25856)
+Train | Batch (196/196) | Top-1: 79.75 (39877/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 78.12
+Epoch 57
+Train | Batch (1/196) | Top-1: 78.12 (200/256)
+Train | Batch (101/196) | Top-1: 79.97 (20676/25856)
+Train | Batch (196/196) | Top-1: 79.82 (39908/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 78.12
+Epoch 58
+Train | Batch (1/196) | Top-1: 79.30 (203/256)
+Train | Batch (101/196) | Top-1: 80.48 (20809/25856)
+Train | Batch (196/196) | Top-1: 80.34 (40171/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 77.46
+Epoch 59
+Train | Batch (1/196) | Top-1: 77.73 (199/256)
+Train | Batch (101/196) | Top-1: 80.23 (20743/25856)
+Train | Batch (196/196) | Top-1: 80.32 (40158/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 75.52
+Target (flops): 68.786M
+Layers that will be prunned: []
+Prunning filters..
+After Pruning | FLOPs: 17.326M | #Params: 0.116M
+1.9988810577146683
+Traceback (most recent call last):
+  File "morphnet.py", line 319, in <module>
+    pruner.uniform_grow(ratio)
+  File "/home/jessica.buehler/MA_Source/pruner/filter_pruner.py", line 678, in uniform_grow
+    if isinstance(m, DownsampleA):
+NameError: name 'DownsampleA' is not defined
