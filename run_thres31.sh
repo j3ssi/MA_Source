@@ -133,7 +133,7 @@ python3 main.py -j 6 --checkpoint ./output/experimente3/prune_thres31_$1 --epoch
 sleep 3
 
 echo "j: 166 bis 170"
-python3 main.py -j 6 --checkpoint ./output/experimente3/prune_thres31_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 5,5,5 -dlr --manualSeed $1-dlr --manualSeed $1 --sparse_interval 5 --en_group_lasso --var_group_lasso_coeff 0.2 --threshold 0.001 --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 170 --pathToModell ./output/experimente3/prune_thres31_$1/model.nn  --resume ./output/experimente3/prune_thres31_$1/checkpoint.pth.tar
+python3 main.py -j 6 --checkpoint ./output/experimente3/prune_thres31_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 5,5,5 -dlr --manualSeed $1 --sparse_interval 5 --en_group_lasso --var_group_lasso_coeff 0.2 --threshold 0.001 --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 170 --pathToModell ./output/experimente3/prune_thres31_$1/model.nn  --resume ./output/experimente3/prune_thres31_$1/checkpoint.pth.tar
 sleep 3
 
 echo "j: 171 bis 175"
