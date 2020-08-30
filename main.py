@@ -264,11 +264,11 @@ def main():
     #         time.sleep(600)
 
     # Random seed
-    random_numbers= [38886, 16527, 29245, 43782, 19381]
+    random_numbers= [16527, 29245, 43782, 19381, 38886]
     if args.manualSeed is not None:
         if args.manualSeed - 1 < len(random_numbers):
             random.seed(random_numbers[args.manualSeed])
-            print(f'Random number: {random_numbers[args.manualSeed]}')
+            print(f'Random number: {random_numbers[args.manualSeed-1]}')
     if use_cuda:
         torch.manual_seed(args.manualSeed)
 
