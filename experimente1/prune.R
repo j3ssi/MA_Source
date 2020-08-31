@@ -31,12 +31,18 @@ baselineO5Sum <- sum(baselineO5$TrainEpochTime.s.)/180
 
 baselineSum2 <- c(baselineO1Sum, baselineO2Sum, baselineO3Sum, baselineO4Sum)
 
+plot(baseline4$ValidAcc.,
+     xlab="Epoche",
+     ylab="Accuracy")
+
 boxplot(baselineSum1, baselineSum2)
 
 baselineAcc1 <- c(tail(baseline1$ValidAcc.,n=1), tail(baseline2$ValidAcc.,n=1), tail(baseline3$ValidAcc.,n=1), tail(baseline4$ValidAcc.,n=1))
-
 baselineAcc2 <- c(tail(baselineO1$ValidAcc.,n=1), tail(baselineO2$ValidAcc.,n=1), tail(baselineO3$ValidAcc.,n=1), tail(baselineO4$ValidAcc.,n=1))
-boxplot(baselineAcc1, baselineAcc2)
+
+boxplot(baselineAcc1, baselineAcc2,
+        ylab ="Accuracy")
+        axis(at=c(1,2),side =1, labels = c('Baseline mit LR Anpassung', 'Baseline ohne LR Anpassung'))
   
 prune_lasso005_1 <- read.delim("prune_lasso005_1.txt", header = TRUE, sep = "\t", dec = ".")
 prune_lasso005_2 <- read.delim("prune_lasso005_2.txt", header = TRUE, sep = "\t", dec = ".")
