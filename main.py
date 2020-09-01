@@ -473,7 +473,7 @@ def main():
                 print(f'Count: {count} ; {count0} ; {count / count0}')
                 count1 = count
 
-            if args.dB and epoch % 5 > 2:
+            if args.dB and epoch-1 % 5 > 2:
                 print(f'Drin!!')
                 if countB>count:
                     batch_size = int(memory / tmp_memory * batch_size)
