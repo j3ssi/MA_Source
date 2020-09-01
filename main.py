@@ -83,7 +83,7 @@ parser.add_argument('-r', '--reset', default=False, action='store_true',
 
 parser.add_argument('--start-epoch', default=1, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
-parser.add_argument('--epochsFromBegin', default=0, type=int, metavar='N',
+parser.add_argument('--epochsFromBegin', default=1, type=int, metavar='N',
                     help='number of Epochs from begin (default: 0)')
 parser.add_argument('--lastEpoch', default=False, action='store_true',
                     help='Last Epoch')
@@ -370,7 +370,7 @@ def main():
     count1 = count0
 
     # Calculate Size of Trainings Batch size
-    if not args.batchTrue:
+    if not args.batchTrue and args.epochsFromBegin==0:
 
         # calculate first how many blocks is equal to the count0
         sizeX = (count0 - 1306) / 97216
