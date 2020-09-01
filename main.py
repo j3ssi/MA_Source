@@ -473,8 +473,10 @@ def main():
                 count1 = count
 
             if args.dB and epoch % 5 > 2:
-                if countB<count:
+                if countB>count:
                     batch_size = int(memory / tmp_memory * batch_size)
+                    print(f'New batch Size {batch_size}!!')
+
                     memory = tmp_memory
             elif args.dB and epoch % 5 == 2:
                 memory = tmp_memory
