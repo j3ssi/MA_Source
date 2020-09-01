@@ -376,10 +376,10 @@ def main():
         sizeX = (count0 - 1306) / 97216
         # print(f'sizeX: {sizeX}')
         # Gerade für niedrige Batch size
-        if not args.largeBatch:
-            y = 68.25 * sizeX + 47.85
-        else:
-            y = 4.27 * sizeX + 2.60
+        #if not args.largeBatch:
+        #    y = 68.25 * sizeX + 47.85
+        #else:
+        y = 4.27 * sizeX + 2.60
         # calculate now the batch size
         batch_size = int(0.98 * count0 / sizeX / y)
         # delta_bs = (batch_size - 330)*0.3
