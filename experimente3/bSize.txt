@@ -1,209 +1,2056 @@
 j: 0 bis 5
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
-Traceback (most recent call last):
-  File "main.py", line 886, in <module>
-    main()
-  File "main.py", line 273, in main
-    torch.manual_seed(args.manualSeed)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/random.py", line 28, in manual_seed
-    seed = int(seed)
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
-j: 6 bis 10
+Random number: 16527
+Files already downloaded and verified
+numoFStages: 3
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (3): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (11): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (12): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (13): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (15): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (16): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (17): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (19): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (20): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (21): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (22): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (23): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (24): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (25): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (26): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (27): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (28): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (29): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (30): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (31): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (32): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (33): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (34): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (35): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (36): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (37): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (38): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (39): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (40): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (41): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (42): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (43): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (44): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (45): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (46): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (47): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (48): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (49): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (50): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (51): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (52): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (53): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (54): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (55): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (56): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (57): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (58): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (59): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (60): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (61): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (62): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (63): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (64): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (65): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (66): AdaptiveAvgPool2d(output_size=(1, 1))
+    (67): Linear(in_features=64, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+device count: 1
+Startepoche: 1
+Max memory: 0.202496
+batch_size: 245;389.1 ; lr: 0.1
+1
+lr: 0.095703125
+
+Epoch: [1 | 5] LR: 0.095703
+Epoch: [1][0/205]	Time 0.188 (0.188)	Data 0.277 (0.277)	Loss 3.4222 (3.4222)	Acc@1 9.796 (9.796)	Acc@5 47.347 (47.347)
+Epoch: [1][64/205]	Time 0.130 (0.133)	Data 0.000 (0.004)	Loss 2.4685 (2.6769)	Acc@1 37.143 (25.074)	Acc@5 83.673 (78.801)
+Epoch: [1][128/205]	Time 0.127 (0.132)	Data 0.000 (0.002)	Loss 2.2008 (2.5051)	Acc@1 42.449 (30.695)	Acc@5 89.796 (83.889)
+Epoch: [1][192/205]	Time 0.131 (0.132)	Data 0.001 (0.002)	Loss 2.0434 (2.3707)	Acc@1 51.020 (35.504)	Acc@5 91.837 (86.535)
+Max memory in training epoch: 66.4022528
+count0: 487386
+1
+lr: 0.095703125
+
+Epoch: [2 | 5] LR: 0.095703
+Epoch: [2][0/205]	Time 0.175 (0.175)	Data 0.308 (0.308)	Loss 2.1399 (2.1399)	Acc@1 41.224 (41.224)	Acc@5 93.061 (93.061)
+Epoch: [2][64/205]	Time 0.137 (0.135)	Data 0.000 (0.005)	Loss 1.7615 (1.9233)	Acc@1 57.551 (51.479)	Acc@5 97.143 (93.758)
+Epoch: [2][128/205]	Time 0.134 (0.135)	Data 0.000 (0.003)	Loss 1.8309 (1.8459)	Acc@1 56.735 (54.143)	Acc@5 94.286 (94.558)
+Epoch: [2][192/205]	Time 0.134 (0.135)	Data 0.001 (0.002)	Loss 1.5415 (1.7827)	Acc@1 65.306 (56.172)	Acc@5 96.735 (94.954)
+Max memory in training epoch: 65.5732224
+count0: 487386
+1
+lr: 0.095703125
+
+Epoch: [3 | 5] LR: 0.095703
+Epoch: [3][0/205]	Time 0.178 (0.178)	Data 0.305 (0.305)	Loss 1.7166 (1.7166)	Acc@1 55.510 (55.510)	Acc@5 95.102 (95.102)
+Epoch: [3][64/205]	Time 0.131 (0.135)	Data 0.000 (0.005)	Loss 1.4546 (1.5590)	Acc@1 68.571 (63.146)	Acc@5 97.143 (96.735)
+Epoch: [3][128/205]	Time 0.149 (0.135)	Data 0.000 (0.003)	Loss 1.4439 (1.5021)	Acc@1 66.939 (65.183)	Acc@5 97.551 (97.048)
+Epoch: [3][192/205]	Time 0.132 (0.134)	Data 0.001 (0.002)	Loss 1.2567 (1.4620)	Acc@1 76.327 (66.211)	Acc@5 97.551 (97.181)
+Max memory in training epoch: 65.5732224
+count0: 487386
+1
+lr: 0.095703125
+
+Epoch: [4 | 5] LR: 0.095703
+Epoch: [4][0/205]	Time 0.183 (0.183)	Data 0.304 (0.304)	Loss 1.3857 (1.3857)	Acc@1 65.306 (65.306)	Acc@5 96.327 (96.327)
+Epoch: [4][64/205]	Time 0.130 (0.134)	Data 0.000 (0.005)	Loss 1.3261 (1.3196)	Acc@1 72.245 (69.997)	Acc@5 97.959 (97.739)
+Epoch: [4][128/205]	Time 0.138 (0.133)	Data 0.000 (0.003)	Loss 1.1420 (1.2823)	Acc@1 77.143 (71.258)	Acc@5 96.735 (97.928)
+Epoch: [4][192/205]	Time 0.138 (0.133)	Data 0.001 (0.002)	Loss 1.1419 (1.2541)	Acc@1 75.510 (72.040)	Acc@5 98.367 (98.048)
+Max memory in training epoch: 65.5732224
+count0: 487386
+1
+lr: 0.095703125
+
+Epoch: [5 | 5] LR: 0.095703
+Epoch: [5][0/205]	Time 0.149 (0.149)	Data 0.270 (0.270)	Loss 1.1321 (1.1321)	Acc@1 75.918 (75.918)	Acc@5 99.184 (99.184)
+Epoch: [5][64/205]	Time 0.138 (0.134)	Data 0.000 (0.004)	Loss 1.1462 (1.2115)	Acc@1 72.653 (72.898)	Acc@5 99.592 (98.198)
+Epoch: [5][128/205]	Time 0.138 (0.134)	Data 0.000 (0.002)	Loss 1.0949 (1.1613)	Acc@1 73.469 (74.504)	Acc@5 99.184 (98.380)
+Epoch: [5][192/205]	Time 0.127 (0.133)	Data 0.001 (0.002)	Loss 1.1262 (1.1404)	Acc@1 72.653 (74.979)	Acc@5 98.776 (98.431)
+Max memory in training epoch: 65.5732224
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+numoFStages: 3
+count0: 487386
+[INFO] Storing checkpoint...
+
+  245
+  65.42
+Max memory: 103.3835008
+ 27.508s  j: 6 bis 10
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
-Traceback (most recent call last):
-  File "main.py", line 886, in <module>
-    main()
-  File "main.py", line 273, in main
-    torch.manual_seed(args.manualSeed)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/random.py", line 28, in manual_seed
-    seed = int(seed)
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
-j: 11 bis 15
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 6
+Max memory: 0.202496
+1
+lr: 0.37384033203125
+
+Epoch: [6 | 10] LR: 0.373840
+Epoch: [6][0/50]	Time 0.410 (0.410)	Data 0.480 (0.480)	Loss 1.0818 (1.0818)	Acc@1 75.000 (75.000)	Acc@5 98.600 (98.600)
+Max memory in training epoch: 260.2829824
+count0: 487386
+1
+lr: 0.37384033203125
+
+Epoch: [7 | 10] LR: 0.373840
+Epoch: [7][0/50]	Time 0.322 (0.322)	Data 0.482 (0.482)	Loss 0.9865 (0.9865)	Acc@1 79.700 (79.700)	Acc@5 98.700 (98.700)
+Max memory in training epoch: 260.2829824
+count0: 487386
+1
+lr: 0.37384033203125
+
+Epoch: [8 | 10] LR: 0.373840
+Epoch: [8][0/50]	Time 0.361 (0.361)	Data 0.479 (0.479)	Loss 0.9713 (0.9713)	Acc@1 78.200 (78.200)	Acc@5 98.300 (98.300)
+Max memory in training epoch: 260.2829824
+count0: 487386
+1
+lr: 0.37384033203125
+
+Epoch: [9 | 10] LR: 0.373840
+Epoch: [9][0/50]	Time 0.303 (0.303)	Data 0.522 (0.522)	Loss 0.8756 (0.8756)	Acc@1 81.300 (81.300)	Acc@5 99.500 (99.500)
+Max memory in training epoch: 260.2829824
+count0: 487386
+1
+lr: 0.37384033203125
+
+Epoch: [10 | 10] LR: 0.373840
+Epoch: [10][0/50]	Time 0.327 (0.327)	Data 0.465 (0.465)	Loss 0.8378 (0.8378)	Acc@1 82.900 (82.900)	Acc@5 98.900 (98.900)
+Max memory in training epoch: 260.2829824
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+numoFStages: 3
+count0: 487386
+[INFO] Storing checkpoint...
+
+  1000
+  61.65
+Max memory: 260.2829824
+ 13.319s  j: 11 bis 15
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
-Traceback (most recent call last):
-  File "main.py", line 886, in <module>
-    main()
-  File "main.py", line 273, in main
-    torch.manual_seed(args.manualSeed)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/random.py", line 28, in manual_seed
-    seed = int(seed)
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
-j: 16 bis 20
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 11
+Max memory: 0.202496
+1
+lr: 1.4603137969970703
+
+Epoch: [11 | 15] LR: 1.460314
+Epoch: [11][0/50]	Time 0.411 (0.411)	Data 0.510 (0.510)	Loss 0.8511 (0.8511)	Acc@1 81.100 (81.100)	Acc@5 99.000 (99.000)
+Max memory in training epoch: 260.2829824
+count0: 487386
+1
+lr: 1.4603137969970703
+
+Epoch: [12 | 15] LR: 1.460314
+Epoch: [12][0/50]	Time 0.354 (0.354)	Data 0.495 (0.495)	Loss 2.4433 (2.4433)	Acc@1 31.100 (31.100)	Acc@5 85.000 (85.000)
+Max memory in training epoch: 260.2829824
+count0: 487386
+1
+lr: 1.4603137969970703
+
+Epoch: [13 | 15] LR: 1.460314
+Epoch: [13][0/50]	Time 0.320 (0.320)	Data 0.484 (0.484)	Loss 1.9850 (1.9850)	Acc@1 36.400 (36.400)	Acc@5 90.100 (90.100)
+Max memory in training epoch: 260.2829824
+count0: 487386
+1
+lr: 1.4603137969970703
+
+Epoch: [14 | 15] LR: 1.460314
+Epoch: [14][0/50]	Time 0.364 (0.364)	Data 0.450 (0.450)	Loss 1.7202 (1.7202)	Acc@1 44.400 (44.400)	Acc@5 92.300 (92.300)
+Max memory in training epoch: 260.2829824
+count0: 487386
+1
+lr: 1.4603137969970703
+
+Epoch: [15 | 15] LR: 1.460314
+Epoch: [15][0/50]	Time 0.314 (0.314)	Data 0.494 (0.494)	Loss 1.4045 (1.4045)	Acc@1 57.200 (57.200)	Acc@5 95.900 (95.900)
+Max memory in training epoch: 260.2829824
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+numoFStages: 3
+count0: 487386
+Count: 390840 ; 487386 ; 0.8019106006327633
+[INFO] Storing checkpoint...
+
+  1000
+  25.54
+Max memory: 260.2829824
+ 13.315s  j: 16 bis 20
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
-Traceback (most recent call last):
-  File "main.py", line 886, in <module>
-    main()
-  File "main.py", line 273, in main
-    torch.manual_seed(args.manualSeed)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/random.py", line 28, in manual_seed
-    seed = int(seed)
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
-j: 21 bis 25
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 16
+Max memory: 0.1644544
+1
+lr: 5.704350769519806
+
+Epoch: [16 | 20] LR: 5.704351
+Epoch: [16][0/50]	Time 0.407 (0.407)	Data 0.518 (0.518)	Loss 1.3217 (1.3217)	Acc@1 61.100 (61.100)	Acc@5 95.300 (95.300)
+Max memory in training epoch: 246.7887104
+count0: 390840
+1
+lr: 5.704350769519806
+
+Epoch: [17 | 20] LR: 5.704351
+Epoch: [17][0/50]	Time 0.354 (0.354)	Data 0.482 (0.482)	Loss 2.8766 (2.8766)	Acc@1 13.800 (13.800)	Acc@5 52.400 (52.400)
+Max memory in training epoch: 246.7887104
+count0: 390840
+1
+lr: 5.704350769519806
+
+Epoch: [18 | 20] LR: 5.704351
+Epoch: [18][0/50]	Time 0.329 (0.329)	Data 0.523 (0.523)	Loss 3.0180 (3.0180)	Acc@1 10.400 (10.400)	Acc@5 52.900 (52.900)
+Max memory in training epoch: 246.7887104
+count0: 390840
+1
+lr: 5.704350769519806
+
+Epoch: [19 | 20] LR: 5.704351
+Epoch: [19][0/50]	Time 0.329 (0.329)	Data 0.497 (0.497)	Loss 2.3183 (2.3183)	Acc@1 18.400 (18.400)	Acc@5 72.900 (72.900)
+Max memory in training epoch: 246.7887104
+count0: 390840
+1
+lr: 5.704350769519806
+
+Epoch: [20 | 20] LR: 5.704351
+Epoch: [20][0/50]	Time 0.346 (0.346)	Data 0.533 (0.533)	Loss 2.7775 (2.7775)	Acc@1 10.800 (10.800)	Acc@5 48.600 (48.600)
+Max memory in training epoch: 246.7887104
+[INFO] Force the sparse filters to zero...
+[INFO] Squeezing the sparse model to dense one...
+numoFStages: 3
+count0: 390840
+Count: 381600 ; 390840 ; 0.9763586122198342
+[INFO] Storing checkpoint...
+
+  1000
+  16.76
+Max memory: 246.7887104
+ 13.195s  j: 21 bis 25
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
-Traceback (most recent call last):
-  File "main.py", line 886, in <module>
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.424 (0.424)	Data 0.460 (0.460)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.282 (0.282)	Data 0.500 (0.500)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
     main()
-  File "main.py", line 273, in main
-    torch.manual_seed(args.manualSeed)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/random.py", line 28, in manual_seed
-    seed = int(seed)
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.316 (0.316)	Data 0.477 (0.477)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
 j: 26 bis 30
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
-Traceback (most recent call last):
-  File "main.py", line 886, in <module>
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.398 (0.398)	Data 0.530 (0.530)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.300 (0.300)	Data 0.487 (0.487)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
     main()
-  File "main.py", line 273, in main
-    torch.manual_seed(args.manualSeed)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/random.py", line 28, in manual_seed
-    seed = int(seed)
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.288 (0.288)	Data 0.513 (0.513)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
 j: 31 bis 35
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
-Traceback (most recent call last):
-  File "main.py", line 886, in <module>
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.440 (0.440)	Data 0.454 (0.454)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.345 (0.345)	Data 0.498 (0.498)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
     main()
-  File "main.py", line 273, in main
-    torch.manual_seed(args.manualSeed)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/random.py", line 28, in manual_seed
-    seed = int(seed)
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.347 (0.347)	Data 0.519 (0.519)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
 j: 36 bis 40
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
-Traceback (most recent call last):
-  File "main.py", line 886, in <module>
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.361 (0.361)	Data 0.515 (0.515)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.314 (0.314)	Data 0.515 (0.515)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
     main()
-  File "main.py", line 273, in main
-    torch.manual_seed(args.manualSeed)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/random.py", line 28, in manual_seed
-    seed = int(seed)
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.359 (0.359)	Data 0.479 (0.479)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
 j: 41 bis 45
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
-Traceback (most recent call last):
-  File "main.py", line 886, in <module>
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.392 (0.392)	Data 0.499 (0.499)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.367 (0.367)	Data 0.463 (0.463)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
     main()
-  File "main.py", line 273, in main
-    torch.manual_seed(args.manualSeed)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/random.py", line 28, in manual_seed
-    seed = int(seed)
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.355 (0.355)	Data 0.473 (0.473)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
 j: 46 bis 50
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
-Traceback (most recent call last):
-  File "main.py", line 886, in <module>
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.432 (0.432)	Data 0.468 (0.468)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.359 (0.359)	Data 0.478 (0.478)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
     main()
-  File "main.py", line 273, in main
-    torch.manual_seed(args.manualSeed)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/random.py", line 28, in manual_seed
-    seed = int(seed)
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.307 (0.307)	Data 0.500 (0.500)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
 j: 51 bis 55
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
-Traceback (most recent call last):
-  File "main.py", line 886, in <module>
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.430 (0.430)	Data 0.474 (0.474)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.322 (0.322)	Data 0.501 (0.501)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
     main()
-  File "main.py", line 273, in main
-    torch.manual_seed(args.manualSeed)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/random.py", line 28, in manual_seed
-    seed = int(seed)
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.312 (0.312)	Data 0.450 (0.450)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
 j: 56 bis 60
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
-Traceback (most recent call last):
-  File "main.py", line 886, in <module>
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.428 (0.428)	Data 0.487 (0.487)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.354 (0.354)	Data 0.506 (0.506)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
     main()
-  File "main.py", line 273, in main
-    torch.manual_seed(args.manualSeed)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/random.py", line 28, in manual_seed
-    seed = int(seed)
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.360 (0.360)	Data 0.484 (0.484)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
 j: 61 bis 65
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
-Traceback (most recent call last):
-  File "main.py", line 886, in <module>
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.367 (0.367)	Data 0.490 (0.490)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.326 (0.326)	Data 0.495 (0.495)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
     main()
-  File "main.py", line 273, in main
-    torch.manual_seed(args.manualSeed)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/random.py", line 28, in manual_seed
-    seed = int(seed)
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.314 (0.314)	Data 0.461 (0.461)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
 j: 66 bis 70
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
-Traceback (most recent call last):
-  File "main.py", line 886, in <module>
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.411 (0.411)	Data 0.504 (0.504)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.358 (0.358)	Data 0.499 (0.499)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
     main()
-  File "main.py", line 273, in main
-    torch.manual_seed(args.manualSeed)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/random.py", line 28, in manual_seed
-    seed = int(seed)
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.312 (0.312)	Data 0.493 (0.493)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
 j: 71 bis 75
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
-Traceback (most recent call last):
-  File "main.py", line 886, in <module>
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.416 (0.416)	Data 0.509 (0.509)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.307 (0.307)	Data 0.487 (0.487)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
     main()
-  File "main.py", line 273, in main
-    torch.manual_seed(args.manualSeed)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/random.py", line 28, in manual_seed
-    seed = int(seed)
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.307 (0.307)	Data 0.513 (0.513)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
 j: 76 bis 80
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
-Traceback (most recent call last):
-  File "main.py", line 886, in <module>
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.349 (0.349)	Data 0.509 (0.509)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.349 (0.349)	Data 0.513 (0.513)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
     main()
-  File "main.py", line 273, in main
-    torch.manual_seed(args.manualSeed)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/random.py", line 28, in manual_seed
-    seed = int(seed)
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.358 (0.358)	Data 0.474 (0.474)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
 j: 81 bis 85
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
-Traceback (most recent call last):
-  File "main.py", line 886, in <module>
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.418 (0.418)	Data 0.485 (0.485)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.301 (0.301)	Data 0.460 (0.460)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
     main()
-  File "main.py", line 273, in main
-    torch.manual_seed(args.manualSeed)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/random.py", line 28, in manual_seed
-    seed = int(seed)
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.330 (0.330)	Data 0.488 (0.488)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
 j: 86 bis 90
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
-Traceback (most recent call last):
-  File "main.py", line 886, in <module>
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.435 (0.435)	Data 0.456 (0.456)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.361 (0.361)	Data 0.501 (0.501)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
     main()
-  File "main.py", line 273, in main
-    torch.manual_seed(args.manualSeed)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/random.py", line 28, in manual_seed
-    seed = int(seed)
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.339 (0.339)	Data 0.533 (0.533)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
 j: 91 bis 95
 no display found. Using non-interactive Agg backend
 [5, 5, 5]
-Traceback (most recent call last):
-  File "main.py", line 886, in <module>
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.360 (0.360)	Data 0.505 (0.505)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.300 (0.300)	Data 0.502 (0.502)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
     main()
-  File "main.py", line 273, in main
-    torch.manual_seed(args.manualSeed)
-  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/random.py", line 28, in manual_seed
-    seed = int(seed)
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.291 (0.291)	Data 0.507 (0.507)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 96 bis 100
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.378 (0.378)	Data 0.463 (0.463)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.354 (0.354)	Data 0.534 (0.534)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.311 (0.311)	Data 0.495 (0.495)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 101 bis 105
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.436 (0.436)	Data 0.464 (0.464)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.303 (0.303)	Data 0.484 (0.484)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.355 (0.355)	Data 0.492 (0.492)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 106 bis 110
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.432 (0.432)	Data 0.482 (0.482)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.328 (0.328)	Data 0.496 (0.496)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.352 (0.352)	Data 0.511 (0.511)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 111 bis 115
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.397 (0.397)	Data 0.534 (0.534)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.336 (0.336)	Data 0.475 (0.475)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.303 (0.303)	Data 0.505 (0.505)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 116 bis 120
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.414 (0.414)	Data 0.478 (0.478)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.334 (0.334)	Data 0.506 (0.506)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.353 (0.353)	Data 0.487 (0.487)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 121 bis 125
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.361 (0.361)	Data 0.516 (0.516)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.296 (0.296)	Data 0.518 (0.518)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.301 (0.301)	Data 0.512 (0.512)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 126 bis 130
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.430 (0.430)	Data 0.466 (0.466)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.334 (0.334)	Data 0.479 (0.479)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.353 (0.353)	Data 0.485 (0.485)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 131 bis 135
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.394 (0.394)	Data 0.489 (0.489)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.362 (0.362)	Data 0.479 (0.479)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.361 (0.361)	Data 0.500 (0.500)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 136 bis 140
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.393 (0.393)	Data 0.463 (0.463)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.339 (0.339)	Data 0.496 (0.496)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.306 (0.306)	Data 0.475 (0.475)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 141 bis 145
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.395 (0.395)	Data 0.494 (0.494)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.329 (0.329)	Data 0.461 (0.461)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.347 (0.347)	Data 0.511 (0.511)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 146 bis 150
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.412 (0.412)	Data 0.508 (0.508)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.352 (0.352)	Data 0.543 (0.543)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.354 (0.354)	Data 0.496 (0.496)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 151 bis 155
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.398 (0.398)	Data 0.498 (0.498)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.350 (0.350)	Data 0.453 (0.453)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.359 (0.359)	Data 0.498 (0.498)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 156 bis 160
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.423 (0.423)	Data 0.464 (0.464)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.310 (0.310)	Data 0.456 (0.456)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.311 (0.311)	Data 0.458 (0.458)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 161 bis 165
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.386 (0.386)	Data 0.515 (0.515)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.359 (0.359)	Data 0.493 (0.493)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.312 (0.312)	Data 0.504 (0.504)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 166 bis 170
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.410 (0.410)	Data 0.535 (0.535)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.306 (0.306)	Data 0.483 (0.483)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.284 (0.284)	Data 0.519 (0.519)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 171 bis 175
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.411 (0.411)	Data 0.459 (0.459)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.316 (0.316)	Data 0.499 (0.499)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.370 (0.370)	Data 0.488 (0.488)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
+j: 176 bis 180
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+Random number: 16527
+Files already downloaded and verified
+==> Resuming from checkpoint..
+Startepoche: 21
+Max memory: 0.160768
+1
+lr: 22.282620193436742
+
+Epoch: [21 | 25] LR: 22.282620
+Epoch: [21][0/50]	Time 0.361 (0.361)	Data 0.511 (0.511)	Loss 2.3383 (2.3383)	Acc@1 20.500 (20.500)	Acc@5 72.000 (72.000)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [22 | 25] LR: 22.282620
+Epoch: [22][0/50]	Time 0.317 (0.317)	Data 0.501 (0.501)	Loss 912431360.0000 (912431360.0000)	Acc@1 10.800 (10.800)	Acc@5 51.700 (51.700)
+Max memory in training epoch: 244.0790016
+count0: 381600
+1
+lr: 22.282620193436742
+
+Epoch: [23 | 25] LR: 22.282620
+Warning: Error detected in LogSoftmaxBackward. Traceback of forward call that caused the error:
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 636, in train
+    loss = criterion(outputs, targets)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 550, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/loss.py", line 932, in forward
+    ignore_index=self.ignore_index, reduction=self.reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 2317, in cross_entropy
+    return nll_loss(log_softmax(input, 1), target, weight, None, ignore_index, None, reduction)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/functional.py", line 1535, in log_softmax
+    ret = input.log_softmax(dim)
+ (print_stack at /pytorch/torch/csrc/autograd/python_anomaly_mode.cpp:60)
+Epoch: [23][0/50]	Time 0.314 (0.314)	Data 0.516 (0.516)	Loss 23979130978566144.0000 (23979130978566144.0000)	Acc@1 9.500 (9.500)	Acc@5 53.600 (53.600)
+Traceback (most recent call last):
+  File "main.py", line 920, in <module>
+    main()
+  File "main.py", line 420, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 693, in train
+    loss.backward()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/tensor.py", line 198, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/autograd/__init__.py", line 100, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+RuntimeError: Function 'LogSoftmaxBackward' returned nan values in its 0th output.
