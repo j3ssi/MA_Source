@@ -1,4 +1,5 @@
 #fitte geraden
+setwd("/home/j3ssi/MA/Ausarbeitung/KapitelPartB/")
 
 # s=3
 a <- read.delim("Fit3.csv", header = TRUE, sep = ",", dec = ".")

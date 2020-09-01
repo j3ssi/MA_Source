@@ -78,7 +78,7 @@ parser.add_argument('-w', '--widthofFirstLayer', default=16, type=int,
 # epochs and stuff
 parser.add_argument('--epochs', default=8, type=int, metavar='N',
                     help='number of total epochs to run')
-parser.add_argument('-r','--reset', default=False, action='store_true',
+parser.add_argument('-r', '--reset', default=False, action='store_true',
                     help='Last Epoch')
 
 parser.add_argument('--start-epoch', default=1, type=int, metavar='N',
@@ -264,11 +264,11 @@ def main():
     #         time.sleep(600)
 
     # Random seed
-    random_numbers= [16527, 29245, 43782, 19381, 38886]
+    random_numbers = [16527, 29245, 43782, 19381, 38886]
     if args.manualSeed is not None:
         if args.manualSeed - 1 < len(random_numbers):
-            random.seed(random_numbers[args.manualSeed-1])
-            print(f'Random number: {random_numbers[args.manualSeed-1]}')
+            random.seed(random_numbers[args.manualSeed - 1])
+            print(f'Random number: {random_numbers[args.manualSeed - 1]}')
     if use_cuda:
         torch.manual_seed(args.manualSeed)
 
@@ -319,6 +319,8 @@ def main():
         assert os.path.isfile(args.resume), 'Error: no checkpoint directory found!'
         args.checkpoint = os.path.dirname(args.resume)
         checkpoint = torch.load(args.resume)
+        if args.dB:
+            memory = checkpoint['memory']
         best_acc = checkpoint['best_acc']
         args.lr = checkpoint['lr']
         start_epoch = checkpoint['epoch']
@@ -331,13 +333,13 @@ def main():
              'TestEpochTime(s)'])
         assert args.numOfStages == len(
             listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
-
-        if len(listOfWidths)>0:
+        memory = 0
+        if len(listOfWidths) > 0:
             model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
-                        widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
+                            widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
         else:
             model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
-                        widthofFirstLayer=args.widthofFirstLayer, model=None, archNums=None, widthOfLayers= None)
+                            widthofFirstLayer=args.widthofFirstLayer, model=None, archNums=None, widthOfLayers=None)
 
         print(f'device count: {torch.cuda.device_count()}')
         model.cuda()
@@ -375,7 +377,7 @@ def main():
         # print(f'sizeX: {sizeX}')
         # Gerade für niedrige Batch size
         if not args.largeBatch:
-            y = 36.304 * sizeX + 107.768
+            y = 68.25 * sizeX + 47.85
         else:
             y = 4.27 * sizeX + 2.60
         # calculate now the batch size
@@ -400,14 +402,12 @@ def main():
         optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
                          weight_decay=args.weight_decay)
 
-
-
     i = 1
     # for epochNet2Net in range(1, 4):
     while i == 1:
         for epoch in range(start_epoch, args.epochs + start_epoch):
             # adjust learning rate when epoch is the scheduled epoch
-            if args.delta_learning_rate :
+            if args.delta_learning_rate:
                 adjust_learning_rate(optimizer, epoch, True)
             elif args.dynlr:
                 adjust_learning_rate(optimizer, epoch, False)
@@ -419,7 +419,14 @@ def main():
             train_loss, train_acc, train_epoch_time = train(trainloader, model, criterion,
                                                             optimizer, epoch, use_cuda)
             ende = time.time()
-            print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated()/ 10000000}')
+            if args.dB and epoch > 2:
+                tmp_memory = torch.cuda.max_memory_allocated()
+                if tmp_memory < memory:
+                    batch_size = int(memory/tmp_memory* batch_size)
+                    memory = tmp_memory
+            elif args.dB and epoch == 2:
+                memory = tmp_memory
+            print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated() / 10000000}')
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
             # append logger file
@@ -497,11 +504,11 @@ def main():
         i = 2
 
     if args.wider and args.widerRnd:
-        model = model.wider(3, 1.333333333, out_size=None, weight_norm=None, random_init=False, addNoise= True)
+        model = model.wider(3, 1.333333333, out_size=None, weight_norm=None, random_init=False, addNoise=True)
 
-        model = model.wider(2, 1.333333333, out_size=None, weight_norm=None, random_init=False, addNoise= True)
+        model = model.wider(2, 1.333333333, out_size=None, weight_norm=None, random_init=False, addNoise=True)
 
-        model = model.wider(1, 1.333333333, out_size=None, weight_norm=None, random_init=False, addNoise= True)
+        model = model.wider(1, 1.333333333, out_size=None, weight_norm=None, random_init=False, addNoise=True)
 
         model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
                         widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
@@ -512,7 +519,6 @@ def main():
                               weight_decay=args.weight_decay)
 
     if args.widerRnd and not args.wider:
-
         model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=True, addNoise=False)
 
         model = model.wider(2, 2, out_size=None, weight_norm=None, random_init=True, addNoise=False)
@@ -844,10 +850,8 @@ def visualizePruneTrain(model, epoch, threshold):
                 # ax = fig.add_subplot(111, projection='3d')
                 # ax.scatter(printWeights[0], printWeights[1], printWeights[2])
             # pyplot.legend(bbox_to_anchor=(0, -0.15, 1, 0), loc=2, ncol=2, mode="expand", borderaxespad=0)
-            fileName =  altList[a] + '_' + str(epoch) + '.png'
+            fileName = altList[a] + '_' + str(epoch) + '.png'
             pyplot.savefig(fileName)
-
-
 
         #     ax = pyplot.subplot(dims[0], 1, ix)
         #     ax.set_xticks([])
