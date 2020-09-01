@@ -474,6 +474,7 @@ def main():
                 count1 = count
 
             if args.dB and epoch % 5 > 2:
+                print(f'Drin!!')
                 if countB>count:
                     batch_size = int(memory / tmp_memory * batch_size)
                     print(f'New batch Size {batch_size}!!')
@@ -599,8 +600,6 @@ def main():
     if args.saveModell:
         torch.save(model, args.pathToModell)
     logger.close()
-    print("\n ",
-          args.batch_size)  # , " ; ", args.numOfStages, " ; ", args.numOfBlocksinStage, " ; ", args.layersInBlock," ; ", args.epochs)
     print(" ", test_acc)
     print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
     print(' {:5.3f}s'.format(ende - start), end='  ')
