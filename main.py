@@ -110,7 +110,7 @@ parser.add_argument('--batchTrue', default=False, action='store_true',
                     help='Set the batchsize')
 parser.add_argument('--batch_size', default=1000, type=int,
                     metavar='N', help='batch size')
-parser.add_argument('-dB' '--dynBatch', default=False, action='store_true',
+parser.add_argument('-dB', default=False, action='store_true',
                     help='Use large or small batch size')
 
 # other model stuff
