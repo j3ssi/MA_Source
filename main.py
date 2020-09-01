@@ -422,7 +422,7 @@ def main():
             ende = time.time()
             tmp_memory = torch.cuda.max_memory_allocated()
 
-            # print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated() / 10000000}')
+            print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated() / 10000000}')
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
             # append logger file
@@ -473,7 +473,7 @@ def main():
                 print(f'Count: {count} ; {count0} ; {count / count0}')
                 count1 = count
 
-            if args.dB and epoch % 5 == 3:
+            if args.dB and (epoch % 5) == 3:
                 print(f'Drin!!')
                 if memory<tmp_memory:
                     batch_size = int(memory / tmp_memory * batch_size)
