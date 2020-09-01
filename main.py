@@ -419,12 +419,12 @@ def main():
             train_loss, train_acc, train_epoch_time = train(trainloader, model, criterion,
                                                             optimizer, epoch, use_cuda)
             ende = time.time()
-            if args.dB and epoch > 2:
+            if args.dB and epoch%5 > 2:
                 tmp_memory = torch.cuda.max_memory_allocated()
                 if tmp_memory < memory:
                     batch_size = int(memory/tmp_memory* batch_size)
                     memory = tmp_memory
-            elif args.dB and epoch == 2:
+            elif args.dB and epoch %5 == 2:
                 tmp_memory = torch.cuda.max_memory_allocated()
                 memory = tmp_memory
             print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated() / 10000000}')
