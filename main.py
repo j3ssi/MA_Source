@@ -548,6 +548,17 @@ def main():
         'optimizer': optimizer.state_dict(), },
         is_best,
         checkpoint=args.checkpoint)
+    if args.dB:
+        save_checkpoint({
+            'epoch': args.epochs + start_epoch,
+            'memory': memory,
+            'lr': args.lr,
+            'acc': test_acc,
+            'best_acc': best_acc,
+            'optimizer': optimizer.state_dict(), },
+            is_best,
+            checkpoint=args.checkpoint)
+
     # Leave unique checkpoint of pruned models druing training
     if epoch % args.save_checkpoint == 0:
         save_checkpoint({
@@ -558,6 +569,16 @@ def main():
             is_best,
             checkpoint=args.checkpoint,
             filename='checkpoint' + str(epoch) + '.tar')
+        if args.dB:
+            save_checkpoint({
+                'epoch': args.epochs + start_epoch,
+                'memory': memory,
+                'lr': args.lr,
+                'acc': test_acc,
+                'best_acc': best_acc,
+                'optimizer': optimizer.state_dict(), },
+                is_best,
+                checkpoint=args.checkpoint)
 
     if args.saveModell:
         torch.save(model, args.pathToModell)
