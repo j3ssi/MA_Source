@@ -321,6 +321,7 @@ def main():
         checkpoint = torch.load(args.resume)
         if args.dB:
             memory = checkpoint['memory']
+            batch_size = checkpoint['batch_size']
         best_acc = checkpoint['best_acc']
         args.lr = checkpoint['lr']
         start_epoch = checkpoint['epoch']
@@ -381,13 +382,13 @@ def main():
         #else:
         # y = 4.27 * sizeX + 2.60
         # calculate now the batch size
-        batch_size = int(0.98 * count0 / sizeX / y)
+        batch_size = int(0.995 * count0 / sizeX / y)
         # delta_bs = (batch_size - 330)*0.3
         # batch_size = int(batch_size - delta_bs)
         print(f'batch_size: {batch_size};{y} ; lr: {args.lr}')
 
         args.batch_size = batch_size
-    else:
+    elif args.batchTrue:
         batch_size = args.batch_size
     args.lr *= (batch_size / 256)
 
@@ -555,6 +556,7 @@ def main():
         save_checkpoint({
             'epoch': args.epochs + start_epoch,
             'memory': memory,
+            'batch_size': batch_size,
             'lr': args.lr,
             'acc': test_acc,
             'best_acc': best_acc,
@@ -577,6 +579,7 @@ def main():
             save_checkpoint({
                 'epoch': args.epochs + start_epoch,
                 'memory': memory,
+                'batch_size': batch_size,
                 'lr': args.lr,
                 'acc': test_acc,
                 'best_acc': best_acc,
