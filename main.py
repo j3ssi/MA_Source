@@ -385,8 +385,7 @@ def main():
         batch_size = int(0.995 * count0 / sizeX / y)
         # delta_bs = (batch_size - 330)*0.3
         # batch_size = int(batch_size - delta_bs)
-        print(f'batch_size: {batch_size};{y} ; lr: {args.lr}')
-
+        print(f'batch_size berechnet: {batch_size};{y} ; lr: {args.lr}')
         args.batch_size = batch_size
     elif args.batchTrue:
         batch_size = args.batch_size
@@ -412,8 +411,9 @@ def main():
                 adjust_learning_rate(optimizer, epoch, True)
             elif args.dynlr:
                 adjust_learning_rate(optimizer, epoch, False)
-            print(f'lr: {args.lr}')
+            # print(f'lr: {args.lr}')
             print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs + start_epoch - 1, args.lr))
+            print(f'batch Size {batch_size}')
             start = time.time()
             torch.cuda.reset_max_memory_allocated()
 
@@ -422,7 +422,7 @@ def main():
             ende = time.time()
             tmp_memory = torch.cuda.max_memory_allocated()
 
-            print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated() / 10000000}')
+            # print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated() / 10000000}')
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
             # append logger file
@@ -466,7 +466,7 @@ def main():
             #   model, optimizer = amp.initialize(model, optimizer)
             #
             count = 0
-            print(f'count0: {count0}')
+            # print(f'count0: {count0}')
             for p in model.parameters():
                 count += p.data.nelement()
             if count < count1:
