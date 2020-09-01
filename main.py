@@ -419,20 +419,18 @@ def main():
             train_loss, train_acc, train_epoch_time = train(trainloader, model, criterion,
                                                             optimizer, epoch, use_cuda)
             ende = time.time()
-            if args.dB and epoch%5 > 2:
-                tmp_memory = torch.cuda.max_memory_allocated()
-                if tmp_memory < memory:
-                    batch_size = int(memory/tmp_memory* batch_size)
-                    memory = tmp_memory
-            elif args.dB and epoch %5 == 2:
-                tmp_memory = torch.cuda.max_memory_allocated()
-                memory = tmp_memory
+            tmp_memory = torch.cuda.max_memory_allocated()
+
             print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated() / 10000000}')
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
             # append logger file
             logger.append([state['lr'], train_loss, test_loss, train_acc, test_acc, train_epoch_time,
                            test_epoch_time])
+            countB = 0
+            for p in model.parameters():
+                countB+= p.data.nelement()
+
 
             # i = 2
             # SparseTrain routine
@@ -461,6 +459,8 @@ def main():
                 if args.visual:
                     visualizePruneTrain(model, epoch, args.threshold)
 
+
+
             # if args.fp16:
             #   model, optimizer = amp.initialize(model, optimizer)
             #
@@ -471,6 +471,14 @@ def main():
             if count < count1:
                 print(f'Count: {count} ; {count0} ; {count / count0}')
                 count1 = count
+
+            if args.dB and epoch % 5 > 2:
+                if countB<count:
+                    batch_size = int(memory / tmp_memory * batch_size)
+                    memory = tmp_memory
+            elif args.dB and epoch % 5 == 2:
+                memory = tmp_memory
+
             #     if (count/count0) > 0.9:
             #         a = 0.9
             #     elif (count/count0) > 0.7:
