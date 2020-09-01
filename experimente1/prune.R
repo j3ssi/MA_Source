@@ -21,7 +21,7 @@ baseline3Sum <- sum(baseline3$TrainEpochTime.s.)/180
 baseline4Sum <- sum(baseline4$TrainEpochTime.s.)/180
 baseline5Sum <- sum(baseline5$TrainEpochTime.s.)/180
 
-baselineSum1 <- c(baseline1Sum, baseline2Sum, baseline3Sum, baseline4Sum)
+baselineSum1 <- c(baseline1Sum, baseline2Sum, baseline3Sum, baseline4Sum, baseline5Sum)
 
 baselineO1Sum <- sum(baselineO1$TrainEpochTime.s.)/180
 baselineO2Sum <- sum(baselineO2$TrainEpochTime.s.)/180
@@ -29,13 +29,15 @@ baselineO3Sum <- sum(baselineO3$TrainEpochTime.s.)/180
 baselineO4Sum <- sum(baselineO4$TrainEpochTime.s.)/180
 baselineO5Sum <- sum(baselineO5$TrainEpochTime.s.)/180
 
-baselineSum2 <- c(baselineO1Sum, baselineO2Sum, baselineO3Sum, baselineO4Sum)
+baselineSum2 <- c(baselineO1Sum, baselineO2Sum, baselineO3Sum, baselineO4Sum, baselineO5Sum)
 
 plot(baseline4$ValidAcc.,
      xlab="Epoche",
      ylab="Accuracy")
 
-boxplot(baselineSum1, baselineSum2)
+boxplot(baselineSum1, baselineSum2,
+        ylab="Accuracy")
+axis(at=c(1,2),side =1, labels = c('Baseline mit LR Anpassung', 'Baseline ohne LR Anpassung'))
 
 baselineAcc1 <- c(tail(baseline1$ValidAcc.,n=1), tail(baseline2$ValidAcc.,n=1), tail(baseline3$ValidAcc.,n=1), tail(baseline4$ValidAcc.,n=1))
 baselineAcc2 <- c(tail(baselineO1$ValidAcc.,n=1), tail(baselineO2$ValidAcc.,n=1), tail(baselineO3$ValidAcc.,n=1), tail(baselineO4$ValidAcc.,n=1))
