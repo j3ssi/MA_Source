@@ -482,16 +482,13 @@ def main():
                 print(f'Drin!!')
                 print(f'old memory: {memory}')
                 print(f'new memory: {tmp_memory}')
-                if memory>tmp_memory:
-                    factor = 669950000/memory
+                factor = 669950000 / memory
+                if factor != 1:
                     print(f'Faktor: {factor}')
                     batch_size_tmp = int(669950000 / tmp_memory * batch_size)
-                    if(batch_size == batch_size_tmp):
-                        print(f'Keine Änderung!!')
-                    else:
-                        batch_size = batch_size_tmp
-                        memory = tmp_memory
-                        print(f'New batch Size {batch_size}!!')
+                    batch_size = batch_size_tmp
+                    memory = tmp_memory
+                    print(f'New batch Size {batch_size}!!')
 
 
 
