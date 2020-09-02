@@ -522,11 +522,11 @@ def main():
         i = 2
 
     if args.wider and args.widerRnd:
-        model = model.wider(3, 1.333333333, out_size=None, weight_norm=None, random_init=False, addNoise=True)
+        model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
 
-        model = model.wider(2, 1.333333333, out_size=None, weight_norm=None, random_init=False, addNoise=True)
+        model = model.wider(2, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
 
-        model = model.wider(1, 1.333333333, out_size=None, weight_norm=None, random_init=False, addNoise=True)
+        model = model.wider(1, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
 
         model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
                         widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
