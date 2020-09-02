@@ -476,10 +476,15 @@ def main():
             if args.dB and (epoch % 5) == 3:
                 print(f'Drin!!')
                 if memory<tmp_memory:
-                    batch_size = int(memory / tmp_memory * batch_size)
+                    batch_size_tmp = int(memory / tmp_memory * batch_size)
+                    if(batch_size == batch_size_tmp):
+                        print(f'Keine Änderung!!')
+                    else:
+                        memory = tmp_memory
+
                     print(f'New batch Size {batch_size}!!')
 
-                    memory = tmp_memory
+
             elif args.dB and epoch % 5 == 2:
                 memory = tmp_memory
 
