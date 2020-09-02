@@ -485,7 +485,7 @@ def main():
                 if memory>tmp_memory:
                     factor = 669950000/memory
                     print(f'Faktor: {factor}')
-                    batch_size_tmp = int(66.995 / tmp_memory * batch_size)
+                    batch_size_tmp = int(669950000 / tmp_memory * batch_size)
                     if(batch_size == batch_size_tmp):
                         print(f'Keine Änderung!!')
                     else:
