@@ -264,13 +264,13 @@ def main():
     #         time.sleep(600)
 
     # Random seed
-    random_numbers = [16527, 29245, 43782, 19381, 38886]
-    if args.manualSeed is not None:
-        if args.manualSeed - 1 < len(random_numbers):
-            torch.random.manual_seed(random_numbers[args.manualSeed - 1])
-            print(f'Random number: {random_numbers[args.manualSeed - 1]}')
-        if args.manualSeed == 6:
-            torch.random.seed()
+    # random_numbers = [16527, 29245, 43782, 19381, 38886]
+    # if args.manualSeed is not None:
+    #     if args.manualSeed - 1 < len(random_numbers):
+    #         torch.random.manual_seed(random_numbers[args.manualSeed - 1])
+    #         print(f'Random number: {random_numbers[args.manualSeed - 1]}')
+    #     if args.manualSeed == 6:
+    torch.random.seed()
 
 
 
@@ -541,7 +541,7 @@ def main():
         model = model.wider(1, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
 
         model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, args.bottleneck,
-                        widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
+                        widthofFirstLayer=16, model=model, archNums=None, widthOfLayers=listOfWidths)
 
         model.cuda()
         print(model)
