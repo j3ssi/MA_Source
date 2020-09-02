@@ -524,17 +524,18 @@ def main():
 
         i = 2
 
-    if args.wider and args.widerRnd:
+    if args.wider and not args.widerRnd:
         model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
 
         model = model.wider(2, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
 
         model = model.wider(1, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
 
-        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
+        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, args.bottleneck,
                         widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
 
         model.cuda()
+        print(model)
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                               weight_decay=args.weight_decay)
