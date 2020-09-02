@@ -264,14 +264,12 @@ def main():
     #         time.sleep(600)
 
     # Random seed
-    # random_numbers = [16527, 29245, 43782, 19381, 38886]
-    # if args.manualSeed is not None:
-    #     if args.manualSeed - 1 < len(random_numbers):
-    #         torch.random.manual_seed(random_numbers[args.manualSeed - 1])
-    #         print(f'Random number: {random_numbers[args.manualSeed - 1]}')
-    #     if args.manualSeed == 6:
-    torch.random.seed()
-
+    if args.manualSeed is None:
+        args.manualSeed = random.randint(1, 10000)
+    random.seed(args.manualSeed)
+    torch.manual_seed(args.manualSeed)
+    if use_cuda:
+        torch.manual_seed(args.manualSeed)
 
 
 
