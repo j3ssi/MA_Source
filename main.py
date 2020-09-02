@@ -264,8 +264,8 @@ def main():
     #         time.sleep(600)
 
     # Random seed
-    if args.manualSeed is None:
-        args.manualSeed = random.randint(1, 10000)
+    args.manualSeed = random.randint(1, 10000)
+    print(f'random number: {args.manualSeed}')
     random.seed(args.manualSeed)
     torch.manual_seed(args.manualSeed)
     if use_cuda:
