@@ -267,10 +267,10 @@ def main():
     random_numbers = [16527, 29245, 43782, 19381, 38886]
     if args.manualSeed is not None:
         if args.manualSeed - 1 < len(random_numbers):
-            random.manual_seed(random_numbers[args.manualSeed - 1])
+            torch.random.manual_seed(random_numbers[args.manualSeed - 1])
             print(f'Random number: {random_numbers[args.manualSeed - 1]}')
         if args.manualSeed == 6:
-            random.seed()
+            torch.random.seed()
     if use_cuda:
         torch.manual_seed(args.manualSeed)
 
