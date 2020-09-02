@@ -312,10 +312,10 @@ prune_reconf10_5Sum <- sum(prune_reconf10_5$TrainEpochTime.s.)/180
 reconf10_sum <- c(prune_reconf10_1Sum, prune_reconf10_2Sum, prune_reconf10_3Sum, prune_reconf10_4Sum, prune_reconf10_5Sum)
 
 
-boxplot(baseline1Sum, reconf2_sum, reconf5_sum, reconf10_sum,
+boxplot(reconf2_sum, reconf5_sum, reconf10_sum,
         ylab = "durchschnittliche Trainingszeit in Sekunden",
         xlab = "verschiedene Experimentengruppen")
-        axis(at=c(1,2,3,4), side=1, labels = c('Baseline', 'Rekonfigurationsintervall 2', 'Rekonfigurationsintervall 5', 'Rekonfigurationsintervall10'))
+        axis(at=c(1,2,3), side=1, labels = c('Rekonfigurationsintervall 2', 'Rekonfigurationsintervall 5', 'Rekonfigurationsintervall10'))
 
 
 t.test(reconf2, reconf5, alternative = "two.sided", var.equal = FALSE)
@@ -518,6 +518,14 @@ prunelr23 <-read.delim("prune_lr2_3.txt", header = TRUE, sep = "\t", dec = ".")
 prunelr24 <-read.delim("prune_lr2_4.txt", header = TRUE, sep = "\t", dec = ".")
 prunelr25 <-read.delim("prune_lr2_5.txt", header = TRUE, sep = "\t", dec = ".")
 
+prunelr21Sum <- sum(prunelr21$TrainEpochTime.s.)/180
+prunelr22Sum <- sum(prunelr22$TrainEpochTime.s.)/180
+prunelr23Sum <- sum(prunelr23$TrainEpochTime.s.)/180
+prunelr24Sum <- sum(prunelr24$TrainEpochTime.s.)/180
+prunelr25Sum <- sum(prunelr25$TrainEpochTime.s.)/180
+
+prunelr2 <- c(prunelr21Sum, prunelr22Sum, prunelr23Sum, prunelr24Sum, prunelr25Sum)
+
 
 prunelr11 <-read.delim("prune_lr1_1.txt", header = TRUE, sep = "\t", dec = ".")
 prunelr12 <-read.delim("prune_lr1_2.txt", header = TRUE, sep = "\t", dec = ".")
@@ -580,9 +588,9 @@ prunelr0125 <- c(prunelr01251Sum, prunelr01252Sum, prunelr01253Sum, prunelr01254
 
 
 
-boxplot(baseline2Sum,prunelr1, prunelr05, prunelr025, prunelr0125, 
-        names = c('baseline','lr 0.1', 'lr 0.05', 'lr 0.025', 'lr 0.0125'),
-        ylab="durchschnittliche Trainingszeit")
+boxplot(baseline2Sum,prunelr2, prunelr1, prunelr05, prunelr025, prunelr0125, 
+        names = c('baseline','lr 0.2' ,'lr 0.1', 'lr 0.05', 'lr 0.025', 'lr 0.0125'),
+        ylab="durchschnittliche Trainingszeit in Sekunden")
 
 acclr21 <- tail(prunelr21$ValidAcc.,n=1)
 acclr22 <- tail(prunelr22$ValidAcc.,n=1)
@@ -629,10 +637,16 @@ Acclr0125 <- c(acclr01251, acclr01252, acclr01253, acclr01254, acclr01255)
 acclr <- c(Acclr1)
 
 
-boxplot(baselineAcc1, Acclr2, Acclr1, Acclr05, Acclr025, Acclr0125)
+boxplot(baselineAcc1, Acclr2, Acclr1, Acclr05, Acclr025, Acclr0125,
+        names =c('Baseline','Lernrate 0,2', 'Lernrate 0,1', 'Lernrate 0,05', 'Lernrate 0,025', 'Lernrate 0,0125')
+        )
 
 
-boxplot(baselineAcc1, lassoAcc, Accthres, Acclr2)
+boxplot(baselineAcc1, lassoAcc, Accthres, Acclr2,
+        )
+
+boxplot(lassoAcc02, Acclr1, accthres4, acc5) 
+
 
 plot(baseline1$ValidAcc., col='red', xlim=c(90, 180), ylim=c(50,95), ylab="",xlab="")
 par(new=TRUE)

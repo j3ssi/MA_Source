@@ -432,7 +432,6 @@ def main():
             for p in model.parameters():
                 countB+= p.data.nelement()
 
-
             # i = 2
             # SparseTrain routine
             if not args.en_group_lasso:
@@ -475,7 +474,7 @@ def main():
 
             if args.dB and (epoch % 5) == 3:
                 print(f'Drin!!')
-                if memory<tmp_memory:
+                if memory>tmp_memory:
                     batch_size_tmp = int(66.995 / tmp_memory * batch_size)
                     if(batch_size == batch_size_tmp):
                         print(f'Keine Änderung!!')
