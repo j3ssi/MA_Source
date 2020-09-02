@@ -480,7 +480,8 @@ def main():
                 print(f'Drin!!')
                 print(f'old memory: {memory}')
                 print(f'new memory: {tmp_memory}')
-                factor = tmp_memory / memory
+                if memory >0:
+                    factor = tmp_memory / memory
                 print(f'Faktor: {factor}')
 
                 if factor > 1:
