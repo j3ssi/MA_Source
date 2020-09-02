@@ -482,7 +482,7 @@ def main():
                 print(f'new memory: {tmp_memory}')
                 if memory >0:
                     factor = tmp_memory / memory
-                print(f'Faktor: {factor}')
+                    print(f'Faktor: {factor}')
 
                 if factor > 1:
                     batch_size_tmp = int(669950000 / tmp_memory * batch_size)
