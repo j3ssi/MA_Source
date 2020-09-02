@@ -480,9 +480,10 @@ def main():
                     if(batch_size == batch_size_tmp):
                         print(f'Keine Änderung!!')
                     else:
+                        batch_size = batch_size_tmp
                         memory = tmp_memory
+                        print(f'New batch Size {batch_size}!!')
 
-                    print(f'New batch Size {batch_size}!!')
 
 
             elif args.dB and epoch % 5 == 2:

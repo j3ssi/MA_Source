@@ -39,8 +39,8 @@ boxplot(baselineSum1, baselineSum2,
         ylab="Accuracy")
 axis(at=c(1,2),side =1, labels = c('Baseline mit LR Anpassung', 'Baseline ohne LR Anpassung'))
 
-baselineAcc1 <- c(tail(baseline1$ValidAcc.,n=1), tail(baseline2$ValidAcc.,n=1), tail(baseline3$ValidAcc.,n=1), tail(baseline4$ValidAcc.,n=1))
-baselineAcc2 <- c(tail(baselineO1$ValidAcc.,n=1), tail(baselineO2$ValidAcc.,n=1), tail(baselineO3$ValidAcc.,n=1), tail(baselineO4$ValidAcc.,n=1))
+baselineAcc1 <- c(tail(baseline1$ValidAcc.,n=1), tail(baseline2$ValidAcc.,n=1), tail(baseline3$ValidAcc.,n=1), tail(baseline4$ValidAcc.,n=1), tail(baseline5$ValidAcc.,n=1))
+baselineAcc2 <- c(tail(baselineO1$ValidAcc.,n=1), tail(baselineO2$ValidAcc.,n=1), tail(baselineO3$ValidAcc.,n=1), tail(baselineO4$ValidAcc.,n=1), tail(baselineO5$ValidAcc.,n=1))
 
 boxplot(baselineAcc1, baselineAcc2,
         ylab ="Accuracy")
@@ -202,7 +202,7 @@ lassoAcc01_3 <- tail(lassoAcc01_3, n=1)
 lassoAcc01_4 <- tail(lassoAcc01_4, n=1)
 lassoAcc01_5 <- tail(lassoAcc01_5, n=1)
 
-lassoAcc01 <- c(lassoAcc01_1, lassoAcc01_2, lassoAcc01_3, lassoAcc01_4, lassoAcc005_5)
+lassoAcc01 <- c(lassoAcc01_1, lassoAcc01_2, lassoAcc01_3, lassoAcc01_4, lassoAcc01_5)
 
 lassoAcc015_1 <- prune_lasso015_1$ValidAcc.
 lassoAcc015_2 <- prune_lasso015_2$ValidAcc.
@@ -313,7 +313,7 @@ reconf10_sum <- c(prune_reconf10_1Sum, prune_reconf10_2Sum, prune_reconf10_3Sum,
 
 
 boxplot(baseline1Sum, reconf2_sum, reconf5_sum, reconf10_sum,
-        ylab = "durchschnittliche Trainingszeit in Sekunden pro Epoche",
+        ylab = "durchschnittliche Trainingszeit in Sekunden",
         xlab = "verschiedene Experimentengruppen")
         axis(at=c(1,2,3,4), side=1, labels = c('Baseline', 'Rekonfigurationsintervall 2', 'Rekonfigurationsintervall 5', 'Rekonfigurationsintervall10'))
 
@@ -343,11 +343,11 @@ acc23 <- prune_reconf2_3$ValidAcc.
 acc24 <- prune_reconf2_4$ValidAcc.
 acc25 <- prune_reconf2_5$ValidAcc.
 
-acc21 <- tail(acc21, n=1)
-acc22 <- tail(acc22, n=1)
-acc23 <- tail(acc23, n=1)
-acc24 <- tail(acc24, n=1)
-acc25 <- tail(acc25, n=1)
+acc21 <- tail(acc21, n=5)
+acc22 <- tail(acc22, n=5)
+acc23 <- tail(acc23, n=5)
+acc24 <- tail(acc24, n=5)
+acc25 <- tail(acc25, n=5)
 
 acc51 <- prune_reconf5_1$ValidAcc.
 acc52 <- prune_reconf5_2$ValidAcc.
@@ -355,11 +355,11 @@ acc53 <- prune_reconf5_3$ValidAcc.
 acc54 <- prune_reconf5_4$ValidAcc.
 acc55 <- prune_reconf5_5$ValidAcc.
 
-acc51 <- tail(acc51, n=1)
-acc52 <- tail(acc52, n=1)
-acc53 <- tail(acc53, n=1)
-acc54 <- tail(acc54, n=1)
-acc55 <- tail(acc55, n=1)
+acc51 <- tail(acc51, n=5)
+acc52 <- tail(acc52, n=5)
+acc53 <- tail(acc53, n=5)
+acc54 <- tail(acc54, n=5)
+acc55 <- tail(acc55, n=5)
 
 acc101 <- prune_reconf10_1$ValidAcc.
 acc102 <- prune_reconf10_2$ValidAcc.
@@ -367,11 +367,11 @@ acc103 <- prune_reconf10_3$ValidAcc.
 acc104 <- prune_reconf10_4$ValidAcc.
 acc105 <- prune_reconf10_5$ValidAcc.
 
-acc101 <- tail(acc101, n=1)
-acc102 <- tail(acc102, n=1)
-acc103 <- tail(acc103, n=1)
-acc104 <- tail(acc104, n=1)
-acc105 <- tail(acc105, n=1)
+acc101 <- tail(acc101, n=5)
+acc102 <- tail(acc102, n=5)
+acc103 <- tail(acc103, n=5)
+acc104 <- tail(acc104, n=5)
+acc105 <- tail(acc105, n=5)
 
 acc2 <- c(acc21, acc22, acc23, acc24, acc25)
 acc5 <- c(acc51, acc52, acc53, acc54, acc55)
@@ -381,15 +381,10 @@ acc10 <- c(acc101, acc102, acc103, acc104, acc105)
 reconfAcc <- c(acc2, acc5, acc10)
 
 boxplot(baselineAcc1, acc2, acc5, acc10,
-        col=c('powderblue', 'mistyrose', 'lightsalmon'),
-        ylim=c(90, 96),
-        ylab = "Accuracy",
-        xlab ="verschiedene Experimentengruppen")
+        ylab = "Accuracy")
+axis(at=c(1,2,3,4), side=1, labels = c('Baseline', 'Rekonfigurationsintervall 2', 'Rekonfigurationsintervall 5', 'Rekonfigurationsintervall10'))
 
-legend(0.4,92.05, legend = c('Accuracy 2', 'Accuracy 5', 'Accuracy 10'), 
-       col= c('powderblue', 'mistyrose', 'lightsalmon'), 
-       fill=c('powderblue', 'mistyrose', 'lightsalmon'), 
-       horiz=TRUE, cex=0.8)
+
 
 
 prunethres11 <- read.delim("prune_thres11_1.txt", header = TRUE, sep = "\t", dec = ".")
@@ -436,7 +431,7 @@ prunethres35Sum <- sum(prunethres35$TrainEpochTime.s.)/180
 
 boxplot(prunethres31$TrainEpochTime.s.,prunethres32$TrainEpochTime.s.,prunethres33$TrainEpochTime.s.,prunethres34$TrainEpochTime.s.,prunethres35$TrainEpochTime.s.)
 
-prunethres41 <- read.delim("prune_thres41_1.txt", header = TRUE, sep = ",", dec = ".")
+prunethres41 <- read.delim("prune_thres41_1.txt", header = TRUE, sep = "\t", dec = ".")
 prunethres42 <- read.delim("prune_thres41_2.txt", header = TRUE, sep = "\t", dec = ".")
 prunethres43 <- read.delim("prune_thres41_3.txt", header = TRUE, sep = "\t", dec = ".")
 prunethres44 <- read.delim("prune_thres41_4.txt", header = TRUE, sep = "\t", dec = ".")
@@ -471,22 +466,27 @@ prunethres1Sum <- c(prunethres11Sum, prunethres12Sum, prunethres13Sum, prunethre
 prunethres2Sum <- c(prunethres21Sum, prunethres22Sum, prunethres23Sum, prunethres24Sum, prunethres15Sum)
 prunethres3Sum <- c(prunethres31Sum, prunethres32Sum, prunethres33Sum, prunethres34Sum, prunethres35Sum)
 prunethres4Sum <- c(prunethres41Sum, prunethres42Sum, prunethres43Sum, prunethres44Sum, prunethres45Sum)
-boxplot(baseline1Sum,prunethres1Sum, prunethres2Sum, prunethres3Sum, prunethres4Sum, ylab = "Summe der Trainingszeit in Sekunden",las=2,
-        names = c('baseline','thres 0.1','thres 0.01', 'thres 0.001', 'thres 0.0001') )
+
+
+boxplot(prunethres1Sum, prunethres2Sum, prunethres3Sum, prunethres4Sum,
+        ylab = "Summe der Trainingszeit in Sekunden",las=2,
+        names = c('thres 0.1','thres 0.01', 'thres 0.001', 'thres 0.0001') )
 
 accthres11 <- tail(prunethres11$ValidAcc.,n=1)
 accthres12 <- tail(prunethres21$ValidAcc.,n=1)
 accthres13 <- tail(prunethres31$ValidAcc.,n=1)
 accthres14 <- tail(prunethres41$ValidAcc.,n=1)
+accthres15 <- tail(prunethres51$ValidAcc.,n=1)
 
-accthres1 <- c(accthres11, accthres12, accthres13, accthres14)
+accthres1 <- c(accthres11, accthres12, accthres13, accthres14, accthres15)
 
 accthres21 <- tail(prunethres21$ValidAcc.,n=1)
 accthres22 <- tail(prunethres22$ValidAcc.,n=1)
 accthres23 <- tail(prunethres23$ValidAcc.,n=1)
 accthres24 <- tail(prunethres24$ValidAcc.,n=1)
+accthres25 <- tail(prunethres25$ValidAcc.,n=1)
 
-accthres2 <- c(accthres21, accthres22, accthres23, accthres24)
+accthres2 <- c(accthres21, accthres22, accthres23, accthres24, accthres25)
 
 accthres31 <- tail(prunethres31$ValidAcc.,n=1)
 accthres32 <- tail(prunethres32$ValidAcc.,n=1)
@@ -494,7 +494,7 @@ accthres33 <- tail(prunethres33$ValidAcc.,n=1)
 accthres34 <- tail(prunethres34$ValidAcc.,n=1)
 accthres35 <- tail(prunethres35$ValidAcc.,n=1)
 
-accthres3 <- c(accthres31, accthres32, accthres33, accthres34)
+accthres3 <- c(accthres31, accthres32, accthres33, accthres34, accthres35)
 
 
 accthres41 <- tail(prunethres41$ValidAcc.,n=1)
@@ -503,14 +503,12 @@ accthres43 <- tail(prunethres43$ValidAcc.,n=1)
 accthres44 <- tail(prunethres44$ValidAcc.,n=1)
 accthres45 <- tail(prunethres45$ValidAcc.,n=1)
 
-accthres4 <- c(accthres41, accthres43, accthres44)
+accthres4 <- c(accthres41, accthres43, accthres44, accthres45)
 
 Accthres <- c(accthres1, accthres2, accthres3, accthres4)
 
 boxplot(baselineAcc1,accthres1, accthres2, accthres3, accthres4, 
-        col=c('powderblue', 'mistyrose', 'lightsalmon', 'lightpink', 'lightsalmon4', 'orange'),
         ylab = "Accuracy in Prozent",
-        xlab="verschiedene Experimente",
         names = c('thres 0.1','thres 0.01', 'thres 0.001', 'thres 0.0001')
 )
 
@@ -580,22 +578,11 @@ boxplot(baseline2Sum,prunelr01251Sum, prunelr01252Sum, prunelr01253Sum, prunelr0
 
 prunelr0125 <- c(prunelr01251Sum, prunelr01252Sum, prunelr01253Sum, prunelr01254Sum, prunelr01255Sum)
 
-boxplot(prunelr11$TrainEpochTime.s., prunelr12$TrainEpochTime.s., prunelr13$TrainEpochTime.s., prunelr14$TrainEpochTime.s., prunelr15$TrainEpochTime.s.,
-        prunelr051$TrainEpochTime.s., prunelr052$TrainEpochTime.s., prunelr053$TrainEpochTime.s., prunelr054$TrainEpochTime.s., prunelr055$TrainEpochTime.s.,
-        prunelr0251$TrainEpochTime.s., prunelr0252$TrainEpochTime.s., prunelr0253$TrainEpochTime.s., prunelr0254$TrainEpochTime.s., prunelr0255$TrainEpochTime.s.,
-        prunelr01251$TrainEpochTime.s., prunelr01252$TrainEpochTime.s., prunelr01253$TrainEpochTime.s., prunelr01254$TrainEpochTime.s., prunelr01255$TrainEpochTime.s.,
-        col=c('powderblue', 'powderblue', 'powderblue', 'powderblue', 'powderblue', 
-              'mistyrose', 'mistyrose', 'mistyrose', 'mistyrose','mistyrose'               
-        ),ylim=c(10,250),
-        ylab = "Trainingszeit in Sekunden pro Epoche",
-        xlab="verschiedene Experimente"
-)
-legend("bottomleft", legend = c('baseline ohne Synchronisation', 'baseline mit Synchronisation'), col= c('powderblue','mistyrose'),fill=c('powderblue', 'mistyrose'), lty=1:2, horiz=TRUE, cex=0.8)
-                                                                                                                                                                          
 
 
-
-boxplot(baseline2Sum,prunelr1, prunelr05, prunelr025, prunelr0125, names = c('baseline','lr 0.1', 'lr 0.05', 'lr 0.025', 'lr 0.0125'))
+boxplot(baseline2Sum,prunelr1, prunelr05, prunelr025, prunelr0125, 
+        names = c('baseline','lr 0.1', 'lr 0.05', 'lr 0.025', 'lr 0.0125'),
+        ylab="durchschnittliche Trainingszeit")
 
 acclr21 <- tail(prunelr21$ValidAcc.,n=1)
 acclr22 <- tail(prunelr22$ValidAcc.,n=1)
