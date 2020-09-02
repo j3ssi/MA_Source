@@ -57,6 +57,18 @@ echo "reconf 10 4"
 ./run_reconf_10.sh 4
 
 
+echo "reconf 2 5"
+./run_reconf_2.sh 5
+sleep 20
+
+
+echo "reconf 5 5"
+./run_reconf_5.sh 5
+sleep 20
+
+
+echo "reconf 10 5"
+./run_reconf_10.sh 5
 
 
 
