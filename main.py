@@ -482,9 +482,10 @@ def main():
                 print(f'Drin!!')
                 print(f'old memory: {memory}')
                 print(f'new memory: {tmp_memory}')
-                factor = 669950000 / memory
+                factor = tmp_memory / memory
+                print(f'Faktor: {factor}')
+
                 if factor != 1:
-                    print(f'Faktor: {factor}')
                     batch_size_tmp = int(669950000 / tmp_memory * batch_size)
                     batch_size = batch_size_tmp
                     memory = tmp_memory
