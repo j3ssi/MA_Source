@@ -271,6 +271,10 @@ def main():
             print(f'Random number: {random_numbers[args.manualSeed - 1]}')
         if args.manualSeed == 6:
             torch.random.seed()
+
+
+
+
     if use_cuda:
         torch.manual_seed(args.manualSeed)
 
@@ -490,7 +494,7 @@ def main():
 
 
 
-            elif args.dB and epoch % 5 == 2:
+            elif args.dB and epoch % 5 == 4:
                 memory = tmp_memory
 
             #     if (count/count0) > 0.9:
