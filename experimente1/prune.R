@@ -655,3 +655,17 @@ legend("bottomright", legend = c('baseline', 'prunetrain'), col= c('red','blue')
 
 
 plot(baseline1$ValidAcc. -prune1$ValidAcc., col='blue', xlim=c(90, 180), ylim=c(-5,5))
+
+
+
+#Exponentiel geglätteter Durchschnitt
+library(smooth)
+library(mComp)
+library(pracma)
+acc <- baseline1$ValidAcc.
+x<-movavg(acc,n=10,type="e")
+y<-movavg(acc,n=30,type="e")
+plot(acc,xlim=c(0,180))
+par(new=FALSE)
+lines(x,col="blue")
+lines(y,col="green")

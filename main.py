@@ -484,12 +484,12 @@ def main():
                     factor = tmp_memory / memory
                     print(f'Faktor: {factor}')
 
-                    if factor > 1:
+                    if factor < 1:
                         batch_size_tmp = int(669950000 / tmp_memory * batch_size)
                         batch_size = batch_size_tmp
                         memory = tmp_memory
                         print(f'New batch Size größer {batch_size}!!')
-                    if factor < 1:
+                    if factor > 1:
                         batch_size_tmp = int( tmp_memory / memory  * batch_size)
                         batch_size = batch_size_tmp
                         memory = tmp_memory
