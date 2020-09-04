@@ -411,6 +411,8 @@ def main():
     while i == 1:
         for epoch in range(start_epoch, args.epochs + start_epoch):
             # adjust learning rate when epoch is the scheduled epoch
+            print(f'lr: {optimizer.param_groups[0]["lr"]}')
+
             if args.delta_learning_rate:
                 adjust_learning_rate(optimizer, epoch, True)
             elif args.dynlr:
@@ -453,8 +455,7 @@ def main():
                 gc.collect()
                 model.cuda()
                 if not args.lars:
-                    optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-                                          weight_decay=args.weight_decay)
+                    optimizer =optim.Adadelta(model.parameters(), lr=args.lr, rho=0.95, eps=1e-06)
                 else:
                     optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
                                      weight_decay=args.weight_decay)
@@ -523,8 +524,7 @@ def main():
                 model = n2n.deeper(model, optimizer, [2, 4])
                 model.cuda()
                 criterion = nn.CrossEntropyLoss()
-                optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-                                      weight_decay=args.weight_decay)
+                optimizer = optim.Adadelta(model.parameters(), lr=args.lr, rho=0.95, eps=1e-06)
             # print("\n Verhältnis Modell Größe: ", count / count0)
 
             is_best = test_acc > best_acc
@@ -545,8 +545,7 @@ def main():
         model.cuda()
         print(model)
         criterion = nn.CrossEntropyLoss()
-        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-                              weight_decay=args.weight_decay)
+        optimizer = optim.Adadelta(model.parameters(), lr=args.lr, rho=0.95, eps=1e-06)
 
     if args.widerRnd and not args.wider:
         model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=True, addNoise=False)
@@ -560,8 +559,7 @@ def main():
 
         model.cuda()
         criterion = nn.CrossEntropyLoss()
-        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-                              weight_decay=args.weight_decay)
+        optimizer = optim.Adadelta(model.parameters(), lr=args.lr, rho=0.95, eps=1e-06)
 
     if start_epoch == 176:
         print(f'Model: {model}')
