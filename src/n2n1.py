@@ -531,6 +531,7 @@ class N2N(nn.Module):
                             firstBlockInStage = False
 
                             x = self.paramList[block] *x
+                            block =block+1
                             _x = x + _x
                             _x = self.relu(_x)
 
@@ -549,6 +550,8 @@ class N2N(nn.Module):
                                 print("\nShortcutLayer i: ", i, " ; ", self.module_list[j])
                             j = j + 1
                             i = i + 1
+                            _x = self.paramList[block] * _x
+                            block = block + 1
 
                             _x = _x + x
                             _x = self.relu(_x)
@@ -571,6 +574,7 @@ class N2N(nn.Module):
                             i = i + 1
                     firstBlockInStage = False
                     notfirstLayer = True
+        print(f'parameterlist: {self.paramList[1]}')
         # except RuntimeError:
         #     print(f'Except')
         #     print("\nJ: ", j, " ; ", self.module_list[j])
