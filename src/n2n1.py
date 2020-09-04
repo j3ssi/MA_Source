@@ -367,7 +367,7 @@ class N2N(nn.Module):
             self.relu = nn.ReLU(inplace=True)
             # if printName:
             # print("\nnew Model: ", self)
-        print(f'parameterList: {self.paramList}')
+        # print(f'parameterList: {self.paramList}')
 
     def forward(self, x):
         # print(f'ArchNums: {self.archNums}')
@@ -574,7 +574,7 @@ class N2N(nn.Module):
                             i = i + 1
                     firstBlockInStage = False
                     notfirstLayer = True
-        print(f'parameterlist: {self.paramList[1]}')
+        # print(f'parameterlist: {self.paramList[1]}')
         # except RuntimeError:
         #     print(f'Except')
         #     print("\nJ: ", j, " ; ", self.module_list[j])

@@ -617,6 +617,11 @@ def main():
     if args.saveModell:
         torch.save(model, args.pathToModell)
     logger.close()
+
+    for i in range(len(model.paramList)):
+        print(f'paramlist[{i}]: {model.paramList[i]}')
+
+
     print(" ", test_acc)
     print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
     print(' {:5.3f}s'.format(ende - start), end='  ')
