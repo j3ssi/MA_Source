@@ -340,10 +340,10 @@ def main():
             listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
         memory = 0
         if len(listOfWidths) > 0:
-            model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
+            model = n2n1.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
                             widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
         else:
-            model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
+            model = n2n1.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
                             widthofFirstLayer=args.widthofFirstLayer, model=None, archNums=None, widthOfLayers=None)
 
         print(f'device count: {torch.cuda.device_count()}')
@@ -447,7 +447,7 @@ def main():
                     visualizePruneTrain(model, epoch, args.threshold)
 
                 genDenseModel(model, dense_chs, optimizer, 'cifar')
-                model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, False, 16,
+                model = n2n1.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, False, 16,
                                 model,
                                 model.archNums)
                 gc.collect()
@@ -520,7 +520,7 @@ def main():
             if args.deeper:
                 print("\n\nnow deeper")
                 # deeper student training
-                model = n2n.deeper(model, optimizer, [2, 4])
+                model = n2n1.deeper(model, optimizer, [2, 4])
                 model.cuda()
                 criterion = nn.CrossEntropyLoss()
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
@@ -539,7 +539,7 @@ def main():
 
         model = model.wider(1, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
 
-        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, args.bottleneck,
+        model = n2n1.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, args.bottleneck,
                         widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
 
         model.cuda()
@@ -555,7 +555,7 @@ def main():
 
         model = model.wider(1, 2, out_size=None, weight_norm=None, random_init=True, addNoise=False)
 
-        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
+        model = n2n1.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
                         widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
 
         model.cuda()
