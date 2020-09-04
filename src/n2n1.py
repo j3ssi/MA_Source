@@ -228,14 +228,16 @@ class N2N(nn.Module):
                                 bn = nn.BatchNorm2d(sizeOfLayer)
                                 self.module_list.append(bn)
                                 i = i + 1
-                    self.paramList.append(nn.Parameter(torch.cuda.FloatTensor(1),requires_grad=True))
+
+                        self.paramList.append(nn.Parameter(torch.FloatTensor(1),requires_grad=True))
 
 
                     firstLayer = False
 
                     # 18
 
-
+                self.paramList.cuda()
+                
 
                 # conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
                 #                  stride=1)
