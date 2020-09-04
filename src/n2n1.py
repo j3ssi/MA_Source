@@ -237,7 +237,7 @@ class N2N(nn.Module):
                     # 18
 
                 self.paramList.cuda()
-                
+
 
                 # conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
                 #                  stride=1)
@@ -388,6 +388,7 @@ class N2N(nn.Module):
 
         _x = self.relu(x)
         j = 2
+        block = 0
         notfirstLayer = False
         # try:
         for stage in range(0, self.numOfStages):
@@ -528,6 +529,8 @@ class N2N(nn.Module):
                             j = j + 1
                             i = i + 1
                             firstBlockInStage = False
+
+                            x = self.paramList[block] *x
                             _x = x + _x
                             _x = self.relu(_x)
 
