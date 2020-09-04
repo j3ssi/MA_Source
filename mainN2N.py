@@ -42,7 +42,7 @@ from torch.autograd import Variable
 from torch.backends import cudnn
 import torchviz as tw
 import matplotlib.pyplot as plt
-from src import n2n
+from src import n2n1
 from src.custom_arch import *
 from src.checkpoint_utils import makeSparse, genDenseModel
 from src.group_lasso_regs import get_group_lasso_global, get_group_lasso_group
