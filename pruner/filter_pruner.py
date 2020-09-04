@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 import torch.nn as nn
-
+import model.resnet_cifar10 as resnet
 from random import shuffle
 
 
