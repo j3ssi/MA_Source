@@ -228,7 +228,7 @@ class N2N(nn.Module):
                                 bn = nn.BatchNorm2d(sizeOfLayer)
                                 self.module_list.append(bn)
                                 i = i + 1
-                    self.paramList.append(nn.Parameter(torch.tensor(1),requires_grad=True))
+                    self.paramList.append(nn.Parameter(torch.cuda.FloatTensor(1),requires_grad=True))
 
 
                     firstLayer = False
