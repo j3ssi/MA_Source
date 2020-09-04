@@ -1,5 +1,49 @@
 #!/bin/sh
 
+echo "Lasso 0.05 1"
+./run_lasso_005.sh 1
+sleep 20
+
+echo "Lasso 0.05 2"
+./run_lasso_005.sh 2
+sleep 20
+
+echo "Lasso 0.05 3"
+./run_lasso_005.sh 3
+sleep 20
+
+echo "Lasso 0.05 4"
+./run_lasso_005.sh 4
+sleep 20
+
+echo "Lasso 0.05 5"
+./run_lasso_005.sh 5
+sleep 20
+
+
+
+
+echo "Lasso 0.1 1"
+./run_lasso_01.sh 1
+sleep 20
+
+echo "Lasso 0.1 2"
+./run_lasso_01.sh 2
+sleep 20
+
+echo "Lasso 0.1 3"
+./run_lasso_01.sh 3
+sleep 20
+
+echo "Lasso 0.1 4"
+./run_lasso_01.sh 4
+sleep 20
+
+echo "Lasso 0.1 5"
+./run_lasso_01.sh 5
+sleep 20
+
+
 
 echo "Lasso 0.15 1"
 ./run_lasso_015.sh 1
@@ -20,6 +64,9 @@ sleep 20
 echo "Lasso 0.15 5"
 ./run_lasso_015.sh 5
 sleep 20
+
+
+
 
 echo "Lasso 0.2 1"
 ./run_lasso_02.sh 1
