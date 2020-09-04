@@ -299,26 +299,27 @@ if __name__ == '__main__':
     elif 'CIFAR100' in args.dataset:
         train_set.num_classes = 100
     pruner = FilterPrunerResNet(model, 'l2_weight', num_cls=train_set.num_classes)
-    flops, num_params = measure_model(pruner.model, pruner, 32)
-    print(f'flops: {flops}')
-    maps = pruner.omap_size
-    cbns = get_cbns(pruner.model)
-    print('Before Pruning | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops/1000000., num_params/1000000.))
-    train_mask(pruner.model, train_loader, val_loader, pruner, epochs=args.epoch, lr=1e-3, lbda=args.lbda, cbns=cbns, maps=maps, constraint=args.constraint)
-    target = int(args.prune_away*flops)
-    print('Target ({}): {:.3f}M'.format(args.constraint, target/1000000.))
-    prune_model(pruner.model, cbns, pruner)
-    flops, num_params = measure_model(pruner.model, pruner, 32)
-    print('After Pruning | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops/1000000., num_params/1000000.))
-    if args.no_grow:
-        train(model, train_loader, test_loader, epochs=args.epoch, lr=args.lr, name='{}_pregrow'.format(args.name))
-    else:
-        if flops < target:
-            ratio = pruner.get_uniform_ratio(target)
-            print(ratio)
-            pruner.uniform_grow(ratio)
-            flops, num_params = measure_model(pruner.model, pruner, 32)
-            print('After Growth | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops/1000000., num_params/1000000.))
-            train(pruner.model, train_loader, test_loader, epochs=args.epoch, lr=args.lr, name=args.name)
+    for i in range(0,3):
+        flops, num_params = measure_model(pruner.model, pruner, 32)
+        print(f'flops: {flops}')
+        maps = pruner.omap_size
+        cbns = get_cbns(pruner.model)
+        print('Before Pruning | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops/1000000., num_params/1000000.))
+        train_mask(pruner.model, train_loader, val_loader, pruner, epochs=args.epoch, lr=1e-3, lbda=args.lbda, cbns=cbns, maps=maps, constraint=args.constraint)
+        target = int(args.prune_away*flops)
+        print('Target ({}): {:.3f}M'.format(args.constraint, target/1000000.))
+        prune_model(pruner.model, cbns, pruner)
+        flops, num_params = measure_model(pruner.model, pruner, 32)
+        print('After Pruning | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops/1000000., num_params/1000000.))
+        if args.no_grow:
+            train(model, train_loader, test_loader, epochs=args.epoch, lr=args.lr, name='{}_pregrow'.format(args.name))
         else:
-            print('Over constraint ({:.3f}M > {:.3f}M), no growth'.format(flops/1000000., target/1000000.))
+            if flops < target:
+                ratio = pruner.get_uniform_ratio(target)
+                print(ratio)
+                pruner.uniform_grow(ratio)
+                flops, num_params = measure_model(pruner.model, pruner, 32)
+                print('After Growth | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops/1000000., num_params/1000000.))
+                train(pruner.model, train_loader, test_loader, epochs=args.epoch, lr=args.lr, name=args.name)
+            else:
+                print('Over constraint ({:.3f}M > {:.3f}M), no growth'.format(flops/1000000., target/1000000.))
