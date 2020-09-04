@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "baselineLr.sh 1"
-time ./run_baselineL.sh 1
+time ./baselineLr.sh 1
 sleep 20
 
 echo "baselineLr.sh 2"
