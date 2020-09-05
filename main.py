@@ -410,6 +410,7 @@ def main():
     # for epochNet2Net in range(1, 4):
     while i == 1:
         for epoch in range(start_epoch, args.epochs + start_epoch):
+            print(f'lr: {optimizer.param_groups[0]["lr"]}')
             # adjust learning rate when epoch is the scheduled epoch
             if args.delta_learning_rate:
                 adjust_learning_rate(optimizer, epoch, True)
