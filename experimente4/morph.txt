@@ -1,0 +1,1645 @@
+Namespace(batch_size=256, constraint='flops', datapath='/home/jessica.buehler/MA_Source/dataset/data/torch', dataset='torchvision.datasets.CIFAR10', epoch=60, large_input=False, lbda=3e-08, lr=0.1, model='ft_mbnetv2', name='ft_mbnetv2', no_grow=False, prune_away=3.97, pruner='FilterPrunnerResNet')
+flops: 17326400
+Before Pruning | FLOPs: 17.326M | #Params: 0.116M
+Epoch 0
+Train | Batch (1/196) | Top-1: 9.77 (25/256)
+Train | Batch (101/196) | Top-1: 17.96 (4645/25856)
+Train | Batch (196/196) | Top-1: 23.06 (11529/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 34.28
+Epoch 1
+Train | Batch (1/196) | Top-1: 36.72 (94/256)
+Train | Batch (101/196) | Top-1: 35.18 (9097/25856)
+Train | Batch (196/196) | Top-1: 37.01 (18505/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 40.40
+Epoch 2
+Train | Batch (1/196) | Top-1: 35.55 (91/256)
+Train | Batch (101/196) | Top-1: 41.00 (10602/25856)
+Train | Batch (196/196) | Top-1: 41.99 (20993/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 44.16
+Epoch 3
+Train | Batch (1/196) | Top-1: 48.83 (125/256)
+Train | Batch (101/196) | Top-1: 44.94 (11620/25856)
+Train | Batch (196/196) | Top-1: 45.59 (22796/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 46.98
+Epoch 4
+Train | Batch (1/196) | Top-1: 48.44 (124/256)
+Train | Batch (101/196) | Top-1: 48.35 (12501/25856)
+Train | Batch (196/196) | Top-1: 49.36 (24681/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 49.84
+Epoch 5
+Train | Batch (1/196) | Top-1: 49.22 (126/256)
+Train | Batch (101/196) | Top-1: 51.47 (13309/25856)
+Train | Batch (196/196) | Top-1: 52.09 (26044/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 53.86
+Epoch 6
+Train | Batch (1/196) | Top-1: 58.98 (151/256)
+Train | Batch (101/196) | Top-1: 54.34 (14050/25856)
+Train | Batch (196/196) | Top-1: 54.77 (27387/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 54.02
+Epoch 7
+Train | Batch (1/196) | Top-1: 57.42 (147/256)
+Train | Batch (101/196) | Top-1: 56.00 (14480/25856)
+Train | Batch (196/196) | Top-1: 56.43 (28215/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 57.52
+Epoch 8
+Train | Batch (1/196) | Top-1: 55.86 (143/256)
+Train | Batch (101/196) | Top-1: 58.19 (15046/25856)
+Train | Batch (196/196) | Top-1: 58.32 (29161/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 57.54
+Epoch 9
+Train | Batch (1/196) | Top-1: 56.64 (145/256)
+Train | Batch (101/196) | Top-1: 59.30 (15333/25856)
+Train | Batch (196/196) | Top-1: 59.74 (29869/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 59.46
+Epoch 10
+Train | Batch (1/196) | Top-1: 55.86 (143/256)
+Train | Batch (101/196) | Top-1: 60.36 (15606/25856)
+Train | Batch (196/196) | Top-1: 60.86 (30430/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 60.00
+Epoch 11
+Train | Batch (1/196) | Top-1: 52.73 (135/256)
+Train | Batch (101/196) | Top-1: 61.70 (15954/25856)
+Train | Batch (196/196) | Top-1: 62.05 (31026/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 62.00
+Epoch 12
+Train | Batch (1/196) | Top-1: 66.80 (171/256)
+Train | Batch (101/196) | Top-1: 62.29 (16106/25856)
+Train | Batch (196/196) | Top-1: 62.82 (31410/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 62.48
+Epoch 13
+Train | Batch (1/196) | Top-1: 64.06 (164/256)
+Train | Batch (101/196) | Top-1: 63.95 (16535/25856)
+Train | Batch (196/196) | Top-1: 64.18 (32091/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 63.42
+Epoch 14
+Train | Batch (1/196) | Top-1: 61.33 (157/256)
+Train | Batch (101/196) | Top-1: 64.86 (16770/25856)
+Train | Batch (196/196) | Top-1: 64.89 (32444/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 64.02
+Epoch 15
+Train | Batch (1/196) | Top-1: 63.28 (162/256)
+Train | Batch (101/196) | Top-1: 65.52 (16940/25856)
+Train | Batch (196/196) | Top-1: 65.56 (32779/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 61.00
+Epoch 16
+Train | Batch (1/196) | Top-1: 64.84 (166/256)
+Train | Batch (101/196) | Top-1: 65.57 (16954/25856)
+Train | Batch (196/196) | Top-1: 66.16 (33081/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 65.08
+Epoch 17
+Train | Batch (1/196) | Top-1: 64.84 (166/256)
+Train | Batch (101/196) | Top-1: 66.94 (17308/25856)
+Train | Batch (196/196) | Top-1: 66.88 (33441/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 67.56
+Epoch 18
+Train | Batch (1/196) | Top-1: 62.89 (161/256)
+Train | Batch (101/196) | Top-1: 67.72 (17510/25856)
+Train | Batch (196/196) | Top-1: 67.61 (33807/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 67.42
+Epoch 19
+Train | Batch (1/196) | Top-1: 65.23 (167/256)
+Train | Batch (101/196) | Top-1: 68.11 (17611/25856)
+Train | Batch (196/196) | Top-1: 68.31 (34157/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 67.84
+Epoch 20
+Train | Batch (1/196) | Top-1: 67.19 (172/256)
+Train | Batch (101/196) | Top-1: 67.99 (17579/25856)
+Train | Batch (196/196) | Top-1: 68.67 (34335/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 69.54
+Epoch 21
+Train | Batch (1/196) | Top-1: 72.27 (185/256)
+Train | Batch (101/196) | Top-1: 69.21 (17895/25856)
+Train | Batch (196/196) | Top-1: 69.30 (34648/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 68.38
+Epoch 22
+Train | Batch (1/196) | Top-1: 70.31 (180/256)
+Train | Batch (101/196) | Top-1: 70.24 (18160/25856)
+Train | Batch (196/196) | Top-1: 70.12 (35060/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 71.12
+Epoch 23
+Train | Batch (1/196) | Top-1: 73.05 (187/256)
+Train | Batch (101/196) | Top-1: 70.37 (18196/25856)
+Train | Batch (196/196) | Top-1: 70.73 (35366/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 69.26
+Epoch 24
+Train | Batch (1/196) | Top-1: 68.75 (176/256)
+Train | Batch (101/196) | Top-1: 71.12 (18389/25856)
+Train | Batch (196/196) | Top-1: 71.37 (35686/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 70.04
+Epoch 25
+Train | Batch (1/196) | Top-1: 69.92 (179/256)
+Train | Batch (101/196) | Top-1: 72.32 (18699/25856)
+Train | Batch (196/196) | Top-1: 71.86 (35930/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 70.76
+Epoch 26
+Train | Batch (1/196) | Top-1: 67.58 (173/256)
+Train | Batch (101/196) | Top-1: 72.36 (18710/25856)
+Train | Batch (196/196) | Top-1: 72.39 (36195/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 72.88
+Epoch 27
+Train | Batch (1/196) | Top-1: 73.83 (189/256)
+Train | Batch (101/196) | Top-1: 72.52 (18752/25856)
+Train | Batch (196/196) | Top-1: 72.75 (36373/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 72.64
+Epoch 28
+Train | Batch (1/196) | Top-1: 71.88 (184/256)
+Train | Batch (101/196) | Top-1: 73.11 (18904/25856)
+Train | Batch (196/196) | Top-1: 73.05 (36526/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 73.10
+Epoch 29
+Train | Batch (1/196) | Top-1: 73.44 (188/256)
+Train | Batch (101/196) | Top-1: 73.63 (19039/25856)
+Train | Batch (196/196) | Top-1: 73.64 (36822/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 73.94
+Epoch 30
+Train | Batch (1/196) | Top-1: 75.39 (193/256)
+Train | Batch (101/196) | Top-1: 73.92 (19114/25856)
+Train | Batch (196/196) | Top-1: 73.96 (36981/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 74.42
+Epoch 31
+Train | Batch (1/196) | Top-1: 71.48 (183/256)
+Train | Batch (101/196) | Top-1: 74.37 (19230/25856)
+Train | Batch (196/196) | Top-1: 74.36 (37180/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 72.24
+Epoch 32
+Train | Batch (1/196) | Top-1: 74.22 (190/256)
+Train | Batch (101/196) | Top-1: 74.86 (19355/25856)
+Train | Batch (196/196) | Top-1: 74.80 (37400/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 73.80
+Epoch 33
+Train | Batch (1/196) | Top-1: 75.78 (194/256)
+Train | Batch (101/196) | Top-1: 75.04 (19402/25856)
+Train | Batch (196/196) | Top-1: 75.10 (37549/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 76.24
+Epoch 34
+Train | Batch (1/196) | Top-1: 69.53 (178/256)
+Train | Batch (101/196) | Top-1: 75.15 (19432/25856)
+Train | Batch (196/196) | Top-1: 75.51 (37756/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 74.58
+Epoch 35
+Train | Batch (1/196) | Top-1: 72.66 (186/256)
+Train | Batch (101/196) | Top-1: 75.89 (19623/25856)
+Train | Batch (196/196) | Top-1: 75.75 (37873/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 76.54
+Epoch 36
+Train | Batch (1/196) | Top-1: 75.00 (192/256)
+Train | Batch (101/196) | Top-1: 76.01 (19653/25856)
+Train | Batch (196/196) | Top-1: 76.10 (38051/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 76.74
+Epoch 37
+Train | Batch (1/196) | Top-1: 75.78 (194/256)
+Train | Batch (101/196) | Top-1: 76.08 (19671/25856)
+Train | Batch (196/196) | Top-1: 76.34 (38172/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 75.80
+Epoch 38
+Train | Batch (1/196) | Top-1: 78.12 (200/256)
+Train | Batch (101/196) | Top-1: 76.64 (19816/25856)
+Train | Batch (196/196) | Top-1: 76.80 (38398/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 76.96
+Epoch 39
+Train | Batch (1/196) | Top-1: 73.05 (187/256)
+Train | Batch (101/196) | Top-1: 76.91 (19887/25856)
+Train | Batch (196/196) | Top-1: 77.07 (38533/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 72.58
+Epoch 40
+Train | Batch (1/196) | Top-1: 78.52 (201/256)
+Train | Batch (101/196) | Top-1: 77.69 (20088/25856)
+Train | Batch (196/196) | Top-1: 77.60 (38798/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 77.48
+Epoch 41
+Train | Batch (1/196) | Top-1: 80.86 (207/256)
+Train | Batch (101/196) | Top-1: 77.82 (20120/25856)
+Train | Batch (196/196) | Top-1: 77.47 (38734/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 76.42
+Epoch 42
+Train | Batch (1/196) | Top-1: 81.25 (208/256)
+Train | Batch (101/196) | Top-1: 77.92 (20148/25856)
+Train | Batch (196/196) | Top-1: 77.97 (38987/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 77.44
+Epoch 43
+Train | Batch (1/196) | Top-1: 79.30 (203/256)
+Train | Batch (101/196) | Top-1: 78.59 (20320/25856)
+Train | Batch (196/196) | Top-1: 78.36 (39181/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 76.16
+Epoch 44
+Train | Batch (1/196) | Top-1: 79.30 (203/256)
+Train | Batch (101/196) | Top-1: 78.59 (20321/25856)
+Train | Batch (196/196) | Top-1: 78.44 (39219/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 76.96
+Epoch 45
+Train | Batch (1/196) | Top-1: 73.83 (189/256)
+Train | Batch (101/196) | Top-1: 78.92 (20406/25856)
+Train | Batch (196/196) | Top-1: 78.74 (39370/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 78.88
+Epoch 46
+Train | Batch (1/196) | Top-1: 82.42 (211/256)
+Train | Batch (101/196) | Top-1: 78.92 (20405/25856)
+Train | Batch (196/196) | Top-1: 78.98 (39489/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 79.34
+Epoch 47
+Train | Batch (1/196) | Top-1: 79.69 (204/256)
+Train | Batch (101/196) | Top-1: 79.17 (20471/25856)
+Train | Batch (196/196) | Top-1: 79.08 (39541/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 79.42
+Epoch 48
+Train | Batch (1/196) | Top-1: 76.17 (195/256)
+Train | Batch (101/196) | Top-1: 78.75 (20362/25856)
+Train | Batch (196/196) | Top-1: 78.98 (39491/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 75.80
+Epoch 49
+Train | Batch (1/196) | Top-1: 77.73 (199/256)
+Train | Batch (101/196) | Top-1: 79.69 (20604/25856)
+Train | Batch (196/196) | Top-1: 79.68 (39838/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 79.10
+Epoch 50
+Train | Batch (1/196) | Top-1: 78.91 (202/256)
+Train | Batch (101/196) | Top-1: 79.69 (20605/25856)
+Train | Batch (196/196) | Top-1: 79.64 (39821/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 76.72
+Epoch 51
+Train | Batch (1/196) | Top-1: 80.08 (205/256)
+Train | Batch (101/196) | Top-1: 80.04 (20696/25856)
+Train | Batch (196/196) | Top-1: 79.92 (39959/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 78.82
+Epoch 52
+Train | Batch (1/196) | Top-1: 77.34 (198/256)
+Train | Batch (101/196) | Top-1: 79.76 (20624/25856)
+Train | Batch (196/196) | Top-1: 79.84 (39920/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 78.34
+Epoch 53
+Train | Batch (1/196) | Top-1: 78.12 (200/256)
+Train | Batch (101/196) | Top-1: 80.16 (20725/25856)
+Train | Batch (196/196) | Top-1: 80.18 (40088/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 77.42
+Epoch 54
+Train | Batch (1/196) | Top-1: 77.34 (198/256)
+Train | Batch (101/196) | Top-1: 80.05 (20697/25856)
+Train | Batch (196/196) | Top-1: 80.22 (40110/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 79.46
+Epoch 55
+Train | Batch (1/196) | Top-1: 81.64 (209/256)
+Train | Batch (101/196) | Top-1: 80.66 (20855/25856)
+Train | Batch (196/196) | Top-1: 80.47 (40233/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 81.28
+Epoch 56
+Train | Batch (1/196) | Top-1: 77.34 (198/256)
+Train | Batch (101/196) | Top-1: 80.58 (20836/25856)
+Train | Batch (196/196) | Top-1: 80.69 (40343/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 73.22
+Epoch 57
+Train | Batch (1/196) | Top-1: 79.69 (204/256)
+Train | Batch (101/196) | Top-1: 80.67 (20857/25856)
+Train | Batch (196/196) | Top-1: 80.80 (40399/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 73.28
+Epoch 58
+Train | Batch (1/196) | Top-1: 82.03 (210/256)
+Train | Batch (101/196) | Top-1: 81.08 (20964/25856)
+Train | Batch (196/196) | Top-1: 80.85 (40426/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 77.64
+Epoch 59
+Train | Batch (1/196) | Top-1: 79.30 (203/256)
+Train | Batch (101/196) | Top-1: 81.15 (20981/25856)
+Train | Batch (196/196) | Top-1: 81.02 (40508/50000)
+#Filters: 568, #FLOPs: 17.33M | Top-1: 76.24
+Target (flops): 68.786M
+Layers that will be prunned: []
+Prunning filters..
+After Pruning | FLOPs: 17.326M | #Params: 0.116M
+1.9988810577146683
+After Growth | FLOPs: 68.863M | #Params: 0.462M
+Train | Batch (1/196) | Top-1: 80.47 (206/256)
+Train | Batch (101/196) | Top-1: 27.75 (7174/25856)
+Train | Batch (196/196) | Top-1: 33.77 (16885/50000)
+Epoch 0 | Top-1: 40.70
+Train | Batch (1/196) | Top-1: 39.45 (101/256)
+Train | Batch (101/196) | Top-1: 45.90 (11867/25856)
+Train | Batch (196/196) | Top-1: 49.17 (24584/50000)
+Epoch 1 | Top-1: 49.12
+Train | Batch (1/196) | Top-1: 48.44 (124/256)
+Train | Batch (101/196) | Top-1: 57.79 (14942/25856)
+Train | Batch (196/196) | Top-1: 59.89 (29944/50000)
+Epoch 2 | Top-1: 49.45
+Train | Batch (1/196) | Top-1: 61.33 (157/256)
+Train | Batch (101/196) | Top-1: 64.79 (16753/25856)
+Train | Batch (196/196) | Top-1: 65.66 (32828/50000)
+Epoch 3 | Top-1: 51.97
+Train | Batch (1/196) | Top-1: 65.62 (168/256)
+Train | Batch (101/196) | Top-1: 68.86 (17805/25856)
+Train | Batch (196/196) | Top-1: 69.59 (34794/50000)
+Epoch 4 | Top-1: 41.37
+Train | Batch (1/196) | Top-1: 66.02 (169/256)
+Train | Batch (101/196) | Top-1: 71.86 (18579/25856)
+Train | Batch (196/196) | Top-1: 72.21 (36103/50000)
+Epoch 5 | Top-1: 65.99
+Train | Batch (1/196) | Top-1: 75.39 (193/256)
+Train | Batch (101/196) | Top-1: 73.79 (19080/25856)
+Train | Batch (196/196) | Top-1: 73.97 (36983/50000)
+Epoch 6 | Top-1: 59.20
+Train | Batch (1/196) | Top-1: 74.22 (190/256)
+Train | Batch (101/196) | Top-1: 75.18 (19438/25856)
+Train | Batch (196/196) | Top-1: 75.42 (37712/50000)
+Epoch 7 | Top-1: 58.21
+Train | Batch (1/196) | Top-1: 74.22 (190/256)
+Train | Batch (101/196) | Top-1: 76.30 (19728/25856)
+Train | Batch (196/196) | Top-1: 76.61 (38304/50000)
+Epoch 8 | Top-1: 72.13
+Train | Batch (1/196) | Top-1: 76.56 (196/256)
+Train | Batch (101/196) | Top-1: 77.59 (20062/25856)
+Train | Batch (196/196) | Top-1: 77.78 (38888/50000)
+Epoch 9 | Top-1: 64.48
+Train | Batch (1/196) | Top-1: 76.17 (195/256)
+Train | Batch (101/196) | Top-1: 78.22 (20224/25856)
+Train | Batch (196/196) | Top-1: 78.37 (39187/50000)
+Epoch 10 | Top-1: 68.88
+Train | Batch (1/196) | Top-1: 80.47 (206/256)
+Train | Batch (101/196) | Top-1: 78.91 (20402/25856)
+Train | Batch (196/196) | Top-1: 78.88 (39440/50000)
+Epoch 11 | Top-1: 65.27
+Train | Batch (1/196) | Top-1: 77.34 (198/256)
+Train | Batch (101/196) | Top-1: 79.64 (20593/25856)
+Train | Batch (196/196) | Top-1: 79.52 (39758/50000)
+Epoch 12 | Top-1: 67.27
+Train | Batch (1/196) | Top-1: 75.78 (194/256)
+Train | Batch (101/196) | Top-1: 79.99 (20683/25856)
+Train | Batch (196/196) | Top-1: 80.12 (40059/50000)
+Epoch 13 | Top-1: 59.66
+Train | Batch (1/196) | Top-1: 80.08 (205/256)
+Train | Batch (101/196) | Top-1: 80.17 (20729/25856)
+Train | Batch (196/196) | Top-1: 80.39 (40195/50000)
+Epoch 14 | Top-1: 68.35
+Train | Batch (1/196) | Top-1: 80.08 (205/256)
+Train | Batch (101/196) | Top-1: 81.15 (20982/25856)
+Train | Batch (196/196) | Top-1: 80.69 (40345/50000)
+Epoch 15 | Top-1: 69.63
+Train | Batch (1/196) | Top-1: 77.34 (198/256)
+Train | Batch (101/196) | Top-1: 81.58 (21094/25856)
+Train | Batch (196/196) | Top-1: 81.26 (40628/50000)
+Epoch 16 | Top-1: 74.95
+Train | Batch (1/196) | Top-1: 81.25 (208/256)
+Train | Batch (101/196) | Top-1: 81.66 (21113/25856)
+Train | Batch (196/196) | Top-1: 81.37 (40687/50000)
+Epoch 17 | Top-1: 72.59
+Train | Batch (1/196) | Top-1: 80.86 (207/256)
+Train | Batch (101/196) | Top-1: 84.94 (21963/25856)
+Train | Batch (196/196) | Top-1: 85.35 (42675/50000)
+Epoch 18 | Top-1: 83.39
+Train | Batch (1/196) | Top-1: 83.98 (215/256)
+Train | Batch (101/196) | Top-1: 86.60 (22391/25856)
+Train | Batch (196/196) | Top-1: 86.55 (43274/50000)
+Epoch 19 | Top-1: 82.60
+Train | Batch (1/196) | Top-1: 82.03 (210/256)
+Train | Batch (101/196) | Top-1: 86.82 (22448/25856)
+Train | Batch (196/196) | Top-1: 86.88 (43441/50000)
+Epoch 20 | Top-1: 83.16
+Train | Batch (1/196) | Top-1: 87.50 (224/256)
+Train | Batch (101/196) | Top-1: 87.07 (22514/25856)
+Train | Batch (196/196) | Top-1: 87.01 (43507/50000)
+Epoch 21 | Top-1: 84.35
+Train | Batch (1/196) | Top-1: 87.11 (223/256)
+Train | Batch (101/196) | Top-1: 87.34 (22583/25856)
+Train | Batch (196/196) | Top-1: 87.12 (43561/50000)
+Epoch 22 | Top-1: 84.23
+Train | Batch (1/196) | Top-1: 86.72 (222/256)
+Train | Batch (101/196) | Top-1: 87.61 (22652/25856)
+Train | Batch (196/196) | Top-1: 87.34 (43670/50000)
+Epoch 23 | Top-1: 83.64
+Train | Batch (1/196) | Top-1: 92.19 (236/256)
+Train | Batch (101/196) | Top-1: 87.83 (22709/25856)
+Train | Batch (196/196) | Top-1: 87.69 (43846/50000)
+Epoch 24 | Top-1: 81.88
+Train | Batch (1/196) | Top-1: 87.11 (223/256)
+Train | Batch (101/196) | Top-1: 87.80 (22701/25856)
+Train | Batch (196/196) | Top-1: 87.57 (43783/50000)
+Epoch 25 | Top-1: 80.86
+Train | Batch (1/196) | Top-1: 83.59 (214/256)
+Train | Batch (101/196) | Top-1: 87.94 (22739/25856)
+Train | Batch (196/196) | Top-1: 87.89 (43946/50000)
+Epoch 26 | Top-1: 82.89
+Train | Batch (1/196) | Top-1: 93.75 (240/256)
+Train | Batch (101/196) | Top-1: 88.21 (22807/25856)
+Train | Batch (196/196) | Top-1: 88.06 (44030/50000)
+Epoch 27 | Top-1: 84.80
+Train | Batch (1/196) | Top-1: 90.62 (232/256)
+Train | Batch (101/196) | Top-1: 88.24 (22816/25856)
+Train | Batch (196/196) | Top-1: 88.00 (44002/50000)
+Epoch 28 | Top-1: 83.37
+Train | Batch (1/196) | Top-1: 86.72 (222/256)
+Train | Batch (101/196) | Top-1: 88.58 (22904/25856)
+Train | Batch (196/196) | Top-1: 88.30 (44150/50000)
+Epoch 29 | Top-1: 84.82
+Train | Batch (1/196) | Top-1: 89.45 (229/256)
+Train | Batch (101/196) | Top-1: 87.78 (22697/25856)
+Train | Batch (196/196) | Top-1: 87.96 (43981/50000)
+Epoch 30 | Top-1: 82.77
+Train | Batch (1/196) | Top-1: 88.28 (226/256)
+Train | Batch (101/196) | Top-1: 88.36 (22846/25856)
+Train | Batch (196/196) | Top-1: 88.28 (44139/50000)
+Epoch 31 | Top-1: 79.89
+Train | Batch (1/196) | Top-1: 87.89 (225/256)
+Train | Batch (101/196) | Top-1: 88.53 (22890/25856)
+Train | Batch (196/196) | Top-1: 88.19 (44097/50000)
+Epoch 32 | Top-1: 84.07
+Train | Batch (1/196) | Top-1: 86.72 (222/256)
+Train | Batch (101/196) | Top-1: 88.54 (22893/25856)
+Train | Batch (196/196) | Top-1: 88.37 (44185/50000)
+Epoch 33 | Top-1: 82.41
+Train | Batch (1/196) | Top-1: 85.94 (220/256)
+Train | Batch (101/196) | Top-1: 88.27 (22824/25856)
+Train | Batch (196/196) | Top-1: 88.38 (44188/50000)
+Epoch 34 | Top-1: 84.57
+Train | Batch (1/196) | Top-1: 88.28 (226/256)
+Train | Batch (101/196) | Top-1: 88.69 (22932/25856)
+Train | Batch (196/196) | Top-1: 88.41 (44203/50000)
+Epoch 35 | Top-1: 82.48
+Train | Batch (1/196) | Top-1: 89.45 (229/256)
+Train | Batch (101/196) | Top-1: 90.42 (23378/25856)
+Train | Batch (196/196) | Top-1: 90.54 (45268/50000)
+Epoch 36 | Top-1: 87.45
+Train | Batch (1/196) | Top-1: 95.31 (244/256)
+Train | Batch (101/196) | Top-1: 91.26 (23596/25856)
+Train | Batch (196/196) | Top-1: 91.17 (45585/50000)
+Epoch 37 | Top-1: 87.42
+Train | Batch (1/196) | Top-1: 91.80 (235/256)
+Train | Batch (101/196) | Top-1: 91.37 (23625/25856)
+Train | Batch (196/196) | Top-1: 91.28 (45641/50000)
+Epoch 38 | Top-1: 87.80
+Train | Batch (1/196) | Top-1: 89.84 (230/256)
+Train | Batch (101/196) | Top-1: 91.54 (23668/25856)
+Train | Batch (196/196) | Top-1: 91.44 (45721/50000)
+Epoch 39 | Top-1: 87.42
+Train | Batch (1/196) | Top-1: 92.97 (238/256)
+Train | Batch (101/196) | Top-1: 91.72 (23716/25856)
+Train | Batch (196/196) | Top-1: 91.53 (45765/50000)
+Epoch 40 | Top-1: 87.42
+Train | Batch (1/196) | Top-1: 93.75 (240/256)
+Train | Batch (101/196) | Top-1: 91.81 (23738/25856)
+Train | Batch (196/196) | Top-1: 91.65 (45823/50000)
+Epoch 41 | Top-1: 87.58
+Train | Batch (1/196) | Top-1: 91.41 (234/256)
+Train | Batch (101/196) | Top-1: 91.49 (23655/25856)
+Train | Batch (196/196) | Top-1: 91.55 (45774/50000)
+Epoch 42 | Top-1: 87.33
+Train | Batch (1/196) | Top-1: 89.06 (228/256)
+Train | Batch (101/196) | Top-1: 91.91 (23763/25856)
+Train | Batch (196/196) | Top-1: 91.84 (45919/50000)
+Epoch 43 | Top-1: 87.24
+Train | Batch (1/196) | Top-1: 93.36 (239/256)
+Train | Batch (101/196) | Top-1: 91.73 (23719/25856)
+Train | Batch (196/196) | Top-1: 91.68 (45840/50000)
+Epoch 44 | Top-1: 87.52
+Train | Batch (1/196) | Top-1: 90.23 (231/256)
+Train | Batch (101/196) | Top-1: 91.86 (23752/25856)
+Train | Batch (196/196) | Top-1: 91.86 (45928/50000)
+Epoch 45 | Top-1: 87.60
+Train | Batch (1/196) | Top-1: 91.41 (234/256)
+Train | Batch (101/196) | Top-1: 91.94 (23771/25856)
+Train | Batch (196/196) | Top-1: 91.94 (45968/50000)
+Epoch 46 | Top-1: 87.53
+Train | Batch (1/196) | Top-1: 93.36 (239/256)
+Train | Batch (101/196) | Top-1: 92.25 (23851/25856)
+Train | Batch (196/196) | Top-1: 92.09 (46046/50000)
+Epoch 47 | Top-1: 87.38
+Train | Batch (1/196) | Top-1: 90.23 (231/256)
+Train | Batch (101/196) | Top-1: 92.40 (23891/25856)
+Train | Batch (196/196) | Top-1: 92.50 (46248/50000)
+Epoch 48 | Top-1: 88.22
+Train | Batch (1/196) | Top-1: 91.80 (235/256)
+Train | Batch (101/196) | Top-1: 92.52 (23922/25856)
+Train | Batch (196/196) | Top-1: 92.67 (46336/50000)
+Epoch 49 | Top-1: 88.04
+Train | Batch (1/196) | Top-1: 93.36 (239/256)
+Train | Batch (101/196) | Top-1: 92.69 (23965/25856)
+Train | Batch (196/196) | Top-1: 92.64 (46318/50000)
+Epoch 50 | Top-1: 88.23
+Train | Batch (1/196) | Top-1: 91.80 (235/256)
+Train | Batch (101/196) | Top-1: 92.95 (24034/25856)
+Train | Batch (196/196) | Top-1: 92.83 (46417/50000)
+Epoch 51 | Top-1: 88.10
+Train | Batch (1/196) | Top-1: 92.97 (238/256)
+Train | Batch (101/196) | Top-1: 92.98 (24040/25856)
+Train | Batch (196/196) | Top-1: 92.92 (46459/50000)
+Epoch 52 | Top-1: 88.10
+Train | Batch (1/196) | Top-1: 94.53 (242/256)
+Train | Batch (101/196) | Top-1: 92.95 (24032/25856)
+Train | Batch (196/196) | Top-1: 92.97 (46485/50000)
+Epoch 53 | Top-1: 88.13
+Train | Batch (1/196) | Top-1: 91.02 (233/256)
+Train | Batch (101/196) | Top-1: 92.94 (24031/25856)
+Train | Batch (196/196) | Top-1: 92.84 (46420/50000)
+Epoch 54 | Top-1: 88.06
+Train | Batch (1/196) | Top-1: 93.75 (240/256)
+Train | Batch (101/196) | Top-1: 92.86 (24011/25856)
+Train | Batch (196/196) | Top-1: 92.92 (46462/50000)
+Epoch 55 | Top-1: 87.97
+Train | Batch (1/196) | Top-1: 91.02 (233/256)
+Train | Batch (101/196) | Top-1: 93.04 (24057/25856)
+Train | Batch (196/196) | Top-1: 93.06 (46528/50000)
+Epoch 56 | Top-1: 87.90
+Train | Batch (1/196) | Top-1: 93.75 (240/256)
+Train | Batch (101/196) | Top-1: 92.82 (24000/25856)
+Train | Batch (196/196) | Top-1: 92.91 (46455/50000)
+Epoch 57 | Top-1: 88.06
+Train | Batch (1/196) | Top-1: 96.88 (248/256)
+Train | Batch (101/196) | Top-1: 93.02 (24050/25856)
+Train | Batch (196/196) | Top-1: 93.09 (46546/50000)
+Epoch 58 | Top-1: 87.85
+Train | Batch (1/196) | Top-1: 90.62 (232/256)
+Train | Batch (101/196) | Top-1: 92.91 (24024/25856)
+Train | Batch (196/196) | Top-1: 92.97 (46484/50000)
+Epoch 59 | Top-1: 88.00
+flops: 68862592
+Before Pruning | FLOPs: 68.863M | #Params: 0.462M
+Epoch 0
+Train | Batch (1/196) | Top-1: 90.23 (231/256)
+Train | Batch (101/196) | Top-1: 92.87 (24012/25856)
+Train | Batch (196/196) | Top-1: 92.87 (46434/50000)
+#Filters: 1128, #FLOPs: 67.83M | Top-1: 94.26
+Epoch 1
+Train | Batch (1/196) | Top-1: 95.31 (244/256)
+Train | Batch (101/196) | Top-1: 93.01 (24049/25856)
+Train | Batch (196/196) | Top-1: 92.90 (46450/50000)
+#Filters: 1128, #FLOPs: 67.83M | Top-1: 94.40
+Epoch 2
+Train | Batch (1/196) | Top-1: 90.23 (231/256)
+Train | Batch (101/196) | Top-1: 92.62 (23948/25856)
+Train | Batch (196/196) | Top-1: 92.62 (46308/50000)
+#Filters: 1127, #FLOPs: 67.68M | Top-1: 94.28
+Epoch 3
+Train | Batch (1/196) | Top-1: 95.70 (245/256)
+Train | Batch (101/196) | Top-1: 92.56 (23933/25856)
+Train | Batch (196/196) | Top-1: 92.74 (46371/50000)
+#Filters: 1087, #FLOPs: 61.78M | Top-1: 94.32
+Epoch 4
+Train | Batch (1/196) | Top-1: 92.58 (237/256)
+Train | Batch (101/196) | Top-1: 92.41 (23894/25856)
+Train | Batch (196/196) | Top-1: 92.41 (46203/50000)
+#Filters: 1087, #FLOPs: 61.78M | Top-1: 94.24
+Epoch 5
+Train | Batch (1/196) | Top-1: 92.19 (236/256)
+Train | Batch (101/196) | Top-1: 92.41 (23894/25856)
+Train | Batch (196/196) | Top-1: 92.48 (46242/50000)
+#Filters: 1023, #FLOPs: 57.07M | Top-1: 94.14
+Epoch 6
+Train | Batch (1/196) | Top-1: 92.19 (236/256)
+Train | Batch (101/196) | Top-1: 92.02 (23792/25856)
+Train | Batch (196/196) | Top-1: 92.15 (46076/50000)
+#Filters: 1023, #FLOPs: 57.07M | Top-1: 94.02
+Epoch 7
+Train | Batch (1/196) | Top-1: 94.14 (241/256)
+Train | Batch (101/196) | Top-1: 92.11 (23817/25856)
+Train | Batch (196/196) | Top-1: 91.92 (45962/50000)
+#Filters: 1007, #FLOPs: 56.48M | Top-1: 93.76
+Epoch 8
+Train | Batch (1/196) | Top-1: 91.41 (234/256)
+Train | Batch (101/196) | Top-1: 92.00 (23787/25856)
+Train | Batch (196/196) | Top-1: 91.95 (45973/50000)
+#Filters: 1005, #FLOPs: 56.18M | Top-1: 93.16
+Epoch 9
+Train | Batch (1/196) | Top-1: 92.19 (236/256)
+Train | Batch (101/196) | Top-1: 91.77 (23727/25856)
+Train | Batch (196/196) | Top-1: 91.95 (45977/50000)
+#Filters: 1006, #FLOPs: 56.33M | Top-1: 93.40
+Epoch 10
+Train | Batch (1/196) | Top-1: 94.14 (241/256)
+Train | Batch (101/196) | Top-1: 92.06 (23804/25856)
+Train | Batch (196/196) | Top-1: 91.79 (45894/50000)
+#Filters: 1005, #FLOPs: 56.18M | Top-1: 93.06
+Epoch 11
+Train | Batch (1/196) | Top-1: 86.72 (222/256)
+Train | Batch (101/196) | Top-1: 91.72 (23716/25856)
+Train | Batch (196/196) | Top-1: 91.70 (45849/50000)
+#Filters: 876, #FLOPs: 51.32M | Top-1: 93.48
+Epoch 12
+Train | Batch (1/196) | Top-1: 90.23 (231/256)
+Train | Batch (101/196) | Top-1: 91.92 (23767/25856)
+Train | Batch (196/196) | Top-1: 91.71 (45853/50000)
+#Filters: 876, #FLOPs: 51.32M | Top-1: 93.46
+Epoch 13
+Train | Batch (1/196) | Top-1: 91.41 (234/256)
+Train | Batch (101/196) | Top-1: 91.50 (23659/25856)
+Train | Batch (196/196) | Top-1: 91.54 (45768/50000)
+#Filters: 874, #FLOPs: 51.02M | Top-1: 93.28
+Epoch 14
+Train | Batch (1/196) | Top-1: 88.67 (227/256)
+Train | Batch (101/196) | Top-1: 91.88 (23757/25856)
+Train | Batch (196/196) | Top-1: 91.69 (45846/50000)
+#Filters: 875, #FLOPs: 51.17M | Top-1: 92.54
+Epoch 15
+Train | Batch (1/196) | Top-1: 91.80 (235/256)
+Train | Batch (101/196) | Top-1: 91.26 (23597/25856)
+Train | Batch (196/196) | Top-1: 91.22 (45612/50000)
+#Filters: 840, #FLOPs: 50.14M | Top-1: 44.70
+Epoch 16
+Train | Batch (1/196) | Top-1: 90.62 (232/256)
+Train | Batch (101/196) | Top-1: 91.20 (23580/25856)
+Train | Batch (196/196) | Top-1: 91.29 (45645/50000)
+#Filters: 842, #FLOPs: 50.43M | Top-1: 92.20
+Epoch 17
+Train | Batch (1/196) | Top-1: 92.97 (238/256)
+Train | Batch (101/196) | Top-1: 91.34 (23618/25856)
+Train | Batch (196/196) | Top-1: 91.24 (45619/50000)
+#Filters: 842, #FLOPs: 50.43M | Top-1: 92.70
+Epoch 18
+Train | Batch (1/196) | Top-1: 90.62 (232/256)
+Train | Batch (101/196) | Top-1: 91.36 (23622/25856)
+Train | Batch (196/196) | Top-1: 91.24 (45621/50000)
+#Filters: 841, #FLOPs: 50.28M | Top-1: 89.26
+Epoch 19
+Train | Batch (1/196) | Top-1: 91.80 (235/256)
+Train | Batch (101/196) | Top-1: 91.20 (23580/25856)
+Train | Batch (196/196) | Top-1: 91.10 (45551/50000)
+#Filters: 841, #FLOPs: 50.28M | Top-1: 91.56
+Epoch 20
+Train | Batch (1/196) | Top-1: 91.02 (233/256)
+Train | Batch (101/196) | Top-1: 91.01 (23531/25856)
+Train | Batch (196/196) | Top-1: 90.99 (45496/50000)
+#Filters: 841, #FLOPs: 50.28M | Top-1: 91.32
+Epoch 21
+Train | Batch (1/196) | Top-1: 90.62 (232/256)
+Train | Batch (101/196) | Top-1: 91.37 (23624/25856)
+Train | Batch (196/196) | Top-1: 91.17 (45586/50000)
+#Filters: 839, #FLOPs: 49.99M | Top-1: 85.82
+Epoch 22
+Train | Batch (1/196) | Top-1: 91.41 (234/256)
+Train | Batch (101/196) | Top-1: 91.03 (23538/25856)
+Train | Batch (196/196) | Top-1: 90.99 (45496/50000)
+#Filters: 838, #FLOPs: 49.99M | Top-1: 90.08
+Epoch 23
+Train | Batch (1/196) | Top-1: 90.23 (231/256)
+Train | Batch (101/196) | Top-1: 91.09 (23552/25856)
+Train | Batch (196/196) | Top-1: 91.21 (45606/50000)
+#Filters: 679, #FLOPs: 44.24M | Top-1: 92.18
+Epoch 24
+Train | Batch (1/196) | Top-1: 91.80 (235/256)
+Train | Batch (101/196) | Top-1: 91.07 (23547/25856)
+Train | Batch (196/196) | Top-1: 91.06 (45531/50000)
+#Filters: 678, #FLOPs: 44.09M | Top-1: 86.32
+Epoch 25
+Train | Batch (1/196) | Top-1: 91.02 (233/256)
+Train | Batch (101/196) | Top-1: 91.14 (23565/25856)
+Train | Batch (196/196) | Top-1: 91.22 (45609/50000)
+#Filters: 679, #FLOPs: 44.24M | Top-1: 92.10
+Epoch 26
+Train | Batch (1/196) | Top-1: 88.67 (227/256)
+Train | Batch (101/196) | Top-1: 90.88 (23497/25856)
+Train | Batch (196/196) | Top-1: 90.84 (45419/50000)
+#Filters: 678, #FLOPs: 44.09M | Top-1: 90.74
+Epoch 27
+Train | Batch (1/196) | Top-1: 90.23 (231/256)
+Train | Batch (101/196) | Top-1: 91.05 (23543/25856)
+Train | Batch (196/196) | Top-1: 91.13 (45564/50000)
+#Filters: 678, #FLOPs: 44.09M | Top-1: 86.86
+Epoch 28
+Train | Batch (1/196) | Top-1: 91.02 (233/256)
+Train | Batch (101/196) | Top-1: 90.90 (23504/25856)
+Train | Batch (196/196) | Top-1: 90.99 (45497/50000)
+#Filters: 677, #FLOPs: 43.94M | Top-1: 91.06
+Epoch 29
+Train | Batch (1/196) | Top-1: 92.97 (238/256)
+Train | Batch (101/196) | Top-1: 91.54 (23668/25856)
+Train | Batch (196/196) | Top-1: 91.24 (45622/50000)
+#Filters: 677, #FLOPs: 43.94M | Top-1: 89.48
+Epoch 30
+Train | Batch (1/196) | Top-1: 94.14 (241/256)
+Train | Batch (101/196) | Top-1: 90.73 (23459/25856)
+Train | Batch (196/196) | Top-1: 90.87 (45433/50000)
+#Filters: 676, #FLOPs: 43.79M | Top-1: 87.54
+Epoch 31
+Train | Batch (1/196) | Top-1: 92.97 (238/256)
+Train | Batch (101/196) | Top-1: 91.15 (23568/25856)
+Train | Batch (196/196) | Top-1: 90.98 (45488/50000)
+#Filters: 675, #FLOPs: 43.65M | Top-1: 90.14
+Epoch 32
+Train | Batch (1/196) | Top-1: 91.80 (235/256)
+Train | Batch (101/196) | Top-1: 91.05 (23543/25856)
+Train | Batch (196/196) | Top-1: 90.99 (45495/50000)
+#Filters: 675, #FLOPs: 43.65M | Top-1: 85.84
+Epoch 33
+Train | Batch (1/196) | Top-1: 90.62 (232/256)
+Train | Batch (101/196) | Top-1: 90.92 (23507/25856)
+Train | Batch (196/196) | Top-1: 91.03 (45516/50000)
+#Filters: 676, #FLOPs: 43.79M | Top-1: 91.80
+Epoch 34
+Train | Batch (1/196) | Top-1: 89.84 (230/256)
+Train | Batch (101/196) | Top-1: 91.24 (23592/25856)
+Train | Batch (196/196) | Top-1: 91.22 (45611/50000)
+#Filters: 677, #FLOPs: 43.94M | Top-1: 87.52
+Epoch 35
+Train | Batch (1/196) | Top-1: 93.36 (239/256)
+Train | Batch (101/196) | Top-1: 91.09 (23551/25856)
+Train | Batch (196/196) | Top-1: 90.90 (45449/50000)
+#Filters: 677, #FLOPs: 43.94M | Top-1: 90.80
+Epoch 36
+Train | Batch (1/196) | Top-1: 93.75 (240/256)
+Train | Batch (101/196) | Top-1: 90.76 (23467/25856)
+Train | Batch (196/196) | Top-1: 90.76 (45381/50000)
+#Filters: 676, #FLOPs: 43.79M | Top-1: 85.60
+Epoch 37
+Train | Batch (1/196) | Top-1: 91.80 (235/256)
+Train | Batch (101/196) | Top-1: 91.23 (23589/25856)
+Train | Batch (196/196) | Top-1: 91.17 (45583/50000)
+#Filters: 676, #FLOPs: 43.79M | Top-1: 90.40
+Epoch 38
+Train | Batch (1/196) | Top-1: 91.02 (233/256)
+Train | Batch (101/196) | Top-1: 91.07 (23548/25856)
+Train | Batch (196/196) | Top-1: 91.07 (45533/50000)
+#Filters: 675, #FLOPs: 43.65M | Top-1: 83.56
+Epoch 39
+Train | Batch (1/196) | Top-1: 93.75 (240/256)
+Train | Batch (101/196) | Top-1: 90.95 (23516/25856)
+Train | Batch (196/196) | Top-1: 90.85 (45424/50000)
+#Filters: 675, #FLOPs: 43.65M | Top-1: 89.78
+Epoch 40
+Train | Batch (1/196) | Top-1: 91.41 (234/256)
+Train | Batch (101/196) | Top-1: 90.73 (23460/25856)
+Train | Batch (196/196) | Top-1: 90.81 (45405/50000)
+#Filters: 676, #FLOPs: 43.79M | Top-1: 86.98
+Epoch 41
+Train | Batch (1/196) | Top-1: 93.75 (240/256)
+Train | Batch (101/196) | Top-1: 91.15 (23569/25856)
+Train | Batch (196/196) | Top-1: 91.01 (45503/50000)
+#Filters: 673, #FLOPs: 43.43M | Top-1: 89.32
+Epoch 42
+Train | Batch (1/196) | Top-1: 91.41 (234/256)
+Train | Batch (101/196) | Top-1: 90.72 (23457/25856)
+Train | Batch (196/196) | Top-1: 90.75 (45375/50000)
+#Filters: 674, #FLOPs: 43.50M | Top-1: 90.46
+Epoch 43
+Train | Batch (1/196) | Top-1: 91.41 (234/256)
+Train | Batch (101/196) | Top-1: 90.36 (23363/25856)
+Train | Batch (196/196) | Top-1: 90.84 (45422/50000)
+#Filters: 675, #FLOPs: 43.65M | Top-1: 91.44
+Epoch 44
+Train | Batch (1/196) | Top-1: 92.97 (238/256)
+Train | Batch (101/196) | Top-1: 91.24 (23592/25856)
+Train | Batch (196/196) | Top-1: 90.94 (45469/50000)
+#Filters: 676, #FLOPs: 43.79M | Top-1: 88.78
+Epoch 45
+Train | Batch (1/196) | Top-1: 91.02 (233/256)
+Train | Batch (101/196) | Top-1: 90.80 (23476/25856)
+Train | Batch (196/196) | Top-1: 90.76 (45382/50000)
+#Filters: 676, #FLOPs: 43.79M | Top-1: 82.40
+Epoch 46
+Train | Batch (1/196) | Top-1: 90.23 (231/256)
+Train | Batch (101/196) | Top-1: 90.60 (23425/25856)
+Train | Batch (196/196) | Top-1: 90.61 (45303/50000)
+#Filters: 673, #FLOPs: 43.35M | Top-1: 89.28
+Epoch 47
+Train | Batch (1/196) | Top-1: 92.97 (238/256)
+Train | Batch (101/196) | Top-1: 90.59 (23422/25856)
+Train | Batch (196/196) | Top-1: 90.79 (45395/50000)
+#Filters: 674, #FLOPs: 43.57M | Top-1: 87.84
+Epoch 48
+Train | Batch (1/196) | Top-1: 91.02 (233/256)
+Train | Batch (101/196) | Top-1: 90.86 (23492/25856)
+Train | Batch (196/196) | Top-1: 90.84 (45418/50000)
+#Filters: 674, #FLOPs: 43.57M | Top-1: 90.00
+Epoch 49
+Train | Batch (1/196) | Top-1: 87.89 (225/256)
+Train | Batch (101/196) | Top-1: 91.00 (23530/25856)
+Train | Batch (196/196) | Top-1: 90.92 (45459/50000)
+#Filters: 673, #FLOPs: 43.43M | Top-1: 89.54
+Epoch 50
+Train | Batch (1/196) | Top-1: 91.80 (235/256)
+Train | Batch (101/196) | Top-1: 91.02 (23535/25856)
+Train | Batch (196/196) | Top-1: 90.93 (45467/50000)
+#Filters: 672, #FLOPs: 43.35M | Top-1: 82.08
+Epoch 51
+Train | Batch (1/196) | Top-1: 90.62 (232/256)
+Train | Batch (101/196) | Top-1: 90.81 (23481/25856)
+Train | Batch (196/196) | Top-1: 90.76 (45382/50000)
+#Filters: 672, #FLOPs: 43.35M | Top-1: 84.38
+Epoch 52
+Train | Batch (1/196) | Top-1: 92.19 (236/256)
+Train | Batch (101/196) | Top-1: 91.16 (23570/25856)
+Train | Batch (196/196) | Top-1: 90.97 (45486/50000)
+#Filters: 673, #FLOPs: 43.50M | Top-1: 85.48
+Epoch 53
+Train | Batch (1/196) | Top-1: 89.06 (228/256)
+Train | Batch (101/196) | Top-1: 90.76 (23467/25856)
+Train | Batch (196/196) | Top-1: 90.71 (45353/50000)
+#Filters: 673, #FLOPs: 43.50M | Top-1: 89.62
+Epoch 54
+Train | Batch (1/196) | Top-1: 91.41 (234/256)
+Train | Batch (101/196) | Top-1: 90.97 (23522/25856)
+Train | Batch (196/196) | Top-1: 90.79 (45394/50000)
+#Filters: 672, #FLOPs: 43.35M | Top-1: 77.82
+Epoch 55
+Train | Batch (1/196) | Top-1: 90.62 (232/256)
+Train | Batch (101/196) | Top-1: 90.90 (23504/25856)
+Train | Batch (196/196) | Top-1: 90.72 (45361/50000)
+#Filters: 672, #FLOPs: 43.35M | Top-1: 83.02
+Epoch 56
+Train | Batch (1/196) | Top-1: 88.28 (226/256)
+Train | Batch (101/196) | Top-1: 90.66 (23440/25856)
+Train | Batch (196/196) | Top-1: 90.59 (45297/50000)
+#Filters: 674, #FLOPs: 43.57M | Top-1: 89.12
+Epoch 57
+Train | Batch (1/196) | Top-1: 92.97 (238/256)
+Train | Batch (101/196) | Top-1: 90.98 (23523/25856)
+Train | Batch (196/196) | Top-1: 90.82 (45412/50000)
+#Filters: 674, #FLOPs: 43.57M | Top-1: 77.80
+Epoch 58
+Train | Batch (1/196) | Top-1: 91.02 (233/256)
+Train | Batch (101/196) | Top-1: 90.88 (23497/25856)
+Train | Batch (196/196) | Top-1: 90.67 (45337/50000)
+#Filters: 672, #FLOPs: 43.35M | Top-1: 89.08
+Epoch 59
+Train | Batch (1/196) | Top-1: 91.80 (235/256)
+Train | Batch (101/196) | Top-1: 91.11 (23557/25856)
+Train | Batch (196/196) | Top-1: 90.90 (45448/50000)
+#Filters: 671, #FLOPs: 43.28M | Top-1: 87.84
+Target (flops): 273.384M
+Layers that will be prunned: [(1, 10), (3, 9), (5, 13), (7, 11), (9, 15), (11, 16), (13, 19), (15, 17), (17, 17), (19, 18), (21, 32), (22, 32), (23, 32), (24, 32), (25, 32), (26, 32), (27, 32), (28, 32), (29, 32), (30, 32)]
+Prunning filters..
+After Pruning | FLOPs: 23.003M | #Params: 0.139M
+3.471250687302641
+After Growth | FLOPs: 272.754M | #Params: 1.667M
+Train | Batch (1/196) | Top-1: 92.58 (237/256)
+Train | Batch (101/196) | Top-1: 30.04 (7768/25856)
+Train | Batch (196/196) | Top-1: 35.50 (17752/50000)
+Epoch 0 | Top-1: 33.45
+Train | Batch (1/196) | Top-1: 43.36 (111/256)
+Train | Batch (101/196) | Top-1: 49.22 (12727/25856)
+Train | Batch (196/196) | Top-1: 52.87 (26437/50000)
+Epoch 1 | Top-1: 46.47
+Train | Batch (1/196) | Top-1: 57.42 (147/256)
+Train | Batch (101/196) | Top-1: 60.57 (15661/25856)
+Train | Batch (196/196) | Top-1: 61.78 (30889/50000)
+Epoch 2 | Top-1: 55.83
+Train | Batch (1/196) | Top-1: 64.06 (164/256)
+Train | Batch (101/196) | Top-1: 65.52 (16942/25856)
+Train | Batch (196/196) | Top-1: 66.29 (33143/50000)
+Epoch 3 | Top-1: 55.33
+Train | Batch (1/196) | Top-1: 67.58 (173/256)
+Train | Batch (101/196) | Top-1: 67.73 (17511/25856)
+Train | Batch (196/196) | Top-1: 68.56 (34278/50000)
+Epoch 4 | Top-1: 59.61
+Train | Batch (1/196) | Top-1: 68.36 (175/256)
+Train | Batch (101/196) | Top-1: 70.24 (18160/25856)
+Train | Batch (196/196) | Top-1: 70.84 (35420/50000)
+Epoch 5 | Top-1: 54.94
+Train | Batch (1/196) | Top-1: 67.58 (173/256)
+Train | Batch (101/196) | Top-1: 71.99 (18614/25856)
+Train | Batch (196/196) | Top-1: 72.62 (36309/50000)
+Epoch 6 | Top-1: 64.52
+Train | Batch (1/196) | Top-1: 69.53 (178/256)
+Train | Batch (101/196) | Top-1: 73.83 (19090/25856)
+Train | Batch (196/196) | Top-1: 74.01 (37004/50000)
+Epoch 7 | Top-1: 65.70
+Train | Batch (1/196) | Top-1: 67.19 (172/256)
+Train | Batch (101/196) | Top-1: 74.74 (19324/25856)
+Train | Batch (196/196) | Top-1: 74.81 (37403/50000)
+Epoch 8 | Top-1: 49.22
+Train | Batch (1/196) | Top-1: 73.83 (189/256)
+Train | Batch (101/196) | Top-1: 75.61 (19549/25856)
+Train | Batch (196/196) | Top-1: 75.79 (37894/50000)
+Epoch 9 | Top-1: 71.97
+Train | Batch (1/196) | Top-1: 71.48 (183/256)
+Train | Batch (101/196) | Top-1: 76.41 (19756/25856)
+Train | Batch (196/196) | Top-1: 76.46 (38230/50000)
+Epoch 10 | Top-1: 70.62
+Train | Batch (1/196) | Top-1: 78.12 (200/256)
+Train | Batch (101/196) | Top-1: 76.88 (19877/25856)
+Train | Batch (196/196) | Top-1: 76.86 (38430/50000)
+Epoch 11 | Top-1: 66.41
+Train | Batch (1/196) | Top-1: 79.30 (203/256)
+Train | Batch (101/196) | Top-1: 77.99 (20164/25856)
+Train | Batch (196/196) | Top-1: 77.77 (38884/50000)
+Epoch 12 | Top-1: 56.49
+Train | Batch (1/196) | Top-1: 81.64 (209/256)
+Train | Batch (101/196) | Top-1: 77.72 (20095/25856)
+Train | Batch (196/196) | Top-1: 77.70 (38848/50000)
+Epoch 13 | Top-1: 65.52
+Train | Batch (1/196) | Top-1: 80.08 (205/256)
+Train | Batch (101/196) | Top-1: 78.11 (20195/25856)
+Train | Batch (196/196) | Top-1: 78.03 (39016/50000)
+Epoch 14 | Top-1: 66.76
+Train | Batch (1/196) | Top-1: 74.61 (191/256)
+Train | Batch (101/196) | Top-1: 78.29 (20243/25856)
+Train | Batch (196/196) | Top-1: 78.68 (39341/50000)
+Epoch 15 | Top-1: 66.21
+Train | Batch (1/196) | Top-1: 76.17 (195/256)
+Train | Batch (101/196) | Top-1: 78.79 (20373/25856)
+Train | Batch (196/196) | Top-1: 78.85 (39424/50000)
+Epoch 16 | Top-1: 67.90
+Train | Batch (1/196) | Top-1: 77.73 (199/256)
+Train | Batch (101/196) | Top-1: 79.85 (20646/25856)
+Train | Batch (196/196) | Top-1: 79.46 (39732/50000)
+Epoch 17 | Top-1: 73.23
+Train | Batch (1/196) | Top-1: 75.39 (193/256)
+Train | Batch (101/196) | Top-1: 82.32 (21285/25856)
+Train | Batch (196/196) | Top-1: 82.99 (41497/50000)
+Epoch 18 | Top-1: 81.70
+Train | Batch (1/196) | Top-1: 85.94 (220/256)
+Train | Batch (101/196) | Top-1: 83.90 (21692/25856)
+Train | Batch (196/196) | Top-1: 83.93 (41966/50000)
+Epoch 19 | Top-1: 80.12
+Train | Batch (1/196) | Top-1: 84.77 (217/256)
+Train | Batch (101/196) | Top-1: 84.46 (21839/25856)
+Train | Batch (196/196) | Top-1: 84.57 (42284/50000)
+Epoch 20 | Top-1: 81.84
+Train | Batch (1/196) | Top-1: 82.81 (212/256)
+Train | Batch (101/196) | Top-1: 84.56 (21863/25856)
+Train | Batch (196/196) | Top-1: 84.69 (42346/50000)
+Epoch 21 | Top-1: 81.80
+Train | Batch (1/196) | Top-1: 87.11 (223/256)
+Train | Batch (101/196) | Top-1: 84.94 (21963/25856)
+Train | Batch (196/196) | Top-1: 85.07 (42534/50000)
+Epoch 22 | Top-1: 82.75
+Train | Batch (1/196) | Top-1: 87.11 (223/256)
+Train | Batch (101/196) | Top-1: 85.45 (22093/25856)
+Train | Batch (196/196) | Top-1: 85.13 (42567/50000)
+Epoch 23 | Top-1: 81.98
+Train | Batch (1/196) | Top-1: 82.81 (212/256)
+Train | Batch (101/196) | Top-1: 85.06 (21992/25856)
+Train | Batch (196/196) | Top-1: 85.16 (42581/50000)
+Epoch 24 | Top-1: 82.29
+Train | Batch (1/196) | Top-1: 84.38 (216/256)
+Train | Batch (101/196) | Top-1: 85.44 (22092/25856)
+Train | Batch (196/196) | Top-1: 85.38 (42690/50000)
+Epoch 25 | Top-1: 80.35
+Train | Batch (1/196) | Top-1: 83.20 (213/256)
+Train | Batch (101/196) | Top-1: 85.74 (22169/25856)
+Train | Batch (196/196) | Top-1: 85.51 (42757/50000)
+Epoch 26 | Top-1: 81.70
+Train | Batch (1/196) | Top-1: 82.81 (212/256)
+Train | Batch (101/196) | Top-1: 85.66 (22147/25856)
+Train | Batch (196/196) | Top-1: 85.41 (42705/50000)
+Epoch 27 | Top-1: 80.51
+Train | Batch (1/196) | Top-1: 83.20 (213/256)
+Train | Batch (101/196) | Top-1: 85.68 (22154/25856)
+Train | Batch (196/196) | Top-1: 85.64 (42821/50000)
+Epoch 28 | Top-1: 82.30
+Train | Batch (1/196) | Top-1: 85.16 (218/256)
+Train | Batch (101/196) | Top-1: 85.25 (22041/25856)
+Train | Batch (196/196) | Top-1: 85.45 (42725/50000)
+Epoch 29 | Top-1: 82.83
+Train | Batch (1/196) | Top-1: 88.28 (226/256)
+Train | Batch (101/196) | Top-1: 86.26 (22303/25856)
+Train | Batch (196/196) | Top-1: 85.98 (42988/50000)
+Epoch 30 | Top-1: 78.22
+Train | Batch (1/196) | Top-1: 87.89 (225/256)
+Train | Batch (101/196) | Top-1: 85.70 (22159/25856)
+Train | Batch (196/196) | Top-1: 85.67 (42834/50000)
+Epoch 31 | Top-1: 78.61
+Train | Batch (1/196) | Top-1: 86.33 (221/256)
+Train | Batch (101/196) | Top-1: 85.99 (22234/25856)
+Train | Batch (196/196) | Top-1: 85.82 (42909/50000)
+Epoch 32 | Top-1: 82.32
+Train | Batch (1/196) | Top-1: 85.55 (219/256)
+Train | Batch (101/196) | Top-1: 86.37 (22332/25856)
+Train | Batch (196/196) | Top-1: 86.15 (43075/50000)
+Epoch 33 | Top-1: 79.74
+Train | Batch (1/196) | Top-1: 89.84 (230/256)
+Train | Batch (101/196) | Top-1: 86.29 (22312/25856)
+Train | Batch (196/196) | Top-1: 86.28 (43139/50000)
+Epoch 34 | Top-1: 81.15
+Train | Batch (1/196) | Top-1: 86.72 (222/256)
+Train | Batch (101/196) | Top-1: 86.10 (22262/25856)
+Train | Batch (196/196) | Top-1: 86.16 (43079/50000)
+Epoch 35 | Top-1: 80.66
+Train | Batch (1/196) | Top-1: 86.33 (221/256)
+Train | Batch (101/196) | Top-1: 88.01 (22756/25856)
+Train | Batch (196/196) | Top-1: 88.21 (44104/50000)
+Epoch 36 | Top-1: 85.25
+Train | Batch (1/196) | Top-1: 90.23 (231/256)
+Train | Batch (101/196) | Top-1: 88.63 (22917/25856)
+Train | Batch (196/196) | Top-1: 88.63 (44315/50000)
+Epoch 37 | Top-1: 85.16
+Train | Batch (1/196) | Top-1: 89.06 (228/256)
+Train | Batch (101/196) | Top-1: 88.98 (23007/25856)
+Train | Batch (196/196) | Top-1: 88.89 (44445/50000)
+Epoch 38 | Top-1: 85.76
+Train | Batch (1/196) | Top-1: 87.89 (225/256)
+Train | Batch (101/196) | Top-1: 89.08 (23033/25856)
+Train | Batch (196/196) | Top-1: 88.90 (44450/50000)
+Epoch 39 | Top-1: 85.48
+Train | Batch (1/196) | Top-1: 89.45 (229/256)
+Train | Batch (101/196) | Top-1: 89.07 (23029/25856)
+Train | Batch (196/196) | Top-1: 89.08 (44541/50000)
+Epoch 40 | Top-1: 85.39
+Train | Batch (1/196) | Top-1: 89.84 (230/256)
+Train | Batch (101/196) | Top-1: 89.31 (23092/25856)
+Train | Batch (196/196) | Top-1: 89.19 (44593/50000)
+Epoch 41 | Top-1: 85.48
+Train | Batch (1/196) | Top-1: 91.41 (234/256)
+Train | Batch (101/196) | Top-1: 89.14 (23047/25856)
+Train | Batch (196/196) | Top-1: 89.27 (44633/50000)
+Epoch 42 | Top-1: 85.28
+Train | Batch (1/196) | Top-1: 90.62 (232/256)
+Train | Batch (101/196) | Top-1: 89.40 (23114/25856)
+Train | Batch (196/196) | Top-1: 89.21 (44606/50000)
+Epoch 43 | Top-1: 85.86
+Train | Batch (1/196) | Top-1: 85.94 (220/256)
+Train | Batch (101/196) | Top-1: 89.41 (23118/25856)
+Train | Batch (196/196) | Top-1: 89.37 (44683/50000)
+Epoch 44 | Top-1: 85.50
+Train | Batch (1/196) | Top-1: 92.19 (236/256)
+Train | Batch (101/196) | Top-1: 89.02 (23018/25856)
+Train | Batch (196/196) | Top-1: 89.37 (44683/50000)
+Epoch 45 | Top-1: 85.35
+Train | Batch (1/196) | Top-1: 91.41 (234/256)
+Train | Batch (101/196) | Top-1: 89.52 (23146/25856)
+Train | Batch (196/196) | Top-1: 89.51 (44755/50000)
+Epoch 46 | Top-1: 85.43
+Train | Batch (1/196) | Top-1: 89.84 (230/256)
+Train | Batch (101/196) | Top-1: 89.44 (23126/25856)
+Train | Batch (196/196) | Top-1: 89.57 (44787/50000)
+Epoch 47 | Top-1: 84.91
+Train | Batch (1/196) | Top-1: 91.02 (233/256)
+Train | Batch (101/196) | Top-1: 90.10 (23295/25856)
+Train | Batch (196/196) | Top-1: 90.05 (45023/50000)
+Epoch 48 | Top-1: 85.94
+Train | Batch (1/196) | Top-1: 89.84 (230/256)
+Train | Batch (101/196) | Top-1: 90.23 (23329/25856)
+Train | Batch (196/196) | Top-1: 90.17 (45084/50000)
+Epoch 49 | Top-1: 86.09
+Train | Batch (1/196) | Top-1: 93.36 (239/256)
+Train | Batch (101/196) | Top-1: 89.95 (23258/25856)
+Train | Batch (196/196) | Top-1: 90.12 (45062/50000)
+Epoch 50 | Top-1: 85.95
+Train | Batch (1/196) | Top-1: 90.62 (232/256)
+Train | Batch (101/196) | Top-1: 90.39 (23371/25856)
+Train | Batch (196/196) | Top-1: 90.39 (45195/50000)
+Epoch 51 | Top-1: 86.11
+Train | Batch (1/196) | Top-1: 89.06 (228/256)
+Train | Batch (101/196) | Top-1: 90.44 (23384/25856)
+Train | Batch (196/196) | Top-1: 90.40 (45200/50000)
+Epoch 52 | Top-1: 86.18
+Train | Batch (1/196) | Top-1: 90.62 (232/256)
+Train | Batch (101/196) | Top-1: 90.62 (23431/25856)
+Train | Batch (196/196) | Top-1: 90.48 (45240/50000)
+Epoch 53 | Top-1: 85.96
+Train | Batch (1/196) | Top-1: 91.41 (234/256)
+Train | Batch (101/196) | Top-1: 90.32 (23354/25856)
+Train | Batch (196/196) | Top-1: 90.38 (45191/50000)
+Epoch 54 | Top-1: 86.13
+Train | Batch (1/196) | Top-1: 89.06 (228/256)
+Train | Batch (101/196) | Top-1: 90.32 (23354/25856)
+Train | Batch (196/196) | Top-1: 90.36 (45181/50000)
+Epoch 55 | Top-1: 86.04
+Train | Batch (1/196) | Top-1: 87.11 (223/256)
+Train | Batch (101/196) | Top-1: 90.81 (23479/25856)
+Train | Batch (196/196) | Top-1: 90.60 (45301/50000)
+Epoch 56 | Top-1: 86.01
+Train | Batch (1/196) | Top-1: 90.23 (231/256)
+Train | Batch (101/196) | Top-1: 90.61 (23428/25856)
+Train | Batch (196/196) | Top-1: 90.34 (45172/50000)
+Epoch 57 | Top-1: 86.24
+Train | Batch (1/196) | Top-1: 90.62 (232/256)
+Train | Batch (101/196) | Top-1: 90.29 (23345/25856)
+Train | Batch (196/196) | Top-1: 90.43 (45216/50000)
+Epoch 58 | Top-1: 86.01
+Train | Batch (1/196) | Top-1: 89.84 (230/256)
+Train | Batch (101/196) | Top-1: 90.55 (23413/25856)
+Train | Batch (196/196) | Top-1: 90.51 (45257/50000)
+Epoch 59 | Top-1: 86.05
+flops: 272754390
+Before Pruning | FLOPs: 272.754M | #Params: 1.667M
+Epoch 0
+Train | Batch (1/196) | Top-1: 89.84 (230/256)
+Train | Batch (101/196) | Top-1: 90.62 (23432/25856)
+Train | Batch (196/196) | Top-1: 90.46 (45230/50000)
+#Filters: 2226, #FLOPs: 239.06M | Top-1: 91.40
+Epoch 1
+Train | Batch (1/196) | Top-1: 89.84 (230/256)
+Train | Batch (101/196) | Top-1: 90.09 (23294/25856)
+Train | Batch (196/196) | Top-1: 89.77 (44886/50000)
+#Filters: 2085, #FLOPs: 203.00M | Top-1: 90.50
+Epoch 2
+Train | Batch (1/196) | Top-1: 88.28 (226/256)
+Train | Batch (101/196) | Top-1: 89.52 (23145/25856)
+Train | Batch (196/196) | Top-1: 89.19 (44597/50000)
+#Filters: 2041, #FLOPs: 195.77M | Top-1: 90.08
+Epoch 3
+Train | Batch (1/196) | Top-1: 85.94 (220/256)
+Train | Batch (101/196) | Top-1: 88.85 (22972/25856)
+Train | Batch (196/196) | Top-1: 88.65 (44323/50000)
+#Filters: 2038, #FLOPs: 194.68M | Top-1: 89.56
+Epoch 4
+Train | Batch (1/196) | Top-1: 93.36 (239/256)
+Train | Batch (101/196) | Top-1: 88.55 (22896/25856)
+Train | Batch (196/196) | Top-1: 88.60 (44300/50000)
+#Filters: 2036, #FLOPs: 193.65M | Top-1: 89.90
+Epoch 5
+Train | Batch (1/196) | Top-1: 87.50 (224/256)
+Train | Batch (101/196) | Top-1: 88.47 (22875/25856)
+Train | Batch (196/196) | Top-1: 88.25 (44123/50000)
+#Filters: 2034, #FLOPs: 192.87M | Top-1: 82.12
+Epoch 6
+Train | Batch (1/196) | Top-1: 85.94 (220/256)
+Train | Batch (101/196) | Top-1: 88.09 (22777/25856)
+Train | Batch (196/196) | Top-1: 88.02 (44009/50000)
+#Filters: 1639, #FLOPs: 167.62M | Top-1: 88.68
+Epoch 7
+Train | Batch (1/196) | Top-1: 90.23 (231/256)
+Train | Batch (101/196) | Top-1: 88.03 (22760/25856)
+Train | Batch (196/196) | Top-1: 87.88 (43942/50000)
+#Filters: 1638, #FLOPs: 167.55M | Top-1: 86.84
+Epoch 8
+Train | Batch (1/196) | Top-1: 87.89 (225/256)
+Train | Batch (101/196) | Top-1: 87.64 (22660/25856)
+Train | Batch (196/196) | Top-1: 87.84 (43922/50000)
+#Filters: 1635, #FLOPs: 167.05M | Top-1: 85.94
+Epoch 9
+Train | Batch (1/196) | Top-1: 89.06 (228/256)
+Train | Batch (101/196) | Top-1: 87.41 (22602/25856)
+Train | Batch (196/196) | Top-1: 87.57 (43784/50000)
+#Filters: 1635, #FLOPs: 167.05M | Top-1: 87.06
+Epoch 10
+Train | Batch (1/196) | Top-1: 84.38 (216/256)
+Train | Batch (101/196) | Top-1: 87.68 (22670/25856)
+Train | Batch (196/196) | Top-1: 87.87 (43935/50000)
+#Filters: 1635, #FLOPs: 167.05M | Top-1: 85.86
+Epoch 11
+Train | Batch (1/196) | Top-1: 87.50 (224/256)
+Train | Batch (101/196) | Top-1: 87.57 (22643/25856)
+Train | Batch (196/196) | Top-1: 87.54 (43769/50000)
+#Filters: 1631, #FLOPs: 166.15M | Top-1: 85.12
+Epoch 12
+Train | Batch (1/196) | Top-1: 83.20 (213/256)
+Train | Batch (101/196) | Top-1: 87.36 (22589/25856)
+Train | Batch (196/196) | Top-1: 87.53 (43763/50000)
+#Filters: 1629, #FLOPs: 165.38M | Top-1: 82.84
+Epoch 13
+Train | Batch (1/196) | Top-1: 87.11 (223/256)
+Train | Batch (101/196) | Top-1: 87.09 (22517/25856)
+Train | Batch (196/196) | Top-1: 87.19 (43594/50000)
+#Filters: 696, #FLOPs: 76.90M | Top-1: 86.74
+Epoch 14
+Train | Batch (1/196) | Top-1: 82.03 (210/256)
+Train | Batch (101/196) | Top-1: 87.00 (22496/25856)
+Train | Batch (196/196) | Top-1: 87.13 (43565/50000)
+#Filters: 695, #FLOPs: 77.41M | Top-1: 84.68
+Epoch 15
+Train | Batch (1/196) | Top-1: 87.89 (225/256)
+Train | Batch (101/196) | Top-1: 86.87 (22460/25856)
+Train | Batch (196/196) | Top-1: 87.06 (43528/50000)
+#Filters: 693, #FLOPs: 76.90M | Top-1: 63.06
+Epoch 16
+Train | Batch (1/196) | Top-1: 86.33 (221/256)
+Train | Batch (101/196) | Top-1: 87.37 (22590/25856)
+Train | Batch (196/196) | Top-1: 87.26 (43631/50000)
+#Filters: 697, #FLOPs: 78.18M | Top-1: 88.00
+Epoch 17
+Train | Batch (1/196) | Top-1: 87.89 (225/256)
+Train | Batch (101/196) | Top-1: 87.36 (22589/25856)
+Train | Batch (196/196) | Top-1: 87.33 (43663/50000)
+#Filters: 694, #FLOPs: 77.16M | Top-1: 86.26
+Epoch 18
+Train | Batch (1/196) | Top-1: 89.45 (229/256)
+Train | Batch (101/196) | Top-1: 87.04 (22506/25856)
+Train | Batch (196/196) | Top-1: 87.07 (43534/50000)
+#Filters: 695, #FLOPs: 77.41M | Top-1: 85.40
+Epoch 19
+Train | Batch (1/196) | Top-1: 88.28 (226/256)
+Train | Batch (101/196) | Top-1: 87.28 (22567/25856)
+Train | Batch (196/196) | Top-1: 87.04 (43522/50000)
+#Filters: 694, #FLOPs: 77.16M | Top-1: 76.98
+Epoch 20
+Train | Batch (1/196) | Top-1: 85.55 (219/256)
+Train | Batch (101/196) | Top-1: 86.80 (22443/25856)
+Train | Batch (196/196) | Top-1: 86.99 (43497/50000)
+#Filters: 693, #FLOPs: 76.90M | Top-1: 82.06
+Epoch 21
+Train | Batch (1/196) | Top-1: 89.84 (230/256)
+Train | Batch (101/196) | Top-1: 87.51 (22626/25856)
+Train | Batch (196/196) | Top-1: 87.36 (43678/50000)
+#Filters: 692, #FLOPs: 76.77M | Top-1: 67.84
+Epoch 22
+Train | Batch (1/196) | Top-1: 85.94 (220/256)
+Train | Batch (101/196) | Top-1: 87.28 (22566/25856)
+Train | Batch (196/196) | Top-1: 86.88 (43438/50000)
+#Filters: 693, #FLOPs: 77.03M | Top-1: 82.38
+Epoch 23
+Train | Batch (1/196) | Top-1: 83.98 (215/256)
+Train | Batch (101/196) | Top-1: 87.23 (22553/25856)
+Train | Batch (196/196) | Top-1: 87.01 (43506/50000)
+#Filters: 688, #FLOPs: 75.23M | Top-1: 9.94
+Epoch 24
+Train | Batch (1/196) | Top-1: 82.81 (212/256)
+Train | Batch (101/196) | Top-1: 86.65 (22405/25856)
+Train | Batch (196/196) | Top-1: 86.71 (43357/50000)
+#Filters: 691, #FLOPs: 75.87M | Top-1: 81.64
+Epoch 25
+Train | Batch (1/196) | Top-1: 88.67 (227/256)
+Train | Batch (101/196) | Top-1: 87.19 (22543/25856)
+Train | Batch (196/196) | Top-1: 87.04 (43518/50000)
+#Filters: 690, #FLOPs: 76.13M | Top-1: 73.98
+Epoch 26
+Train | Batch (1/196) | Top-1: 88.28 (226/256)
+Train | Batch (101/196) | Top-1: 87.18 (22542/25856)
+Train | Batch (196/196) | Top-1: 87.12 (43558/50000)
+#Filters: 692, #FLOPs: 76.77M | Top-1: 80.48
+Epoch 27
+Train | Batch (1/196) | Top-1: 87.11 (223/256)
+Train | Batch (101/196) | Top-1: 87.14 (22531/25856)
+Train | Batch (196/196) | Top-1: 86.94 (43470/50000)
+#Filters: 691, #FLOPs: 76.13M | Top-1: 19.64
+Epoch 28
+Train | Batch (1/196) | Top-1: 87.11 (223/256)
+Train | Batch (101/196) | Top-1: 87.04 (22505/25856)
+Train | Batch (196/196) | Top-1: 86.82 (43411/50000)
+#Filters: 687, #FLOPs: 74.58M | Top-1: 76.78
+Epoch 29
+Train | Batch (1/196) | Top-1: 89.45 (229/256)
+Train | Batch (101/196) | Top-1: 86.71 (22421/25856)
+Train | Batch (196/196) | Top-1: 86.72 (43359/50000)
+#Filters: 688, #FLOPs: 75.10M | Top-1: 78.52
+Epoch 30
+Train | Batch (1/196) | Top-1: 85.55 (219/256)
+Train | Batch (101/196) | Top-1: 86.94 (22479/25856)
+Train | Batch (196/196) | Top-1: 86.83 (43415/50000)
+#Filters: 690, #FLOPs: 76.26M | Top-1: 84.90
+Epoch 31
+Train | Batch (1/196) | Top-1: 84.77 (217/256)
+Train | Batch (101/196) | Top-1: 86.94 (22480/25856)
+Train | Batch (196/196) | Top-1: 86.90 (43449/50000)
+#Filters: 690, #FLOPs: 75.74M | Top-1: 70.46
+Epoch 32
+Train | Batch (1/196) | Top-1: 87.89 (225/256)
+Train | Batch (101/196) | Top-1: 87.19 (22544/25856)
+Train | Batch (196/196) | Top-1: 87.09 (43546/50000)
+#Filters: 690, #FLOPs: 75.61M | Top-1: 77.46
+Epoch 33
+Train | Batch (1/196) | Top-1: 86.72 (222/256)
+Train | Batch (101/196) | Top-1: 86.62 (22396/25856)
+Train | Batch (196/196) | Top-1: 86.98 (43488/50000)
+#Filters: 688, #FLOPs: 75.10M | Top-1: 77.22
+Epoch 34
+Train | Batch (1/196) | Top-1: 83.98 (215/256)
+Train | Batch (101/196) | Top-1: 86.43 (22347/25856)
+Train | Batch (196/196) | Top-1: 86.67 (43336/50000)
+#Filters: 688, #FLOPs: 75.36M | Top-1: 77.74
+Epoch 35
+Train | Batch (1/196) | Top-1: 90.23 (231/256)
+Train | Batch (101/196) | Top-1: 86.86 (22459/25856)
+Train | Batch (196/196) | Top-1: 86.77 (43383/50000)
+#Filters: 688, #FLOPs: 75.10M | Top-1: 83.00
+Epoch 36
+Train | Batch (1/196) | Top-1: 83.59 (214/256)
+Train | Batch (101/196) | Top-1: 86.97 (22487/25856)
+Train | Batch (196/196) | Top-1: 86.74 (43372/50000)
+#Filters: 689, #FLOPs: 76.13M | Top-1: 78.30
+Epoch 37
+Train | Batch (1/196) | Top-1: 84.77 (217/256)
+Train | Batch (101/196) | Top-1: 86.38 (22334/25856)
+Train | Batch (196/196) | Top-1: 86.39 (43194/50000)
+#Filters: 689, #FLOPs: 76.13M | Top-1: 75.84
+Epoch 38
+Train | Batch (1/196) | Top-1: 83.98 (215/256)
+Train | Batch (101/196) | Top-1: 86.56 (22381/25856)
+Train | Batch (196/196) | Top-1: 86.49 (43246/50000)
+#Filters: 685, #FLOPs: 75.11M | Top-1: 82.74
+Epoch 39
+Train | Batch (1/196) | Top-1: 87.11 (223/256)
+Train | Batch (101/196) | Top-1: 87.02 (22501/25856)
+Train | Batch (196/196) | Top-1: 86.66 (43328/50000)
+#Filters: 686, #FLOPs: 75.49M | Top-1: 66.66
+Epoch 40
+Train | Batch (1/196) | Top-1: 85.94 (220/256)
+Train | Batch (101/196) | Top-1: 86.91 (22471/25856)
+Train | Batch (196/196) | Top-1: 86.56 (43279/50000)
+#Filters: 686, #FLOPs: 75.49M | Top-1: 78.88
+Epoch 41
+Train | Batch (1/196) | Top-1: 86.72 (222/256)
+Train | Batch (101/196) | Top-1: 86.71 (22419/25856)
+Train | Batch (196/196) | Top-1: 86.61 (43305/50000)
+#Filters: 689, #FLOPs: 76.26M | Top-1: 79.66
+Epoch 42
+Train | Batch (1/196) | Top-1: 86.72 (222/256)
+Train | Batch (101/196) | Top-1: 86.40 (22340/25856)
+Train | Batch (196/196) | Top-1: 86.59 (43295/50000)
+#Filters: 688, #FLOPs: 75.87M | Top-1: 75.02
+Epoch 43
+Train | Batch (1/196) | Top-1: 87.11 (223/256)
+Train | Batch (101/196) | Top-1: 86.54 (22376/25856)
+Train | Batch (196/196) | Top-1: 86.33 (43163/50000)
+#Filters: 688, #FLOPs: 76.13M | Top-1: 81.68
+Epoch 44
+Train | Batch (1/196) | Top-1: 84.77 (217/256)
+Train | Batch (101/196) | Top-1: 86.93 (22476/25856)
+Train | Batch (196/196) | Top-1: 86.74 (43372/50000)
+#Filters: 687, #FLOPs: 75.74M | Top-1: 81.12
+Epoch 45
+Train | Batch (1/196) | Top-1: 91.41 (234/256)
+Train | Batch (101/196) | Top-1: 86.93 (22476/25856)
+Train | Batch (196/196) | Top-1: 86.71 (43353/50000)
+#Filters: 686, #FLOPs: 75.10M | Top-1: 75.46
+Epoch 46
+Train | Batch (1/196) | Top-1: 86.72 (222/256)
+Train | Batch (101/196) | Top-1: 86.70 (22418/25856)
+Train | Batch (196/196) | Top-1: 86.77 (43383/50000)
+#Filters: 686, #FLOPs: 74.97M | Top-1: 50.38
+Epoch 47
+Train | Batch (1/196) | Top-1: 89.84 (230/256)
+Train | Batch (101/196) | Top-1: 86.50 (22365/25856)
+Train | Batch (196/196) | Top-1: 86.49 (43247/50000)
+#Filters: 685, #FLOPs: 74.97M | Top-1: 69.64
+Epoch 48
+Train | Batch (1/196) | Top-1: 86.33 (221/256)
+Train | Batch (101/196) | Top-1: 86.43 (22347/25856)
+Train | Batch (196/196) | Top-1: 86.60 (43301/50000)
+#Filters: 683, #FLOPs: 74.46M | Top-1: 67.34
+Epoch 49
+Train | Batch (1/196) | Top-1: 86.33 (221/256)
+Train | Batch (101/196) | Top-1: 86.70 (22418/25856)
+Train | Batch (196/196) | Top-1: 86.69 (43347/50000)
+#Filters: 683, #FLOPs: 74.72M | Top-1: 75.36
+Epoch 50
+Train | Batch (1/196) | Top-1: 87.11 (223/256)
+Train | Batch (101/196) | Top-1: 86.53 (22372/25856)
+Train | Batch (196/196) | Top-1: 86.66 (43332/50000)
+#Filters: 683, #FLOPs: 74.72M | Top-1: 81.44
+Epoch 51
+Train | Batch (1/196) | Top-1: 89.06 (228/256)
+Train | Batch (101/196) | Top-1: 86.55 (22378/25856)
+Train | Batch (196/196) | Top-1: 86.64 (43321/50000)
+#Filters: 685, #FLOPs: 75.23M | Top-1: 63.78
+Epoch 52
+Train | Batch (1/196) | Top-1: 87.50 (224/256)
+Train | Batch (101/196) | Top-1: 86.67 (22409/25856)
+Train | Batch (196/196) | Top-1: 86.62 (43310/50000)
+#Filters: 684, #FLOPs: 74.85M | Top-1: 74.66
+Epoch 53
+Train | Batch (1/196) | Top-1: 85.55 (219/256)
+Train | Batch (101/196) | Top-1: 86.51 (22367/25856)
+Train | Batch (196/196) | Top-1: 86.48 (43238/50000)
+#Filters: 684, #FLOPs: 74.85M | Top-1: 76.22
+Epoch 54
+Train | Batch (1/196) | Top-1: 89.45 (229/256)
+Train | Batch (101/196) | Top-1: 86.84 (22453/25856)
+Train | Batch (196/196) | Top-1: 86.75 (43377/50000)
+#Filters: 687, #FLOPs: 75.62M | Top-1: 73.06
+Epoch 55
+Train | Batch (1/196) | Top-1: 85.94 (220/256)
+Train | Batch (101/196) | Top-1: 86.65 (22404/25856)
+Train | Batch (196/196) | Top-1: 86.85 (43426/50000)
+#Filters: 686, #FLOPs: 75.36M | Top-1: 71.98
+Epoch 56
+Train | Batch (1/196) | Top-1: 85.94 (220/256)
+Train | Batch (101/196) | Top-1: 86.85 (22457/25856)
+Train | Batch (196/196) | Top-1: 86.78 (43388/50000)
+#Filters: 686, #FLOPs: 75.49M | Top-1: 82.56
+Epoch 57
+Train | Batch (1/196) | Top-1: 87.50 (224/256)
+Train | Batch (101/196) | Top-1: 86.89 (22465/25856)
+Train | Batch (196/196) | Top-1: 86.65 (43325/50000)
+#Filters: 683, #FLOPs: 74.59M | Top-1: 70.04
+Epoch 58
+Train | Batch (1/196) | Top-1: 90.62 (232/256)
+Train | Batch (101/196) | Top-1: 86.88 (22463/25856)
+Train | Batch (196/196) | Top-1: 86.82 (43410/50000)
+#Filters: 684, #FLOPs: 74.59M | Top-1: 54.30
+Epoch 59
+Train | Batch (1/196) | Top-1: 84.38 (216/256)
+Train | Batch (101/196) | Top-1: 86.31 (22316/25856)
+Train | Batch (196/196) | Top-1: 86.41 (43205/50000)
+#Filters: 681, #FLOPs: 73.82M | Top-1: 68.18
+Target (flops): 1082.835M
+Layers that will be prunned: [(0, 24), (1, 18), (2, 24), (3, 22), (4, 24), (5, 8), (6, 24), (7, 16), (8, 24), (9, 1), (10, 24), (11, 44), (12, 79), (13, 43), (14, 79), (15, 43), (16, 79), (17, 46), (18, 79), (19, 38), (20, 79), (21, 83), (22, 79), (23, 90), (24, 79), (25, 85), (26, 79), (27, 88), (28, 79), (29, 84), (30, 79)]
+Prunning filters..
+After Pruning | FLOPs: 17.290M | #Params: 0.102M
+8.09762955224136
+After Growth | FLOPs: 1078.006M | #Params: 6.616M
+Train | Batch (1/196) | Top-1: 86.72 (222/256)
+Train | Batch (101/196) | Top-1: 25.29 (6540/25856)
+Train | Batch (196/196) | Top-1: 31.18 (15590/50000)
+Epoch 0 | Top-1: 29.18
+Train | Batch (1/196) | Top-1: 36.72 (94/256)
+Train | Batch (101/196) | Top-1: 43.77 (11317/25856)
+Train | Batch (196/196) | Top-1: 46.72 (23362/50000)
+Epoch 1 | Top-1: 41.67
+Train | Batch (1/196) | Top-1: 46.09 (118/256)
+Train | Batch (101/196) | Top-1: 54.94 (14206/25856)
+Train | Batch (196/196) | Top-1: 56.65 (28324/50000)
+Epoch 2 | Top-1: 30.04
+Train | Batch (1/196) | Top-1: 50.39 (129/256)
+Train | Batch (101/196) | Top-1: 60.85 (15734/25856)
+Train | Batch (196/196) | Top-1: 61.91 (30956/50000)
+Epoch 3 | Top-1: 46.25
+Train | Batch (1/196) | Top-1: 65.62 (168/256)
+Train | Batch (101/196) | Top-1: 64.50 (16676/25856)
+Train | Batch (196/196) | Top-1: 65.36 (32681/50000)
+Epoch 4 | Top-1: 49.72
+Train | Batch (1/196) | Top-1: 64.06 (164/256)
+Train | Batch (101/196) | Top-1: 67.29 (17398/25856)
+Train | Batch (196/196) | Top-1: 67.51 (33756/50000)
+Epoch 5 | Top-1: 63.86
+Train | Batch (1/196) | Top-1: 75.00 (192/256)
+Train | Batch (101/196) | Top-1: 69.19 (17889/25856)
+Train | Batch (196/196) | Top-1: 69.53 (34765/50000)
+Epoch 6 | Top-1: 61.33
+Train | Batch (1/196) | Top-1: 67.58 (173/256)
+Train | Batch (101/196) | Top-1: 71.09 (18380/25856)
+Train | Batch (196/196) | Top-1: 71.36 (35678/50000)
+Epoch 7 | Top-1: 63.86
+Train | Batch (1/196) | Top-1: 68.36 (175/256)
+Train | Batch (101/196) | Top-1: 71.97 (18609/25856)
+Train | Batch (196/196) | Top-1: 72.50 (36250/50000)
+Epoch 8 | Top-1: 64.95
+Train | Batch (1/196) | Top-1: 71.48 (183/256)
+Train | Batch (101/196) | Top-1: 73.34 (18964/25856)
+Train | Batch (196/196) | Top-1: 73.36 (36678/50000)
+Epoch 9 | Top-1: 62.08
+Train | Batch (1/196) | Top-1: 73.44 (188/256)
+Train | Batch (101/196) | Top-1: 73.97 (19126/25856)
+Train | Batch (196/196) | Top-1: 74.41 (37203/50000)
+Epoch 10 | Top-1: 68.53
+Train | Batch (1/196) | Top-1: 75.39 (193/256)
+Train | Batch (101/196) | Top-1: 75.46 (19510/25856)
+Train | Batch (196/196) | Top-1: 75.36 (37682/50000)
+Epoch 11 | Top-1: 63.20
+Train | Batch (1/196) | Top-1: 69.14 (177/256)
+Train | Batch (101/196) | Top-1: 74.97 (19384/25856)
+Train | Batch (196/196) | Top-1: 75.44 (37722/50000)
+Epoch 12 | Top-1: 62.56
+Train | Batch (1/196) | Top-1: 76.56 (196/256)
+Train | Batch (101/196) | Top-1: 75.53 (19530/25856)
+Train | Batch (196/196) | Top-1: 75.94 (37968/50000)
+Epoch 13 | Top-1: 59.01
+Train | Batch (1/196) | Top-1: 73.83 (189/256)
+Train | Batch (101/196) | Top-1: 76.51 (19782/25856)
+Train | Batch (196/196) | Top-1: 76.97 (38484/50000)
+Epoch 14 | Top-1: 63.41
+Train | Batch (1/196) | Top-1: 76.95 (197/256)
+Train | Batch (101/196) | Top-1: 77.10 (19936/25856)
+Train | Batch (196/196) | Top-1: 76.85 (38425/50000)
+Epoch 15 | Top-1: 46.13
+Train | Batch (1/196) | Top-1: 80.47 (206/256)
+Train | Batch (101/196) | Top-1: 77.16 (19950/25856)
+Train | Batch (196/196) | Top-1: 77.10 (38550/50000)
+Epoch 16 | Top-1: 57.45
+Train | Batch (1/196) | Top-1: 80.47 (206/256)
+Train | Batch (101/196) | Top-1: 77.34 (19996/25856)
+Train | Batch (196/196) | Top-1: 77.17 (38586/50000)
+Epoch 17 | Top-1: 64.83
+Train | Batch (1/196) | Top-1: 78.91 (202/256)
+Train | Batch (101/196) | Top-1: 80.84 (20901/25856)
+Train | Batch (196/196) | Top-1: 81.32 (40658/50000)
+Epoch 18 | Top-1: 80.73
+Train | Batch (1/196) | Top-1: 85.55 (219/256)
+Train | Batch (101/196) | Top-1: 82.07 (21219/25856)
+Train | Batch (196/196) | Top-1: 81.92 (40960/50000)
+Epoch 19 | Top-1: 80.51
+Train | Batch (1/196) | Top-1: 81.25 (208/256)
+Train | Batch (101/196) | Top-1: 82.45 (21318/25856)
+Train | Batch (196/196) | Top-1: 82.42 (41210/50000)
+Epoch 20 | Top-1: 80.22
+Train | Batch (1/196) | Top-1: 83.59 (214/256)
+Train | Batch (101/196) | Top-1: 82.50 (21330/25856)
+Train | Batch (196/196) | Top-1: 82.44 (41222/50000)
+Epoch 21 | Top-1: 77.77
+Train | Batch (1/196) | Top-1: 83.98 (215/256)
+Train | Batch (101/196) | Top-1: 82.91 (21438/25856)
+Train | Batch (196/196) | Top-1: 82.73 (41364/50000)
+Epoch 22 | Top-1: 80.39
+Train | Batch (1/196) | Top-1: 84.38 (216/256)
+Train | Batch (101/196) | Top-1: 83.03 (21467/25856)
+Train | Batch (196/196) | Top-1: 82.93 (41464/50000)
+Epoch 23 | Top-1: 78.91
+Train | Batch (1/196) | Top-1: 85.16 (218/256)
+Train | Batch (101/196) | Top-1: 83.47 (21581/25856)
+Train | Batch (196/196) | Top-1: 83.28 (41640/50000)
+Epoch 24 | Top-1: 79.58
+Train | Batch (1/196) | Top-1: 80.47 (206/256)
+Train | Batch (101/196) | Top-1: 82.67 (21374/25856)
+Train | Batch (196/196) | Top-1: 82.90 (41452/50000)
+Epoch 25 | Top-1: 79.02
+Train | Batch (1/196) | Top-1: 85.55 (219/256)
+Train | Batch (101/196) | Top-1: 83.53 (21597/25856)
+Train | Batch (196/196) | Top-1: 83.27 (41636/50000)
+Epoch 26 | Top-1: 78.77
+Train | Batch (1/196) | Top-1: 82.81 (212/256)
+Train | Batch (101/196) | Top-1: 83.64 (21625/25856)
+Train | Batch (196/196) | Top-1: 83.32 (41660/50000)
+Epoch 27 | Top-1: 79.87
+Train | Batch (1/196) | Top-1: 84.38 (216/256)
+Train | Batch (101/196) | Top-1: 83.49 (21588/25856)
+Train | Batch (196/196) | Top-1: 83.52 (41761/50000)
+Epoch 28 | Top-1: 75.98
+Train | Batch (1/196) | Top-1: 79.30 (203/256)
+Train | Batch (101/196) | Top-1: 83.27 (21530/25856)
+Train | Batch (196/196) | Top-1: 83.42 (41709/50000)
+Epoch 29 | Top-1: 78.99
+Train | Batch (1/196) | Top-1: 84.77 (217/256)
+Train | Batch (101/196) | Top-1: 83.87 (21685/25856)
+Train | Batch (196/196) | Top-1: 83.36 (41680/50000)
+Epoch 30 | Top-1: 78.34
+Train | Batch (1/196) | Top-1: 79.69 (204/256)
+Train | Batch (101/196) | Top-1: 83.37 (21555/25856)
+Train | Batch (196/196) | Top-1: 83.56 (41781/50000)
+Epoch 31 | Top-1: 75.15
+Train | Batch (1/196) | Top-1: 84.77 (217/256)
+Train | Batch (101/196) | Top-1: 83.75 (21654/25856)
+Train | Batch (196/196) | Top-1: 83.76 (41878/50000)
+Epoch 32 | Top-1: 79.23
+Train | Batch (1/196) | Top-1: 85.94 (220/256)
+Train | Batch (101/196) | Top-1: 83.93 (21700/25856)
+Train | Batch (196/196) | Top-1: 83.63 (41813/50000)
+Epoch 33 | Top-1: 77.11
+Train | Batch (1/196) | Top-1: 89.06 (228/256)
+Train | Batch (101/196) | Top-1: 83.85 (21679/25856)
+Train | Batch (196/196) | Top-1: 83.85 (41925/50000)
+Epoch 34 | Top-1: 71.82
+Train | Batch (1/196) | Top-1: 81.25 (208/256)
+Train | Batch (101/196) | Top-1: 83.92 (21699/25856)
+Train | Batch (196/196) | Top-1: 83.73 (41865/50000)
+Epoch 35 | Top-1: 77.40
+Train | Batch (1/196) | Top-1: 80.86 (207/256)
+Train | Batch (101/196) | Top-1: 85.26 (22045/25856)
+Train | Batch (196/196) | Top-1: 85.23 (42615/50000)
+Epoch 36 | Top-1: 83.85
+Train | Batch (1/196) | Top-1: 86.33 (221/256)
+Train | Batch (101/196) | Top-1: 86.15 (22276/25856)
+Train | Batch (196/196) | Top-1: 86.17 (43084/50000)
+Epoch 37 | Top-1: 83.39
+Train | Batch (1/196) | Top-1: 89.06 (228/256)
+Train | Batch (101/196) | Top-1: 85.98 (22231/25856)
+Train | Batch (196/196) | Top-1: 85.95 (42973/50000)
+Epoch 38 | Top-1: 84.02
+Train | Batch (1/196) | Top-1: 87.89 (225/256)
+Train | Batch (101/196) | Top-1: 86.04 (22247/25856)
+Train | Batch (196/196) | Top-1: 86.13 (43065/50000)
+Epoch 39 | Top-1: 83.44
+Train | Batch (1/196) | Top-1: 87.89 (225/256)
+Train | Batch (101/196) | Top-1: 86.34 (22324/25856)
+Train | Batch (196/196) | Top-1: 86.45 (43226/50000)
+Epoch 40 | Top-1: 83.31
+Train | Batch (1/196) | Top-1: 88.28 (226/256)
+Train | Batch (101/196) | Top-1: 86.62 (22396/25856)
+Train | Batch (196/196) | Top-1: 86.44 (43221/50000)
+Epoch 41 | Top-1: 83.43
+Train | Batch (1/196) | Top-1: 85.94 (220/256)
+Train | Batch (101/196) | Top-1: 86.27 (22307/25856)
+Train | Batch (196/196) | Top-1: 86.32 (43162/50000)
+Epoch 42 | Top-1: 83.96
+Train | Batch (1/196) | Top-1: 88.28 (226/256)
+Train | Batch (101/196) | Top-1: 86.69 (22415/25856)
+Train | Batch (196/196) | Top-1: 86.37 (43186/50000)
+Epoch 43 | Top-1: 83.95
+Train | Batch (1/196) | Top-1: 89.84 (230/256)
+Train | Batch (101/196) | Top-1: 86.41 (22343/25856)
+Train | Batch (196/196) | Top-1: 86.55 (43273/50000)
+Epoch 44 | Top-1: 83.82
+Train | Batch (1/196) | Top-1: 87.89 (225/256)
+Train | Batch (101/196) | Top-1: 87.02 (22501/25856)
+Train | Batch (196/196) | Top-1: 86.66 (43332/50000)
+Epoch 45 | Top-1: 84.52
+Train | Batch (1/196) | Top-1: 90.23 (231/256)
+Train | Batch (101/196) | Top-1: 86.72 (22422/25856)
+Train | Batch (196/196) | Top-1: 86.50 (43252/50000)
+Epoch 46 | Top-1: 83.97
+Train | Batch (1/196) | Top-1: 82.81 (212/256)
+Train | Batch (101/196) | Top-1: 86.81 (22446/25856)
+Train | Batch (196/196) | Top-1: 86.75 (43377/50000)
+Epoch 47 | Top-1: 84.22
+Train | Batch (1/196) | Top-1: 83.59 (214/256)
+Train | Batch (101/196) | Top-1: 87.12 (22527/25856)
+Train | Batch (196/196) | Top-1: 87.23 (43613/50000)
+Epoch 48 | Top-1: 84.87
+Train | Batch (1/196) | Top-1: 86.72 (222/256)
+Train | Batch (101/196) | Top-1: 87.46 (22613/25856)
+Train | Batch (196/196) | Top-1: 87.29 (43646/50000)
+Epoch 49 | Top-1: 84.93
+Train | Batch (1/196) | Top-1: 87.50 (224/256)
+Train | Batch (101/196) | Top-1: 87.30 (22572/25856)
+Train | Batch (196/196) | Top-1: 87.34 (43670/50000)
+Epoch 50 | Top-1: 84.84
+Train | Batch (1/196) | Top-1: 89.45 (229/256)
+Train | Batch (101/196) | Top-1: 87.47 (22616/25856)
+Train | Batch (196/196) | Top-1: 87.49 (43743/50000)
+Epoch 51 | Top-1: 84.97
+Train | Batch (1/196) | Top-1: 88.67 (227/256)
+Train | Batch (101/196) | Top-1: 87.66 (22665/25856)
+Train | Batch (196/196) | Top-1: 87.48 (43740/50000)
+Epoch 52 | Top-1: 84.79
+Train | Batch (1/196) | Top-1: 89.06 (228/256)
+Train | Batch (101/196) | Top-1: 87.70 (22677/25856)
+Train | Batch (196/196) | Top-1: 87.51 (43755/50000)
+Epoch 53 | Top-1: 84.70
+Train | Batch (1/196) | Top-1: 88.28 (226/256)
+Train | Batch (101/196) | Top-1: 87.40 (22598/25856)
+Train | Batch (196/196) | Top-1: 87.41 (43707/50000)
+Epoch 54 | Top-1: 84.77
+Train | Batch (1/196) | Top-1: 88.67 (227/256)
+Train | Batch (101/196) | Top-1: 87.61 (22653/25856)
+Train | Batch (196/196) | Top-1: 87.58 (43789/50000)
+Epoch 55 | Top-1: 84.73
+Train | Batch (1/196) | Top-1: 85.16 (218/256)
+Train | Batch (101/196) | Top-1: 87.54 (22635/25856)
+Train | Batch (196/196) | Top-1: 87.47 (43737/50000)
+Epoch 56 | Top-1: 84.73
+Train | Batch (1/196) | Top-1: 89.45 (229/256)
+Train | Batch (101/196) | Top-1: 87.69 (22674/25856)
+Train | Batch (196/196) | Top-1: 87.43 (43715/50000)
+Epoch 57 | Top-1: 84.79
+Train | Batch (1/196) | Top-1: 89.84 (230/256)
+Train | Batch (101/196) | Top-1: 87.72 (22680/25856)
+Train | Batch (196/196) | Top-1: 87.64 (43820/50000)
+Epoch 58 | Top-1: 84.93
+Train | Batch (1/196) | Top-1: 84.77 (217/256)
+Train | Batch (101/196) | Top-1: 87.51 (22626/25856)
+Train | Batch (196/196) | Top-1: 87.60 (43799/50000)
+Epoch 59 | Top-1: 84.81

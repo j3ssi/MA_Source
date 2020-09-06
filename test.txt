@@ -1,0 +1,19 @@
+no display found. Using non-interactive Agg backend
+[5, 5, 5]
+random number: 8612
+Files already downloaded and verified
+numoFStages: 3
+Traceback (most recent call last):
+  File "mainN2N.py", line 939, in <module>
+    main()
+  File "mainN2N.py", line 347, in main
+    widthofFirstLayer=args.widthofFirstLayer, model=None, archNums=None, widthOfLayers=None)
+  File "/home/jessica.buehler/MA_Source/src/n2n1.py", line 239, in __init__
+    self.paramList.cuda()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 307, in cuda
+    return self._apply(lambda t: t.cuda(device))
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 225, in _apply
+    param_applied = fn(param)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/nn/modules/module.py", line 307, in <lambda>
+    return self._apply(lambda t: t.cuda(device))
+KeyboardInterrupt
