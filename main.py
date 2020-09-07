@@ -556,8 +556,8 @@ def main():
 
         model = model.wider(1, 2, out_size=None, weight_norm=None, random_init=True, addNoise=False)
 
-        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
-                        widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
+        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, args.bottleneck,
+                        widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
 
         model.cuda()
         criterion = nn.CrossEntropyLoss()
