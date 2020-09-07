@@ -942,7 +942,7 @@ class N2N(nn.Module):
 
                 # TEST:random init for new units
                 if random_init:
-                    n =  module.in_features * module.out_channels
+                    n =  module.in_features * module.out_features
                     dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=w1.shape)
                     # if m2.weight.dim() == 4:
                     #    n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.out_channels
