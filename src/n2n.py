@@ -758,7 +758,7 @@ class N2N(nn.Module):
                 listindices = []
                 for o in range(0, (new_width - old_width)):
                     idx = np.random.randint(0, old_width)
-                    print(f'idx: {idx}')
+                    # print(f'idx: {idx}')
                     m1list = w1[:, idx, :, :]
                     listindices.append(idx)
                     try:
@@ -770,7 +770,7 @@ class N2N(nn.Module):
                     if random_init:
                         n = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
                         dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=(w1.shape[0],new_width, w1.shape[2], w1.shape[3]))
-
+                        print(f'dw1: {dw1.shape}')
                     else:
                         dw1.append(m1list)
 
