@@ -777,8 +777,11 @@ class N2N(nn.Module):
                 if not random_init:
                     dw1x = np.array(dw1)
                     dw1x = np.transpose(dw1x, [1,0,2,3])
+                    w1 = np.concatenate((w1, dw1x), axis=1)
 
-                w1 = np.concatenate((w1, dw1x), axis =1 )
+                else:
+                    w1 = np.concatenate((w1, dw1), axis=1)
+
                 # print(f'shape after concat: {w1.shape}')
 
                 m1.in_channels = new_width
