@@ -752,7 +752,7 @@ class N2N(nn.Module):
                 print(f'Resiudual I')
                 old_width = m1.weight.size(1)
                 new_width = old_width * delta_width
-
+                print(f'new width: {new_width}; old width: {old_width}')
                 dw1 = []
                 tracking = dict()
                 listindices = []
