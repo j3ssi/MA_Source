@@ -571,6 +571,7 @@ def main():
     if args.reset:
         args.epoch = 0
         start_epoch = 1
+        args.lr=0.1
     if args.dB:
         save_checkpoint({
             'epoch': args.epochs + start_epoch,
