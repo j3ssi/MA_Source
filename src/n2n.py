@@ -919,8 +919,8 @@ class N2N(nn.Module):
         if int(stage) == int(self.numOfStages):
             module = self.module_list[-1]
             w1 = module.weight.data.clone().cpu().numpy()
-            w1list = module.weight.data.cpu().numpy()
-            # print(f'size: {w1.size()}')
+
+            print(f'size: {w1.size()}')
 
             old_width = w1.shape[1]
             new_width = old_width * delta_width
@@ -931,7 +931,7 @@ class N2N(nn.Module):
             listindices = []
             for o in range(0, (new_width - old_width)):
                 idx = np.random.randint(0, old_width)
-                m1list = w1[:, idx]
+                m1list = w1[idx, :]
                 listindices.append(idx)
 
                 try:
@@ -943,7 +943,7 @@ class N2N(nn.Module):
                 # TEST:random init for new units
                 if random_init:
                     n =  module.in_features * module.out_features
-                    dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=w1.shape)
+                    dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=(new_width-old_width,w1.out_features))
                     # if m2.weight.dim() == 4:
                     #    n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.out_channels
                     # elif m2.weight.dim() == 5:
