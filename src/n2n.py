@@ -749,6 +749,7 @@ class N2N(nn.Module):
             assert delta_width > 0, "New size should be larger"
 
             if j in residualListI:
+                print(f'Resiudual I')
                 old_width = m1.weight.size(1)
                 new_width = old_width * delta_width
 
@@ -789,6 +790,7 @@ class N2N(nn.Module):
                     w1 += noise
 
             if j in residualListO:
+                print(f'Residual O')
                 old_width = m1.weight.size(0)
                 new_width = old_width * delta_width
                 # print(f'old width1: {old_width}; new width: {new_width}')
