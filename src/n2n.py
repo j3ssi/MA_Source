@@ -769,7 +769,7 @@ class N2N(nn.Module):
                     # TEST:random init for new units
                     if random_init:
                         n = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
-                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=(w1.shape[0],new_width, w1.shape[2], w1.shape[3]))
+                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=(w1.shape[0],new_width-old_width, w1.shape[2], w1.shape[3]))
                         print(f'dw1: {dw1.shape}')
                     else:
                         dw1.append(m1list)
@@ -796,7 +796,7 @@ class N2N(nn.Module):
             if j in residualListO:
                 print(f'Residual O')
                 old_width = m1.weight.size(0)
-                new_width = old_width * delta_width
+                new_width = old_width *delta_width
                 print(f'old width1: {old_width}; new width: {new_width}')
 
                 dw1 = []
@@ -837,7 +837,7 @@ class N2N(nn.Module):
                     # TEST:random init for new units
                     if random_init:
                         n1 = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
-                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n1), size=(new_width, w1.shape[1], w1.shape[2],w1.shape[3]))
+                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n1), size=(new_width-old_width, w1.shape[1], w1.shape[2],w1.shape[3]))
                         print(f'dw1: {dw1.shape}')
                     else:
                         dw1.append(m1list)
