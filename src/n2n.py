@@ -924,7 +924,7 @@ class N2N(nn.Module):
 
             old_width = w1.shape[1]
             new_width = old_width * delta_width
-            # print(f'old width: {old_width}')
+            print(f'old width: {old_width}')
             dw1 = []
             tracking = dict()
             listOfNumbers = []
