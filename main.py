@@ -558,7 +558,7 @@ def main():
 
         model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, args.bottleneck,
                         widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
-
+        print(model)
         model.cuda()
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
