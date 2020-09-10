@@ -360,8 +360,7 @@ class N2N(nn.Module):
             fc.bias.data = module.bias.data
             self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
-            # if printName:
-            # print("\nnew Model: ", self)
+
 
     def forward(self, x):
         # print(f'ArchNums: {self.archNums}')
@@ -1011,8 +1010,8 @@ class N2N(nn.Module):
             for block in range(0, len(archNum)):
                 if printDeeper:
                     print("\n\n\tBlock: ", block)
-                if not notfirstStage and firstBlockInStage:
-                    j=j+1
+                if notfirstStage and firstBlockInStage:
+                    j=j+2
                 firstBlockInStage =False
                 module = self.module_list[j]
                 i0 = module.weight.size(0)
