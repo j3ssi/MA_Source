@@ -981,19 +981,10 @@ class N2N(nn.Module):
             tracking = dict()
             listOfNumbers = []
             listindices = []
-            for o in range(0, (new_width - old_width)):
-                n =  module.in_features * module.out_features
-                dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=(new_width-old_width, module.out_features))
-                    # if m2.weight.dim() == 4:
-                    #    n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.out_channels
-                    # elif m2.weight.dim() == 5:
-                    #    n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.kernel_size[2] * m2.out_channels
-                    # elif m2.weight.dim() == 2:
-                    #    n2 = m2.out_features * m2.in_features
-                    # dw1.select(0, i).normal_(0, )
-                    # dw2.select(0, i).normal_(0, np.sqrt(2. / n2))
+            n =  module.in_features * module.out_features
+            dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=(new_width-old_width, module.out_features))
 
-                
+            print(f'Size w1: {w1.shape()}; dw1 size: {dw1.shape}')
             dw1y = np.concatenate((w1,dw1), axis =0)
             w1 = torch.FloatTensor(dw1y).cuda()
             w1.requires_grad=True
