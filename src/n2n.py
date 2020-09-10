@@ -984,7 +984,7 @@ class N2N(nn.Module):
             n =  module.in_features * module.out_features
             dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=(new_width-old_width, module.out_features))
 
-            print(f'Size w1: {w1.shape()}; dw1 size: {dw1.shape}')
+            print(f'Size w1: {w1.shape}; dw1 size: {dw1.shape}')
             dw1y = np.concatenate((w1,dw1), axis =0)
             w1 = torch.FloatTensor(dw1y).cuda()
             w1.requires_grad=True
