@@ -1029,7 +1029,7 @@ class N2N(nn.Module):
                 j = j + 2
                 self.module_list.insert(j,layer)
 
-                layer2 = nn.BatchNorm2d(i1)
+                layer2 = nn.BatchNorm2d(i0)
                 archNum[block] += 1
                 layerInThisBlock = archNum[block]
                 j = j + 1
