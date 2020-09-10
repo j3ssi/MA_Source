@@ -1022,7 +1022,7 @@ class N2N(nn.Module):
                 padding = module.padding
                 bias = module.bias if module.bias is not None else False
 
-                layer = nn.Conv2d(i1, i0, kernel_size=kernel_size, stride=stride, padding=padding,
+                layer = nn.Conv2d(i1, i1, kernel_size=kernel_size, stride=stride, padding=padding,
                                   bias=bias)
 
                 layer.weight = torch.nn.Parameter(w1)
@@ -1036,8 +1036,8 @@ class N2N(nn.Module):
                 self.module_list.insert(j, layer2)
                 i = 3
                 j= j + 1
-                print(f'j: {j}; i: {i}')
-                print(f'size:{i0}, {i1}, {i2}, {i3}')
+                # print(f'j: {j}; i: {i}')
+                # print(f'size:{i0}, {i1}, {i2}, {i3}')
                 while i < layerInThisBlock:
                     i = i + 1
                     j = j + 2
