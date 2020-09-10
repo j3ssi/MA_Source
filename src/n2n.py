@@ -232,8 +232,6 @@ class N2N(nn.Module):
 
                     # 18
 
-
-
                 # conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
                 #                  stride=1)
                 # self.module_list.append(conv)
@@ -361,7 +359,6 @@ class N2N(nn.Module):
             self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
 
-
     def forward(self, x):
         # print(f'ArchNums: {self.archNums}')
         # First layer
@@ -483,8 +480,8 @@ class N2N(nn.Module):
                                 _x = self.relu(_x)
 
                 else:
-                    # if printNet:
-                    print(f'Block: {block}; j: {j}')
+                    if printNet:
+                        print(f'Block: {block}; j: {j}')
                     i = 0
                     layerInThisBlock = archNum[block]
                     while i < layerInThisBlock:
@@ -768,7 +765,8 @@ class N2N(nn.Module):
                     # TEST:random init for new units
                     if random_init:
                         n = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
-                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=(w1.shape[0],new_width-old_width, w1.shape[2], w1.shape[3]))
+                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n),
+                                                  size=(w1.shape[0], new_width - old_width, w1.shape[2], w1.shape[3]))
                         print(f'dw1: {dw1.shape}')
                     else:
                         dw1.append(m1list)
@@ -776,7 +774,7 @@ class N2N(nn.Module):
                 # print(f'dw1:{dw1}')
                 if not random_init:
                     dw1x = np.array(dw1)
-                    dw1x = np.transpose(dw1x, [1,0,2,3])
+                    dw1x = np.transpose(dw1x, [1, 0, 2, 3])
                     w1 = np.concatenate((w1, dw1x), axis=1)
 
                 else:
@@ -795,7 +793,7 @@ class N2N(nn.Module):
             if j in residualListO:
                 print(f'Residual O')
                 old_width = m1.weight.size(0)
-                new_width = old_width *delta_width
+                new_width = old_width * delta_width
                 print(f'old width1: {old_width}; new width: {new_width}')
 
                 dw1 = []
@@ -836,7 +834,8 @@ class N2N(nn.Module):
                     # TEST:random init for new units
                     if random_init:
                         n1 = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
-                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n1), size=(new_width-old_width, w1.shape[1], w1.shape[2],w1.shape[3]))
+                        dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n1),
+                                                  size=(new_width - old_width, w1.shape[1], w1.shape[2], w1.shape[3]))
                         print(f'dw1: {dw1.shape}')
                     else:
                         dw1.append(m1list)
@@ -911,7 +910,6 @@ class N2N(nn.Module):
             if len(residualList) == 0:
                 index = 1
 
-
         # print(f'Bis Hier!')
         # print(f'stage: {stage}')
         # print(f'self num of stages: {self.numOfStages}')
@@ -942,8 +940,9 @@ class N2N(nn.Module):
 
                 # TEST:random init for new units
                 if random_init:
-                    n =  module.in_features * module.out_features
-                    dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=(new_width-old_width, module.out_features))
+                    n = module.in_features * module.out_features
+                    dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n),
+                                              size=(new_width - old_width, module.out_features))
                     # if m2.weight.dim() == 4:
                     #    n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.out_channels
                     # elif m2.weight.dim() == 5:
@@ -958,10 +957,10 @@ class N2N(nn.Module):
                     # dw1.select(0, i).copy_(w1.select(0, idx).clone())
                     # dw2.select(0, i).copy_(w2.select(0, idx).clone())
 
-            dw1x = np.transpose(dw1, [1,0])
-            dw1y = np.concatenate((w1,dw1x), axis =1)
+            dw1x = np.transpose(dw1, [1, 0])
+            dw1y = np.concatenate((w1, dw1x), axis=1)
             w1 = torch.FloatTensor(dw1y).cuda()
-            w1.requires_grad=True
+            w1.requires_grad = True
 
             module.in_features = new_width
             module.weight = torch.nn.Parameter(w1)
@@ -980,13 +979,13 @@ class N2N(nn.Module):
             tracking = dict()
             listOfNumbers = []
             listindices = []
-            n =  module.in_features * module.out_features
-            dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=(module.out_features,new_width-old_width))
+            n = module.in_features * module.out_features
+            dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=(module.out_features, new_width - old_width))
 
             print(f'Size w1: {w1.shape}; dw1 size: {dw1.shape}')
-            dw1y = np.concatenate((w1,dw1), axis =1)
+            dw1y = np.concatenate((w1, dw1), axis=1)
             w1 = torch.FloatTensor(dw1y).cuda()
-            w1.requires_grad=True
+            w1.requires_grad = True
 
             module.in_features = new_width
             module.weight = torch.nn.Parameter(w1)
@@ -1000,7 +999,7 @@ class N2N(nn.Module):
         # make each block with plus two layers (conv +batch) deeper
         printDeeper = True
         j = 2
-        notfirstStage =False
+        notfirstStage = False
         for stage in range(0, self.numOfStages):
             if printDeeper:
                 print("\n\nStage: ", stage)
@@ -1010,18 +1009,16 @@ class N2N(nn.Module):
             for block in range(0, len(archNum)):
                 if printDeeper:
                     print("\n\n\tBlock: ", block)
-                if notfirstStage and firstBlockInStage:
-                    j=j+2
-                firstBlockInStage =False
+                firstBlockInStage = False
                 module = self.module_list[j]
                 i0 = module.weight.size(0)
                 i1 = module.weight.size(1)
                 i2 = module.weight.size(2)
                 i3 = module.weight.size(3)
-                print(f'size:{i0}, {i0}, {i2}, {i3}; j: {j}')
-                dw1 = numpy.ones((i0,i0,i2,i3),dtype=numpy.float32)
+                print(f'size:{i0}, {i1}, {i2}, {i3}; j: {j}')
+                dw1 = numpy.ones((i0, i0, i2, i3), dtype=numpy.float32)
                 w1 = torch.FloatTensor(dw1)
-                w1.requires_grad =True
+                w1.requires_grad = True
                 kernel_size = i2
                 stride = module.stride
                 padding = module.padding
@@ -1032,7 +1029,7 @@ class N2N(nn.Module):
 
                 layer.weight = torch.nn.Parameter(w1)
                 j = j + 2
-                self.module_list.insert(j,layer)
+                self.module_list.insert(j, layer)
 
                 layer2 = nn.BatchNorm2d(i0)
                 archNum[block] += 1
@@ -1040,7 +1037,7 @@ class N2N(nn.Module):
                 j = j + 1
                 self.module_list.insert(j, layer2)
                 i = 3
-                j= j + 1
+                j = j + 1
                 print(f'j: {j}; i: {i}')
                 while i < layerInThisBlock:
                     i = i + 1
@@ -1051,6 +1048,7 @@ class N2N(nn.Module):
         # noise = torch.rand(0,0.5)
         print(f'archNums: {self.archNums}')
         return self
+
 
 def compare(layer, oddLayer):
     i1 = int(layer.split('.')[1].split('v')[1])
