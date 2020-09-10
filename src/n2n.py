@@ -999,7 +999,7 @@ class N2N(nn.Module):
 
     def deeper1(self):
         # make each block with plus two layers (conv +batch) deeper
-        printDeeper = False
+        printDeeper = True
         j = 2
         for stage in range(0, self.numOfStages):
             if printDeeper:
@@ -1014,6 +1014,7 @@ class N2N(nn.Module):
                 i1 = module.weight.size(1)
                 i2 = module.weight.size(2)
                 i3 = module.weight.size(3)
+                print(f'size:{i0}, {i1}, {i2}, {i3}; j: {j}')
                 dw1 = numpy.ones((i0,i0,i2,i3),dtype=numpy.float32)
                 w1 = torch.FloatTensor(dw1)
                 w1.requires_grad =True
@@ -1037,7 +1038,6 @@ class N2N(nn.Module):
                 i = 3
                 j= j + 1
                 print(f'j: {j}; i: {i}')
-                print(f'size:{i0}, {i1}, {i2}, {i3}')
                 while i < layerInThisBlock:
                     i = i + 1
                     j = j + 2
