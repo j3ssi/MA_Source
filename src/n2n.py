@@ -1034,7 +1034,6 @@ class N2N(nn.Module):
                 layerInThisBlock = archNum[block]
                 j = j + 1
                 self.module_list.insert(j, layer2)
-                print(f'j: {j}; i: {i}')
                 i = 3
                 j= j + 1
                 print(f'j: {j}; i: {i}')
