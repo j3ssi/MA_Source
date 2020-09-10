@@ -529,11 +529,11 @@ def main():
         print("\n\nnow deeper")
         # deeper student training
         model = model.deeper1()
-        # model.cuda()
+        model.cuda()
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
-
+        print(model)
 
     if args.wider and not args.widerRnd:
         model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)

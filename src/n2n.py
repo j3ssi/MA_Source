@@ -1009,13 +1009,32 @@ class N2N(nn.Module):
             for block in range(0, len(archNum)):
                 if printDeeper:
                     print("\n\n\tBlock: ", block)
-                layerInThisBlock = archNum[block]
                 module = self.module_list[j]
                 i0 = module.weight.size(0)
                 i1 = module.weight.size(1)
                 i2 = module.weight.size(2)
                 i3 = module.weight.size(3)
-                i = 1
+                dw1 = numpy.ones((i0,i1,i2,i3),dtype=numpy.float32)
+                w1 = torch.FloatTensor(w1)
+                w1.requires_grad =True
+                kernel_size = i2
+                stride = module.stride
+                padding = module.padding
+                bias = module.bias if module.bias is not None else False
+
+                layer = nn.Conv2d(i1, i0, kernel_size=kernel_size, stride=stride, padding=padding,
+                                  bias=bias)
+
+                layer.weight = torch.nn.Parameter(w1)
+                j = j + 1
+                self.module_list.insert(j,layer)
+
+                layer2 = nn.BatchNorm2d(i1)
+                archNum[block] += 1
+                layerInThisBlock = archNum[block]
+                j = j + 1
+                self.module_list.insert(j, layer2)
+                i = 2
                 j= j + 2
                 print(f'size:{i0}, {i1}, {i2}, {i3}')
                 while i < layerInThisBlock:
@@ -1023,7 +1042,7 @@ class N2N(nn.Module):
                     j = j + 2
         # noise = torch.Tensor(conv2.weight.shape).random_(0, 1).to(self.device)
         # noise = torch.rand(0,0.5)
-
+        return model
 
 def compare(layer, oddLayer):
     i1 = int(layer.split('.')[1].split('v')[1])
