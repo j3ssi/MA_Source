@@ -999,7 +999,7 @@ class N2N(nn.Module):
 
     def deeper1(self):
         # make each block with plus two layers (conv +batch) deeper
-        printDeeper = True
+        printDeeper = False
         j = 2
         for stage in range(0, self.numOfStages):
             if printDeeper:
