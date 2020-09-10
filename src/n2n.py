@@ -14,7 +14,7 @@ class N2N(nn.Module):
                  first, bottleneck, widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=None):
         super(N2N, self).__init__()
         # print(f'width: {widthOfLayers}')
-        self.device = torch.device("cuda:0")
+        # self.device = torch.device("cuda:0")
         self.numOfStages = numOfStages
         self.oddLayers = []
         self.numOfBlocksinStage = numOfBlocksinStage
@@ -260,6 +260,7 @@ class N2N(nn.Module):
             # print(f'sameNode: {self.sameNode}')
         else:
             self.archNums = archNums
+
             self.sameNode = model.sameNode
             self.stageI = model.stageI
             self.stageO = model.stageO
@@ -518,6 +519,7 @@ class N2N(nn.Module):
                             j = j + 1
                             i = i + 1
                             firstBlockInStage = False
+                            print(f'j vor Add: {j}')
                             _x = x + _x
                             _x = self.relu(_x)
 
