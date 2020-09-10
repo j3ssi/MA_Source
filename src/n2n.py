@@ -1024,8 +1024,8 @@ class N2N(nn.Module):
                 w1 = torch.FloatTensor(dw1)
                 w1.requires_grad = True
                 kernel_size = i2
-                stride = module.stride
-                padding = module.padding
+                stride = 1
+                padding = 1
                 bias = module.bias if module.bias is not None else False
 
                 layer = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,
