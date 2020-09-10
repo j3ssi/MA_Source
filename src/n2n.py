@@ -1015,7 +1015,7 @@ class N2N(nn.Module):
                 i2 = module.weight.size(2)
                 i3 = module.weight.size(3)
                 dw1 = numpy.ones((i0,i1,i2,i3),dtype=numpy.float32)
-                w1 = torch.FloatTensor(w1)
+                w1 = torch.FloatTensor(dw1)
                 w1.requires_grad =True
                 kernel_size = i2
                 stride = module.stride
