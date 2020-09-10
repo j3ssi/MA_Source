@@ -507,16 +507,16 @@ class N2N(nn.Module):
                         elif ((i + 1) % layerInThisBlock == 0) and firstBlockInStage and notfirstLayer:
                             # conv
                             _x = self.module_list[j](_x)
-                            # if printNet:
-                            print("\nj: ", j, " ; ", self.module_list[j])
-                            print("\nX Shape: ", x.shape)
+                            if printNet:
+                                print("\nj: ", j, " ; ", self.module_list[j])
+                                print("\nX Shape: ", x.shape)
                             j = j + 1
 
                             # bn
                             _x = self.module_list[j](_x)
-                            # if printNet:
-                            print("\nj: ", j, " ; ", self.module_list[j])
-                            print("\nX Shape: ", x.shape)
+                            if printNet:
+                                print("\nj: ", j, " ; ", self.module_list[j])
+                                print("\nX Shape: ", x.shape)
 
                             j = j + 1
                             i = i + 1
