@@ -1043,6 +1043,7 @@ class N2N(nn.Module):
                     j = j + 2
         # noise = torch.Tensor(conv2.weight.shape).random_(0, 1).to(self.device)
         # noise = torch.rand(0,0.5)
+        print(f'archNums: {self.archNums}')
         return self
 
 def compare(layer, oddLayer):
