@@ -992,12 +992,8 @@ class N2N(nn.Module):
                     #    n2 = m2.out_features * m2.in_features
                     # dw1.select(0, i).normal_(0, )
                     # dw2.select(0, i).normal_(0, np.sqrt(2. / n2))
-                else:
-                    dw1.append(m1list)
-                    # dw2.append(m2list)
-                    # dw1.select(0, i).copy_(w1.select(0, idx).clone())
-                    # dw2.select(0, i).copy_(w2.select(0, idx).clone())
 
+                
             dw1y = np.concatenate((w1,dw1), axis =0)
             w1 = torch.FloatTensor(dw1y).cuda()
             w1.requires_grad=True
