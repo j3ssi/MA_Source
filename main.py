@@ -518,20 +518,22 @@ def main():
             # # print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
             #
 
-            if args.deeper:
-                print("\n\nnow deeper")
-                # deeper student training
-                model = n2n.deeper(model, optimizer, [2, 4])
-                model.cuda()
-                criterion = nn.CrossEntropyLoss()
-                optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-                                      weight_decay=args.weight_decay)
+
             # print("\n Verhältnis Modell Größe: ", count / count0)
 
             is_best = test_acc > best_acc
             best_acc = max(test_acc, best_acc)
 
         i = 2
+    if args.deeper:
+        print("\n\nnow deeper")
+        # deeper student training
+        model = n2n.deeper1(model)
+        model.cuda()
+        criterion = nn.CrossEntropyLoss()
+        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+                                      weight_decay=args.weight_decay)
+
 
     if args.wider and not args.widerRnd:
         model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)

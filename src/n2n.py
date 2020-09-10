@@ -997,11 +997,24 @@ class N2N(nn.Module):
         # print(self)
         return self
 
-    def deeper(self, model, optimizer):
-        # each pos in pisitions is the position in which the layer sholud be duplicated to make the cnn deeper
-        # for stage in self.archNums[i]:
-        # print("\n\nposition:")
-        # print(pos)
+    def deeper1(self, model):
+        # make each block with plus two layers (conv +batch) deeper
+        printDeeper = True
+        j = 2
+        for stage in range(0, self.numOfStages):
+            if printDeeper:
+                print("\n\nStage: ", stage)
+            archNum = self.archNums[stage]
+            firstBlockInStage = True
+            for block in range(0, len(archNum)):
+                if printDeeper:
+                    print("\n\n\tBlock: ", block)
+                i = 0
+                layerInThisBlock = archNum[block]
+                module = self.module_list[j]
+                i1 = module.weight.size()
+                print(f'size: {i1}')
+                # while i < layerInThisBlock:
         conv = model.module_list[pos * 2 - 2]
         bn = model.module_list[pos * 2 - 1]
         conv1 = model.module_list[pos * 2]
