@@ -1036,8 +1036,8 @@ class N2N(nn.Module):
                 self.module_list.insert(j, layer2)
                 i = 3
                 j= j + 1
-                # print(f'j: {j}; i: {i}')
-                # print(f'size:{i0}, {i1}, {i2}, {i3}')
+                print(f'j: {j}; i: {i}')
+                print(f'size:{i0}, {i1}, {i2}, {i3}')
                 while i < layerInThisBlock:
                     i = i + 1
                     j = j + 2
