@@ -521,7 +521,7 @@ class N2N(nn.Module):
                             j = j + 1
                             i = i + 1
                             firstBlockInStage = False
-                            print(f'j vor Add: {j}')
+                            # print(f'j vor Add: {j}')
                             _x = x + _x
                             _x = self.relu(_x)
 
