@@ -982,7 +982,7 @@ class N2N(nn.Module):
             listOfNumbers = []
             listindices = []
             n =  module.in_features * module.out_features
-            dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=(new_width-old_width, module.out_features))
+            dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n), size=(module.out_features,new_width-old_width))
 
             print(f'Size w1: {w1.shape}; dw1 size: {dw1.shape}')
             dw1y = np.concatenate((w1,dw1), axis =0)
