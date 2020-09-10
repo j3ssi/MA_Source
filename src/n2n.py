@@ -1001,20 +1001,25 @@ class N2N(nn.Module):
         # make each block with plus two layers (conv +batch) deeper
         printDeeper = True
         j = 2
+        notfirstStage =False
         for stage in range(0, self.numOfStages):
             if printDeeper:
                 print("\n\nStage: ", stage)
             archNum = self.archNums[stage]
             firstBlockInStage = True
+
             for block in range(0, len(archNum)):
                 if printDeeper:
                     print("\n\n\tBlock: ", block)
+                if not notfirstStage and firstBlockInStage:
+                    j=j+1
+                firstBlockInStage =False
                 module = self.module_list[j]
                 i0 = module.weight.size(0)
                 i1 = module.weight.size(1)
                 i2 = module.weight.size(2)
                 i3 = module.weight.size(3)
-                print(f'size:{i0}, {i1}, {i2}, {i3}; j: {j}')
+                print(f'size:{i0}, {i0}, {i2}, {i3}; j: {j}')
                 dw1 = numpy.ones((i0,i0,i2,i3),dtype=numpy.float32)
                 w1 = torch.FloatTensor(dw1)
                 w1.requires_grad =True
@@ -1041,6 +1046,8 @@ class N2N(nn.Module):
                 while i < layerInThisBlock:
                     i = i + 1
                     j = j + 2
+            notfirstStage = True
+
         # noise = torch.Tensor(conv2.weight.shape).random_(0, 1).to(self.device)
         # noise = torch.rand(0,0.5)
         print(f'archNums: {self.archNums}')
