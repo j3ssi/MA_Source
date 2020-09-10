@@ -484,8 +484,8 @@ class N2N(nn.Module):
                                 _x = self.relu(_x)
 
                 else:
-                    if printNet:
-                        print("\n\n\tBlock: ", block)
+                    # if printNet:
+                    print(f'Block: {block}; j: {j}')
                     i = 0
                     layerInThisBlock = archNum[block]
                     while i < layerInThisBlock:
