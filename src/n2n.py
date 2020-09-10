@@ -1009,12 +1009,18 @@ class N2N(nn.Module):
             for block in range(0, len(archNum)):
                 if printDeeper:
                     print("\n\n\tBlock: ", block)
-                i = 0
                 layerInThisBlock = archNum[block]
                 module = self.module_list[j]
-                i1 = module.weight.size()
+                i0 = module.weight.size(0)
+                i1 = module.weight.size(1)
+                i2 = module.weight.size(2)
+                i3 = module.weight.size(3)
+                i = 1
+                j = j+1
                 print(f'size: {i1}')
-                # while i < layerInThisBlock:
+                while i < layerInThisBlock:
+                    i = i + 1
+                    j = j + 2
         # noise = torch.Tensor(conv2.weight.shape).random_(0, 1).to(self.device)
         # noise = torch.rand(0,0.5)
 
