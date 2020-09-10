@@ -1016,7 +1016,6 @@ class N2N(nn.Module):
                 i2 = module.weight.size(2)
                 i3 = module.weight.size(3)
                 i = 1
-                j = j+1
                 print(f'size: {i1}')
                 while i < layerInThisBlock:
                     i = i + 1
