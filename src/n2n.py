@@ -1042,6 +1042,7 @@ class N2N(nn.Module):
                 while i < layerInThisBlock:
                     i = i + 1
                     j = j + 2
+                j= j +2
             notfirstStage = True
 
         # noise = torch.Tensor(conv2.weight.shape).random_(0, 1).to(self.device)
