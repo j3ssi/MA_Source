@@ -1014,7 +1014,7 @@ class N2N(nn.Module):
                 i1 = module.weight.size(1)
                 i2 = module.weight.size(2)
                 i3 = module.weight.size(3)
-                dw1 = numpy.ones((i1,i1,i2,i3),dtype=numpy.float32)
+                dw1 = numpy.ones((i0,i0,i2,i3),dtype=numpy.float32)
                 w1 = torch.FloatTensor(dw1)
                 w1.requires_grad =True
                 kernel_size = i2
@@ -1022,7 +1022,7 @@ class N2N(nn.Module):
                 padding = module.padding
                 bias = module.bias if module.bias is not None else False
 
-                layer = nn.Conv2d(i1, i1, kernel_size=kernel_size, stride=stride, padding=padding,
+                layer = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,
                                   bias=bias)
 
                 layer.weight = torch.nn.Parameter(w1)
