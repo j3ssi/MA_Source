@@ -1,5 +1,5 @@
 library(dplyr)
-setwd("/home/j3ssi/MA_Source/output/experimente4/")
+setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/Baseline")
 
 baseline1 <- read.delim("baseline1.txt", header = TRUE, sep = "\t", dec = ".")
 baseline2 <- read.delim("baseline2.txt", header = TRUE, sep = "\t", dec = ".")
@@ -7,13 +7,36 @@ baseline3 <- read.delim("baseline3.txt", header = TRUE, sep = "\t", dec = ".")
 baseline4 <- read.delim("baseline4.txt", header = TRUE, sep = "\t", dec = ".")
 baseline5 <- read.delim("baseline5.txt", header = TRUE, sep = "\t", dec = ".")
 
+baseline1Sum <- sum(baseline1$TrainEpochTime.s.)/180
+baseline2Sum <- sum(baseline2$TrainEpochTime.s.)/180
+baseline3Sum <- sum(baseline3$TrainEpochTime.s.)/180
+baseline4Sum <- sum(baseline4$TrainEpochTime.s.)/180
+baseline5Sum <- sum(baseline5$TrainEpochTime.s.)/180
+
 boxplot(baseline1$TrainEpochTime.s., baseline2$TrainEpochTime.s., baseline3$TrainEpochTime.s., baseline4$TrainEpochTime.s.)
+
+baselineSum1 <- c(baseline1Sum, baseline2Sum, baseline3Sum, baseline4Sum, baseline5Sum)
+
+setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/BaselineO")
+
 
 baselineO1 <- read.delim("baselineO1.txt", header = TRUE, sep = "\t", dec = ".")
 baselineO2 <- read.delim("baselineO2.txt", header = TRUE, sep = "\t", dec = ".")
 baselineO3 <- read.delim("baselineO3.txt", header = TRUE, sep = "\t", dec = ".")
 baselineO4 <- read.delim("baselineO4.txt", header = TRUE, sep = "\t", dec = ".")
 baselineO5 <- read.delim("baselineO5.txt", header = TRUE, sep = "\t", dec = ".")
+
+baselineO1Sum <- sum(baselineO1$TrainEpochTime.s.)/180
+baselineO2Sum <- sum(baselineO2$TrainEpochTime.s.)/180
+baselineO3Sum <- sum(baselineO3$TrainEpochTime.s.)/180
+baselineO4Sum <- sum(baselineO4$TrainEpochTime.s.)/180
+baselineO5Sum <- sum(baselineO5$TrainEpochTime.s.)/180
+
+baselineSum2 <- c(baselineO1Sum, baselineO2Sum, baselineO3Sum, baselineO4Sum, baselineO5Sum)
+
+
+setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/BaselineLr")
+
 
 baselineLr1 <- read.delim("baselineLr1.txt", header = TRUE, sep = "\t", dec = ".")
 baselineLr2 <- read.delim("baselineLr2.txt", header = TRUE, sep = "\t", dec = ".")
@@ -30,21 +53,9 @@ baselineLr5Sum <- sum(baselineLr5$TrainEpochTime.s.)/180
 baselineLrSum1 <- c(baselineLr1Sum, baselineLr2Sum, baselineLr3Sum, baselineLr4Sum, baselineLr5Sum)
 
 
-baseline1Sum <- sum(baseline1$TrainEpochTime.s.)/180
-baseline2Sum <- sum(baseline2$TrainEpochTime.s.)/180
-baseline3Sum <- sum(baseline3$TrainEpochTime.s.)/180
-baseline4Sum <- sum(baseline4$TrainEpochTime.s.)/180
-baseline5Sum <- sum(baseline5$TrainEpochTime.s.)/180
 
-baselineSum1 <- c(baseline1Sum, baseline2Sum, baseline3Sum, baseline4Sum, baseline5Sum)
+setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/BaselineS")
 
-baselineO1Sum <- sum(baselineO1$TrainEpochTime.s.)/180
-baselineO2Sum <- sum(baselineO2$TrainEpochTime.s.)/180
-baselineO3Sum <- sum(baselineO3$TrainEpochTime.s.)/180
-baselineO4Sum <- sum(baselineO4$TrainEpochTime.s.)/180
-baselineO5Sum <- sum(baselineO5$TrainEpochTime.s.)/180
-
-baselineSum2 <- c(baselineO1Sum, baselineO2Sum, baselineO3Sum, baselineO4Sum, baselineO5Sum)
 
 baselineS1 <- read.delim("baselineS1.txt", header = TRUE, sep = "\t", dec = ".")
 baselineS2 <- read.delim("baselineS2.txt", header = TRUE, sep = "\t", dec = ".")
@@ -91,6 +102,7 @@ boxplot(baselineAcc1, baselineAcc2,baselineAccS,
         axis(at=c(1,2,3),side =1, labels = c('Baseline mit LR Anpassung', 'Baseline ohne LR Anpassung', 'Baseline mit LR Anassung, schmaller'))
 
         
+setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/PruneLasso")
         
           
 prune_lasso005_1 <- read.delim("prune_lasso005_1.txt", header = TRUE, sep = "\t", dec = ".")
@@ -308,6 +320,8 @@ boxplot(baselineAcc1,lassoAcc005, lassoAcc01, lassoAcc015, lassoAcc02,lassoAcc02
         xlab = "verschiedene Experimentengruppen")
         axis(at=c(1,2,3,4,5,6),side =1, labels = c('Baseline', 'Lasso 0.05', 'Lasso 0.1', 'Lasso 0.15', 'Lasso 0.2', 'Lasso 0.25'))
 
+setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/PruneReconf")
+        
 
 prune_reconf2_1 <- read.delim("prune_reconf2_1.txt", header = TRUE, sep = "\t", dec = ".")
 prune_reconf2_2 <- read.delim("prune_reconf2_2.txt", header = TRUE, sep = "\t", dec = ".")
@@ -696,8 +710,19 @@ legend("bottomright", legend = c('baseline', 'prunetrain'), col= c('red','blue')
 
 plot(baseline1$ValidAcc. -prune1$ValidAcc., col='blue', xlim=c(90, 180), ylim=c(-5,5))
 
+setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/N2NWider")
 
+n2nwider1 <-read.delim("n2nwider11.txt", header = TRUE, sep = "\t", dec = ".")
+n2nwider2 <-read.delim("n2nwider12.txt", header = TRUE, sep = "\t", dec = ".")
+n2nwider3 <-read.delim("n2nwider13.txt", header = TRUE, sep = "\t", dec = ".")
+n2nwider4 <-read.delim("n2nwider14.txt", header = TRUE, sep = "\t", dec = ".")
+n2nwider5 <-read.delim("n2nwider15.txt", header = TRUE, sep = "\t", dec = ".")
 
+n2nwider1Acc <- c(tail(n2nwider1$ValidAcc.,n=1), tail(n2nwider2$ValidAcc.,n=1), tail(n2nwider3$ValidAcc.,n=1), tail(n2nwider4$ValidAcc.,n=1), tail(n2nwider5$ValidAcc.,n=1))
+boxplot(n2nwider1Acc, baselineAcc1)
+plot(n2nwider1$ValidAcc., col='red',xlim=c(0,370),ylim=c(15,95))
+par(new=TRUE)
+plot(baseline1$ValidAcc.,col='blue',xlim=c(0,350),ylim=c(15,95))
 #Exponentiel geglätteter Durchschnitt
 library(smooth)
 library(mComp)

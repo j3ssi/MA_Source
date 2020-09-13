@@ -327,7 +327,8 @@ def main():
             memory = checkpoint['memory']
             batch_size = checkpoint['batch_size']
         best_acc = checkpoint['best_acc']
-        args.lr = checkpoint['lr']
+        if checkpoint['lr']!=0:
+            args.lr = checkpoint['lr']
         start_epoch = checkpoint['epoch']
         # start_batchSize = checkpoint['start_batchSize']
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
@@ -577,7 +578,7 @@ def main():
     if args.reset:
         args.epoch = 0
         start_epoch = 1
-        args.lr=0.1
+        args.lr=0
     if args.dB:
         save_checkpoint({
             'epoch': args.epochs + start_epoch,
