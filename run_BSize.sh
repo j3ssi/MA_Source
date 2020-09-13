@@ -4,7 +4,7 @@ echo "j: 0 bis 5"
 python3 main.py -j 6 --checkpoint ./output/experimente4/prune_bSize_$1 --epochs 5 -s 3 -l 2 -n 5,5,5 -dlr  -dB --sparse_interval 5 --en_group_lasso --var_group_lasso_coeff 0.2 --threshold 0.0001 --lr 0.1 --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 0 --pathToModell ./output/experimente4/prune_bSize_$1/model.nn
 sleep 5
 
-echo "j: 6 bis 10"
+echo <"j: 6 bis 10"
 python3 main.py -j 6 --checkpoint ./output/experimente4/prune_bSize_$1 --epochs 5 -s 3 -l 2 -n 5,5,5 -dlr  -dB --sparse_interval 5 --en_group_lasso --var_group_lasso_coeff 0.2 --threshold 0.0001 --lr 0.1 --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 5 --pathToModell ./output/experimente4/prune_bSize_$1/model.nn  --resume ./output/experimente4/prune_bSize_$1/checkpoint.pth.tar
 sleep 5
 

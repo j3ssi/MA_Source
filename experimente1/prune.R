@@ -1,5 +1,5 @@
 library(dplyr)
-setwd("/home/j3ssi/MA_Source/output/experimente3/")
+setwd("/home/j3ssi/MA_Source/output/experimente4/")
 
 baseline1 <- read.delim("baseline1.txt", header = TRUE, sep = "\t", dec = ".")
 baseline2 <- read.delim("baseline2.txt", header = TRUE, sep = "\t", dec = ".")
@@ -14,6 +14,21 @@ baselineO2 <- read.delim("baselineO2.txt", header = TRUE, sep = "\t", dec = ".")
 baselineO3 <- read.delim("baselineO3.txt", header = TRUE, sep = "\t", dec = ".")
 baselineO4 <- read.delim("baselineO4.txt", header = TRUE, sep = "\t", dec = ".")
 baselineO5 <- read.delim("baselineO5.txt", header = TRUE, sep = "\t", dec = ".")
+
+baselineLr1 <- read.delim("baselineLr1.txt", header = TRUE, sep = "\t", dec = ".")
+baselineLr2 <- read.delim("baselineLr2.txt", header = TRUE, sep = "\t", dec = ".")
+baselineLr3 <- read.delim("baselineLr3.txt", header = TRUE, sep = "\t", dec = ".")
+baselineLr4 <- read.delim("baselineLr4.txt", header = TRUE, sep = "\t", dec = ".")
+baselineLr5 <- read.delim("baselineLr5.txt", header = TRUE, sep = "\t", dec = ".")
+
+baselineLr1Sum <- sum(baselineLr1$TrainEpochTime.s.)/180
+baselineLr2Sum <- sum(baselineLr2$TrainEpochTime.s.)/180
+baselineLr3Sum <- sum(baselineLr3$TrainEpochTime.s.)/180
+baselineLr4Sum <- sum(baselineLr4$TrainEpochTime.s.)/180
+baselineLr5Sum <- sum(baselineLr5$TrainEpochTime.s.)/180
+
+baselineLrSum1 <- c(baselineLr1Sum, baselineLr2Sum, baselineLr3Sum, baselineLr4Sum, baselineLr5Sum)
+
 
 baseline1Sum <- sum(baseline1$TrainEpochTime.s.)/180
 baseline2Sum <- sum(baseline2$TrainEpochTime.s.)/180
@@ -31,21 +46,53 @@ baselineO5Sum <- sum(baselineO5$TrainEpochTime.s.)/180
 
 baselineSum2 <- c(baselineO1Sum, baselineO2Sum, baselineO3Sum, baselineO4Sum, baselineO5Sum)
 
-plot(baseline4$ValidAcc.,
+baselineS1 <- read.delim("baselineS1.txt", header = TRUE, sep = "\t", dec = ".")
+baselineS2 <- read.delim("baselineS2.txt", header = TRUE, sep = "\t", dec = ".")
+baselineS3 <- read.delim("baselineS3.txt", header = TRUE, sep = "\t", dec = ".")
+baselineS4 <- read.delim("baselineS4.txt", header = TRUE, sep = "\t", dec = ".")
+baselineS5 <- read.delim("baselineS5.txt", header = TRUE, sep = "\t", dec = ".")
+
+baselineS1Sum <- sum(baselineS1$TrainEpochTime.s.)/180
+baselineS2Sum <- sum(baselineS2$TrainEpochTime.s.)/180
+baselineS3Sum <- sum(baselineS3$TrainEpochTime.s.)/180
+baselineS4Sum <- sum(baselineS4$TrainEpochTime.s.)/180
+baselineS5Sum <- sum(baselineS5$TrainEpochTime.s.)/180
+
+baselineSSum1 <- c(baselineS1Sum, baselineS2Sum, baselineS3Sum, baselineS4Sum, baselineS5Sum)
+
+
+
+
+plot(baselineS1$ValidAcc.,
      xlab="Epoche",
-     ylab="Accuracy")
+     ylab="Accuracy",
+     xlim=c(100,180),
+     col='blue',
+     ylim=c(80,94))
+par(new=TRUE)
+plot(baseline4$ValidAcc.,
+     xlab="Epoche",xlim=c(100,180),
+     ylab="Accuracy",
+     ylim=c(80,94))
+
 
 boxplot(baselineSum1, baselineSum2,
         ylab="Accuracy")
 axis(at=c(1,2),side =1, labels = c('Baseline mit LR Anpassung', 'Baseline ohne LR Anpassung'))
 
+t.test(baselineSum1, baselineSum2, alternative = "two.sided", var.equal = FALSE)
+
+
 baselineAcc1 <- c(tail(baseline1$ValidAcc.,n=1), tail(baseline2$ValidAcc.,n=1), tail(baseline3$ValidAcc.,n=1), tail(baseline4$ValidAcc.,n=1), tail(baseline5$ValidAcc.,n=1))
 baselineAcc2 <- c(tail(baselineO1$ValidAcc.,n=1), tail(baselineO2$ValidAcc.,n=1), tail(baselineO3$ValidAcc.,n=1), tail(baselineO4$ValidAcc.,n=1), tail(baselineO5$ValidAcc.,n=1))
-
-boxplot(baselineAcc1, baselineAcc2,
+baselineAccS <- c(tail(baselineS1$ValidAcc.,n=1), tail(baselineS2$ValidAcc.,n=1), tail(baselineS3$ValidAcc.,n=1), tail(baselineS4$ValidAcc.,n=1), tail(baselineS5$ValidAcc.,n=1))
+boxplot(baselineAcc1, baselineAcc2,baselineAccS,
         ylab ="Accuracy")
-        axis(at=c(1,2),side =1, labels = c('Baseline mit LR Anpassung', 'Baseline ohne LR Anpassung'))
-  
+        axis(at=c(1,2,3),side =1, labels = c('Baseline mit LR Anpassung', 'Baseline ohne LR Anpassung', 'Baseline mit LR Anassung, schmaller'))
+
+        
+        
+          
 prune_lasso005_1 <- read.delim("prune_lasso005_1.txt", header = TRUE, sep = "\t", dec = ".")
 prune_lasso005_2 <- read.delim("prune_lasso005_2.txt", header = TRUE, sep = "\t", dec = ".")
 prune_lasso005_3 <- read.delim("prune_lasso005_3.txt", header = TRUE, sep = "\t", dec = ".")
@@ -120,20 +167,14 @@ prune_lasso025_3 <- read.delim("prune_lasso025_3.txt", header = TRUE, sep = "\t"
 prune_lasso025_4 <- read.delim("prune_lasso025_4.txt", header = TRUE, sep = "\t", dec = ".")
 prune_lasso025_5 <- read.delim("prune_lasso025_5.txt", header = TRUE, sep = "\t", dec = ".")
 
-prune_lasso025_6 <- read.delim("prune_lasso025_6.txt", header = TRUE, sep = "\t", dec = ".")
-prune_lasso025_7 <- read.delim("prune_lasso025_7.txt", header = TRUE, sep = "\t", dec = ".")
-prune_lasso025_8 <- read.delim("prune_lasso025_8.txt", header = TRUE, sep = "\t", dec = ".")
-prune_lasso025_9 <- read.delim("prune_lasso025_9.txt", header = TRUE, sep = "\t", dec = ".")
-prune_lasso025_10 <- read.delim("prune_lasso025_10.txt", header = TRUE, sep = "\t", dec = ".")
 
+prune_lasso025_1Sum <- sum(prune_lasso025_1$TrainEpochTime.s.)/180
+prune_lasso025_2Sum <- sum(prune_lasso025_2$TrainEpochTime.s.)/180
+prune_lasso025_3Sum <- sum(prune_lasso025_3$TrainEpochTime.s.)/180
+prune_lasso025_4Sum <- sum(prune_lasso025_4$TrainEpochTime.s.)/180
+prune_lasso025_5Sum <- sum(prune_lasso025_5$TrainEpochTime.s.)/180
 
-prune_lasso025_6Sum <- sum(prune_lasso025_6$TrainEpochTime.s.)/180
-prune_lasso025_7Sum <- sum(prune_lasso025_7$TrainEpochTime.s.)/180
-prune_lasso025_8Sum <- sum(prune_lasso025_8$TrainEpochTime.s.)/180
-prune_lasso025_9Sum <- sum(prune_lasso025_9$TrainEpochTime.s.)/180
-prune_lasso025_10Sum <- sum(prune_lasso025_10$TrainEpochTime.s.)/180
-
-prune_lasso025 <- c(prune_lasso025_6Sum, prune_lasso025_7Sum, prune_lasso025_8Sum, prune_lasso025_9Sum, prune_lasso025_10Sum)
+prune_lasso025 <- c(prune_lasso025_1Sum, prune_lasso025_2Sum, prune_lasso025_3Sum, prune_lasso025_4Sum, prune_lasso025_5Sum)
 
 t.test(prune_lasso005, prune_lasso01, alternative = "two.sided", var.equal = FALSE)
 t.test(prune_lasso005, prune_lasso015, alternative = "two.sided", var.equal = FALSE)
@@ -168,8 +209,7 @@ legend(0,20, legend = c('Lasso 0.05', 'Lasso 0.1', 'Lasso 0.15', 'Lasso 0.2', 'L
        fill=c('powderblue', 'mistyrose', 'lightsalmon', 'lightpink', 'lightsalmon4'), 
        ncol=3, cex=0.8)
 
-boxplot(baseline1Sum,prune_lasso005, prune_lasso01, prune_lasso015, prune_lasso02,
-        
+boxplot(baseline1Sum,prune_lasso005, prune_lasso01, prune_lasso015, prune_lasso02, prune_lasso025,
         log = "y",
         ylab = "Durchschnittliche Trainingszeit in Sekunden",
         xlab = "verschiedene Experimentengruppen")
@@ -262,8 +302,8 @@ t.test(lassoAcc015, lassoAcc025, alternative = "two.sided", var.equal = FALSE)
 
 t.test(lassoAcc02, lassoAcc025, alternative = "two.sided", var.equal = FALSE)
 
-boxplot(baselineAcc1,lassoAcc005, lassoAcc01, lassoAcc015, lassoAcc02,
-        ylim=c(90,94),
+boxplot(baselineAcc1,lassoAcc005, lassoAcc01, lassoAcc015, lassoAcc02,lassoAcc025,
+        ylim=c(92,94),
         ylab = "Accuracy",
         xlab = "verschiedene Experimentengruppen")
         axis(at=c(1,2,3,4,5,6),side =1, labels = c('Baseline', 'Lasso 0.05', 'Lasso 0.1', 'Lasso 0.15', 'Lasso 0.2', 'Lasso 0.25'))
@@ -588,8 +628,8 @@ prunelr0125 <- c(prunelr01251Sum, prunelr01252Sum, prunelr01253Sum, prunelr01254
 
 
 
-boxplot(baseline2Sum,prunelr2, prunelr1, prunelr05, prunelr025, prunelr0125, 
-        names = c('baseline','lr 0.2' ,'lr 0.1', 'lr 0.05', 'lr 0.025', 'lr 0.0125'),
+boxplot(baseline2Sum,prunelr2, prunelr1, prunelr05, prunelr025,  
+        names = c('baseline','lr 0.2' ,'lr 0.1', 'lr 0.05', 'lr 0.025'),
         ylab="durchschnittliche Trainingszeit in Sekunden")
 
 acclr21 <- tail(prunelr21$ValidAcc.,n=1)
@@ -637,8 +677,8 @@ Acclr0125 <- c(acclr01251, acclr01252, acclr01253, acclr01254, acclr01255)
 acclr <- c(Acclr1)
 
 
-boxplot(baselineAcc1, Acclr2, Acclr1, Acclr05, Acclr025, Acclr0125,
-        names =c('Baseline','Lernrate 0,2', 'Lernrate 0,1', 'Lernrate 0,05', 'Lernrate 0,025', 'Lernrate 0,0125')
+boxplot(baselineAcc1, Acclr2, Acclr1, Acclr05, Acclr025,
+        names =c('Baseline','Lernrate 0,2', 'Lernrate 0,1', 'Lernrate 0,05', 'Lernrate 0,025')
         )
 
 
