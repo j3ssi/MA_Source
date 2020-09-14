@@ -196,10 +196,12 @@ def train_epoch(model, optim, criterion, loader, lbda=None, cbns=None, maps=None
             print('Train | Batch ({}/{}) | Top-1: {:.2f} ({}/{})'.format(
                 i+1, len(loader),
                 float(top1)/total*100, top1, total))
-    print(f'Regular: {regular}')
+
+    meanReg = np.mean(regular)
+    print(f'Regular: {meanReg}')
     if constraint:
         truncate_smallbeta(model, cbns)
-    return mean(regular)
+    return meanReg
 
 def train(model, train_loader, val_loader, pruner, epochs=10, lr=1e-2, name=''):
     model = model.to('cuda')
