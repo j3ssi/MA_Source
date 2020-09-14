@@ -319,14 +319,16 @@ if __name__ == '__main__':
     elif 'CIFAR100' in args.dataset:
         train_set.num_classes = 100
     pruner = FilterPrunerResNet(model, 'l2_weight', num_cls=train_set.num_classes)
+    flops, num_params = measure_model(pruner.model, pruner, 32)
+
+    target = int(args.prune_away * flops)
     for i in range(0,16):
-        flops, num_params = measure_model(pruner.model, pruner, 32)
         print(f'flops: {flops}')
         maps = pruner.omap_size
         cbns = get_cbns(pruner.model)
         print('Before Pruning | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops/1000000., num_params/1000000.))
         train_mask(pruner.model, train_loader, val_loader, pruner, epochs=2, lr=1e-3, lbda=args.lbda, cbns=cbns, maps=maps, constraint=args.constraint)
-        target = int(args.prune_away*flops)
+
         print('Target ({}): {:.3f}M'.format(args.constraint, target/1000000.))
         prune_model(pruner.model, cbns, pruner)
         flops, num_params = measure_model(pruner.model, pruner, 32)
