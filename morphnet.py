@@ -181,6 +181,7 @@ def train_epoch(model, optim, criterion, loader, lbda=None, cbns=None, maps=None
         top1 += pred.eq(label).sum()
         if constraint:
             reg = lbda * regularizer(model, constraint, cbns, maps)
+            print(f'reg')
             regular.append(reg.clone().cpu().detach().numpy()[0])
             loss = criterion(out, label) + reg
         else:
