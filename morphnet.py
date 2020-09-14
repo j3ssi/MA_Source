@@ -18,7 +18,7 @@ import argparse
 from src.utils import Logger
 
 logger = Logger('logMorphNet.txt', title='logMorphNet')
-logger.set_names(['Epoche', 'Regularisierer', 'Zielgroesse'])
+logger.set_names(['Regularisierer', 'Zielgroesse'])
 
 def measure_model(model, pruner, img_size):
     pruner.reset() 
@@ -231,7 +231,7 @@ def train_mask(model, train_loader, val_loader, pruner, epochs=10, lr=1e-2, lbda
         regularize = train_epoch(model, optimizer, criterion, train_loader, lbda, cbns, maps, constraint)
         flops, num_params = measure_model(pruner.model, pruner, 32)
         print(f'Epoche: {e}; regular: {regularize}: flops {flops}')
-        logger.append([e,regularize,flops])
+        logger.append([regularize,flops])
 
         top1, _ = test(model, val_loader)
         print('#Filters: {}, #FLOPs: {:.2f}M | Top-1: {:.2f}'.format(num_alive_filters(model), pruner.get_valid_flops()/1000000., top1))
@@ -326,8 +326,9 @@ if __name__ == '__main__':
         print(f'flops: {flops}')
         maps = pruner.omap_size
         cbns = get_cbns(pruner.model)
+
         print('Before Pruning | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops/1000000., num_params/1000000.))
-        train_mask(pruner.model, train_loader, val_loader, pruner, epochs=2, lr=1e-3, lbda=args.lbda, cbns=cbns, maps=maps, constraint=args.constraint)
+        train_mask(pruner.model, train_loader, val_loader, pruner, epochs=5, lr=1e-3, lbda=args.lbda, cbns=cbns, maps=maps, constraint=args.constraint)
 
         print('Target ({}): {:.3f}M'.format(args.constraint, target/1000000.))
         prune_model(pruner.model, cbns, pruner)

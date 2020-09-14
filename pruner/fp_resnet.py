@@ -188,6 +188,7 @@ class FilterPrunerResNet(FilterPruner):
         return y
 
     def get_valid_filters(self):
+        print(f'Drin!!')
         filters_to_prune_per_layer = {}
         lastConv = None
         chain_max_dim = 0
@@ -342,7 +343,7 @@ class FilterPrunerResNet(FilterPruner):
         pruned_filters = int(filters_end - filters_begin + 1)
         # Retrive conv based on layer_index
         conv = self.activation_to_conv[layer_index]
-
+        print(f'Layer index: {layer_index}; Pruned filters: {pruned_filters}')
         if layer_index in self.pre_padding:
             self.pre_padding[layer_index].out_channels -= pruned_filters
         next_bn = self.bn_for_conv[layer_index]
