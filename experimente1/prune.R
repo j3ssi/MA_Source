@@ -723,6 +723,35 @@ boxplot(n2nwider1Acc, baselineAcc1)
 plot(n2nwider1$ValidAcc., col='red',xlim=c(0,370),ylim=c(15,95))
 par(new=TRUE)
 plot(baseline1$ValidAcc.,col='blue',xlim=c(0,350),ylim=c(15,95))
+
+
+setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/Prune_bSize")
+
+bSize1 <-read.delim("prune_bSize1.txt", header = TRUE, sep = "\t", dec = ".")
+bSize2 <-read.delim("prune_bSize2.txt", header = TRUE, sep = "\t", dec = ".")
+bSize3 <-read.delim("prune_bSize3.txt", header = TRUE, sep = "\t", dec = ".")
+bSize4 <-read.delim("prune_bSize4.txt", header = TRUE, sep = "\t", dec = ".")
+bSize5 <-read.delim("prune_bSize5.txt", header = TRUE, sep = "\t", dec = ".")
+
+bSize1Sum <- sum(bSize1$TrainEpochTime.s.)/180
+bSize2Sum <- sum(bSize2$TrainEpochTime.s.)/180
+bSize3Sum <- sum(bSize3$TrainEpochTime.s.)/180
+bSize4Sum <- sum(bSize4$TrainEpochTime.s.)/180
+bSize5Sum <- sum(bSize5$TrainEpochTime.s.)/180
+
+bSizeSum <- c(bSize1Sum, bSize2Sum, bSize3Sum, bSize4Sum, bSize5Sum )
+
+boxplot(baselineSum1, bSizeSum)
+
+boxplot(baseline1$TrainEpochTime.s., bSize1$TrainEpochTime.s.)
+
+
+
+
+
+
+
+
 #Exponentiel geglätteter Durchschnitt
 library(smooth)
 library(mComp)

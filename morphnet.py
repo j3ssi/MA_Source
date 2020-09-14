@@ -13,6 +13,12 @@ import model.resnet_cifar10 as resnet
 from pruner.fp_resnet import FilterPrunerResNet
 import argparse
 
+from src.utils import Logger
+
+logger = Logger('logMorphNet.txt', title='logMorphNet')
+logger.set_names(
+    ['Epoche', 'Regularisierer', 'Zielgroesse'])
+
 def measure_model(model, pruner, img_size):
     pruner.reset() 
     model.eval()
@@ -164,6 +170,7 @@ def train_epoch(model, optim, criterion, loader, lbda=None, cbns=None, maps=None
     model.train()
     total = 0
     top1 = 0
+    regular =[]
     for i, (batch, label) in enumerate(loader):
         optim.zero_grad()
         batch, label = batch.to('cuda'), label.to('cuda')
@@ -174,6 +181,7 @@ def train_epoch(model, optim, criterion, loader, lbda=None, cbns=None, maps=None
         top1 += pred.eq(label).sum()
         if constraint:
             reg = lbda * regularizer(model, constraint, cbns, maps)
+            regular.append(reg.numpy()[0])
             loss = criterion(out, label) + reg
         else:
             loss = criterion(out, label)
@@ -186,21 +194,25 @@ def train_epoch(model, optim, criterion, loader, lbda=None, cbns=None, maps=None
                 float(top1)/total*100, top1, total))
     if constraint:
         truncate_smallbeta(model, cbns)
+    return np.mean(regular)
 
-def train(model, train_loader, val_loader, epochs=10, lr=1e-2, name=''):
+def train(model, train_loader, val_loader, pruner, epochs=10, lr=1e-2, name=''):
     model = model.to('cuda')
     model.train()
 
     optimizer = optim.SGD(model.parameters(), lr=lr, momentum=0.9, weight_decay=5e-4, nesterov=True)
     scheduler = optim.lr_scheduler.MultiStepLR(optimizer, [int(epochs*0.3), int(epochs*0.6), int(epochs*0.8)], gamma=0.2)
     criterion = torch.nn.CrossEntropyLoss()
-    
+    reg =[]
     for e in range(epochs):
-        train_epoch(model, optimizer, criterion, train_loader)
+        regularize = train_epoch(model, optimizer, criterion, train_loader)
+        reg.append(regularize)
         top1, val_loss = test(model, val_loader)
         print('Epoch {} | Top-1: {:.2f}'.format(e, top1))
         torch.save(model, 'ckpt/{}_best.t7'.format(name))
         scheduler.step()
+        flops, num_params = measure_model(pruner.model, pruner, 32)
+        logger.append(e,regularize,flops)
     return model
 
 def train_mask(model, train_loader, val_loader, pruner, epochs=10, lr=1e-2, lbda=1.3*1e-8, cbns=None, maps=None, constraint='flops'):
@@ -312,7 +324,7 @@ if __name__ == '__main__':
         flops, num_params = measure_model(pruner.model, pruner, 32)
         print('After Pruning | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops/1000000., num_params/1000000.))
         if args.no_grow:
-            train(model, train_loader, test_loader, epochs=args.epoch, lr=args.lr, name='{}_pregrow'.format(args.name))
+            train(model, train_loader, test_loader, pruner, epochs=args.epoch, lr=args.lr, name='{}_pregrow'.format(args.name))
         else:
             if flops < target:
                 ratio = pruner.get_uniform_ratio(target)
@@ -320,6 +332,6 @@ if __name__ == '__main__':
                 pruner.uniform_grow(ratio)
                 flops, num_params = measure_model(pruner.model, pruner, 32)
                 print('After Growth | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops/1000000., num_params/1000000.))
-                train(pruner.model, train_loader, test_loader, epochs=args.epoch, lr=args.lr, name=args.name)
+                train(pruner.model, train_loader, test_loader, pruner, epochs=args.epoch, lr=args.lr, name=args.name)
             else:
                 print('Over constraint ({:.3f}M > {:.3f}M), no growth'.format(flops/1000000., target/1000000.))
