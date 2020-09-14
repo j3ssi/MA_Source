@@ -184,7 +184,7 @@ def train_epoch(model, optim, criterion, loader, lbda=None, cbns=None, maps=None
         if constraint:
             reg = lbda * regularizer(model, constraint, cbns, maps)
             regN = reg.clone().cpu().detach().numpy()[0]
-            print(f'reg: {regN}')
+            # print(f'reg: {regN}')
             regular.append(regN)
             loss = criterion(out, label) + reg
         else:
@@ -196,6 +196,7 @@ def train_epoch(model, optim, criterion, loader, lbda=None, cbns=None, maps=None
             print('Train | Batch ({}/{}) | Top-1: {:.2f} ({}/{})'.format(
                 i+1, len(loader),
                 float(top1)/total*100, top1, total))
+        print(f'Regular: {regular}')
     if constraint:
         truncate_smallbeta(model, cbns)
     return mean(regular)
