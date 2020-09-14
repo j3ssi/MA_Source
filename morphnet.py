@@ -215,7 +215,7 @@ def train(model, train_loader, val_loader, pruner, epochs=10, lr=1e-2, name=''):
         logger.append(e,regularize,flops)
     return model
 
-def train_mask(model, train_loader, val_loader, pruner, epochs=10, lr=1e-2, lbda=1.3*1e-8, cbns=None, maps=None, constraint='flops'):
+def train_mask(model, train_loader, val_loader, epochs=10, lr=1e-2, lbda=1.3*1e-8, cbns=None, maps=None, constraint='flops'):
     model = model.to('cuda')
     model.train()
 
@@ -317,7 +317,7 @@ if __name__ == '__main__':
         maps = pruner.omap_size
         cbns = get_cbns(pruner.model)
         print('Before Pruning | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops/1000000., num_params/1000000.))
-        train_mask(pruner.model, train_loader, val_loader, pruner, epochs=args.epoch, lr=1e-3, lbda=args.lbda, cbns=cbns, maps=maps, constraint=args.constraint)
+        train_mask(pruner.model, train_loader, val_loader, epochs=args.epoch, lr=1e-3, lbda=args.lbda, cbns=cbns, maps=maps, constraint=args.constraint)
         target = int(args.prune_away*flops)
         print('Target ({}): {:.3f}M'.format(args.constraint, target/1000000.))
         prune_model(pruner.model, cbns, pruner)
