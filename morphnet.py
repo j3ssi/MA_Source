@@ -1,3 +1,5 @@
+from statistics import mean
+
 import torch
 import sys
 import numpy as np
@@ -196,7 +198,7 @@ def train_epoch(model, optim, criterion, loader, lbda=None, cbns=None, maps=None
                 float(top1)/total*100, top1, total))
     if constraint:
         truncate_smallbeta(model, cbns)
-    return np.mean(regular)
+    return mean(regular)
 
 def train(model, train_loader, val_loader, pruner, epochs=10, lr=1e-2, name=''):
     model = model.to('cuda')
