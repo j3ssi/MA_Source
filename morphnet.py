@@ -196,7 +196,7 @@ def train_epoch(model, optim, criterion, loader, lbda=None, cbns=None, maps=None
             print('Train | Batch ({}/{}) | Top-1: {:.2f} ({}/{})'.format(
                 i+1, len(loader),
                 float(top1)/total*100, top1, total))
-        print(f'Regular: {regular}')
+    print(f'Regular: {regular}')
     if constraint:
         truncate_smallbeta(model, cbns)
     return mean(regular)
