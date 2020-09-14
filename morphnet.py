@@ -246,7 +246,7 @@ def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--datapath", type=str, default='/home/jessica.buehler/MA_Source/dataset/data/torch')
     parser.add_argument("--dataset", type=str, default='torchvision.datasets.CIFAR10')
-    parser.add_argument("--epoch", type=int, default=60)
+    parser.add_argument("--epoch", type=int, default=5)
     parser.add_argument("--name", type=str, default='ft_mbnetv2')
     parser.add_argument("--model", type=str, default='ft_mbnetv2')
     parser.add_argument("--batch_size", type=int, default=256)
@@ -311,7 +311,7 @@ if __name__ == '__main__':
     elif 'CIFAR100' in args.dataset:
         train_set.num_classes = 100
     pruner = FilterPrunerResNet(model, 'l2_weight', num_cls=train_set.num_classes)
-    for i in range(0,3):
+    for i in range(0,16):
         flops, num_params = measure_model(pruner.model, pruner, 32)
         print(f'flops: {flops}')
         maps = pruner.omap_size
