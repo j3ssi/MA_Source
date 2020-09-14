@@ -212,6 +212,7 @@ def train(model, train_loader, val_loader, pruner, epochs=10, lr=1e-2, name=''):
         torch.save(model, 'ckpt/{}_best.t7'.format(name))
         scheduler.step()
         flops, num_params = measure_model(pruner.model, pruner, 32)
+        print(f'Epoche: {e}; regular: {regularize}: flops {flops}')
         logger.append(e,regularize,flops)
     return model
 
