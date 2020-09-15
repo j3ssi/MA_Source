@@ -230,7 +230,7 @@ class N2N(nn.Module):
                                 self.module_list.append(bn)
                                 i = i + 1
 
-                        self.paramList.append(nn.Parameter(torch.FloatTensor(1),requires_grad=True))
+                        self.paramList.append(nn.Parameter(torch.FloatTensor(1), requires_grad=True))
                         self.paramList1.append(nn.Parameter(torch.FloatTensor(1), requires_grad=True))
 
                     firstLayer = False
@@ -386,7 +386,7 @@ class N2N(nn.Module):
         if printNet:
             print("\nI: 1 ; ", self.module_list[1])
             print("\nX Shape: ", x.shape)
-
+        block1 = 0
         _x = self.relu(x)
         j = 2
         block = 0
@@ -530,9 +530,9 @@ class N2N(nn.Module):
                             j = j + 1
                             i = i + 1
                             firstBlockInStage = False
-                            x = self.paramList[block] *x
-                            _x = self.paramList1[block]* _x
-                            block =block+1
+                            x = self.paramList[block1] *x
+                            _x = self.paramList1[block1]* _x
+                            block1 =block1+1
                             _x = x + _x
                             _x = self.relu(_x)
 
@@ -551,9 +551,9 @@ class N2N(nn.Module):
                                 print("\nShortcutLayer i: ", i, " ; ", self.module_list[j])
                             j = j + 1
                             i = i + 1
-                            x = self.paramList[block] *x
-                            _x = self.paramList1[block]* _x
-                            block =block+1
+                            x = self.paramList[block1] *x
+                            _x = self.paramList1[block1]* _x
+                            block1 =block1+1
 
                             _x = _x + x
                             _x = self.relu(_x)
