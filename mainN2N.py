@@ -620,7 +620,7 @@ def main():
 
     for i in range(len(model.paramList)):
         print(f'paramlist[{i}]: {model.paramList[i]}')
-
+        print(f'paramlist1[{i}]: {model.paramList1[i]}')
 
     print(" ", test_acc)
     print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
