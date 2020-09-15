@@ -551,8 +551,6 @@ class N2N(nn.Module):
                                 print("\nShortcutLayer i: ", i, " ; ", self.module_list[j])
                             j = j + 1
                             i = i + 1
-                            _x = self.paramList[block] * _x
-                            block = block + 1
                             x = self.paramList[block] *x
                             _x = self.paramList1[block]* _x
                             block =block+1
