@@ -421,11 +421,11 @@ def main():
             if args.delta_learning_rate:
                 adjust_learning_rate(optimizer, epoch, True)
             if(epoch ==61):
-                args.lr = 0,1
+                args.lr = 0.1
             if(epoch==121):
-                args.lr = 0,1
+                args.lr = 0.1
             # print(f'lr: {args.lr}')
-            print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs + start_epoch - 1, args.lr))
+            print(f'Epoche:{epoch}/{args.epochs + start_epoch - 1}; Lr: {args.lr}')
             print(f'batch Size {batch_size}')
             start = time.time()
             torch.cuda.reset_max_memory_allocated()
