@@ -410,7 +410,7 @@ def main():
         optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
                          weight_decay=args.weight_decay)
 
-    scheduler = StepLR(optimizer, step_size=1, gamma=0.975)
+    scheduler = StepLR(optimizer, step_size=1, gamma=0.95)
 
     i = 1
     # for epochNet2Net in range(1, 4):
@@ -421,8 +421,12 @@ def main():
             if args.delta_learning_rate:
                 adjust_learning_rate(optimizer, epoch, True)
             elif args.dynlr:
-                adjust_learning_rate(optimizer, epoch, False)
-            scheduler.step()
+                # adjust_learning_rate(optimizer, epoch, False)
+                scheduler.step()
+            if(epoch ==61):
+                args.lr = 0,1
+            if(epoch==121):
+                args.lr = 0,1
             # print(f'lr: {args.lr}')
             print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs + start_epoch - 1, args.lr))
             print(f'batch Size {batch_size}')
