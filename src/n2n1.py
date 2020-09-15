@@ -18,6 +18,7 @@ class N2N(nn.Module):
         self.numOfStages = numOfStages
         self.oddLayers = []
         self.paramList = nn.ParameterList()
+        self.paramList1 = nn.ParameterList()
         self.numOfBlocksinStage = numOfBlocksinStage
         self.bottleneck = bottleneck
         self.layersInBlock = layersInBlock
@@ -230,14 +231,14 @@ class N2N(nn.Module):
                                 i = i + 1
 
                         self.paramList.append(nn.Parameter(torch.FloatTensor(1),requires_grad=True))
-
+                        self.paramList1.append(nn.Parameter(torch.FloatTensor(1), requires_grad=True))
 
                     firstLayer = False
 
                     # 18
 
                 self.paramList.cuda()
-
+                self.paramList1.cuda()
 
                 # conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
                 #                  stride=1)
@@ -529,8 +530,9 @@ class N2N(nn.Module):
                             j = j + 1
                             i = i + 1
                             firstBlockInStage = False
-
-                            x = self.paramList[block] *x
+                            if self.paramList[block]>0.0001:
+                                x = self.paramList[block] *x
+                            _x = self.paramList1[block]* _x
                             block =block+1
                             _x = x + _x
                             _x = self.relu(_x)
@@ -552,6 +554,10 @@ class N2N(nn.Module):
                             i = i + 1
                             _x = self.paramList[block] * _x
                             block = block + 1
+                            if self.paramList[block]>0.0001:
+                                x = self.paramList[block] *x
+                            _x = self.paramList1[block]* _x
+                            block =block+1
 
                             _x = _x + x
                             _x = self.relu(_x)
