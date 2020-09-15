@@ -29,6 +29,9 @@ from src.lars import LARS
 from src.mem_reporter import *
 from copy import deepcopy
 
+from torch.optim.lr_scheduler import StepLR
+
+
 from matplotlib import pyplot
 from matplotlib.colors import ListedColormap
 # from mpl_toolkits.mplot3d import Axes3D
@@ -407,6 +410,8 @@ def main():
         optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
                          weight_decay=args.weight_decay)
 
+    scheduler = StepLR(optimizer, step_size=1, gamma=0.975)
+
     i = 1
     # for epochNet2Net in range(1, 4):
     while i == 1:
@@ -417,6 +422,7 @@ def main():
                 adjust_learning_rate(optimizer, epoch, True)
             elif args.dynlr:
                 adjust_learning_rate(optimizer, epoch, False)
+            scheduler.step()
             # print(f'lr: {args.lr}')
             print('\nEpoch: [%d | %d] LR: %f' % (epoch, args.epochs + start_epoch - 1, args.lr))
             print(f'batch Size {batch_size}')
