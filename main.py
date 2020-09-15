@@ -435,7 +435,7 @@ def main():
             ende = time.time()
             tmp_memory = torch.cuda.max_memory_allocated()
 
-            if args.dynlr:
+            if args.dynlr and epoch>30 :
                 # adjust_learning_rate(optimizer, epoch, False)
                 scheduler.step()
 
