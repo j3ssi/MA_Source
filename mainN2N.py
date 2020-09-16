@@ -656,7 +656,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         with torch.no_grad():
             inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
-        outputs = model.forward(inputs)
+        outputs = model.forward(inputs,epoch)
         loss = criterion(outputs, targets)
         if printLasso:
             print(f'Loss: {loss}')
