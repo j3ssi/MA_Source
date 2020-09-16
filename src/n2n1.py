@@ -373,7 +373,7 @@ class N2N(nn.Module):
     def forward(self, x,epoch ):
         # print(f'ArchNums: {self.archNums}')
         # First layer
-        if(epoch%20)==0:
+        if(epoch%20)==0 and epoch>0:
             for i in range(len(self.paramList)):
                 self.paramList[i].requires_grad=True
                 self.paramList1[i].requires_grad=True
@@ -539,8 +539,6 @@ class N2N(nn.Module):
                             j = j + 1
                             i = i + 1
                             firstBlockInStage = False
-                            x = x * self.paramList[block1]
-                            _x = _x * self.paramList1[block1]
                             block1 =block1+1
                             _x = x + _x
                             _x = self.relu(_x)
