@@ -373,11 +373,11 @@ class N2N(nn.Module):
     def forward(self, x,epoch ):
         # print(f'ArchNums: {self.archNums}')
         # First layer
-        if(epoch%5)==0:
+        if(epoch%20)==0:
             for i in range(len(self.paramList)):
                 self.paramList[i].requires_grad=True
                 self.paramList1[i].requires_grad=True
-        elif (epoch%5)==1:
+        elif (epoch%20)==1:
             for i in range(len(self.paramList)):
                 self.paramList[i].requires_grad = False
                 self.paramList1[i].requires_grad = False
