@@ -230,8 +230,8 @@ class N2N(nn.Module):
                                 self.module_list.append(bn)
                                 i = i + 1
 
-                        self.paramList.append(nn.Parameter(torch.FloatTensor(1), requires_grad=True))
-                        self.paramList1.append(nn.Parameter(torch.FloatTensor(1), requires_grad=True))
+                        self.paramList.append(nn.Parameter(torch.FloatTensor(1), requires_grad=False))
+                        self.paramList1.append(nn.Parameter(torch.FloatTensor(1), requires_grad=False))
 
                     firstLayer = False
 
