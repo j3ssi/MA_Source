@@ -643,6 +643,14 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
     printLasso = False
     end = time.time()
+    if (epoch % 20) == 0 and epoch > 0:
+        for i in range(len(model.paramList)):
+            model.paramList[i].requires_grad = True
+            model.paramList1[i].requires_grad = True
+    elif (epoch % 20) == 1:
+        for i in range(len(model.paramList)):
+            model.paramList[i].requires_grad = False
+            model.paramList1[i].requires_grad = False
 
     # for param in model.parameters():
     #    param.grad = None
@@ -656,7 +664,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         with torch.no_grad():
             inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
-        outputs = model.forward(inputs,epoch)
+        outputs = model.forward(inputs)
         loss = criterion(outputs, targets)
         if printLasso:
             print(f'Loss: {loss}')
@@ -766,7 +774,7 @@ def test(testloader, model, criterion, epoch, use_cuda):
         # compute output
         # print(f'Test vor dem Forward')
 
-        outputs = model(inputs, 2)
+        outputs = model(inputs)
         loss = criterion(outputs, targets)
         # print(f'Test nachdem loss')
         # measure accuracy and record loss
