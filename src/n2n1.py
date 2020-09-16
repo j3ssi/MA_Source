@@ -370,7 +370,7 @@ class N2N(nn.Module):
             # print("\nnew Model: ", self)
         # print(f'parameterList: {self.paramList}')
 
-    def forward(self, x, epoch):
+    def forward(self, x):
         # print(f'ArchNums: {self.archNums}')
         # First layer
         if(epoch%5)==0:
