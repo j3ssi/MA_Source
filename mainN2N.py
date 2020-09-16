@@ -766,7 +766,7 @@ def test(testloader, model, criterion, epoch, use_cuda):
         # compute output
         # print(f'Test vor dem Forward')
 
-        outputs = model(inputs)
+        outputs = model(inputs, 2)
         loss = criterion(outputs, targets)
         # print(f'Test nachdem loss')
         # measure accuracy and record loss
