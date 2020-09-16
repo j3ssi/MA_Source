@@ -275,7 +275,6 @@ def main():
         torch.manual_seed(args.manualSeed)
 
 
-
     if use_cuda:
         torch.manual_seed(args.manualSeed)
 

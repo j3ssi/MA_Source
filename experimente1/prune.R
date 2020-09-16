@@ -747,9 +747,14 @@ boxplot(baseline1$TrainEpochTime.s., bSize1$TrainEpochTime.s.)
 
 
 
+setwd("/home/j3ssi/MA_Source/")
 
+morphFlops <-read.delim("logMorphNet.txt", header = TRUE, sep = "\t", dec = ".")
 
-
+plot(morphFlops$Regularisierer,type='l',col='green',ylim=c(0,8),xlab="Epoche")
+par(new=TRUE)
+Flops <- 7+(morphFlops$Zielgroesse-66383488)/2679811
+plot(Flops,type='l',col='blue',ylim=c(0,8),xlab="")
 
 
 #Exponentiel geglätteter Durchschnitt
