@@ -322,7 +322,7 @@ if __name__ == '__main__':
     flops, num_params = measure_model(pruner.model, pruner, 32)
 
     target = int(args.prune_away * flops)
-    for i in range(0,16):
+    for i in range(0,32):
         print(f'flops: {flops}')
         maps = pruner.omap_size
         cbns = get_cbns(pruner.model)

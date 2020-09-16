@@ -370,9 +370,18 @@ class N2N(nn.Module):
             # print("\nnew Model: ", self)
         # print(f'parameterList: {self.paramList}')
 
-    def forward(self, x):
+    def forward(self, x, epoch):
         # print(f'ArchNums: {self.archNums}')
         # First layer
+        if(epoch%5)==0:
+            for i in range(len(self.paramList)):
+                self.paramList[i].requires_grad=True
+                self.paramList1[i].requires_grad=True
+        elif (epoch%5)==1:
+            for i in range(len(self.paramList)):
+                self.paramList[i].requires_grad = False
+                self.paramList1[i].requires_grad = False
+
         printNet = False
         if printNet:
             print("\nX Shape: ", x.shape)
@@ -530,8 +539,8 @@ class N2N(nn.Module):
                             j = j + 1
                             i = i + 1
                             firstBlockInStage = False
-                            x = self.paramList[block1] *x
-                            _x = self.paramList1[block1]* _x
+                            x *= self.paramList[block1]
+                            _x *= self.paramList1[block1]
                             block1 =block1+1
                             _x = x + _x
                             _x = self.relu(_x)
@@ -551,8 +560,8 @@ class N2N(nn.Module):
                                 print("\nShortcutLayer i: ", i, " ; ", self.module_list[j])
                             j = j + 1
                             i = i + 1
-                            x = self.paramList[block1] *x
-                            _x = self.paramList1[block1]* _x
+                            x *= self.paramList[block1]
+                            _x *= self.paramList1[block1]
                             block1 =block1+1
 
                             _x = _x + x
