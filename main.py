@@ -419,10 +419,10 @@ def main():
             # adjust learning rate when epoch is the scheduled epoch
             if args.delta_learning_rate:
                 adjust_learning_rate(optimizer, epoch, True)
-            if(epoch ==61):
-                args.lr = 0.1
-            if(epoch==121):
-                args.lr = 0.1
+            #if(epoch ==61):
+            #    args.lr = 0.1
+            #if(epoch==121):
+            #    args.lr = 0.1
             # print(f'lr: {args.lr}')
             print(f'Epoche:{epoch}/{args.epochs + start_epoch - 1}; Lr: {args.lr}')
             print(f'batch Size {batch_size}')
