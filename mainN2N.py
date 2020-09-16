@@ -644,10 +644,12 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     printLasso = False
     end = time.time()
     if (epoch % 20) == 0 and epoch > 0:
+        print(f'Drin1!!11')
         for i in range(len(model.paramList)):
             model.paramList[i].requires_grad = True
             model.paramList1[i].requires_grad = True
     elif (epoch % 20) == 1:
+        print(f'Drin!!')
         for i in range(len(model.paramList)):
             model.paramList[i].requires_grad = False
             model.paramList1[i].requires_grad = False
