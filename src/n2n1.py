@@ -370,17 +370,9 @@ class N2N(nn.Module):
             # print("\nnew Model: ", self)
         # print(f'parameterList: {self.paramList}')
 
-    def forward(self, x,epoch ):
+    def forward(self, x):
         # print(f'ArchNums: {self.archNums}')
         # First layer
-        if(epoch%20)==0 and epoch>0:
-            for i in range(len(self.paramList)):
-                self.paramList[i].requires_grad=True
-                self.paramList1[i].requires_grad=True
-        elif (epoch%20)==1:
-            for i in range(len(self.paramList)):
-                self.paramList[i].requires_grad = False
-                self.paramList1[i].requires_grad = False
 
         printNet = False
         if printNet:
