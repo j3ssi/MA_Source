@@ -713,7 +713,7 @@ class N2N(nn.Module):
                 width = paramList[index].size()[1]
                 # print(f'width: {width}')
                 if self.widthofLayers.count(width) > 0:
-                    tobestage = self.widthofLayers.index(width) + 1
+                    tobestage = self.widthofLayers.index(width)
                     # print(f'stage: {stage}')
                     if tobestage == stage:
                         num = int(altList[index].split('.')[1].split('v')[1])
@@ -912,6 +912,7 @@ class N2N(nn.Module):
             m1.weight = torch.nn.Parameter(m1x)
 
             if len(residualList) == 0:
+                break
                 index = 1
 
         # print(f'Bis Hier!')

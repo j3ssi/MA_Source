@@ -551,11 +551,11 @@ def main():
         print(model)
 
     if args.wider and not args.widerRnd:
-        model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
-
         model = model.wider(2, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
 
         model = model.wider(1, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
+
+        model = model.wider(0, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
 
         model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock+1, False, args.bottleneck,
                         widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
