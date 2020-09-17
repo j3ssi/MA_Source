@@ -727,6 +727,7 @@ class N2N(nn.Module):
                         num = int(altList[index].split('.')[1].split('v')[1])
                         residualListO.append(num)
 
+        print(f'altList: {altList}')
         print(f'Residual ListI: {residualListI}')
         print(f'Residual ListO: {residualListO}')
         tmpListI = copy.copy(residualListI)
