@@ -740,6 +740,9 @@ class N2N(nn.Module):
             # get next elemente to widen
             j = residualList.pop(0)
             # transform to numbetr in moduleList
+            if(j==0):
+                print(f'j')
+                continue
             print(f'j: {j}')
             i = 2 * j - 2
 
