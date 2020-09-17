@@ -754,7 +754,7 @@ class N2N(nn.Module):
             bnb1 = bn.bias.data.clone().cpu().numpy()
             assert delta_width > 0, "New size should be larger"
 
-            if j in residualListI:
+            if j in residualListI and not j==1:
                 print(f'Resiudual I')
                 old_width = m1.weight.size(1)
                 new_width = old_width * delta_width
