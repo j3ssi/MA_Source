@@ -711,14 +711,14 @@ class N2N(nn.Module):
         for index in range(0, len(altList)):
             if 'conv' in altList[index]:
                 width = paramList[index].size()[0]
-                print(f'width: {width}')
+                # print(f'width: {width}')
                 if self.widthofLayers.count(width) > 0:
                     tobestage = self.widthofLayers.index(width)
                     # print(f'stage: {stage}')
                     if tobestage == stage:
                         num = int(altList[index].split('.')[1].split('v')[1])
                         residualListI.append(num)
-
+                        print(f'Num: {num}')
                 width = paramList[index].size()[0]
                 if self.widthofLayers.count(width) > 0:
                     tobestage = self.widthofLayers.index(width) + 1
