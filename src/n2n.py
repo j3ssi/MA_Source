@@ -707,13 +707,12 @@ class N2N(nn.Module):
         # fill lists with numbers of input or output numbers for each stage
         residualListI = []
         residualListO = []
-        stage = stage - 1
         for index in range(0, len(altList)):
             if 'conv' in altList[index]:
                 width = paramList[index].size()[0]
                 # print(f'width: {width}')
                 if self.widthofLayers.count(width) > 0:
-                    tobestage = self.widthofLayers.index(width)
+                    tobestage = self.widthofLayers.index(width)+1
                     print(f'stage: {stage}; tobestage: {tobestage}')
 
                     if tobestage == stage:
