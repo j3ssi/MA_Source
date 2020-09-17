@@ -714,7 +714,8 @@ class N2N(nn.Module):
                 # print(f'width: {width}')
                 if self.widthofLayers.count(width) > 0:
                     tobestage = self.widthofLayers.index(width)
-                    # print(f'stage: {stage}')
+                    print(f'stage: {stage}; tobestage: {tobestage}')
+
                     if tobestage == stage:
                         num = int(altList[index].split('.')[1].split('v')[1])
                         residualListI.append(num)
