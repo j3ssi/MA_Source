@@ -707,7 +707,7 @@ class N2N(nn.Module):
         # fill lists with numbers of input or output numbers for each stage
         residualListI = []
         residualListO = []
-
+        stage = stage - 1
         for index in range(0, len(altList)):
             if 'conv' in altList[index]:
                 width = paramList[index].size()[0]
