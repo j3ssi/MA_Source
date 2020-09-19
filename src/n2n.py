@@ -1004,7 +1004,7 @@ class N2N(nn.Module):
             # print(f'Model after wider: {self}')
 
         for i in range(len(self.widthofLayers)):
-            self.widthofLayers *= delta_width
+            self.widthofLayers[i] *= delta_width
         # print(self)
         return self
 
