@@ -409,7 +409,7 @@ def main():
         optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
                          weight_decay=args.weight_decay)
 
-    scheduler = StepLR(optimizer, step_size=1, gamma=0.9)
+    scheduler = StepLR(optimizer, step_size=5, gamma=0.9)
 
     i = 1
     # for epochNet2Net in range(1, 4):
@@ -437,7 +437,7 @@ def main():
             if args.dynlr:
                 # adjust_learning_rate(optimizer, epoch, False)
                 scheduler.step()
-
+                args.lr=scheduler.get_lr()
             print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated() / 10000000}')
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
