@@ -187,7 +187,7 @@ python3 main.py -j 6 --checkpoint ./output/experimente4/n2nWider3_$1 --epochs 5 
 sleep 5
 
 echo "j: 236 bis 240"
-python3 main.py -j 6 --checkpoint ./output/experimente4/n2nWider3_$1 --reset --wider --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 3,3,3 --lr 0.01 --dynlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 60 --pathToModell ./output/experimente4/n2nWider3_$1/model.nn  --resume ./output/experimente4/n2nWider3_$1/checkpoint.pth.tar
+python3 main.py -j 6 --checkpoint ./output/experimente4/n2nWider3_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 3,3,3 --lr 0.01 --dynlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 60 --pathToModell ./output/experimente4/n2nWider3_$1/model.nn  --resume ./output/experimente4/n2nWider3_$1/checkpoint.pth.tar
 sleep 5
 
 echo "j: 241 bis 245"
