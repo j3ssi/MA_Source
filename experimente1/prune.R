@@ -72,6 +72,21 @@ baselineS5Sum <- sum(baselineS5$TrainEpochTime.s.)/180
 baselineSSum1 <- c(baselineS1Sum, baselineS2Sum, baselineS3Sum, baselineS4Sum, baselineS5Sum)
 
 
+setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/BaselineMul")
+
+baselineMul1 <- read.delim("baselineMul1.txt", header = TRUE, sep = "\t", dec = ".")
+baselineMul2 <- read.delim("baselineMul2.txt", header = TRUE, sep = "\t", dec = ".")
+baselineMul3 <- read.delim("baselineMul3.txt", header = TRUE, sep = "\t", dec = ".")
+baselineMul4 <- read.delim("baselineMul4.txt", header = TRUE, sep = "\t", dec = ".")
+baselineMul5 <- read.delim("baselineMul5.txt", header = TRUE, sep = "\t", dec = ".")
+
+baselineMul1Sum <- sum(baselineMul1$TrainEpochTime.s.)/180
+baselineMul2Sum <- sum(baselineMul2$TrainEpochTime.s.)/180
+baselineMul3Sum <- sum(baselineMul3$TrainEpochTime.s.)/180
+baselineMul4Sum <- sum(baselineMul4$TrainEpochTime.s.)/180
+baselineMul5Sum <- sum(baselineMul5$TrainEpochTime.s.)/180
+
+baselineMulSum <- c(baselineMul1Sum, baselineMul2Sum, baselineMul3Sum, baselineMul4Sum, baselineMul5Sum)
 
 
 plot(baselineS1$ValidAcc.,
@@ -87,9 +102,9 @@ plot(baseline4$ValidAcc.,
      ylim=c(80,94))
 
 
-boxplot(baselineSum1, baselineSum2,
+boxplot(baselineSum1, baselineMulSum,
         ylab="Accuracy")
-axis(at=c(1,2),side =1, labels = c('Baseline mit LR Anpassung', 'Baseline ohne LR Anpassung'))
+axis(at=c(1,2),side =1, labels = c('Baseline mit LR Anpassung', 'Baseline mit Faktor'))
 
 t.test(baselineSum1, baselineSum2, alternative = "two.sided", var.equal = FALSE)
 
@@ -97,9 +112,11 @@ t.test(baselineSum1, baselineSum2, alternative = "two.sided", var.equal = FALSE)
 baselineAcc1 <- c(tail(baseline1$ValidAcc.,n=1), tail(baseline2$ValidAcc.,n=1), tail(baseline3$ValidAcc.,n=1), tail(baseline4$ValidAcc.,n=1), tail(baseline5$ValidAcc.,n=1))
 baselineAcc2 <- c(tail(baselineO1$ValidAcc.,n=1), tail(baselineO2$ValidAcc.,n=1), tail(baselineO3$ValidAcc.,n=1), tail(baselineO4$ValidAcc.,n=1), tail(baselineO5$ValidAcc.,n=1))
 baselineAccS <- c(tail(baselineS1$ValidAcc.,n=1), tail(baselineS2$ValidAcc.,n=1), tail(baselineS3$ValidAcc.,n=1), tail(baselineS4$ValidAcc.,n=1), tail(baselineS5$ValidAcc.,n=1))
-boxplot(baselineAcc1, baselineAcc2,baselineAccS,
+baselineAccMul <-c(tail(baselineMul1$ValidAcc.,n=1), tail(baselineMul2$ValidAcc.,n=1), tail(baselineMul3$ValidAcc.,n=1), tail(baselineMul4$ValidAcc.,n=1), tail(baselineMul5$ValidAcc.,n=1))
+
+boxplot(baselineAcc1, baselineAccMul,
         ylab ="Accuracy")
-        axis(at=c(1,2,3),side =1, labels = c('Baseline mit LR Anpassung', 'Baseline ohne LR Anpassung', 'Baseline mit LR Anassung, schmaller'))
+        axis(at=c(1,2),side =1, labels = c('Baseline mit LR Anpassung', 'Baseline Mul'))
 
         
 setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/PruneLasso")
@@ -749,12 +766,12 @@ boxplot(baseline1$TrainEpochTime.s., bSize1$TrainEpochTime.s.)
 
 setwd("/home/j3ssi/MA_Source/")
 
-morphFlops <-read.delim("logMorphNet.txt", header = TRUE, sep = "\t", dec = ".")
+morphFlops <-read.delim("logMorphNet1.txt", header = TRUE, sep = "\t", dec = ".")
 
-plot(morphFlops$Regularisierer,type='l',col='green',ylim=c(0,8),xlab="Epoche")
+plot(morphFlops$Regularisierer,type='l',col='green',ylim=c(0,10),xlab="Epoche")
 par(new=TRUE)
 Flops <- 7+(morphFlops$Zielgroesse-66383488)/2679811
-plot(Flops,type='l',col='blue',ylim=c(0,8),xlab="")
+plot(Flops,type='l',col='blue',ylim=c(0,10),xlab="")
 
 
 #Exponentiel geglätteter Durchschnitt

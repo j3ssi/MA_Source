@@ -140,7 +140,7 @@ echo "j: 171 bis 175"
 python3 main.py -j 6 --checkpoint ./output/experimente4/n2nModellSize_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 3,3,3 -dlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 180 --pathToModell ./output/experimente4/n2nModellSize_$1/model.nn  --resume ./output/experimente4/n2nModellSize_$1/checkpoint.pth.tar --lastEpoch
 
 echo "j: 176 bis 180"
-python3 main.py -j 6 --reset --checkpoint ./output/experimente4/n2nModellSize_$1 --wider --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 3,3,3 -dlr --n2n --wider  --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 180 --pathToModell ./output/experimente4/n2nModellSize_$1/model.nn --resume ./output/experimente4/n2nModellSize_$1/checkpoint.pth.tar
+python3 main.py -j 6 --reset --checkpoint ./output/experimente4/n2nModellSize_$1 --wider --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 3,3,3 -dlr --n2n --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 180 --pathToModell ./output/experimente4/n2nModellSize_$1/model.nn --resume ./output/experimente4/n2nModellSize_$1/checkpoint.pth.tar
 
 echo "j: 181 bis 185"
 python3 main.py -j 6 --checkpoint ./output/experimente4/n2nModellSize_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 3,3,3 --lr 0.01 --dynlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 5 --pathToModell ./output/experimente4/n2nModellSize_$1/model.nn  --resume ./output/experimente4/n2nModellSize_$1/checkpoint.pth.tar
