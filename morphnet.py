@@ -122,7 +122,7 @@ def truncate_smallbeta(model, cbns):
             chain_max_dim = np.maximum(chain_max_dim, lastConv.weight.size(1))
         if isinstance(m, nn.Conv2d):
             lastConv = m
-            chain_max_dim = lastConv.weight.size(1)
+            chain_max_dim = np.maximum(chain_max_dim, lastConv.weight.size(1))
 
     # Deal with the chain first
     mask = np.zeros(chain_max_dim)
