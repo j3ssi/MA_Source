@@ -675,6 +675,7 @@ class N2N(nn.Module):
 
     def wider(self, stage, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
         print(f'Stage: {stage}')
+        print(f'width of Layers: {self.widthofLayers}')
         # get names for modules
         altList = []
         paramList = []
