@@ -18,7 +18,7 @@ import argparse
 from src.utils import Logger
 
 logger = Logger('MorphLogs/logMorphNetFlopsE6.txt', title='logMorphNet')
-logger.set_names(['Regularisierer', 'Zielgroesse'])
+logger.set_names(['Regularisierer', 'Zielgroesse', 'Top1'])
 
 def measure_model(model, pruner, img_size):
     pruner.reset() 
@@ -232,9 +232,9 @@ def train_mask(model, train_loader, val_loader, pruner, epochs=10, lr=1e-2, lbda
         regularize = train_epoch(model, optimizer, criterion, train_loader, lbda, cbns, maps, constraint)
         flops, num_params = measure_model(pruner.model, pruner, 32)
         print(f'Epoche: {e}; regular: {regularize}: flops {flops}')
-        logger.append([regularize,num_params])
 
         top1, _ = test(model, val_loader)
+        logger.append([regularize, num_params, top1])
         print('#Filters: {}, #FLOPs: {:.2f}M | Top-1: {:.2f}'.format(num_alive_filters(model), pruner.get_valid_flops()/1000000., top1))
     return model
 
