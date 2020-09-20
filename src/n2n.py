@@ -23,7 +23,7 @@ class N2N(nn.Module):
         if widthOfLayers is not None:
             self.widthofFirstLayer = widthOfLayers[0]
             self.widthofLayers = widthOfLayers
-            # print(f'width: {self.widthofFirstLayer}')
+            print(f'width: {self.widthofFirstLayer}')
         else:
             self.widthofFirstLayer = widthofFirstLayer
             self.widthofLayers = []
@@ -359,6 +359,8 @@ class N2N(nn.Module):
             fc.bias.data = module.bias.data
             self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
+
+
 
     def forward(self, x):
         # print(f'ArchNums: {self.archNums}')
@@ -710,7 +712,7 @@ class N2N(nn.Module):
         for index in range(0, len(altList)):
             if 'conv' in altList[index]:
                 width = paramList[index].size()[0]
-                # print(f'width: {width}')
+                print(f'width: {width}')
                 if self.widthofLayers.count(width) > 0:
                     tobestage = self.widthofLayers.index(width)+1
                     print(f'stage: {stage}; tobestage: {tobestage}')
