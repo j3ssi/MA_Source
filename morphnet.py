@@ -17,7 +17,7 @@ import argparse
 
 from src.utils import Logger
 
-logger = Logger('logMorphNet.txt', title='logMorphNet')
+logger = Logger('MorphLogs/logMorphNetFlopsE6.txt', title='logMorphNet')
 logger.set_names(['Regularisierer', 'Zielgroesse'])
 
 def measure_model(model, pruner, img_size):
