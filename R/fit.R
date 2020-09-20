@@ -22,16 +22,20 @@ abline( 118.933  ,53.737 , col="red" )
 
 #s=3
 library("drc")
-count3 <- c(98522, 195738, 292954, 390170, 487386, 584602, 681818, 779034, 876250, 973466)
-batch3 <- c()
+count3 <- c(98522, 195738, 292954, 390170, 487386, 584602, 681818, 779034)
+batch3 <- c(860, 529, 389, 303, 247,  214, 186, 164)
 #batch3 <- c(13824, 8878, 6380, 4987, 4096, 3453, 2976, 2656, 2363, 2156)
 coeff3  <- c(7.12, 11.02, 15.31, 19.56, 23.80, 28.22, 32.73, 36.66, 41.20, 45.15)
-size <- c(1,2,3,4,5,6,7,8,9,10)
+size <- c(1,2,3,4,5,6,7,8)
 mL <- glm(batch3 ~ count3)
-
-gerade4<-lm(batch3~log(count3))
-plot(count3,predict(gerade4),type='l')
-points(count3,batch3)
+b<-count3/size
+c<-b/batch3
+plot(size,c,ylim=c(0,650))
+par(new=TRUE)
+plot(size,b)
+gerade4<-lm(c~size)
+plot(size,predict(gerade4),type='l',col="blue",ylim=c(0,650),xlab="Blockanzahl",ylab="Quotient zum Berechnen der Gerade")
+points(size,c)
 gerade3<-lm(coeff3 ~ size)
 summary(gerade3)
 gerade3x <-lm (count3 ~ size)

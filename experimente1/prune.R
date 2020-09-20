@@ -219,24 +219,6 @@ t.test(prune_lasso015, prune_lasso025, alternative = "two.sided", var.equal = FA
 
 t.test(prune_lasso02, prune_lasso025, alternative = "two.sided", var.equal = FALSE)
 
-boxplot(prune_lasso005_6$TrainEpochTime.s., prune_lasso005_7$TrainEpochTime.s., prune_lasso005_8$TrainEpochTime.s., prune_lasso005_9$TrainEpochTime.s., prune_lasso005_10$TrainEpochTime.s.,
-        prune_lasso01_6$TrainEpochTime.s., prune_lasso01_7$TrainEpochTime.s., prune_lasso01_8$TrainEpochTime.s., prune_lasso01_9$TrainEpochTime.s., prune_lasso01_10$TrainEpochTime.s.,
-        prune_lasso015_6$TrainEpochTime.s., prune_lasso015_7$TrainEpochTime.s., prune_lasso015_8$TrainEpochTime.s., prune_lasso015_9$TrainEpochTime.s., prune_lasso015_10$TrainEpochTime.s.,
-        prune_lasso02_6$TrainEpochTime.s., prune_lasso02_7$TrainEpochTime.s., prune_lasso02_8$TrainEpochTime.s., prune_lasso02_9$TrainEpochTime.s., prune_lasso02_10$TrainEpochTime.s.,
-        prune_lasso025_6$TrainEpochTime.s., prune_lasso025_7$TrainEpochTime.s., prune_lasso025_8$TrainEpochTime.s., prune_lasso025_9$TrainEpochTime.s., prune_lasso025_10$TrainEpochTime.s.,
-        col=c('powderblue', 'powderblue', 'powderblue', 'powderblue', 'powderblue', 
-              'mistyrose', 'mistyrose', 'mistyrose', 'mistyrose', 'mistyrose',
-              'lightsalmon', 'lightsalmon', 'lightsalmon', 'lightsalmon', 'lightsalmon',
-              'lightpink', 'lightpink', 'lightpink', 'lightpink', 'lightpink',
-              'lightsalmon4', 'lightsalmon4', 'lightsalmon4', 'lightsalmon4', 'lightsalmon4'),
-        ylim=c(-10,260),
-        ylab = "Trainingszeit in Sekunden",
-        xlab ="verschiedene Experimente")
-
-legend(0,20, legend = c('Lasso 0.05', 'Lasso 0.1', 'Lasso 0.15', 'Lasso 0.2', 'Lasso 0.25'), 
-       col= c('powderblue', 'mistyrose', 'lightsalmon', 'lightpink', 'lightsalmon4'), 
-       fill=c('powderblue', 'mistyrose', 'lightsalmon', 'lightpink', 'lightsalmon4'), 
-       ncol=3, cex=0.8)
 
 boxplot(baseline1Sum,prune_lasso005, prune_lasso01, prune_lasso015, prune_lasso02, prune_lasso025,
         log = "y",
@@ -767,12 +749,12 @@ boxplot(baseline1$TrainEpochTime.s., bSize1$TrainEpochTime.s.)
 setwd("/home/j3ssi/MA_Source/")
 
 morphFlops <-read.delim("logMorphNet1.txt", header = TRUE, sep = "\t", dec = ".")
-
-plot(morphFlops$Regularisierer,type='l',col='green',ylim=c(0,10),xlab="Epoche")
+par(mar = c(5, 4, 4, 4) + 0.3)  
+plot(morphFlops$Regularisierer,type='l',col='green',xlab="Epoche",ylab="Regularisierer")
 par(new=TRUE)
-Flops <- 7+(morphFlops$Zielgroesse-66383488)/2679811
-plot(Flops,type='l',col='blue',ylim=c(0,10),xlab="")
-
+plot(morphFlops$Zielgroesse,type='l',pch=17,col='blue',xlab="",ylab="",axes=FALSE)
+axis(side = 4, at = pretty(range(morphFlops$Zielgroesse)))      # Add second axis
+mtext("Zielgröße", side = 4, line = 3) 
 
 #Exponentiel geglätteter Durchschnitt
 library(smooth)
