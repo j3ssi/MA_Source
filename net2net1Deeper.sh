@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "j: 1 bis 5"
-python3 mainN2N.py -j 6 --deeper2 --checkpoint ./output/experimente4/net2netdeeper2_$1 --epochs 5 --batchTrue --batch_size 256 -s 3 -l 2 -n 5,5,5 -dlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 0 --pathToModell ./output/experimente4/net2netdeeper2_$1/model.nn
+python3 mainN2N.py -j 6 --checkpoint ./output/experimente4/net2netdeeper2_$1 --epochs 5 --batchTrue --batch_size 256 -s 3 -l 2 -n 5,5,5 -dlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 0 --pathToModell ./output/experimente4/net2netdeeper2_$1/model.nn
 sleep 5
 
 echo "j: 6 bis 10"
