@@ -1045,8 +1045,9 @@ class N2N(nn.Module):
                 paramListTmp1.append(self.paramList1[i])
 
             if i==c:
-                param1 =  nn.Parameter(torch.ones(1))
-                param1.data = torch.FloatTensor(0.5)
+
+                param1 = nn.Parameter(torch.ones(1))
+                param1.fill(0.5)
                 paramListTmp.append(param1, requires_grad=False)
                 paramListTmp1.append(param1, requires_grad=False)
 
