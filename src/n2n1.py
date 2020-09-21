@@ -1081,7 +1081,7 @@ class N2N(nn.Module):
             self.paramList.insert()
             self.paramList1.insert()
 
-        return model
+        return self
     def deeper1(self):
         # make each block with plus two layers (conv +batch) deeper
         printDeeper = True
