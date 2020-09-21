@@ -1036,6 +1036,7 @@ class N2N(nn.Module):
         archStage=[stage-1]
         for i in range(1,pos):
             b+=2*archStage[pos-1]
+        print(f'B: {b}; c: {c}')
         paramListTmp1= nn.ParameterList()
         paramListTmp = nn.ParameterList()
         for i in range(len(self.paramList)):
