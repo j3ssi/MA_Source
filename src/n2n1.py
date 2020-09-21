@@ -1054,6 +1054,8 @@ class N2N(nn.Module):
         # print(f'paramlist1: {paramListTmp1}')
         self.paramList = paramListTmp
         self.paramList1 = paramListTmp1
+        self.paramList.cuda()
+        self.paramList1.cuda()
         l=archStage[stage-1]
         module = self.module_list[b]
         print(f'module: {module}')
