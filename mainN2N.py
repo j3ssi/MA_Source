@@ -532,6 +532,23 @@ def main():
 
         i = 2
 
+    if args.deeper2:
+        print("\n\nnow deeper")
+        # deeper student training
+        model = model.deeper2(1,1)
+        print(f'args.layersInBlock: {args.layersInBlock}')
+        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, args.bottleneck,
+                        widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
+
+        model.cuda()
+        criterion = nn.CrossEntropyLoss()
+        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+                                      weight_decay=args.weight_decay)
+        print(model)
+
+
+
+
     if args.wider and not args.widerRnd:
         model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
 
