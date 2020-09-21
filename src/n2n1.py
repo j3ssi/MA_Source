@@ -1078,6 +1078,7 @@ class N2N(nn.Module):
             layer2 = nn.BatchNorm2d(i0)
             archStage.insert(pos,l)
             self.module_list.insert(b, layer2)
+            print(f'layer: {layer}')
             if printDeeper:
                 print(f'j: {j}; i: {i}')
             self.paramList.insert()
