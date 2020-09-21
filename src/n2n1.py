@@ -1044,7 +1044,7 @@ class N2N(nn.Module):
 
             if i==c:
                 paramListTmp.append(nn.Parameter(torch.ones(1)/2, requires_grad=False))
-                paramListTmp1.insert(c, nn.Parameter(torch.ones(1)/2, requires_grad=False))
+                paramListTmp1.append(nn.Parameter(torch.ones(1)/2, requires_grad=False))
         print(f'paramlist: {paramListTmp}')
         print(f'paramlist1: {paramListTmp1}')
         self.paramList = paramListTmp
