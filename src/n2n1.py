@@ -316,7 +316,7 @@ class N2N(nn.Module):
                 if 'conv' in name:
                     dims = list(param.shape)
                     print("Name, Dims: ", name, " ; ", dims)
-                    print(f'Name: {name}')
+                    print(f'i: {i}')
                     in_chs = dims[1]
                     out_chs = dims[0]
                     # Search for the corresponding Conv Module in Module_list
@@ -1036,7 +1036,7 @@ class N2N(nn.Module):
         archStage=self.archNums[stage-1]
         for i in range(0,pos):
             b += 2 * pos
-            c = c * 1
+            c = c + 1
         print(f'B: {b}; c: {c}')
         paramListTmp1= nn.ParameterList()
         paramListTmp = nn.ParameterList()
