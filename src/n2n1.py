@@ -1085,9 +1085,7 @@ class N2N(nn.Module):
             print(f'layer: {layer}')
             if printDeeper:
                 print(f'j: {j}; i: {i}')
-            self.paramList.insert()
-            self.paramList1.insert()
-        # print(f'self: {self}')
+            # print(f'self: {self}')
         return self
 
     def deeper1(self):
