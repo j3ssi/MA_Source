@@ -1035,10 +1035,20 @@ class N2N(nn.Module):
         archStage=[stage-1]
         for i in range(1,pos):
             b+=2*archStage[pos-1]
+        paramListTmp1= nn.ParameterList()
+        paramListTmp = nn.ParameterList()
+        for i in range(len(self.paramList)):
+            if i!=c:
+                paramListTmp.append(self.paramList[i])
+                paramListTmp1.append(self.paramList1[i])
 
-        self.paramList.insert(c,nn.Parameter(torch.ones(1)/2, requires_grad=False))
-        self.paramList1.insert(c, nn.Parameter(torch.ones(1)/2, requires_grad=False))
-
+            if i==c:
+                paramListTmp.append(nn.Parameter(torch.ones(1)/2, requires_grad=False))
+                paramListTmp1.insert(c, nn.Parameter(torch.ones(1)/2, requires_grad=False))
+        print(f'paramlist: {paramListTmp}')
+        print(f'paramlist1: {paramListTmp1}')
+        self.paramList = paramListTmp
+        self.paramList1 = paramListTmp1
         l=archStage[pos]
         module = self.module_list[b-1]
         i0 = module.weight.size(0)
