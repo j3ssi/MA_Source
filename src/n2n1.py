@@ -1050,7 +1050,7 @@ class N2N(nn.Module):
         self.paramList = paramListTmp
         self.paramList1 = paramListTmp1
         l=archStage[stage-1]
-        module = self.module_list[b-1]
+        module = self.module_list[b]
         print(f'module: {module}')
         i0 = module.weight.size(0)
         i1 = module.weight.size(1)
