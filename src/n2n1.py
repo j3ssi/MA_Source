@@ -1027,7 +1027,7 @@ class N2N(nn.Module):
         firstBlockInStage = True
         b=2
         c=0
-        for i in range(0,stage-1):
+        for i in range(0, stage-1):
             archStage = self.archNums[i-1]
             print(f'archStage: {archStage}')
             for j in range(len(archStage)):
@@ -1035,7 +1035,7 @@ class N2N(nn.Module):
                 c = c + 1
         archStage=self.archNums[stage-1]
         for i in range(0,pos):
-            b+=2*archStage[pos-1]
+            b+=2*pos
         print(f'B: {b}; c: {c}')
         paramListTmp1= nn.ParameterList()
         paramListTmp = nn.ParameterList()
