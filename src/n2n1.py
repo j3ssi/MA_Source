@@ -1025,13 +1025,19 @@ class N2N(nn.Module):
         archNum = self.archNums[stage]
         firstBlockInStage = True
         b=2
+        c=0
         for i in range(1,stage-1):
             archStage = self.archNums[i-1]
+            print(f'archStage: {archStage}')
             for j in range(len(archStage)):
                 b+=2* archStage[j-1]
+                c = c+1
         archStage=[stage-1]
         for i in range(1,pos):
             b+=2*archStage[pos-1]
+
+        self.paramList.insert(c,nn.Parameter(torch.ones(1)/2, requires_grad=False))
+        self.paramList1.insert(c, nn.Parameter(torch.ones(1)/2, requires_grad=False))
 
         l=archStage[pos]
         module = self.module_list[b-1]

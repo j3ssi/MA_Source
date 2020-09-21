@@ -168,10 +168,14 @@ parser.add_argument('--visual', default=False, action='store_true',
 # N2N
 parser.add_argument('--n2n', default=False, action='store_true',
                     help='Use net2net functionality')
-parser.add_argument('--deeper', default=False, action='store_true',
-                    help='Make network deeper')
 parser.add_argument('--wider', default=False, action='store_true',
                     help='Make network wider')
+parser.add_argument('--deeper1', default=False, action='store_true',
+                    help='Make network deeper')
+parser.add_argument('--deeper2', default=False, action='store_true',
+                    help='Make network deeper')
+
+
 parser.add_argument('--widerRnd', default=False, action='store_true',
                     help='Make network wider')
 parser.add_argument('--widthOfAllLayers', type=str, help="#width of stages separated by commas")
@@ -536,8 +540,24 @@ def main():
             best_acc = max(test_acc, best_acc)
 
         i = 2
-    if args.deeper:
+
+    if args.deeper2:
         print("\n\nnow deeper")
+        # deeper student training
+        model = model.deeper2()
+        print(f'args.layersInBlock: {args.layersInBlock}')
+        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, args.bottleneck,
+                        widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
+
+        model.cuda()
+        criterion = nn.CrossEntropyLoss()
+        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+                                      weight_decay=args.weight_decay)
+        print(model)
+
+
+    if args.deeper1:
+        print("\n\nnow deeper1")
         # deeper student training
         model = model.deeper1()
         print(f'args.layersInBlock: {args.layersInBlock}')
