@@ -1041,14 +1041,14 @@ class N2N(nn.Module):
         paramListTmp1= nn.ParameterList()
         paramListTmp = nn.ParameterList()
         for i in range(len(self.paramList)):
-            if i!=c:
-                paramListTmp.append(self.paramList[i])
-                paramListTmp1.append(self.paramList1[i])
+
             if i==c:
                 param1 = nn.Parameter(torch.ones(1))
                 param1.data.fill_(0.5)
                 paramListTmp.append(param1)
                 paramListTmp1.append(param1)
+            paramListTmp.append(self.paramList[i])
+            paramListTmp1.append(self.paramList1[i])
 
         # print(f'paramlist: {paramListTmp}')
         # print(f'paramlist1: {paramListTmp1}')
