@@ -315,7 +315,7 @@ class N2N(nn.Module):
                 # print("\nName: ", name)
                 if 'conv' in name:
                     dims = list(param.shape)
-                    # print("Name, Dims: ", name, " ; ", dims)
+                    print("Name, Dims: ", name, " ; ", dims)
                     in_chs = dims[1]
                     out_chs = dims[0]
                     # Search for the corresponding Conv Module in Module_list
