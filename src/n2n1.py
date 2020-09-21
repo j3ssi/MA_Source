@@ -1034,7 +1034,7 @@ class N2N(nn.Module):
                 b+=2* archStage[j-1]
                 c = c+1
         archStage=[stage-1]
-        for i in range(1,pos):
+        for i in range(0,pos):
             b+=2*archStage[pos-1]
         print(f'B: {b}; c: {c}')
         paramListTmp1= nn.ParameterList()
