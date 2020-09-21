@@ -1048,8 +1048,8 @@ class N2N(nn.Module):
 
                 param1 = nn.Parameter(torch.ones(1))
                 param1.data.fill_(0.5)
-                paramListTmp.append(param1, requires_grad=False)
-                paramListTmp1.append(param1, requires_grad=False)
+                paramListTmp.append(param1)
+                paramListTmp1.append(param1)
 
         # print(f'paramlist: {paramListTmp}')
         # print(f'paramlist1: {paramListTmp1}')
