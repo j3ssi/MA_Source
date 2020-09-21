@@ -538,9 +538,9 @@ def main():
         model = model.deeper2(1, 1)
         print(f'args.layersInBlock: {args.layersInBlock}')
         print(f'')
-        model = n2n1.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, args.bottleneck,
+        # model = n2n1.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, args.bottleneck,
                          widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
-        model.cuda()
+        # model.cuda()
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                               weight_decay=args.weight_decay)

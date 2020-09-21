@@ -31,7 +31,6 @@ from copy import deepcopy
 
 from torch.optim.lr_scheduler import StepLR
 
-
 from matplotlib import pyplot
 from matplotlib.colors import ListedColormap
 # from mpl_toolkits.mplot3d import Axes3D
@@ -128,7 +127,7 @@ parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
                     help='momentum')
 parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')
-parser.add_argument('--manualSeed', type=int, default = 6, help='manual seed')
+parser.add_argument('--manualSeed', type=int, default=6, help='manual seed')
 parser.add_argument('-e', '--evaluate', dest='evaluate', action='store_true',
                     help='evaluate model on validation set')
 parser.add_argument('--dynlr', default=False, action='store_true',
@@ -174,7 +173,6 @@ parser.add_argument('--deeper1', default=False, action='store_true',
                     help='Make network deeper')
 parser.add_argument('--deeper2', default=False, action='store_true',
                     help='Make network deeper')
-
 
 parser.add_argument('--widerRnd', default=False, action='store_true',
                     help='Make network wider')
@@ -278,7 +276,6 @@ def main():
     if use_cuda:
         torch.manual_seed(args.manualSeed)
 
-
     if use_cuda:
         torch.manual_seed(args.manualSeed)
 
@@ -333,7 +330,7 @@ def main():
             memory = checkpoint['memory']
             batch_size = checkpoint['batch_size']
         best_acc = checkpoint['best_acc']
-        if checkpoint['lr']!=0:
+        if checkpoint['lr'] != 0:
             args.lr = checkpoint['lr']
         start_epoch = checkpoint['epoch']
         # start_batchSize = checkpoint['start_batchSize']
@@ -382,15 +379,15 @@ def main():
     count1 = count0
 
     # Calculate Size of Trainings Batch size
-    if not args.batchTrue and args.epochsFromBegin==0:
+    if not args.batchTrue and args.epochsFromBegin == 0:
 
         # calculate first how many blocks is equal to the count0
         sizeX = (count0 - 1306) / 97216
         # print(f'sizeX: {sizeX}')
         # Gerade für niedrige Batch size
-        #if not args.largeBatch:
+        # if not args.largeBatch:
         y = 68.25 * sizeX + 47.85
-        #else:
+        # else:
         # y = 4.27 * sizeX + 2.60
         # calculate now the batch size
         batch_size = int(0.999 * count0 / sizeX / y)
@@ -423,9 +420,9 @@ def main():
             # adjust learning rate when epoch is the scheduled epoch
             if args.delta_learning_rate:
                 adjust_learning_rate(optimizer, epoch, True)
-            #if(epoch ==61):
+            # if(epoch ==61):
             #    args.lr = 0.1
-            #if(epoch==121):
+            # if(epoch==121):
             #    args.lr = 0.1
             # print(f'lr: {args.lr}')
             print(f'Epoche:{epoch}/{args.epochs + start_epoch - 1}; Lr: {args.lr}')
@@ -441,7 +438,7 @@ def main():
             if args.dynlr:
                 # adjust_learning_rate(optimizer, epoch, False)
                 scheduler.step()
-                args.lr=scheduler.get_last_lr()
+                args.lr = scheduler.get_last_lr()
             print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated() / 10000000}')
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
@@ -450,7 +447,7 @@ def main():
                            test_epoch_time])
             countB = 0
             for p in model.parameters():
-                countB+= p.data.nelement()
+                countB += p.data.nelement()
 
             # i = 2
             # SparseTrain routine
@@ -479,8 +476,6 @@ def main():
                 if args.visual:
                     visualizePruneTrain(model, epoch, args.threshold)
 
-
-
             # if args.fp16:
             #   model, optimizer = amp.initialize(model, optimizer)
             #
@@ -496,7 +491,7 @@ def main():
                 print(f'Drin!!')
                 print(f'old memory: {memory}')
                 print(f'new memory: {tmp_memory}')
-                if memory >0:
+                if memory > 0:
                     factor = tmp_memory / memory
                     print(f'Faktor: {factor}')
 
@@ -506,7 +501,7 @@ def main():
                         memory = tmp_memory
                         print(f'New batch Size größer {batch_size}!!')
                     if factor > 1:
-                        batch_size_tmp = int( tmp_memory / memory  * batch_size)
+                        batch_size_tmp = int(tmp_memory / memory * batch_size)
                         batch_size = batch_size_tmp
                         memory = tmp_memory
                         print(f'New batch Size kleiner {batch_size}!!')
@@ -533,14 +528,12 @@ def main():
             # # print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
             #
 
-
             # print("\n Verhältnis Modell Größe: ", count / count0)
 
             is_best = test_acc > best_acc
             best_acc = max(test_acc, best_acc)
 
         i = 2
-
 
     if args.deeper:
         print("\n\nnow deeper1")
@@ -553,7 +546,7 @@ def main():
         model.cuda()
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-                                      weight_decay=args.weight_decay)
+                              weight_decay=args.weight_decay)
         print(model)
 
     if args.wider and not args.widerRnd:
@@ -566,7 +559,7 @@ def main():
         for i in range(len(model.widthofLayers)):
             model.widthofLayers[i] *= 2
 
-        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock+1, False, args.bottleneck,
+        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock + 1, False, args.bottleneck,
                         widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
 
         model.cuda()
@@ -597,7 +590,7 @@ def main():
     if args.reset:
         args.epoch = 0
         start_epoch = 1
-        args.lr=0
+        args.lr = 0
     if args.dB:
         save_checkpoint({
             'epoch': args.epochs + start_epoch,
