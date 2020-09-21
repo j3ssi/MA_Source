@@ -74,6 +74,10 @@ parser.add_argument('-b', '--bottleneck', default=False, action='store_true',
                     help='Set the bootleneck parameter')
 parser.add_argument('-w', '--widthofFirstLayer', default=16, type=int,
                     help='defines the width of the first stage in net')
+parser.add_argument('--deeper1', default=False, action='store_true',
+                    help='Make network deeper')
+parser.add_argument('--deeper2', default=False, action='store_true',
+                    help='Make network deeper')
 
 # epochs and stuff
 parser.add_argument('--epochs', default=8, type=int, metavar='N',
