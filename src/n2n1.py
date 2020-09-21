@@ -1025,14 +1025,14 @@ class N2N(nn.Module):
             print("\n\nStage: ", stage)
         archNum = self.archNums[stage]
         firstBlockInStage = True
-        b=3
+        b=4
         c=0
         for i in range(1,stage-1):
             archStage = self.archNums[i-1]
             print(f'archStage: {archStage}')
             for j in range(len(archStage)):
-                b+=2* archStage[j-1]
-                c = c+1
+                b += 2 * archStage[j-1]
+                c = c + 1
         archStage=[stage-1]
         for i in range(0,pos):
             b+=2*archStage[pos-1]
