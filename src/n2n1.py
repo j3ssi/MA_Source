@@ -1080,7 +1080,7 @@ class N2N(nn.Module):
                 print(f'j: {j}; i: {i}')
             self.paramList.insert()
             self.paramList1.insert()
-
+        print(f'self: {self}')
         return self
     def deeper1(self):
         # make each block with plus two layers (conv +batch) deeper
