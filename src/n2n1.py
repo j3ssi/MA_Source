@@ -1027,13 +1027,13 @@ class N2N(nn.Module):
         firstBlockInStage = True
         b=4
         c=0
-        for i in range(1,stage-1):
+        for i in range(0,stage-1):
             archStage = self.archNums[i-1]
             print(f'archStage: {archStage}')
             for j in range(len(archStage)):
                 b += 2 * archStage[j-1]
                 c = c + 1
-        archStage=[stage-1]
+        archStage=self.archNums[stage-1]
         for i in range(0,pos):
             b+=2*archStage[pos-1]
         print(f'B: {b}; c: {c}')
@@ -1059,7 +1059,7 @@ class N2N(nn.Module):
         i2 = module.weight.size(2)
         i3 = module.weight.size(3)
         if printDeeper:
-            print(f'size:{i0}, {i1}, {i2}, {i3}; j: {j}')
+            print(f'size: {i0}, {i1}, {i2}, {i3}; j: {j}')
         for i in range(0,l):
             dw1 = numpy.ones((i0, i0, i2, i3), dtype=numpy.float32)
             w1 = torch.FloatTensor(dw1)
@@ -1083,8 +1083,9 @@ class N2N(nn.Module):
                 print(f'j: {j}; i: {i}')
             self.paramList.insert()
             self.paramList1.insert()
-        print(f'self: {self}')
+        # print(f'self: {self}')
         return self
+
     def deeper1(self):
         # make each block with plus two layers (conv +batch) deeper
         printDeeper = True
