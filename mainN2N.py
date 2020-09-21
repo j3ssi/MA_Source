@@ -129,7 +129,7 @@ parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
                     help='momentum')
 parser.add_argument('--weight-decay', '--wd', default=5e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)')
-parser.add_argument('--manualSeed', type=int, default = 6, help='manual seed')
+parser.add_argument('--manualSeed', type=int, default=6, help='manual seed')
 parser.add_argument('-e', '--evaluate', dest='evaluate', action='store_true',
                     help='evaluate model on validation set')
 parser.add_argument('--dynlr', default=False, action='store_true',
@@ -275,8 +275,6 @@ def main():
     if use_cuda:
         torch.manual_seed(args.manualSeed)
 
-
-
     if use_cuda:
         torch.manual_seed(args.manualSeed)
 
@@ -345,10 +343,10 @@ def main():
         memory = 0
         if len(listOfWidths) > 0:
             model = n2n1.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
-                            widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
+                             widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
         else:
             model = n2n1.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
-                            widthofFirstLayer=args.widthofFirstLayer, model=None, archNums=None, widthOfLayers=None)
+                             widthofFirstLayer=args.widthofFirstLayer, model=None, archNums=None, widthOfLayers=None)
 
         print(f'device count: {torch.cuda.device_count()}')
         model.cuda()
@@ -379,15 +377,15 @@ def main():
     count1 = count0
 
     # Calculate Size of Trainings Batch size
-    if not args.batchTrue and args.epochsFromBegin==0:
+    if not args.batchTrue and args.epochsFromBegin == 0:
 
         # calculate first how many blocks is equal to the count0
         sizeX = (count0 - 1306) / 97216
         # print(f'sizeX: {sizeX}')
         # Gerade für niedrige Batch size
-        #if not args.largeBatch:
+        # if not args.largeBatch:
         y = 68.25 * sizeX + 47.85
-        #else:
+        # else:
         # y = 4.27 * sizeX + 2.60
         # calculate now the batch size
         batch_size = int(0.999 * count0 / sizeX / y)
@@ -438,7 +436,7 @@ def main():
                            test_epoch_time])
             countB = 0
             for p in model.parameters():
-                countB+= p.data.nelement()
+                countB += p.data.nelement()
 
             # i = 2
             # SparseTrain routine
@@ -452,8 +450,8 @@ def main():
 
                 genDenseModel(model, dense_chs, optimizer, 'cifar')
                 model = n2n1.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, False, 16,
-                                model,
-                                model.archNums)
+                                 model,
+                                 model.archNums)
                 gc.collect()
                 model.cuda()
                 if not args.lars:
@@ -466,8 +464,6 @@ def main():
             else:
                 if args.visual:
                     visualizePruneTrain(model, epoch, args.threshold)
-
-
 
             # if args.fp16:
             #   model, optimizer = amp.initialize(model, optimizer)
@@ -484,7 +480,7 @@ def main():
                 print(f'Drin!!')
                 print(f'old memory: {memory}')
                 print(f'new memory: {tmp_memory}')
-                if memory >0:
+                if memory > 0:
                     factor = tmp_memory / memory
                     print(f'Faktor: {factor}')
 
@@ -494,7 +490,7 @@ def main():
                         memory = tmp_memory
                         print(f'New batch Size größer {batch_size}!!')
                     if factor > 1:
-                        batch_size_tmp = int( tmp_memory / memory  * batch_size)
+                        batch_size_tmp = int(tmp_memory / memory * batch_size)
                         batch_size = batch_size_tmp
                         memory = tmp_memory
                         print(f'New batch Size kleiner {batch_size}!!')
@@ -539,19 +535,16 @@ def main():
     if args.deeper2:
         print("\n\nnow deeper")
         # deeper student training
-        model = model.deeper2(1,1)
+        model = model.deeper2(1, 1)
         print(f'args.layersInBlock: {args.layersInBlock}')
+        print(f'')
         model = n2n1.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, args.bottleneck,
-                        widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
-
+                         widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
         model.cuda()
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-                                      weight_decay=args.weight_decay)
+                              weight_decay=args.weight_decay)
         print(model)
-
-
-
 
     if args.wider and not args.widerRnd:
         model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
@@ -561,7 +554,7 @@ def main():
         model = model.wider(1, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
 
         model = n2n1.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, args.bottleneck,
-                        widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
+                         widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
 
         model.cuda()
         print(model)
@@ -577,7 +570,7 @@ def main():
         model = model.wider(1, 2, out_size=None, weight_norm=None, random_init=True, addNoise=False)
 
         model = n2n1.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
-                        widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
+                         widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
 
         model.cuda()
         criterion = nn.CrossEntropyLoss()
