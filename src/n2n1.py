@@ -1077,7 +1077,7 @@ class N2N(nn.Module):
             layer = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,
                               bias=bias)
 
-            layer.weight = torch.nn.Parameter(w1)
+            layer.weight.data = w1
             self.module_list.insert(b, layer)
             b += 1
             layer2 = nn.BatchNorm2d(i0)
