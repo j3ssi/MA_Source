@@ -520,7 +520,7 @@ def main():
             if args.deeper:
                 print("\n\nnow deeper")
                 # deeper student training
-                model = n2n1.deeper(model, optimizer, [2, 4])
+                model = n2n1.deeper2(model, optimizer, [2, 4])
                 model.cuda()
                 criterion = nn.CrossEntropyLoss()
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
