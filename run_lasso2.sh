@@ -1,105 +1,105 @@
 #!/bin/sh
 
-echo "Lasso 0.05 1"
-./run_lasso_005.sh 1
+echo "Lasso 0.05 6"
+./run_lasso_005.sh 6
 sleep 20
 
-echo "Lasso 0.05 2"
-./run_lasso_005.sh 2
+echo "Lasso 0.05 7"
+./run_lasso_005.sh 7
 sleep 20
 
-echo "Lasso 0.05 3"
-./run_lasso_005.sh 3
+echo "Lasso 0.05 8"
+./run_lasso_005.sh 8
 sleep 20
 
-echo "Lasso 0.05 4"
-./run_lasso_005.sh 4
+echo "Lasso 0.05 9"
+./run_lasso_005.sh 9
 sleep 20
 
-echo "Lasso 0.05 5"
-./run_lasso_005.sh 5
-sleep 20
-
-
-
-
-echo "Lasso 0.1 1"
-./run_lasso_01.sh 1
-sleep 20
-
-echo "Lasso 0.1 2"
-./run_lasso_01.sh 2
-sleep 20
-
-echo "Lasso 0.1 3"
-./run_lasso_01.sh 3
-sleep 20
-
-echo "Lasso 0.1 4"
-./run_lasso_01.sh 4
-sleep 20
-
-echo "Lasso 0.1 5"
-./run_lasso_01.sh 5
-sleep 20
-
-
-
-echo "Lasso 0.15 1"
-./run_lasso_015.sh 1
-sleep 20
-
-echo "Lasso 0.15 2"
-./run_lasso_015.sh 2
-sleep 20
-
-echo "Lasso 0.15 3"
-./run_lasso_015.sh 3
-sleep 20
-
-echo "Lasso 0.15 4"
-./run_lasso_015.sh 4
-sleep 20
-
-echo "Lasso 0.15 5"
-./run_lasso_015.sh 5
+echo "Lasso 0.05 10"
+./run_lasso_005.sh 10
 sleep 20
 
 
 
 
-echo "Lasso 0.2 1"
-./run_lasso_02.sh 1
+echo "Lasso 0.1 6"
+./run_lasso_01.sh 6
 sleep 20
 
-echo "Lasso 0.2 2"
-./run_lasso_02.sh 2
+echo "Lasso 0.1 7"
+./run_lasso_01.sh 7
 sleep 20
 
-echo "Lasso 0.2 3"
-./run_lasso_02.sh 3
+echo "Lasso 0.1 8"
+./run_lasso_01.sh 8
 sleep 20
 
-echo "Lasso 0.2 4"
-./run_lasso_02.sh 4
+echo "Lasso 0.1 9"
+./run_lasso_01.sh 9
 sleep 20
 
-echo "Lasso 0.2 5"
-./run_lasso_02.sh 5
+echo "Lasso 0.1 10"
+./run_lasso_01.sh 10
 sleep 20
 
 
-echo "Lasso 0.25 1"
-./run_lasso_025.sh 1
 
-echo "Lasso 0.25 2"
-./run_lasso_025.sh 2
+echo "Lasso 0.15 6"
+./run_lasso_015.sh 6
+sleep 20
 
-echo "Lasso 0.25 3"
-./run_lasso_025.sh 3
+echo "Lasso 0.15 7"
+./run_lasso_015.sh 7
+sleep 20
 
-echo "Lasso 0.25 4"
-./run_lasso_025.sh 4
+echo "Lasso 0.15 8"
+./run_lasso_015.sh 8
+sleep 20
 
-echo "Lasso 0.25 5"
-./run_lasso_025.sh 5
+echo "Lasso 0.15 9"
+./run_lasso_015.sh 9
+sleep 20
+
+echo "Lasso 0.15 10"
+./run_lasso_015.sh 10
+sleep 20
+
+
+
+
+echo "Lasso 0.2 6"
+./run_lasso_02.sh 6
+sleep 20
+
+echo "Lasso 0.2 7"
+./run_lasso_02.sh 7
+sleep 20
+
+echo "Lasso 0.2 8"
+./run_lasso_02.sh 8
+sleep 20
+
+echo "Lasso 0.2 9"
+./run_lasso_02.sh 9
+sleep 20
+
+echo "Lasso 0.2 10"
+./run_lasso_02.sh 10
+sleep 20
+
+
+echo "Lasso 0.25 6"
+./run_lasso_025.sh 6
+
+echo "Lasso 0.25 7"
+./run_lasso_025.sh 7
+
+echo "Lasso 0.25 8"
+./run_lasso_025.sh 8
+
+echo "Lasso 0.25 9"
+./run_lasso_025.sh 9
+
+echo "Lasso 0.25 10"
+./run_lasso_025.sh 10
