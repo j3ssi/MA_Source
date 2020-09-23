@@ -397,6 +397,8 @@ def main():
         args.batch_size = batch_size
     elif args.batchTrue:
         batch_size = args.batch_size
+    args.lr = float(args.lr)
+    batch_size = int(batch_size)
     args.lr *= (batch_size / 256)
 
     if not args.resume:
