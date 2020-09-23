@@ -746,15 +746,6 @@ boxplot(baseline1$TrainEpochTime.s., bSize1$TrainEpochTime.s.)
 
 
 
-setwd("/home/j3ssi/MA_Source/")
-
-morphFlops <-read.delim("logMorphNet1.txt", header = TRUE, sep = "\t", dec = ".")
-par(mar = c(5, 4, 4, 4) + 0.3)  
-plot(morphFlops$Regularisierer,type='l',col='green',xlab="Epoche",ylab="Regularisierer")
-par(new=TRUE)
-plot(morphFlops$Zielgroesse,type='l',pch=17,col='blue',xlab="",ylab="",axes=FALSE)
-axis(side = 4, at = pretty(range(morphFlops$Zielgroesse)))      # Add second axis
-mtext("Zielgröße", side = 4, line = 3) 
 
 #Exponentiel geglätteter Durchschnitt
 library(smooth)
