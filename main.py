@@ -441,6 +441,7 @@ def main():
                 # adjust_learning_rate(optimizer, epoch, False)
                 scheduler.step()
                 args.lr = scheduler.get_last_lr()
+                print(f'args.lr: {args.lr}')
             print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated() / 10000000}')
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
