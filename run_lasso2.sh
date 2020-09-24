@@ -1,39 +1,5 @@
 #!/bin/sh
 
-echo "Lasso 0.05 6"
-./run_lasso_005.sh 6
-sleep 20
-
-echo "Lasso 0.05 7"
-./run_lasso_005.sh 7
-sleep 20
-
-echo "Lasso 0.05 8"
-./run_lasso_005.sh 8
-sleep 20
-
-echo "Lasso 0.05 9"
-./run_lasso_005.sh 9
-sleep 20
-
-echo "Lasso 0.05 10"
-./run_lasso_005.sh 10
-sleep 20
-
-
-
-
-echo "Lasso 0.1 6"
-./run_lasso_01.sh 6
-sleep 20
-
-echo "Lasso 0.1 7"
-./run_lasso_01.sh 7
-sleep 20
-
-echo "Lasso 0.1 8"
-./run_lasso_01.sh 8
-sleep 20
 
 echo "Lasso 0.1 9"
 ./run_lasso_01.sh 9

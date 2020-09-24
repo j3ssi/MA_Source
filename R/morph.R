@@ -13,12 +13,18 @@ setwd("/home/j3ssi/MA_Source/MorphLogs")
 
 
 morphFlopse7 <-read.delim("logMorphNetFlopsE7.txt", header = TRUE, sep = "\t", dec = ".")
-morphFlopse7 <-read.delim("logMorphNetFlops3E7.txt", header = TRUE, sep = "\t", dec = ".")
-morphFlopse7 <-read.delim("logMorphNetFlops6E7.txt", header = TRUE, sep = "\t", dec = ".")
-morphFlopse7 <-read.delim("logMorphNetFlops9E7.txt", header = TRUE, sep = "\t", dec = ".")
+morphFlops3e7 <-read.delim("logMorphNetFlops3E7.txt", header = TRUE, sep = "\t", dec = ".")
+morphFlops6e7 <-read.delim("logMorphNetFlops6E7.txt", header = TRUE, sep = "\t", dec = ".")
+morphFlops9e7 <-read.delim("logMorphNetFlops9E7.txt", header = TRUE, sep = "\t", dec = ".")
 
 morphFlopse8 <-read.delim("logMorphNetFlopsE8.txt", header = TRUE, sep = "\t", dec = ".")
+morphFlops3e8 <-read.delim("logMorphNetFlops3E8.txt", header = TRUE, sep = "\t", dec = ".")
+morphFlops6e8 <-read.delim("logMorphNetFlops6E8.txt", header = TRUE, sep = "\t", dec = ".")
+morphFlops9e8 <-read.delim("logMorphNetFlops9E8.txt", header = TRUE, sep = "\t", dec = ".")
+
+
 morphFlopse9 <-read.delim("logMorphNetFlopsE9.txt", header = TRUE, sep = "\t", dec = ".")
+morphFlops3e9 <-read.delim("logMorphNetFlops3E9.txt", header = TRUE, sep = "\t", dec = ".")
 
 lastFlope7 <- tail(morphFlopse7,n=1)
 lastFlope8 <- tail(morphFlopse8,n=1)
