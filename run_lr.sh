@@ -1,88 +1,88 @@
 #!/bin/sh
 
-echo "lr 0.2 1"
-./run_lr2.sh 1
+echo "lr 0.2 6"
+./run_lr2.sh 6
 sleep 3
 
-echo "lr 0.2 2"
-./run_lr2.sh 2
+echo "lr 0.2 7"
+./run_lr2.sh 7
 sleep 3
 
-echo "lr 0.2 3"
-./run_lr2.sh 3
+echo "lr 0.2 8"
+./run_lr2.sh 8
 sleep 3
 
-echo "lr 0.2 4"
-./run_lr2.sh 4
+echo "lr 0.2 9"
+./run_lr2.sh 9
 sleep 3
 
-echo "lr 0.2 5"
-./run_lr2.sh 5
-sleep 3
-
-
-
-echo "lr 0.1 1"
-./run_lr1.sh 1
-sleep 3
-
-echo "lr 0.1 2"
-./run_lr1.sh 2
-sleep 3
-
-echo "lr 0.1 3"
-./run_lr1.sh 3
-sleep 3
-
-echo "lr 0.1 4"
-./run_lr1.sh 4
-sleep 3
-
-echo "lr 0.1 5"
-./run_lr1.sh 5
+echo "lr 0.2 10"
+./run_lr2.sh 10
 sleep 3
 
 
 
-echo "lr 0.05 1"
-./run_lr05.sh 1
+echo "lr 0.1 6"
+./run_lr1.sh 6
 sleep 3
 
-echo "lr 0.05 2"
-./run_lr05.sh 2
+echo "lr 0.1 7"
+./run_lr1.sh 7
 sleep 3
 
-echo "lr 0.05 3"
-./run_lr05.sh 3
+echo "lr 0.1 8"
+./run_lr1.sh 8
 sleep 3
 
-echo "lr 0.05 4"
-./run_lr05.sh 4
+echo "lr 0.1 9"
+./run_lr1.sh 9
 sleep 3
 
-echo "lr 0.05 5"
-./run_lr05.sh 5
+echo "lr 0.1 10"
+./run_lr1.sh 10
 sleep 3
 
 
 
-echo "lr 0.025 1"
-./run_lr025.sh 1
+echo "lr 0.05 6"
+./run_lr05.sh 6
 sleep 3
 
-echo "lr 0.025 2"
-./run_lr025.sh 2
+echo "lr 0.05 7"
+./run_lr05.sh 7
 sleep 3
 
-echo "lr 0.025 3"
-./run_lr025.sh 3
+echo "lr 0.05 8"
+./run_lr05.sh 8
 sleep 3
 
-echo "lr 0.025 4"
-./run_lr025.sh 4
+echo "lr 0.05 9"
+./run_lr05.sh 9
 sleep 3
 
-echo "lr 0.025 5"
-./run_lr025.sh 5
+echo "lr 0.05 10"
+./run_lr05.sh 10
+sleep 3
+
+
+
+echo "lr 0.025 6"
+./run_lr025.sh 6
+sleep 3
+
+echo "lr 0.025 7"
+./run_lr025.sh 7
+sleep 3
+
+echo "lr 0.025 8"
+./run_lr025.sh 8
+sleep 3
+
+echo "lr 0.025 9"
+./run_lr025.sh 9
+sleep 3
+
+echo "lr 0.025 10"
+./run_lr025.sh 10
 sleep 3
 
