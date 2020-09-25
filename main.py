@@ -412,7 +412,7 @@ def main():
         optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
                          weight_decay=args.weight_decay)
 
-    scheduler = StepLR(optimizer, step_size=5, gamma=0.9)
+    scheduler = StepLR(optimizer, step_size=10, gamma=0.9)
 
     i = 1
     # for epochNet2Net in range(1, 4):
