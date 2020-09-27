@@ -12,25 +12,21 @@ mtext("Zielgröße", side = 4, line = 3)
 setwd("/home/j3ssi/MA_Source/MorphLogs")
 
 
-morphFlopse7 <-read.delim("logMorphNetFlopsE7.txt", header = TRUE, sep = "\t", dec = ".")
-morphFlops3e7 <-read.delim("logMorphNetFlops3E7.txt", header = TRUE, sep = "\t", dec = ".")
-morphFlops6e7 <-read.delim("logMorphNetFlops6E7.txt", header = TRUE, sep = "\t", dec = ".")
-morphFlops9e7 <-read.delim("logMorphNetFlops9E7.txt", header = TRUE, sep = "\t", dec = ".")
-
 morphFlopse8 <-read.delim("logMorphNetFlopsE8.txt", header = TRUE, sep = "\t", dec = ".")
 morphFlops3e8 <-read.delim("logMorphNetFlops3E8.txt", header = TRUE, sep = "\t", dec = ".")
 morphFlops6e8 <-read.delim("logMorphNetFlops6E8.txt", header = TRUE, sep = "\t", dec = ".")
 morphFlops9e8 <-read.delim("logMorphNetFlops9E8.txt", header = TRUE, sep = "\t", dec = ".")
-
-
 morphFlopse9 <-read.delim("logMorphNetFlopsE9.txt", header = TRUE, sep = "\t", dec = ".")
-morphFlops3e9 <-read.delim("logMorphNetFlops3E9.txt", header = TRUE, sep = "\t", dec = ".")
 
-lastFlope7 <- tail(morphFlopse7,n=1)
 lastFlope8 <- tail(morphFlopse8,n=1)
+lastFlop6e8 <- tail(morphFlops6e8,n=1)
+lastFlop9e8 <- tail(morphFlops9e8,n=1)
 lastFlope9 <- tail(morphFlopse9,n=1)
 
 
-xpoints <- c(lastFlope7$Zielgroesse, lastFlope8$Zielgroesse, lastFlope9$Zielgroesse)
-ypoints <- c(lastFlope7$Top1, lastFlope8$Top1, lastFlope9$Top1)
+xpoints <- c(lastFlope8$Zielgroesse, 
+             lastFlop6e8$Zielgroesse,             lastFlope9$Zielgroesse)
+ypoints <- c(lastFlope8$Top1, 
+             lastFlop6e8$Top1,
+             lastFlope9$Top1)
 plot(xpoints,ypoints)
