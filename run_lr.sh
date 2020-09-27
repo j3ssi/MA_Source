@@ -1,30 +1,5 @@
 #!/bin/sh
 
-echo "lr 0.2 6"
-./run_lr2.sh 6
-sleep 3
-
-echo "lr 0.2 7"
-./run_lr2.sh 7
-sleep 3
-
-echo "lr 0.2 8"
-./run_lr2.sh 8
-sleep 3
-
-echo "lr 0.2 9"
-./run_lr2.sh 9
-sleep 3
-
-echo "lr 0.2 10"
-./run_lr2.sh 10
-sleep 3
-
-
-
-echo "lr 0.1 6"
-./run_lr1.sh 6
-sleep 3
 
 echo "lr 0.1 7"
 ./run_lr1.sh 7
