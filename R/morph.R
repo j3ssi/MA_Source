@@ -18,15 +18,18 @@ morphFlops6e8 <-read.delim("logMorphNetFlops6E8.txt", header = TRUE, sep = "\t",
 morphFlops9e8 <-read.delim("logMorphNetFlops9E8.txt", header = TRUE, sep = "\t", dec = ".")
 morphFlopse9 <-read.delim("logMorphNetFlopsE9.txt", header = TRUE, sep = "\t", dec = ".")
 
-lastFlope8 <- tail(morphFlopse8,n=1)
-lastFlop6e8 <- tail(morphFlops6e8,n=1)
-lastFlop9e8 <- tail(morphFlops9e8,n=1)
-lastFlope9 <- tail(morphFlopse9,n=1)
+lastFlope8 <- tail(morphFlopse8, n=1)
+lastFlops3e8 <- tail(morphFlops3e8, n=1)
+lastFlop6e8 <- tail(morphFlops6e8, n=1)
+lastFlop9e8 <- tail(morphFlops9e8, n=1)
+lastFlope9 <- tail(morphFlopse9, n=1)
 
 
-xpoints <- c(lastFlope8$Zielgroesse, 
-             lastFlop6e8$Zielgroesse,             lastFlope9$Zielgroesse)
-ypoints <- c(lastFlope8$Top1, 
-             lastFlop6e8$Top1,
+xpoints <- c(lastFlop6e8$Zielgroesse, 
+             lastFlop9e8$Zielgroesse, lastFlope9$Zielgroesse)
+ypoints <- c( lastFlop6e8$Top1,
+             lastFlop9e8$Top1,
              lastFlope9$Top1)
 plot(xpoints,ypoints)
+text(ypoints~xpoints,labels=c('6e-8', '9e-8', 'e-9'), cex= 0.9,pos=1)
+

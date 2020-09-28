@@ -102,9 +102,9 @@ plot(baseline4$ValidAcc.,
      ylim=c(80,94))
 
 
-boxplot(baselineSum1, baselineMulSum,
+boxplot(baselineSum1, baselineSSum1,
         ylab="Accuracy")
-axis(at=c(1,2),side =1, labels = c('Baseline mit LR Anpassung', 'Baseline mit Faktor'))
+axis(at=c(1,2),side =1, labels = c('breites Baseline-Netz', 'schmalles Baseliner-Netz'))
 
 t.test(baselineSum1, baselineSum2, alternative = "two.sided", var.equal = FALSE)
 
@@ -114,9 +114,9 @@ baselineAcc2 <- c(tail(baselineO1$ValidAcc.,n=1), tail(baselineO2$ValidAcc.,n=1)
 baselineAccS <- c(tail(baselineS1$ValidAcc.,n=1), tail(baselineS2$ValidAcc.,n=1), tail(baselineS3$ValidAcc.,n=1), tail(baselineS4$ValidAcc.,n=1), tail(baselineS5$ValidAcc.,n=1))
 baselineAccMul <-c(tail(baselineMul1$ValidAcc.,n=1), tail(baselineMul2$ValidAcc.,n=1), tail(baselineMul3$ValidAcc.,n=1), tail(baselineMul4$ValidAcc.,n=1), tail(baselineMul5$ValidAcc.,n=1))
 
-boxplot(baselineAcc1, baselineAccMul,
+boxplot(baselineAcc1, baselineAccS,
         ylab ="Accuracy")
-        axis(at=c(1,2),side =1, labels = c('Baseline mit LR Anpassung', 'Baseline Mul'))
+        axis(at=c(1,2),side =1, labels = c('breites Baseline-Netz', 'schmalles Baseline-Netz'))
 
         
 setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/PruneLasso")
