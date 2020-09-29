@@ -419,6 +419,12 @@ def main():
     while i == 1:
         for epoch in range(start_epoch, args.epochs + start_epoch):
             print(f'lr: {optimizer.param_groups[0]["lr"]}')
+            if args.dynlr:
+                # adjust_learning_rate(optimizer, epoch, False)
+                scheduler.step()
+                lr = scheduler.get_last_lr()[0]
+                print(f'args.lr: {lr}')
+
             # adjust learning rate when epoch is the scheduled epoch
             if args.delta_learning_rate:
                 adjust_learning_rate(optimizer, epoch, True)
@@ -437,11 +443,6 @@ def main():
             ende = time.time()
             tmp_memory = torch.cuda.max_memory_allocated()
 
-            if args.dynlr:
-                # adjust_learning_rate(optimizer, epoch, False)
-                scheduler.step()
-                lr = scheduler.get_last_lr()[0]
-                print(f'args.lr: {lr}')
             print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated() / 10000000}')
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 

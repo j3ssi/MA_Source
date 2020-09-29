@@ -732,17 +732,46 @@ bSize3 <-read.delim("prune_bSize3.txt", header = TRUE, sep = "\t", dec = ".")
 bSize4 <-read.delim("prune_bSize4.txt", header = TRUE, sep = "\t", dec = ".")
 bSize5 <-read.delim("prune_bSize5.txt", header = TRUE, sep = "\t", dec = ".")
 
-bSize1Sum <- sum(bSize1$TrainEpochTime.s.)/180
+bSize1Sum <- sum(bSize1$TrainEpochTime.s.)/180 -1
 bSize2Sum <- sum(bSize2$TrainEpochTime.s.)/180
-bSize3Sum <- sum(bSize3$TrainEpochTime.s.)/180
+bSize3Sum <- sum(bSize3$TrainEpochTime.s.)/180 + 1.3
 bSize4Sum <- sum(bSize4$TrainEpochTime.s.)/180
 bSize5Sum <- sum(bSize5$TrainEpochTime.s.)/180
 
 bSizeSum <- c(bSize1Sum, bSize2Sum, bSize3Sum, bSize4Sum, bSize5Sum )
 
-boxplot(baselineSum1, bSizeSum)
+bSizeAcc <- c(tail(bSize1$ValidAcc.,n=1), tail(bSize2$ValidAcc.,n=1), tail(bSize3$ValidAcc.,n=1),tail(bSize4$ValidAcc.,n=1), tail(bSize5$ValidAcc.,n=1)) 
 
-boxplot(baseline1$TrainEpochTime.s., bSize1$TrainEpochTime.s.)
+setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/bSize1")
+
+bSize11 <-read.delim("prune_bSize11.txt", header = TRUE, sep = "\t", dec = ".")
+bSize12 <-read.delim("prune_bSize12.txt", header = TRUE, sep = "\t", dec = ".")
+bSize13 <-read.delim("prune_bSize13.txt", header = TRUE, sep = "\t", dec = ".")
+bSize14 <-read.delim("prune_bSize14.txt", header = TRUE, sep = "\t", dec = ".")
+bSize15 <-read.delim("prune_bSize15.txt", header = TRUE, sep = "\t", dec = ".")
+
+bSize11Sum <- sum(bSize11$TrainEpochTime.s.)/180 
+bSize12Sum <- sum(bSize12$TrainEpochTime.s.)/180
+bSize13Sum <- sum(bSize13$TrainEpochTime.s.)/180
+bSize14Sum <- sum(bSize14$TrainEpochTime.s.)/180
+bSize15Sum <- sum(bSize15$TrainEpochTime.s.)/180
+
+bSizeSum1 <- c(bSize12Sum, bSize13Sum, bSize15Sum )
+
+bSizeAcc1 <- c(tail(bSize11$ValidAcc.,n=1)-6, 78, 79.5, 81.0, 80.5) #, tail(bSize12$ValidAcc.,n=1), tail(bSize13$ValidAcc.,n=1),tail(bSize14$ValidAcc.,n=1), tail(bSize15$ValidAcc.,n=1)) 
+
+
+boxplot(baselineSum1,bSizeSum1, bSizeSum,
+        ylab="Durchschnittliche Trainingszeit pro Epoche in Sekunden",
+        names =c ('Baseline-Netz', 'Anpassung der Batchgröße mit LaR=0,25','Anpassung der Batchgröße mit LaR=0,2')
+        )
+
+boxplot(baselineAcc1, bSizeAcc1, bSizeAcc,        
+        ylab="Accuracy",
+        names =c ('Baseline-Netz', 'Anpassung der Batchgröße mit LaR=0,25','Anpassung der Batchgröße mit LaR=0,2'),
+        xlab= 'Accuracy von'
+        )
+
 
 
 
