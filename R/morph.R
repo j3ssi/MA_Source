@@ -30,6 +30,6 @@ xpoints <- c(lastFlop6e8$Zielgroesse,
 ypoints <- c( lastFlop6e8$Top1,
              lastFlop9e8$Top1,
              lastFlope9$Top1)
-plot(xpoints,ypoints)
+plot(xpoints,ypoints,xlab='FLOPs',ylab='Accuracy')
 text(ypoints~xpoints,labels=c('6e-8', '9e-8', 'e-9'), cex= 0.9,pos=1)
 

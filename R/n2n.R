@@ -61,3 +61,12 @@ n2nWiderRndAcc1 <- c(tail(n2nWiderRnd1$ValidAcc.,n=1), tail(n2nWiderRnd3$ValidAc
 # , tail(n2nwider2$ValidAcc.,n=1)
 
 boxplot(baselineAcc1,n2nwiderAcc1, n2nWiderRndAcc1)
+
+
+n2nWiderAccRnd181 <- tail(n2nWiderRnd1$ValidAcc., n=195)
+n2nWiderAcc181 <- tail(n2nwider1$ValidAcc., n=195)
+plot(n2nWiderAccRnd181, col='blue',xlab='',ylab='',ylim=c(90,94),xlim=c(90,180))
+par(new=TRUE)
+plot(n2nWiderAcc181, col='green',xlab='Epochen',ylab='Accuracy',ylim=c(90,94),xlim=c(90,180))
+par(new=TRUE)
+plot(baseline1$ValidAcc.,col='black',xlim=c(90,180),ylim=c(90,94.0),xlab='',ylab='')

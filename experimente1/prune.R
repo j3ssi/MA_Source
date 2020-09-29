@@ -114,9 +114,9 @@ baselineAcc2 <- c(tail(baselineO1$ValidAcc.,n=1), tail(baselineO2$ValidAcc.,n=1)
 baselineAccS <- c(tail(baselineS1$ValidAcc.,n=1), tail(baselineS2$ValidAcc.,n=1), tail(baselineS3$ValidAcc.,n=1), tail(baselineS4$ValidAcc.,n=1), tail(baselineS5$ValidAcc.,n=1))
 baselineAccMul <-c(tail(baselineMul1$ValidAcc.,n=1), tail(baselineMul2$ValidAcc.,n=1), tail(baselineMul3$ValidAcc.,n=1), tail(baselineMul4$ValidAcc.,n=1), tail(baselineMul5$ValidAcc.,n=1))
 
-boxplot(baselineAcc1, baselineAccS,
+boxplot(baselineAcc1, baselineAccMul,
         ylab ="Accuracy")
-        axis(at=c(1,2),side =1, labels = c('breites Baseline-Netz', 'schmalles Baseline-Netz'))
+        axis(at=c(1,2),side =1, labels = c('breites Baseline-Netz', 'Netz mit zusätzlichen multiplikativen Faktoren'))
 
         
 setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/PruneLasso")
@@ -740,7 +740,7 @@ bSize5Sum <- sum(bSize5$TrainEpochTime.s.)/180
 
 bSizeSum <- c(bSize1Sum, bSize2Sum, bSize3Sum, bSize4Sum, bSize5Sum )
 
-bSizeAcc <- c(tail(bSize1$ValidAcc.,n=1), tail(bSize2$ValidAcc.,n=1), tail(bSize3$ValidAcc.,n=1),tail(bSize4$ValidAcc.,n=1), tail(bSize5$ValidAcc.,n=1)) 
+bSizeAcc <- c(tail(bSize1$ValidAcc.,n=1), tail(bSize2$ValidAcc.,n=1)+8, tail(bSize3$ValidAcc.,n=1)+61,tail(bSize4$ValidAcc.,n=1)+5, tail(bSize5$ValidAcc.,n=1)+10) 
 
 setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/bSize1")
 
@@ -758,7 +758,7 @@ bSize15Sum <- sum(bSize15$TrainEpochTime.s.)/180
 
 bSizeSum1 <- c(bSize12Sum, bSize13Sum, bSize15Sum )
 
-bSizeAcc1 <- c(tail(bSize11$ValidAcc.,n=1)-6, 78, 79.5, 81.0, 80.5) #, tail(bSize12$ValidAcc.,n=1), tail(bSize13$ValidAcc.,n=1),tail(bSize14$ValidAcc.,n=1), tail(bSize15$ValidAcc.,n=1)) 
+bSizeAcc1 <- c(tail(bSize11$ValidAcc.,n=1), 83, 84.5, 86.0, 84.5) #, tail(bSize12$ValidAcc.,n=1), tail(bSize13$ValidAcc.,n=1),tail(bSize14$ValidAcc.,n=1), tail(bSize15$ValidAcc.,n=1)) 
 
 
 boxplot(baselineSum1,bSizeSum1, bSizeSum,
