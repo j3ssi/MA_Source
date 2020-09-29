@@ -551,6 +551,7 @@ def main():
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                               weight_decay=args.weight_decay)
+        scheduler = StepLR(optimizer, step_size=10, gamma=0.9)
         print(model)
 
     if args.wider and not args.widerRnd:
@@ -571,7 +572,7 @@ def main():
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                               weight_decay=args.weight_decay)
-
+        scheduler = StepLR(optimizer, step_size=10, gamma=0.9)
     if args.widerRnd and not args.wider:
         model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=True, addNoise=False)
 
@@ -586,7 +587,7 @@ def main():
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                               weight_decay=args.weight_decay)
-
+        scheduler = StepLR(optimizer, step_size=10, gamma=0.9)
     if start_epoch == 176:
         print(f'Model: {model}')
 
