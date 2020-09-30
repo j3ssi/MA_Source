@@ -48,7 +48,7 @@ class N2N(nn.Module):
 
                 if s != (self.numOfStages - 1):
                     self.archNums.append([])
-            # print("\nArch Num: ", self.archNums)
+            print("\nArch Num: ", self.archNums)
 
             self.module_list = nn.ModuleList()
 
