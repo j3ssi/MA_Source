@@ -511,7 +511,6 @@ def main():
                         memory = tmp_memory
                         print(f'New batch Size kleiner {batch_size}!!')
 
-
             elif args.dB and epoch % 5 == 4:
                 memory = tmp_memory
 

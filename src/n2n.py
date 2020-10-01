@@ -1045,12 +1045,13 @@ class N2N(nn.Module):
                 layer.weight = torch.nn.Parameter(w1)
                 j = j + 2
                 self.module_list.insert(j, layer)
-
+                print(f'conv: {j}')
                 layer2 = nn.BatchNorm2d(i0)
                 archNum[block] += 1
                 layerInThisBlock = archNum[block]
                 j = j + 1
                 self.module_list.insert(j, layer2)
+                print(f'bn: {j}')
                 i = 3
                 j = j + 1
                 if printDeeper:
