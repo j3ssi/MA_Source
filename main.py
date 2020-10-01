@@ -602,7 +602,7 @@ def main():
             'epoch': args.epochs + start_epoch,
             'memory': memory,
             'batch_size': batch_size,
-            'lr': args.lr,
+            'lr': optimizer.param_groups[0]["lr"],
             'acc': test_acc,
             'best_acc': best_acc,
             'optimizer': optimizer.state_dict(), },
@@ -611,7 +611,7 @@ def main():
     else:
         save_checkpoint({
             'epoch': args.epochs + start_epoch,
-            'lr': args.lr,
+            'lr': optimizer.param_groups[0]["lr"],
             'acc': test_acc,
             'best_acc': best_acc,
             'optimizer': optimizer.state_dict(), },
@@ -625,7 +625,7 @@ def main():
                 'epoch': args.epochs + start_epoch,
                 'memory': memory,
                 'batch_size': batch_size,
-                'lr': args.lr,
+                'lr': optimizer.param_groups[0]["lr"],
                 'acc': test_acc,
                 'best_acc': best_acc,
                 'optimizer': optimizer.state_dict(), },
