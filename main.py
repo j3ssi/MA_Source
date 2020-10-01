@@ -412,7 +412,7 @@ def main():
         optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
                          weight_decay=args.weight_decay)
 
-    scheduler = StepLR(optimizer, step_size=10, gamma=0.9)
+    scheduler = StepLR(optimizer, step_size=5, gamma=0.9)
 
     i = 1
     # for epochNet2Net in range(1, 4):
@@ -424,6 +424,7 @@ def main():
                 scheduler.step()
                 lr = scheduler.get_last_lr()[0]
                 print(f'args.lr: {lr}')
+            print(f'lr: {optimizer.param_groups[0]["lr"]}')
 
             # adjust learning rate when epoch is the scheduled epoch
             if args.delta_learning_rate:
