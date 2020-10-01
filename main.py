@@ -332,7 +332,7 @@ def main():
         best_acc = checkpoint['best_acc']
         if checkpoint['lr'] != 0:
             args.lr = checkpoint['lr']
-        start_epoch = checkpoint['epoch']
+            start_epoch = checkpoint['epoch']
         # start_batchSize = checkpoint['start_batchSize']
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     else:
@@ -411,6 +411,7 @@ def main():
     else:
         optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
                          weight_decay=args.weight_decay)
+    optimizer.param_groups[0]["lr"] = args.lr
 
     scheduler = StepLR(optimizer, step_size=5, gamma=0.9)
 

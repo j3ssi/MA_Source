@@ -1054,14 +1054,13 @@ class N2N(nn.Module):
                 self.module_list.insert(j, layer2)
                 print(f'bn: {j}')
                 print(f'Länge der ModuleListe: {len(self.module_list)}')
-                i = 3
+                i = 2
                 j = j + 1
                 if printDeeper:
                     print(f'j: {j}; i: {i}')
                 while i < layerInThisBlock:
                     i = i + 1
                     j = j + 2
-                j= j +2
             notfirstStage = True
 
         # noise = torch.Tensor(conv2.weight.shape).random_(0, 1).to(self.device)
