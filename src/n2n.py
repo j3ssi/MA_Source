@@ -1052,6 +1052,7 @@ class N2N(nn.Module):
                 j = j + 1
                 self.module_list.insert(j, layer2)
                 print(f'bn: {j}')
+                print(f'Länge der ModuleListe: {len(self.module_list)}')
                 i = 3
                 j = j + 1
                 if printDeeper:
