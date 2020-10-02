@@ -869,9 +869,11 @@ class N2N(nn.Module):
                     dictcounter = len(dif_k)
                     ct.update({key: dictcounter})
                     # print(f'dif key: {dif_k}')
-                    dif_k = list(dif_k)
-                    for i in range(len(dif_k)):
-                        tracking_inverse.update({dif_k[i],key})
+                    for item in dif_k:
+                        if item not in tracking_inverse:
+                            tracking_inverse[item]=key
+                        else:
+                            tracking_inverse[item].append(key)
                 print(f'ct: {ct}')
                 print(f'invers: {tracking_inverse}')
                 if not random_init:
