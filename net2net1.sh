@@ -1,31 +1,31 @@
 #!/bin/sh
 
 echo "j: 1 bis 5"
-python3 main.py -j 6 --dynlr --checkpoint ./output/experimente4/n2nWider3_$1 --epochs 5 --batchTrue --batch_size 256 -s 3 -l 2 -n 5,5,5 -dlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 0 --pathToModell ./output/experimente4/n2nWider3_$1/model.nn
+python3 main.py -j 6 --wider --checkpoint ./output/experimente4/n2nWider3_$1 --epochs 5 --batchTrue --batch_size 256 -s 3 -l 2 -n 5,5,5 -dlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 0 --pathToModell ./output/experimente4/n2nWider3_$1/model.nn
 sleep 5
 
 echo "j: 6 bis 10"
-python3 main.py -j 6 --dynlr --checkpoint ./output/experimente4/n2nWider3_$1 --epochs 5 --batchTrue --batch_size 256 -s 3 -l 2 -n 5,5,5 -dlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 5 --pathToModell ./output/experimente4/n2nWider3_$1/model.nn  --resume ./output/experimente4/n2nWider3_$1/checkpoint.pth.tar
+python3 main.py -j 6 --reset --checkpoint ./output/experimente4/n2nWider3_$1 --epochs 5 --batchTrue --batch_size 256 -s 3 -l 2 -n 5,5,5 -dlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 5 --pathToModell ./output/experimente4/n2nWider3_$1/model.nn  --resume ./output/experimente4/n2nWider3_$1/checkpoint.pth.tar
 sleep 5
 
 echo "j: 11 bis 15"
-python3 main.py -j 6 --dynlr --checkpoint ./output/experimente4/n2nWider3_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 5,5,5 -dlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 15 --pathToModell ./output/experimente4/n2nWider3_$1/model.nn  --resume ./output/experimente4/n2nWider3_$1/checkpoint.pth.tar
+python3 main.py -j 6 --checkpoint ./output/experimente4/n2nWider3_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 5,5,5 -dlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 15 --pathToModell ./output/experimente4/n2nWider3_$1/model.nn  --resume ./output/experimente4/n2nWider3_$1/checkpoint.pth.tar
 sleep 5
 
 echo "j: 16 bis 20"
-python3 main.py -j 6 --dynlr --checkpoint ./output/experimente4/n2nWider3_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 5,5,5 -dlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 20 --pathToModell ./output/experimente4/n2nWider3_$1/model.nn  --resume ./output/experimente4/n2nWider3_$1/checkpoint.pth.tar
+python3 main.py -j 6 --checkpoint ./output/experimente4/n2nWider3_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 5,5,5 -dlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 20 --pathToModell ./output/experimente4/n2nWider3_$1/model.nn  --resume ./output/experimente4/n2nWider3_$1/checkpoint.pth.tar
 sleep 5
 
 echo "j: 21 bis 25"
-python3 main.py -j 6 --dynlr --checkpoint ./output/experimente4/n2nWider3_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 5,5,5 -dlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 25 --pathToModell ./output/experimente4/n2nWider3_$1/model.nn  --resume ./output/experimente4/n2nWider3_$1/checkpoint.pth.tar
+python3 main.py -j 6 --checkpoint ./output/experimente4/n2nWider3_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 5,5,5 -dlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 25 --pathToModell ./output/experimente4/n2nWider3_$1/model.nn  --resume ./output/experimente4/n2nWider3_$1/checkpoint.pth.tar
 sleep 5
 
 echo "j: 26 bis 30"
-python3 main.py -j 6 --dynlr --checkpoint ./output/experimente4/n2nWider3_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 5,5,5 -dlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 30 --pathToModell ./output/experimente4/n2nWider3_$1/model.nn  --resume ./output/experimente4/n2nWider3_$1/checkpoint.pth.tar
+python3 main.py -j 6 --checkpoint ./output/experimente4/n2nWider3_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 5,5,5 -dlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 30 --pathToModell ./output/experimente4/n2nWider3_$1/model.nn  --resume ./output/experimente4/n2nWider3_$1/checkpoint.pth.tar
 sleep 5
 
 echo "j: 31 bis 35"
-python3 main.py -j 6 --dynlr --checkpoint ./output/experimente4/n2nWider3_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 5,5,5 -dlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 35 --pathToModell ./output/experimente4/n2nWider3_$1/model.nn  --resume ./output/experimente4/n2nWider3_$1/checkpoint.pth.tar
+python3 main.py -j 6 --checkpoint ./output/experimente4/n2nWider3_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 5,5,5 -dlr --sparse_interval 0 --widthOfAllLayers  8,16,32  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 35 --pathToModell ./output/experimente4/n2nWider3_$1/model.nn  --resume ./output/experimente4/n2nWider3_$1/checkpoint.pth.tar
 sleep 5
 
 echo "j: 36 bis 40"
