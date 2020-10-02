@@ -837,10 +837,10 @@ class N2N(nn.Module):
                     idx = np.random.randint(0, old_width)
                     m1list = w1[idx, :, :, :]
                     try:
-                        tracking[idx].append(o)
+                        tracking[idx].append(o+old_width)
                     except:
                         tracking[idx] = []
-                        tracking[idx].append(o)
+                        tracking[idx].append(o+ old_width)
 
                     # TEST:random init for new units
                     if random_init:
