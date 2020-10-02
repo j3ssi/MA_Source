@@ -861,7 +861,7 @@ class N2N(nn.Module):
                     dbn1w.append(bnw1[idx])
                     dbn1b.append(bnb1[idx])
                     bn.num_features = new_width
-                # print(f'indices: {listindices}')
+                print(f'indices: {listindices}')
                 # print(f'tracking dict: {tracking}')
                 ct = {}
                 for key, dif_k in tracking.items():
