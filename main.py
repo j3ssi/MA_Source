@@ -397,9 +397,9 @@ def main():
         args.batch_size = batch_size
     elif args.batchTrue:
         batch_size = args.batch_size
-    args.lr = float(args.lr)
+    # args.lr = float(args.lr)
     batch_size = int(batch_size)
-    args.lr *= (batch_size / 256)
+    # args.lr *= (batch_size / 256)
 
     if not args.resume:
         start_batchSize = batch_size
@@ -411,7 +411,6 @@ def main():
     else:
         optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
                          weight_decay=args.weight_decay)
-    optimizer.param_groups[0]["lr"] = args.lr
 
     scheduler = StepLR(optimizer, step_size=5, gamma=0.9)
 
