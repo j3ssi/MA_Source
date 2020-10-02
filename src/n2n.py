@@ -847,7 +847,7 @@ class N2N(nn.Module):
                         n1 = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
                         dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n1),
                                                   size=(new_width - old_width, w1.shape[1], w1.shape[2], w1.shape[3]))
-                        print(f'dw1: {dw1.shape}')
+                        # print(f'dw1: {dw1.shape}')
                     else:
                         dw1.append(m1list)
 
@@ -859,9 +859,10 @@ class N2N(nn.Module):
                     dbn1w.append(bnw1[idx])
                     dbn1b.append(bnb1[idx])
                     bn.num_features = new_width
-                print(f'indices: {listindices}')
+                # print(f'indices: {listindices}')
                 # print(f'tracking dict: {tracking}')
                 ct = {}
+                print(f'tracking items: {tracking}')
                 for key, dif_k in tracking.items():
                     # print(f'key: {key}; difk: {dif_k}')
                     dictcounter = len(dif_k)
@@ -870,7 +871,7 @@ class N2N(nn.Module):
                 if not random_init:
                     for idx in range(len(listindices)):
                         c = dw1[idx]
-                        print(f'c:{c}')
+                        # print(f'c:{c}')
                         for k in range(len(c)):
                             e = c[k]
                             # print(f'c[k]: {c[k]}')
