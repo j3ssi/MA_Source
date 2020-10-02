@@ -868,7 +868,8 @@ class N2N(nn.Module):
                     # print(f'key: {key}; difk: {dif_k}')
                     dictcounter = len(dif_k)
                     ct.update({key: dictcounter})
-                    print(f'dif key: {dif_k}')
+                    # print(f'dif key: {dif_k}')
+                    dif_k = list(dif_k)
                     for i in range(len(dif_k)):
                         tracking_inverse.update({dif_k[i],key})
                 print(f'ct: {ct}')
