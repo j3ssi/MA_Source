@@ -862,15 +862,18 @@ class N2N(nn.Module):
                 # print(f'indices: {listindices}')
                 # print(f'tracking dict: {tracking}')
                 ct = {}
+                tracking_inverse = {}
                 print(f'tracking items: {tracking}')
                 for key, dif_k in tracking.items():
                     # print(f'key: {key}; difk: {dif_k}')
                     dictcounter = len(dif_k)
                     ct.update({key: dictcounter})
+                    tracking_inverse.update({dif_k,key})
                 print(f'ct: {ct}')
+                print(f'invers: {tracking_inverse}')
                 if not random_init:
-                    for idx in range(len(listindices)):
-                        c = dw1[idx]
+                    for idx in range(0, (new_width - old_width)):
+                        c = dw1[idx+ old_width]
                         # print(f'c:{c}')
                         for k in range(len(c)):
                             e = c[k]
