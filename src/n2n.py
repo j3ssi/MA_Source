@@ -878,7 +878,8 @@ class N2N(nn.Module):
                 print(f'invers: {tracking_inverse}')
                 if not random_init:
                     for idx in range(0, (new_width - old_width)):
-                        c = dw1[idx+ old_width]
+                        print(f'idx: {idx}')
+                        c = dw1[idx]
                         # print(f'c:{c}')
                         for k in range(len(c)):
                             e = c[k]
@@ -886,8 +887,11 @@ class N2N(nn.Module):
                             for l in range(len(e)):
                                 # print(f' before e[l]: {e[l]}')
                                 f = e[l]
+                                x = tracking_inverse[idx+old_width]
+                                y = int(ct[x])
                                 for m in range(len(f)):
-                                    f[m] = f[m] / ct.get(listindices[idx])
+
+                                    f[m] = f[m] / y
                 #                 print(f' after e[l]: {e[l]}')
 
                 dw1x = np.array(dw1)
