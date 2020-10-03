@@ -1033,8 +1033,6 @@ class N2N(nn.Module):
             firstBlockInStage = True
 
             for block in range(0, len(archNum)):
-                if block == 1 and stage>0:
-                    pos= pos-1
                 print(f'j: {j}')
                 if printDeeper:
                     print("\n\n\tBlock: ", block)
@@ -1074,11 +1072,13 @@ class N2N(nn.Module):
                 if (block +1) == len(archNum):
                     j += 2
                     print(f'block == len(archNum)')
-                if block==0 and stage>0:
-                   pos = pos + 1
-                if 2*pos< archNum[block]:
+                if block==0 and stage>0 and pos+1 <= archNum[blocks]:
                     print(f'drin!!')
-                    j +=  2*archNum[block]-2*pos
+                    j += 2 * archNum[block] - 2 * pos
+
+                elif pos< archNum[block]:
+                    print(f'drin!!')
+                    j += 2*archNum[block]-2*pos
                 print(f'j for: {j}')
             notfirstStage = True
 
