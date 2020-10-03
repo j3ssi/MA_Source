@@ -1069,7 +1069,7 @@ class N2N(nn.Module):
                     print(f'j: {j}')
                 if 2*pos< archNum[block]:
                     j +=  2*archNum[block]-2*pos
-
+                print(f'j for: {j}')
             notfirstStage = True
 
         # noise = torch.Tensor(conv2.weight.shape).random_(0, 1).to(self.device)
