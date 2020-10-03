@@ -1072,7 +1072,7 @@ class N2N(nn.Module):
                 if (block +1) == len(archNum):
                     j += 2
                     print(f'block == len(archNum)')
-                if block==0 and stage>0 and pos+1 <= archNum[blocks]:
+                if block==0 and stage>0 and pos+1 <= archNum[block]:
                     print(f'drin!!')
                     j += 2 * archNum[block] - 2 * pos
 
