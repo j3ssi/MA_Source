@@ -194,14 +194,9 @@ if args.widthOfAllLayers is not None:
     listOfWidths = [int(i) for i in args.widthOfAllLayers.split(',')]
     print(listOfWidths)
 
-dev = "cuda:0"
-device = torch.device(dev)
-
-best_acc = 0  # best test accuracy
-
 
 def main():
-    global best_acc
+
     # checkpoint
     if not os.path.isdir(args.checkpoint):
         mkdir_p(args.checkpoint)
@@ -217,9 +212,6 @@ def main():
     print(f'random number: {args.manualSeed}')
     random.seed(args.manualSeed)
     torch.manual_seed(args.manualSeed)
-    if use_cuda:
-        torch.manual_seed(args.manualSeed)
-
     if use_cuda:
         torch.manual_seed(args.manualSeed)
 
@@ -256,9 +248,6 @@ def main():
     testset = dataloader(root='./dataset/data/torch', train=False, download=False, transform=transform_test)
     testloader = data.DataLoader(testset, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
 
-    # dynamic resnet modell
-    # print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
-
     title = 'prune' + str(args.epochsFromBegin)
     if args.resume:
         model = torch.load(args.pathToModell)
@@ -273,10 +262,8 @@ def main():
         if args.dB:
             memory = checkpoint['memory']
             batch_size = checkpoint['batch_size']
-        best_acc = checkpoint['best_acc']
-        if checkpoint['lr'] != 0:
-            args.lr = checkpoint['lr']
-            start_epoch = checkpoint['epoch']
+        start_epoch = checkpoint['epoch']
+        optimizer = checkpoint['optimizer']
         # start_batchSize = checkpoint['start_batchSize']
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     else:
@@ -284,8 +271,7 @@ def main():
         logger.set_names(
             ['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.', 'TrainEpochTime(s)',
              'TestEpochTime(s)'])
-        assert args.numOfStages == len(
-            listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
+        assert args.numOfStages == len(listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
         memory = 0
         if len(listOfWidths) > 0:
             model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
@@ -298,6 +284,7 @@ def main():
         model.cuda()
         criterion = nn.CrossEntropyLoss()
         start_epoch = 1
+        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
 
     print(f'Startepoche: {start_epoch}')
     print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
@@ -307,13 +294,6 @@ def main():
         test_loss, test_acc = test(testloader, model, criterion, start_epoch, use_cuda)
         print(' Test Loss:  %.8f, Test Acc:  %.2f' % (test_loss, test_acc))
         return
-
-    # if args.O1:
-    #     model, optimizer = amp.initialize(model, optimizer, opt_level="O1")
-    # if args.O2:
-    #     model, optimizer = amp.initialize(model, optimizer, opt_level="O2")
-    # if args.O3:
-    #     model, optimizer = amp.initialize(model, optimizer, opt_level="O3")
 
     # Count the parameters of the model and calculate training bacth size
     count0 = 0
@@ -327,7 +307,6 @@ def main():
 
         # calculate first how many blocks is equal to the count0
         sizeX = (count0 - 1306) / 97216
-        # print(f'sizeX: {sizeX}')
         # Gerade für niedrige Batch size
         # if not args.largeBatch:
         y = 68.25 * sizeX + 47.85
@@ -341,7 +320,6 @@ def main():
         args.batch_size = batch_size
     elif args.batchTrue:
         batch_size = args.batch_size
-    # args.lr = float(args.lr)
     batch_size = int(batch_size)
     # args.lr *= (batch_size / 256)
 
@@ -350,28 +328,20 @@ def main():
 
     trainloader = data.DataLoader(trainset, batch_size=batch_size, pin_memory=True,
                                   shuffle=True, num_workers=args.workers)
-    if not args.lars:
-        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
-    else:
-        optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
-                         weight_decay=args.weight_decay)
+    #    optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
+    #                     weight_decay=args.weight_decay)
 
-    scheduler = StepLR(optimizer, step_size=60, gamma=0.9)
+    scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
 
     i = 1
     # for epochNet2Net in range(1, 4):
     while i == 1:
         for epoch in range(start_epoch, args.epochs + start_epoch):
 
-            # adjust learning rate when epoch is the scheduled epoch
             if args.delta_learning_rate:
                 adjust_learning_rate(optimizer, epoch, True)
-            # if(epoch ==61):
-            #    args.lr = 0.1
-            # if(epoch==121):
-            #    args.lr = 0.1
-            # print(f'lr: {args.lr}')
-            print(f'Epoche:{epoch}/{args.epochs + start_epoch - 1}; Lr: {args.lr}')
+
+            print(f'Epoche: [{epoch}/{args.epochs + start_epoch - 1}]; Lr: {optimizer.param_groups[0]["lr"]}')
             print(f'batch Size {batch_size}')
             start = time.time()
             torch.cuda.reset_max_memory_allocated()
@@ -381,15 +351,15 @@ def main():
             ende = time.time()
             tmp_memory = torch.cuda.max_memory_allocated()
 
-            print(f'lr: {optimizer.param_groups[0]["lr"]}')
+            # print(f'lr: {optimizer.param_groups[0]["lr"]}')
             if args.dynlr:
                 # adjust_learning_rate(optimizer, epoch, False)
                 scheduler.step()
                 lr = scheduler.get_last_lr()[0]
                 print(f'args.lr: {lr}')
-            print(f'lr: {optimizer.param_groups[0]["lr"]}')
+            # print(f'lr: {optimizer.param_groups[0]["lr"]}')
 
-            print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated() / 10000000}')
+            # print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated() / 10000000}')
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
             # append logger file
@@ -479,8 +449,6 @@ def main():
 
             # print("\n Verhältnis Modell Größe: ", count / count0)
 
-            is_best = test_acc > best_acc
-            best_acc = max(test_acc, best_acc)
 
         i = 2
 
@@ -548,18 +516,14 @@ def main():
             'batch_size': batch_size,
             'lr': optimizer.param_groups[0]["lr"],
             'acc': test_acc,
-            'best_acc': best_acc,
             'optimizer': optimizer.state_dict(), },
-            is_best,
             checkpoint=args.checkpoint)
     else:
         save_checkpoint({
             'epoch': args.epochs + start_epoch,
             'lr': optimizer.param_groups[0]["lr"],
             'acc': test_acc,
-            'best_acc': best_acc,
             'optimizer': optimizer.state_dict(), },
-            is_best,
             checkpoint=args.checkpoint)
 
     # Leave unique checkpoint of pruned models druing training
@@ -571,17 +535,13 @@ def main():
                 'batch_size': batch_size,
                 'lr': optimizer.param_groups[0]["lr"],
                 'acc': test_acc,
-                'best_acc': best_acc,
                 'optimizer': optimizer.state_dict(), },
-                is_best,
                 checkpoint=args.checkpoint)
         else:
             save_checkpoint({
                 'epoch': args.epochs + start_epoch - 1,
                 'acc': test_acc,
-                'best_acc': best_acc,
                 'optimizer': optimizer.state_dict(), },
-                is_best,
                 checkpoint=args.checkpoint,
                 filename='checkpoint' + str(epoch) + '.tar')
 
