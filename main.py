@@ -540,7 +540,7 @@ def main():
     if args.reset:
         args.epoch = 0
         start_epoch = 1
-        args.lr = 0.01
+        optimizer.param_groups[0]["lr"] = 0.01
     if args.dB:
         save_checkpoint({
             'epoch': args.epochs + start_epoch,
