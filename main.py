@@ -264,6 +264,8 @@ def main():
             batch_size = checkpoint['batch_size']
         start_epoch = checkpoint['epoch']
         optimizer = checkpoint['optimizer']
+        print(f'First Lr: {optimizer.param_groups[0]["lr"]}')
+
         # start_batchSize = checkpoint['start_batchSize']
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     else:
