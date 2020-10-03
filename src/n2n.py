@@ -1020,10 +1020,11 @@ class N2N(nn.Module):
         # print(self)
         return self
 
-    def deeper(self):
+    def deeper(self, pos=1):
         # make each block with plus two layers (conv +batch) deeper
         printDeeper = True
         j = 2
+        j += pos * 2
         notfirstStage = False
         for stage in range(0, self.numOfStages):
             if printDeeper:
@@ -1054,7 +1055,6 @@ class N2N(nn.Module):
                                   bias=bias)
 
                 layer.weight = torch.nn.Parameter(w1)
-                j = j + 3
                 self.module_list.insert(j, layer)
                 print(f'conv: {j}')
                 layer2 = nn.BatchNorm2d(i0)
@@ -1065,13 +1065,11 @@ class N2N(nn.Module):
                 self.module_list.insert(j, layer2)
                 print(f'bn: {j}')
                 print(f'Länge der ModuleListe: {len(self.module_list)}')
-                i = 2
-                j = j + 1
                 if printDeeper:
-                    print(f'j: {j}; i: {i}')
-                while i < layerInThisBlock:
-                    i = i + 1
-                    j = j + 2
+                    print(f'j: {j}')
+                if 2*pos< archNum[block]:
+                    j +=  2*archNum[block]-2*pos
+
             notfirstStage = True
 
         # noise = torch.Tensor(conv2.weight.shape).random_(0, 1).to(self.device)
