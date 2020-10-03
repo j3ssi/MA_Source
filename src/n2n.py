@@ -1033,6 +1033,8 @@ class N2N(nn.Module):
             firstBlockInStage = True
 
             for block in range(0, len(archNum)):
+                if block == 1 and stage>0:
+                    pos= pos-1
                 print(f'j: {j}')
                 if printDeeper:
                     print("\n\n\tBlock: ", block)
