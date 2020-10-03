@@ -1068,6 +1068,11 @@ class N2N(nn.Module):
                 if printDeeper:
                     print(f'j: {j}')
                 j += 3
+                if block == len(archNum):
+                    j = j + 2
+                    print(f'block == len(archNum)')
+                if block==0 and stage>0:
+                   pos = pos + 1
                 if 2*pos< archNum[block]:
                     j +=  2*archNum[block]-2*pos
                 print(f'j for: {j}')
