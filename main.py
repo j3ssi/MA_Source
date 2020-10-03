@@ -393,7 +393,7 @@ def main():
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
             # append logger file
-            logger.append([state['lr'], train_loss, test_loss, train_acc, test_acc, train_epoch_time,
+            logger.append([optimizer.param_groups[0]["lr"], train_loss, test_loss, train_acc, test_acc, train_epoch_time,
                            test_epoch_time])
             countB = 0
             for p in model.parameters():
