@@ -516,14 +516,14 @@ def main():
             'batch_size': batch_size,
             'lr': optimizer.param_groups[0]["lr"],
             'acc': test_acc,
-            'optimizer': optimizer.state_dict(), },
+            'optimizer': optimizer, },
             checkpoint=args.checkpoint)
     else:
         save_checkpoint({
             'epoch': args.epochs + start_epoch,
             'lr': optimizer.param_groups[0]["lr"],
             'acc': test_acc,
-            'optimizer': optimizer.state_dict(), },
+            'optimizer': optimizer, },
             checkpoint=args.checkpoint)
 
     # Leave unique checkpoint of pruned models druing training
@@ -535,13 +535,13 @@ def main():
                 'batch_size': batch_size,
                 'lr': optimizer.param_groups[0]["lr"],
                 'acc': test_acc,
-                'optimizer': optimizer.state_dict(), },
+                'optimizer': optimizer, },
                 checkpoint=args.checkpoint)
         else:
             save_checkpoint({
                 'epoch': args.epochs + start_epoch - 1,
                 'acc': test_acc,
-                'optimizer': optimizer.state_dict(), },
+                'optimizer': optimizer, },
                 checkpoint=args.checkpoint,
                 filename='checkpoint' + str(epoch) + '.tar')
 
@@ -859,11 +859,9 @@ def checkmem(use_gpu):
     return total, used, free
 
 
-def save_checkpoint(state, is_best, checkpoint='checkpoint', filename='checkpoint.pth.tar'):
+def save_checkpoint(state, checkpoint='checkpoint', filename='checkpoint.pth.tar'):
     filepath = os.path.join(checkpoint, filename)
     torch.save(state, filepath)
-    if is_best:
-        shutil.copyfile(filepath, os.path.join(checkpoint, 'model_best.pth.tar'))
 
 
 if __name__ == '__main__':
