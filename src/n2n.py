@@ -1061,12 +1061,13 @@ class N2N(nn.Module):
                 archNum[block] += 1
                 layerInThisBlock = archNum[block]
                 print(f'layerin This Block: {layerInThisBlock}')
-                j = j + 2
+                j = j + 1
                 self.module_list.insert(j, layer2)
                 print(f'bn: {j}')
                 print(f'Länge der ModuleListe: {len(self.module_list)}')
                 if printDeeper:
                     print(f'j: {j}')
+                j += 3
                 if 2*pos< archNum[block]:
                     j +=  2*archNum[block]-2*pos
                 print(f'j for: {j}')
