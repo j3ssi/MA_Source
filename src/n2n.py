@@ -1018,7 +1018,7 @@ class N2N(nn.Module):
 
     def deeper(self, pos=1):
         # make each block with plus two layers (conv +batch) deeper
-        printDeeper = True
+        printDeeper = False
         j = 2
         j += pos * 2
         notfirstStage = False
@@ -1029,7 +1029,7 @@ class N2N(nn.Module):
             firstBlockInStage = True
 
             for block in range(0, len(archNum)):
-                print(f'j: {j}')
+                # print(f'j: {j}')
                 if printDeeper:
                     print("\n\n\tBlock: ", block)
                 firstBlockInStage = False
@@ -1053,34 +1053,34 @@ class N2N(nn.Module):
 
                 layer.weight = torch.nn.Parameter(w1)
                 self.module_list.insert(j, layer)
-                print(f'conv: {j}')
+                # print(f'conv: {j}')
                 layer2 = nn.BatchNorm2d(i0)
                 archNum[block] += 1
                 layerInThisBlock = archNum[block]
-                print(f'layerin This Block: {layerInThisBlock}')
+                # print(f'layerin This Block: {layerInThisBlock}')
                 j = j + 1
                 self.module_list.insert(j, layer2)
-                print(f'bn: {j}')
-                print(f'Länge der ModuleListe: {len(self.module_list)}')
+                # print(f'bn: {j}')
+                # print(f'Länge der ModuleListe: {len(self.module_list)}')
                 if printDeeper:
                     print(f'j: {j}')
                 j += 3
                 if block == 0:
                     j += 2
-                    print(f'block == len(archNum)')
+                    # print(f'block == len(archNum)')
 
                 if block==0 and stage>0 and pos+2 < archNum[block]:
-                    print(f'drin 1!!; archNum[block]: {archNum[block]}')
+                    # print(f'drin 1!!; archNum[block]: {archNum[block]}')
                     j += 2 * archNum[block] - 2 * pos
                 elif pos + 1 < archNum[block] and not(block ==0 and stage>0):
-                    print(f'drin 2!!; archNum[block]: {archNum[block]}')
+                    # print(f'drin 2!!; archNum[block]: {archNum[block]}')
                     j += 2*archNum[block]-2*pos
-                print(f'j for: {j}')
+                # print(f'j for: {j}')
             notfirstStage = True
 
         # noise = torch.Tensor(conv2.weight.shape).random_(0, 1).to(self.device)
         # noise = torch.rand(0,0.5)
-        print(f'archNums: {self.archNums}')
+        # print(f'archNums: {self.archNums}')
         return self
 
 
