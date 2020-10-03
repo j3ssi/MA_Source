@@ -1037,7 +1037,7 @@ class N2N(nn.Module):
                 if printDeeper:
                     print("\n\n\tBlock: ", block)
                 firstBlockInStage = False
-                module = self.module_list[j]
+                module = self.module_list[j-1]
                 i0 = module.weight.size(0)
                 i1 = module.weight.size(1)
                 i2 = module.weight.size(2)
