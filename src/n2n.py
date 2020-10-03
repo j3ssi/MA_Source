@@ -13,8 +13,6 @@ class N2N(nn.Module):
     def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock,
                  first, bottleneck, widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=None):
         super(N2N, self).__init__()
-        # print(f'width: {widthOfLayers}')
-        # self.device = torch.device("cuda:0")
         self.numOfStages = numOfStages
         self.oddLayers = []
         self.numOfBlocksinStage = numOfBlocksinStage
@@ -359,8 +357,6 @@ class N2N(nn.Module):
             fc.bias.data = module.bias.data
             self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
-
-
 
     def forward(self, x):
         # print(f'ArchNums: {self.archNums}')
