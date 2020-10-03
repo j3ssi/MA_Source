@@ -339,7 +339,7 @@ def main():
         for epoch in range(start_epoch, args.epochs + start_epoch):
 
             if args.delta_learning_rate:
-                adjust_learning_rate(optimizer, epoch, True)
+                optimizer.param_groups[0]["lr"] = adjust_learning_rate(optimizer, epoch, True)
 
             print(f'Epoche: [{epoch}/{args.epochs + start_epoch - 1}]; Lr: {optimizer.param_groups[0]["lr"]}')
             print(f'batch Size {batch_size}')
@@ -710,45 +710,36 @@ def test(testloader, model, criterion, epoch, use_cuda):
 
 
 def adjust_learning_rate(optimizer, epoch, change_lr):
-    global state
+    lr = 0
     if change_lr:
         if args.schedule_exp == 0:
             print(f'1')
             # Step-wise LR decay
-            set_lr = args.lr
+            lr = args.lr
             for lr_decay in args.schedule:
                 if epoch == lr_decay:
-                    set_lr *= args.gamma
-            state['lr'] = set_lr
-            args.lr = set_lr
+                    lr *= args.gamma
         else:
             print(f'2')
             # Exponential LR decay
-            set_lr = args.lr
+            lr = args.lr
             exp = int((epoch - 1) / args.schedule_exp)
-            state['lr'] = set_lr * (args.gamma ** exp)
-            args.lr = set_lr
+            lr *= (args.gamma ** exp)
     else:
         if args.schedule_exp == 0:
             print(f'3')
             # Step-wise LR decay
-            set_lr = args.lr
+            lr = args.lr
             for lr_decay in args.schedule:
                 if epoch >= lr_decay:
-                    set_lr *= args.gamma
-            state['lr'] = set_lr
-            args.lr = set_lr
+                    lr *= args.gamma
         else:
             print(f'4')
             # Exponential LR decay
-            set_lr = args.lr
+            lr = args.lr
             exp = int((epoch - 1) / args.schedule_exp)
-            state['lr'] = set_lr * (args.gamma ** exp)
-            args.lr = set_lr
-
-    for param_group in optimizer.param_groups:
-        param_group['lr'] = state['lr']
-
+            lr *= (args.gamma ** exp)
+    return lr
 
 def visualizePruneTrain(model, epoch, threshold):
     altList = []
