@@ -500,9 +500,9 @@ def main():
         print(model)
         model.cuda()
         criterion = nn.CrossEntropyLoss()
-        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+        optimizer = optim.SGD(model.parameters(), lr=optimizer.param_groups[0]["lr"], momentum=args.momentum,
                               weight_decay=args.weight_decay)
-        scheduler = StepLR(optimizer, step_size=10, gamma=0.9)
+        scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
     if start_epoch == 176:
         print(f'Model: {model}')
 
@@ -717,28 +717,28 @@ def adjust_learning_rate(optimizer, epoch, change_lr):
         if args.schedule_exp == 0:
             print(f'1')
             # Step-wise LR decay
-            lr = args.lr
+            lr = optimizer.param_groups[0]["lr"]
             for lr_decay in args.schedule:
                 if epoch == lr_decay:
                     lr *= args.gamma
         else:
             print(f'2')
             # Exponential LR decay
-            lr = args.lr
+            lr = optimizer.param_groups[0]["lr"]
             exp = int((epoch - 1) / args.schedule_exp)
             lr *= (args.gamma ** exp)
     else:
         if args.schedule_exp == 0:
             print(f'3')
             # Step-wise LR decay
-            lr = args.lr
+            lr = optimizer.param_groups[0]["lr"]
             for lr_decay in args.schedule:
                 if epoch >= lr_decay:
                     lr *= args.gamma
         else:
             print(f'4')
             # Exponential LR decay
-            lr = args.lr
+            lr = optimizer.param_groups[0]["lr"]
             exp = int((epoch - 1) / args.schedule_exp)
             lr *= (args.gamma ** exp)
     return lr
