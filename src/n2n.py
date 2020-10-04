@@ -1065,7 +1065,7 @@ class N2N(nn.Module):
                 if printDeeper:
                     print(f'j: {j}')
                 j += 3
-                if block == 0:
+                if block == 0 and stage >0:
                     j += 2
                     # print(f'block == len(archNum)')
 
