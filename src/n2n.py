@@ -876,6 +876,9 @@ class N2N(nn.Module):
                     for idx in range(0, (new_width - old_width)):
                         print(f'idx: {idx}')
                         c = dw1[idx]
+                        x = tracking_inverse[idx + old_width]
+                        y = int(ct[x])
+                        print(f'tracking inverse[{idx+old_width}]: {tracking_inverse[idx + new_width- old_width]} ')
                         # print(f'c:{c}')
                         for k in range(len(c)):
                             e = c[k]
@@ -883,8 +886,6 @@ class N2N(nn.Module):
                             for l in range(len(e)):
                                 # print(f' before e[l]: {e[l]}')
                                 f = e[l]
-                                x = tracking_inverse[idx+old_width]
-                                y = int(ct[x])
                                 for m in range(len(f)):
 
                                     f[m] = f[m] / y
