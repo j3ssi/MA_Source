@@ -1,5 +1,6 @@
 import copy
 
+import gitignore.Net2Net as n
 import numpy
 import torch
 import torch as th
@@ -747,6 +748,7 @@ class N2N(nn.Module):
 
             # get modules
             m1 = self.module_list[i]
+            m2 = self.module_list[i+1]
             w1 = m1.weight.data.clone().cpu().numpy()
             bn = self.module_list[i + 1]
             bnw1 = bn.weight.data.clone().cpu().numpy()
@@ -1051,6 +1053,10 @@ class N2N(nn.Module):
                 self.module_list.insert(j, layer)
                 print(f'conv: {j}')
                 layer2 = nn.BatchNorm2d(i0)
+                layer2.weight.data.fill_(1)
+                layer2.bias.data.fill_(0)
+                layer2.running_mean.fill_(0)
+                layer.running_var.fill_(1)
 
                 archNum[block] += 1
                 j = j + 1

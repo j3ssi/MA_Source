@@ -2,7 +2,6 @@ import torch as th
 import numpy as np
 from collections import Counter
 
-
 def wider(m1, m2, new_width, bnorm=None, out_size=None, noise=True,
           random_init=True, weight_norm=True):
     """
