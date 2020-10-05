@@ -1051,7 +1051,7 @@ class N2N(nn.Module):
 
                 layer = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,
                                   bias=bias)
-                torch.nn.init.ones_(layer.weight)
+                torch.nn.init.ones_(layer)
                 # layer.weight = torch.nn.Parameter(w1)
                 self.module_list.insert(j, layer)
                 print(f'conv: {j}')
