@@ -465,9 +465,9 @@ def main():
         #
         # model.cuda()
         # criterion = nn.CrossEntropyLoss()
-        # optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-        #                       weight_decay=args.weight_decay)
-        # scheduler = StepLR(optimizer, step_size=10, gamma=0.9)
+        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+                              weight_decay=args.weight_decay)
+        scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
         print(model)
 
     if args.wider and not args.widerRnd:
@@ -481,14 +481,14 @@ def main():
             model.widthofLayers[i] *= 2
 
         # model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock + 1, False, args.bottleneck,
-        #                 widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
+        #                widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
         #
         # model.cuda()
         # print(model)
         # criterion = nn.CrossEntropyLoss()
-        # optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-        #                       weight_decay=args.weight_decay)
-        # scheduler = StepLR(optimizer, step_size=10, gamma=0.9)
+        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+                              weight_decay=args.weight_decay)
+        scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
     if args.widerRnd and not args.wider:
         model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=True, addNoise=False)
 
