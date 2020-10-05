@@ -978,14 +978,8 @@ class N2N(nn.Module):
                     print(f'tracking inverse[{idx + old_width}]: {tracking_inverse[idx + new_width - old_width]} ')
                     # print(f'c:{c}')
                     for k in range(len(c)):
-                        e = c[k]
-                        # print(f'c[k]: {c[k]}')
-                        for l in range(len(e)):
-                            # print(f' before e[l]: {e[l]}')
-                            f = e[l]
-                            for m in range(len(f)):
-                                f[m] = f[m] / y
-            #                 print(f' after e[l]: {e[l]}')
+                        e[k] = e[k] / y
+                        print(f' after e[k]: {e[k]}')
 
             dw1y = np.concatenate((w1, dw1x), axis=1)
             w1 = torch.FloatTensor(dw1y).cuda()
