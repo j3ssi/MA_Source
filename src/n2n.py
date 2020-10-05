@@ -965,21 +965,28 @@ class N2N(nn.Module):
                     n = module.in_features * module.out_features
                     dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n),
                                               size=(new_width - old_width, module.out_features))
-                    # if m2.weight.dim() == 4:
-                    #    n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.out_channels
-                    # elif m2.weight.dim() == 5:
-                    #    n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.kernel_size[2] * m2.out_channels
-                    # elif m2.weight.dim() == 2:
-                    #    n2 = m2.out_features * m2.in_features
-                    # dw1.select(0, i).normal_(0, )
-                    # dw2.select(0, i).normal_(0, np.sqrt(2. / n2))
                 else:
                     dw1.append(m1list)
-                    # dw2.append(m2list)
-                    # dw1.select(0, i).copy_(w1.select(0, idx).clone())
-                    # dw2.select(0, i).copy_(w2.select(0, idx).clone())
 
             dw1x = np.transpose(dw1, [1, 0])
+            if not random_init:
+                for idx in range(0, (new_width - old_width)):
+                    print(f'idx: {idx}')
+                    c = dw1x[idx]
+                    x = tracking_inverse[idx + old_width]
+                    y = int(ct[x])
+                    print(f'tracking inverse[{idx + old_width}]: {tracking_inverse[idx + new_width - old_width]} ')
+                    # print(f'c:{c}')
+                    for k in range(len(c)):
+                        e = c[k]
+                        # print(f'c[k]: {c[k]}')
+                        for l in range(len(e)):
+                            # print(f' before e[l]: {e[l]}')
+                            f = e[l]
+                            for m in range(len(f)):
+                                f[m] = f[m] / y
+            #                 print(f' after e[l]: {e[l]}')
+
             dw1y = np.concatenate((w1, dw1x), axis=1)
             w1 = torch.FloatTensor(dw1y).cuda()
             w1.requires_grad = True
