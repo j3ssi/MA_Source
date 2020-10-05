@@ -1056,8 +1056,6 @@ class N2N(nn.Module):
                 self.module_list.insert(j, layer)
                 print(f'conv: {j}')
                 layer2 = nn.BatchNorm2d(i0)
-                torch.nn.init.constant_(layer2.weight, 1)
-                torch.nn.init.constant_(layer2.bias, 0)
 
                 archNum[block] += 1
                 layerInThisBlock = archNum[block]

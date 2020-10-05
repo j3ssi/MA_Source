@@ -287,7 +287,7 @@ def main():
         model.cuda()
         criterion = nn.CrossEntropyLoss()
         start_epoch = 1
-        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
 
     print(f'Startepoche: {start_epoch}')
     print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
@@ -389,8 +389,7 @@ def main():
                 gc.collect()
                 model.cuda()
                 if not args.lars:
-                    optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-                                          weight_decay=args.weight_decay)
+                    optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
                 else:
                     optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
                                      weight_decay=args.weight_decay)
@@ -465,8 +464,7 @@ def main():
 
         model.cuda()
         criterion = nn.CrossEntropyLoss()
-        optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=args.momentum,
-                              weight_decay=args.weight_decay)
+        optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=args.momentum)
         scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
         print(model)
 
