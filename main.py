@@ -263,6 +263,7 @@ def main():
             memory = checkpoint['memory']
             batch_size = checkpoint['batch_size']
         start_epoch = checkpoint['epoch']
+        print(f'Start epoch: {start_epoch}')
         optimizer = checkpoint['optimizer']
         print(f'First Lr: {optimizer.param_groups[0]["lr"]}')
 
@@ -459,14 +460,14 @@ def main():
         # deeper student training
         model = model.deeper(pos=1)
         print(f'args.layersInBlock: {args.layersInBlock}')
-        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock+1, False, args.bottleneck,
-                        widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
-
-        model.cuda()
-        criterion = nn.CrossEntropyLoss()
-        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-                              weight_decay=args.weight_decay)
-        scheduler = StepLR(optimizer, step_size=10, gamma=0.9)
+        # model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock+1, False, args.bottleneck,
+        #                 widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
+        #
+        # model.cuda()
+        # criterion = nn.CrossEntropyLoss()
+        # optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+        #                       weight_decay=args.weight_decay)
+        # scheduler = StepLR(optimizer, step_size=10, gamma=0.9)
         print(model)
 
     if args.wider and not args.widerRnd:
@@ -479,15 +480,15 @@ def main():
         for i in range(len(model.widthofLayers)):
             model.widthofLayers[i] *= 2
 
-        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock + 1, False, args.bottleneck,
-                        widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
-
-        model.cuda()
-        print(model)
-        criterion = nn.CrossEntropyLoss()
-        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
-                              weight_decay=args.weight_decay)
-        scheduler = StepLR(optimizer, step_size=10, gamma=0.9)
+        # model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock + 1, False, args.bottleneck,
+        #                 widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
+        #
+        # model.cuda()
+        # print(model)
+        # criterion = nn.CrossEntropyLoss()
+        # optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+        #                       weight_decay=args.weight_decay)
+        # scheduler = StepLR(optimizer, step_size=10, gamma=0.9)
     if args.widerRnd and not args.wider:
         model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=True, addNoise=False)
 
@@ -508,6 +509,7 @@ def main():
 
     print("[INFO] Storing checkpoint...")
     if args.reset:
+        print(f'Reset! ')
         args.epoch = 0
         start_epoch = 1
         optimizer.param_groups[0]["lr"] = 0.01
@@ -550,7 +552,7 @@ def main():
     if args.saveModell:
         torch.save(model, args.pathToModell)
     logger.close()
-    print(" ", test_acc)
+    print("Test acc: ", test_acc)
     print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
     print(' {:5.3f}s'.format(ende - start), end='  ')
 
