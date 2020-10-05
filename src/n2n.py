@@ -1063,7 +1063,7 @@ class N2N(nn.Module):
                 layer2.weight.data.fill_(1/16)
                 layer2.bias.data.fill_(0)
                 layer2.running_mean.fill_(0)
-                layer.running_var.fill_(1)
+                layer2.running_var.fill_(1)
 
                 archNum[block] += 1
                 j = j + 1
