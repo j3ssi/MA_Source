@@ -1041,9 +1041,9 @@ class N2N(nn.Module):
                 i3 = module.weight.size(3)
                 if printDeeper:
                     print(f'size:{i0}, {i1}, {i2}, {i3}; j: {j}')
-                dw1 = numpy.ones((i0, i0, i2, i3), dtype=numpy.float32)
-                w1 = torch.FloatTensor(dw1)
-                w1.requires_grad = True
+                # dw1 = numpy.ones((i0, i0, i2, i3), dtype=numpy.float32)
+                # w1 = torch.FloatTensor(dw1)
+                # w1.requires_grad = True
                 kernel_size = i2
                 stride = 1
                 padding = 1
@@ -1051,11 +1051,14 @@ class N2N(nn.Module):
 
                 layer = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,
                                   bias=bias)
-
-                layer.weight = torch.nn.Parameter(w1)
+                torch.nn.init.ones_(layer.weight)
+                # layer.weight = torch.nn.Parameter(w1)
                 self.module_list.insert(j, layer)
                 print(f'conv: {j}')
                 layer2 = nn.BatchNorm2d(i0)
+                torch.nn.init.constant_(layer2.weight, 1)
+                torch.init.constant_(layer2.bias, 0)
+
                 archNum[block] += 1
                 layerInThisBlock = archNum[block]
                 # print(f'layerin This Block: {layerInThisBlock}')
