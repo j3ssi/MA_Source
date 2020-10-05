@@ -481,8 +481,11 @@ def main():
         optimizer = optim.SGD(model.parameters(), lr=optimizer.param_groups[0]["lr"], momentum=args.momentum,
                               weight_decay=args.weight_decay)
         scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
-    if start_epoch == 176:
-        print(f'Model: {model}')
+
+    print("Test acc1: ", test_acc)
+    test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
+    print("Test acc2: ", test_acc)
+
 
     print("[INFO] Storing checkpoint...")
     if args.reset:
@@ -527,9 +530,6 @@ def main():
     if args.saveModell:
         torch.save(model, args.pathToModell)
     logger.close()
-    print("Test acc1: ", test_acc)
-    test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
-    print("Test acc2: ", test_acc)
 
     print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
     print(' {:5.3f}s'.format(ende - start), end='  ')
