@@ -748,7 +748,6 @@ class N2N(nn.Module):
 
             # get modules
             m1 = self.module_list[i]
-            m2 = self.module_list[i+1]
             w1 = m1.weight.data.clone().cpu().numpy()
             bn = self.module_list[i + 1]
             bnw1 = bn.weight.data.clone().cpu().numpy()
@@ -1049,7 +1048,8 @@ class N2N(nn.Module):
 
                 layer = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,
                                   bias=bias)
-                torch.nn.init.dirac_(layer.weight)
+                torch.nn.init.zeros_(layer.weight)
+                layer.weight.data[:, :, 2]= torch.eye(3,3)
                 self.module_list.insert(j, layer)
                 print(f'conv: {j}')
                 layer2 = nn.BatchNorm2d(i0)
