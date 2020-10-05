@@ -1060,7 +1060,7 @@ class N2N(nn.Module):
                 self.module_list.insert(j, layer)
                 print(f'conv: {j}')
                 layer2 = nn.BatchNorm2d(i0)
-                layer2.weight.data.fill_(0.33333)
+                layer2.weight.data.fill_(1/16)
                 layer2.bias.data.fill_(0)
                 layer2.running_mean.fill_(0)
                 layer.running_var.fill_(1)
