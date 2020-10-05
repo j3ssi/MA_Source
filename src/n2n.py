@@ -1053,12 +1053,10 @@ class N2N(nn.Module):
                 layer2 = nn.BatchNorm2d(i0)
 
                 archNum[block] += 1
-                layerInThisBlock = archNum[block]
-                # print(f'layerin This Block: {layerInThisBlock}')
                 j = j + 1
                 self.module_list.insert(j, layer2)
                 print(f'bn: {j}')
-                # print(f'Länge der ModuleListe: {len(self.module_list)}')
+
                 if printDeeper:
                     print(f'j: {j}')
                 j += 3
