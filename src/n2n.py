@@ -979,8 +979,7 @@ class N2N(nn.Module):
                     # print(f'c:{c}')
                     for k in range(len(c)):
                         e[k] = e[k] / y
-                        print(f' after e[k]: {e[k]}')
-
+                       
             dw1y = np.concatenate((w1, dw1x), axis=1)
             w1 = torch.FloatTensor(dw1y).cuda()
             w1.requires_grad = True
