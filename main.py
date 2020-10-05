@@ -431,27 +431,6 @@ def main():
             elif args.dB and epoch % 5 == 4:
                 memory = tmp_memory
 
-            #     if (count/count0) > 0.9:
-            #         a = 0.9
-            #     elif (count/count0) > 0.7:
-            #         a=0.8
-            #
-            #     else:
-            #         a= 0.6
-            #     y = int(m * args.numOfBlocksinStage*(count - m)/(count0 - m)+y0)
-            #     print(f'Y: {y}')
-            #     batch_size = int(count/ args.numOfBlocksinStage * 1 / y)
-            #
-            #     trainloader = data.DataLoader(trainset, batch_size=batch_size,
-            #                                  shuffle=True, num_workers=args.workers)
-            #
-            #     print(f'new batch_size: {batch_size}')
-            # # print("\nEpoche: ", epoch, " ; NumbOfParameters: ", count)
-            #
-
-            # print("\n Verhältnis Modell Größe: ", count / count0)
-
-
         i = 2
 
     if args.deeper:
@@ -508,11 +487,10 @@ def main():
     print("[INFO] Storing checkpoint...")
     if args.reset:
         print(f'Reset! ')
-        args.epoch = 0
         start_epoch = 1
     if args.dB:
         save_checkpoint({
-            'epoch': args.epochs + start_epoch,
+            'epoch': start_epoch,
             'memory': memory,
             'batch_size': batch_size,
             'lr': optimizer.param_groups[0]["lr"],

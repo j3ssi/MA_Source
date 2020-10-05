@@ -1033,7 +1033,6 @@ class N2N(nn.Module):
                 # print(f'j: {j}')
                 if printDeeper:
                     print("\n\n\tBlock: ", block)
-                firstBlockInStage = False
                 module = self.module_list[j-2]
                 i0 = module.weight.size(0)
                 i1 = module.weight.size(1)
@@ -1041,9 +1040,6 @@ class N2N(nn.Module):
                 i3 = module.weight.size(3)
                 if printDeeper:
                     print(f'size:{i0}, {i1}, {i2}, {i3}; j: {j}')
-                # dw1 = numpy.ones((i0, i0, i2, i3), dtype=numpy.float32)
-                # w1 = torch.FloatTensor(dw1)
-                # w1.requires_grad = True
                 kernel_size = i2
                 stride = 1
                 padding = 1
@@ -1052,7 +1048,6 @@ class N2N(nn.Module):
                 layer = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,
                                   bias=bias)
                 torch.nn.init.ones_(layer.weight)
-                # layer.weight = torch.nn.Parameter(w1)
                 self.module_list.insert(j, layer)
                 print(f'conv: {j}')
                 layer2 = nn.BatchNorm2d(i0)
@@ -1078,11 +1073,6 @@ class N2N(nn.Module):
                     print(f'drin 2!!; archNum[block]: {archNum[block]}')
                     j += 2*archNum[block]-2*pos
                 # print(f'j for: {j}')
-            notfirstStage = True
-
-        # noise = torch.Tensor(conv2.weight.shape).random_(0, 1).to(self.device)
-        # noise = torch.rand(0,0.5)
-        # print(f'archNums: {self.archNums}')
         return self
 
 
