@@ -460,12 +460,12 @@ def main():
         # deeper student training
         model = model.deeper(pos=1)
         print(f'args.layersInBlock: {args.layersInBlock}')
-        # model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock+1, False, args.bottleneck,
-        #                 widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
-        #
-        # model.cuda()
-        # criterion = nn.CrossEntropyLoss()
-        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock+1, False, args.bottleneck,
+                        widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=listOfWidths)
+
+        model.cuda()
+        criterion = nn.CrossEntropyLoss()
+        optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=args.momentum,
                               weight_decay=args.weight_decay)
         scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
         print(model)
@@ -512,7 +512,6 @@ def main():
         print(f'Reset! ')
         args.epoch = 0
         start_epoch = 1
-        optimizer.param_groups[0]["lr"] = 0.01
     if args.dB:
         save_checkpoint({
             'epoch': args.epochs + start_epoch,
