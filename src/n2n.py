@@ -1028,7 +1028,6 @@ class N2N(nn.Module):
             if printDeeper:
                 print("\n\nStage: ", stage)
             archNum = self.archNums[stage]
-            firstBlockInStage = True
 
             for block in range(0, len(archNum)):
                 # print(f'j: {j}')
@@ -1048,7 +1047,14 @@ class N2N(nn.Module):
 
                 layer = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,
                                   bias=bias)
-                torch.nn.init.dirac_(layer.weight)
+                torch.nn.init.zeros_(layer.weight)
+                for i in range(layer.out_channels):
+                    weight = layer.weight.data
+                    norm = weight.select(0, i).norm()
+                    weight.div_(norm)
+                    layer.weight.data = weight
+                for i in range(0, layer.out_channels):
+                    layer.weight.data.narrow(0, i, 1).narrow(1, i, 1).narrow(2, 2, 1).narrow(3, 2, 1).fill_(1)
                 self.module_list.insert(j, layer)
                 print(f'conv: {j}')
                 layer2 = nn.BatchNorm2d(i0)

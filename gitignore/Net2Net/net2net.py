@@ -2,6 +2,7 @@ import torch as th
 import numpy as np
 from collections import Counter
 
+
 def wider(m1, m2, new_width, bnorm=None, out_size=None, noise=True,
           random_init=True, weight_norm=True):
     """
@@ -32,12 +33,12 @@ def wider(m1, m2, new_width, bnorm=None, out_size=None, noise=True,
             assert w2.size(1) % w1.size(0) == 0, "Linear units need to be multiple"
             if w1.dim() == 4:
                 factor = int(np.sqrt(w2.size(1) // w1.size(0)))
-                w2 = w2.view(w2.size(0), w2.size(1)//factor**2, factor, factor)
+                w2 = w2.view(w2.size(0), w2.size(1) // factor ** 2, factor, factor)
             elif w1.dim() == 5:
-                assert out_size is not None,\
-                       "For conv3d -> linear out_size is necessary"
+                assert out_size is not None, \
+                    "For conv3d -> linear out_size is necessary"
                 factor = out_size[0] * out_size[1] * out_size[2]
-                w2 = w2.view(w2.size(0), w2.size(1)//factor, out_size[0],
+                w2 = w2.view(w2.size(0), w2.size(1) // factor, out_size[0],
                              out_size[1], out_size[2])
         else:
             assert w1.size(0) == w2.size(1), "Module weights are not compatible"
@@ -107,8 +108,8 @@ def wider(m1, m2, new_width, bnorm=None, out_size=None, noise=True,
                     n2 = m2.kernel_size[0] * m2.kernel_size[1] * m2.kernel_size[2] * m2.out_channels
                 elif m2.weight.dim() == 2:
                     n2 = m2.out_features * m2.in_features
-                nw1.select(0, i).normal_(0, np.sqrt(2./n))
-                nw2.select(0, i).normal_(0, np.sqrt(2./n2))
+                nw1.select(0, i).normal_(0, np.sqrt(2. / n))
+                nw2.select(0, i).normal_(0, np.sqrt(2. / n2))
             else:
                 nw1.select(0, i).copy_(w1.select(0, idx).clone())
                 nw2.select(0, i).copy_(w2.select(0, idx).clone())
@@ -142,11 +143,11 @@ def wider(m1, m2, new_width, bnorm=None, out_size=None, noise=True,
 
         if "Conv" in m1.__class__.__name__ and "Linear" in m2.__class__.__name__:
             if w1.dim() == 4:
-                m2.weight.data = nw2.view(m2.weight.size(0), new_width*factor**2)
-                m2.in_features = new_width*factor**2
+                m2.weight.data = nw2.view(m2.weight.size(0), new_width * factor ** 2)
+                m2.in_features = new_width * factor ** 2
             elif w2.dim() == 5:
-                m2.weight.data = nw2.view(m2.weight.size(0), new_width*factor)
-                m2.in_features = new_width*factor
+                m2.weight.data = nw2.view(m2.weight.size(0), new_width * factor)
+                m2.in_features = new_width * factor
         else:
             m2.weight.data = nw2
 
@@ -226,7 +227,8 @@ def deeper(m, nonlin, bnorm_flag=False, weight_norm=True, noise=True):
             if m.weight.dim() == 4:
                 m2.weight.data.narrow(0, i, 1).narrow(1, i, 1).narrow(2, c, 1).narrow(3, c, 1).fill_(1)
             elif m.weight.dim() == 5:
-                m2.weight.data.narrow(0, i, 1).narrow(1, i, 1).narrow(2, c_d, 1).narrow(3, c_wh, 1).narrow(4, c_wh, 1).fill_(1)
+                m2.weight.data.narrow(0, i, 1).narrow(1, i, 1).narrow(2, c_d, 1).narrow(3, c_wh, 1).narrow(4, c_wh,
+                                                                                                           1).fill_(1)
 
         if noise:
             noise = np.random.normal(scale=5e-2 * m2.weight.data.std(),
