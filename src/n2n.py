@@ -968,7 +968,6 @@ class N2N(nn.Module):
                 else:
                     dw1.append(m1list)
 
-            dw1x = np.transpose(dw1, [1, 0])
             if not random_init:
                 for idx in range(0, (new_width - old_width)):
                     print(f'idx: {idx}')
@@ -979,6 +978,7 @@ class N2N(nn.Module):
                     # print(f'c:{c}')
                     for k in range(len(c)):
                         c[k] = c[k] / y
+            dw1x = np.transpose(dw1, [1, 0])
 
             dw1y = np.concatenate((w1, dw1x), axis=1)
             w1 = torch.FloatTensor(dw1y).cuda()
@@ -1014,7 +1014,6 @@ class N2N(nn.Module):
 
             # print(f'Model after wider: {self}')
 
-
         # print(self)
         return self
 
@@ -1048,11 +1047,11 @@ class N2N(nn.Module):
                 layer = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,
                                   bias=bias)
                 torch.nn.init.zeros_(layer.weight)
-                for i in range(layer.out_channels):
-                    weight = layer.weight.data
+                for i in range(module.out_channels):
+                    weight = module.weight.data
                     norm = weight.select(0, i).norm()
                     weight.div_(norm)
-                    layer.weight.data = weight
+                    module.weight.data = weight
                 for i in range(0, layer.out_channels):
                     layer.weight.data.narrow(0, i, 1).narrow(1, i, 1).narrow(2, 2, 1).narrow(3, 2, 1).fill_(1)
                 self.module_list.insert(j, layer)
