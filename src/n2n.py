@@ -1020,55 +1020,56 @@ class N2N(nn.Module):
     def deeper(self, pos=1):
         # make each block with plus two layers (conv +batch) deeper
         printDeeper = True
-        j = 2
+        j = 1
         j += pos * 2
         notfirstStage = False
         for stage in range(0, self.numOfStages):
             if printDeeper:
                 print("\n\nStage: ", stage)
             archNum = self.archNums[stage]
+            module = self.module_list[j-1]
+            i0 = module.weight.size(0)
+            i1 = module.weight.size(1)
+            i2 = module.weight.size(2)
+            i3 = module.weight.size(3)
+            if printDeeper:
+                print(f'size:{i0}, {i1}, {i2}, {i3}')
 
             for block in range(0, len(archNum)):
-                # print(f'j: {j}')
+                module = self.module_list[j-1]
+
                 if printDeeper:
                     print("\n\n\tBlock: ", block)
-                module = self.module_list[j-2]
-                i0 = module.weight.size(0)
-                i1 = module.weight.size(1)
-                i2 = module.weight.size(2)
-                i3 = module.weight.size(3)
-                if printDeeper:
-                    print(f'size:{i0}, {i1}, {i2}, {i3}; j: {j}')
+
+                print(f'j: {j}')
+                bn = nn.BatchNorm2d(i0)
+                torch.nn.init.ones_(bn.weight)
+                torch.nn.init.zeros_(bn.bias)
+                bn.running_mean.fill_(0)
+                bn.running_var.fill_(1)
+                self.module_list.insert(j, bn)
+                print(f'bn: {j}')
+                j = j + 1
                 kernel_size = i2
                 stride = 1
                 padding = 1
                 bias = module.bias if module.bias is not None else False
 
-                layer = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,
+                conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,
                                   bias=bias)
-                torch.nn.init.zeros_(layer.weight)
+                torch.nn.init.zeros_(conv.weight)
                 for i in range(module.out_channels):
                     weight = module.weight.data
                     norm = weight.select(0, i).norm()
                     weight.div_(norm)
                     module.weight.data = weight
-                for i in range(0, layer.out_channels):
-                    layer.weight.data.narrow(0, i, 1).narrow(1, i, 1).narrow(2, 2, 1).narrow(3, 2, 1).fill_(1)
-                self.module_list.insert(j, layer)
+                for i in range(0, conv.out_channels):
+                    conv.weight.data.narrow(0, i, 1).narrow(1, i, 1).narrow(2, 2, 1).narrow(3, 2, 1).fill_(1)
+                self.module_list.insert(j, conv)
                 print(f'conv: {j}')
-                layer2 = nn.BatchNorm2d(i0)
-                torch.nn.init.ones_(layer2.weight)
-                torch.nn.init.zeros_(layer2.bias)
-                layer2.running_mean.fill_(0)
-                layer2.running_var.fill_(1)
 
                 archNum[block] += 1
-                j = j + 1
-                self.module_list.insert(j, layer2)
-                print(f'bn: {j}')
 
-                if printDeeper:
-                    print(f'j: {j}')
                 j += 3
                 if block == 0 and stage >0:
                     j += 2
