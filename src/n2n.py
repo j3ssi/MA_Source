@@ -768,10 +768,10 @@ class N2N(nn.Module):
                     m1list = w1[:, idx, :, :]
                     listindices.append(idx)
                     try:
-                        tracking[idx].append(o)
+                        tracking[idx].append(o + old_width)
                     except:
                         tracking[idx] = []
-                        tracking[idx].append(o)
+                        tracking[idx].append(o + old_width)
                     # TEST:random init for new units
                     if random_init:
                         n = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
