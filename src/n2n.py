@@ -978,8 +978,8 @@ class N2N(nn.Module):
                     print(f'tracking inverse[{idx + old_width}]: {tracking_inverse[idx + new_width - old_width]} ')
                     # print(f'c:{c}')
                     for k in range(len(c)):
-                        e[k] = e[k] / y
-                       
+                        c[k] = c[k] / y
+
             dw1y = np.concatenate((w1, dw1x), axis=1)
             w1 = torch.FloatTensor(dw1y).cuda()
             w1.requires_grad = True
@@ -1048,13 +1048,12 @@ class N2N(nn.Module):
 
                 layer = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,
                                   bias=bias)
-                torch.nn.init.zeros_(layer.weight)
-                layer.weight.data[:, :, 2, 2]= torch.eye(i0, i0)
+                torch.nn.init.dirac_(layer.weight)
                 self.module_list.insert(j, layer)
                 print(f'conv: {j}')
                 layer2 = nn.BatchNorm2d(i0)
-                layer2.weight.data.fill_(1/16)
-                layer2.bias.data.fill_(0)
+                torch.nn.init.ones_(layer2.weight)
+                torch.nn.init.zeros_(layer2.bias)
                 layer2.running_mean.fill_(0)
                 layer2.running_var.fill_(1)
 
