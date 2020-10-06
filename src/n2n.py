@@ -780,6 +780,39 @@ class N2N(nn.Module):
                         print(f'dw1: {dw1.shape}')
                     else:
                         dw1.append(m1list)
+                ct = {}
+                tracking_inverse = {}
+                print(f'tracking items: {tracking}')
+                for key, dif_k in tracking.items():
+                    # print(f'key: {key}; difk: {dif_k}')
+                    dictcounter = len(dif_k)
+                    ct.update({key: dictcounter})
+                    # print(f'dif key: {dif_k}')
+                    for item in dif_k:
+                        if item not in tracking_inverse:
+                            tracking_inverse[item]=key
+                        else:
+                            tracking_inverse[item].append(key)
+                print(f'ct: {ct}')
+                print(f'invers: {tracking_inverse}')
+                if not random_init:
+                    for idx in range(0, (new_width - old_width)):
+                        print(f'idx: {idx}')
+                        c = dw1[idx]
+                        x = tracking_inverse[idx + old_width]
+                        y = int(ct[x])
+                        print(f'tracking inverse[{idx+old_width}]: {tracking_inverse[idx + new_width- old_width]} ')
+                        # print(f'c:{c}')
+                        for k in range(len(c)):
+                            e = c[k]
+                            # print(f'c[k]: {c[k]}')
+                            for l in range(len(e)):
+                                # print(f' before e[l]: {e[l]}')
+                                f = e[l]
+                                for m in range(len(f)):
+
+                                    f[m] = f[m] / y
+                #                 print(f' after e[l]: {e[l]}')
 
                 # print(f'dw1:{dw1}')
                 if not random_init:
@@ -858,39 +891,6 @@ class N2N(nn.Module):
                     bn.num_features = new_width
                 # print(f'indices: {listindices}')
                 # print(f'tracking dict: {tracking}')
-                ct = {}
-                tracking_inverse = {}
-                print(f'tracking items: {tracking}')
-                for key, dif_k in tracking.items():
-                    # print(f'key: {key}; difk: {dif_k}')
-                    dictcounter = len(dif_k)
-                    ct.update({key: dictcounter})
-                    # print(f'dif key: {dif_k}')
-                    for item in dif_k:
-                        if item not in tracking_inverse:
-                            tracking_inverse[item]=key
-                        else:
-                            tracking_inverse[item].append(key)
-                print(f'ct: {ct}')
-                print(f'invers: {tracking_inverse}')
-                if not random_init:
-                    for idx in range(0, (new_width - old_width)):
-                        print(f'idx: {idx}')
-                        c = dw1[idx]
-                        x = tracking_inverse[idx + old_width]
-                        y = int(ct[x])
-                        print(f'tracking inverse[{idx+old_width}]: {tracking_inverse[idx + new_width- old_width]} ')
-                        # print(f'c:{c}')
-                        for k in range(len(c)):
-                            e = c[k]
-                            # print(f'c[k]: {c[k]}')
-                            for l in range(len(e)):
-                                # print(f' before e[l]: {e[l]}')
-                                f = e[l]
-                                for m in range(len(f)):
-
-                                    f[m] = f[m] / y
-                #                 print(f' after e[l]: {e[l]}')
 
                 dw1x = np.array(dw1)
 
