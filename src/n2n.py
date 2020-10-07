@@ -1117,6 +1117,8 @@ class N2N(nn.Module):
                     print(f'drin 2!!; archNum[block]: {archNum[block]}')
                     k += 2*archNum[block]-2*pos
                 # print(f'j for: {j}')
+
+        print(f'Modell: {self}')
         return self
 
 
