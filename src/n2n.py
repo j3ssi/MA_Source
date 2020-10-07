@@ -558,7 +558,7 @@ class N2N(nn.Module):
                                 print("\ni: ", i, " ; ", self.module_list[j])
                                 print("\nX Shape: ", x.shape)
                             j = j + 1
-                            x = self.relu(x)
+                            # x = self.relu(x)
                             i = i + 1
                     firstBlockInStage = False
                     notfirstLayer = True
@@ -1154,7 +1154,7 @@ class N2N(nn.Module):
 
         for index in range(old,len(self.module_list)):
             new_module_list.append(self.module_list[index])
-            print(f'module: {self.module_list[old]}; old: {index}')
+            print(f'module: {self.module_list[index]}; old: {index}')
 
         self.module_list = new_module_list
         print(f'Modell: {self}')
