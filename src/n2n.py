@@ -1021,8 +1021,8 @@ class N2N(nn.Module):
     def deeper(self, pos=1):
         # make each block with plus two layers (conv +batch) deeper
         printDeeper = True
-        j = 1
-        j += pos * 2
+        k = 1
+        k += pos * 2
         notfirstStage = False
         for stage in range(0, self.numOfStages):
             if printDeeper:
@@ -1050,7 +1050,7 @@ class N2N(nn.Module):
                 bn.running_var.fill_(1)
                 self.module_list.insert(j, bn)
                 print(f'bn: {j}')
-                j = j + 1
+                k = k + 1
                 kernel_size = i2
                 stride = 1
                 padding = 1
@@ -1105,17 +1105,17 @@ class N2N(nn.Module):
 
                 archNum[block] += 1
 
-                j += 3
+                k += 3
                 if block == 0 and stage >0:
-                    j += 2
+                    k += 2
                     # print(f'block == len(archNum)')
 
                 if block==0 and stage>0 and pos+2 < archNum[block]:
                     print(f'drin 1!!; archNum[block]: {archNum[block]}')
-                    j += 2 * archNum[block] - 2 * pos
+                    k += 2 * archNum[block] - 2 * pos
                 elif pos + 1 < archNum[block] and not(block ==0 and stage>0):
                     print(f'drin 2!!; archNum[block]: {archNum[block]}')
-                    j += 2*archNum[block]-2*pos
+                    k += 2*archNum[block]-2*pos
                 # print(f'j for: {j}')
         return self
 
