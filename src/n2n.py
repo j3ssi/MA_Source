@@ -1152,12 +1152,15 @@ class N2N(nn.Module):
                     k += 2*archNum[block]-2*pos
                 # print(f'j for: {j}')
 
+            self.archNums[stage]= archNum
+
         for index in range(old,len(self.module_list)):
             new_module_list.append(self.module_list[index])
             print(f'module: {self.module_list[index]}; old: {index}')
 
         self.module_list = new_module_list
         print(f'Modell: {self}')
+
         return self
 
 
