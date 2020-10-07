@@ -1058,7 +1058,8 @@ class N2N(nn.Module):
                 if printDeeper:
                     print("\n\n\tBlock: ", block)
 
-                module = self.module_list[k - 1]
+                if stage == 0:
+                    module = self.module_list[k - 1]
 
                 # 6
                 if stage != 0:
@@ -1066,6 +1067,7 @@ class N2N(nn.Module):
                     new_module_list.append(self.module_list[old])
                     print(f'module: {self.module_list[old]}; old: {old}')
                     old += 1
+                    module = self.module_list[k - 1]
 
 
 
