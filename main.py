@@ -21,7 +21,6 @@ import shutil
 import time
 import random
 
-
 from torchviz import make_dot
 import matplotlib
 import numpy as np
@@ -198,7 +197,6 @@ if args.widthOfAllLayers is not None:
 
 
 def main():
-
     # checkpoint
     if not os.path.isdir(args.checkpoint):
         mkdir_p(args.checkpoint)
@@ -276,7 +274,8 @@ def main():
         logger.set_names(
             ['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.', 'TrainEpochTime(s)',
              'TestEpochTime(s)'])
-        assert args.numOfStages == len(listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
+        assert args.numOfStages == len(
+            listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
         memory = 0
         if len(listOfWidths) > 0:
             model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
@@ -368,8 +367,9 @@ def main():
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
             # append logger file
-            logger.append([optimizer.param_groups[0]["lr"], train_loss, test_loss, train_acc, test_acc, train_epoch_time,
-                           test_epoch_time])
+            logger.append(
+                [optimizer.param_groups[0]["lr"], train_loss, test_loss, train_acc, test_acc, train_epoch_time,
+                 test_epoch_time])
             countB = 0
             for p in model.parameters():
                 countB += p.data.nelement()
@@ -395,7 +395,6 @@ def main():
                 else:
                     optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
                                      weight_decay=args.weight_decay)
-
 
             if args.visual:
                 visualizePruneTrain(model, epoch, args.threshold)
@@ -460,7 +459,7 @@ def main():
             model.widthofLayers[i] *= 2
 
         model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock + 1, False, args.bottleneck,
-                       widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=model.widthofLayers)
+                        widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=model.widthofLayers)
 
         model.cuda()
         # print(model)
@@ -487,7 +486,6 @@ def main():
     print("Test acc1: ", test_acc)
     test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
     print("Test acc2: ", test_acc)
-
 
     print("[INFO] Storing checkpoint...")
     if args.reset:
@@ -569,18 +567,14 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         targets = torch.autograd.Variable(targets)
         outputs = model.forward(inputs)
         loss = criterion(outputs, targets)
-        if printLasso:
-            print(f'Loss: {loss}')
+        if batch_idx == 0 and (epoch == 10):
+            dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
+            if len(model.module_list) < 60:
+                filename = 'model/n2nBefore' + str(epoch) + '_' + str(batch_idx) + '.dot'
+            else:
+                filename = 'model/n2nAfter' + str(epoch) + '_' + str(batch_idx) + '.dot'
 
-            if batch_idx == 0 and (epoch == 10):
-                dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
-                if len(model.module_list)<60:
-                    filename = 'model/n2nBefore' + str(epoch) + '_' + str(batch_idx) + '.dot'
-                else:
-                    filename = 'model/n2nAfter' + str(epoch) + '_' + str(batch_idx) + '.dot'
-
-
-                dot.render(filename=filename)
+            dot.render(filename=filename)
 
             # lasso penalty
         init_batch = batch_idx == 0 and epoch == 1
