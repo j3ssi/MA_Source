@@ -1126,10 +1126,10 @@ class N2N(nn.Module):
                 old += 1
 
                 # 5
-                k += 1
-                new_module_list.append(self.module_list[old])
-                print(f'module: {self.module_list[old]}; old: {old}')
-                old += 1
+                # k += 1
+                # new_module_list.append(self.module_list[old])
+                # print(f'module: {self.module_list[old]}; old: {old}')
+                # old += 1
 
                 if block == 0 and stage >0:
                     # 1
