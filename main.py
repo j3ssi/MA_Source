@@ -491,9 +491,10 @@ def main():
     if args.reset:
         print(f'Reset! ')
         start_epoch = 1
+        args.epochs = 0
     if args.dB:
         save_checkpoint({
-            'epoch': start_epoch,
+            'epoch': start_epoch + args.epochs,
             'memory': memory,
             'batch_size': batch_size,
             'lr': optimizer.param_groups[0]["lr"],
@@ -502,7 +503,7 @@ def main():
             checkpoint=args.checkpoint)
     else:
         save_checkpoint({
-            'epoch': start_epoch,
+            'epoch': args.epochs + start_epoch,
             'lr': optimizer.param_groups[0]["lr"],
             'acc': test_acc,
             'optimizer': optimizer, },
@@ -512,7 +513,7 @@ def main():
     if epoch % args.save_checkpoint == 0:
         if args.dB:
             save_checkpoint({
-                'epoch': start_epoch,
+                'epoch': args.epochs + start_epoch,
                 'memory': memory,
                 'batch_size': batch_size,
                 'lr': optimizer.param_groups[0]["lr"],
@@ -521,7 +522,7 @@ def main():
                 checkpoint=args.checkpoint)
         else:
             save_checkpoint({
-                'epoch': start_epoch,
+                'epoch': args.epochs + start_epoch,
                 'acc': test_acc,
                 'optimizer': optimizer, },
                 checkpoint=args.checkpoint,
