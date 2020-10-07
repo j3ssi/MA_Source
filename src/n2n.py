@@ -1098,7 +1098,8 @@ class N2N(nn.Module):
                 weight = module.weight.clone().detach().cpu().numpy()
                 print(f' Shape: {weight.shape}')
                 deeper_w = np.zeros((i0, i0, i2, i3))
-                torch.nn.init.normal_(deeper_w, mean=0, std=0.5)
+                torch.nn.init.normal_(torch.from_numpy(deeper_w), mean=0, std=0.5)
+                deeper_w = deeper_w.numpy()
                 center_h = ( i0 - 1) // 2
                 center_w = ( i0 - 1) // 2
                 for i in range( i3 ):
