@@ -1091,6 +1091,7 @@ class N2N(nn.Module):
                     new[:, :, i] = tmp
                 err = np.abs(np.sum(ori - new))
                 assert err < 1e-4, 'Verification failed: [ERROR] {}'.format(err)
+                print(f'Deeper: {deeper_w.dtype}')
                 conv.weight.data = torch.from_numpy(deeper_w)
                 # torch.nn.init.zeros_(conv.weight)
                 # # for i in range(module.out_channels):
