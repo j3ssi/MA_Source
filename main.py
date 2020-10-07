@@ -21,6 +21,8 @@ import shutil
 import time
 import random
 
+
+from torchviz import make_dot
 import matplotlib
 import numpy as np
 from torch.nn.utils import clip_grad_norm_
@@ -394,9 +396,9 @@ def main():
                     optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
                                      weight_decay=args.weight_decay)
 
-            else:
-                if args.visual:
-                    visualizePruneTrain(model, epoch, args.threshold)
+
+            if args.visual:
+                visualizePruneTrain(model, epoch, args.threshold)
 
             # if args.fp16:
             #   model, optimizer = amp.initialize(model, optimizer)
@@ -570,10 +572,15 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         if printLasso:
             print(f'Loss: {loss}')
 
-            # if batch_idx == 0 and (epoch % args.sparse_interval == 0):
-            #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
-            #     filename = 'model/PruneTrain' + str(epoch) + '_' + str(batch_idx) + '.dot'
-            #     dot.render(filename=filename)
+            if batch_idx == 0 and (epoch == 10):
+                dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
+                if len(model.module_list)<60:
+                    filename = 'model/n2nBefore' + str(epoch) + '_' + str(batch_idx) + '.dot'
+                else:
+                    filename = 'model/n2nAfter' + str(epoch) + '_' + str(batch_idx) + '.dot'
+
+
+                dot.render(filename=filename)
 
             # lasso penalty
         init_batch = batch_idx == 0 and epoch == 1
@@ -723,6 +730,7 @@ def adjust_learning_rate(optimizer, epoch, change_lr):
             exp = int((epoch - 1) / args.schedule_exp)
             lr *= (args.gamma ** exp)
     return lr
+
 
 def visualizePruneTrain(model, epoch, threshold):
     altList = []

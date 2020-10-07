@@ -29,11 +29,11 @@ python3 main.py -j 6 --checkpoint ./output/experimente4/net2netdeeperL1_$1 --epo
 sleep 5
 
 echo "j: 176 bis 180"
-python3 main.py -j 6 --visual --reset --checkpoint ./output/experimente4/net2netdeeperL1_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 1 -n 5,5,5 -dlr --n2n --deeper --sparse_interval 0 --widthOfAllLayers 16,32,64  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 180 --pathToModell ./output/experimente4/net2netdeeperL1_$1/model.nn --resume ./output/experimente4/net2netdeeperL1_$1/checkpoint.pth.tar
+python3 main.py -j 6 --reset --checkpoint ./output/experimente4/net2netdeeperL1_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 1 -n 5,5,5 -dlr --n2n --deeper --sparse_interval 0 --widthOfAllLayers 16,32,64  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 180 --pathToModell ./output/experimente4/net2netdeeperL1_$1/model.nn --resume ./output/experimente4/net2netdeeperL1_$1/checkpoint.pth.tar
 
 
 echo "j: 181 bis 185"
-python3 main.py -j 6 -- visual --checkpoint ./output/experimente4/net2netdeeperL1_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 1 -n 5,5,5 -dlr --sparse_interval 0 --widthOfAllLayers 16,32,64  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 5 --pathToModell ./output/experimente4/net2netdeeperL1_$1/model.nn  --resume ./output/experimente4/net2netdeeperL1_$1/checkpoint.pth.tar
+python3 main.py -j 6 --checkpoint ./output/experimente4/net2netdeeperL1_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 1 -n 5,5,5 -dlr --sparse_interval 0 --widthOfAllLayers 16,32,64  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 5 --pathToModell ./output/experimente4/net2netdeeperL1_$1/model.nn  --resume ./output/experimente4/net2netdeeperL1_$1/checkpoint.pth.tar
 sleep 5
 
 
