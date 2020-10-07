@@ -1028,7 +1028,7 @@ class N2N(nn.Module):
             if printDeeper:
                 print("\n\nStage: ", stage)
             archNum = self.archNums[stage]
-            module = self.module_list[j-1]
+            module = self.module_list[k-1]
             i0 = module.weight.size(0)
             i1 = module.weight.size(1)
             i2 = module.weight.size(2)
@@ -1037,7 +1037,7 @@ class N2N(nn.Module):
                 print(f'size:{i0}, {i1}, {i2}, {i3}')
 
             for block in range(0, len(archNum)):
-                module = self.module_list[j-1]
+                module = self.module_list[k-1]
 
                 if printDeeper:
                     print("\n\n\tBlock: ", block)
