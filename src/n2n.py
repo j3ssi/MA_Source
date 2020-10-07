@@ -1020,9 +1020,15 @@ class N2N(nn.Module):
 
     def deeper(self, pos=1):
         # make each block with plus two layers (conv +batch) deeper
+        new_module_list = nn.ModuleList()
         printDeeper = True
         k = 1
+        new_module_list.append(self.module_list[0])
+        new_module_list.append(self.module_list[1])
+        for index in range(1, k+pos*2):
+            print(f'Index: {index}')
         k += pos * 2
+        # k= k+ 2
         notfirstStage = False
         for stage in range(0, self.numOfStages):
             if printDeeper:
