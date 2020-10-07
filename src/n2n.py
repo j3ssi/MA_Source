@@ -1116,7 +1116,7 @@ class N2N(nn.Module):
                 #     weight.div_(norm)
                 #     module.weight.data = weight
                 new_module_list.append(conv)
-                print(f'module: {conv}; j_ {k}')
+                print(f'module: {conv}; j= {k+1}')
 
                 archNum[block] += 1
                 # 4
