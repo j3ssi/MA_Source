@@ -503,7 +503,7 @@ class N2N(nn.Module):
                             i = i + 1
 
                             # relu
-                            x = self.relu(x)
+                            # x = self.relu(x)
                         elif ((i + 1) % layerInThisBlock == 0) and firstBlockInStage and notfirstLayer:
                             # conv
                             _x = self.module_list[j](_x)
@@ -542,7 +542,7 @@ class N2N(nn.Module):
                             i = i + 1
 
                             _x = _x + x
-                            _x = self.relu(_x)
+                            # _x = self.relu(_x)
 
                         else:
                             # conv
@@ -1066,7 +1066,6 @@ class N2N(nn.Module):
                     tmp = np.zeros(( i0, i0, i3))
                     tmp[center_h, center_w, i] = 1
                     deeper_w[:, :, :, i] = tmp
-                deeper_b = np.zeros( i3 )
                 # if verification:
                 inputs = np.random.rand( i0 * 4, i0 * 4, i2 )
                 ori = np.zeros(( i0 * 4, i0 * 4, i3 ))
