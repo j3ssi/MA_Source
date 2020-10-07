@@ -1092,7 +1092,9 @@ class N2N(nn.Module):
                 err = np.abs(np.sum(ori - new))
                 assert err < 1e-4, 'Verification failed: [ERROR] {}'.format(err)
                 print(f'Deeper: {deeper_w.dtype}')
+                deeper_w = deeper_w.astype('float32')
                 conv.weight.data = torch.from_numpy(deeper_w)
+
                 # torch.nn.init.zeros_(conv.weight)
                 # # for i in range(module.out_channels):
                 # #     weight = module.weight.data
@@ -1119,7 +1121,7 @@ class N2N(nn.Module):
                     k += 2*archNum[block]-2*pos
                 # print(f'j for: {j}')
 
-        print(f'Modell: {self}')
+        # print(f'Modell: {self}')
         return self
 
 
