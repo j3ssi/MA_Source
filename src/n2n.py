@@ -1023,11 +1023,21 @@ class N2N(nn.Module):
         new_module_list = nn.ModuleList()
         printDeeper = True
         k = 1
-        new_module_list.append(self.module_list[0])
+        old = 0
+        new_module_list.append(self.module_list[old])
+        print(f'module: {self.module_list[0]}; old ={old}')
+        old += 1
+
         new_module_list.append(self.module_list[1])
+        print(f'module: {self.module_list[1]}; old ={old}')
+        old += 1
+
         for index in range(2, k+pos*2):
             print(f'Index: {index}')
-            new_module_list.append(self.module_list[index])
+            new_module_list.append(self.module_list[old])
+            print(f'module: {self.module_list[0]}; old: {old}')
+            old += 1
+
         k += pos * 2
         # k= k+ 2
         notfirstStage = False
@@ -1056,6 +1066,8 @@ class N2N(nn.Module):
                 bn.running_mean.fill_(0)
                 bn.running_var.fill_(1)
                 new_module_list.append(bn)
+                print(f'module: {bn}')
+
                 print(f'bn: {k}')
                 k = k + 1
                 kernel_size = i2
@@ -1074,29 +1086,6 @@ class N2N(nn.Module):
                     tmp[center_h, center_w, i] = 1
                     deeper_w[:, :, :, i] = tmp
                 # if verification:
-                inputs = np.random.rand( i0 * 4, i0 * 4, i2 )
-                ori = np.zeros(( i0 * 4, i0 * 4, i3 ))
-                new = np.zeros(( i0 * 4, i0 * 4, i3 ))
-                for i in range( i3 ):
-                    for j in range( i2 ):
-                        if j == 0:
-                            a = inputs[:, :, j]
-                            b = weight[:, :, j, i]
-                            tmp = scipy.signal.convolve2d(a, b, mode='same')
-                        else:
-                            a = inputs[:, :, j]
-                            b = weight[:, :, j, i]
-                            tmp += scipy.signal.convolve2d(a, b, mode='same')
-                    ori[:, :, i] = tmp
-                for i in range(deeper_w.shape[3]):
-                    for j in range(ori.shape[2]):
-                        if j == 0:
-                            tmp = scipy.signal.convolve2d(ori[:, :, j], deeper_w[:, :, j, i], mode='same')
-                        else:
-                            tmp += scipy.signal.convolve2d(ori[:, :, j], deeper_w[:, :, j, i], mode='same')
-                    new[:, :, i] = tmp
-                err = np.abs(np.sum(ori - new))
-                assert err < 1e-4, 'Verification failed: [ERROR] {}'.format(err)
                 print(f'Deeper: {deeper_w.dtype}')
                 deeper_w = deeper_w.astype('float32')
                 conv.weight.data = torch.from_numpy(deeper_w)
@@ -1107,23 +1096,38 @@ class N2N(nn.Module):
                 #     norm = weight.select(0, i).norm()
                 #     weight.div_(norm)
                 #     module.weight.data = weight
-                # for i in range(0, conv.out_channels):
-                #     conv.weight.data.narrow(0, i, 1).narrow(1, i, 1).narrow(2, 2, 1).narrow(3, 2, 1).fill_(1)
                 new_module_list.append(conv)
-                print(f'conv: {k}')
+                print(f'module: {conv}')
 
                 archNum[block] += 1
                 # 4
                 k += 1
-                new_module_list.append(self.module_list[k])
+                new_module_list.append(self.module_list[old])
+                print(f'module: {self.module_list[old]}; old: {old}')
+
                 # 5
+                k += 1
+                new_module_list.append(self.module_list[old])
+                print(f'module: {self.module_list[old]}; old: {old}')
+                old += 1
+
+                # 6
+                k += 1
+                new_module_list.append(self.module_list[old])
+                print(f'module: {self.module_list[old]}; old: {old}')
+                old += 1
                 if block == 0 and stage >0:
                     # 1
                     k += 1
-                    new_module_list.append(self.module_list[k])
+                    new_module_list.append(self.module_list[old])
+                    print(f'module: {self.module_list[old]}; old: {old}')
+                    old += 1
+
                     # 2
                     k += 1
-                    new_module_list.append(self.module_list[k])
+                    new_module_list.append(self.module_list[old])
+                    print(f'module: {self.module_list[old]}; old: {old}')
+                    old += 1
 
                 if block==0 and stage>0 and pos+2 < archNum[block]:
                     print(f'drin 1!!; archNum[block]: {archNum[block]}')
@@ -1133,6 +1137,9 @@ class N2N(nn.Module):
                     k += 2*archNum[block]-2*pos
                 # print(f'j for: {j}')
 
+        for index in range(old,len(self.module_list)):
+            new_module_list.append(self.module_list[index])
+            print(f'module: {self.module_list[old]}; old: {index}')
 
         self.module_list = new_module_list
         print(f'Modell: {self}')
