@@ -1073,9 +1073,13 @@ class N2N(nn.Module):
                 for i in range( i3 ):
                     for j in range( i2 ):
                         if j == 0:
-                            tmp = scipy.signal.convolve2d(inputs[:, :, j], weight[:, :, j, i], mode='same')
+                            a = inputs[:, :, j]
+                            b = weight[:, :, j, i]
+                            tmp = scipy.signal.convolve2d(a, b, mode='same')
                         else:
-                            tmp += scipy.signal.convolve2d(inputs[:, :, j], weight[:, :, j, i], mode='same')
+                            a = inputs[:, :, j]
+                            b = weight[:, :, j, i]
+                            tmp += scipy.signal.convolve2d(a, b, mode='same')
                     ori[:, :, i] = tmp
                 for i in range(deeper_w.shape[3]):
                     for j in range(ori.shape[2]):
