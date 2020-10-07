@@ -1135,7 +1135,7 @@ class N2N(nn.Module):
 
 
         self.module_list = new_module_list
-        # print(f'Modell: {self}')
+        print(f'Modell: {self}')
         return self
 
 
