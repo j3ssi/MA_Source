@@ -1055,16 +1055,18 @@ class N2N(nn.Module):
 
             for block in range(0, len(archNum)):
 
+                if printDeeper:
+                    print("\n\n\tBlock: ", block)
+
                 # 6
-                k += 1
-                new_module_list.append(self.module_list[old])
-                print(f'module: {self.module_list[old]}; old: {old}')
-                old += 1
+                if stage != 0:
+                    k += 1
+                    new_module_list.append(self.module_list[old])
+                    print(f'module: {self.module_list[old]}; old: {old}')
+                    old += 1
 
                 module = self.module_list[k-1]
 
-                if printDeeper:
-                    print("\n\n\tBlock: ", block)
 
                 print(f'j: {k}')
                 bn = nn.BatchNorm2d(i0)
