@@ -1100,7 +1100,7 @@ class N2N(nn.Module):
                 # #     module.weight.data = weight
                 # for i in range(0, conv.out_channels):
                 #     conv.weight.data.narrow(0, i, 1).narrow(1, i, 1).narrow(2, 2, 1).narrow(3, 2, 1).fill_(1)
-                self.module_list.insert(j, conv)
+                self.module_list.insert(k, conv)
                 print(f'conv: {k}')
 
                 archNum[block] += 1
