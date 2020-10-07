@@ -1048,8 +1048,8 @@ class N2N(nn.Module):
                 torch.nn.init.zeros_(bn.bias)
                 bn.running_mean.fill_(0)
                 bn.running_var.fill_(1)
-                self.module_list.insert(j, bn)
-                print(f'bn: {j}')
+                self.module_list.insert(k, bn)
+                print(f'bn: {k}')
                 k = k + 1
                 kernel_size = i2
                 stride = 1
