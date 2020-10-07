@@ -1042,7 +1042,7 @@ class N2N(nn.Module):
                 if printDeeper:
                     print("\n\n\tBlock: ", block)
 
-                print(f'j: {j}')
+                print(f'j: {k}')
                 bn = nn.BatchNorm2d(i0)
                 torch.nn.init.ones_(bn.weight)
                 torch.nn.init.zeros_(bn.bias)
