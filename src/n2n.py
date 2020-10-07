@@ -1,4 +1,5 @@
 import copy
+import scipy.signal
 
 import gitignore.Net2Net as n
 import numpy
@@ -1057,14 +1058,45 @@ class N2N(nn.Module):
 
                 conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,
                                   bias=bias)
-                torch.nn.init.zeros_(conv.weight)
-                # for i in range(module.out_channels):
-                #     weight = module.weight.data
-                #     norm = weight.select(0, i).norm()
-                #     weight.div_(norm)
-                #     module.weight.data = weight
-                for i in range(0, conv.out_channels):
-                    conv.weight.data.narrow(0, i, 1).narrow(1, i, 1).narrow(2, 2, 1).narrow(3, 2, 1).fill_(1)
+
+                deeper_w = np.zeros((i0, i0, i2, i3))
+                center_h = ( i0 - 1) // 2
+                center_w = ( i0 - 1) // 2
+                for i in range( i3 ):
+                    tmp = np.zeros(( i0, i0, i3))
+                    tmp[center_h, center_w, i] = 1
+                    deeper_w[:, :, :, i] = tmp
+                deeper_b = np.zeros( i3 )
+                # if verification:
+                inputs = np.random.rand( i0 * 4, i0 * 4, i2 )
+                ori = np.zeros(( i0 * 4, i0 * 4, i3 ))
+                new = np.zeros(( i0 * 4, i0 * 4, i3 ))
+                for i in range( i3 ):
+                    for j in range( i2 ):
+                        if j == 0:
+                            tmp = scipy.signal.convolve2d(inputs[:, :, j], module.weight[:, :, j, i], mode='same')
+                        else:
+                            tmp += scipy.signal.convolve2d(inputs[:, :, j], module.weight[:, :, j, i], mode='same')
+                    ori[:, :, i] = tmp
+                for i in range(deeper_w.shape[3]):
+                    for j in range(ori.shape[2]):
+                        if j == 0:
+                            tmp = scipy.signal.convolve2d(ori[:, :, j], deeper_w[:, :, j, i], mode='same')
+                        else:
+                            tmp += scipy.signal.convolve2d(ori[:, :, j], deeper_w[:, :, j, i], mode='same')
+                    new[:, :, i] = tmp
+                err = np.abs(np.sum(ori - new))
+                assert err < self._error_th, 'Verification failed: [ERROR] {}'.format(err)
+                conv.weight = deeper_w
+
+                # torch.nn.init.zeros_(conv.weight)
+                # # for i in range(module.out_channels):
+                # #     weight = module.weight.data
+                # #     norm = weight.select(0, i).norm()
+                # #     weight.div_(norm)
+                # #     module.weight.data = weight
+                # for i in range(0, conv.out_channels):
+                #     conv.weight.data.narrow(0, i, 1).narrow(1, i, 1).narrow(2, 2, 1).narrow(3, 2, 1).fill_(1)
                 self.module_list.insert(j, conv)
                 print(f'conv: {j}')
 
