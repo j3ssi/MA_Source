@@ -1056,8 +1056,7 @@ class N2N(nn.Module):
                 padding = 1
                 bias = module.bias if module.bias is not None else False
 
-                conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,
-                                  bias=bias)
+                conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,bias= None)
                 weight = module.weight.clone().detach().cpu().numpy()
                 deeper_w = np.zeros((i0, i0, i2, i3))
                 center_h = ( i0 - 1) // 2
