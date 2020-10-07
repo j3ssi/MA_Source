@@ -1054,6 +1054,18 @@ class N2N(nn.Module):
                 print(f'size:{i0}, {i1}, {i2}, {i3}')
 
             for block in range(0, len(archNum)):
+                # 5
+                k += 1
+                new_module_list.append(self.module_list[old])
+                print(f'module: {self.module_list[old]}; old: {old}')
+                old += 1
+
+                # 6
+                k += 1
+                new_module_list.append(self.module_list[old])
+                print(f'module: {self.module_list[old]}; old: {old}')
+                old += 1
+
                 module = self.module_list[k-1]
 
                 if printDeeper:
@@ -1101,17 +1113,6 @@ class N2N(nn.Module):
 
                 archNum[block] += 1
                 # 4
-                k += 1
-                new_module_list.append(self.module_list[old])
-                print(f'module: {self.module_list[old]}; old: {old}')
-                old += 1
-                # 5
-                k += 1
-                new_module_list.append(self.module_list[old])
-                print(f'module: {self.module_list[old]}; old: {old}')
-                old += 1
-
-                # 6
                 k += 1
                 new_module_list.append(self.module_list[old])
                 print(f'module: {self.module_list[old]}; old: {old}')
