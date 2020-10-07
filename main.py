@@ -443,7 +443,7 @@ def main():
 
         model.cuda()
         criterion = nn.CrossEntropyLoss()
-        optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=args.momentum)
+        optimizer = optim.SGD(model.parameters(), lr=0.1, momentum=args.momentum)
         scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
         print(model)
 
