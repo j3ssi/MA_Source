@@ -1058,6 +1058,7 @@ class N2N(nn.Module):
 
                 conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,bias= None)
                 weight = module.weight.clone().detach().cpu().numpy()
+                print(f' Size: {weight.size()}')
                 deeper_w = np.zeros((i0, i0, i2, i3))
                 center_h = ( i0 - 1) // 2
                 center_w = ( i0 - 1) // 2
