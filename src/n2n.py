@@ -1095,19 +1095,20 @@ class N2N(nn.Module):
                 bias = module.bias if module.bias is not None else False
 
                 conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,bias= None)
-                #weight = module.weight.clone().detach().cpu().numpy()
+                weight = module.weight.clone().detach().cpu().numpy()
                 print(f' Shape: {weight.shape}')
-                #torch.nn.init.xavier_normal(deeper_w ) # = np.zeros((i0, i0, i2, i3))
-                # center_h = ( i0 - 1) // 2
-                # center_w = ( i0 - 1) // 2
-                # for i in range( i3 ):
-                #     tmp = np.zeros(( i0, i0, i3))
-                #     tmp[center_h, center_w, i] = 1
-                #     deeper_w[:, :, :, i] = tmp
+                deeper_w = np.zeros((i0, i0, i2, i3))
+                torch.nn.init.normal(deeper_w, mean=0, std=0.5)
+                center_h = ( i0 - 1) // 2
+                center_w = ( i0 - 1) // 2
+                for i in range( i3 ):
+                    tmp = np.zeros(( i0, i0, i3))
+                    tmp[center_h, center_w, i] = 1
+                    deeper_w[:, :, :, i] = tmp
                 # # if verification:
-                # print(f'Deeper: {deeper_w.dtype}')
-                # deeper_w = deeper_w.astype('float32')
-                # conv.weight.data = torch.from_numpy(deeper_w)
+                print(f'Deeper: {deeper_w.dtype}')
+                deeper_w = deeper_w.astype('float32')
+                conv.weight.data = torch.from_numpy(deeper_w)
 
                 # torch.nn.init.zeros_(conv.weight)
                 # for i in range(module.out_channels):
