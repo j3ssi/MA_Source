@@ -1064,6 +1064,7 @@ class N2N(nn.Module):
 
                 if printDeeper:
                     print("\n\n\tBlock: ", block)
+                    print(f'Len: {len(new_module_list)}')
 
                 if stage == 0 and block ==0:
                     module = self.module_list[k - 1]
