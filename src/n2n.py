@@ -1046,7 +1046,10 @@ class N2N(nn.Module):
                 print("\n\nStage: ", stage)
             archNum = self.archNums[stage]
             if stage > 0:
-                k=k+1
+                k=k+2
+                new_module_list.append(self.module_list[old])
+                print(f'module: {self.module_list[old]}; old: {old}')
+                old += 1
                 new_module_list.append(self.module_list[old])
                 print(f'module: {self.module_list[old]}; old: {old}')
                 old += 1
