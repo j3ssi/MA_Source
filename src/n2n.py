@@ -1096,11 +1096,11 @@ class N2N(nn.Module):
                 conv.weight.data = torch.from_numpy(deeper_w)
 
                 # torch.nn.init.zeros_(conv.weight)
-                # # for i in range(module.out_channels):
-                # #     weight = module.weight.data
-                # #     norm = weight.select(0, i).norm()
-                # #     weight.div_(norm)
-                # #     module.weight.data = weight
+                for i in range(module.out_channels):
+                    weight = module.weight.data
+                    norm = weight.select(0, i).norm()
+                    weight.div_(norm)
+                    module.weight.data = weight
                 # for i in range(0, conv.out_channels):
                 #     conv.weight.data.narrow(0, i, 1).narrow(1, i, 1).narrow(2, 2, 1).narrow(3, 2, 1).fill_(1)
                 self.module_list.insert(k, conv)
