@@ -1160,7 +1160,7 @@ class N2N(nn.Module):
 
         self.module_list = new_module_list
         print(f'Modell: {self}')
-        pint(f'ArchNums: {self.archNums}')
+        print(f'ArchNums: {self.archNums}')
         return self
 
 
