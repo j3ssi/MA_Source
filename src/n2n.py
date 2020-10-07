@@ -1058,11 +1058,11 @@ class N2N(nn.Module):
                 if printDeeper:
                     print("\n\n\tBlock: ", block)
 
-                if stage == 0:
+                if stage == 0 and block ==0:
                     module = self.module_list[k - 1]
 
                 # 6
-                if stage != 0:
+                if stage != 0 or block>0:
                     k += 1
                     new_module_list.append(self.module_list[old])
                     print(f'module: {self.module_list[old]}; old: {old}')
@@ -1109,7 +1109,7 @@ class N2N(nn.Module):
                 #     weight.div_(norm)
                 #     module.weight.data = weight
                 new_module_list.append(conv)
-                print(f'module: {conv}')
+                print(f'module: {conv}; j_ {k}')
 
                 archNum[block] += 1
                 # 4
