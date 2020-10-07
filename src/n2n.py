@@ -542,7 +542,7 @@ class N2N(nn.Module):
                             i = i + 1
 
                             _x = _x + x
-                            # _x = self.relu(_x)
+                            _x = self.relu(_x)
 
                         else:
                             # conv
