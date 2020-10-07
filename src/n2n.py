@@ -1086,7 +1086,7 @@ class N2N(nn.Module):
                             tmp += scipy.signal.convolve2d(ori[:, :, j], deeper_w[:, :, j, i], mode='same')
                     new[:, :, i] = tmp
                 err = np.abs(np.sum(ori - new))
-                assert err < self._error_th, 'Verification failed: [ERROR] {}'.format(err)
+                assert err < 1e-4, 'Verification failed: [ERROR] {}'.format(err)
                 conv.weight = deeper_w
 
                 # torch.nn.init.zeros_(conv.weight)
