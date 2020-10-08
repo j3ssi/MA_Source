@@ -1106,7 +1106,7 @@ class N2N(nn.Module):
                 for i in range( i3 ):
                     tmp = np.zeros(( i0, i0, i3))
                     tmp[center_h, center_w, i] = 1
-                    deeper_w[:, :, 2, 2] += tmp
+                    deeper_w[:, :, :, i] += tmp
                 # # if verification:
                 print(f'Deeper: {deeper_w.dtype}')
                 deeper_w = deeper_w.astype('float32')
