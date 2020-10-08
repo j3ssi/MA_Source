@@ -1080,7 +1080,7 @@ class N2N(nn.Module):
 
 
                 print(f'j: {k}')
-                bn = nn.BatchNorm2d(i0)
+                bn = nn.BatchNorm2d(i0, eps=0)
                 torch.nn.init.ones_(bn.weight)
                 torch.nn.init.zeros_(bn.bias)
                 bn.running_mean.fill_(0)
@@ -1098,26 +1098,24 @@ class N2N(nn.Module):
                 weight = module.weight.clone().detach().cpu().numpy()
                 print(f' Shape: {weight.shape}')
                 deeper_w = np.zeros((i0, i0, i2, i3))
-                deeper_w = torch.from_numpy(deeper_w)
-                torch.nn.init.normal_(deeper_w, mean=0, std=0.5)
+                # deeper_w = torch.from_numpy(deeper_w)
+                # torch.nn.init.normal_(deeper_w, mean=0, std=0.5)
                 deeper_w = deeper_w.numpy()
                 center_h = ( i0 - 1) // 2
                 center_w = ( i0 - 1) // 2
                 for i in range( i3 ):
                     tmp = np.zeros(( i0, i0, i3))
                     tmp[center_h, center_w, i] = 1
-                    deeper_w[:, :, :, i] += tmp
-                # # if verification:
-                print(f'Deeper: {deeper_w.dtype}')
+                    deeper_w[:, :, :, i] = tmp
+
                 deeper_w = deeper_w.astype('float32')
                 conv.weight.data = torch.from_numpy(deeper_w)
 
-                # torch.nn.init.zeros_(conv.weight)
-                # for i in range(module.out_channels):
-                #     weight = module.weight.data
-                #     norm = weight.select(0, i).norm()
-                #     weight.div_(norm)
-                #     module.weight.data = weight
+                for i in range(module.out_channels):
+                    weight = module.weight.data
+                    norm = weight.select(0, i).norm()
+                    weight.div_(norm)
+                    module.weight.data = weight
                 new_module_list.append(conv)
                 print(f'module: {conv}; j= {k+1}')
 
