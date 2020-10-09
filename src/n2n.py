@@ -759,7 +759,7 @@ class N2N(nn.Module):
         newModule_list.append(self.module_list[1])
         blockComp = False
         for i in range(len(self.module_list)):
-            if i>2 and not blockComp:
+            if i>2 and blockComp:
                 continue
 
             if isinstance(self.module_list[i], nn.Sequential):
