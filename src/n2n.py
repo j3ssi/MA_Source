@@ -806,10 +806,10 @@ class N2N(nn.Module):
                 else:
                     print(f'Module {self.module_list[i]}; i: {i}')
                     module = self.module_list[i]
-                    i0 = module.weight.size(0)
-                    i1 = module.weight.size(1)
-                    i2 = module.weight.size(2)
-                    i3 = module.weight.size(3)
+                    i0 = module[i].weight.size(0)
+                    i1 = module[i].weight.size(1)
+                    i2 = module[i].weight.size(2)
+                    i3 = module[i].weight.size(3)
                     bn = nn.BatchNorm2d(i0, eps=0)
                     torch.nn.init.ones_(bn.weight)
                     torch.nn.init.zeros_(bn.bias)
