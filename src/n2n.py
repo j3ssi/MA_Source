@@ -279,6 +279,7 @@ class N2N(nn.Module):
                     j += 1
                     seq = self.module_list[j]
                     _x = seq(_x)
+                    j += 1
                 else:
                     x=seq(_x)
                 _x = x + _x
