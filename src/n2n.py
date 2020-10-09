@@ -815,9 +815,10 @@ class N2N(nn.Module):
 
                 print(f'seq: {seq}')
                 newModule_list.append( nn.Sequential(*seq))
-                print(f'danach: {self.module_list[i]}')
+                print(f'danach: {newModule_list[i]}')
                 if ( i - 2 ) % 5 == 0 and ( i - 2 ) // 5 > 0:
-                    newModule_list.append(self.module_list[i])
+                    newModule_list.append(self.module_list[i +1])
+                    i += 1
                 stage = ( i - 2 ) // 5
                 block = ( i - 2 ) % 5
                 print(f'Stage: {stage}; Block: {block}')
