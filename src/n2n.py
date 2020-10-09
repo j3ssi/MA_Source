@@ -774,16 +774,15 @@ class N2N(nn.Module):
 
                 for j in range(len(module) + 2):
                     if j == 2 * pos - 1:
-                        print(f'Module {self.module_list[i]}; i: {i}')
+                        # print(f'Module {self.module_list[i]}; i: {i}')
                         bn = nn.BatchNorm2d(i0, eps=0)
                         torch.nn.init.ones_(bn.weight)
                         torch.nn.init.zeros_(bn.bias)
                         bn.running_mean.fill_(0)
                         bn.running_var.fill_(1)
                         seq.append(bn)
-                        print(f'bn: {bn}')
+                        # print(f'bn: {bn}')
                     if j == 2 * pos:
-
                         kernel_size = i2
                         stride = 1
                         padding = 1
@@ -808,12 +807,12 @@ class N2N(nn.Module):
                             weight.div_(norm)
                             m.weight.data = weight
                         seq.append(conv)
-                        print(f'module: {conv}; j= { 2 * pos +1 }')
+                        # print(f'module: {conv}; j= { 2 * pos +1 }')
                     elif j>2 * pos:
-                        print(f'module: {module[j - 2]}; j= {j + 2}')
+                        # print(f'module: {module[j - 2]}; j= {j + 2}')
                         seq.append(module[j - 2])
                     elif j < 2 * pos -1:
-                        print(f'module: {module[j]}; j= {j}')
+                        # print(f'module: {module[j]}; j= {j}')
                         seq.append(module[j])
 
                 print(f'seq: {seq}')
