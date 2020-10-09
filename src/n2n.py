@@ -820,6 +820,9 @@ class N2N(nn.Module):
                 # print(f'danach: {newModule_list[i]}')
                 print(f'i: {i}')
                 l = i
+                if blockComp:
+                    block = ( i + 2 ) % 5
+
                 if ( i - 2 ) % 5 == 0 and ( i - 2 ) // 5 > 0:
                     newModule_list.append(self.module_list[i +1])
                     m =( ( i - 2 ) // 5 ) - 1
@@ -827,8 +830,6 @@ class N2N(nn.Module):
                     blockComp = True
                 block = ( i - 2 ) % 5
                 stage = ( l - 2 ) // 5
-                if blockComp:
-                    block = ( i + 2 ) % 5
 
                 if stage > 0 and block == 4:
                     blockComp = False
