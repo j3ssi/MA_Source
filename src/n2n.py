@@ -292,9 +292,9 @@ class N2N(nn.Module):
                     j += 1
                 else:
                     x=seq(_x)
+                    j += 1
                 _x = x + _x
                 _x = self.relu(_x)
-                j += 1
         # except RuntimeError:
         #     print(f'Except')
         #     print("\nJ: ", j, " ; ", self.module_list[j])
