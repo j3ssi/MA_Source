@@ -821,7 +821,7 @@ class N2N(nn.Module):
                 newModule_list.append(self.module_list[i])
             elif isinstance(self.module_list[i], nn.Linear):
                 newModule_list.append(self.module_list[i])
-
+        self.module_list = newModule_list
         print(f'Self: {self}')
         # for index in range(old,len(self.module_list)):
         #     new_module_list.append(self.module_list[index])
@@ -836,7 +836,7 @@ class N2N(nn.Module):
 def compare(layer, oddLayer):
     i1 = int(layer.split('.')[1].split('v')[1])
     i2 = int(oddLayer.split('.')[1].split('v')[1])
-    if (i2 + 2 == i1):
+    if i2 + 2 == i1:
         return True
     else:
         return False
