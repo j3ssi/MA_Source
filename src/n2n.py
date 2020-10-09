@@ -757,15 +757,16 @@ class N2N(nn.Module):
 
 
         for i in range(len(self.module_list)):
-            seq = nn.Sequential
-            module = self.module_list[i]
-            print(f'module[0]: {module[0]}')
-            i0 = module[0].weight.size(0)
-            i1 = module[0].weight.size(1)
-            i2 = module[0].weight.size(2)
-            i3 = module[0].weight.size(3)
 
             if isinstance(self.module_list[i], nn.Sequential):
+                seq = nn.Sequential
+                module = self.module_list[i]
+                print(f'module[0]: {module[0]}')
+                i0 = module[0].weight.size(0)
+                i1 = module[0].weight.size(1)
+                i2 = module[0].weight.size(2)
+                i3 = module[0].weight.size(3)
+
                 for j in range(len(module) + 2):
                     if j == 2 * pos:
                         print(f'Module {self.module_list[i]}; i: {i}')
