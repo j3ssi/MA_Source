@@ -60,9 +60,8 @@ class N2N(nn.Module):
             bn1 = nn.BatchNorm2d(self.widthofFirstLayer)
             self.module_list.append(bn1)
             # print(f'ohne Bottleneck!')
-            firstLayer = True
+            firstBlockInStage = False
             for stage in range(0, numOfStages):
-                firstBlockInStage = True
                 if self.widthofLayers is None:
                     sizeOfLayer = pow(2, stage)
                 else:
@@ -76,7 +75,7 @@ class N2N(nn.Module):
 
                     while i < self.archNums[stage][block]:
                         # print(f'i : {i}')
-                        if firstBlockInStage and not firstLayer and i == 0:
+                        if firstBlockInStage and i == 0:
                             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                                  bias=False,
                                                  stride=2)
@@ -85,7 +84,7 @@ class N2N(nn.Module):
                             layer.append(bn)
                             i = i + 1
 
-                        elif firstBlockInStage and not firstLayer and (i + 1) % self.archNums[stage][block] == 0:
+                        elif firstBlockInStage and (i + 1) % self.archNums[stage][block] == 0:
                             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                                  bias=False,
                                                  stride=2)
@@ -95,7 +94,7 @@ class N2N(nn.Module):
                             i = i + 1
                             firstBlockInStage = False
 
-                        elif firstBlockInStage and not firstLayer:
+                        elif firstBlockInStage:
                             conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1,
                                              bias=False,
                                              stride=1)
@@ -122,7 +121,9 @@ class N2N(nn.Module):
                     layer2=[]
                     # 18
 
-                # print("\n self sizeofFC: ",self.sizeOfFC)
+                firstBlockInStage = True
+
+            # print("\n self sizeofFC: ",self.sizeOfFC)
             avgpool = nn.AdaptiveAvgPool2d((1, 1))
             self.module_list.append(avgpool)
             # 19
