@@ -783,7 +783,7 @@ class N2N(nn.Module):
                         stride = 1
                         padding = 1
                         conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
-                        m = module[2 * pos - 1]
+                        m = module[2 * pos ]
                         deeper_w = np.zeros((i0, i0, i2, i3))
                         deeper_w = torch.from_numpy(deeper_w)
                         torch.nn.init.normal_(deeper_w, mean=0, std=0.5)
