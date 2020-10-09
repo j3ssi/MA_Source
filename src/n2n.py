@@ -757,95 +757,55 @@ class N2N(nn.Module):
 
 
         for i in range(len(self.module_list)):
+            seq = nn.Sequential
+            module = self.module_list[1]
+            i0 = module[0].weight.size(0)
+            i1 = module[0].weight.size(1)
+            i2 = module[0].weight.size(2)
+            i3 = module[0].weight.size(3)
+
             if isinstance(self.module_list[i], nn.Sequential):
+                for j in range(len(module) + 2):
+                    if j == 2 * pos:
+                        print(f'Module {self.module_list[i]}; i: {i}')
+                        bn = nn.BatchNorm2d(i0, eps=0)
+                        torch.nn.init.ones_(bn.weight)
+                        torch.nn.init.zeros_(bn.bias)
+                        bn.running_mean.fill_(0)
+                        bn.running_var.fill_(1)
+                        seq.append(bn)
+                        print(f'bn: {bn}')
+                    if j == 2 * pos + 1:
+                        kernel_size = i2
+                        stride = 1
+                        padding = 1
+                        conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
+                        m = module[2 * pos - 2]
+                        deeper_w = np.zeros((i0, i0, i2, i3))
+                        deeper_w = torch.from_numpy(deeper_w)
+                        torch.nn.init.normal_(deeper_w, mean=0, std=0.5)
+                        deeper_w = deeper_w.numpy()
+                        center_h = ( i0 - 1) // 2
+                        center_w = ( i0 - 1) // 2
+                        for i in range( i3 ):
+                            tmp = np.zeros(( i0, i0, i3))
+                            tmp[center_h, center_w, i] = 1
+                            deeper_w[:, :, :, i] = tmp
+                            deeper_w = deeper_w.astype('float32')
+                        conv.weight.data = torch.from_numpy(deeper_w)
 
-                if (i-2) %5 ==0 and i>2:
-                    print(f'Module {self.module_list[i]}; i: {i}')
-                    module = self.module_list[1]
-                    i0 = module[0].weight.size(0)
-                    i1 = module[0].weight.size(1)
-                    i2 = module[0].weight.size(2)
-                    i3 = module[0].weight.size(3)
-                    bn = nn.BatchNorm2d(i0, eps=0)
-                    torch.nn.init.ones_(bn.weight)
-                    torch.nn.init.zeros_(bn.bias)
-                    bn.running_mean.fill_(0)
-                    bn.running_var.fill_(1)
-                    module.insert(2*pos)
-                    print(f'module: {bn}')
-                    print(f'bn: {bn}')
-                    kernel_size = i2
-                    stride = 1
-                    padding = 1
-                    bias = module.bias if module.bias is not None else False
+                        for k in range(m.out_channels):
+                            weight = m.weight.data
+                            norm = weight.select(0, k).norm()
+                            weight.div_(norm)
+                            m.weight.data = weight
+                        seq.append(conv)
+                        print(f'module: {conv}; j= { 2 * pos +1 }')
+                    elif j>2 * pos + 1:
+                        print(f'module: {module[j + 2]}; j= {j + 2}')
+                        seq.append(module[j + 2])
 
-                    conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,bias= None)
-                    weight = module[2 * pos-1].weight.clone().detach().cpu().numpy()
-                    print(f' Shape: {weight.shape}')
-                    deeper_w = np.zeros((i0, i0, i2, i3))
-                    deeper_w = torch.from_numpy(deeper_w)
-                    torch.nn.init.normal_(deeper_w, mean=0, std=0.5)
-                    deeper_w = deeper_w.numpy()
-                    center_h = ( i0 - 1) // 2
-                    center_w = ( i0 - 1) // 2
-                    for i in range( i3 ):
-                        tmp = np.zeros(( i0, i0, i3))
-                        tmp[center_h, center_w, i] = 1
-                        deeper_w[:, :, :, i] = tmp
-                        deeper_w = deeper_w.astype('float32')
-                    conv.weight.data = torch.from_numpy(deeper_w)
-
-                    for i in range(module.out_channels):
-                        weight = module.weight.data
-                        norm = weight.select(0, i).norm()
-                        weight.div_(norm)
-                        module.weight.data = weight
-                    module.insert(conv, 2 * pos + 1)
-                    print(f'module: {conv}; j= { 2 * pos +1 }')
-                    i += 1
-                else:
-                    print(f'Module {self.module_list[i]}; i: {i}')
-                    module = self.module_list[i]
-                    i0 = module[0].weight.size(0)
-                    i1 = module[0].weight.size(1)
-                    i2 = module[0].weight.size(2)
-                    i3 = module[0].weight.size(3)
-                    bn = nn.BatchNorm2d(i0, eps=0)
-                    torch.nn.init.ones_(bn.weight)
-                    torch.nn.init.zeros_(bn.bias)
-                    bn.running_mean.fill_(0)
-                    bn.running_var.fill_(1)
-                    module.insert(2 * pos)
-                    print(f'module: {bn}')
-                    print(f'bn: {bn}')
-                    kernel_size = i2
-                    stride = 1
-                    padding = 1
-                    bias = module.bias if module.bias is not None else False
-
-                    conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding, bias=None)
-                    weight = module[2 * pos - 1].weight.clone().detach().cpu().numpy()
-                    print(f' Shape: {weight.shape}')
-                    deeper_w = np.zeros((i0, i0, i2, i3))
-                    deeper_w = torch.from_numpy(deeper_w)
-                    torch.nn.init.normal_(deeper_w, mean=0, std=0.5)
-                    deeper_w = deeper_w.numpy()
-                    center_h = (i0 - 1) // 2
-                    center_w = (i0 - 1) // 2
-                    for i in range(i3):
-                        tmp = np.zeros((i0, i0, i3))
-                        tmp[center_h, center_w, i] = 1
-                        deeper_w[:, :, :, i] = tmp
-                        deeper_w = deeper_w.astype('float32')
-                    conv.weight.data = torch.from_numpy(deeper_w)
-
-                    for i in range(module.out_channels):
-                        weight = module.weight.data
-                        norm = weight.select(0, i).norm()
-                        weight.div_(norm)
-                        module.weight.data = weight
-                    module.insert(conv, 2 * pos + 1)
-                    print(f'module: {conv}; j= {2 * pos + 1}')
+                self.module_list[i] = seq
 
                 # print(f'j: {k}')
                 # bn = nn.BatchNorm2d(i0, eps=0)
@@ -920,7 +880,7 @@ class N2N(nn.Module):
                 #     print(f'drin 2!!; archNum[block]: {archNum[block]}')
                 #     k += 2*archNum[block]-2*pos
                 # # print(f'j for: {j}')
-
+        print(f'Self: {self}')
 
         # for index in range(old,len(self.module_list)):
         #     new_module_list.append(self.module_list[index])
