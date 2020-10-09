@@ -118,6 +118,8 @@ class N2N(nn.Module):
                     if len(layer2)>0:
                         block = nn.Sequential(*layer)
                         self.module_list.append((block))
+
+                    layer2=[]
                     # 18
 
                 # print("\n self sizeofFC: ",self.sizeOfFC)
