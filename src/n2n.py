@@ -764,7 +764,7 @@ class N2N(nn.Module):
                 # if isinstance(self.module_list[i], nn.Sequential):
 
                 if (i-2) %5 ==0 and stage > 0:
-                    print(f'Module {self.module_list[i]}')
+                    print(f'Module {self.module_list[i]}; i: {i}')
 
 
 
