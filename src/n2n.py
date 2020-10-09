@@ -755,18 +755,14 @@ class N2N(nn.Module):
         # make each block with plus two layers (conv +batch) deeper
         printDeeper = False
 
-        for stage in range(0, self.numOfStages):
-            if printDeeper:
-                print("\n\nStage: ", stage)
-            archNum = self.archNums[stage]
 
-            for i in range(len(self.module_list)):
-                # if isinstance(self.module_list[i], nn.Sequential):
+        for i in range(len(self.module_list)):
+            # if isinstance(self.module_list[i], nn.Sequential):
 
-                if (i-2) %5 ==0 and stage > 0:
-                    print(f'Module {self.module_list[i]}; i: {i}')
-
-
+            if (i-2) %5 ==0 and i>2:
+                print(f'Module {self.module_list[i]}; i: {i}')
+                module = self.module_list[i]
+                
 
                 # print(f'j: {k}')
                 # bn = nn.BatchNorm2d(i0, eps=0)
