@@ -801,11 +801,11 @@ class N2N(nn.Module):
                         #     deeper_w = deeper_w.astype('float32')
                         # conv.weight.data = torch.from_numpy(deeper_w)
 
-                        for k in range(m.out_channels):
-                            weight = m.weight.data
-                            norm = weight.select(0, k).norm()
-                            weight.div_(norm)
-                            m.weight.data = weight
+                        # for k in range(m.out_channels):
+                        #     weight = m.weight.data
+                        #     norm = weight.select(0, k).norm()
+                        #     weight.div_(norm)
+                        #     m.weight.data = weight
                         seq.append(conv)
                         # print(f'module: {conv}; j= { 2 * pos +1 }')
                     elif j>2 * pos:
