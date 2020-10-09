@@ -753,148 +753,106 @@ class N2N(nn.Module):
 
     def deeper(self, pos=1):
         # make each block with plus two layers (conv +batch) deeper
-        new_module_list = nn.ModuleList()
-        printDeeper = True
-        k = 1
-        old = 0
-        new_module_list.append(self.module_list[old])
-        print(f'module: {self.module_list[0]}; old ={old}')
-        old += 1
+        printDeeper = False
 
-        new_module_list.append(self.module_list[1])
-        print(f'module: {self.module_list[1]}; old ={old}')
-        old += 1
-
-        for index in range(2, k+pos*2):
-            print(f'Index: {index}')
-            new_module_list.append(self.module_list[old])
-            print(f'module: {self.module_list[0]}; old: {old}')
-            old += 1
-
-        k += pos * 2
-        # k= k+ 2
-        notfirstStage = False
         for stage in range(0, self.numOfStages):
             if printDeeper:
                 print("\n\nStage: ", stage)
             archNum = self.archNums[stage]
-            if stage > 0:
-                k += 1
-                new_module_list.append(self.module_list[old])
-                print(f'module: {self.module_list[old]}; old: {old}')
-                old += 1
 
-            module = self.module_list[k-1]
-            i0 = module.weight.size(0)
-            i1 = module.weight.size(1)
-            i2 = module.weight.size(2)
-            i3 = module.weight.size(3)
+            for i in range(len(self.module_list)):
+                if isinstance(self.module_list[i], nn.Sequential):
+                    if printDeeper:
 
-            if printDeeper:
-                print(f'size:{i0}, {i1}, {i2}, {i3}')
-
-            for block in range(0, len(archNum)):
-
-                if printDeeper:
-                    print("\n\n\tBlock: ", block)
-                    print(f'Len: {len(new_module_list)}')
-
-                if stage == 0 and block ==0:
-                    module = self.module_list[k - 1]
-
-                # 6
-                if block>0:
-                    k += 1
-                    new_module_list.append(self.module_list[old])
-                    print(f'module: {self.module_list[old]}; old: {old}')
-                    old += 1
-                    module = self.module_list[k - 1]
+                if (i-2) %5 ==0 and stage > 0:
+                    print(f'Module {self.module_list[i]}')
 
 
-                print(f'j: {k}')
-                bn = nn.BatchNorm2d(i0, eps=0)
-                torch.nn.init.ones_(bn.weight)
-                torch.nn.init.zeros_(bn.bias)
-                bn.running_mean.fill_(0)
-                bn.running_var.fill_(1)
-                new_module_list.append(bn)
-                print(f'module: {bn}')
 
-                print(f'bn: {k}')
-                kernel_size = i2
-                stride = 1
-                padding = 1
-                bias = module.bias if module.bias is not None else False
-
-                conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,bias= None)
-                # weight = module.weight.clone().detach().cpu().numpy()
-                # print(f' Shape: {weight.shape}')
-                # deeper_w = np.zeros((i0, i0, i2, i3))
-                # # deeper_w = torch.from_numpy(deeper_w)
-                # # torch.nn.init.normal_(deeper_w, mean=0, std=0.5)
-                # deeper_w = deeper_w.numpy()
-                # center_h = ( i0 - 1) // 2
-                # center_w = ( i0 - 1) // 2
-                # for i in range( i3 ):
-                #     tmp = np.zeros(( i0, i0, i3))
-                #     tmp[center_h, center_w, i] = 1
-                #     deeper_w[:, :, :, i] = tmp
+                # print(f'j: {k}')
+                # bn = nn.BatchNorm2d(i0, eps=0)
+                # torch.nn.init.ones_(bn.weight)
+                # torch.nn.init.zeros_(bn.bias)
+                # bn.running_mean.fill_(0)
+                # bn.running_var.fill_(1)
+                # new_module_list.append(bn)
+                # print(f'module: {bn}')
                 #
-                # deeper_w = deeper_w.astype('float32')
-                # conv.weight.data = torch.from_numpy(deeper_w)
-
-                for i in range(module.out_channels):
-                    weight = module.weight.data
-                    norm = weight.select(0, i).norm()
-                    weight.div_(norm)
-                    module.weight.data = weight
-                new_module_list.append(conv)
-                print(f'module: {conv}; j= {k+1}')
-
-                archNum[block] += 1
-                # 4
-                k += 1
-                new_module_list.append(self.module_list[old])
-                print(f'module: {self.module_list[old]}; old: {old}')
-                old += 1
-
-                # 5
+                # print(f'bn: {k}')
+                # kernel_size = i2
+                # stride = 1
+                # padding = 1
+                # bias = module.bias if module.bias is not None else False
+                #
+                # conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding,bias= None)
+                # # weight = module.weight.clone().detach().cpu().numpy()
+                # # print(f' Shape: {weight.shape}')
+                # # deeper_w = np.zeros((i0, i0, i2, i3))
+                # # # deeper_w = torch.from_numpy(deeper_w)
+                # # # torch.nn.init.normal_(deeper_w, mean=0, std=0.5)
+                # # deeper_w = deeper_w.numpy()
+                # # center_h = ( i0 - 1) // 2
+                # # center_w = ( i0 - 1) // 2
+                # # for i in range( i3 ):
+                # #     tmp = np.zeros(( i0, i0, i3))
+                # #     tmp[center_h, center_w, i] = 1
+                # #     deeper_w[:, :, :, i] = tmp
+                # #
+                # # deeper_w = deeper_w.astype('float32')
+                # # conv.weight.data = torch.from_numpy(deeper_w)
+                #
+                # for i in range(module.out_channels):
+                #     weight = module.weight.data
+                #     norm = weight.select(0, i).norm()
+                #     weight.div_(norm)
+                #     module.weight.data = weight
+                # new_module_list.append(conv)
+                # print(f'module: {conv}; j= {k+1}')
+                #
+                # archNum[block] += 1
+                # # 4
                 # k += 1
                 # new_module_list.append(self.module_list[old])
                 # print(f'module: {self.module_list[old]}; old: {old}')
                 # old += 1
-
-                if block == 0 and stage >0:
-                    # 1
-                    k += 1
-                    new_module_list.append(self.module_list[old])
-                    print(f'module: {self.module_list[old]}; old: {old}')
-                    old += 1
-
-                    # 2
-                    k += 1
-                    new_module_list.append(self.module_list[old])
-                    print(f'module: {self.module_list[old]}; old: {old}')
-                    old += 1
-
-                if block==0 and stage>0 and pos+2 < archNum[block]:
-                    print(f'drin 1!!; archNum[block]: {archNum[block]}')
-                    k += 2 * archNum[block] - 2 * pos
-                elif pos + 1 < archNum[block] and not(block ==0 and stage>0):
-                    print(f'drin 2!!; archNum[block]: {archNum[block]}')
-                    k += 2*archNum[block]-2*pos
-                # print(f'j for: {j}')
+                #
+                # # 5
+                # # k += 1
+                # # new_module_list.append(self.module_list[old])
+                # # print(f'module: {self.module_list[old]}; old: {old}')
+                # # old += 1
+                #
+                # if block == 0 and stage >0:
+                #     # 1
+                #     k += 1
+                #     new_module_list.append(self.module_list[old])
+                #     print(f'module: {self.module_list[old]}; old: {old}')
+                #     old += 1
+                #
+                #     # 2
+                #     k += 1
+                #     new_module_list.append(self.module_list[old])
+                #     print(f'module: {self.module_list[old]}; old: {old}')
+                #     old += 1
+                #
+                # if block==0 and stage>0 and pos+2 < archNum[block]:
+                #     print(f'drin 1!!; archNum[block]: {archNum[block]}')
+                #     k += 2 * archNum[block] - 2 * pos
+                # elif pos + 1 < archNum[block] and not(block ==0 and stage>0):
+                #     print(f'drin 2!!; archNum[block]: {archNum[block]}')
+                #     k += 2*archNum[block]-2*pos
+                # # print(f'j for: {j}')
 
             self.archNums[stage]= archNum
 
-        for index in range(old,len(self.module_list)):
-            new_module_list.append(self.module_list[index])
-            print(f'module: {self.module_list[index]}; old: {index}')
-
-        self.module_list = new_module_list
-        print(f'Modell: {self}')
-        print(f'ArchNums: {self.archNums}')
-        return self
+        # for index in range(old,len(self.module_list)):
+        #     new_module_list.append(self.module_list[index])
+        #     print(f'module: {self.module_list[index]}; old: {index}')
+        #
+        # self.module_list = new_module_list
+        # print(f'Modell: {self}')
+        # print(f'ArchNums: {self.archNums}')
+        # return self
 
 
 def compare(layer, oddLayer):
