@@ -759,6 +759,7 @@ class N2N(nn.Module):
         for i in range(len(self.module_list)):
 
             if isinstance(self.module_list[i], nn.Sequential):
+                print(f'davor: {self.module_list}')
                 seq = []
                 module = self.module_list[i]
                 print(f'module[0]: {module[0]}')
@@ -812,7 +813,7 @@ class N2N(nn.Module):
                         seq.append(module[j])
 
                 self.module_list[i] = nn.Sequential(*seq)
-
+                print(f'danach: {self.module_list[i]}')
                 # print(f'j: {k}')
                 # bn = nn.BatchNorm2d(i0, eps=0)
                 # torch.nn.init.ones_(bn.weight)
