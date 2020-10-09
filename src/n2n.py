@@ -805,10 +805,10 @@ class N2N(nn.Module):
                         seq.append(conv)
                         print(f'module: {conv}; j= { 2 * pos +1 }')
                     elif j>2 * pos + 1:
-                        print(f'module: {module[j + 2]}; j= {j + 2}')
+                        print(f'module: {module[j - 2]}; j= {j + 2}')
                         seq.append(module[j - 2])
                     elif j < 2 * pos:
-                        print(f'module: {module[j + 2]}; j= {j}')
+                        print(f'module: {module[j]}; j= {j}')
                         seq.append(module[j])
 
                 self.module_list[i] = nn.Sequential(*seq)
