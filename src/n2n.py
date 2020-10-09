@@ -834,8 +834,8 @@ class N2N(nn.Module):
 
                 print(f'l: {l}; i: {i + 2 + stage}')
                 if stage > 1 and block > 0:
-                    block = (i + 2 + stage ) % 5
-                    print(f'block: {block}')
+                    block = (i + 4 * stage ) % 5
+                    # print(f'block: {block}')
 
                 if stage > 0 and block == 0:
                     blockComp = True
