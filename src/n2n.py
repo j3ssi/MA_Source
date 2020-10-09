@@ -759,7 +759,7 @@ class N2N(nn.Module):
         for i in range(len(self.module_list)):
 
             if isinstance(self.module_list[i], nn.Sequential):
-                print(f'davor: {self.module_list}')
+                print(f'davor: {self.module_list[i]}')
                 seq = []
                 module = self.module_list[i]
                 print(f'module[0]: {module[0]}')
