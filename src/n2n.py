@@ -77,8 +77,8 @@ class N2N(nn.Module):
                         print(f'i : {i}; block: {block}')
                         if firstBlockInStage and i == 0:
                             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
-                                                 bias=False,
-                                                 stride=2)
+                                             bias=False,
+                                             stride=2)
                             print(f'{conv}')
                             layer.append(conv)
                             bn = nn.BatchNorm2d(sizeOfLayer)
@@ -88,8 +88,8 @@ class N2N(nn.Module):
 
                         elif firstBlockInStage and (i + 1) % self.archNums[stage][block] == 0:
                             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
-                                                 bias=False,
-                                                 stride=2)
+                                             bias=False,
+                                             stride=2)
                             print(f'{conv}')
                             layer2.append(conv)
                             bn = nn.BatchNorm2d(sizeOfLayer)
@@ -121,7 +121,7 @@ class N2N(nn.Module):
 
                     block = nn.Sequential(*layer)
                     self.module_list.append(block)
-                    if len(layer2)>0:
+                    if len(layer2) > 0:
                         block = nn.Sequential(*layer)
                         self.module_list.append((block))
 
@@ -284,14 +284,14 @@ class N2N(nn.Module):
                 i = 0
                 layerInThisBlock = archNum[block]
                 seq = self.module_list[j]
-                if block == 0 and stage>0:
+                if block == 0 and stage > 0:
                     x = seq(_x)
                     j += 1
                     seq = self.module_list[j]
                     _x = seq(_x)
                     j += 1
                 else:
-                    x=seq(_x)
+                    x = seq(_x)
                     j += 1
                 _x = x + _x
                 _x = self.relu(_x)
@@ -446,7 +446,7 @@ class N2N(nn.Module):
                 width = paramList[index].size()[0]
                 print(f'width: {width}')
                 if self.widthofLayers.count(width) > 0:
-                    tobestage = self.widthofLayers.index(width)+1
+                    tobestage = self.widthofLayers.index(width) + 1
                     print(f'stage: {stage}; tobestage: {tobestage}')
 
                     if tobestage == stage:
@@ -474,7 +474,7 @@ class N2N(nn.Module):
             # get next elemente to widen
             j = residualList.pop(0)
             # transform to numbetr in moduleList
-            if(j==0):
+            if (j == 0):
                 print(f'j')
                 continue
             print(f'j: {j}')
@@ -488,7 +488,7 @@ class N2N(nn.Module):
             bnb1 = bn.bias.data.clone().cpu().numpy()
             assert delta_width > 0, "New size should be larger"
 
-            if j in residualListI and not j==1:
+            if j in residualListI and not j == 1:
                 print(f'Resiudual I')
                 old_width = m1.weight.size(1)
                 new_width = old_width * delta_width
@@ -524,7 +524,7 @@ class N2N(nn.Module):
                     # print(f'dif key: {dif_k}')
                     for item in dif_k:
                         if item not in tracking_inverse:
-                            tracking_inverse[item]=key
+                            tracking_inverse[item] = key
                         else:
                             tracking_inverse[item].append(key)
                 print(f'ct: {ct}')
@@ -535,7 +535,7 @@ class N2N(nn.Module):
                         c = dw1[idx]
                         x = tracking_inverse[idx + old_width]
                         y = int(ct[x])
-                        print(f'tracking inverse[{idx+old_width}]: {tracking_inverse[idx + new_width- old_width]} ')
+                        print(f'tracking inverse[{idx + old_width}]: {tracking_inverse[idx + new_width - old_width]} ')
                         # print(f'c:{c}')
                         for k in range(len(c)):
                             e = c[k]
@@ -544,7 +544,6 @@ class N2N(nn.Module):
                                 # print(f' before e[l]: {e[l]}')
                                 f = e[l]
                                 for m in range(len(f)):
-
                                     f[m] = f[m] / y
                 #                 print(f' after e[l]: {e[l]}')
 
@@ -601,10 +600,10 @@ class N2N(nn.Module):
                     idx = np.random.randint(0, old_width)
                     m1list = w1[idx, :, :, :]
                     try:
-                        tracking[idx].append(o+old_width)
+                        tracking[idx].append(o + old_width)
                     except:
                         tracking[idx] = []
-                        tracking[idx].append(o+ old_width)
+                        tracking[idx].append(o + old_width)
 
                     # TEST:random init for new units
                     if random_init:
@@ -760,7 +759,7 @@ class N2N(nn.Module):
         newModule_list.append(self.module_list[1])
         blockComp = False
         for i in range(len(self.module_list)):
-            if ( i - 2 ) % 5 == 1 and stage > 0:
+            if (i - 2) % 5 == 1 and stage > 0:
                 continue
 
             if isinstance(self.module_list[i], nn.Sequential):
@@ -810,42 +809,39 @@ class N2N(nn.Module):
                         #     m.weight.data = weight
                         seq.append(conv)
                         # print(f'module: {conv}; j= { 2 * pos +1 }')
-                    elif j>2 * pos:
+                    elif j > 2 * pos:
                         # print(f'module: {module[j - 2]}; j= {j + 2}')
-                        print(f'altes layer: {module[j-2]}; j: {j}')
+                        print(f'altes layer: {module[j - 2]}; j: {j}')
 
                         seq.append(module[j - 2])
-                    elif j < 2 * pos -1:
+                    elif j < 2 * pos - 1:
                         # print(f'module: {module[j]}; j= {j}')
                         seq.append(module[j])
-                        print(f'altes layer: {module[j-2]}; j: {j}')
+                        print(f'altes layer: {module[j - 2]}; j: {j}')
 
                 print(f'seq: {seq}')
-                newModule_list.append( nn.Sequential(*seq))
+                newModule_list.append(nn.Sequential(*seq))
                 # print(f'danach: {newModule_list[i]}')
                 print(f'i: {i}')
                 l = i
                 block = (i - 2) % 5
 
-
-                if ( i - 2 ) % 5 == 0 and ( i - 2 ) // 5 > 0:
-                    newModule_list.append(self.module_list[i +1])
-                    m =( ( i - 2 ) // 5 ) - 1
+                if (i - 2) % 5 == 0 and (i - 2) // 5 > 0:
+                    newModule_list.append(self.module_list[i + 1])
+                    m = ((i - 2) // 5) - 1
                     l = l - 2 * m
-                stage = ( l - 2 ) // 5
-
+                stage = (l - 2) // 5
 
                 print(f'l: {l}')
                 if blockComp:
-                    block = ( l + 2 ) % 5
-
+                    block = (l + 2 * stage ) % 5
 
                 if stage > 0 and block == 4:
                     blockComp = False
 
                 print(f'Stage: {stage}; Block: {block}')
                 self.archNums[stage][block] += 1
-                if ( i -2 ) % 5 == 0 and ( i - 2 ) // 5 >0:
+                if (i - 2) % 5 == 0 and (i - 2) // 5 > 0:
                     blockComp = True
 
             elif isinstance(self.module_list[i], nn.AdaptiveAvgPool2d):
