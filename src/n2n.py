@@ -123,20 +123,20 @@ class N2N(nn.Module):
                     # 18
 
                 # print("\n self sizeofFC: ",self.sizeOfFC)
-                avgpool = nn.AdaptiveAvgPool2d((1, 1))
-                self.module_list.append(avgpool)
-                # 19
-                fc = nn.Linear(sizeOfLayer, num_classes)
-                self.module_list.append(fc)
-                self.relu = nn.ReLU(inplace=True)
+            avgpool = nn.AdaptiveAvgPool2d((1, 1))
+            self.module_list.append(avgpool)
+            # 19
+            fc = nn.Linear(sizeOfLayer, num_classes)
+            self.module_list.append(fc)
+            self.relu = nn.ReLU(inplace=True)
 
-                for m in self.module_list:
-                    if isinstance(m, nn.Conv2d):
-                        n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
-                        m.weight.data.normal_(0, math.sqrt(2. / n))
-                    elif isinstance(m, nn.BatchNorm2d):
-                        m.weight.data.fill_(1)
-                        m.bias.data.zero_()
+            for m in self.module_list:
+                if isinstance(m, nn.Conv2d):
+                    n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
+                    m.weight.data.normal_(0, math.sqrt(2. / n))
+                elif isinstance(m, nn.BatchNorm2d):
+                    m.weight.data.fill_(1)
+                    m.bias.data.zero_()
             print(f'Modell Erstellung')
             print(self)
             # self.sameNode, self.oddLayers = buildShareSameNodeLayers(self.module_list, self.numOfStages, self.archNums)
