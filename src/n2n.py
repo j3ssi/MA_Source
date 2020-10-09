@@ -768,7 +768,7 @@ class N2N(nn.Module):
                 i3 = module[0].weight.size(3)
 
                 for j in range(len(module) + 2):
-                    if j == 2 * pos:
+                    if j == 2 * pos - 1:
                         print(f'Module {self.module_list[i]}; i: {i}')
                         bn = nn.BatchNorm2d(i0, eps=0)
                         torch.nn.init.ones_(bn.weight)
@@ -777,7 +777,7 @@ class N2N(nn.Module):
                         bn.running_var.fill_(1)
                         seq.append(bn)
                         print(f'bn: {bn}')
-                    if j == 2 * pos + 1:
+                    if j == 2 * pos:
 
                         kernel_size = i2
                         stride = 1
@@ -804,10 +804,10 @@ class N2N(nn.Module):
                             m.weight.data = weight
                         seq.append(conv)
                         print(f'module: {conv}; j= { 2 * pos +1 }')
-                    elif j>2 * pos + 1:
+                    elif j>2 * pos:
                         print(f'module: {module[j - 2]}; j= {j + 2}')
                         seq.append(module[j - 2])
-                    elif j < 2 * pos:
+                    elif j < 2 * pos -1:
                         print(f'module: {module[j]}; j= {j}')
                         seq.append(module[j])
 
