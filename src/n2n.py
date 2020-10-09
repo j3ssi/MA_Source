@@ -823,7 +823,7 @@ class N2N(nn.Module):
                     newModule_list.append(self.module_list[i +1])
                 stage = ( i - 2 ) // 5
                 block = ( i - 2 ) % 5
-                print(f'Stage: {stage}; Block: {block}')
+                print(f'Stage: {stage}; Block: {block}; i: {i}')
                 if block == 0:
                     self.archNums[stage][block] += 1
 
