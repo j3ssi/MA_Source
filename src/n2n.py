@@ -758,7 +758,8 @@ class N2N(nn.Module):
 
         for i in range(len(self.module_list)):
             seq = nn.Sequential
-            module = self.module_list[1]
+            module = self.module_list[i]
+            print(f'module[0]: {module[0]}')
             i0 = module[0].weight.size(0)
             i1 = module[0].weight.size(1)
             i2 = module[0].weight.size(2)
