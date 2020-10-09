@@ -810,6 +810,7 @@ class N2N(nn.Module):
                         print(f'module: {module[j]}; j= {j}')
                         seq.append(module[j])
 
+                print(f'seq: {seq}')
                 self.module_list[i] = nn.Sequential(*seq)
                 print(f'danach: {self.module_list[i]}')
                 # print(f'j: {k}')
