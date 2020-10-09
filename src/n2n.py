@@ -74,13 +74,15 @@ class N2N(nn.Module):
                     i = 0
 
                     while i < self.archNums[stage][block]:
-                        # print(f'i : {i}')
+                        print(f'i : {i}')
                         if firstBlockInStage and i == 0:
                             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                                  bias=False,
                                                  stride=2)
+                            print(f'{conv}')
                             layer.append(conv)
                             bn = nn.BatchNorm2d(sizeOfLayer)
+                            print(f'{bn}')
                             layer.append(bn)
                             i = i + 1
 
@@ -88,8 +90,10 @@ class N2N(nn.Module):
                             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                                  bias=False,
                                                  stride=2)
+                            print(f'{conv}')
                             layer2.append(conv)
                             bn = nn.BatchNorm2d(sizeOfLayer)
+                            print(f'{bn}')
                             layer2.append(bn)
                             i = i + 1
                             firstBlockInStage = False
@@ -98,27 +102,30 @@ class N2N(nn.Module):
                             conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1,
                                              bias=False,
                                              stride=1)
+                            print(f'{conv}')
                             layer.append(conv)
                             bn = nn.BatchNorm2d(sizeOfLayer)
+                            print(f'{bn}')
                             layer.append(bn)
                             i = i + 1
 
                         else:
                             conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
                                              stride=1)
+                            print(f'{conv}')
                             layer.append(conv)
                             bn = nn.BatchNorm2d(sizeOfLayer)
+                            print(f'{bn}')
                             layer.append(bn)
                             i = i + 1
 
-                    firstLayer = False
                     block = nn.Sequential(*layer)
                     self.module_list.append(block)
                     if len(layer2)>0:
                         block = nn.Sequential(*layer)
                         self.module_list.append((block))
 
-                    layer2=[]
+                    layer2 = []
                     # 18
 
                 firstBlockInStage = True
