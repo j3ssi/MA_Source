@@ -787,19 +787,19 @@ class N2N(nn.Module):
                         stride = 1
                         padding = 1
                         conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
-                        m = module[2 * pos - 2 ]
-                        deeper_w = np.zeros((i0, i0, i2, i3))
-                        deeper_w = torch.from_numpy(deeper_w)
-                        torch.nn.init.normal_(deeper_w, mean=0, std=0.5)
-                        deeper_w = deeper_w.numpy()
-                        center_h = ( i0 - 1) // 2
-                        center_w = ( i0 - 1) // 2
-                        for k in range( i3 ):
-                            tmp = np.zeros(( i0, i0, i3))
-                            tmp[center_h, center_w, k] = 1
-                            deeper_w[:, :, :, k] = tmp
-                            deeper_w = deeper_w.astype('float32')
-                        conv.weight.data = torch.from_numpy(deeper_w)
+                        # m = module[2 * pos - 2 ]
+                        # deeper_w = np.zeros((i0, i0, i2, i3))
+                        # deeper_w = torch.from_numpy(deeper_w)
+                        # torch.nn.init.normal_(deeper_w, mean=0, std=0.5)
+                        # deeper_w = deeper_w.numpy()
+                        # center_h = ( i0 - 1) // 2
+                        # center_w = ( i0 - 1) // 2
+                        # for k in range( i3 ):
+                        #     tmp = np.zeros(( i0, i0, i3))
+                        #     tmp[center_h, center_w, k] = 1
+                        #     deeper_w[:, :, :, k] = tmp
+                        #     deeper_w = deeper_w.astype('float32')
+                        # conv.weight.data = torch.from_numpy(deeper_w)
 
                         for k in range(m.out_channels):
                             weight = m.weight.data
