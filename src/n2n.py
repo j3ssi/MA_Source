@@ -825,7 +825,7 @@ class N2N(nn.Module):
                     m =( ( i - 2 ) // 5 ) - 1
                     l = l - 2 * m
                     blockComp = True
-
+                block = ( i - 2 ) % 5
                 stage = ( l - 2 ) // 5
                 if blockComp:
                     block = ( i + 2 ) % 5
