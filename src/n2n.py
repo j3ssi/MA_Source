@@ -759,7 +759,7 @@ class N2N(nn.Module):
         for i in range(len(self.module_list)):
 
             if isinstance(self.module_list[i], nn.Sequential):
-                seq = nn.Sequential
+                seq = []
                 module = self.module_list[i]
                 print(f'module[0]: {module[0]}')
                 i0 = module[0].weight.size(0)
@@ -808,7 +808,7 @@ class N2N(nn.Module):
                         print(f'module: {module[j + 2]}; j= {j + 2}')
                         seq.append(module[j + 2])
 
-                self.module_list[i] = seq
+                self.module_list[i] = nn.Sequential(*seq)
 
                 # print(f'j: {k}')
                 # bn = nn.BatchNorm2d(i0, eps=0)
