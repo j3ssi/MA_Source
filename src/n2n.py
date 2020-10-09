@@ -834,8 +834,6 @@ class N2N(nn.Module):
                     l = l - 2 * m
                 stage = ( l - 2 ) // 5
 
-                if ( i -2 ) % 5 == 1 and ( i - 2 ) // 5 >0:
-                    blockComp = True
 
                 print(f'l: {l}')
                 if blockComp:
@@ -847,6 +845,8 @@ class N2N(nn.Module):
 
                 print(f'Stage: {stage}; Block: {block}')
                 self.archNums[stage][block] += 1
+                if ( i -2 ) % 5 == 0 and ( i - 2 ) // 5 >0:
+                    blockComp = True
 
             elif isinstance(self.module_list[i], nn.AdaptiveAvgPool2d):
                 newModule_list.append(self.module_list[i])
