@@ -71,6 +71,7 @@ class N2N(nn.Module):
                 # print("\nStage: ", stage, " ; ", sizeOfLayer)
                 for block in range(0, len(self.archNums[stage])):
                     layer = []
+                    layer2 = []
                     i = 0
 
                     while i < self.archNums[stage][block]:
@@ -88,9 +89,9 @@ class N2N(nn.Module):
                             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                                  bias=False,
                                                  stride=2)
-                            layer.append(conv)
+                            layer2.append(conv)
                             bn = nn.BatchNorm2d(sizeOfLayer)
-                            layer.append(bn)
+                            layer2.append(bn)
                             i = i + 1
                             firstBlockInStage = False
 
@@ -114,6 +115,9 @@ class N2N(nn.Module):
                     firstLayer = False
                     block = nn.Sequential(*layer)
                     self.module_list.append(block)
+                    if len(layer2)>0:
+                        block = nn.Sequential(*layer)
+                        self.module_list.append((block))
                     # 18
 
                 # print("\n self sizeofFC: ",self.sizeOfFC)
@@ -270,7 +274,13 @@ class N2N(nn.Module):
                 i = 0
                 layerInThisBlock = archNum[block]
                 seq = self.module_list[j]
-                x=seq(_x)
+                if block == 0 and stage>0:
+                    x = seq(_x)
+                    j += 1
+                    seq = self.module_list[j]
+                    _x = seq(_x)
+                else:
+                    x=seq(_x)
                 _x = x + _x
                 _x = self.relu(_x)
                 j += 1
