@@ -761,8 +761,7 @@ class N2N(nn.Module):
             archNum = self.archNums[stage]
 
             for i in range(len(self.module_list)):
-                if isinstance(self.module_list[i], nn.Sequential):
-                    if printDeeper:
+                # if isinstance(self.module_list[i], nn.Sequential):
 
                 if (i-2) %5 ==0 and stage > 0:
                     print(f'Module {self.module_list[i]}')
