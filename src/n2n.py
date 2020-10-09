@@ -762,7 +762,7 @@ class N2N(nn.Module):
             if (i-2) %5 ==0 and i>2:
                 print(f'Module {self.module_list[i]}; i: {i}')
                 module = self.module_list[i]
-                
+
 
                 # print(f'j: {k}')
                 # bn = nn.BatchNorm2d(i0, eps=0)
@@ -838,7 +838,6 @@ class N2N(nn.Module):
                 #     k += 2*archNum[block]-2*pos
                 # # print(f'j for: {j}')
 
-            self.archNums[stage]= archNum
 
         # for index in range(old,len(self.module_list)):
         #     new_module_list.append(self.module_list[index])
