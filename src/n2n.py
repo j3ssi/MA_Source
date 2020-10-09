@@ -764,7 +764,7 @@ class N2N(nn.Module):
                 continue
 
             if isinstance(self.module_list[i], nn.Sequential):
-                print(f'davor: {self.module_list[i]}')
+                # print(f'davor: {self.module_list[i]}')
                 module = self.module_list[i]
                 i0 = module[0].weight.size(0)
                 i1 = module[0].weight.size(1)
@@ -818,7 +818,7 @@ class N2N(nn.Module):
 
                 print(f'seq: {seq}')
                 newModule_list.append( nn.Sequential(*seq))
-                print(f'danach: {newModule_list[i]}')
+                # print(f'danach: {newModule_list[i]}')
                 if ( i - 2 ) % 5 == 0 and ( i - 2 ) // 5 > 0:
                     newModule_list.append(self.module_list[i +1])
                 stage = ( i - 2 ) // 5
