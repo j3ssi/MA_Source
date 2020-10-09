@@ -832,7 +832,7 @@ class N2N(nn.Module):
                     l = l - 2 * m
                 stage = (l - 2) // 5
 
-                print(f'l: {l}; i: {i - 2 + 2 * stage}')
+                print(f'l: {l}; i: {i - 2 + 4 * stage}')
                 if stage > 0 and block > 0:
                     block = (i -2 +  4 * stage ) % 5
                     # print(f'block: {block}')
@@ -840,7 +840,7 @@ class N2N(nn.Module):
                 if stage > 0 and block == 0:
                     blockComp = True
                     block = (i -2 + 4 * ( stage - 1) ) % 5
-
+                    # 12 -2
                 print(f'Stage: {stage}; Block: {block}')
                 self.archNums[stage][block] += 1
                 # if (i - 2) % 5 == 0 and (i - 2) // 5 > 0:
