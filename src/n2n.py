@@ -818,8 +818,9 @@ class N2N(nn.Module):
                 print(f'danach: {self.module_list[i]}')
                 if ( i - 2 ) % 5 == 0 and ( i - 2 ) // 5 > 0:
                     newModule_list.append(self.module_list[i])
-
-
+                stage = ( i - 2 ) // 5
+                block = ( i - 2 ) % 5
+                self.archNums[stage][block] += 1
 
             elif isinstance(self.module_list[i], nn.AdaptiveAvgPool2d):
                 newModule_list.append(self.module_list[i])
@@ -827,14 +828,8 @@ class N2N(nn.Module):
                 newModule_list.append(self.module_list[i])
         self.module_list = newModule_list
         print(f'Self: {self}')
-        # for index in range(old,len(self.module_list)):
-        #     new_module_list.append(self.module_list[index])
-        #     print(f'module: {self.module_list[index]}; old: {index}')
-        #
-        # self.module_list = new_module_list
-        # print(f'Modell: {self}')
-        # print(f'ArchNums: {self.archNums}')
-        # return self
+
+        return self
 
 
 def compare(layer, oddLayer):
