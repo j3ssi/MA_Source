@@ -832,9 +832,9 @@ class N2N(nn.Module):
                     l = l - 2 * m
                 stage = (l - 2) // 5
 
-                print(f'l: {l}; i: {i - stage}')
+                print(f'l: {l}; i: {i + stage}')
                 if blockComp:
-                    block = (i - 2 * stage ) % 5
+                    block = (i + stage ) % 5
 
                 if stage > 0 and block == 4:
                     blockComp = False
