@@ -758,10 +758,12 @@ class N2N(nn.Module):
         newModule_list.append(self.module_list[0])
         newModule_list.append(self.module_list[1])
         blockComp = False
+        add = 0
         for i in range(len(self.module_list)):
             if i>2 and blockComp:
                 blockComp = False
                 continue
+                add += 1
             if isinstance(self.module_list[i], nn.Sequential):
                 # print(f'davor: {self.module_list[i]}')
                 module = self.module_list[i]
@@ -770,7 +772,6 @@ class N2N(nn.Module):
                 i2 = module[0].weight.size(2)
                 i3 = module[0].weight.size(3)
                 seq = []
-
                 for j in range(len(module) + 2):
                     if j == 2 * pos - 1:
                         # print(f'Module {self.module_list[i]}; i: {i}')
@@ -824,7 +825,7 @@ class N2N(nn.Module):
                 # print(f'danach: {newModule_list[i]}')
                 print(f'i: {i}')
                 l = i
-                block = ( i - 2 ) % 5
+                block = ( i  - 2 ) % 5
                 print(f'vor Block: {block}')
                 if ( i - 2 ) % 5 == 0 and ( i - 2 ) // 5 > 0:
                     newModule_list.append(self.module_list[i + 1])
