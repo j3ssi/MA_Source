@@ -252,7 +252,7 @@ def main():
     if args.resume:
         model = torch.load(args.pathToModell)
         model.cuda()
-        # print(f'Model: {model}')
+        print(f'Model: {model}')
         criterion = nn.CrossEntropyLoss()
         # Load checkpoint.
         print('==> Resuming from checkpoint..')
