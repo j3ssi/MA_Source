@@ -759,11 +759,23 @@ class N2N(nn.Module):
         newModule_list.append(self.module_list[1])
         blockComp = False
         add = 0
+        stages = []
+        tmp = 0
+
+        for s in self.numOfStages:
+            for t in range(len(self.archNums[s])):
+                tmp += self.archNums[s][t]
+            stages.append(tmp)
+        print(f'tmp: {stages}')
+
         for i in range(len(self.module_list)):
             if i>3 and blockComp:
                 blockComp = False
-                add = add - 1
                 continue
+            if()
+
+
+
             if isinstance(self.module_list[i], nn.Sequential):
                 # print(f'davor: {self.module_list[i]}')
                 module = self.module_list[i]
@@ -822,33 +834,10 @@ class N2N(nn.Module):
 
                 print(f'seq: {seq}')
                 newModule_list.append(nn.Sequential(*seq))
-                # print(f'danach: {newModule_list[i]}')
-                print(f'i: {i}')
-                block = ( i + add - 2 ) % 5
-                # print(f'vor Block: {block}')
-                if not first:
-                    stage = (i - 2) // 5
-
-                if ( i - 2 ) % 5 == 0 and ( i - 2 ) // 5 > 0:
-                    newModule_list.append(self.module_list[i + 1])
-                    m = ( ( i - 2 ) // 5 ) - 1
-                    l = i - 2 * m
-                    stage = ( l - 2 ) // 5
-
-                    print(f'l: {l}; m: {m}')
 
 
-                # print(f'l: {l}; i: {i - 2 + 4 * stage}')
-                # if stage > 0 and block > 0:
-                #     block = ( i - 2 +  4 * stage ) % 5
-                if stage > 0 and block == 0:
-                    blockComp = True
-                    # if i % 2 == 0:
-                    #     block = ( i - 2 + 4 * stage ) % 5
-                    # else:
-                    #     block = (i - 2 + 4 * (stage - 1)) % 5
 
-                    # 12 -2
+
                 print(f'Stage: {stage}; Block: {block}')
                 self.archNums[stage][block] += 1
                 # if (i - 2) % 5 == 0 and (i - 2) // 5 > 0:
