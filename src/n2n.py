@@ -773,6 +773,7 @@ class N2N(nn.Module):
         a = 0
         for i in range(len(self.module_list)):
             if i>3 and blockComp:
+                print(f'skip: {i}')
                 blockComp = False
                 continue
 
@@ -840,12 +841,13 @@ class N2N(nn.Module):
                 # print(f'seq: {seq}')
                 newModule_list.append(nn.Sequential(*seq))
 
+
+                block = ( i + add - 2  ) % self.numOfBlocksinStage[ a ]
+                print(f'stage: {k}; block: {block}; i: {i}')
                 if stages[ k- 1 ] == i:
                     print(f'blockComp')
                     blockComp = True
 
-                block = ( i + add - 2  ) % self.numOfBlocksinStage[ a ]
-                print(f'stage: {k}; block: {block}; i: {i}')
                 self.archNums[stage][block] += 1
                 # if (i - 2) % 5 == 0 and (i - 2) // 5 > 0:
                 #     blockComp = True
