@@ -197,8 +197,6 @@ class N2N(nn.Module):
                         print("\n>new Layer: ", layer)
                     self.module_list.append(layer)
                 elif isinstance(module_list[i], nn.Sequential):
-                    if printName:
-                        print("\n>Name: ", name, " ; ", k)
                     module = module_list[i]
                     layer = []
                     for j in range( len( module ) ):
@@ -233,6 +231,10 @@ class N2N(nn.Module):
                                 print("\n>new Layer: ", layer)
                             layer.append(layer1)
                     self.module_list.append(nn.Sequential(*layer))
+                    if printName:
+                        print(f'>new Layer: {layer}')
+
+
                 elif isinstance(module_list[i], nn.AdaptiveAvgPool2d):
                     self.module_list.append(nn.AdaptiveAvgPool2d((1, 1)))
                 elif isinstance(module_list[i], nn.Linear):
