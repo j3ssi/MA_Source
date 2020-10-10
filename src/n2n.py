@@ -760,10 +760,10 @@ class N2N(nn.Module):
         blockComp = False
         add = 0
         for i in range(len(self.module_list)):
-            if i>2 and blockComp:
+            if i>3 and blockComp:
                 blockComp = False
-                continue
                 add = add - 1
+                continue
             if isinstance(self.module_list[i], nn.Sequential):
                 # print(f'davor: {self.module_list[i]}')
                 module = self.module_list[i]
