@@ -182,8 +182,8 @@ class N2N(nn.Module):
                     layer = nn.Conv2d(i1, i0, kernel_size=kernel_size, stride=stride, padding=padding,
                                       bias=bias)
                     if printName:
-                        print("\n>new Layer: ", layer)
-                        print("\nWeight Shape: ", module.weight.shape)
+                        print(f'layer: {layer}; i: {i}')
+                        # print("\nWeight Shape: ", module.weight.shape)
                     layer.weight.data = module.weight.data
                     self.module_list.append(layer)
                 elif isinstance(module_list[i], nn.BatchNorm2d):
@@ -194,7 +194,7 @@ class N2N(nn.Module):
                     layer.weight.data = module.weight.data
                     layer.bias.data = module.bias.data
                     if printName:
-                        print("\n>new Layer: ", layer)
+                        print(f'layer: {layer}; i: {i}')
                     self.module_list.append(layer)
                 elif isinstance(module_list[i], nn.Sequential):
                     module = module_list[i]
