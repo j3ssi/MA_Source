@@ -230,6 +230,8 @@ class N2N(nn.Module):
                     self.module_list.append(nn.Sequential(*layer))
                     if printName:
                         print(f'>new Layer: {layer}')
+                    print(f'Sequential: {layer}')
+
                 elif isinstance(module_list[i], nn.AdaptiveAvgPool2d):
                     self.module_list.append(nn.AdaptiveAvgPool2d((1, 1)))
                 elif isinstance(module_list[i], nn.Linear):
