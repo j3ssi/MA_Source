@@ -799,13 +799,13 @@ class N2N(nn.Module):
                         bn.running_mean.fill_(0)
                         bn.running_var.fill_(1)
                         seq.append(bn)
-                        print(f'neues bn: {bn}; j: {j}')
+                        # print(f'neues bn: {bn}; j: {j}')
                     if j == 2 * pos:
                         kernel_size = i2
                         stride = 1
                         padding = 1
                         conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
-                        print(f'neues conv: {conv}; j: {j}')
+                        # print(f'neues conv: {conv}; j: {j}')
 
                         # m = module[2 * pos - 2 ]
                         # deeper_w = np.zeros((i0, i0, i2, i3))
@@ -830,13 +830,13 @@ class N2N(nn.Module):
                         # print(f'module: {conv}; j= { 2 * pos +1 }')
                     elif j > 2 * pos:
                         # print(f'module: {module[j - 2]}; j= {j + 2}')
-                        print(f'altes layer: {module[j - 2]}; j: {j}')
+                        # print(f'altes layer: {module[j - 2]}; j: {j}')
 
                         seq.append(module[j - 2])
                     elif j < 2 * pos - 1:
                         # print(f'module: {module[j]}; j= {j}')
                         seq.append(module[j])
-                        print(f'altes layer: {module[j - 2]}; j: {j}')
+                        # print(f'altes layer: {module[j - 2]}; j: {j}')
 
                 print(f'seq: {seq}')
                 newModule_list.append(nn.Sequential(*seq))
