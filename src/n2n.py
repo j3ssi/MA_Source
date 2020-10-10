@@ -772,8 +772,7 @@ class N2N(nn.Module):
             if i>3 and blockComp:
                 blockComp = False
                 continue
-            if()
-
+           
 
 
             if isinstance(self.module_list[i], nn.Sequential):
