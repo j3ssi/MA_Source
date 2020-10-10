@@ -824,7 +824,8 @@ class N2N(nn.Module):
                 newModule_list.append(nn.Sequential(*seq))
                 # print(f'danach: {newModule_list[i]}')
                 print(f'i: {i}')
-                l = i
+                if ( i - 2 ) % 5 == 0:
+                    l = i
                 block = ( i + add - 2 ) % 5
                 # print(f'vor Block: {block}')
                 if ( i - 2 ) % 5 == 0 and ( i - 2 ) // 5 > 0:
