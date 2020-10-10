@@ -837,7 +837,7 @@ class N2N(nn.Module):
                 print(f'seq: {seq}')
                 newModule_list.append(nn.Sequential(*seq))
 
-                if stages[k-1] +2 == i:
+                if stages[k-1] +1 == i:
                     blockComp = True
 
                 block = i - stages[k]
