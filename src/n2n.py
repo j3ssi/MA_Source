@@ -758,7 +758,7 @@ class N2N(nn.Module):
         newModule_list.append(self.module_list[0])
         newModule_list.append(self.module_list[1])
         blockComp = False
-        add = 0
+
         stages = []
         tmp = 2
         k = 0
@@ -774,6 +774,7 @@ class N2N(nn.Module):
             if i>3 and blockComp:
                 print(f'skip: {i}')
                 blockComp = False
+                add = add - 2
                 continue
 
             print(f'stages: {stages[k]}')
@@ -839,10 +840,9 @@ class N2N(nn.Module):
                         # print(f'altes layer: {module[j - 2]}; j: {j}')
 
                 # print(f'seq: {seq}')
-                newModule_list.append(nn.Sequential(*seq))
+                newModule_list.append( nn.Sequential( *seq ) )
 
-                print(f'')
-                block = ( i - 2 ) % self.numOfBlocksinStage[ k ]
+                block = ( i + add - 2 ) % self.numOfBlocksinStage[ k ]
                 print(f'stage: {k}; block: {block}; i: {i}')
                 if stages[ k- 1 ] == i:
                     print(f'blockComp')
