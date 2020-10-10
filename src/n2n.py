@@ -839,7 +839,7 @@ class N2N(nn.Module):
                 newModule_list.append( nn.Sequential( *seq ) )
                 if i == stages[k]:
                     k += 1
-                if i + 2 == stages[k]:
+                if i -1 == stages[k]:
                     add = add + 4
 
                 block = ( i + add ) % self.numOfBlocksinStage[ k ]
