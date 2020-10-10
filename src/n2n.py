@@ -211,10 +211,8 @@ class N2N(nn.Module):
                             kernel_size = module1.kernel_size
                             stride = module1.stride
                             padding = module1.padding
-                            bias = module1.bias if module1.bias is not None else False
 
-                            layer1 = nn.Conv2d(i1, i0, kernel_size=kernel_size, stride=stride, padding=padding,
-                                              bias=bias)
+                            layer1 = nn.Conv2d(i1, i0, kernel_size=kernel_size, stride=stride, padding=padding)
                             if printName:
                                 print("\n>new Layer: ", layer1)
                                 print("\nWeight Shape: ", module1.weight.shape)
