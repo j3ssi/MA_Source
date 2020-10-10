@@ -760,7 +760,7 @@ class N2N(nn.Module):
         blockComp = False
         add = 0
         stages = []
-        tmp = 0
+        tmp = 2
 
         for s in range(0, self.numOfStages):
             for t in range(len(self.archNums[s])):
