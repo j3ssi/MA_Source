@@ -765,7 +765,6 @@ class N2N(nn.Module):
         for s in range(0, self.numOfStages):
             for t in range(len(self.archNums[s])):
                 tmp += self.archNums[s][t]
-            tmp += 1
             stages.append(tmp)
 
         print(f'tmp: {stages}')
@@ -774,7 +773,6 @@ class N2N(nn.Module):
         for i in range(len(self.module_list)):
             if i>3 and blockComp:
                 blockComp = False
-
                 continue
 
             print(f'stages: {stages[k]}')
