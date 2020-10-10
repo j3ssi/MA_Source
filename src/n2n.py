@@ -218,7 +218,7 @@ class N2N(nn.Module):
                             if printName:
                                 print("\n>new Layer: ", layer1)
                                 print("\nWeight Shape: ", module1.weight.shape)
-                            layer1 = module1.weight.data
+                            layer1.weight.data = module1.weight.data
                             layer.append(layer1)
                         elif isinstance(module[j], nn.BatchNorm2d):
                             module1 = module[j]
