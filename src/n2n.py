@@ -241,7 +241,7 @@ class N2N(nn.Module):
                     fc.bias.data = module.bias.data
                     self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
-            print(f' Self: {self}')
+            print(f' Modell: {self}')
 
     def forward(self, x):
         # print(f'ArchNums: {self.archNums}')
