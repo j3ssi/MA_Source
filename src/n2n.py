@@ -839,6 +839,9 @@ class N2N(nn.Module):
                 newModule_list.append( nn.Sequential( *seq ) )
                 if i == stages[k]:
                     k += 1
+                print(f'i: {i}')
+                print(f'stages[k-1]: {stages[k-1]}')
+
                 if i -1 == stages[ k - 1 ]:
                     add = add + 4
 
