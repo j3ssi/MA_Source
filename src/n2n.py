@@ -824,22 +824,24 @@ class N2N(nn.Module):
                 # print(f'danach: {newModule_list[i]}')
                 print(f'i: {i}')
                 l = i
-                block = (i - 2) % 5
+                block = ( i - 2 ) % 5
                 print(f'vor Block: {block}')
-                if (i - 2) % 5 == 0 and (i - 2) // 5 > 0:
+                if ( i - 2 ) % 5 == 0 and ( i - 2 ) // 5 > 0:
                     newModule_list.append(self.module_list[i + 1])
-                    m = ((i - 2) // 5) - 1
+                    m = ( ( i - 2 ) // 5 ) - 1
                     l = l - 2 * m
-                stage = (l - 2) // 5
+                stage = ( l - 2 ) // 5
 
                 print(f'l: {l}; i: {i - 2 + 4 * stage}')
                 if stage > 0 and block > 0:
-                    block = (i -2 +  4 * stage ) % 5
-                    # print(f'block: {block}')
-                    # 7 - 2 + 4
+                    block = ( i - 2 +  4 * stage ) % 5
                 if stage > 0 and block == 0:
                     blockComp = True
-                    block = (i -2 + 4 * ( stage - 1) ) % 5
+                    if i % 2 == 0:
+                        block = ( i - 2 + 4 * stage ) % 5
+                    else:
+                        block = (i - 2 + 4 * (stage - 1)) % 5
+
                     # 12 -2
                 print(f'Stage: {stage}; Block: {block}')
                 self.archNums[stage][block] += 1
