@@ -767,13 +767,16 @@ class N2N(nn.Module):
                 tmp += self.archNums[s][t]
             stages.append(tmp)
         print(f'tmp: {stages}')
-
+        stage = 0
+        k=0
         for i in range(len(self.module_list)):
             if i>3 and blockComp:
                 blockComp = False
                 continue
 
 
+            if i > stages[k]:
+                k += 1
 
             if isinstance(self.module_list[i], nn.Sequential):
                 # print(f'davor: {self.module_list[i]}')
