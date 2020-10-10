@@ -815,10 +815,10 @@ class N2N(nn.Module):
                         deeper_w = deeper_w.numpy()
                         center_h = ( i0 - 1) // 2
                         center_w = ( i0 - 1) // 2
-                        for m in range( i3 ):
+                        for c in range( i3 ):
                             tmp = np.zeros(( i0, i0, i3))
-                            tmp[center_h, center_w, m] = 1
-                            deeper_w[:, :, :, m] = tmp
+                            tmp[center_h, center_w, c] = 1
+                            deeper_w[:, :, :, c] = tmp
                             deeper_w = deeper_w.astype('float32')
                         conv.weight.data = torch.from_numpy(deeper_w)
 
