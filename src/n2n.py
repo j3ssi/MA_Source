@@ -226,7 +226,7 @@ class N2N(nn.Module):
 
                             layer1 = nn.BatchNorm2d(i0)
                             layer1.weight.data = module1.weight.data
-                            layer1.bias.data = module.bias.data
+                            layer1.bias.data = module1.bias.data
                             if printName:
                                 print("\n>new Layer: ", layer)
                             layer.append(layer1)
