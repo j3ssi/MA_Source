@@ -775,6 +775,7 @@ class N2N(nn.Module):
 
                 continue
 
+            print(f'stages: {stages[k]}')
 
             if i == stages[k]:
                 k += 1
