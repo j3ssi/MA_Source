@@ -851,7 +851,7 @@ class N2N(nn.Module):
                     print(f'blockComp')
                     blockComp = True
 
-                self.archNums[stage][block] += 1
+                self.archNums[k][block] += 1
                 # if (i - 2) % 5 == 0 and (i - 2) // 5 > 0:
                 #     blockComp = True
 
