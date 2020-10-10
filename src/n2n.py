@@ -841,7 +841,7 @@ class N2N(nn.Module):
                     blockComp = True
 
                 block = ( i -2 ) % self.numOfBlocksinStage[ k ]
-                print(f'block: {block}')
+                print(f'stage: {k}; block: {block}')
                 self.archNums[stage][block] += 1
                 # if (i - 2) % 5 == 0 and (i - 2) // 5 > 0:
                 #     blockComp = True
