@@ -21,7 +21,7 @@ class N2N(nn.Module):
         self.bottleneck = bottleneck
         self.layersInBlock = layersInBlock
 
-        printName = True
+        printName = False
         if widthOfLayers is not None:
             self.widthofFirstLayer = widthOfLayers[0]
             self.widthofLayers = widthOfLayers
@@ -167,7 +167,6 @@ class N2N(nn.Module):
             for i in range(len(module_list)):
                 # print("\n>i: ", i)
                 if isinstance(module_list[i], nn.Conv2d):
-
                     module = module_list[i]
                     i0 = module.weight.size(0)
                     i1 = module.weight.size(1)
@@ -231,8 +230,6 @@ class N2N(nn.Module):
                     self.module_list.append(nn.Sequential(*layer))
                     if printName:
                         print(f'>new Layer: {layer}')
-
-
                 elif isinstance(module_list[i], nn.AdaptiveAvgPool2d):
                     self.module_list.append(nn.AdaptiveAvgPool2d((1, 1)))
                 elif isinstance(module_list[i], nn.Linear):
@@ -244,6 +241,7 @@ class N2N(nn.Module):
                     fc.bias.data = module.bias.data
                     self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
+            print(f' Self: {self}')
 
     def forward(self, x):
         # print(f'ArchNums: {self.archNums}')
