@@ -231,7 +231,6 @@ class N2N(nn.Module):
                     if printName:
                         print(f'>new Layer: {layer}')
                     print(f'Sequential: {layer}')
-
                 elif isinstance(module_list[i], nn.AdaptiveAvgPool2d):
                     self.module_list.append(nn.AdaptiveAvgPool2d((1, 1)))
                 elif isinstance(module_list[i], nn.Linear):
@@ -808,25 +807,25 @@ class N2N(nn.Module):
                         conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
                         # print(f'neues conv: {conv}; j: {j}')
 
-                        # m = module[2 * pos - 2 ]
-                        # deeper_w = np.zeros((i0, i0, i2, i3))
-                        # deeper_w = torch.from_numpy(deeper_w)
+                        m = module[2 * pos - 2 ]
+                        deeper_w = np.zeros((i0, i0, i2, i3))
+                        deeper_w = torch.from_numpy(deeper_w)
                         # torch.nn.init.normal_(deeper_w, mean=0, std=0.5)
-                        # deeper_w = deeper_w.numpy()
-                        # center_h = ( i0 - 1) // 2
-                        # center_w = ( i0 - 1) // 2
-                        # for k in range( i3 ):
-                        #     tmp = np.zeros(( i0, i0, i3))
-                        #     tmp[center_h, center_w, k] = 1
-                        #     deeper_w[:, :, :, k] = tmp
-                        #     deeper_w = deeper_w.astype('float32')
-                        # conv.weight.data = torch.from_numpy(deeper_w)
+                        deeper_w = deeper_w.numpy()
+                        center_h = ( i0 - 1) // 2
+                        center_w = ( i0 - 1) // 2
+                        for k in range( i3 ):
+                            tmp = np.zeros(( i0, i0, i3))
+                            tmp[center_h, center_w, k] = 1
+                            deeper_w[:, :, :, k] = tmp
+                            deeper_w = deeper_w.astype('float32')
+                        conv.weight.data = torch.from_numpy(deeper_w)
 
-                        # for k in range(m.out_channels):
-                        #     weight = m.weight.data
-                        #     norm = weight.select(0, k).norm()
-                        #     weight.div_(norm)
-                        #     m.weight.data = weight
+                        for k in range(m.out_channels):
+                            weight = m.weight.data
+                            norm = weight.select(0, k).norm()
+                            weight.div_(norm)
+                            m.weight.data = weight
                         seq.append(conv)
                         # print(f'module: {conv}; j= { 2 * pos +1 }')
                     elif j > 2 * pos:
