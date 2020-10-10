@@ -778,9 +778,6 @@ class N2N(nn.Module):
 
             print(f'stages: {stages[k]}')
 
-            if i == stages[k]:
-                k += 1
-                add = add + 4
 
             if isinstance(self.module_list[i], nn.Sequential):
                 # print(f'davor: {self.module_list[i]}')
@@ -840,9 +837,12 @@ class N2N(nn.Module):
 
                 # print(f'seq: {seq}')
                 newModule_list.append( nn.Sequential( *seq ) )
+                if i == stages[k]:
+                    k += 1
+                    add = add + 4
 
                 block = ( i + add ) % self.numOfBlocksinStage[ k ]
-                print(f'stage: {k}; block: {block}; i: {i}')
+                print(f'stage: {k}; block: {block}; i: {(i + add) % 5}')
                 if stages[ k- 1 ] == i:
                     print(f'blockComp')
                     blockComp = True
