@@ -842,7 +842,7 @@ class N2N(nn.Module):
                 print(f'i: {i}')
                 print(f'stages[k-1]: {stages[k-1]}')
 
-                if i -1 == stages[ k - 1 ]:
+                if i + 4 == stages[ k - 1 ]:
                     add = add + 4
 
                 block = ( i + add ) % self.numOfBlocksinStage[ k ]
