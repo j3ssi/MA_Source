@@ -439,8 +439,8 @@ def main():
         # deeper student training
         model = model.deeper(pos=1)
         print(f'archNums: {model.archNums}')
-        # model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock+1, False, args.bottleneck,
-        #                widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=model.widthofLayers)
+        model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock+1, False, args.bottleneck,
+                       widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=model.widthofLayers)
 
         model.cuda()
         criterion = nn.CrossEntropyLoss()

@@ -20,6 +20,8 @@ class N2N(nn.Module):
         self.numOfBlocksinStage = numOfBlocksinStage
         self.bottleneck = bottleneck
         self.layersInBlock = layersInBlock
+
+        printName = True
         if widthOfLayers is not None:
             self.widthofFirstLayer = widthOfLayers[0]
             self.widthofLayers = widthOfLayers
@@ -153,103 +155,94 @@ class N2N(nn.Module):
         else:
             self.archNums = archNums
 
-            self.sameNode = model.sameNode
-            self.stageI = model.stageI
-            self.stageO = model.stageO
+            # self.sameNode = model.sameNode
+            # self.stageI = model.stageI
+            # self.stageO = model.stageO
             # print(f'Archnums: {self.archNums}')
             module_list = model.module_list
-            altList = []
-            paramList = []
-            printName = False
-            for name, param in model.named_parameters():
-                # print("\nName: {}", name)
-                paramList.append(param)
-                # print("\nName: ", name)
-                i = int(name.split('.')[1])
-
-                if i % 2 == 0:
-                    altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
-                    if printName:
-                        print("\nI:", i, " ; ", altList[-1])
-                elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
-                    altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
-                    if printName:
-                        print("\nI:", i, " ; ", altList[-1])
-                elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
-                    altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
-                    if printName:
-                        print("\nI:", i, " ; ", altList[-1])
-                elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
-                    altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
-                    if printName:
-                        print("\nI:", i, " ; ", altList[-1])
-                elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
-                    altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-                    if printName:
-                        print("\nI:", i, " ; ", altList[-1])
-                else:
-                    assert True, print("Hier fehlt noch was!!")
-            # print(altList)
             del model
             self.module_list = nn.ModuleList()
 
             # print("\naltList", altList)
-            for i in range(0, len(altList)):
+            for i in range(len(module_list)):
                 # print("\n>i: ", i)
-                name = altList[i]
-                param = paramList[i]
-                # print("\nName: ", name)
-                if 'conv' in name:
-                    dims = list(param.shape)
-                    print("Name, Dims: ", name, " ; ", dims)
-                    in_chs = dims[1]
-                    out_chs = dims[0]
-                    # Search for the corresponding Conv Module in Module_list
-                    k = int(name.split('.')[1].split('v')[1])
-                    # print("\nK: ", k, " ; ", (k - 1) * 2, "; in,out: ", in_chs, " ; ", out_chs)
-                    module = module_list[(k - 1) * 2]
+                if isinstance(module_list[i], nn.Conv2d):
+
+                    module = module_list[i]
+                    i0 = module.weight.size(0)
+                    i1 = module.weight.size(1)
+                    i2 = module.weight.size(2)
+                    i3 = module.weight.size(3)
+
                     kernel_size = module.kernel_size
                     stride = module.stride
                     padding = module.padding
                     bias = module.bias if module.bias is not None else False
 
-                    layer = nn.Conv2d(in_chs, out_chs, kernel_size=kernel_size, stride=stride, padding=padding,
+                    layer = nn.Conv2d(i1, i0, kernel_size=kernel_size, stride=stride, padding=padding,
                                       bias=bias)
                     if printName:
-                        print("\n>new Layer: ", layer, " ; ", param.shape)
+                        print("\n>new Layer: ", layer)
                         print("\nWeight Shape: ", module.weight.shape)
                     layer.weight.data = module.weight.data
                     self.module_list.append(layer)
+                elif isinstance(module_list[i], nn.BatchNorm2d):
+                    module = module_list[i]
+                    i0 = module.weight.size(0)
 
-                elif 'bn' in name and 'bias' not in name:
-                    layer = nn.BatchNorm2d(paramList[i].shape[0])
+                    layer = nn.BatchNorm2d(i0)
+                    layer.weight = module.weight.data
+                    layer.bias = module.bias.data
                     if printName:
                         print("\n>new Layer: ", layer)
                     self.module_list.append(layer)
-                elif 'bn' in name and 'bias' in name:
+                elif isinstance(module_list[i], nn.Sequential):
                     if printName:
                         print("\n>Name: ", name, " ; ", k)
-                    k = int(name.split('.')[1].split('n')[1])
-                    k1 = 2 * (k - 1) + 1
-                    # print("\nk1: ", k1)
-                    module = module_list[k1]
-                    self.module_list[-1].bias.data = module.bias.data
-                    self.module_list[-1].weight.data = module.weight.data
-                # else:
-                # print('\nelse: ', name)
-            module = module_list[-1]
-            # print(f'module: {module}')
-            self.sizeOfFC = module.weight.shape[1]
-            avgpool = nn.AdaptiveAvgPool2d((1, 1))
-            self.module_list.append(avgpool)
-            # <if printName:
-            # print("\n self sizeofFC: ", self.sizeOfFC)
-            fc = nn.Linear(module.weight.shape[1], num_classes)
-            if printName:
-                print("\nLinear: ", fc)
-            fc.weight.data = module.weight.data
-            fc.bias.data = module.bias.data
-            self.module_list.append(fc)
+                    module = module_list[i]
+                    layer = []
+                    for j in range( len( module ) ):
+                        if isinstance(module[j], nn.Conv2d):
+
+                            module1 = module[j]
+                            i0 = module1.weight.size(0)
+                            i1 = module1.weight.size(1)
+                            i2 = module1.weight.size(2)
+                            i3 = module1.weight.size(3)
+
+                            kernel_size = module1.kernel_size
+                            stride = module1.stride
+                            padding = module1.padding
+                            bias = module1.bias if module1.bias is not None else False
+
+                            layer1 = nn.Conv2d(i1, i0, kernel_size=kernel_size, stride=stride, padding=padding,
+                                              bias=bias)
+                            if printName:
+                                print("\n>new Layer: ", layer1)
+                                print("\nWeight Shape: ", module1.weight.shape)
+                            layer1 = module1.weight.data
+                            layer.append(layer1)
+                        elif isinstance(module[j], nn.BatchNorm2d):
+                            module1 = module[j]
+                            i0 = module1.weight.size(0)
+
+                            layer1 = nn.BatchNorm2d(i0)
+                            layer1.weight = module1.weight.data
+                            layer1.bias = module.bias.data
+                            if printName:
+                                print("\n>new Layer: ", layer)
+                            layer.append(layer1)
+                    self.module_list.append(nn.Sequential(*layer))
+                elif isinstance(module_list[i], nn.AdaptiveAvgPool2d):
+                    self.module_list.append(nn.AdaptiveAvgPool2d((1, 1)))
+                elif isinstance(module_list[i], nn.Linear):
+                    module = module_list[i]
+                    fc = nn.Linear(module.weight.shape[1], num_classes)
+                    if printName:
+                        print("\nLinear: ", fc)
+                    fc.weight.data = module.weight.data
+                    fc.bias.data = module.bias.data
+                    self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
 
     def forward(self, x):
