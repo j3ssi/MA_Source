@@ -793,6 +793,7 @@ class N2N(nn.Module):
                 seq = []
                 for j in range( len( module ) + 2 ):
                     if j == 2 * pos - 1:
+                        continue
                         # print(f'Module {self.module_list[i]}; i: {i}')
                         bn = nn.BatchNorm2d(i0, eps=0)
                         torch.nn.init.ones_(bn.weight)
