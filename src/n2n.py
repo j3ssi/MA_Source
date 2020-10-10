@@ -780,7 +780,7 @@ class N2N(nn.Module):
 
             if i == stages[k]:
                 k += 1
-                add = add -1
+                add = add + 1
             if isinstance(self.module_list[i], nn.Sequential):
                 # print(f'davor: {self.module_list[i]}')
                 module = self.module_list[i]
@@ -789,7 +789,7 @@ class N2N(nn.Module):
                 i2 = module[0].weight.size(2)
                 i3 = module[0].weight.size(3)
                 seq = []
-                for j in range(len(module) + 2):
+                for j in range( len( module ) + 2 ):
                     if j == 2 * pos - 1:
                         # print(f'Module {self.module_list[i]}; i: {i}')
                         bn = nn.BatchNorm2d(i0, eps=0)
