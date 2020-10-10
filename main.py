@@ -490,6 +490,15 @@ def main():
     print("[INFO] Storing checkpoint...")
     if args.reset:
         print(f'Reset! ')
+        save_checkpoint({
+            'epoch': 1,
+            'memory': memory,
+            'batch_size': batch_size,
+            'lr': optimizer.param_groups[0]["lr"],
+            'acc': test_acc,
+            'optimizer': optimizer, },
+            checkpoint=args.checkpoint)
+
         start_epoch = 1
         args.epochs = 0
     if args.dB:
