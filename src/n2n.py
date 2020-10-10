@@ -803,6 +803,7 @@ class N2N(nn.Module):
                         seq.append(bn)
                         # print(f'neues bn: {bn}; j: {j}')
                     if j == 2 * pos:
+                        continue
                         kernel_size = i2
                         stride = 1
                         padding = 1
