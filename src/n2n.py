@@ -821,9 +821,9 @@ class N2N(nn.Module):
                             deeper_w = deeper_w.astype('float32')
                         conv.weight.data = torch.from_numpy(deeper_w)
 
-                        for k in range(m.out_channels):
+                        for l in range(m.out_channels):
                             weight = m.weight.data
-                            norm = weight.select(0, k).norm()
+                            norm = weight.select(0, l).norm()
                             weight.div_(norm)
                             m.weight.data = weight
                         seq.append(conv)
