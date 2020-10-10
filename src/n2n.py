@@ -832,6 +832,7 @@ class N2N(nn.Module):
                     m = ( ( i - 2 ) // 5 ) - 1
                     l = l - 2 * m
                     print(f'l: {l}; m: {m}')
+                print(f'l: {l}')
                 stage = ( l - 2 ) // 5
 
                 # print(f'l: {l}; i: {i - 2 + 4 * stage}')
