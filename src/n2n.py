@@ -775,7 +775,7 @@ class N2N(nn.Module):
                 continue
 
 
-            if i > stages[k]:
+            if i == stages[k]:
                 k += 1
                 print(f'k: {k}')
             if isinstance(self.module_list[i], nn.Sequential):
