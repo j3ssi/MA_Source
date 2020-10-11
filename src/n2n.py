@@ -255,10 +255,8 @@ class N2N(nn.Module):
             for block in range(0, len(archNum)):
                 if printNet:
                     print(f'Block: {block}; j: {j}')
-                i = 0
-                layerInThisBlock = archNum[block]
                 seq = self.module_list[j]
-                print(f' len of seq: {len(seq)}')
+                # print(f' len of seq: {len(seq)}')
                 if block == 0 and stage > 0:
                     y = _x
                     for a in range(len(seq)):
@@ -738,9 +736,7 @@ class N2N(nn.Module):
 
     def deeper(self, pos=1):
         # make each block with plus two layers (conv +batch) deeper
-        first = True
         newModule_list = nn.ModuleList()
-        stage = 0
         newModule_list.append(self.module_list[0])
         newModule_list.append(self.module_list[1])
         blockComp = False
@@ -857,9 +853,9 @@ class N2N(nn.Module):
                 newModule_list.append(self.module_list[i])
             else:
                 print(f' I: {i}!!!!')
-        print(f'new module list: {newModule_list}')
+        # print(f'new module list: {newModule_list}')
         self.module_list = newModule_list
-        print(f'Self: {self}')
+        # print(f'Self: {self}')
 
         return self
 
