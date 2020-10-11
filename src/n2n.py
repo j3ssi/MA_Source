@@ -218,7 +218,7 @@ class N2N(nn.Module):
                             module1 = module[j]
                             i0 = module1.weight.size(0)
 
-                            layer1 = nn.BatchNorm2d(module.num_features)
+                            layer1 = nn.BatchNorm2d(module1.num_features)
                             layer1.weight.data = module1.weight.data
                             layer1.bias.data = module1.bias.data
                             if printName:
