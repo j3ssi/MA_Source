@@ -862,6 +862,8 @@ class N2N(nn.Module):
                 newModule_list.append(self.module_list[i])
             elif isinstance(self.module_list[i], nn.Linear):
                 newModule_list.append(self.module_list[i])
+            else:
+                print(f' I: {i}!!!!')
         self.module_list = newModule_list
         print(f'Self: {self}')
 
