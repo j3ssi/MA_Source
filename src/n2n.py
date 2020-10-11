@@ -775,12 +775,12 @@ class N2N(nn.Module):
         print(f'tmp: {stages}')
         stage = 0
         for i in range( len( self.module_list ) ):
-            if i>3 and blockComp:
-                print(f'skip: {i}')
-                blockComp = False
-                newModule_list.append( self.module_list[ i ] )
-                continue
-            print(f'stages: {stages[k]}')
+            # if i>3 and blockComp:
+            #     print(f'skip: {i}')
+            #     blockComp = False
+            #     newModule_list.append( self.module_list[ i ] )
+            #     continue
+            # print(f'stages: {stages[k]}')
 
 
             if isinstance(self.module_list[i], nn.Sequential):
@@ -842,7 +842,7 @@ class N2N(nn.Module):
                         # print(f'altes layer: {module[j - 2]}; j: {j}')
 
                 # print(f'seq: {seq}')
-                # newModule_list.append( nn.Sequential( *seq ) )
+                newModule_list.append( nn.Sequential( *seq ) )
                 if i == stages[k]:
                     k += 1
                 print(f'i: {i}')
