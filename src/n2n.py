@@ -761,6 +761,8 @@ class N2N(nn.Module):
                 blockComp = False
                 newModule_list.append( self.module_list[ i ] )
                 stages[k] += 1
+                print(f'Erhöhung von stages[k]: {stages[k]}')
+
                 continue
             print(f'stages: {stages[k]}')
 
