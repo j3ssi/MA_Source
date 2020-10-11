@@ -99,7 +99,7 @@ class N2N(nn.Module):
                             layer2.append(bn)
                             i = i + 1
                             firstBlockInStage = False
-                            print(F' end layer2: {i}; layer2:{layer2}')
+                            print(f' end layer2: {i}; layer2:{layer2}')
                         elif firstBlockInStage:
                             conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1,
                                              bias=False,
@@ -138,7 +138,7 @@ class N2N(nn.Module):
             # 19
             fc = nn.Linear(sizeOfLayer, num_classes)
             self.module_list.append(fc)
-            self.relu = nn.LeakyReLU(inplace=True)
+            self.relu = nn.LeakyReLU(negative_slope=0.1, inplace=True)
 
             for m in self.module_list:
                 if isinstance(m, nn.Conv2d):
