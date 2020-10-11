@@ -153,7 +153,7 @@ class N2N(nn.Module):
             # self.stageI, self.stageO = buildResidualPath(self.module_list, self.numOfStages, self.archNums)
             # print(f'sameNode: {self.sameNode}')
         else:
-
+            self.archNums = archNums
             # self.sameNode = model.sameNode
             # self.stageI = model.stageI
             # self.stageO = model.stageO
