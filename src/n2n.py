@@ -783,14 +783,14 @@ class N2N(nn.Module):
                         # bn.running_mean.fill_(0)
                         # bn.running_var.fill_(1)
                         seq.append(bn)
-                        # print(f'neues bn: {bn}; j: {j}')
+                        print(f'neues bn: {bn}; j: {j}')
                     if j == 2 * pos:
                         # continue
                         kernel_size = module[0].kernel_size
                         stride = 1
                         padding = 1
                         conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
-                        # print(f'neues conv: {conv}; j: {j}')
+                        print(f'neues conv: {conv}; j: {j}')
 
                         m = module[2 * pos - 2 ]
                         deeper_w = np.zeros((i0, i0, i2, i3))
