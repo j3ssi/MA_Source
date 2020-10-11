@@ -124,8 +124,8 @@ class N2N(nn.Module):
                     block = nn.Sequential(*layer)
                     self.module_list.append(block)
                     if len(layer2) > 0:
-                        block = nn.Sequential(*layer)
-                        self.module_list.append(block)
+                        block1 = nn.Sequential(*layer2)
+                        self.module_list.append(block1)
 
                     layer2 = []
                     # 18
