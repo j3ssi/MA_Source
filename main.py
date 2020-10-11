@@ -437,10 +437,10 @@ def main():
     if args.deeper:
         print("\n\nnow deeper1")
         # deeper student training
-        model = model.deeper(pos=1)
+        # model = model.deeper(pos=1)
         print(f'archNums: {model.archNums}')
         print(f'num: {num_classes}; numofstages: {args.numOfStages}, listofBlocks: {listofBlocks}, layers in blocj: {args.layersInBlock}')
-        # model.newModuleList(num_classes)
+        model.newModuleList(num_classes)
         model.cuda()
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.Adam(model.parameters())
