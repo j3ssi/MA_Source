@@ -437,7 +437,7 @@ def main():
     if args.deeper:
         print("\n\nnow deeper1")
         # deeper student training
-        # model = model.deeper(pos=1)
+        model = model.deeper(pos=1)
         print(f'archNums: {model.archNums}')
         print(f'num: {num_classes}; numofstages: {args.numOfStages}, listofBlocks: {listofBlocks}, layers in blocj: {args.layersInBlock}')
         model.newModuleList(num_classes)
@@ -484,8 +484,8 @@ def main():
     #     scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
 
     print("Test acc1: ", test_acc)
-    test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, 1, use_cuda)
-    print("Test acc2: ", test_acc)
+    # test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, 1, use_cuda)
+    # print("Test acc2: ", test_acc)
 
     print("[INFO] Storing checkpoint...")
     if args.reset:

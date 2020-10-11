@@ -781,8 +781,8 @@ class N2N(nn.Module):
                         # continue
                         # print(f'Module {self.module_list[i]}; i: {i}')
                         bn = nn.BatchNorm2d(module[0].out_channels)
-                        # torch.nn.init.ones_(bn.weight)
-                        # torch.nn.init.zeros_(bn.bias)
+                        torch.nn.init.ones_(bn.weight)
+                        torch.nn.init.zeros_(bn.bias)
                         # bn.running_mean.fill_(0)
                         # bn.running_var.fill_(1)
                         seq.append(bn)
