@@ -258,6 +258,7 @@ class N2N(nn.Module):
                 i = 0
                 layerInThisBlock = archNum[block]
                 seq = self.module_list[j]
+                print(f' len of seq: {len(seq)}')
                 if block == 0 and stage > 0:
                     y = _x
                     for a in range(len(seq)):
