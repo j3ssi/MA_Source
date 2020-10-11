@@ -13,12 +13,11 @@ import numpy as np
 class N2N(nn.Module):
 
     def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock,
-                 first, bottleneck, widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=None):
+                 first, widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=None):
         super(N2N, self).__init__()
         self.numOfStages = numOfStages
         self.oddLayers = []
         self.numOfBlocksinStage = numOfBlocksinStage
-        self.bottleneck = bottleneck
         self.layersInBlock = layersInBlock
 
         printName = False
