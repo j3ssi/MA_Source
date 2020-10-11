@@ -153,9 +153,6 @@ class N2N(nn.Module):
             # self.stageI, self.stageO = buildResidualPath(self.module_list, self.numOfStages, self.archNums)
             # print(f'sameNode: {self.sameNode}')
         else:
-            self.archNums = archNums
-            self.numOfStages = numOfStages
-            self.layersInBlock = layersInBlock
 
             # self.sameNode = model.sameNode
             # self.stageI = model.stageI
@@ -180,11 +177,9 @@ class N2N(nn.Module):
                     padding = module.padding
                     bias = module.bias if module.bias is not None else False
 
-                    layer = nn.Conv2d(i1, i0, kernel_size=kernel_size, stride=stride, padding=padding,
-                                      bias=bias)
+                    layer = nn.Conv2d(i1, i0, kernel_size=kernel_size, stride=stride, padding=padding)
                     if printName:
                         print(f'layer: {layer}; i: {i}')
-                        # print("\nWeight Shape: ", module.weight.shape)
                     layer.weight.data = module.weight.data
                     self.module_list.append(layer)
                 elif isinstance(module_list[i], nn.BatchNorm2d):
