@@ -443,10 +443,10 @@ def main():
                        widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=model.widthofLayers)
 
         model.cuda()
-        criterion = nn.CrossEntropyLoss()
-        optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=args.momentum)
-        scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
-        print(model)
+        # criterion = nn.CrossEntropyLoss()
+        # optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=args.momentum)
+        # scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
+        # print(model)
 
     if args.wider and not args.widerRnd:
         model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
