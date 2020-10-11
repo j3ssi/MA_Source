@@ -860,9 +860,9 @@ class N2N(nn.Module):
                         print(f'neues conv: {conv}; j: {j}')
 
                         m = module[2 * pos - 2 ]
-                        # deeper_w = np.zeros((i0, i0, i2, i3))
-                        # deeper_w = torch.from_numpy(deeper_w)
-                        # torch.nn.init.xavier_normal(conv, mean=0, std=0.25)
+                        deeper_w = np.zeros((i0, i0, i2, i3))
+                        deeper_w = torch.from_numpy(deeper_w)
+                        torch.nn.init.dirac_(deeper_w)
                         # deeper_w = deeper_w.numpy()
                         # center_h = ( i0 - 1) // 2
                         # center_w = ( i0 - 1) // 2
@@ -870,9 +870,9 @@ class N2N(nn.Module):
                         #     tmp = np.zeros(( i0, i0, i3))
                         #     tmp[center_h, center_w, c] = 1
                         #     deeper_w[:, :, :, c] = tmp
-                        #     deeper_w = deeper_w.astype('float32')
-
-                            # torch.from_numpy(deeper_w)
+                        # deeper_w = deeper_w.astype('float32')
+                        #
+                        # torch.from_numpy(deeper_w)
 
                         for l in range(m.out_channels):
                             weight = m.weight.data
