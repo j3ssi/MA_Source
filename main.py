@@ -441,7 +441,7 @@ def main():
         print(f'archNums: {model.archNums}')
         model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock+1, False, args.bottleneck,
                        widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=model.widthofLayers)
-
+        gc.collect()
         model.cuda()
         # criterion = nn.CrossEntropyLoss()
         # optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=args.momentum)
