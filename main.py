@@ -484,7 +484,7 @@ def main():
         scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
 
     print("Test acc1: ", test_acc)
-    test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
+    test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, 1, use_cuda)
     print("Test acc2: ", test_acc)
 
     print("[INFO] Storing checkpoint...")
