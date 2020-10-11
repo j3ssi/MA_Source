@@ -439,14 +439,13 @@ def main():
         # deeper student training
         # model = model.deeper(pos=1)
         print(f'archNums: {model.archNums}')
-        #print(f'num: {num_classes}; numofstages: {args.numOfStages}, listofBlocks: {listofBlocks}, args.layersInBlock+1,  True, args.bottleneck,
-        #               widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=model.widthofLayers')
+        print(f'num: {num_classes}; numofstages: {args.numOfStages}, listofBlocks: {listofBlocks}, layers in blocj: {args.layersInBlock+1}')
         model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock,  True, args.bottleneck,
                        widthofFirstLayer=16, model=model, archNums=model.archNums, widthOfLayers=model.widthofLayers)
         model.cuda()
-        # criterion = nn.CrossEntropyLoss()
-        # optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=args.momentum)
-        # scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
+        criterion = nn.CrossEntropyLoss()
+        optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=args.momentum)
+        scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
         # print(model)
 
     # if args.wider and not args.widerRnd:
