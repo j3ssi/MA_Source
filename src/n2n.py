@@ -855,6 +855,7 @@ class N2N(nn.Module):
                 newModule_list.append(self.module_list[i])
             else:
                 print(f' I: {i}!!!!')
+        print(f'new module list: {newModule_list}')
         self.module_list = newModule_list
         print(f'Self: {self}')
 
