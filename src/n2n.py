@@ -835,7 +835,7 @@ class N2N(nn.Module):
 
                 if i - 2 == stages[ k - 1 ]:
                     add = add + 4
-                if i - 1 == stages[ k - 1 ]:
+                if i == stages[ k - 1 ]:
                     print(f'blockComp')
                     blockComp = True
 
