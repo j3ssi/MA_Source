@@ -788,7 +788,7 @@ class N2N(nn.Module):
                         seq.append(bn)
                         print(f'neues bn: {bn}; j: {j}')
                     if j == 2 * pos:
-                        continue
+                        # continue
                         kernel_size = module[0].kernel_size
                         stride = 1
                         padding = 1
@@ -798,7 +798,7 @@ class N2N(nn.Module):
                         m = module[2 * pos - 2 ]
                         deeper_w = np.zeros((i0, i0, i2, i3))
                         deeper_w = torch.from_numpy(deeper_w)
-                        # torch.nn.init.normal_(deeper_w, mean=0, std=0.5)
+                        torch.nn.init.normal_(deeper_w, mean=0, std=0.25)
                         deeper_w = deeper_w.numpy()
                         center_h = ( i0 - 1) // 2
                         center_w = ( i0 - 1) // 2
