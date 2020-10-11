@@ -839,9 +839,9 @@ class N2N(nn.Module):
                     print(f'blockComp')
                     blockComp = True
 
-                # self.archNums[k][block] += 1
-                # if (i - 2) % 5 == 0 and (i - 2) // 5 > 0:
-                #     blockComp = True
+                self.archNums[k][block] += 1
+                if (i - 2) % 5 == 0 and (i - 2) // 5 > 0:
+                    blockComp = True
 
             elif isinstance(self.module_list[i], nn.AdaptiveAvgPool2d):
                 print(f'i: {i}; pool')
