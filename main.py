@@ -572,7 +572,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         with torch.no_grad():
             inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
-        outputs = model.forward(inputs)
+        outputs = model(inputs)
         loss = criterion(outputs, targets)
         # if batch_idx == 0 and (epoch == 10):
         #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
@@ -648,7 +648,6 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                   'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
                 epoch, batch_idx, len(trainloader), batch_time=batch_time,
                 data_time=data_time, loss=losses, top1=top1, top5=top5))
-        break
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
     return losses.avg, top1.avg, epoch_time
 
