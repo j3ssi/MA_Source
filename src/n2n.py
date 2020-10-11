@@ -756,12 +756,12 @@ class N2N(nn.Module):
         print(f'tmp: {stages}')
         stage = 0
         for i in range( len( self.module_list ) ):
-            if i>3 and blockComp:
+            if i>3 and blockComp and isinstance(self.module_list[i], nn.Sequential):
                 print(f'skip: {i}')
                 blockComp = False
                 newModule_list.append( self.module_list[ i ] )
                 # stages[k] += 1
-                print(f'Erhöhung von stages[k]: {stages[k]}')
+                print(f'k: {k}')
 
                 continue
             print(f'stages: {stages[k]}')
@@ -843,8 +843,8 @@ class N2N(nn.Module):
                 # if stages[ k- 1 ] == i:
 
                 self.archNums[k][block] += 1
-                if (i - 2) % 5 == 0 and (i - 2) // 5 > 0:
-                    blockComp = True
+                # if (i - 2) % 5 == 0 and (i - 2) // 5 > 0:
+                #     blockComp = True
 
             elif isinstance(self.module_list[i], nn.AdaptiveAvgPool2d):
                 print(f'i: {i}; pool')
