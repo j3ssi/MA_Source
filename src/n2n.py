@@ -148,7 +148,6 @@ class N2N(nn.Module):
                     m.bias.data.zero_()
             print(f'Modell Erstellung')
             print(self)
-            return self
             # self.sameNode, self.oddLayers = buildShareSameNodeLayers(self.module_list, self.numOfStages, self.archNums)
             # self.stageI, self.stageO = buildResidualPath(self.module_list, self.numOfStages, self.archNums)
             # print(f'sameNode: {self.sameNode}')
@@ -241,7 +240,6 @@ class N2N(nn.Module):
                     self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
             print(f' Modell: {self}')
-            return self
 
     def forward(self, x):
         # print(f'ArchNums: {self.archNums}')
