@@ -574,14 +574,14 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         targets = torch.autograd.Variable(targets)
         outputs = model.forward(inputs)
         loss = criterion(outputs, targets)
-        if batch_idx == 0 and (epoch == 10):
-            dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
-            if len(model.module_list) < 60:
-                filename = 'model/n2nBefore' + str(epoch) + '_' + str(batch_idx) + '.dot'
-            else:
-                filename = 'model/n2nAfter' + str(epoch) + '_' + str(batch_idx) + '.dot'
-
-            dot.render(filename=filename)
+        # if batch_idx == 0 and (epoch == 10):
+        #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
+        #     if len(model.module_list) < 60:
+        #         filename = 'model/n2nBefore' + str(epoch) + '_' + str(batch_idx) + '.dot'
+        #     else:
+        #         filename = 'model/n2nAfter' + str(epoch) + '_' + str(batch_idx) + '.dot'
+        #
+        #     dot.render(filename=filename)
 
             # lasso penalty
         init_batch = batch_idx == 0 and epoch == 1

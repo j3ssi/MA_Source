@@ -158,7 +158,7 @@ class N2N(nn.Module):
             # self.stageO = model.stageO
             # print(f'Archnums: {self.archNums}')
             module_list = model.module_list
-            del model
+            # del model
             self.module_list = nn.ModuleList()
 
             # print("\naltList", altList)
