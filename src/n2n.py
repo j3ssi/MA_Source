@@ -772,12 +772,12 @@ class N2N(nn.Module):
         print(f'tmp: {stages}')
         stage = 0
         for i in range( len( self.module_list ) ):
-            # if i>3 and blockComp:
-            #     print(f'skip: {i}')
-            #     blockComp = False
-            #     newModule_list.append( self.module_list[ i ] )
-            #     continue
-            # print(f'stages: {stages[k]}')
+            if i>3 and blockComp:
+                print(f'skip: {i}')
+                blockComp = False
+                newModule_list.append( self.module_list[ i ] )
+                continue
+            print(f'stages: {stages[k]}')
 
 
             if isinstance(self.module_list[i], nn.Sequential):
@@ -788,15 +788,15 @@ class N2N(nn.Module):
                 i2 = module[0].weight.size(2)
                 i3 = module[0].weight.size(3)
                 seq = []
-                for j in range( len( module ) + 2 ):
+                for j in range( len( module ) ):
                     if j == 2 * pos - 1:
                         continue
                         # print(f'Module {self.module_list[i]}; i: {i}')
-                        bn = nn.BatchNorm2d(i0, eps=0)
-                        torch.nn.init.ones_(bn.weight)
-                        torch.nn.init.zeros_(bn.bias)
-                        bn.running_mean.fill_(0)
-                        bn.running_var.fill_(1)
+                        bn = nn.BatchNorm2d(i0)
+                        # torch.nn.init.ones_(bn.weight)
+                        # torch.nn.init.zeros_(bn.bias)
+                        # bn.running_mean.fill_(0)
+                        # bn.running_var.fill_(1)
                         seq.append(bn)
                         # print(f'neues bn: {bn}; j: {j}')
                     if j == 2 * pos:
