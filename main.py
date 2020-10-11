@@ -625,13 +625,13 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         top5.update(prec5.item(), inputs.size(0))
         lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
 
-        # optimizer.zero_grad()
+        optimizer.zero_grad()
         #   compute gradient and do SGD step
-        if args.O1 or args.O2 or args.O3:
-            with amp.scale_loss(loss, optimizer) as scaled_loss:
-                scaled_loss.backward()
-        else:
-            loss.backward()
+        # if args.O1 or args.O2 or args.O3:
+        #     with amp.scale_loss(loss, optimizer) as scaled_loss:
+        #         scaled_loss.backward()
+        # else:
+        loss.backward()
             # print(f'After backward')
         optimizer.step()
 

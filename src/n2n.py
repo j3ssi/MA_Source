@@ -177,7 +177,7 @@ class N2N(nn.Module):
                     padding = module.padding
                     bias = module.bias if module.bias is not None else False
 
-                    layer = nn.Conv2d(i1, i0, kernel_size=kernel_size, stride=stride, padding=padding)
+                    layer = nn.Conv2d(module.in_channels, module.out_channels, kernel_size=kernel_size, stride=stride, padding=padding)
                     if printName:
                         print(f'layer: {layer}; i: {i}')
                     layer.weight.data = module.weight.data
@@ -186,7 +186,7 @@ class N2N(nn.Module):
                     module = module_list[i]
                     i0 = module.weight.size(0)
 
-                    layer = nn.BatchNorm2d(i0)
+                    layer = nn.BatchNorm2d(module.in_channels)
                     layer.weight.data = module.weight.data
                     layer.bias.data = module.bias.data
                     if printName:
@@ -208,7 +208,7 @@ class N2N(nn.Module):
                             stride = module1.stride
                             padding = module1.padding
 
-                            layer1 = nn.Conv2d(i1, i0, kernel_size=kernel_size, stride=stride, padding=padding)
+                            layer1 = nn.Conv2d(module.in_channels, module.out_channels, kernel_size=kernel_size, stride=stride, padding=padding)
                             if printName:
                                 print("\n>new Layer: ", layer1)
                                 print("\nWeight Shape: ", module1.weight.shape)
