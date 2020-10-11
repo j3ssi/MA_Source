@@ -773,7 +773,7 @@ class N2N(nn.Module):
                 i2 = module[0].weight.size(2)
                 i3 = module[0].weight.size(3)
                 seq = []
-                for j in range( len( module ) ):
+                for j in range( len( module ) + 2 ):
                     if j == 2 * pos - 1:
                         # continue
                         # print(f'Module {self.module_list[i]}; i: {i}')
@@ -812,16 +812,16 @@ class N2N(nn.Module):
                             weight.div_(norm)
                             m.weight.data = weight
                         seq.append(conv)
-                        # print(f'module: {conv}; j= { 2 * pos +1 }')
+                        print(f'beues conv: {conv}; j= { 2 * pos +1 }')
                     elif j > 2 * pos:
                         # print(f'module: {module[j - 2]}; j= {j + 2}')
-                        # print(f'altes layer: {module[j - 2]}; j: {j}')
+                        print(f'altes layer: {module[j - 2]}; j: {j}')
 
                         seq.append(module[j - 2])
                     elif j < 2 * pos - 1:
                         # print(f'module: {module[j]}; j= {j}')
                         seq.append(module[j])
-                        # print(f'altes layer: {module[j - 2]}; j: {j}')
+                        print(f'altes layer: {module[j]}; j: {j}')
 
                 # print(f'seq: {seq}')
                 newModule_list.append( nn.Sequential( *seq ) )
