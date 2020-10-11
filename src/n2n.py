@@ -208,7 +208,7 @@ class N2N(nn.Module):
                             stride = module1.stride
                             padding = module1.padding
 
-                            layer1 = nn.Conv2d(module.in_channels, module.out_channels, kernel_size=kernel_size, stride=stride, padding=padding)
+                            layer1 = nn.Conv2d(module1.in_channels, module1.out_channels, kernel_size=kernel_size, stride=stride, padding=padding)
                             if printName:
                                 print("\n>new Layer: ", layer1)
                                 print("\nWeight Shape: ", module1.weight.shape)
