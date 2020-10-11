@@ -262,7 +262,7 @@ class N2N(nn.Module):
                     y = _x
                     for a in range(len(seq)):
                         y = seq[a](y)
-                        if isinstance(a, nn.BatchNorm2d):
+                        if isinstance(seq[a], nn.BatchNorm2d):
                             y = self.relu(y)
                     x = y
                     j += 1
@@ -270,7 +270,7 @@ class N2N(nn.Module):
                     y = _x
                     for a in range(len(seq)):
                         y = seq[a](y)
-                        if isinstance(a, nn.BatchNorm2d):
+                        if isinstance(seq[a], nn.BatchNorm2d):
                             y = self.relu(y)
 
                     _x = y
