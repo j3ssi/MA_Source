@@ -399,78 +399,43 @@ class N2N(nn.Module):
         print(f'Stage: {stage}')
         print(f'width of Layers: {self.widthofLayers}')
         # get names for modules
-        altList = []
-        paramList = []
-        printName = False
-        for name, param in self.named_parameters():
-            paramList.append(param)
-            i = int(name.split('.')[1])
-
-            if i % 2 == 0:
-                altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
-                if printName:
-                    print("\nI:", i, " ; ", altList[-1])
-            elif (i % 2 == 1) and ('weight' in name) and (i < (len(self.module_list) - 2)):
-                altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
-                if printName:
-                    print("\nI:", i, " ; ", altList[-1])
-            elif (i % 2 == 1) and ('weight' in name) and (i > (len(self.module_list) - 3)):
-                altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
-                if printName:
-                    print("\nI:", i, " ; ", altList[-1])
-            elif (i % 2 == 1) and ('bias' in name) and (i < (len(self.module_list) - 1)):
-                altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
-                if printName:
-                    print("\nI:", i, " ; ", altList[-1])
-            elif (i % 2 == 1) and ('bias' in name) and (i > (len(self.module_list) - 2)):
-                altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-                if printName:
-                    print("\nI:", i, " ; ", altList[-1])
-            else:
-                assert True, print("Hier fehlt noch was!!")
 
         # fill lists with numbers of input or output numbers for each stage
-        residualListI = []
-        residualListO = []
-        for index in range(0, len(altList)):
-            if 'conv' in altList[index]:
-                width = paramList[index].size()[0]
-                print(f'width: {width}')
-                if self.widthofLayers.count(width) > 0:
-                    tobestage = self.widthofLayers.index(width) + 1
-                    print(f'stage: {stage}; tobestage: {tobestage}')
-
-                    if tobestage == stage:
-                        num = int(altList[index].split('.')[1].split('v')[1])
-                        residualListI.append(num)
-                        print(f'Num: {num}')
-                width = paramList[index].size()[0]
-                if self.widthofLayers.count(width) > 0:
-                    tobestage = self.widthofLayers.index(width) + 1
-                    # print(f'stage: {stage}')
-                    if tobestage == stage:
-                        num = int(altList[index].split('.')[1].split('v')[1])
-                        residualListO.append(num)
-
-        print(f'altList: {altList}')
-        print(f'Residual ListI: {residualListI}')
-        print(f'Residual ListO: {residualListO}')
-        tmpListI = copy.copy(residualListI)
-        tmpListO = copy.copy(residualListO)
-        residualList = sorted(list(set(tmpListI) | set(tmpListO)))
+        # residualListI = []
+        # residualListO = []
+        # residualListO.append([])
+        # residualListO[0].append('module.conv1')
+        # for index in range(2, len(self.module_list)):
+        #
+        #     if isinstance(self.module_list[index]):
+        #         width = paramList[index].size()[0]
+        #         print(f'width: {width}')
+        #         if self.widthofLayers.count(width) > 0:
+        #             tobestage = self.widthofLayers.index(width) + 1
+        #             print(f'stage: {stage}; tobestage: {tobestage}')
+        #
+        #             if tobestage == stage:
+        #                 num = int(altList[index].split('.')[1].split('v')[1])
+        #                 residualListI.append(num)
+        #                 print(f'Num: {num}')
+        #         width = paramList[index].size()[0]
+        #         if self.widthofLayers.count(width) > 0:
+        #             tobestage = self.widthofLayers.index(width) + 1
+        #             # print(f'stage: {stage}')
+        #             if tobestage == stage:
+        #                 num = int(altList[index].split('.')[1].split('v')[1])
+        #                 residualListO.append(num)
+        #
+        # print(f'Residual ListI: {residualListI}')
+        # print(f'Residual ListO: {residualListO}')
+        # tmpListI = copy.copy(residualListI)
+        # tmpListO = copy.copy(residualListO)
+        # residualList = sorted(list(set(tmpListI) | set(tmpListO)))
 
         # fill numpy array with random elemente from original weight
-        index = 0
-        while index == 0:
-            # get next elemente to widen
-            j = residualList.pop(0)
-            # transform to numbetr in moduleList
-            if (j == 0):
-                print(f'j')
-                continue
-            print(f'j: {j}')
-            i = 2 * j - 2
-
+        for s in range(0, self.numOfStages):
+            width = self.widthofLayers[s]
+            for
             # get modules
             m1 = self.module_list[i]
             w1 = m1.weight.data.clone().cpu().numpy()
