@@ -240,6 +240,7 @@ class N2N(nn.Module):
                     self.module_list.append(fc)
             self.relu = nn.ReLU(inplace=True)
             print(f' Modell: {self}')
+            return self
 
     def forward(self, x):
         # print(f'ArchNums: {self.archNums}')
