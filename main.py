@@ -434,18 +434,18 @@ def main():
 
         i = 2
 
-    if args.deeper:
-        print("\n\nnow deeper1")
-        # deeper student training
-        model = model.deeper(pos=1)
-        print(f'archNums: {model.archNums}')
-        print(f'num: {num_classes}; numofstages: {args.numOfStages}, listofBlocks: {listofBlocks}, layers in blocj: {args.layersInBlock}')
-        model.newModuleList(num_classes)
-        model.cuda()
-        criterion = nn.CrossEntropyLoss()
-        optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=args.momentum)
-        scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
-        # print(model)
+    # if args.deeper:
+    #     print("\n\nnow deeper1")
+    #     # deeper student training
+    #     model = model.deeper(pos=1)
+    #     print(f'archNums: {model.archNums}')
+    #     print(f'num: {num_classes}; numofstages: {args.numOfStages}, listofBlocks: {listofBlocks}, layers in blocj: {args.layersInBlock}')
+    #     model.newModuleList(num_classes)
+    #     model.cuda()
+    #     criterion = nn.CrossEntropyLoss()
+    #     optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=args.momentum)
+    #     scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
+    #     # print(model)
 
     # if args.wider and not args.widerRnd:
     #     model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
