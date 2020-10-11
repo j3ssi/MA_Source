@@ -781,6 +781,7 @@ class N2N(nn.Module):
 
 
             if isinstance(self.module_list[i], nn.Sequential):
+                print(f'i: {i}, seq')
                 # print(f'davor: {self.module_list[i]}')
                 module = self.module_list[i]
                 i0 = module[0].weight.size(0)
@@ -859,8 +860,10 @@ class N2N(nn.Module):
                 #     blockComp = True
 
             elif isinstance(self.module_list[i], nn.AdaptiveAvgPool2d):
+                print(f'i: {i}; pool')
                 newModule_list.append(self.module_list[i])
             elif isinstance(self.module_list[i], nn.Linear):
+                print(f'i: {i}; linear')
                 newModule_list.append(self.module_list[i])
             else:
                 print(f' I: {i}!!!!')
