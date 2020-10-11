@@ -760,6 +760,7 @@ class N2N(nn.Module):
                 print(f'skip: {i}')
                 blockComp = False
                 newModule_list.append( self.module_list[ i ] )
+                stages[k] += 1
                 continue
             print(f'stages: {stages[k]}')
 
