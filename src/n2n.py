@@ -828,7 +828,7 @@ class N2N(nn.Module):
                             m.weight.data = weight
                         seq.append(conv)
                         # print(f'module: {conv}; j= { 2 * pos +1 }')
-                    elif j > 2 * pos:
+                    elif j >= 2 * pos:
                         # print(f'module: {module[j - 2]}; j= {j + 2}')
                         # print(f'altes layer: {module[j - 2]}; j: {j}')
 
