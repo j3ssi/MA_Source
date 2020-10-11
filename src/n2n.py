@@ -154,6 +154,8 @@ class N2N(nn.Module):
             # print(f'sameNode: {self.sameNode}')
         else:
             self.archNums = archNums
+            self.numOfStages = numOfStages
+            self.layersInBlock = layersInBlock
 
             # self.sameNode = model.sameNode
             # self.stageI = model.stageI
