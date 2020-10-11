@@ -137,7 +137,7 @@ class N2N(nn.Module):
             # 19
             fc = nn.Linear(sizeOfLayer, num_classes)
             self.module_list.append(fc)
-            self.relu = nn.ReLU(inplace=True)
+            self.relu = nn.LeakyReLU(inplace=True)
 
             for m in self.module_list:
                 if isinstance(m, nn.Conv2d):
