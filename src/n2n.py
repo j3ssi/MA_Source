@@ -88,6 +88,7 @@ class N2N(nn.Module):
                             i = i + 1
 
                         elif firstBlockInStage and (i + 1) % self.archNums[stage][block] == 0:
+                            print(f'begin layer2: {i}')
                             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                              bias=False,
                                              stride=2)
@@ -98,7 +99,7 @@ class N2N(nn.Module):
                             layer2.append(bn)
                             i = i + 1
                             firstBlockInStage = False
-
+                            print(F' end layer2: {i}; layer2:{layer2}')
                         elif firstBlockInStage:
                             conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1,
                                              bias=False,
@@ -124,7 +125,7 @@ class N2N(nn.Module):
                     self.module_list.append(block)
                     if len(layer2) > 0:
                         block = nn.Sequential(*layer)
-                        self.module_list.append((block))
+                        self.module_list.append(block)
 
                     layer2 = []
                     # 18
