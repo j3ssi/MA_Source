@@ -778,7 +778,7 @@ class N2N(nn.Module):
                 seq = []
                 for j in range( len( module ) + 2 ):
                     if j == 2 * pos - 1:
-                        continue
+                        # continue
                         # print(f'Module {self.module_list[i]}; i: {i}')
                         bn = nn.BatchNorm2d(module[0].out_channels)
                         torch.nn.init.ones_(bn.weight)
@@ -788,7 +788,7 @@ class N2N(nn.Module):
                         seq.append(bn)
                         print(f'neues bn: {bn}; j: {j}')
                     if j == 2 * pos:
-                        # continue
+                        continue
                         kernel_size = module[0].kernel_size
                         stride = 1
                         padding = 1
