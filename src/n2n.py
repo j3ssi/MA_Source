@@ -172,7 +172,8 @@ class N2N(nn.Module):
                 padding = module.padding
                 bias = module.bias if module.bias is not None else False
 
-                layer = nn.Conv2d(module.in_channels, module.out_channels, kernel_size=kernel_size, stride=stride, padding=padding)
+                layer = nn.Conv2d(module.in_channels, module.out_channels, kernel_size=kernel_size, stride=stride,
+                                  padding=padding)
                 if printName:
                     print(f'layer: {layer}; i: {i}')
                 layer.weight.data = module.weight.data
@@ -188,7 +189,7 @@ class N2N(nn.Module):
             elif isinstance(module_list[i], nn.Sequential):
                 module = module_list[i]
                 layer = []
-                for j in range( len( module ) ):
+                for j in range(len(module)):
                     if isinstance(module[j], nn.Conv2d):
 
                         module1 = module[j]
@@ -196,7 +197,8 @@ class N2N(nn.Module):
                         stride = module1.stride
                         padding = module1.padding
 
-                        layer1 = nn.Conv2d(module1.in_channels, module1.out_channels, kernel_size=kernel_size, stride=stride, padding=padding)
+                        layer1 = nn.Conv2d(module1.in_channels, module1.out_channels, kernel_size=kernel_size,
+                                           stride=stride, padding=padding)
                         if printName:
                             print("\n>new Layer: ", layer1)
                             # print("\nWeight Shape: ", module1.weight.shape)
@@ -213,7 +215,7 @@ class N2N(nn.Module):
                 self.module_list.append(nn.Sequential(*layer))
                 if printName:
                     print(f'>new Layer: {layer}')
-                if i== 8:
+                if i == 8:
                     print(f'Sequential: {layer}')
             elif isinstance(module_list[i], nn.AdaptiveAvgPool2d):
                 self.module_list.append(nn.AdaptiveAvgPool2d((1, 1)))
@@ -462,6 +464,7 @@ class N2N(nn.Module):
             #         listOfRunningVar = var.cpu().numpy()
 
         # print(f'oldwidth: {old_width} ')
+
     #     for o in range(0, (new_width - old_width)):
     #         idx = np.random.randint(0, old_width)
     #         m1list = w1[idx, :, :, :]
@@ -819,17 +822,16 @@ class N2N(nn.Module):
 
         print(f'tmp: {stages}')
         stage = 0
-        for i in range( len( self.module_list ) ):
-            if i>3 and blockComp and isinstance(self.module_list[i], nn.Sequential):
+        for i in range(len(self.module_list)):
+            if i > 3 and blockComp and isinstance(self.module_list[i], nn.Sequential):
                 print(f'skip: {i}')
                 blockComp = False
-                newModule_list.append( self.module_list[ i ] )
+                newModule_list.append(self.module_list[i])
                 # stages[k] += 1
                 print(f'k: {k}')
 
                 continue
             print(f'stages: {stages[k]}')
-
 
             if isinstance(self.module_list[i], nn.Sequential):
                 print(f'i: {i}, seq')
@@ -840,7 +842,7 @@ class N2N(nn.Module):
                 i2 = module[0].weight.size(2)
                 i3 = module[0].weight.size(3)
                 seq = []
-                for j in range( len( module ) + 2 ):
+                for j in range(len(module) + 2):
                     if j == 2 * pos - 1:
                         # continue
                         # print(f'Module {self.module_list[i]}; i: {i}')
@@ -859,7 +861,7 @@ class N2N(nn.Module):
                         conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
                         print(f'neues conv: {conv}; j: {j}')
 
-                        m = module[2 * pos - 2 ]
+                        m = module[2 * pos - 2]
                         deeper_w = np.zeros((i0, i0, i2, i3))
                         deeper_w = torch.from_numpy(deeper_w)
                         torch.nn.init.dirac_(deeper_w)
@@ -892,19 +894,19 @@ class N2N(nn.Module):
                         print(f'altes layer: {module[j]}; j: {j}')
 
                 print(f'seq: {seq}')
-                newModule_list.append( nn.Sequential( *seq ) )
+                newModule_list.append(nn.Sequential(*seq))
                 if i == stages[k]:
                     k += 1
                 print(f'i: {i}')
-                print(f'stages[k-1]: {stages[k-1]}')
+                print(f'stages[k-1]: {stages[k - 1]}')
 
-                if i - 2 == stages[ k - 1 ]:
+                if i - 2 == stages[k - 1]:
                     add = add + 4
-                if i == stages[ k - 1 ]:
+                if i == stages[k - 1]:
                     print(f'blockComp')
                     blockComp = True
 
-                block = ( i + add ) % self.numOfBlocksinStage[ k ]
+                block = (i + add) % self.numOfBlocksinStage[k]
                 print(f'stage: {k}; block: {block}; i: {i}; i+ add: {(i + add) % 5}: add: {add}')
                 # if stages[ k- 1 ] == i:
 
