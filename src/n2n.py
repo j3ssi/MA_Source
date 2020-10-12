@@ -1038,6 +1038,7 @@ class N2N(nn.Module):
                 # print(f'davor: {self.module_list[i]}')
                 module = self.module_list[i]
                 i0 = module[0].out_channels
+                i1 = module[0].in_channels
                 i2 = module[0].weight.size(2)
                 i3 = module[0].weight.size(3)
                 seq = []
@@ -1054,6 +1055,8 @@ class N2N(nn.Module):
                         print(f'neues bn: {bn}; j: {j}')
                     if j == 2 * pos:
                         # continue
+                        if i0 !=i1:
+                            continue
                         kernel_size = module[0].kernel_size
                         stride = 1
                         padding = 1
