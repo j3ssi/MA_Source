@@ -1041,7 +1041,7 @@ class N2N(nn.Module):
                 i0 = module[0].out_channels
                 i1 = module[0].in_channels
                 seq = []
-                print(f'seq: {module}')
+                # print(f'seq: {module}')
                 for j in range(len(module) + 3):
                     if j == 3 * pos - 2:
                         # continue
@@ -1052,7 +1052,7 @@ class N2N(nn.Module):
                         # bn.running_mean.fill_(0)
                         # bn.running_var.fill_(1)
                         seq.append(bn)
-                        print(f'neues bn: {bn}; j: {j}')
+                        # print(f'neues bn: {bn}; j: {j}')
                     if j == 3 * pos - 1:
                         seq.append(self.relu)
                     if j == 3 * pos:
@@ -1061,7 +1061,7 @@ class N2N(nn.Module):
                         stride = 1
                         padding = 1
                         conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
-                        print(f'neues conv: {conv}; j: {j}')
+                        # print(f'neues conv: {conv}; j: {j}')
 
                         m = module[2 * pos - 2]
                         torch.nn.init.dirac_(conv.weight)
@@ -1088,16 +1088,16 @@ class N2N(nn.Module):
                         # print(f'beues conv: {conv}; j= { 2 * pos +1 }')
                     elif j > 2 * pos:
                         # print(f'module: {module[j - 2]}; j= {j + 2}')
-                        print(f'altes layer: {module[j - 3]}; j: {j}')
+                        # print(f'altes layer: {module[j - 3]}; j: {j}')
 
                         seq.append(module[j - 3])
                     elif j < 2 * pos - 1:
                         # prin   t(f'module: {module[j]}; j= {j}')
                         seq.append(module[j])
 
-                        print(f'altes layer: {module[j]}; j: {j}')
+                        # print(f'altes layer: {module[j]}; j: {j}')
 
-                print(f'seq: {seq}')
+                print(f'i: {i}; i0=: {i0}; i1=: {i1}')
                 module = nn.Sequential(*seq)
                 self.module_list[i] =module
                 if i0 != i1 and blockComp:
