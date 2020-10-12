@@ -151,8 +151,8 @@ class N2N(nn.Module):
                     n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
                     m.weight.data.normal_(0, math.sqrt(2. / n))
                 elif isinstance(m, nn.BatchNorm2d):
-                    m.weight.data.fill_(1)
-                    m.bias.data.zero_()
+                    nn.init.ones_(m.weight)
+                    nn.init.zeros_(m.bias)
                 elif isinstance(m, nn.Sequential):
                     for a in range(len(m)):
                         seq = m[a]
@@ -160,8 +160,8 @@ class N2N(nn.Module):
                             n = seq.kernel_size[0] * seq.kernel_size[1] * seq.out_channels
                             seq.weight.data.normal_(0, math.sqrt(2. / n))
                         elif isinstance(seq, nn.BatchNorm2d):
-                            seq.weight.data.fill_(1)
-                            seq.bias.data.zero_()
+                            nn.init.ones_(seq.weight)
+                            nn.init.zeros_(seq.bias)
 
             print(f'Modell Erstellung')
             print(self)
