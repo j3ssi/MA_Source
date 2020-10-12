@@ -1062,7 +1062,7 @@ class N2N(nn.Module):
                         print(f'neues conv: {conv}; j: {j}')
 
                         m = module[2 * pos - 2]
-                        torch.nn.init.dirac_(conv.weight)
+                        torch.nn.init.xavier_normal(conv.weight)
                         with torch.no_grad():
                             m.weight.div_(torch.norm(m.weight, dim=2, keepdim=True))
                         # deeper_w = deeper_w.numpy()
