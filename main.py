@@ -55,7 +55,7 @@ from src.utils import AverageMeter, accuracy, mkdir_p, Logger
 # from apex import amp, optimizers
 # from apex.apex.multi_tensor_apply import multi_tensor_applier
 import platform, psutil
-
+from torchtest import assert_vars_change
 # Parser
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 # parameters for basic cuda
@@ -339,6 +339,23 @@ def main():
 
     i = 1
     # for epochNet2Net in range(1, 4):
+    inputs = Variable(torch.randn(20, 20))
+    targets = Variable(torch.randint(0, 2, (20,))).long()
+    batch = [inputs, targets]
+    model = nn.Linear(20, 2)
+
+    # what are the variables?
+    print('Our list of parameters', [np[0] for np in model.named_parameters()])
+
+    # do they change after a training step?
+    #  let's run a train step and see
+    assert_vars_change(
+        model=model,
+        loss_fn=torch.nn.functional.cross_entropy,
+        optim=optimizer,
+        batch=batch)
+
+
     while i == 1:
         for epoch in range(start_epoch, args.epochs + start_epoch):
 
@@ -447,6 +464,24 @@ def main():
         optim.SGD(model.parameters(), lr=0.01, momentum=args.momentum, weight_decay=args.weight_decay)
         scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
         # print(model)
+
+
+    # for epochNet2Net in range(1, 4):
+    inputs = Variable(torch.randn(20, 20))
+    targets = Variable(torch.randint(0, 2, (20,))).long()
+    batch = [inputs, targets]
+    model = nn.Linear(20, 2)
+
+    # what are the variables?
+    print('Our list of parameters', [np[0] for np in model.named_parameters()])
+
+    # do they change after a training step?
+    #  let's run a train step and see
+    assert_vars_change(
+        model=model,
+        loss_fn=torch.nn.functional.cross_entropy,
+        optim=optimizer,
+        batch=batch)
 
     if args.wider and not args.widerRnd:
         model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
