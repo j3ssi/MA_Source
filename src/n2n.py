@@ -1090,9 +1090,9 @@ class N2N(nn.Module):
                         # print(f'beues conv: {conv}; j= { 2 * pos +1 }')
                     elif j > 2 * pos:
                         # print(f'module: {module[j - 2]}; j= {j + 2}')
-                        print(f'altes layer: {module[j - 2]}; j: {j}')
+                        print(f'altes layer: {module[j - 3]}; j: {j}')
 
-                        seq.append(module[j - 2])
+                        seq.append(module[j - 3])
                     elif j < 2 * pos - 1:
                         # print(f'module: {module[j]}; j= {j}')
                         seq.append(module[j])
