@@ -1100,7 +1100,7 @@ class N2N(nn.Module):
 
                         print(f'altes layer: {module[j]}; j: {j}')
 
-                print(f'seq: {seq}')
+                print(f'seq: {seq2}')
                 module = nn.Sequential(*seq2)
                 self.module_list[i] = nn.Sequential(module)
                 if i == stages[k]:
