@@ -1064,7 +1064,8 @@ class N2N(nn.Module):
 
                         m = module[2 * pos - 2]
                         torch.nn.init.dirac_(conv.weight)
-                        m.weight.div_(torch.norm(m.weight, dim=2, keepdim=True))
+                        with torch.no_grad():
+                            m.weight.div_(torch.norm(m.weight, dim=2, keepdim=True))
                         # deeper_w = deeper_w.numpy()
                         # center_h = ( i0 - 1) // 2
                         # center_w = ( i0 - 1) // 2
