@@ -339,22 +339,6 @@ def main():
 
     i = 1
     # for epochNet2Net in range(1, 4):
-    inputs = Variable(torch.randn(20, 20))
-    targets = Variable(torch.randint(0, 2, (20,))).long()
-    batch = [inputs, targets]
-
-    # what are the variables?
-    print('Our list of parameters', [np[0] for np in model.named_parameters()])
-
-    # do they change after a training step?
-    #  let's run a train step and see
-    assert_vars_change(
-        model=model,
-        loss_fn=torch.nn.functional.cross_entropy,
-        optim=optimizer,
-        batch=batch,
-        device='cuda:0'
-    )
 
 
     while i == 1:
@@ -466,23 +450,6 @@ def main():
         scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
         # print(model)
 
-
-    # for epochNet2Net in range(1, 4):
-    inputs = Variable(torch.randn(20, 20))
-    targets = Variable(torch.randint(0, 2, (20,))).long()
-    batch = [inputs, targets]
-
-    # what are the variables?
-    print('Our list of parameters', [np[0] for np in model.named_parameters()])
-
-    # do they change after a training step?
-    #  let's run a train step and see
-    assert_vars_change(
-        model=model,
-        loss_fn=torch.nn.functional.cross_entropy,
-        optim=optimizer,
-        batch=batch,
-        device='cuda:0')
 
     if args.wider and not args.widerRnd:
         model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)

@@ -1005,10 +1005,8 @@ class N2N(nn.Module):
     #     return self
 
     def deeper(self, pos=1):
+
         # make each block with plus two layers (conv +batch) deeper
-        newModule_list = nn.ModuleList()
-        newModule_list.append(self.module_list[0])
-        newModule_list.append(self.module_list[1])
         blockComp = False
 
         stages = []
@@ -1024,9 +1022,10 @@ class N2N(nn.Module):
         stage = 0
         for i in range(len(self.module_list)):
             if i > 3 and blockComp and isinstance(self.module_list[i], nn.Sequential):
+                continue
                 print(f'skip: {i}')
                 blockComp = False
-                newModule_list.append(self.module_list[i])
+                # newModule_list.append(self.module_list[i])
                 # stages[k] += 1
                 print(f'k: {k}')
 
@@ -1034,12 +1033,16 @@ class N2N(nn.Module):
             print(f'stages: {stages[k]}')
 
             if isinstance(self.module_list[i], nn.Sequential):
+
+
+
                 print(f'i: {i}')
                 # print(f'davor: {self.module_list[i]}')
                 module = self.module_list[i]
                 i0 = module[0].out_channels
                 i1 = module[0].in_channels
                 seq = []
+                seq2 = []
                 for j in range(len(module) + 2):
                     if j == 2 * pos - 1:
                         # continue
@@ -1049,7 +1052,7 @@ class N2N(nn.Module):
                         torch.nn.init.zeros_(bn.bias)
                         # bn.running_mean.fill_(0)
                         # bn.running_var.fill_(1)
-                        seq.append(bn)
+                        seq2.append(bn)
                         print(f'neues bn: {bn}; j: {j}')
                     if j == 2 * pos:
                         # continue
@@ -1079,21 +1082,22 @@ class N2N(nn.Module):
                         #     norm = weight.select(0, l).norm()
                         #     weight.div_(norm)
                         #     m.weight.data = weight
-                        seq.append(conv)
+                        seq2.append(conv)
                         # print(f'GRAD: c{conv.}')
                         # print(f'beues conv: {conv}; j= { 2 * pos +1 }')
                     elif j > 2 * pos:
                         # print(f'module: {module[j - 2]}; j= {j + 2}')
                         print(f'altes layer: {module[j - 2]}; j: {j}')
 
-                        seq.append(module[j - 2])
+                        seq2.append(module[j - 2])
                     elif j < 2 * pos - 1:
                         # print(f'module: {module[j]}; j= {j}')
-                        seq.append(module[j])
+                        seq2.append(module[j])
                         print(f'altes layer: {module[j]}; j: {j}')
 
                 print(f'seq: {seq}')
-                newModule_list.append(nn.Sequential(*seq))
+                module = nn.Sequential(*seq2)
+                self.module_list[i] = nn.Sequential(module)
                 if i == stages[k]:
                     k += 1
                 print(f'i: {i}')
