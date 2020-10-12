@@ -1044,10 +1044,10 @@ class N2N(nn.Module):
                 i1 = module[0].in_channels
                 seq = []
                 print(f'seq: {module}')
-                for j in range(len(module) + 2):
+                for j in range(len(module) + 3):
                     if isinstance(module[j], nn.LeakyReLU):
                         seq.append(self.relu)
-                    if j == 2 * pos - 1:
+                    if j == 3 * pos - 1:
                         # continue
                         # print(f'Module {self.module_list[i]}; i: {i}')
                         bn = nn.BatchNorm2d(module[0].out_channels)
@@ -1057,7 +1057,7 @@ class N2N(nn.Module):
                         # bn.running_var.fill_(1)
                         seq.append(bn)
                         print(f'neues bn: {bn}; j: {j}')
-                    if j == 2 * pos:
+                    if j == 3 * pos:
                         # continue
                         kernel_size = module[0].kernel_size
                         stride = 1
