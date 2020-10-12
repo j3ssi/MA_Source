@@ -1102,10 +1102,10 @@ class N2N(nn.Module):
                 self.module_list[i] =module
                 if i0 != i1 and blockComp:
                     print(f'First!; i: {i}')
-                    blockComp =  True
+                    blockComp =  False
                 elif i0 != i1 and not blockComp:
                     print(F'Second!', {i})
-                    blockComp = False
+                    blockComp = True
 
 
                 # if i == stages[k]:
