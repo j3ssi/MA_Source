@@ -1117,16 +1117,16 @@ class N2N(nn.Module):
                 # if (i - 2) % 5 == 0 and (i - 2) // 5 > 0:
                 #     blockComp = True
 
-            elif isinstance(self.module_list[i], nn.AdaptiveAvgPool2d):
-                print(f'i: {i}; pool')
-                newModule_list.append(self.module_list[i])
-            elif isinstance(self.module_list[i], nn.Linear):
-                print(f'i: {i}; linear')
-                newModule_list.append(self.module_list[i])
-            else:
-                print(f' I: {i}!!!!')
+            # elif isinstance(self.module_list[i], nn.AdaptiveAvgPool2d):
+            #     print(f'i: {i}; pool')
+            #     newModule_list.append(self.module_list[i])
+            # elif isinstance(self.module_list[i], nn.Linear):
+            #     print(f'i: {i}; linear')
+            #     newModule_list.append(self.module_list[i])
+            # else:
+            #     print(f' I: {i}!!!!')
         # print(f'new module list: {newModule_list}')
-        self.module_list = newModule_list
+        # self.module_list = newModule_list
         # print(f'Self: {self}')
 
         return self
