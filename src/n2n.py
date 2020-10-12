@@ -1085,7 +1085,7 @@ class N2N(nn.Module):
                         #     norm = weight.select(0, l).norm()
                         #     weight.div_(norm)
                         #     m.weight.data = weight
-                        seq2.append(conv)
+                        seq.append(conv)
                         # print(f'GRAD: c{conv.}')
                         # print(f'beues conv: {conv}; j= { 2 * pos +1 }')
                     elif j > 2 * pos:
