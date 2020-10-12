@@ -1022,7 +1022,6 @@ class N2N(nn.Module):
         stage = 0
         for i in range(len(self.module_list)):
             if i > 3 and blockComp and isinstance(self.module_list[i], nn.Sequential):
-                continue
                 print(f'skip: {i}')
                 blockComp = False
                 # newModule_list.append(self.module_list[i])
@@ -1091,9 +1090,14 @@ class N2N(nn.Module):
                         print(f'altes layer: {module[j - 2]}; j: {j}')
 
                         seq2.append(module[j - 2])
+                        if isinstance(module[j-2], nn.BatchNorm2d):
+                            seq2.append(self.relu)
                     elif j < 2 * pos - 1:
                         # print(f'module: {module[j]}; j= {j}')
                         seq2.append(module[j])
+                        if isinstance(module[j], nn.BatchNorm2d):
+                            seq2.append(self.relu)
+
                         print(f'altes layer: {module[j]}; j: {j}')
 
                 print(f'seq: {seq}')
