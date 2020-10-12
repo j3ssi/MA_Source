@@ -153,6 +153,9 @@ class N2N(nn.Module):
                 elif isinstance(m, nn.BatchNorm2d):
                     nn.init.ones_(m.weight)
                     nn.init.zeros_(m.bias)
+                    nn.init.zeros_(m.running_mean)
+                    nn.init.ones_(m.running_var)
+
                 elif isinstance(m, nn.Sequential):
                     for a in range(len(m)):
                         seq = m[a]
@@ -162,6 +165,8 @@ class N2N(nn.Module):
                         elif isinstance(seq, nn.BatchNorm2d):
                             nn.init.ones_(seq.weight)
                             nn.init.zeros_(seq.bias)
+                            nn.init.zeros_(seq.running_mean)
+                            nn.init.ones_(seq.running_var)
 
             print(f'Modell Erstellung')
             print(self)
