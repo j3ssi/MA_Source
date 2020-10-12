@@ -1005,7 +1005,6 @@ class N2N(nn.Module):
     #     return self
 
     def deeper(self, pos=1):
-        self.train()
         # make each block with plus two layers (conv +batch) deeper
         blockComp = False
 
