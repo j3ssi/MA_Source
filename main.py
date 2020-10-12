@@ -353,7 +353,7 @@ def main():
         loss_fn=torch.nn.functional.cross_entropy,
         optim=optimizer,
         batch=batch,
-        device='cuda:1'
+        device='cuda:0'
     )
 
 
@@ -482,7 +482,7 @@ def main():
         loss_fn=torch.nn.functional.cross_entropy,
         optim=optimizer,
         batch=batch,
-        device='cuda:1')
+        device='cuda:0')
 
     if args.wider and not args.widerRnd:
         model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
