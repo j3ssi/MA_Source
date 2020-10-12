@@ -263,7 +263,14 @@ class N2N(nn.Module):
                 if block == 0 and stage > 0:
                     y = _x
                     for a in range(len(seq)):
-                        y = seq[a](y)
+                        if isinstance(seq[a], nn.Sequential):
+                            seq2 = seq[a]
+                            for b in range(len(seq2)):
+                                y = seq2[a](y)
+                                if isinstance(seq[a], nn.BatchNorm2d):
+                                    y = self.relu(y)
+                        else:
+                            y = seq[a](y)
                         if isinstance(seq[a], nn.BatchNorm2d):
                             y = self.relu(y)
                     x = y
@@ -280,7 +287,14 @@ class N2N(nn.Module):
                 else:
                     y = _x
                     for a in range(len(seq)):
-                        y = seq[a](y)
+                        if isinstance(seq[a], nn.Sequential):
+                            seq2 = seq[a]
+                            for b in range(len(seq2)):
+                                y = seq2[a](y)
+                                if isinstance(seq[a], nn.BatchNorm2d):
+                                    y = self.relu(y)
+                        else:
+                            y = seq[a](y)
                         if isinstance(a, nn.BatchNorm2d):
                             y = self.relu(y)
 
