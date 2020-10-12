@@ -264,6 +264,9 @@ class N2N(nn.Module):
                     y = _x
                     for a in range(len(seq)):
                         y = seq[a](y)
+                        print(f'layer: {seq[a]}; a: {a}')
+                        print("\nY Shape: ", y.shape)
+
                         if isinstance(seq[a], nn.BatchNorm2d):
                             y = self.relu(y)
                     x = y
