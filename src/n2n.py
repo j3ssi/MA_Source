@@ -1027,7 +1027,6 @@ class N2N(nn.Module):
         for i in range(len(self.module_list)):
             if i > 3 and blockComp and isinstance(self.module_list[i], nn.Sequential):
                 print(f'skip: {i}')
-                blockComp = False
                 # newModule_list.append(self.module_list[i])
                 # stages[k] += 1
                 print(f'k: {k}')
@@ -1094,7 +1093,7 @@ class N2N(nn.Module):
 
                         seq.append(module[j - 3])
                     elif j < 2 * pos - 1:
-                        # print(f'module: {module[j]}; j= {j}')
+                        # prin   t(f'module: {module[j]}; j= {j}')
                         seq.append(module[j])
 
                         print(f'altes layer: {module[j]}; j: {j}')
@@ -1102,22 +1101,28 @@ class N2N(nn.Module):
                 print(f'seq: {seq}')
                 module = nn.Sequential(*seq)
                 self.module_list[i] =module
-                if i == stages[k]:
-                    k += 1
-                print(f'i: {i}')
-                print(f'stages[k-1]: {stages[k - 1]}')
+                if i0 != i1 and blockComp:
+                    blockComp =  True
+                elif i0 != i1 and not blockComp:
+                    blockComp = False
+                    
 
-                if i - 2 == stages[k - 1]:
-                    add = add + 4
-                if i == stages[k - 1]:
-                    print(f'blockComp')
-                    blockComp = True
-
-                block = (i + add) % self.numOfBlocksinStage[k]
-                print(f'stage: {k}; block: {block}; i: {i}; i+ add: {(i + add) % 5}: add: {add}')
-                # if stages[ k- 1 ] == i:
-
-                self.archNums[k][block] += 1
+                # if i == stages[k]:
+                #     k    += 1
+                # print(f'i: {i}')
+                # print(f'stages[k-1]: {stages[k - 1]}')
+                #
+                # if i - 2 == stages[k - 1]:
+                #     add = add + 4
+                # if i == stages[k - 1]:
+                #     print(f'blockComp')
+                #     blockComp = True
+                #
+                # block = (i + add) % self.numOfBlocksinStage[k]
+                # print(f'stage: {k}; block: {block}; i: {i}; i+ add: {(i + add) % 5}: add: {add}')
+                # # if stages[ k- 1 ] == i:
+                #
+                # self.archNums[k][block] += 1
                 # if (i - 2) % 5 == 0 and (i - 2) // 5 > 0:
                 #     blockComp = True
 
