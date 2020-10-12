@@ -52,21 +52,20 @@ class N2N(nn.Module):
             print("\nArch Num: ", self.archNums)
 
             self.module_list = nn.ModuleList()
+            self.relu = nn.LeakyReLU(negative_slope=0.1, inplace=True)
 
             # first Layer
             # conv1
-            conv0 = nn.Conv2d(3, self.widthofFirstLayer, kernel_size=3, padding=1, bias=False, stride=1)
+            conv0 = nn.Conv2d(3, self.widthofLayers[0], kernel_size=3, padding=1, bias=False, stride=1)
             self.module_list.append(conv0)
             # bn1
-            bn1 = nn.BatchNorm2d(self.widthofFirstLayer)
+            bn1 = nn.BatchNorm2d(self.widthofLayers)
             self.module_list.append(bn1)
-            # print(f'ohne Bottleneck!')
+            self.module_list.append(self.relu)
             firstBlockInStage = False
+
             for stage in range(0, numOfStages):
-                if self.widthofLayers is None:
-                    sizeOfLayer = pow(2, stage)
-                else:
-                    sizeOfLayer = widthOfLayers[stage]
+                sizeOfLayer = widthOfLayers[stage]
                 # print(f'stage: {stage}; sizeof Layers: {sizeOfLayer}')
                 # print("\nStage: ", stage, " ; ", sizeOfLayer)
                 for block in range(0, len(self.archNums[stage])):
@@ -85,6 +84,8 @@ class N2N(nn.Module):
                             bn = nn.BatchNorm2d(sizeOfLayer)
                             print(f'{bn}')
                             layer.append(bn)
+                            layer.append(self.relu)
+
                             i = i + 1
 
                         elif firstBlockInStage and (i + 1) % self.archNums[stage][block] == 0:
@@ -97,6 +98,8 @@ class N2N(nn.Module):
                             bn = nn.BatchNorm2d(sizeOfLayer)
                             print(f'{bn}')
                             layer2.append(bn)
+                            layer2.append(self.relu)
+
                             i = i + 1
                             firstBlockInStage = False
                             print(f' end layer2: {i}; layer2:{layer2}')
@@ -109,6 +112,8 @@ class N2N(nn.Module):
                             bn = nn.BatchNorm2d(sizeOfLayer)
                             # print(f'{bn}')
                             layer.append(bn)
+                            layer.append(self.relu)
+
                             i = i + 1
 
                         else:
@@ -119,6 +124,8 @@ class N2N(nn.Module):
                             bn = nn.BatchNorm2d(sizeOfLayer)
                             print(f'{bn}')
                             layer.append(bn)
+                            layer.append(self.relu)
+
                             i = i + 1
 
                     block = nn.Sequential(*layer)
@@ -138,15 +145,24 @@ class N2N(nn.Module):
             # 19
             fc = nn.Linear(sizeOfLayer, num_classes)
             self.module_list.append(fc)
-            self.relu = nn.LeakyReLU(negative_slope=0.1, inplace=True)
 
-            # for m in self.module_list:
-            #     if isinstance(m, nn.Conv2d):
-            #         n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
-            #         m.weight.data.normal_(0, math.sqrt(2. / n))
-            #     elif isinstance(m, nn.BatchNorm2d):
-            #         m.weight.data.fill_(1)
-            #         m.bias.data.zero_()
+            for m in self.module_list:
+                if isinstance(m, nn.Conv2d):
+                    n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
+                    m.weight.data.normal_(0, math.sqrt(2. / n))
+                elif isinstance(m, nn.BatchNorm2d):
+                    m.weight.data.fill_(1)
+                    m.bias.data.zero_()
+                elif isinstance(m, nn.Sequential):
+                    for a in range(len(m)):
+                        seq = m[a]
+                        if isinstance(seq, nn.Conv2d):
+                            n = seq.kernel_size[0] * seq.kernel_size[1] * seq.out_channels
+                            seq.weight.data.normal_(0, math.sqrt(2. / n))
+                        elif isinstance(seq, nn.BatchNorm2d):
+                            seq.weight.data.fill_(1)
+                            seq.bias.data.zero_()
+
             print(f'Modell Erstellung')
             print(self)
 
@@ -212,6 +228,8 @@ class N2N(nn.Module):
                         if printName:
                             print("\n>new Layer: ", layer)
                         layer.append(layer1)
+                    elif isinstance(module[j], nn.LeakyReLU):
+                        layer1.append(self.relu)
                 self.module_list.append(nn.Sequential(*layer))
                 if printName:
                     print(f'>new Layer: {layer}')
@@ -227,6 +245,8 @@ class N2N(nn.Module):
                 fc.weight.data = module.weight.data
                 fc.bias.data = module.bias.data
                 self.module_list.append(fc)
+            elif isinstance(module_list[i], nn.LeakyReLU):
+                self.module_list.append(relu)
         print(f' Modell: {self}')
 
     def forward(self, x):
@@ -245,9 +265,9 @@ class N2N(nn.Module):
         if printNet:
             print("\nI: 1 ; ", self.module_list[1])
             print("\nX Shape: ", x.shape)
-
-        _x = self.relu(x)
-        j = 2
+        # relu
+        _x = self.module_list[2](x)
+        j = 3
         notfirstLayer = False
         # try:
         for stage in range(0, self.numOfStages):
@@ -261,36 +281,14 @@ class N2N(nn.Module):
                 seq = self.module_list[j]
                 # print(f' len of seq: {len(seq)}')
                 if block == 0 and stage > 0:
-                    y = _x
-                    for a in range(len(seq)):
-                        y = seq[a](y)
-                        print(f'layer: {seq[a]}; a: {a}')
-                        print("\nY Shape: ", y.shape)
-
-                        if isinstance(seq[a], nn.BatchNorm2d):
-                            y = self.relu(y)
-                    x = y
+                    x = seq(_x)
                     j += 1
-                    seq = self.module_list[j]
-                    y = _x
-                    for a in range(len(seq)):
-                        y = seq[a](y)
-                        if isinstance(seq[a], nn.BatchNorm2d):
-                            y = self.relu(y)
 
-                    _x = y
+                    seq = self.module_list[j]
+                    _x = seq(_x)
                     j += 1
                 else:
-                    y = _x
-                    for a in range(len(seq)):
-                        y = seq[a](y)
-                        # print(f'layer: {seq[a]}; a: {a}')
-                        # print("\nY Shape: ", y.shape)
-
-                        if isinstance(seq[a], nn.BatchNorm2d):
-                            y = self.relu(y)
-
-                    x = y
+                    _x = seq(_x)
                     j += 1
                 _x = x + _x
                 _x = self.relu(_x)
@@ -1038,16 +1036,16 @@ class N2N(nn.Module):
 
             if isinstance(self.module_list[i], nn.Sequential):
 
-
-
                 print(f'i: {i}')
                 # print(f'davor: {self.module_list[i]}')
                 module = self.module_list[i]
                 i0 = module[0].out_channels
                 i1 = module[0].in_channels
                 seq = []
-                seq2 = []
+                print(f'seq: {module}')
                 for j in range(len(module) + 2):
+                    if isinstance(module[j], nn.LeakyReLU):
+                        seq.append(self.relu)
                     if j == 2 * pos - 1:
                         # continue
                         # print(f'Module {self.module_list[i]}; i: {i}')
@@ -1056,8 +1054,7 @@ class N2N(nn.Module):
                         torch.nn.init.zeros_(bn.bias)
                         # bn.running_mean.fill_(0)
                         # bn.running_var.fill_(1)
-                        seq2.append(bn)
-                        seq2.append(self.relu)
+                        seq.append(bn)
                         print(f'neues bn: {bn}; j: {j}')
                     if j == 2 * pos:
                         # continue
@@ -1099,9 +1096,9 @@ class N2N(nn.Module):
                             seq2.append(self.relu)
                     elif j < 2 * pos - 1:
                         # print(f'module: {module[j]}; j= {j}')
-                        seq2.append(module[j])
+                        seq.append(module[j])
                         if isinstance(module[j], nn.BatchNorm2d):
-                            seq2.append(self.relu)
+                            seq.append(self.relu)
 
                         print(f'altes layer: {module[j]}; j: {j}')
 
