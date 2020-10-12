@@ -1053,8 +1053,6 @@ class N2N(nn.Module):
                         print(f'neues bn: {bn}; j: {j}')
                     if j == 2 * pos:
                         # continue
-                        if i0 !=i1:
-                            continue
                         kernel_size = module[0].kernel_size
                         stride = 1
                         padding = 1
