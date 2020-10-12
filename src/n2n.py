@@ -59,7 +59,7 @@ class N2N(nn.Module):
             conv0 = nn.Conv2d(3, self.widthofLayers[0], kernel_size=3, padding=1, bias=False, stride=1)
             self.module_list.append(conv0)
             # bn1
-            bn1 = nn.BatchNorm2d(self.widthofLayers)
+            bn1 = nn.BatchNorm2d(self.widthofLayers[0])
             self.module_list.append(bn1)
             self.module_list.append(self.relu)
             firstBlockInStage = False
@@ -153,8 +153,6 @@ class N2N(nn.Module):
                 elif isinstance(m, nn.BatchNorm2d):
                     nn.init.ones_(m.weight)
                     nn.init.zeros_(m.bias)
-                    nn.init.zeros_(m.running_mean)
-                    nn.init.ones_(m.running_var)
 
                 elif isinstance(m, nn.Sequential):
                     for a in range(len(m)):
@@ -165,8 +163,6 @@ class N2N(nn.Module):
                         elif isinstance(seq, nn.BatchNorm2d):
                             nn.init.ones_(seq.weight)
                             nn.init.zeros_(seq.bias)
-                            nn.init.zeros_(seq.running_mean)
-                            nn.init.ones_(seq.running_var)
 
             print(f'Modell Erstellung')
             print(self)
