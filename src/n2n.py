@@ -1039,8 +1039,6 @@ class N2N(nn.Module):
                 module = self.module_list[i]
                 i0 = module[0].out_channels
                 i1 = module[0].in_channels
-                i2 = module[0].weight.size(2)
-                i3 = module[0].weight.size(3)
                 seq = []
                 for j in range(len(module) + 2):
                     if j == 2 * pos - 1:
@@ -1064,7 +1062,7 @@ class N2N(nn.Module):
                         print(f'neues conv: {conv}; j: {j}')
 
                         m = module[2 * pos - 2]
-                        deeper_w = np.zeros((i0, i0, kernel_size, kernel_size))
+                        deeper_w = np.zeros((i0, i0, kernel_size[0], kernel_size[0]))
                         deeper_w = torch.from_numpy(deeper_w)
                         torch.nn.init.dirac_(deeper_w)
                         # deeper_w = deeper_w.numpy()
