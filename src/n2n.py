@@ -1105,7 +1105,7 @@ class N2N(nn.Module):
                     blockComp =  True
                 elif i0 != i1 and not blockComp:
                     blockComp = False
-                    
+
 
                 # if i == stages[k]:
                 #     k    += 1
