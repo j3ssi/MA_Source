@@ -1045,9 +1045,7 @@ class N2N(nn.Module):
                 seq = []
                 print(f'seq: {module}')
                 for j in range(len(module) + 3):
-                    if isinstance(module[j], nn.LeakyReLU):
-                        seq.append(self.relu)
-                    if j == 3 * pos - 1:
+                    if j == 3 * pos - 2:
                         # continue
                         # print(f'Module {self.module_list[i]}; i: {i}')
                         bn = nn.BatchNorm2d(module[0].out_channels)
@@ -1057,6 +1055,8 @@ class N2N(nn.Module):
                         # bn.running_var.fill_(1)
                         seq.append(bn)
                         print(f'neues bn: {bn}; j: {j}')
+                    if j == 3 * pos - 1:
+                        seq.append(self.relu)
                     if j == 3 * pos:
                         # continue
                         kernel_size = module[0].kernel_size
@@ -1066,7 +1066,7 @@ class N2N(nn.Module):
                         print(f'neues conv: {conv}; j: {j}')
 
                         m = module[2 * pos - 2]
-                        torch.nn.init.xavier_normal(conv.weight)
+                        torch.nn.init.dirac_(conv.weight)
                         with torch.no_grad():
                             m.weight.div_(torch.norm(m.weight, dim=2, keepdim=True))
                         # deeper_w = deeper_w.numpy()
@@ -1092,20 +1092,16 @@ class N2N(nn.Module):
                         # print(f'module: {module[j - 2]}; j= {j + 2}')
                         print(f'altes layer: {module[j - 2]}; j: {j}')
 
-                        seq2.append(module[j - 2])
-                        if isinstance(module[j-2], nn.BatchNorm2d):
-                            seq2.append(self.relu)
+                        seq.append(module[j - 2])
                     elif j < 2 * pos - 1:
                         # print(f'module: {module[j]}; j= {j}')
                         seq.append(module[j])
-                        if isinstance(module[j], nn.BatchNorm2d):
-                            seq.append(self.relu)
 
                         print(f'altes layer: {module[j]}; j: {j}')
 
-                print(f'seq: {seq2}')
-                module = nn.Sequential(*seq2)
-                self.module_list[i] = nn.Sequential(module)
+                print(f'seq: {seq}')
+                module = nn.Sequential(*seq)
+                self.module_list[i] =module
                 if i == stages[k]:
                     k += 1
                 print(f'i: {i}')
