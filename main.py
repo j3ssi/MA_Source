@@ -342,7 +342,6 @@ def main():
     inputs = Variable(torch.randn(20, 20))
     targets = Variable(torch.randint(0, 2, (20,))).long()
     batch = [inputs, targets]
-    model = nn.Linear(20, 2)
 
     # what are the variables?
     print('Our list of parameters', [np[0] for np in model.named_parameters()])
@@ -470,7 +469,6 @@ def main():
     inputs = Variable(torch.randn(20, 20))
     targets = Variable(torch.randint(0, 2, (20,))).long()
     batch = [inputs, targets]
-    model = nn.Linear(20, 2)
 
     # what are the variables?
     print('Our list of parameters', [np[0] for np in model.named_parameters()])
