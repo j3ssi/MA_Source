@@ -1061,9 +1061,9 @@ class N2N(nn.Module):
                         stride = 1
                         padding = 1
                         conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
-                        n = pow(conv.kernel_size * conv.kernel_size * conv.out_channels
+                        n = pow(conv.kernel_size * conv.kernel_size * conv.out_channels, 2 )
 
-                        nn.init.normal_(conv.weight, mean=0, std=math.sqrt(2. / (n)), 2)
+                        nn.init.normal_(conv.weight, mean=0, std=math.sqrt(2. / (n)))
                         m = module[2 * pos - 2]
                         weight = conv.weight.data
                         # print(f'neues conv: {conv}; j: {j}')
