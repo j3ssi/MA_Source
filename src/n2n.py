@@ -1070,13 +1070,7 @@ class N2N(nn.Module):
                         m = module[2 * pos - 2]
                         weight = conv.weight.data
                         # print(f'neues conv: {conv}; j: {j}')
-                        center_h = 1
-                        center_w = 1
-                        for i in range(0, m.kernel_size[0]):
-                            for j in range(0, m.kernel_size[1]):
-                                if i== 1 and j==1:
-                                    tmp[center_h, center_w] = 1
-                                    weight[:, :, i, j] = tmp
+                        weight[:, :, 1, 1] = 1
 
                         with torch.no_grad():
                             m.weight.div_(torch.norm(m.weight, dim=2, keepdim=True))
