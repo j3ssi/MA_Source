@@ -149,7 +149,7 @@ class N2N(nn.Module):
             for m in self.module_list:
                 if isinstance(m, nn.Conv2d):
                     n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
-                    nn.init.normal(m.weight, mean = 0, std = math.sqrt(2. / n))
+                    nn.init.normal_(m.weight, mean = 0, std = math.sqrt(2. / n))
                 elif isinstance(m, nn.BatchNorm2d):
                     nn.init.ones_(m.weight)
                     nn.init.zeros_(m.bias)
@@ -159,7 +159,7 @@ class N2N(nn.Module):
                         seq = m[a]
                         if isinstance(seq, nn.Conv2d):
                             n = seq.kernel_size[0] * seq.kernel_size[1] * seq.out_channels
-                            nn.init.normal(seq.weight, mean = 0, std = math.sqrt(2. / n))
+                            nn.init.normal_(seq.weight, mean = 0, std = math.sqrt(2. / n))
                         elif isinstance(seq, nn.BatchNorm2d):
                             nn.init.ones_(seq.weight)
                             nn.init.zeros_(seq.bias)
@@ -1061,7 +1061,9 @@ class N2N(nn.Module):
                         stride = 1
                         padding = 1
                         conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
-                        nn.init.normal(conv.weight, mean=0, std=math.sqrt(2. / (n*n)))
+                        n = pow(conv.kernel_size * conv.kernel_size * conv.out_channels
+
+                        nn.init.normal_(conv.weight, mean=0, std=math.sqrt(2. / (n)), 2)
                         m = module[2 * pos - 2]
                         weight = conv.weight.data
                         # print(f'neues conv: {conv}; j: {j}')
