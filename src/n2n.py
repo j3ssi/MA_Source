@@ -149,7 +149,7 @@ class N2N(nn.Module):
             for m in self.module_list:
                 if isinstance(m, nn.Conv2d):
                     n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
-                    m.weight.data.normal_(0, math.sqrt(2. / n))
+                    nn.init.normal(m.weight, mean = 0, std = math.sqrt(2. / n))
                 elif isinstance(m, nn.BatchNorm2d):
                     nn.init.ones_(m.weight)
                     nn.init.zeros_(m.bias)
@@ -159,7 +159,7 @@ class N2N(nn.Module):
                         seq = m[a]
                         if isinstance(seq, nn.Conv2d):
                             n = seq.kernel_size[0] * seq.kernel_size[1] * seq.out_channels
-                            seq.weight.data.normal_(0, math.sqrt(2. / n))
+                            nn.init.normal(seq.weight, mean = 0, std = math.sqrt(2. / n))
                         elif isinstance(seq, nn.BatchNorm2d):
                             nn.init.ones_(seq.weight)
                             nn.init.zeros_(seq.bias)
@@ -1049,8 +1049,8 @@ class N2N(nn.Module):
                         bn = nn.BatchNorm2d(module[0].out_channels)
                         torch.nn.init.ones_(bn.weight)
                         torch.nn.init.zeros_(bn.bias)
-                        # bn.running_mean.fill_(0)
-                        # bn.running_var.fill_(1)
+                        bn.running_mean.fill_(0)
+                        bn.running_var.fill_(1)
                         seq.append(bn)
                         # print(f'neues bn: {bn}; j: {j}')
                     if j == 3 * pos - 1:
@@ -1061,12 +1061,20 @@ class N2N(nn.Module):
                         stride = 1
                         padding = 1
                         conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
-                        # print(f'neues conv: {conv}; j: {j}')
-
+                        nn.init.normal(conv.weight, mean=0, std=math.sqrt(2. / (n*n)))
                         m = module[2 * pos - 2]
-                        torch.nn.init.dirac_(conv.weight)
+                        weight = conv.weight.data
+                        # print(f'neues conv: {conv}; j: {j}')
+                        center_h = ( i0 - 1 ) // 2
+                        center_w = ( i0 - 1 ) // 2
+                        for i in range(0, m.kernel_size):
+                            tmp = np.zeros((i0, i0, m.kernel_size))
+                            tmp[center_h, center_w, i] = 1
+                            weight[:, :, :, i] = tmp
+
                         with torch.no_grad():
                             m.weight.div_(torch.norm(m.weight, dim=2, keepdim=True))
+
                         # deeper_w = deeper_w.numpy()
                         # center_h = ( i0 - 1) // 2
                         # center_w = ( i0 - 1) // 2
