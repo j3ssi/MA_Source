@@ -1073,7 +1073,7 @@ class N2N(nn.Module):
                         center_h = ( i0 - 1 ) // 2
                         center_w = ( i0 - 1 ) // 2
                         for i in range(0, m.kernel_size[0]):
-                            tmp = np.zeros((i0, i0, m.kernel_size))
+                            tmp = np.zeros((i0, i0, m.kernel_size[0]))
                             tmp[center_h, center_w, i] = 1
                             weight[:, :, :, i] = tmp
 
