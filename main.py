@@ -142,6 +142,9 @@ parser.add_argument('--threshold', default=0.0001, type=float,
                     help='Threshold to force weight to zero')
 parser.add_argument('--en_group_lasso', default=False, action='store_true',
                     help='Set the group-lasso coefficient')
+parser.add_argument('--scheduler', default=False, action='store_true',
+                    help='Use scheduler')
+
 parser.add_argument('--global_group_lasso', default=True, action='store_true',
                     help='True: use a global group lasso coefficient, '
                          'False: use sqrt(num_params) as a coefficient for each group')
@@ -266,8 +269,11 @@ def main():
         print(f'Start epoch: {start_epoch}')
         optimizer = checkpoint['optimizer']
         print(f'First Lr: {optimizer.param_groups[0]["lr"]}')
-
-        # start_batchSize = checkpoint['start_batchSize']
+        if args.scheduler:
+            if checkpoint['optimizer'] is not None:
+                scheduler = checkpoint['optimizer']
+            else:
+                scheduler = StepLR(optimizer, step_size=10, gamma=0.95)        # start_batchSize = checkpoint['start_batchSize']
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     else:
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
@@ -335,7 +341,6 @@ def main():
     #    optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
     #                     weight_decay=args.weight_decay)
 
-    scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
 
     i = 1
     # for epochNet2Net in range(1, 4):
@@ -448,7 +453,7 @@ def main():
         # optimizer = optim.Adam(model.parameters())
         print(f'model.para: {model.named_parameters()}')
         optimizer = optim.SGD(model.parameters(), lr=0.1, momentum=args.momentum, weight_decay=args.weight_decay)
-        scheduler = StepLR(optimizer, step_size=10, gamma=0.9)
+        scheduler = StepLR(optimizer, step_size=10, gamma=0.95)
         # print(model)
 
 
@@ -498,7 +503,8 @@ def main():
             'epoch': args.epochs + start_epoch,
             'lr': optimizer.param_groups[0]["lr"],
             'acc': test_acc,
-            'optimizer': optimizer, },
+            'optimizer': optimizer,
+            'scheduler': scheduler},
             checkpoint=args.checkpoint)
 
         start_epoch = 1
@@ -510,6 +516,7 @@ def main():
             'batch_size': batch_size,
             'lr': optimizer.param_groups[0]["lr"],
             'acc': test_acc,
+            'scheduler': scheduler,
             'optimizer': optimizer, },
             checkpoint=args.checkpoint)
     else:
@@ -517,6 +524,7 @@ def main():
             'epoch': args.epochs + start_epoch,
             'lr': optimizer.param_groups[0]["lr"],
             'acc': test_acc,
+            'scheduler': scheduler,
             'optimizer': optimizer, },
             checkpoint=args.checkpoint)
 
@@ -529,12 +537,14 @@ def main():
                 'batch_size': batch_size,
                 'lr': optimizer.param_groups[0]["lr"],
                 'acc': test_acc,
+                'scheduler': scheduler,
                 'optimizer': optimizer, },
                 checkpoint=args.checkpoint)
         else:
             save_checkpoint({
                 'epoch': args.epochs + start_epoch,
                 'acc': test_acc,
+                'scheduler': scheduler,
                 'optimizer': optimizer, },
                 checkpoint=args.checkpoint,
                 filename='checkpoint' + str(epoch) + '.tar')
