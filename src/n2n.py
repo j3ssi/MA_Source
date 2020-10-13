@@ -405,6 +405,7 @@ class N2N(nn.Module):
     def wider(self, stage, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
         print(f'Stage: {stage}')
         print(f'width of Layers: {self.widthofLayers}')
+        # 1.+ 2. Layer
         m1 = self.module_list[0]
         old_width = m1.weight.size(0)
         new_width = old_width * delta_width
@@ -495,6 +496,8 @@ class N2N(nn.Module):
         m1x.requires_grad = True
         m1.weight = torch.nn.Parameter(m1x)
         j=2
+
+
         # print(f'oldwidth: {old_width} ')
         for s in range(0, self.numOfStages):
             width = self.widthofLayers[s]
@@ -1069,7 +1072,7 @@ class N2N(nn.Module):
                         # print(f'neues conv: {conv}; j: {j}')
                         center_h = ( i0 - 1 ) // 2
                         center_w = ( i0 - 1 ) // 2
-                        for i in range(0, m.kernel_size):
+                        for i in range(0, m.kernel_size[0]):
                             tmp = np.zeros((i0, i0, m.kernel_size))
                             tmp[center_h, center_w, i] = 1
                             weight[:, :, :, i] = tmp
