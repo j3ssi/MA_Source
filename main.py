@@ -529,6 +529,8 @@ def main():
             checkpoint=args.checkpoint)
 
     # Leave unique checkpoint of pruned models druing training
+    if not args.scheduler:
+        scheduler = None
     if epoch % args.save_checkpoint == 0:
         if args.dB:
             save_checkpoint({
@@ -537,7 +539,6 @@ def main():
                 'batch_size': batch_size,
                 'lr': optimizer.param_groups[0]["lr"],
                 'acc': test_acc,
-                'scheduler': scheduler,
                 'optimizer': optimizer, },
                 checkpoint=args.checkpoint)
         else:
