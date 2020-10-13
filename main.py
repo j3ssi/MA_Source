@@ -363,7 +363,7 @@ def main():
             tmp_memory = torch.cuda.max_memory_allocated()
 
             # print(f'lr: {optimizer.param_groups[0]["lr"]}')
-            if args.dynlr:
+            if args.dynlr and scheduler is not None:
                 # adjust_learning_rate(optimizer, epoch, False)
                 scheduler.step()
                 lr = scheduler.get_last_lr()[0]
