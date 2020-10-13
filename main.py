@@ -273,7 +273,8 @@ def main():
             if checkpoint['optimizer'] is not None:
                 scheduler = checkpoint['optimizer']
             else:
-                scheduler = StepLR(optimizer, step_size=10, gamma=0.95)        # start_batchSize = checkpoint['start_batchSize']        logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
+                scheduler = StepLR(optimizer, step_size=10, gamma=0.95)        # start_batchSize = checkpoint['start_batchSize']
+        logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     else:
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
         logger.set_names(
