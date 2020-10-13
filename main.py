@@ -537,6 +537,7 @@ def main():
                 'epoch': args.epochs + start_epoch,
                 'memory': memory,
                 'batch_size': batch_size,
+                'scheduler': scheduler
                 'lr': optimizer.param_groups[0]["lr"],
                 'acc': test_acc,
                 'optimizer': optimizer, },
