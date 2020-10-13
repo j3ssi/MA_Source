@@ -494,6 +494,8 @@ def main():
     print("Test acc1: ", test_acc)
     # test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, 1, use_cuda)
     # print("Test acc2: ", test_acc)
+    if not args.scheduler:
+        scheduler = None
 
     print("[INFO] Storing checkpoint...")
     if args.reset:
@@ -528,8 +530,6 @@ def main():
             checkpoint=args.checkpoint)
 
     # Leave unique checkpoint of pruned models druing training
-    if not args.scheduler:
-        scheduler = None
     if epoch % args.save_checkpoint == 0:
         if args.dB:
             save_checkpoint({
