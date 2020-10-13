@@ -1070,10 +1070,10 @@ class N2N(nn.Module):
                         m = module[2 * pos - 2]
                         weight = conv.weight.data
                         # print(f'neues conv: {conv}; j: {j}')
-                        center_h = ( i0 - 1 ) // 2
-                        center_w = ( i0 - 1 ) // 2
+                        center_h = 1
+                        center_w = 1
                         for i in range(0, m.kernel_size[0]):
-                            tmp = np.zeros((i0, i0, m.kernel_size[0]))
+                            tmp = np.zeros((3, 3))
                             tmp[center_h, center_w, i] = 1
                             weight[:, :, :, i] = tmp
 
