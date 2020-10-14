@@ -433,9 +433,11 @@ class N2N(nn.Module):
             while module1 is None:
                 print(f'while Index1: {index1}')
                 print(f'module: {self.module_list[index1]}')
-                if isinstance(self.module_list[index1], nn.Conv2d):
-                    module1 = self.module_list[index1]
-                    break
+                if isinstance(self.module_list[index1], nn.Sequential):
+                    moduleX = self.module_list[index1]
+                    if isinstance(moduleX[0], nn.Conv2d):
+                        module1 = self.module_list[index1]
+                        break
                 elif isinstance(self.module_list[index1], nn.Linear):
                     break
                 elif isinstance(self.module_list[index1], nn.BatchNorm2d):
@@ -452,7 +454,7 @@ class N2N(nn.Module):
 
             assert module != None or module1 != None, "Probleme mit der Auswahl des nächsten Elements für wider"
             # ziehe zufällige Zahlen für die Mapping Funktion
-            mapping = np.random.randint(module.size(1), size=(delta_width * module.size(1) - module.size(1)))
+            mapping = np.random.randint(module.weight.size(1), size=(delta_width * module.weight.size(1) - module.weight.size(1)))
             # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
             replication_factor = np.bincount(mapping)
             # Anlage der neuen Gewichte
