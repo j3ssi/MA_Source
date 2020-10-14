@@ -254,7 +254,7 @@ class N2N(nn.Module):
     def forward(self, x):
         # print(f'ArchNums: {self.archNums}')
         # First layer
-        printNet = True
+        printNet = False
         if printNet:
             print("\nX Shape: ", x.shape)
         # conv1
@@ -279,7 +279,8 @@ class N2N(nn.Module):
         for stage in range(0, self.numOfStages):
             # if printNet:
             archNum = self.archNums[stage]
-            print(f'Stage: {stage}; archNum: {archNum}')
+            if printNet:
+                print(f'Stage: {stage}; archNum: {archNum}')
 
             for block in range(0, len(archNum)):
                 # try:
@@ -288,24 +289,28 @@ class N2N(nn.Module):
                 seq = self.module_list[j]
                 print(f'seq: {seq}')
                 if block == 0 and stage > 0:
-                    print(f'Drin!! seq: {seq}; j: {j}')
+                    if printNet:
+                        print(f'Drin!! seq: {seq}; j: {j}')
                     y = _x
                     z = _x
                     for a in range(len(seq)):
                         y = seq[a](y)
-                        print(f'seq[a]: {seq[a]}; a: {a}')
-                        print(f'Y shape: {y.shape}')
+                        if printNet:
+                            print(f'seq[a]: {seq[a]}; a: {a}')
+                            print(f'Y shape: {y.shape}')
                     x = y
                     # x = seq(_x)
                     j += 1
 
                     seq = self.module_list[j]
-                    print(f'Drin2!! seq: {seq}; j: {j}')
+                    if printNet:
+                        print(f'Drin2!! seq: {seq}; j: {j}')
 
                     for a in range(len(seq)):
                         z = seq[a](z)
-                        print(f'seq[a]: {seq[a]}; a: {a}')
-                        print(f'Y shape: {z.shape}')
+                        if printNet:
+                            print(f'seq[a]: {seq[a]}; a: {a}')
+                            print(f'Y shape: {z.shape}')
                     _x = z
 
                     # _x = seq(_x)
@@ -313,9 +318,11 @@ class N2N(nn.Module):
                 else:
                     x = seq(_x)
                     j += 1
-                    print(f'Shape: {x.shape}')
+                    if printNet:
+                        print(f'Shape: {x.shape}')
                 _x = _x + x
-                print(f'X Shape: {_x.shape}')
+                if printNet:
+                    print(f'X Shape: {_x.shape}')
                 _x = self.relu(_x)
                 # except RuntimeError:
                 #     print(f'Except')
