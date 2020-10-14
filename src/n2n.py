@@ -287,7 +287,7 @@ class N2N(nn.Module):
                     x = seq(_x)
                     j += 1
 
-                    print(f'Drin2!! seq: {seq})
+                    print(f'Drin2!! seq: {seq}')
                     seq = self.module_list[j]
                     _x = seq(_x)
                     j += 1
