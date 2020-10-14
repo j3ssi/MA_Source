@@ -289,6 +289,7 @@ class N2N(nn.Module):
                     for a in range(len(seq)):
                         y = seq[a](y)
                         print(f'seq[a]: {seq[a]}; a: {a}')
+                        print(f'Y shape: {y.shape}')
                     y = x
                     #x = seq(_x)
                     j += 1
