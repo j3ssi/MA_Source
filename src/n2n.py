@@ -546,15 +546,15 @@ class N2N(nn.Module):
                 new_bn_b = moduleBn.bias.data.clone().cpu().detach().numpy()
                 new_bn_mean = moduleBn.running_mean.clone().cpu().detach().numpy()
                 new_bn_var = moduleBn.running_var.clone().cpu().detach().numpy()
-
-                for i in range(len(mapping)):
+                print(f'old weight: {old_bn_w}')
+                for i in range(0, len(mapping)):
                     index = mapping[i]
-
+                    k = i
                     new_bn_w = np.append(new_bn_w, old_bn_w[index])
                     new_bn_b = np.append(new_bn_w, old_bn_w[index])
                     new_bn_mean = np.append(new_bn_mean, new_bn_mean[index])
                     new_bn_var = np.append(new_bn_var, new_bn_var[index])
-                print(f'new bn: {new_bn_b}')
+                print(f'new bn: {new_bn_b}; K : {k}')
                 moduleBn.weight.data = nn.Parameter(torch.from_numpy(new_bn_w))
                 moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
                 moduleBn.running_mean = nn.Parameter(torch.from_numpy(new_bn_mean))
