@@ -310,6 +310,7 @@ class N2N(nn.Module):
                     j += 1
                     print(f'Shape: {x.shape}')
                 _x = x + _x
+                print(f'X Shape: {_x.shape}')
                 _x = self.relu(_x)
                 # except RuntimeError:
                 #     print(f'Except')
