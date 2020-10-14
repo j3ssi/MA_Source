@@ -539,6 +539,8 @@ class N2N(nn.Module):
             module1.weight.data = nn.Parameter(torch.from_numpy(new_w2))
             if isinstance(moduleBn, nn.BatchNorm2d):
                 old_bn_w = moduleBn.weight.data.clone().cpu().detach().numpy()
+                print(f'len old w: {old_bn_w.size}')
+
                 old_bn_b = moduleBn.bias.data.clone().cpu().detach().numpy()
                 old_bn_mean = moduleBn.running_mean.clone().cpu().detach().numpy()
                 old_bn_var = moduleBn.running_var.clone().cpu().detach().numpy()
