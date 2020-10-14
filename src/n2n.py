@@ -253,7 +253,7 @@ class N2N(nn.Module):
     def forward(self, x):
         # print(f'ArchNums: {self.archNums}')
         # First layer
-        printNet = False
+        printNet = True
         if printNet:
             print("\nX Shape: ", x.shape)
         # conv1
@@ -276,8 +276,7 @@ class N2N(nn.Module):
                 print("\n\nStage: ", stage)
             archNum = self.archNums[stage]
             firstBlockInStage = True
-            block = 0
-            for block in range(len(archNum)):
+            for block in range(0, len(archNum)):
                 # try:
                 if printNet:
                     print(f'Block: {block}; j: {j}')
