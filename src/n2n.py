@@ -269,6 +269,10 @@ class N2N(nn.Module):
         # relu
         _x = self.module_list[2](x)
         j = 3
+        if printNet:
+            print("\nI: 2 ; ", self.module_list[2])
+            print("\nLast X Shape: ", x.shape)
+
         notfirstLayer = False
         # try:
         for stage in range(0, self.numOfStages):
@@ -304,7 +308,7 @@ class N2N(nn.Module):
                         print(f'Y shape: {z.shape}')
                     _x = z
 
-                    #_x = seq(_x)
+                    # _x = seq(_x)
                     j += 1
                 else:
                     x = seq(_x)
