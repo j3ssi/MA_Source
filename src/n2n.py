@@ -547,7 +547,7 @@ class N2N(nn.Module):
                 moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
                 moduleBn.running_mean = nn.Parameter(torch.from_numpy(new_bn_mean))
                 moduleBn.running_var = nn.Parameter(torch.from_numpy(new_bn_var))
-
+                print(f'new bn: {new_bn_b}')
             assert index1 > index, "index<= index"
             index += index1 - index
             break
