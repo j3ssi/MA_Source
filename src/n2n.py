@@ -406,8 +406,8 @@ class N2N(nn.Module):
     # def wider(self, stage, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
     def wider(self, stage, delta_width, weight_norm=True, random_init=True,
               addNoise=True):  # teacher_w1, teacher_b1, teacher_w2, new_width, verification):
-
-        for index in range(len(self.module_list)):
+        index = 0
+        while index< len(self.module_list):
             i = index
             module = None
             if isinstance(self.module_list[index],nn.Conv2d):
@@ -421,7 +421,7 @@ class N2N(nn.Module):
                         i += 1
 
             module1 = None
-            index1 = i
+            index1 = i + 1
             while module1 is None:
                 if isinstance(self.module_list[index1], nn.Conv2d):
                     module1 = self.module_list[index1]
@@ -474,8 +474,10 @@ class N2N(nn.Module):
                 new_weight_re = new_weight[:, :, np.newaxis, :]
                 student_w2 = np.concatenate((student_w2, new_weight_re), axis=2)
                 student_w2[:, :, teacher_index, :] = new_weight
+            if isinstance(self.module_list[index+1],nn.BatchNorm2d):
 
-        return student_w1, student_b1, student_w2
+            assert index1 > index, "index<= index"
+            index += index1 -index
 
     # def wider(self, stage, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
     #     print(f'Stage: {stage}')
