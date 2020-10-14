@@ -438,8 +438,8 @@ class N2N(nn.Module):
             if isinstance(self.module_list[index], nn.Conv2d):
                 module = self.module_list[index]
                 print(f'Module:= {module}')
-                if isinstance(self.module_list[index], nn.BatchNorm2d):
-                    moduleBn = self.module_list[index]
+                if isinstance(self.module_list[index  + 1], nn.BatchNorm2d):
+                    moduleBn = self.module_list[index + 1]
 
             elif isinstance(self.module_list[index], nn.Sequential):
                 moduleX = self.module_list[index]
