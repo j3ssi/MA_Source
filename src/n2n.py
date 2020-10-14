@@ -58,10 +58,14 @@ class N2N(nn.Module):
             # conv1
             conv0 = nn.Conv2d(3, self.widthofLayers[0], kernel_size=3, padding=1, bias=False, stride=1)
             self.module_list.append(conv0)
+            print(f'conv0: {conv0}; i: 0')
             # bn1
             bn1 = nn.BatchNorm2d(self.widthofLayers[0])
+            print(f'bn1: {bn1}; i: 1')
+
             self.module_list.append(bn1)
             self.module_list.append(self.relu)
+            print(f'Relu; i:2')
             firstBlockInStage = False
 
             for stage in range(0, numOfStages):
@@ -79,50 +83,49 @@ class N2N(nn.Module):
                             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                              bias=False,
                                              stride=2)
-                            print(f'{conv}')
+                            print(f'{conv}; i={i}')
                             layer.append(conv)
                             bn = nn.BatchNorm2d(sizeOfLayer)
-                            print(f'{bn}')
+                            print(f'{bn}; i={i}')
                             layer.append(bn)
                             layer.append(self.relu)
+                            print(f'relu: {i}')
                             i = i + 1
                         elif stage > 0 and (i + 1) % self.archNums[stage][block] == 0:
-                            print(f'begin layer2: {i}')
                             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                              bias=False,
                                              stride=2)
-                            print(f'{conv}')
+                            print(f'{conv}; i: {i}')
                             layer2.append(conv)
                             bn = nn.BatchNorm2d(sizeOfLayer)
-                            print(f'{bn}')
+                            print(f'{bn}; i: {i}')
                             layer2.append(bn)
                             layer2.append(self.relu)
-
+                            print(f'Relu; i: {i}')
                             i = i + 1
-                            print(f' end layer2: {i}; layer2:{layer2}')
                         elif i==0:
                             conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1,
                                              bias=False,
                                              stride=1)
-                            print(f'{conv}')
+                            print(f'{conv}; i: {i}')
                             layer.append(conv)
                             bn = nn.BatchNorm2d(sizeOfLayer)
-                            # print(f'{bn}')
+                            print(f'{bn}; i: {i}')
                             layer.append(bn)
                             layer.append(self.relu)
-
+                            print(f'Relu; i: {i}')
                             i = i + 1
 
                         else:
                             conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
                                              stride=1)
-                            print(f'{conv}')
+                            print(f'{conv}; i: {i}')
                             layer.append(conv)
                             bn = nn.BatchNorm2d(sizeOfLayer)
-                            print(f'{bn}')
+                            print(f'{bn}; i: {i}')
                             layer.append(bn)
                             layer.append(self.relu)
-
+                            print(f'relu; i: {i}')
                             i = i + 1
 
                     block = nn.Sequential(*layer)
@@ -131,17 +134,15 @@ class N2N(nn.Module):
                         block1 = nn.Sequential(*layer2)
                         self.module_list.append(block1)
 
-                    layer2 = []
-                    # 18
-
 
             # print("\n self sizeofFC: ",self.sizeOfFC)
             avgpool = nn.AdaptiveAvgPool2d((1, 1))
             self.module_list.append(avgpool)
+            print(f'avgpoll: {avgpool}')
             # 19
             fc = nn.Linear(sizeOfLayer, num_classes)
             self.module_list.append(fc)
-
+            print(f'linear: {fc}')
             for m in self.module_list:
                 if isinstance(m, nn.Conv2d):
                     n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
