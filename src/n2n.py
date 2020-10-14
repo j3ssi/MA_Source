@@ -85,8 +85,7 @@ class N2N(nn.Module):
                             print(f'{bn}')
                             layer.append(bn)
                             layer.append(self.relu)
-                            if numOfBlocksinStage == 1:
-                                i = i + 1
+                            i = i + 1
                         elif stage > 0 and (i + 1) % self.archNums[stage][block] == 0:
                             print(f'begin layer2: {i}')
                             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
