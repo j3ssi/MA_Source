@@ -494,6 +494,8 @@ class N2N(nn.Module):
 
             # ziehe zufällige Zahlen für die Mapping Funktion
             mapping = np.random.randint(module.weight.size(0), size=(delta_width * module.weight.size(0) - module.weight.size(0)))
+            print(f'len of mapping: {len(mapping)}')
+
             # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
             replication_factor = np.bincount(mapping)
             # Anlage der neuen Gewichte
