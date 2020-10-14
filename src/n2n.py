@@ -283,7 +283,7 @@ class N2N(nn.Module):
                 seq = self.module_list[j]
                 # print(f' len of seq: {len(seq)}')
                 if block == 0 and stage > 0:
-                    print(f'Drin!! seq: {seq})
+                    print(f'Drin!! seq: {seq}')
                     x = seq(_x)
                     j += 1
 
