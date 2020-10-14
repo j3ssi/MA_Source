@@ -296,7 +296,14 @@ class N2N(nn.Module):
 
                     print(f'Drin2!! seq: {seq}')
                     seq = self.module_list[j]
-                    _x = seq(_x)
+                    y = _x
+                    for a in range(len(seq)):
+                        y = seq[a](y)
+                        print(f'seq[a]: {seq[a]}; a: {a}')
+                        print(f'Y shape: {y.shape}')
+                    y = _x
+
+                    #_x = seq(_x)
                     j += 1
                 else:
                     x = seq(_x)
