@@ -452,7 +452,7 @@ class N2N(nn.Module):
 
             assert module != None or module1 != None, "Probleme mit der Auswahl des nächsten Elements für wider"
             # ziehe zufällige Zahlen für die Mapping Funktion
-            mapping = np.random.randint(module.shape[1], size=(delta_width * module.shape[1] - module.shape[1]))
+            mapping = np.random.randint(module.size(1), size=(delta_width * module.size(1) - module.size(1)))
             # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
             replication_factor = np.bincount(mapping)
             # Anlage der neuen Gewichte
