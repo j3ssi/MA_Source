@@ -261,12 +261,12 @@ class N2N(nn.Module):
         _x = self.module_list[0](x)
         if printNet:
             print("\nI: 0 ; ", self.module_list[0])
-            print("\nX Shape: ", x.shape)
+            print("\nX Shape: ", _x.shape)
         # bn1
         _x = self.module_list[1](_x)
         if printNet:
             print("\nI: 1 ; ", self.module_list[1])
-            print("\nLast X Shape: ", x.shape)
+            print("\nLast X Shape: ", _x.shape)
         # relu
         _x = self.module_list[2](_x)
         j = 3
@@ -281,7 +281,6 @@ class N2N(nn.Module):
             archNum = self.archNums[stage]
             print(f'Stage: {stage}; archNum: {archNum}')
 
-            firstBlockInStage = True
             for block in range(0, len(archNum)):
                 # try:
                 if printNet:
@@ -315,7 +314,7 @@ class N2N(nn.Module):
                     x = seq(_x)
                     j += 1
                     print(f'Shape: {x.shape}')
-                _x += x
+                _x = _x + x
                 print(f'X Shape: {_x.shape}')
                 _x = self.relu(_x)
                 # except RuntimeError:
