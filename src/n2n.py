@@ -408,19 +408,20 @@ class N2N(nn.Module):
               addNoise=True):  # teacher_w1, teacher_b1, teacher_w2, new_width, verification):
 
         for index in range(len(self.module_list)):
-            module = self.module_list[index]
-            i = index +1
+            i = index
+            module = None
             if isinstance(self.module_list[index],nn.Conv2d):
                 module = self.module_list[index]
             else:
                 while i>len(self.module_list):
                     if isinstance(self.module_list[i], nn.Conv2d):
+                        module = self.module_list[i]
                         break
                     else:
                         i += 1
 
             module1 = None
-            index1 = index
+            index1 = i
             while module1 is None:
                 if isinstance(self.module_list[index1], nn.Conv2d):
                     module1 = self.module_list[index1]
@@ -436,6 +437,7 @@ class N2N(nn.Module):
                 else:
                     print(f'Problem!!')
 
+            assert module != None and module1 !=None, "Probleme mit der Auswahl des nächsten Elements für wider"
             # ziehe zufällige Zahlen für die Mapping Funktion
             mapping = np.random.randint(module.shape[1], size=(delta_width * module.shape[1] - module.shape[1]))
             # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
@@ -444,21 +446,31 @@ class N2N(nn.Module):
             old_w1 = module.weight.copy()
             old_w2 = module1.weight.copy()
             if module.bias is not None:
-                new_b1 = module.weight.copy()
+                old_b1 = module.weight.copy()
 
             # Fülle die neuen breiteren Gewichte mit dem richtigen Inhalt aus altem
             for i in range(len(mapping)):
                 old_index = mapping[i]
                 new_weight = old_w1[ old_index, :, :, :]
-                # new_weight = new_weight[:, :, :, np.newaxis]
-                new_w1 = np.concatenate((student_w1, new_weight), axis=3)
-                student_b1 = np.append(student_b1, teacher_b1[teacher_index])
-            # next layer update (i+1)
-            for i in range(len(rand)):
-                teacher_index = rand[i]
+                print(f'Shape of new weight: {new_weight.shape}')
+                new_weight = new_weight[:, :, :, np.newaxis]
+                print(f'Shape of new weight after: {new_weight.shape}')
+
+                new_w1 = np.concatenate((old_w1, new_weight), axis=1)
+                if module.bias is not None:
+                    new_b1 = np.append(old_b1, old_b1[old_index])
+            # Fülle das Module1 mit den Gewichten un normalisiere
+            for i in range(len(mapping)):
+                teacher_index = mapping[i]
                 factor = replication_factor[teacher_index] + 1
-                assert factor > 1, 'Error in Net2Wider'
-                new_weight = teacher_w2[:, :, teacher_index, :] * (1. / factor)
+                assert factor > 1, "Fehler in Net2Wider"
+                if old_w2.dim == 2:
+                    new_weight = old_w2[:, old_index] * (1. / factor)
+                    #  new_weight_re = new_weight[:, :, np.newaxis, :]
+                    new_w2 = np.concatenate((student_w2, new_weight_re), axis=0)
+                    # student_w2[:, :, teacher_index, :] = new_weight
+                elif old_w2.dim ==4:
+                    new_weight = old_w2[:, old_index, :, :] * (1. / factor)
                 new_weight_re = new_weight[:, :, np.newaxis, :]
                 student_w2 = np.concatenate((student_w2, new_weight_re), axis=2)
                 student_w2[:, :, teacher_index, :] = new_weight
