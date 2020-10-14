@@ -253,7 +253,7 @@ class N2N(nn.Module):
     def forward(self, x):
         # print(f'ArchNums: {self.archNums}')
         # First layer
-        printNet = True
+        printNet = False
         if printNet:
             print("\nX Shape: ", x.shape)
         # conv1
@@ -284,23 +284,23 @@ class N2N(nn.Module):
                 seq = self.module_list[j]
                 # print(f' len of seq: {len(seq)}')
                 if block == 0 and stage > 0:
-                    print(f'Drin!! seq: {seq}')
+                    # print(f'Drin!! seq: {seq}')
                     y = _x
                     for a in range(len(seq)):
                         y = seq[a](y)
-                        print(f'seq[a]: {seq[a]}; a: {a}')
-                        print(f'Y shape: {y.shape}')
+                        # print(f'seq[a]: {seq[a]}; a: {a}')
+                        # print(f'Y shape: {y.shape}')
                     x = y
                     #x = seq(_x)
                     j += 1
 
-                    print(f'Drin2!! seq: {seq}')
+                    # print(f'Drin2!! seq: {seq}')
                     seq = self.module_list[j]
                     y = _x
                     for a in range(len(seq)):
                         y = seq[a](y)
-                        print(f'seq[a]: {seq[a]}; a: {a}')
-                        print(f'Y shape: {y.shape}')
+                        # print(f'seq[a]: {seq[a]}; a: {a}')
+                        # print(f'Y shape: {y.shape}')
                     _x = y
 
                     #_x = seq(_x)
@@ -308,9 +308,9 @@ class N2N(nn.Module):
                 else:
                     x = seq(_x)
                     j += 1
-                    print(f'Shape: {x.shape}')
+                    # print(f'Shape: {x.shape}')
                 _x = x + _x
-                print(f'X Shape: {_x.shape}')
+                # print(f'X Shape: {_x.shape}')
                 _x = self.relu(_x)
                 # except RuntimeError:
                 #     print(f'Except')
@@ -508,10 +508,27 @@ class N2N(nn.Module):
                     new_weight_re = new_weight[:, np.newaxis, :, :]
                     new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
                     new_w2[:, index, :, :] = new_weight
+
+            module.weight.data = nn.Parameter(new_w1)
+            if module.bias:
+                module.bias.data = nn.Parameter(new_b1)
+            module1.weight.data = nn.Parameter(new_w2)
             if isinstance(self.module_list[index + 1], nn.BatchNorm2d):
                 old_bn_w = moduleBn.weight.data.clone().cpu.numpy()
                 old_bn_b = moduleBn.bias.data.clone().numpy()
                 old_bn_mean = moduleBn.running_mean.clone().numpy()
+                old_bn_var = moduleBn.running_var.clone().numpy()
+                for i in range(len(mapping)):
+                    index = mapping[i]
+                    factor = replication_factor[index] + 1
+                    new_bn_w = np.append(old_bn_w, old_bn_w[index])
+                    new_bn_b = np.append(old_bn_w, old_bn_w[index])
+                    new_bn_mean = np.append(old_bn_mean, old_bn_mean[index])
+                    new_bn_var = np.append(old_bn_var, old_bn_var[index])
+                moduleBn.weight.data = nn.Parameter(old_bn_w)
+                moduleBn.bias.data = nn.Parameter(old_bn_b)
+                moduleBn.running_mean = nn.Parameter(old_bn_mean)
+                moduleBn.running_var = nn.Parameter(old_bn_var)
 
             assert index1 > index, "index<= index"
             index += index1 - index
