@@ -284,7 +284,12 @@ class N2N(nn.Module):
                 # print(f' len of seq: {len(seq)}')
                 if block == 0 and stage > 0:
                     print(f'Drin!! seq: {seq}')
-                    x = seq(_x)
+                    y = _x
+                    for a in range(len(seq)):
+                        y = seq[a](y)
+                        print(f'seq[a]: {seq[a]}; a: {a}')
+                    y = x
+                    #x = seq(_x)
                     j += 1
 
                     print(f'Drin2!! seq: {seq}')
