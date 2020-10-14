@@ -297,6 +297,7 @@ class N2N(nn.Module):
                 except RuntimeError:
                     print(f'Except')
                     print("\nJ: ", j, " ; ", self.module_list[j])
+                    print(f'seq[a]: {seq[a]}')
                     print("\nX Shape: ", x.shape)
 
         if printNet:
