@@ -538,16 +538,15 @@ class N2N(nn.Module):
 
                 for i in range(len(mapping)):
                     index = mapping[i]
-                    factor = replication_factor[index] + 1
 
                     new_bn_w = np.append(new_bn_w, old_bn_w[index])
                     new_bn_b = np.append(new_bn_w, old_bn_w[index])
                     new_bn_mean = np.append(new_bn_mean, new_bn_mean[index])
                     new_bn_var = np.append(new_bn_var, new_bn_var[index])
-                    moduleBn.weight.data = nn.Parameter(torch.from_numpy(new_bn_w))
-                    moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
-                    moduleBn.running_mean = nn.Parameter(torch.from_numpy(new_bn_mean))
-                    moduleBn.running_var = nn.Parameter(torch.from_numpy(new_bn_var))
+                moduleBn.weight.data = nn.Parameter(torch.from_numpy(new_bn_w))
+                moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
+                moduleBn.running_mean = nn.Parameter(torch.from_numpy(new_bn_mean))
+                moduleBn.running_var = nn.Parameter(torch.from_numpy(new_bn_var))
 
             assert index1 > index, "index<= index"
             index += index1 - index
