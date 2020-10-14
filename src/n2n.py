@@ -488,10 +488,10 @@ class N2N(nn.Module):
             # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
             replication_factor = np.bincount(mapping)
             # Anlage der neuen Gewichte
-            new_w1 = module.weight.data.clone().cpu().numpy()
-            new_w2 = module1.weight.data.clone().cpu().numpy()
-            old_w1 = module.weight.data.clone().cpu().numpy()
-            old_w2 = module1.weight.data.clone().cpu().numpy()
+            new_w1 = module.weight.data.clone().cpu().detach().numpy()
+            new_w2 = module1.weight.data.clone().cpu().detach().numpy()
+            old_w1 = module.weight.data.clone().cpu().detach().numpy()
+            old_w2 = module1.weight.data.clone().cpu().detach().numpy()
 
 
             if module.bias is not None:
@@ -527,14 +527,14 @@ class N2N(nn.Module):
                 module.bias.data = nn.Parameter(torch.from_numpy(new_b1))
             module1.weight.data = nn.Parameter(torch.from_numpy(new_w2))
             if isinstance(moduleBn, nn.BatchNorm2d):
-                old_bn_w = moduleBn.weight.data.clone().cpu().numpy()
-                old_bn_b = moduleBn.bias.data.clone().cpu().numpy()
-                old_bn_mean = moduleBn.running_mean.clone().cpu().numpy()
-                old_bn_var = moduleBn.running_var.clone().cpu().numpy()
-                new_bn_w = moduleBn.weight.data.clone().cpu().numpy()
-                new_bn_b = moduleBn.bias.data.clone().cpu().numpy()
-                new_bn_mean = moduleBn.running_mean.clone().cpu().numpy()
-                new_bn_var = moduleBn.running_var.clone().cpu().numpy()
+                old_bn_w = moduleBn.weight.data.clone().cpu().detach().numpy()
+                old_bn_b = moduleBn.bias.data.clone().cpu().detach().numpy()
+                old_bn_mean = moduleBn.running_mean.clone().cpu().detach().numpy()
+                old_bn_var = moduleBn.running_var.clone().cpu().detach().numpy()
+                new_bn_w = moduleBn.weight.data.clone().cpu().detach().numpy()
+                new_bn_b = moduleBn.bias.data.clone().cpu().detach().numpy()
+                new_bn_mean = moduleBn.running_mean.clone().cpu().detach().numpy()
+                new_bn_var = moduleBn.running_var.clone().cpu().detach().numpy()
 
                 for i in range(len(mapping)):
                     index = mapping[i]
