@@ -410,14 +410,14 @@ class N2N(nn.Module):
               addNoise=True):  # teacher_w1, teacher_b1, teacher_w2, new_width, verification):
         index = 0
 
-        while index< len(self.module_list):
+        while index < len(self.module_list):
             i = index
 
             module = None
-            if isinstance(self.module_list[index],nn.Conv2d):
+            if isinstance(self.module_list[index], nn.Conv2d):
                 module = self.module_list[index]
             else:
-                while i<len(self.module_list):
+                while i < len(self.module_list):
                     if isinstance(self.module_list[i], nn.Conv2d):
                         module = self.module_list[i]
                         break
@@ -441,7 +441,7 @@ class N2N(nn.Module):
                 else:
                     print(f'Problem!!')
 
-            assert module != None or module1 !=None, "Probleme mit der Auswahl des nächsten Elements für wider"
+            assert module != None or module1 != None, "Probleme mit der Auswahl des nächsten Elements für wider"
             # ziehe zufällige Zahlen für die Mapping Funktion
             mapping = np.random.randint(module.shape[1], size=(delta_width * module.shape[1] - module.shape[1]))
             # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
@@ -455,7 +455,7 @@ class N2N(nn.Module):
             # Fülle die neuen breiteren Gewichte mit dem richtigen Inhalt aus altem
             for i in range(len(mapping)):
                 old_index = mapping[i]
-                new_weight = old_w1[ old_index, :, :, :]
+                new_weight = old_w1[old_index, :, :, :]
                 print(f'Shape of new weight: {new_weight.shape}')
                 new_weight = new_weight[:, :, :, np.newaxis]
                 print(f'Shape of new weight after: {new_weight.shape}')
@@ -473,15 +473,15 @@ class N2N(nn.Module):
                     #  new_weight_re = new_weight[:, :, np.newaxis, :]
                     new_w2 = np.concatenate((student_w2, new_weight_re), axis=0)
                     # student_w2[:, :, teacher_index, :] = new_weight
-                elif old_w2.dim ==4:
+                elif old_w2.dim == 4:
                     new_weight = old_w2[:, old_index, :, :] * (1. / factor)
                 new_weight_re = new_weight[:, :, np.newaxis, :]
                 student_w2 = np.concatenate((student_w2, new_weight_re), axis=2)
                 student_w2[:, :, teacher_index, :] = new_weight
-            if isinstance(self.module_list[index+1],nn.BatchNorm2d):
+            if isinstance(self.module_list[index + 1], nn.BatchNorm2d):
                 pass
             assert index1 > index, "index<= index"
-            index += index1 -index
+            index += index1 - index
 
     # def wider(self, stage, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
     #     print(f'Stage: {stage}')
