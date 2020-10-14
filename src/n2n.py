@@ -284,8 +284,9 @@ class N2N(nn.Module):
                 seq = self.module_list[j]
                 print(f'seq: {seq}')
                 if block == 0 and stage > 0:
-                    print(f'Drin!! seq: {seq}')
+                    print(f'Drin!! seq: {seq}; j: {j}')
                     y = _x
+                    z = _x
                     for a in range(len(seq)):
                         y = seq[a](y)
                         print(f'seq[a]: {seq[a]}; a: {a}')
@@ -294,14 +295,14 @@ class N2N(nn.Module):
                     # x = seq(_x)
                     j += 1
 
-                    print(f'Drin2!! seq: {seq}')
                     seq = self.module_list[j]
-                    y = _x
+                    print(f'Drin2!! seq: {seq}; j: {j}')
+
                     for a in range(len(seq)):
-                        y = seq[a](y)
+                        z = seq[a](z)
                         print(f'seq[a]: {seq[a]}; a: {a}')
-                        print(f'Y shape: {y.shape}')
-                    _x = y
+                        print(f'Y shape: {z.shape}')
+                    _x = z
 
                     #_x = seq(_x)
                     j += 1
