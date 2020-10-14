@@ -276,7 +276,8 @@ class N2N(nn.Module):
                 print("\n\nStage: ", stage)
             archNum = self.archNums[stage]
             firstBlockInStage = True
-            for block in range(0, len(archNum)):
+            block = 0
+            while block < len(archNum):
                 try:
                     if printNet:
                         print(f'Block: {block}; j: {j}')
@@ -285,7 +286,6 @@ class N2N(nn.Module):
                     if block == 0 and stage > 0:
                         x = seq(_x)
                         j += 1
-
                         seq = self.module_list[j]
                         _x = seq(_x)
                         j += 1
@@ -475,7 +475,7 @@ class N2N(nn.Module):
                 student_w2 = np.concatenate((student_w2, new_weight_re), axis=2)
                 student_w2[:, :, teacher_index, :] = new_weight
             if isinstance(self.module_list[index+1],nn.BatchNorm2d):
-
+                pass
             assert index1 > index, "index<= index"
             index += index1 -index
 
