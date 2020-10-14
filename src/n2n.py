@@ -272,9 +272,10 @@ class N2N(nn.Module):
         notfirstLayer = False
         # try:
         for stage in range(0, self.numOfStages):
-            if printNet:
-                print("\n\nStage: ", stage)
+            # if printNet:
             archNum = self.archNums[stage]
+            print(f'Stage: {stage}; archNum: {archNum}')
+
             firstBlockInStage = True
             for block in range(0, len(archNum)):
                 # try:
@@ -299,7 +300,7 @@ class N2N(nn.Module):
                 else:
                     x = seq(_x)
                     j += 1
-                    print(f'Shape: {_x.shape}')
+                    print(f'Shape: {x.shape}')
                 _x = x + _x
                 _x = self.relu(_x)
                 # except RuntimeError:
