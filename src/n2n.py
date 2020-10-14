@@ -434,7 +434,7 @@ class N2N(nn.Module):
                     index1 += 1
                 elif isinstance(self.module_list[index1], nn.LeakyReLU):
                     index1 += 1
-                elif isinstance(nn.AdaptiveAvgPool2d):
+                elif isinstance(self.module_list[index1], nn.AdaptiveAvgPool2d):
                     index1 += 1
                 else:
                     print(f'Problem!!')
