@@ -458,11 +458,11 @@ def main():
 
 
     if args.wider and not args.widerRnd:
-        model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
+        model = model.wider(3, 2, weight_norm=None, random_init=False, addNoise=True)
 
-        model = model.wider(2, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
+        model = model.wider(2, 2, weight_norm=None, random_init=False, addNoise=True)
 
-        model = model.wider(1, 2, out_size=None, weight_norm=None, random_init=False, addNoise=True)
+        model = model.wider(1, 2, weight_norm=None, random_init=False, addNoise=True)
 
         for i in range(len(model.widthofLayers)):
             model.widthofLayers[i] *= 2
