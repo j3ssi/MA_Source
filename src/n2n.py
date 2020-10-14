@@ -514,10 +514,10 @@ class N2N(nn.Module):
                     new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
                     new_w2[:, index, :, :] = new_weight
 
-            module.weight.data = nn.Parameter(new_w1)
+            module.weight.data = nn.Parameter(torch.from_numpy(new_w1))
             if module.bias:
-                module.bias.data = nn.Parameter(new_b1)
-            module1.weight.data = nn.Parameter(new_w2)
+                module.bias.data = nn.Parameter(torch.from_numpy(new_b1))
+            module1.weight.data = nn.Parameter(torch.from_numpy(new_w2))
             if isinstance(self.module_list[index + 1], nn.BatchNorm2d):
                 old_bn_w = moduleBn.weight.data.clone().cpu.numpy()
                 old_bn_b = moduleBn.bias.data.clone().numpy()
@@ -531,15 +531,15 @@ class N2N(nn.Module):
                 for i in range(len(mapping)):
                     index = mapping[i]
                     factor = replication_factor[index] + 1
-                
+
                     new_bn_w = np.append(new_bn_w, old_bn_w[index])
                     new_bn_b = np.append(new_bn_w, old_bn_w[index])
                     new_bn_mean = np.append(new_bn_mean, new_bn_mean[index])
                     new_bn_var = np.append(new_bn_var, new_bn_var[index])
-                    moduleBn.weight.data = nn.Parameter(new_bn_w)
-                    moduleBn.bias.data = nn.Parameter(new_bn_b)
-                    moduleBn.running_mean = nn.Parameter(new_bn_mean)
-                    moduleBn.running_var = nn.Parameter(new_bn_var)
+                    moduleBn.weight.data = nn.Parameter(torch.from_numpy(new_bn_w))
+                    moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
+                    moduleBn.running_mean = nn.Parameter(torch.from_numpy(new_bn_mean))
+                    moduleBn.running_var = nn.Parameter(torch.from_numpy(new_bn_var))
 
             assert index1 > index, "index<= index"
             index += index1 - index
