@@ -458,8 +458,8 @@ class N2N(nn.Module):
             # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
             replication_factor = np.bincount(mapping)
             # Anlage der neuen Gewichte
-            old_w1 = module.weight.copy()
-            old_w2 = module1.weight.copy()
+            old_w1 = module.weight.data.copy()
+            old_w2 = module1.weight.data.copy()
             if module.bias is not None:
                 old_b1 = module.weight.copy()
 
