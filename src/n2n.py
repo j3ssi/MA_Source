@@ -461,7 +461,6 @@ class N2N(nn.Module):
             if module.bias is not None:
                 old_b1 = module.weight.copy()
 
-                _x = self.relu(_x
             # Fülle die neuen breiteren Gewichte mit dem richtigen Inhalt aus altem
             for i in range(len(mapping)):
                 old_index = mapping[i]
