@@ -1192,12 +1192,12 @@ class N2N(nn.Module):
                         seq.append(conv)
                         # print(f'GRAD: c{conv.}')
                         # print(f'beues conv: {conv}; j= { 2 * pos +1 }')
-                    elif j > 2 * pos:
+                    elif j > 3 * pos:
                         # print(f'module: {module[j - 2]}; j= {j + 2}')
                         # print(f'altes layer: {module[j - 3]}; j: {j}')
 
                         seq.append(module[j - 3])
-                    elif j < 2 * pos - 1:
+                    elif j < 3 * pos - 2:
                         # prin   t(f'module: {module[j]}; j= {j}')
                         seq.append(module[j])
 
