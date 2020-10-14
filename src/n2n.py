@@ -277,28 +277,29 @@ class N2N(nn.Module):
             archNum = self.archNums[stage]
             firstBlockInStage = True
             block = 0
-            while block < len(archNum):
-                try:
-                    if printNet:
-                        print(f'Block: {block}; j: {j}')
+            for block in range(len(archNum)):
+                # try:
+                if printNet:
+                    print(f'Block: {block}; j: {j}')
+                seq = self.module_list[j]
+                # print(f' len of seq: {len(seq)}')
+                if block == 0 and stage > 0:
+                    x = seq(_x)
+                    j += 1
+
                     seq = self.module_list[j]
-                    # print(f' len of seq: {len(seq)}')
-                    if block == 0 and stage > 0:
-                        x = seq(_x)
-                        j += 1
-                        seq = self.module_list[j]
-                        _x = seq(_x)
-                        j += 1
-                    else:
-                        _x = seq(_x)
-                        j += 1
-                    _x = x + _x
-                    _x = self.relu(_x)
-                except RuntimeError:
-                    print(f'Except')
-                    print("\nJ: ", j, " ; ", self.module_list[j])
-                    print(f'seq[a]: {seq[a]}')
-                    print("\nX Shape: ", x.shape)
+                    _x = seq(_x)
+                    j += 1
+                else:
+                    _x = seq(_x)
+                    j += 1
+                _x = x + _x
+                _x = self.relu(_x)
+                # except RuntimeError:
+                #     print(f'Except')
+                #     print("\nJ: ", j, " ; ", self.module_list[j])
+                #     print(f'seq[a]: {seq[a]}')
+                #     print("\nX Shape: ", x.shape)
 
         if printNet:
             print("\nX Shape: ", x.shape)
