@@ -274,7 +274,7 @@ class N2N(nn.Module):
         for stage in range(0, self.numOfStages):
             # if printNet:
             archNum = self.archNums[stage]
-            print(f'Stage: {stage}; archNum: {archNum}')
+            # print(f'Stage: {stage}; archNum: {archNum}')
 
             firstBlockInStage = True
             for block in range(0, len(archNum)):
