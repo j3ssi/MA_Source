@@ -432,7 +432,7 @@ class N2N(nn.Module):
             print(f'instance: {type(self.module_list[index1])}')
             while module1 is None:
                 print(f'while Index1: {index1}')
-
+                print(f'module: {self.module_list[index1]}')
                 if isinstance(self.module_list[index1], nn.Conv2d):
                     module1 = self.module_list[index1]
                     break
@@ -461,6 +461,7 @@ class N2N(nn.Module):
             if module.bias is not None:
                 old_b1 = module.weight.copy()
 
+                _x = self.relu(_x
             # Fülle die neuen breiteren Gewichte mit dem richtigen Inhalt aus altem
             for i in range(len(mapping)):
                 old_index = mapping[i]
