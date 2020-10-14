@@ -424,6 +424,7 @@ class N2N(nn.Module):
                         i += 1
 
             module1 = None
+            print(f'Index1: {index1}')
             index1 = i + 1
             while module1 is None:
                 if isinstance(self.module_list[index1], nn.Conv2d):
@@ -441,6 +442,7 @@ class N2N(nn.Module):
                     index1 += 1
                 else:
                     print(f'Problem!!')
+                    break
 
             assert module != None or module1 != None, "Probleme mit der Auswahl des nächsten Elements für wider"
             # ziehe zufällige Zahlen für die Mapping Funktion
@@ -483,6 +485,7 @@ class N2N(nn.Module):
                 pass
             assert index1 > index, "index<= index"
             index += index1 - index
+            break
 
     # def wider(self, stage, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
     #     print(f'Stage: {stage}')
