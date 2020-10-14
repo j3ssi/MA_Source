@@ -130,12 +130,13 @@ class N2N(nn.Module):
                             i = i + 1
 
                     block = nn.Sequential(*layer)
-                    print(f'seq: {seq}; i: {j}')
+                    print(f'seq: {block}; i: {j}')
                     j += 1
                     self.module_list.append(block)
                     if len(layer2) > 0:
                         block1 = nn.Sequential(*layer2)
                         self.module_list.append(block1)
+                        print(f'seq1: {block1}; i: {j}')
 
 
             # print("\n self sizeofFC: ",self.sizeOfFC)
