@@ -424,9 +424,12 @@ class N2N(nn.Module):
                         i += 1
 
             module1 = None
-            print(f'Index1: {index1}')
             index1 = i + 1
+            print(f'Index1: {index1}')
+
             while module1 is None:
+                print(f'while Index1: {index1}')
+
                 if isinstance(self.module_list[index1], nn.Conv2d):
                     module1 = self.module_list[index1]
                     break
