@@ -35,7 +35,7 @@ class N2N(nn.Module):
             for stage in range(0, numOfStages):
                 self.widthofLayers.append(s)
                 s *= 2
-
+        j = 0
         if first:
             self.archNums = [[]]
             for s in range(0, self.numOfStages):
@@ -58,14 +58,15 @@ class N2N(nn.Module):
             # conv1
             conv0 = nn.Conv2d(3, self.widthofLayers[0], kernel_size=3, padding=1, bias=False, stride=1)
             self.module_list.append(conv0)
-            print(f'conv0: {conv0}; i: 0')
+            print(f'conv0: {conv0}; i: {j}')
             # bn1
+            j += 1
             bn1 = nn.BatchNorm2d(self.widthofLayers[0])
-            print(f'bn1: {bn1}; i: 1')
-
+            print(f'bn1: {bn1}; i: {j}')
+            j += 1
             self.module_list.append(bn1)
             self.module_list.append(self.relu)
-            print(f'Relu; i:2')
+            print(f'Relu; i: {j}')
             firstBlockInStage = False
 
             for stage in range(0, numOfStages):
@@ -78,8 +79,8 @@ class N2N(nn.Module):
                     i = 0
 
                     while i < self.archNums[stage][block]:
-                        print(f'i : {i}; block: {block}')
-                        if stage > 0 and i == 0:
+                        print(f'i : {j}; block: {block}')
+                        if block == 0 and stage > 0 and i == 0:
                             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                              bias=False,
                                              stride=2)
@@ -91,7 +92,7 @@ class N2N(nn.Module):
                             layer.append(self.relu)
                             print(f'relu: {i}')
                             i = i + 1
-                        elif stage > 0 and (i + 1) % self.archNums[stage][block] == 0:
+                        elif block == 0 and stage > 0 and (i + 1) % self.archNums[stage][block] == 0:
                             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                              bias=False,
                                              stride=2)
@@ -129,6 +130,8 @@ class N2N(nn.Module):
                             i = i + 1
 
                     block = nn.Sequential(*layer)
+                    print(f'seq: {seq}; i: {j}')
+                    j += 1
                     self.module_list.append(block)
                     if len(layer2) > 0:
                         block1 = nn.Sequential(*layer2)
