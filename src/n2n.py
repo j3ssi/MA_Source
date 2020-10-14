@@ -426,7 +426,7 @@ class N2N(nn.Module):
             module1 = None
             index1 = i + 1
             print(f'Index1: {index1}')
-
+            print(f'instance: {self.module_list[index1].type()}')
             while module1 is None:
                 print(f'while Index1: {index1}')
 
