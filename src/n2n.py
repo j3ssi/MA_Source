@@ -287,7 +287,8 @@ class N2N(nn.Module):
                 if printNet:
                     print(f'Block: {block}; j: {j}')
                 seq = self.module_list[j]
-                print(f'seq: {seq}')
+                if printNet:
+                    print(f'seq: {seq}')
                 if block == 0 and stage > 0:
                     if printNet:
                         print(f'Drin!! seq: {seq}; j: {j}')
