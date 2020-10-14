@@ -554,7 +554,7 @@ class N2N(nn.Module):
                     new_bn_b = np.append(new_bn_w, old_bn_w[index])
                     new_bn_mean = np.append(new_bn_mean, new_bn_mean[index])
                     new_bn_var = np.append(new_bn_var, new_bn_var[index])
-                print(f'new bn: {new_bn_b}; K : {k}; len of bn: {new_bn_b.size()}')
+                print(f'new bn: {new_bn_b}; K : {k}; len of bn: {new_bn_b.size}')
                 moduleBn.weight.data = nn.Parameter(torch.from_numpy(new_bn_w))
                 moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
                 moduleBn.running_mean = nn.Parameter(torch.from_numpy(new_bn_mean))
