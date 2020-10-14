@@ -480,9 +480,14 @@ class N2N(nn.Module):
             # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
             replication_factor = np.bincount(mapping)
             # Anlage der neuen Gewichte
+            new_w1 = module.weight.data.clone().cpu().numpy()
+            new_w2 = module1.weight.data.clone().cpu().numpy()
             old_w1 = module.weight.data.clone().cpu().numpy()
             old_w2 = module1.weight.data.clone().cpu().numpy()
+
+
             if module.bias is not None:
+                new_b1 = module.weight.clone()
                 old_b1 = module.weight.clone()
 
             # Fülle die neuen breiteren Gewichte mit dem richtigen Inhalt aus altem
@@ -490,9 +495,9 @@ class N2N(nn.Module):
                 index = mapping[i]
                 new_weight = old_w1[index, :, :, :]
                 new_weight = new_weight[np.newaxis, :, :, :]
-                new_w1 = np.concatenate((old_w1, new_weight), axis=0)
+                new_w1 = np.concatenate((new_w1, new_weight), axis=0)
                 if module.bias is not None:
-                    new_b1 = np.append(old_b1, old_b1[index])
+                    new_b1 = np.append(new_b1, old_b1[index])
             # Fülle das Module1 mit den Gewichten un normalisiere
             for i in range(len(mapping)):
                 index = mapping[i]
@@ -518,17 +523,23 @@ class N2N(nn.Module):
                 old_bn_b = moduleBn.bias.data.clone().numpy()
                 old_bn_mean = moduleBn.running_mean.clone().numpy()
                 old_bn_var = moduleBn.running_var.clone().numpy()
+                new_bn_w = moduleBn.weight.data.clone().cpu.numpy()
+                new_bn_b = moduleBn.bias.data.clone().numpy()
+                new_bn_mean = moduleBn.running_mean.clone().numpy()
+                new_bn_var = moduleBn.running_var.clone().numpy()
+
                 for i in range(len(mapping)):
                     index = mapping[i]
                     factor = replication_factor[index] + 1
-                    new_bn_w = np.append(old_bn_w, old_bn_w[index])
-                    new_bn_b = np.append(old_bn_w, old_bn_w[index])
-                    new_bn_mean = np.append(old_bn_mean, old_bn_mean[index])
-                    new_bn_var = np.append(old_bn_var, old_bn_var[index])
-                moduleBn.weight.data = nn.Parameter(old_bn_w)
-                moduleBn.bias.data = nn.Parameter(old_bn_b)
-                moduleBn.running_mean = nn.Parameter(old_bn_mean)
-                moduleBn.running_var = nn.Parameter(old_bn_var)
+                
+                    new_bn_w = np.append(new_bn_w, old_bn_w[index])
+                    new_bn_b = np.append(new_bn_w, old_bn_w[index])
+                    new_bn_mean = np.append(new_bn_mean, new_bn_mean[index])
+                    new_bn_var = np.append(new_bn_var, new_bn_var[index])
+                    moduleBn.weight.data = nn.Parameter(new_bn_w)
+                    moduleBn.bias.data = nn.Parameter(new_bn_b)
+                    moduleBn.running_mean = nn.Parameter(new_bn_mean)
+                    moduleBn.running_var = nn.Parameter(new_bn_var)
 
             assert index1 > index, "index<= index"
             index += index1 - index
