@@ -294,6 +294,7 @@ class N2N(nn.Module):
                 else:
                     _x = seq(_x)
                     j += 1
+                    print(f'Shape: {_x.shape}')
                 _x = x + _x
                 _x = self.relu(_x)
                 # except RuntimeError:
