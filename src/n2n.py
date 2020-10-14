@@ -421,10 +421,14 @@ class N2N(nn.Module):
             elif isinstance(self.module_list[index], nn.Sequential):
                 moduleX = self.module_list[index]
                 module = moduleX[0]
+                if isinstance(moduleX[1], nn.BatchNorm2d):
+                    moduleBn = moduleX[1]
             else:
                 while i < len(self.module_list):
                     if isinstance(self.module_list[i], nn.Conv2d):
                         module = self.module_list[i]
+                        if isinstance(self.module_list[i+1], nn.BatchNorm2d):
+                            moduleBn = self.module_list[i+1]
                         break
                     else:
                         i += 1
@@ -461,39 +465,39 @@ class N2N(nn.Module):
             # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
             replication_factor = np.bincount(mapping)
             # Anlage der neuen Gewichte
-            old_w1 = module.weight.data.clone()
-            old_w2 = module1.weight.data.clone()
+            old_w1 = module.weight.data.clone().cpu().numpy()
+            old_w2 = module1.weight.data.clone().cpu().numpy()
             if module.bias is not None:
                 old_b1 = module.weight.clone()
 
             # Fülle die neuen breiteren Gewichte mit dem richtigen Inhalt aus altem
             for i in range(len(mapping)):
-                old_index = mapping[i]
-                new_weight = old_w1[old_index, :, :, :]
-                print(f'Shape of new weight: {new_weight.shape}')
-                new_weight = new_weight[:, :, :, np.newaxis]
-                print(f'Shape of new weight after: {new_weight.shape}')
-
-                new_w1 = np.concatenate((old_w1, new_weight), axis=1)
+                index = mapping[i]
+                new_weight = old_w1[index, :, :, :]
+                new_weight = new_weight[np.newaxis, :, :, :]
+                new_w1 = np.concatenate((old_w1, new_weight), axis=0)
                 if module.bias is not None:
-                    new_b1 = np.append(old_b1, old_b1[old_index])
+                    new_b1 = np.append(old_b1, old_b1[index])
             # Fülle das Module1 mit den Gewichten un normalisiere
             for i in range(len(mapping)):
-                teacher_index = mapping[i]
-                factor = replication_factor[teacher_index] + 1
+                index = mapping[i]
+                factor = replication_factor[index] + 1
                 assert factor > 1, "Fehler in Net2Wider"
                 if old_w2.dim == 2:
-                    new_weight = old_w2[:, old_index] * (1. / factor)
-                    #  new_weight_re = new_weight[:, :, np.newaxis, :]
-                    new_w2 = np.concatenate((student_w2, new_weight_re), axis=0)
-                    # student_w2[:, :, teacher_index, :] = new_weight
+                    new_weight = old_w2[:, index] * (1. / factor)
+                    new_weight_re = new_weight[:, np.newaxis]
+                    new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
+                    new_w2[:, index] = new_weight
                 elif old_w2.dim == 4:
-                    new_weight = old_w2[:, old_index, :, :] * (1. / factor)
-                new_weight_re = new_weight[:, :, np.newaxis, :]
-                student_w2 = np.concatenate((student_w2, new_weight_re), axis=2)
-                student_w2[:, :, teacher_index, :] = new_weight
+                    new_weight = old_w2[:, index, :, :] * (1. / factor)
+                    new_weight_re = new_weight[:, np.newaxis, :, :]
+                    new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
+                    new_w2[:, index, :, :] = new_weight
             if isinstance(self.module_list[index + 1], nn.BatchNorm2d):
-                pass
+                old_bn_w = moduleBn.weight.data.clone().cpu.numpy()
+                old_bn_b = moduleBn.bias.data.clone().numpy()
+                old_bn_mean = moduleBn.running_mean.clone().numpy()
+
             assert index1 > index, "index<= index"
             index += index1 - index
             break
