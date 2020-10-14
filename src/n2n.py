@@ -149,7 +149,7 @@ class N2N(nn.Module):
             for m in self.module_list:
                 if isinstance(m, nn.Conv2d):
                     n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
-                    nn.init.normal_(m.weight, mean = 0, std = math.sqrt(2. / n))
+                    nn.init.normal_(m.weight, mean=0, std=math.sqrt(2. / n))
                 elif isinstance(m, nn.BatchNorm2d):
                     nn.init.ones_(m.weight)
                     nn.init.zeros_(m.bias)
@@ -159,7 +159,7 @@ class N2N(nn.Module):
                         seq = m[a]
                         if isinstance(seq, nn.Conv2d):
                             n = seq.kernel_size[0] * seq.kernel_size[1] * seq.out_channels
-                            nn.init.normal_(seq.weight, mean = 0, std = math.sqrt(2. / n))
+                            nn.init.normal_(seq.weight, mean=0, std=math.sqrt(2. / n))
                         elif isinstance(seq, nn.BatchNorm2d):
                             nn.init.ones_(seq.weight)
                             nn.init.zeros_(seq.bias)
@@ -277,26 +277,27 @@ class N2N(nn.Module):
             archNum = self.archNums[stage]
             firstBlockInStage = True
             for block in range(0, len(archNum)):
-                if printNet:
-                    print(f'Block: {block}; j: {j}')
-                seq = self.module_list[j]
-                # print(f' len of seq: {len(seq)}')
-                if block == 0 and stage > 0:
-                    x = seq(_x)
-                    j += 1
-
+                try:
+                    if printNet:
+                        print(f'Block: {block}; j: {j}')
                     seq = self.module_list[j]
-                    _x = seq(_x)
-                    j += 1
-                else:
-                    _x = seq(_x)
-                    j += 1
-                _x = x + _x
-                _x = self.relu(_x)
-        # except RuntimeError:
-        #     print(f'Except')
-        #     print("\nJ: ", j, " ; ", self.module_list[j])
-        #     print("\nX Shape: ", x.shape)
+                    # print(f' len of seq: {len(seq)}')
+                    if block == 0 and stage > 0:
+                        x = seq(_x)
+                        j += 1
+
+                        seq = self.module_list[j]
+                        _x = seq(_x)
+                        j += 1
+                    else:
+                        _x = seq(_x)
+                        j += 1
+                    _x = x + _x
+                    _x = self.relu(_x)
+                except RuntimeError:
+                    print(f'Except')
+                    print("\nJ: ", j, " ; ", self.module_list[j])
+                    print("\nX Shape: ", x.shape)
 
         if printNet:
             print("\nX Shape: ", x.shape)
@@ -402,276 +403,338 @@ class N2N(nn.Module):
     layers = 'conv 3, conv6'
     """
 
-    def wider(self, stage, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
-        print(f'Stage: {stage}')
-        print(f'width of Layers: {self.widthofLayers}')
-        # 1.+ 2. Layer
-        m1 = self.module_list[0]
-        old_width = m1.weight.size(0)
-        new_width = old_width * delta_width
-        print(f'old width1: {old_width}; new width: {new_width}')
-        w1 = m1.weight.data.clone().cpu().numpy()
-        bn1 = self.module_list[1]
-        bn1w = bn1.weight.data.clone().cpu().numpy()
-        bn1b = bn1.bias.data.clone().cpu.numpy()
-        dw1 = []
-        dbn1w = []
-        dbn1rv = []
-        dbn1rm = []
-        dbn1b = []
-        tracking = dict()
-        listOfRunningMean = []
-        listOfRunningVar = []
+    # def wider(self, stage, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
+    def wider(self, stage, delta_width, weight_norm=True, random_init=True,
+              addNoise=True):  # teacher_w1, teacher_b1, teacher_w2, new_width, verification):
 
-
-        for name, buf in self.named_buffers():
-            print("\nBuffer Name: ", name)
-            if 't.1.running_mean' in name:
-                mean = buf.clone()
-                listOfRunningMean = mean.cpu().numpy()
-            if 't.1.running_var' in name:
-                var = buf.clone()
-                listOfRunningVar = var.cpu().numpy()
-
-        for o in range(0, (new_width - old_width)):
-            idx = np.random.randint(0, old_width)
-            m1list = w1[idx, :, :, :]
-            try:
-                tracking[idx].append(o + old_width)
-            except:
-                tracking[idx] = []
-                tracking[idx].append(o + old_width)
-
-                # TEST:random init for new units
-            if random_init:
-                n1 = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
-                dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n1),
-                size=(new_width - old_width, w1.shape[1], w1.shape[2], w1.shape[3]))
-                    # print(f'dw1: {dw1.shape}')
+        for index in range(len(self.module_list)):
+            module = self.module_list[index]
+            i = index +1
+            if isinstance(self.module_list[index],nn.Conv2d):
+                module = self.module_list[index]
             else:
-                dw1.append(m1list)
+                while i>len(self.module_list):
+                    if isinstance(self.module_list[i], nn.Conv2d):
+                        break
+                    else:
+                        i += 1
 
-            dbn1 = listOfRunningMean[idx]
-            # print(f'length of dbn1: {dbn1}')
-            dbn1rm.append(dbn1)
-            dbn1 = listOfRunningVar[idx]
-            dbn1rv.append(dbn1)
-            dbn1w.append(bn1w[idx])
-            dbn1b.append(bn1b[idx])
-            bn1.num_features = new_width
-            # print(f'indices: {listindices}')
-            # print(f'tracking dict: {tracking}')
+            module1 = None
+            index1 = index
+            while module1 is None:
+                if isinstance(self.module_list[index1], nn.Conv2d):
+                    module1 = self.module_list[index1]
+                    break
+                elif isinstance(self.module_list[index1], nn.Linear):
+                    module1 = self.module_list[index1]
+                elif isinstance(self.module_list[index1], nn.BatchNorm2d):
+                    index1 += 1
+                elif isinstance(self.module_list[index1], nn.LeakyReLU):
+                    index1 += 1
+                elif isinstance(nn.AdaptiveAvgPool2d):
+                    index1 += 1
+                else:
+                    print(f'Problem!!')
 
-        dw1x = np.array(dw1)
+            # ziehe zufällige Zahlen für die Mapping Funktion
+            mapping = np.random.randint(module.shape[1], size=(delta_width * module.shape[1] - module.shape[1]))
+            # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
+            replication_factor = np.bincount(mapping)
+            # Anlage der neuen Gewichte
+            old_w1 = module.weight.copy()
+            old_w2 = module1.weight.copy()
+            if module.bias is not None:
+                new_b1 = module.weight.copy()
 
-        w1 = np.concatenate((w1, dw1x), axis=0)
+            # Fülle die neuen breiteren Gewichte mit dem richtigen Inhalt aus altem
+            for i in range(len(mapping)):
+                old_index = mapping[i]
+                new_weight = old_w1[ old_index, :, :, :]
+                # new_weight = new_weight[:, :, :, np.newaxis]
+                new_w1 = np.concatenate((student_w1, new_weight), axis=3)
+                student_b1 = np.append(student_b1, teacher_b1[teacher_index])
+            # next layer update (i+1)
+            for i in range(len(rand)):
+                teacher_index = rand[i]
+                factor = replication_factor[teacher_index] + 1
+                assert factor > 1, 'Error in Net2Wider'
+                new_weight = teacher_w2[:, :, teacher_index, :] * (1. / factor)
+                new_weight_re = new_weight[:, :, np.newaxis, :]
+                student_w2 = np.concatenate((student_w2, new_weight_re), axis=2)
+                student_w2[:, :, teacher_index, :] = new_weight
 
-        rm = torch.FloatTensor(dbn1rm).cuda()
-        rm1 = torch.FloatTensor(listOfRunningMean).cuda()
-        nbn1rm = torch.cat((rm1, rm), dim=0)
+        return student_w1, student_b1, student_w2
 
-        rv = torch.FloatTensor(dbn1rv).cuda()
-        rv1 = torch.FloatTensor(listOfRunningVar).cuda()
-        nbn1rv = torch.cat((rv1, rv))
-
-        dbn1wa = torch.FloatTensor(dbn1w).cuda()
-        nbn1w = torch.cat((bn1w, dbn1wa))
-
-        dbn1x = torch.FloatTensor(dbn1b).cuda()
-        nbn1b = torch.cat((bn1b, dbn1x))
-
-        m1.out_channels = new_width
-        x = w1.std()
-        if addNoise:
-            noise = np.random.normal(scale=5e-2 * x,
-                                                 size=(w1.shape))
-            w1 += noise
-
-        bn1.running_var = nbn1rv
-        bn1.running_mean = nbn1rv
-        bn1.weight.data = nbn1w
-        bn1.bias.data = nbn1b
-
-        m1x = torch.FloatTensor(w1).cuda()
-        m1x.requires_grad = True
-        m1.weight = torch.nn.Parameter(m1x)
-        j=2
-
-
-        # print(f'oldwidth: {old_width} ')
-        for s in range(0, self.numOfStages):
-            width = self.widthofLayers[s]
-            if(stage>0):
-                #verbreitere Eingang der letzten Schicht
-                pass
-            new_width = width * delta_width
-
-            archNums = self.archNums[s]
-            for b in range(len(archNums)):
-                seq = self.module_list[j]
-                index = 0
-                while index < len(seq):
-                    m1 = seq[index]
-                    bn1 = seq[index +1]
-                    w1 = m1.weight.data.clone().cpu().numpy()
-                    bn1w = bn1.weight.data.clone().cpu().numpy()
-                    bn1b = bn1.bias.data.clone().cpu.numpy()
-
-                    if b== 0 and stage==0:
-                        for o in range(0, (new_width - old_width)):
-                            idx = np.random.randint(0, old_width)
-                            m1list = w1[idx, :, :, :]
-                            try:
-                                tracking[idx].append(o + old_width)
-                            except:
-                                tracking[idx] = []
-                                tracking[idx].append(o + old_width)
-
-                        # TEST:random init for new units
-                        if random_init:
-                            n1 = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
-                            dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n1),
-                                                      size=(new_width - old_width, w1.shape[1], w1.shape[2], w1.shape[3]))
-                            # print(f'dw1: {dw1.shape}')
-                        else:
-                            dw1.append(m1list)
-
-                        dbn1 = listOfRunningMean[idx]
-                        # print(f'length of dbn1: {dbn1}')
-                        dbn1rm.append(dbn1)
-                    dbn1 = listOfRunningVar[idx]
-                    dbn1rv.append(dbn1)
-                    dbn1w.append(bnw1[idx])
-                    dbn1b.append(bnb1[idx])
-                    bn.num_features = new_width
-                # print(f'indices: {listindices}')
-                # print(f'tracking dict: {tracking}')
-
-                dw1x = np.array(dw1)
-
-                w1 = np.concatenate((w1, dw1x), axis=0)
-
-                rm = torch.FloatTensor(dbn1rm).cuda()
-                rm1 = torch.FloatTensor(listOfRunningMean).cuda()
-                nbn1rm = torch.cat((rm1, rm), dim=0)
-
-                rv = torch.FloatTensor(dbn1rv).cuda()
-                rv1 = torch.FloatTensor(listOfRunningVar).cuda()
-                nbn1rv = torch.cat((rv1, rv))
-
-                dbn1wa = torch.FloatTensor(dbn1w).cuda()
-                nbn1w = torch.cat((bn.weight, dbn1wa))
-
-                dbn1x = torch.FloatTensor(dbn1b).cuda()
-                nbn1b = torch.cat((bn.bias.data, dbn1x))
-
-                m1.out_channels = new_width
-                x = w1.std()
-                if addNoise:
-                    noise = np.random.normal(scale=5e-2 * x,
-                                             size=(w1.shape))
-                    w1 += noise
-
-                if bn is not None:
-                    bn.running_var = nbn1rv
-                    bn.running_mean = nbn1rv
-                    if bn.affine:
-                        bn.weight.data = nbn1w
-                        bn.bias.data = nbn1b
-
-            m1x = torch.FloatTensor(w1).cuda()
-            m1x.requires_grad = True
-            m1.weight = torch.nn.Parameter(m1x)
-
-            for s in range(0, self.numOfStages):
-                    width = self.widthofLayers[s]
-                    archNum = self.archNums[s]
-                    for b in range(len(archNum)):
-
-                        # get modules
-                        m1 = self.module_list[i]
-                        w1 = m1.weight.data.clone().cpu().numpy()
-                        bn = self.module_list[i + 1]
-                        bnw1 = bn.weight.data.clone().cpu().numpy()
-                        bnb1 = bn.bias.data.clone().cpu().numpy()
-                        assert delta_width > 0, "New size should be larger"
-
-                        print(f'Resiudual I')
-                        old_width = m1.weight.size(1)
-                        new_width = old_width * delta_width
-                        print(f'new width: {new_width}; old width: {old_width}')
-                        dw1 = []
-                        tracking = dict()
-                        listindices = []
-                        for o in range(0, (new_width - old_width)):
-                            idx = np.random.randint(0, old_width)
-                            # print(f'idx: {idx}')
-                            m1list = w1[:, idx, :, :]
-                            listindices.append(idx)
-                            try:
-                                tracking[idx].append(o + old_width)
-                            except:
-                                tracking[idx] = []
-                                tracking[idx].append(o + old_width)
-                            # TEST:random init for new units
-                            if random_init:
-                                n = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
-                                dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n),
-                                                          size=(w1.shape[0], new_width - old_width, w1.shape[2], w1.shape[3]))
-                                print(f'dw1: {dw1.shape}')
-                            else:
-                                dw1.append(m1list)
-                        ct = {}
-                        tracking_inverse = {}
-                        print(f'tracking items: {tracking}')
-                        for key, dif_k in tracking.items():
-                            # print(f'key: {key}; difk: {dif_k}')
-                            dictcounter = len(dif_k)
-                            ct.update({key: dictcounter})
-                            # print(f'dif key: {dif_k}')
-                            for item in dif_k:
-                                if item not in tracking_inverse:
-                                    tracking_inverse[item] = key
-                                else:
-                                    tracking_inverse[item].append(key)
-                        print(f'ct: {ct}')
-                        print(f'invers: {tracking_inverse}')
-                        if not random_init:
-                            for idx in range(0, (new_width - old_width)):
-                                print(f'idx: {idx}')
-                                c = dw1[idx]
-                                x = tracking_inverse[idx + old_width]
-                                y = int(ct[x])
-                                print(f'tracking inverse[{idx + old_width}]: {tracking_inverse[idx + new_width - old_width]} ')
-                                # print(f'c:{c}')
-                                for k in range(len(c)):
-                                    e = c[k]
-                                    # print(f'c[k]: {c[k]}')
-                                    for l in range(len(e)):
-                                        # print(f' before e[l]: {e[l]}')
-                                        f = e[l]
-                                        for m in range(len(f)):
-                                            f[m] = f[m] / y
-                        #                 print(f' after e[l]: {e[l]}')
-
-                        # print(f'dw1:{dw1}')
-                        if not random_init:
-                            dw1x = np.array(dw1)
-                            dw1x = np.transpose(dw1x, [1, 0, 2, 3])
-                            w1 = np.concatenate((w1, dw1x), axis=1)
-
-                        else:
-                            w1 = np.concatenate((w1, dw1), axis=1)
-
-                        # print(f'shape after concat: {w1.shape}')
-
-                        m1.in_channels = new_width
-
-                        std = w1.std()
-                        if addNoise:
-                            noise = np.random.normal(scale=5e-2 * std,
-                                                     size=w1.shape)
-                            w1 += noise
+    # def wider(self, stage, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
+    #     print(f'Stage: {stage}')
+    #     print(f'width of Layers: {self.widthofLayers}')
+    #     # 1.+ 2. Layer
+    #     m1 = self.module_list[0]
+    #     old_width = m1.weight.size(0)
+    #     new_width = old_width * delta_width
+    #     print(f'old width1: {old_width}; new width: {new_width}')
+    #     w1 = m1.weight.data.clone().cpu().numpy()
+    #     bn1 = self.module_list[1]
+    #     bn1w = bn1.weight.data.clone().cpu().numpy()
+    #     bn1b = bn1.bias.data.clone().cpu.numpy()
+    #     dw1 = []
+    #     dbn1w = []
+    #     dbn1rv = []
+    #     dbn1rm = []
+    #     dbn1b = []
+    #     tracking = dict()
+    #     listOfRunningMean = []
+    #     listOfRunningVar = []
+    #
+    #
+    #     for name, buf in self.named_buffers():
+    #         print("\nBuffer Name: ", name)
+    #         if 't.1.running_mean' in name:
+    #             mean = buf.clone()
+    #             listOfRunningMean = mean.cpu().numpy()
+    #         if 't.1.running_var' in name:
+    #             var = buf.clone()
+    #             listOfRunningVar = var.cpu().numpy()
+    #
+    #     for o in range(0, (new_width - old_width)):
+    #         idx = np.random.randint(0, old_width)
+    #         m1list = w1[idx, :, :, :]
+    #         try:
+    #             tracking[idx].append(o + old_width)
+    #         except:
+    #             tracking[idx] = []
+    #             tracking[idx].append(o + old_width)
+    #
+    #             # TEST:random init for new units
+    #         if random_init:
+    #             n1 = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
+    #             dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n1),
+    #             size=(new_width - old_width, w1.shape[1], w1.shape[2], w1.shape[3]))
+    #                 # print(f'dw1: {dw1.shape}')
+    #         else:
+    #             dw1.append(m1list)
+    #
+    #         dbn1 = listOfRunningMean[idx]
+    #         # print(f'length of dbn1: {dbn1}')
+    #         dbn1rm.append(dbn1)
+    #         dbn1 = listOfRunningVar[idx]
+    #         dbn1rv.append(dbn1)
+    #         dbn1w.append(bn1w[idx])
+    #         dbn1b.append(bn1b[idx])
+    #         bn1.num_features = new_width
+    #         # print(f'indices: {listindices}')
+    #         # print(f'tracking dict: {tracking}')
+    #
+    #     dw1x = np.array(dw1)
+    #
+    #     w1 = np.concatenate((w1, dw1x), axis=0)
+    #
+    #     rm = torch.FloatTensor(dbn1rm).cuda()
+    #     rm1 = torch.FloatTensor(listOfRunningMean).cuda()
+    #     nbn1rm = torch.cat((rm1, rm), dim=0)
+    #
+    #     rv = torch.FloatTensor(dbn1rv).cuda()
+    #     rv1 = torch.FloatTensor(listOfRunningVar).cuda()
+    #     nbn1rv = torch.cat((rv1, rv))
+    #
+    #     dbn1wa = torch.FloatTensor(dbn1w).cuda()
+    #     nbn1w = torch.cat((bn1w, dbn1wa))
+    #
+    #     dbn1x = torch.FloatTensor(dbn1b).cuda()
+    #     nbn1b = torch.cat((bn1b, dbn1x))
+    #
+    #     m1.out_channels = new_width
+    #     x = w1.std()
+    #     if addNoise:
+    #         noise = np.random.normal(scale=5e-2 * x,
+    #                                              size=(w1.shape))
+    #         w1 += noise
+    #
+    #     bn1.running_var = nbn1rv
+    #     bn1.running_mean = nbn1rv
+    #     bn1.weight.data = nbn1w
+    #     bn1.bias.data = nbn1b
+    #
+    #     m1x = torch.FloatTensor(w1).cuda()
+    #     m1x.requires_grad = True
+    #     m1.weight = torch.nn.Parameter(m1x)
+    #     j=2
+    #
+    #
+    #     # print(f'oldwidth: {old_width} ')
+    #     for s in range(0, self.numOfStages):
+    #         width = self.widthofLayers[s]
+    #         if(stage>0):
+    #             #verbreitere Eingang der letzten Schicht
+    #             pass
+    #         new_width = width * delta_width
+    #
+    #         archNums = self.archNums[s]
+    #         for b in range(len(archNums)):
+    #             seq = self.module_list[j]
+    #             index = 0
+    #             while index < len(seq):
+    #                 m1 = seq[index]
+    #                 bn1 = seq[index +1]
+    #                 w1 = m1.weight.data.clone().cpu().numpy()
+    #                 bn1w = bn1.weight.data.clone().cpu().numpy()
+    #                 bn1b = bn1.bias.data.clone().cpu.numpy()
+    #
+    #                 if b== 0 and stage==0:
+    #                     for o in range(0, (new_width - old_width)):
+    #                         idx = np.random.randint(0, old_width)
+    #                         m1list = w1[idx, :, :, :]
+    #                         try:
+    #                             tracking[idx].append(o + old_width)
+    #                         except:
+    #                             tracking[idx] = []
+    #                             tracking[idx].append(o + old_width)
+    #
+    #                     # TEST:random init for new units
+    #                     if random_init:
+    #                         n1 = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
+    #                         dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n1),
+    #                                                   size=(new_width - old_width, w1.shape[1], w1.shape[2], w1.shape[3]))
+    #                         # print(f'dw1: {dw1.shape}')
+    #                     else:
+    #                         dw1.append(m1list)
+    #
+    #                     dbn1 = listOfRunningMean[idx]
+    #                     # print(f'length of dbn1: {dbn1}')
+    #                     dbn1rm.append(dbn1)
+    #                 dbn1 = listOfRunningVar[idx]
+    #                 dbn1rv.append(dbn1)
+    #                 dbn1w.append(bnw1[idx])
+    #                 dbn1b.append(bnb1[idx])
+    #                 bn.num_features = new_width
+    #             # print(f'indices: {listindices}')
+    #             # print(f'tracking dict: {tracking}')
+    #
+    #             dw1x = np.array(dw1)
+    #
+    #             w1 = np.concatenate((w1, dw1x), axis=0)
+    #
+    #             rm = torch.FloatTensor(dbn1rm).cuda()
+    #             rm1 = torch.FloatTensor(listOfRunningMean).cuda()
+    #             nbn1rm = torch.cat((rm1, rm), dim=0)
+    #
+    #             rv = torch.FloatTensor(dbn1rv).cuda()
+    #             rv1 = torch.FloatTensor(listOfRunningVar).cuda()
+    #             nbn1rv = torch.cat((rv1, rv))
+    #
+    #             dbn1wa = torch.FloatTensor(dbn1w).cuda()
+    #             nbn1w = torch.cat((bn.weight, dbn1wa))
+    #
+    #             dbn1x = torch.FloatTensor(dbn1b).cuda()
+    #             nbn1b = torch.cat((bn.bias.data, dbn1x))
+    #
+    #             m1.out_channels = new_width
+    #             x = w1.std()
+    #             if addNoise:
+    #                 noise = np.random.normal(scale=5e-2 * x,
+    #                                          size=(w1.shape))
+    #                 w1 += noise
+    #
+    #             if bn is not None:
+    #                 bn.running_var = nbn1rv
+    #                 bn.running_mean = nbn1rv
+    #                 if bn.affine:
+    #                     bn.weight.data = nbn1w
+    #                     bn.bias.data = nbn1b
+    #
+    #         m1x = torch.FloatTensor(w1).cuda()
+    #         m1x.requires_grad = True
+    #         m1.weight = torch.nn.Parameter(m1x)
+    #
+    #         for s in range(0, self.numOfStages):
+    #                 width = self.widthofLayers[s]
+    #                 archNum = self.archNums[s]
+    #                 for b in range(len(archNum)):
+    #
+    #                     # get modules
+    #                     m1 = self.module_list[i]
+    #                     w1 = m1.weight.data.clone().cpu().numpy()
+    #                     bn = self.module_list[i + 1]
+    #                     bnw1 = bn.weight.data.clone().cpu().numpy()
+    #                     bnb1 = bn.bias.data.clone().cpu().numpy()
+    #                     assert delta_width > 0, "New size should be larger"
+    #
+    #                     print(f'Resiudual I')
+    #                     old_width = m1.weight.size(1)
+    #                     new_width = old_width * delta_width
+    #                     print(f'new width: {new_width}; old width: {old_width}')
+    #                     dw1 = []
+    #                     tracking = dict()
+    #                     listindices = []
+    #                     for o in range(0, (new_width - old_width)):
+    #                         idx = np.random.randint(0, old_width)
+    #                         # print(f'idx: {idx}')
+    #                         m1list = w1[:, idx, :, :]
+    #                         listindices.append(idx)
+    #                         try:
+    #                             tracking[idx].append(o + old_width)
+    #                         except:
+    #                             tracking[idx] = []
+    #                             tracking[idx].append(o + old_width)
+    #                         # TEST:random init for new units
+    #                         if random_init:
+    #                             n = m1.kernel_size[0] * m1.kernel_size[1] * m1.out_channels
+    #                             dw1 = numpy.random.normal(loc=0, scale=np.sqrt(2. / n),
+    #                                                       size=(w1.shape[0], new_width - old_width, w1.shape[2], w1.shape[3]))
+    #                             print(f'dw1: {dw1.shape}')
+    #                         else:
+    #                             dw1.append(m1list)
+    #                     ct = {}
+    #                     tracking_inverse = {}
+    #                     print(f'tracking items: {tracking}')
+    #                     for key, dif_k in tracking.items():
+    #                         # print(f'key: {key}; difk: {dif_k}')
+    #                         dictcounter = len(dif_k)
+    #                         ct.update({key: dictcounter})
+    #                         # print(f'dif key: {dif_k}')
+    #                         for item in dif_k:
+    #                             if item not in tracking_inverse:
+    #                                 tracking_inverse[item] = key
+    #                             else:
+    #                                 tracking_inverse[item].append(key)
+    #                     print(f'ct: {ct}')
+    #                     print(f'invers: {tracking_inverse}')
+    #                     if not random_init:
+    #                         for idx in range(0, (new_width - old_width)):
+    #                             print(f'idx: {idx}')
+    #                             c = dw1[idx]
+    #                             x = tracking_inverse[idx + old_width]
+    #                             y = int(ct[x])
+    #                             print(f'tracking inverse[{idx + old_width}]: {tracking_inverse[idx + new_width - old_width]} ')
+    #                             # print(f'c:{c}')
+    #                             for k in range(len(c)):
+    #                                 e = c[k]
+    #                                 # print(f'c[k]: {c[k]}')
+    #                                 for l in range(len(e)):
+    #                                     # print(f' before e[l]: {e[l]}')
+    #                                     f = e[l]
+    #                                     for m in range(len(f)):
+    #                                         f[m] = f[m] / y
+    #                     #                 print(f' after e[l]: {e[l]}')
+    #
+    #                     # print(f'dw1:{dw1}')
+    #                     if not random_init:
+    #                         dw1x = np.array(dw1)
+    #                         dw1x = np.transpose(dw1x, [1, 0, 2, 3])
+    #                         w1 = np.concatenate((w1, dw1x), axis=1)
+    #
+    #                     else:
+    #                         w1 = np.concatenate((w1, dw1), axis=1)
+    #
+    #                     # print(f'shape after concat: {w1.shape}')
+    #
+    #                     m1.in_channels = new_width
+    #
+    #                     std = w1.std()
+    #                     if addNoise:
+    #                         noise = np.random.normal(scale=5e-2 * std,
+    #                                                  size=w1.shape)
+    #                         w1 += noise
 
     #     for o in range(0, (new_width - old_width)):
     #         idx = np.random.randint(0, old_width)
@@ -1109,10 +1172,9 @@ class N2N(nn.Module):
 
                 print(f'i: {i}; i0=: {i0}; i1=: {i1}')
                 module = nn.Sequential(*seq)
-                self.module_list[i] =module
+                self.module_list[i] = module
                 if i0 != i1 and not blockComp:
                     blockComp = True
-
 
                 # if i == stages[k]:
                 #     k    += 1
