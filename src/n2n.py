@@ -418,6 +418,9 @@ class N2N(nn.Module):
             if isinstance(self.module_list[index], nn.Conv2d):
                 module = self.module_list[index]
                 print(f'Module:= {module}')
+            elif isinstance(self.module_list[index], nn.Sequential):
+                moduleX = self.module_list[index]
+                module = moduleX[0]
             else:
                 while i < len(self.module_list):
                     if isinstance(self.module_list[i], nn.Conv2d):
@@ -436,7 +439,7 @@ class N2N(nn.Module):
                 if isinstance(self.module_list[index1], nn.Sequential):
                     moduleX = self.module_list[index1]
                     if isinstance(moduleX[0], nn.Conv2d):
-                        module1 = self.module_list[index1]
+                        module1 = moduleX[0]
                         break
                 elif isinstance(self.module_list[index1], nn.Linear):
                     break
