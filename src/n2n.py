@@ -412,10 +412,10 @@ class N2N(nn.Module):
 
         while index < len(self.module_list):
             i = index
-
             module = None
             if isinstance(self.module_list[index], nn.Conv2d):
                 module = self.module_list[index]
+                print(f'Module:= {module}')
             else:
                 while i < len(self.module_list):
                     if isinstance(self.module_list[i], nn.Conv2d):
