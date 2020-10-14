@@ -297,7 +297,7 @@ class N2N(nn.Module):
                     _x = seq(_x)
                     j += 1
                 else:
-                    _x = seq(_x)
+                    x = seq(_x)
                     j += 1
                     print(f'Shape: {_x.shape}')
                 _x = x + _x
