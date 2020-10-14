@@ -526,15 +526,15 @@ class N2N(nn.Module):
             if module.bias:
                 module.bias.data = nn.Parameter(torch.from_numpy(new_b1))
             module1.weight.data = nn.Parameter(torch.from_numpy(new_w2))
-            if isinstance(self.module_list[index + 1], nn.BatchNorm2d):
+            if isinstance(moduleBn, nn.BatchNorm2d):
                 old_bn_w = moduleBn.weight.data.clone().cpu().numpy()
                 old_bn_b = moduleBn.bias.data.clone().cpu().numpy()
-                old_bn_mean = moduleBn.running_mean.clone().numpy()
-                old_bn_var = moduleBn.running_var.clone().numpy()
-                new_bn_w = moduleBn.weight.data.clone().cpu.numpy()
-                new_bn_b = moduleBn.bias.data.clone().numpy()
-                new_bn_mean = moduleBn.running_mean.clone().numpy()
-                new_bn_var = moduleBn.running_var.clone().numpy()
+                old_bn_mean = moduleBn.running_mean.clone().cpu().numpy()
+                old_bn_var = moduleBn.running_var.clone().cpu()numpy()
+                new_bn_w = moduleBn.weight.data.clone().cpu().numpy()
+                new_bn_b = moduleBn.bias.data.clone().cpu().numpy()
+                new_bn_mean = moduleBn.running_mean.clone().cpu().numpy()
+                new_bn_var = moduleBn.running_var.clone().cpu().numpy()
 
                 for i in range(len(mapping)):
                     index = mapping[i]
