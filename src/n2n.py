@@ -75,7 +75,7 @@ class N2N(nn.Module):
 
                     while i < self.archNums[stage][block]:
                         print(f'i : {i}; block: {block}')
-                        if firstBlockInStage and i == 0:
+                        if stage > 0 and i == 0:
                             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                              bias=False,
                                              stride=2)
@@ -85,10 +85,9 @@ class N2N(nn.Module):
                             print(f'{bn}')
                             layer.append(bn)
                             layer.append(self.relu)
-
-                            i = i + 1
-
-                        elif firstBlockInStage and (i + 1) % self.archNums[stage][block] == 0:
+                            if numOfBlocksinStage == 1:
+                                i = i + 1
+                        elif stage > 0 and (i + 1) % self.archNums[stage][block] == 0:
                             print(f'begin layer2: {i}')
                             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                              bias=False,
@@ -101,9 +100,8 @@ class N2N(nn.Module):
                             layer2.append(self.relu)
 
                             i = i + 1
-                            firstBlockInStage = False
                             print(f' end layer2: {i}; layer2:{layer2}')
-                        elif firstBlockInStage:
+                        elif i==0:
                             conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1,
                                              bias=False,
                                              stride=1)
@@ -257,21 +255,21 @@ class N2N(nn.Module):
         if printNet:
             print("\nX Shape: ", x.shape)
         # conv1
-        x = self.module_list[0](x)
+        _x = self.module_list[0](x)
         if printNet:
             print("\nI: 0 ; ", self.module_list[0])
             print("\nX Shape: ", x.shape)
         # bn1
-        x = self.module_list[1](x)
+        _x = self.module_list[1](_x)
         if printNet:
             print("\nI: 1 ; ", self.module_list[1])
             print("\nLast X Shape: ", x.shape)
         # relu
-        _x = self.module_list[2](x)
+        _x = self.module_list[2](_x)
         j = 3
         if printNet:
             print("\nI: 2 ; ", self.module_list[2])
-            print("\nLast X Shape: ", x.shape)
+            print("\nLast X Shape: ", _x.shape)
 
         notfirstLayer = False
         # try:
