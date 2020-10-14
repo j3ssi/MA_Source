@@ -273,7 +273,7 @@ def main():
             if checkpoint['optimizer'] is not None:
                 scheduler = checkpoint['scheduler']
             else:
-                scheduler = StepLR(optimizer, step_size=10, gamma=0.95)        # start_batchSize = checkpoint['start_batchSize']
+                scheduler = StepLR(optimizer, step_size=30, gamma=0.95)        # start_batchSize = checkpoint['start_batchSize']
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     else:
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
@@ -453,7 +453,7 @@ def main():
         # optimizer = optim.Adam(model.parameters())
         print(f'model.para: {model.named_parameters()}')
         optimizer = optim.SGD(model.parameters(), lr=0.1, momentum=args.momentum, weight_decay=args.weight_decay)
-        scheduler = StepLR(optimizer, step_size=10, gamma=0.95)
+        scheduler = StepLR(optimizer, step_size=30, gamma=0.95)
         # print(model)
 
 

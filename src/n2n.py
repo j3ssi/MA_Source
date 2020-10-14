@@ -1065,7 +1065,7 @@ class N2N(nn.Module):
                         stride = 1
                         padding = 1
                         conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
-                        n = pow(conv.kernel_size[0] * conv.kernel_size[0] * conv.out_channels, 2 )
+                        n = 2 * conv.kernel_size[0] * conv.kernel_size[1] * conv.out_channels
 
                         nn.init.normal_(conv.weight, mean=0, std=math.sqrt(2. / (n)))
                         m = module[2 * pos - 2]
@@ -1073,8 +1073,8 @@ class N2N(nn.Module):
                         # print(f'neues conv: {conv}; j: {j}')
                         weight[:, :, 1, 1] = 1
 
-                        with torch.no_grad():
-                            m.weight.div_(torch.norm(m.weight, dim=2, keepdim=True))
+                        # with torch.no_grad():
+                        #    m.weight.div_(torch.norm(m.weight, dim=2, keepdim=True))
 
                         # deeper_w = deeper_w.numpy()
                         # center_h = ( i0 - 1) // 2
@@ -1087,11 +1087,12 @@ class N2N(nn.Module):
                         #
                         # torch.from_numpy(deeper_w)
 
-                        # for l in range(m.out_channels):
-                        #     weight = m.weight.data
-                        #     norm = weight.select(0, l).norm()
-                        #     weight.div_(norm)
-                        #     m.weight.data = weight
+                        for l in range(m.out_channels):
+                            weight = m.weight.data
+                            norm = weight.select(0, l).norm()
+                            weight.div_(norm)
+                            m.weight.data = weight
+                        conv.weight.data = weight
                         seq.append(conv)
                         # print(f'GRAD: c{conv.}')
                         # print(f'beues conv: {conv}; j= { 2 * pos +1 }')
