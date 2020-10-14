@@ -438,7 +438,6 @@ class N2N(nn.Module):
     def wider(self, stage, delta_width, weight_norm=True, random_init=True,
               addNoise=True):  # teacher_w1, teacher_b1, teacher_w2, new_width, verification):
         index = 0
-
         while index < len(self.module_list):
             i = index
             module = None
@@ -490,6 +489,8 @@ class N2N(nn.Module):
                     break
 
             assert module != None or module1 != None, "Probleme mit der Auswahl des nächsten Elements für wider"
+            print(f'new width: {delta_width * module.weight.size(1) - module.weight.size(1)}')
+
             # ziehe zufällige Zahlen für die Mapping Funktion
             mapping = np.random.randint(module.weight.size(1), size=(delta_width * module.weight.size(1) - module.weight.size(1)))
             # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
