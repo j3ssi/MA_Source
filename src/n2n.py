@@ -274,7 +274,7 @@ class N2N(nn.Module):
         for stage in range(0, self.numOfStages):
             # if printNet:
             archNum = self.archNums[stage]
-            # print(f'Stage: {stage}; archNum: {archNum}')
+            print(f'Stage: {stage}; archNum: {archNum}')
 
             firstBlockInStage = True
             for block in range(0, len(archNum)):
@@ -284,23 +284,23 @@ class N2N(nn.Module):
                 seq = self.module_list[j]
                 # print(f' len of seq: {len(seq)}')
                 if block == 0 and stage > 0:
-                    # print(f'Drin!! seq: {seq}')
+                    print(f'Drin!! seq: {seq}')
                     y = _x
                     for a in range(len(seq)):
                         y = seq[a](y)
-                        # print(f'seq[a]: {seq[a]}; a: {a}')
-                        # print(f'Y shape: {y.shape}')
+                        print(f'seq[a]: {seq[a]}; a: {a}')
+                        print(f'Y shape: {y.shape}')
                     x = y
                     #x = seq(_x)
                     j += 1
 
-                    # print(f'Drin2!! seq: {seq}')
+                    print(f'Drin2!! seq: {seq}')
                     seq = self.module_list[j]
                     y = _x
                     for a in range(len(seq)):
                         y = seq[a](y)
-                        # print(f'seq[a]: {seq[a]}; a: {a}')
-                        # print(f'Y shape: {y.shape}')
+                        print(f'seq[a]: {seq[a]}; a: {a}')
+                        print(f'Y shape: {y.shape}')
                     _x = y
 
                     #_x = seq(_x)
@@ -308,9 +308,9 @@ class N2N(nn.Module):
                 else:
                     x = seq(_x)
                     j += 1
-                    # print(f'Shape: {x.shape}')
+                    print(f'Shape: {x.shape}')
                 _x = x + _x
-                # print(f'X Shape: {_x.shape}')
+                print(f'X Shape: {_x.shape}')
                 _x = self.relu(_x)
                 # except RuntimeError:
                 #     print(f'Except')
