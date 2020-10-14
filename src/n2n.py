@@ -432,8 +432,10 @@ class N2N(nn.Module):
                 elif isinstance(self.module_list[index1], nn.Linear):
                     break
                 elif isinstance(self.module_list[index1], nn.BatchNorm2d):
+                    print(f' batchnorm i: {index1}')
                     index1 += 1
                 elif isinstance(self.module_list[index1], nn.LeakyReLU):
+                    print(f'laekyrelu i: {index1}')
                     index1 += 1
                 elif isinstance(self.module_list[index1], nn.AdaptiveAvgPool2d):
                     index1 += 1
