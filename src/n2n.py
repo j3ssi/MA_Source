@@ -530,7 +530,7 @@ class N2N(nn.Module):
                 old_bn_w = moduleBn.weight.data.clone().cpu().numpy()
                 old_bn_b = moduleBn.bias.data.clone().cpu().numpy()
                 old_bn_mean = moduleBn.running_mean.clone().cpu().numpy()
-                old_bn_var = moduleBn.running_var.clone().cpu()numpy()
+                old_bn_var = moduleBn.running_var.clone().cpu().numpy()
                 new_bn_w = moduleBn.weight.data.clone().cpu().numpy()
                 new_bn_b = moduleBn.bias.data.clone().cpu().numpy()
                 new_bn_mean = moduleBn.running_mean.clone().cpu().numpy()
