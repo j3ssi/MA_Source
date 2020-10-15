@@ -1430,6 +1430,7 @@ class N2N(nn.Module):
         # print(f'Self: {self}')
         batch_size = 1
         input = torch.randn(1, 3, 32, 32)
+        input = input.cuda()
         self.forward(input, True)
         return self
 
