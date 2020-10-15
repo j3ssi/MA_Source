@@ -231,7 +231,7 @@ class N2N(nn.Module):
                             print("\n>new Layer: ", layer)
                         layer.append(layer1)
                     elif isinstance(module[j], nn.LeakyReLU):
-                        layer1.append(self.relu)
+                        layer.append(self.relu)
                 self.module_list.append(nn.Sequential(*layer))
                 if printName:
                     print(f'>new Layer: {layer}')
