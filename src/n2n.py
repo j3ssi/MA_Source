@@ -1377,7 +1377,7 @@ class N2N(nn.Module):
                             weight1 = m.weight.data
                             norm = weight1.select(0, l).norm()
                             weight1.div_(norm)
-                            m.weight1.data = weight1
+                            m.weight.data = weight1
                         conv.weight.data = weight
                         seq.append(conv)
                         # print(f'GRAD: c{conv.}')
