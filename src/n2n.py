@@ -369,7 +369,8 @@ class N2N(nn.Module):
 
 
     def forward(self, x, printNet):
-        print(f'ArchNums: {self.archNums}')
+        if printNet:
+            print(f'ArchNums: {self.archNums}')
         # First layer
         if printNet:
             print("\nX Shape: ", x.shape)
@@ -395,7 +396,7 @@ class N2N(nn.Module):
             archNum = self.archNums[stage]
             if printNet:
                 print(f'Stage: {stage}; archNum: {archNum}')
-            print(f'Shape: {_x.shape}')
+                print(f'Shape: {_x.shape}')
             for block in range(0, len(archNum)):
                 # try:
                 if printNet:
