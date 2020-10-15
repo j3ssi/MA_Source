@@ -589,21 +589,21 @@ class N2N(nn.Module):
                 print(f'Index1: {index1}')
                 print(f'instance: {type(self.module_list[index1])}')
                 while module1 is None:
-                print(f'while Index1: {index1}')
-                print(f'module: {self.module_list[index1]}')
-                if isinstance(self.module_list[index1], nn.Linear):
-                    break
-                elif isinstance(self.module_list[index1], nn.BatchNorm2d):
-                    print(f' batchnorm i: {index1}')
-                    index1 += 1
-                elif isinstance(self.module_list[index1], nn.LeakyReLU):
-                    print(f'laekyrelu i: {index1}')
-                    index1 += 1
-                elif isinstance(self.module_list[index1], nn.AdaptiveAvgPool2d):
-                    index1 += 1
-                else:
-                    print(f'Problem!!')
-                    break
+                    print(f'while Index1: {index1}')
+                    print(f'module: {self.module_list[index1]}')
+                    if isinstance(self.module_list[index1], nn.Linear):
+                        break
+                    elif isinstance(self.module_list[index1], nn.BatchNorm2d):
+                        print(f' batchnorm i: {index1}')
+                        index1 += 1
+                    elif isinstance(self.module_list[index1], nn.LeakyReLU):
+                        print(f'laekyrelu i: {index1}')
+                        index1 += 1
+                    elif isinstance(self.module_list[index1], nn.AdaptiveAvgPool2d):
+                        index1 += 1
+                    else:
+                        print(f'Problem!!')
+                        break
 
             assert module != None or module1 != None, "Probleme mit der Auswahl des nächsten Elements für wider"
             print(f'new width: {delta_width * module.weight.size(0) - module.weight.size(0)}')
