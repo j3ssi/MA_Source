@@ -1358,7 +1358,7 @@ class N2N(nn.Module):
                         print(f'neues conv: {conv}; j: {j}')
 
                         weight[:, :, 1, 1] = 1
-
+                        print(f'weight.size(): {weight.size()}')
                         # with torch.no_grad():
                         #    m.weight.div_(torch.norm(m.weight, dim=2, keepdim=True))
 
