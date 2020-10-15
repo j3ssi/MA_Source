@@ -1429,7 +1429,7 @@ class N2N(nn.Module):
         # self.module_list = newModule_list
         # print(f'Self: {self}')
         batch_size = 1
-        input = torch.randn(32, 32)
+        input = torch.randn(1,32, 32,3)
         self.forward(input, True)
         return self
 
