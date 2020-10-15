@@ -1194,7 +1194,7 @@ class N2N(nn.Module):
         print(f'tmp: {stages}')
         stage = 0
         for i in range(len(self.module_list)):
-            if i > 3 and blockComp and isinstance(self.module_list[i], nn.Sequential):
+            if i > 4 and blockComp and isinstance(self.module_list[i], nn.Sequential):
                 print(f'skip: {i}')
                 # newModule_list.append(self.module_list[i])
                 # stages[k] += 1
@@ -1276,7 +1276,7 @@ class N2N(nn.Module):
                 print(f'i: {i}; i0=: {i0}; i1=: {i1}')
                 module = nn.Sequential(*seq)
                 self.module_list[i] = module
-                if i0 != i1 and not blockComp:
+                if i0 != i1 and not blockComp and i > 4:
                     blockComp = True
 
                 # if i == stages[k]:
