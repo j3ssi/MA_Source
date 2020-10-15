@@ -1340,7 +1340,6 @@ class N2N(nn.Module):
                         torch.nn.init.zeros_(bn.bias)
                         bn.running_mean.fill_(0)
                         bn.running_var.fill_(1)
-                        print(f'shape of bn: {bn.size()}')
                         seq.append(bn)
                         # print(f'neues bn: {bn}; j: {j}')
                     if j == 3 * pos - 1:
