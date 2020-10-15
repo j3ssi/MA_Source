@@ -248,7 +248,7 @@ class N2N(nn.Module):
                 fc.bias.data = module.bias.data
                 self.module_list.append(fc)
             elif isinstance(module_list[i], nn.LeakyReLU):
-                self.module_list.append(relu)
+                self.module_list.append(self.relu)
         print(f' Modell: {self}')
 
     def forward(self, x):
