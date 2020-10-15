@@ -441,6 +441,8 @@ def main():
 
         i = 2
 
+
+    print(f'model parameters: {model.named_parameters()}')
     if args.deeper:
         print("\n\nnow deeper1")
         # deeper student training
