@@ -1355,7 +1355,7 @@ class N2N(nn.Module):
                         nn.init.normal_(conv.weight, mean=0, std=math.sqrt(2. / (n)))
                         m = module[2 * pos - 2]
                         weight = conv.weight.data
-                        # print(f'neues conv: {conv}; j: {j}')
+                        print(f'neues conv: {conv}; j: {j}')
                         weight[:, :, 1, 1] = 1
 
                         # with torch.no_grad():
