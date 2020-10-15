@@ -363,11 +363,11 @@ def main():
             tmp_memory = torch.cuda.max_memory_allocated()
 
             # print(f'lr: {optimizer.param_groups[0]["lr"]}')
-            if args.dynlr and scheduler is not None:
-                # adjust_learning_rate(optimizer, epoch, False)
-                scheduler.step()
-                lr = scheduler.get_last_lr()[0]
-                print(f'args.lr: {lr}')
+            # if args.dynlr and scheduler is not None:
+            #     # adjust_learning_rate(optimizer, epoch, False)
+            #     scheduler.step()
+            #     lr = scheduler.get_last_lr()[0]
+            #     print(f'args.lr: {lr}')
             # print(f'lr: {optimizer.param_groups[0]["lr"]}')
 
             # print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated() / 10000000}')
