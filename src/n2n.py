@@ -251,127 +251,126 @@ class N2N(nn.Module):
                 self.module_list.append(self.relu)
         print(f' Modell: {self}')
 
-    def forward(self, x):
-        # print(f'ArchNums: {self.archNums}')
-        # First layer
-        printNet = False
-        if printNet:
-            print("\nX Shape: ", x.shape)
-        # conv1
-        _x = self.module_list[0](x)
-        if printNet:
-            print("\nI: 0 ; ", self.module_list[0])
-            print("\nX Shape: ", _x.shape)
-        # bn1
-        _x = self.module_list[1](_x)
-        if printNet:
-            print("\nI: 1 ; ", self.module_list[1])
-            print("\nLast X Shape: ", _x.shape)
-        # relu
-        _x = self.module_list[2](_x)
-        j = 3
-        if printNet:
-            print("\nI: 2 ; ", self.module_list[2])
-            print("\nLast X Shape: ", _x.shape)
+    # def forward(self, x):
+    #     # print(f'ArchNums: {self.archNums}')
+    #     # First layer
+    #     printNet = False
+    #     if printNet:
+    #         print("\nX Shape: ", x.shape)
+    #     # conv1
+    #     _x = self.module_list[0](x)
+    #     if printNet:
+    #         print("\nI: 0 ; ", self.module_list[0])
+    #         print("\nX Shape: ", _x.shape)
+    #     # bn1
+    #     _x = self.module_list[1](_x)
+    #     if printNet:
+    #         print("\nI: 1 ; ", self.module_list[1])
+    #         print("\nLast X Shape: ", _x.shape)
+    #     # relu
+    #     _x = self.module_list[2](_x)
+    #     j = 3
+    #     if printNet:
+    #         print("\nI: 2 ; ", self.module_list[2])
+    #         print("\nLast X Shape: ", _x.shape)
+    #
+    #     notfirstLayer = False
+    #     # try:
+    #     for stage in range(0, self.numOfStages):
+    #         # if printNet:
+    #         archNum = self.archNums[stage]
+    #         if printNet:
+    #             print(f'Stage: {stage}; archNum: {archNum}')
+    #
+    #         for block in range(0, len(archNum)):
+    #             # try:
+    #             if printNet:
+    #                 print(f'Block: {block}; j: {j}')
+    #             seq = self.module_list[j]
+    #             if printNet:
+    #                 print(f'seq: {seq}')
+    #             if block == 0 and stage > 0:
+    #                 if printNet:
+    #                     print(f'Drin!! seq: {seq}; j: {j}')
+    #                 y = _x
+    #                 z = _x
+    #                 for a in range(len(seq)):
+    #                     y = seq[a](y)
+    #                     if printNet:
+    #                         print(f'seq[a]: {seq[a]}; a: {a}')
+    #                         print(f'Y shape: {y.shape}')
+    #                 x = y
+    #                 # x = seq(_x)
+    #                 j += 1
+    #
+    #                 seq = self.module_list[j]
+    #                 if printNet:
+    #                     print(f'Drin2!! seq: {seq}; j: {j}')
+    #
+    #                 for a in range(len(seq)):
+    #                     z = seq[a](z)
+    #                     if printNet:
+    #                         print(f'seq[a]: {seq[a]}; a: {a}')
+    #                         print(f'Y shape: {z.shape}')
+    #                 _x = z
+    #
+    #                 # _x = seq(_x)
+    #                 j += 1
+    #             else:
+    #                 x = seq(_x)
+    #                 j += 1
+    #                 if printNet:
+    #                     print(f'Shape: {x.shape}')
+    #             _x = _x + x
+    #             if printNet:
+    #                 print(f'X Shape: {_x.shape}')
+    #             _x = self.relu(_x)
+    #             # except RuntimeError:
+    #             #     print(f'Except')
+    #             #     print("\nJ: ", j, " ; ", self.module_list[j])
+    #             #     print(f'seq[a]: {seq[a]}')
+    #             #     print("\nX Shape: ", x.shape)
+    #
+    #     if printNet:
+    #         print("\nX Shape: ", x.shape)
+    #
+    #     if isinstance(self.module_list[j], nn.AdaptiveAvgPool2d):
+    #         try:
+    #             x = self.module_list[j](_x)
+    #             if printNet:
+    #                 print("\nJ: ", j, " ; ", self.module_list[j])
+    #                 print("\n\n X Shape 1: ", x.shape)
+    #             x = x.view(x.shape[0], x.shape[1])
+    #             if printNet:
+    #                 print("\n\n X Shape 2: ", x.shape)
+    #         except RuntimeError:
+    #             print("\n \n Oops!!!: ")
+    #             print("AvgPool")
+    #     elif isinstance(self.module_list[j], nn.Conv2d):
+    #         print(f'Sollte nicht Conv sondern AvgPool sein {j}; {self.archNums}')
+    #     elif isinstance(self.module_list[j], nn.Linear):
+    #         print(f'Sollte nicht Linear sondern AvgPool sein {j}')
+    #     elif isinstance(self.module_list[j], nn.BatchNorm2d):
+    #         print(f'Sollte nicht Bn sondern AvgPool sein {j}')
+    #     else:
+    #         print("\n \nElse Oops!!!: ")
+    #         print("AvgPool")
+    #
+    #     j = j + 1
+    #     if isinstance(self.module_list[j], nn.Linear):
+    #         x = self.module_list[j](x)
+    #         if printNet:
+    #             print("\nJ: ", j, " ; ", self.module_list[j])
+    #             print("\nfc: ", x.shape)
+    #     else:
+    #         print("\n \n Oops!!!: ")
+    #         print("Linear")
+    #     return x
 
-        notfirstLayer = False
-        # try:
-        for stage in range(0, self.numOfStages):
-            # if printNet:
-            archNum = self.archNums[stage]
-            if printNet:
-                print(f'Stage: {stage}; archNum: {archNum}')
 
-            for block in range(0, len(archNum)):
-                # try:
-                if printNet:
-                    print(f'Block: {block}; j: {j}')
-                seq = self.module_list[j]
-                if printNet:
-                    print(f'seq: {seq}')
-                if block == 0 and stage > 0:
-                    if printNet:
-                        print(f'Drin!! seq: {seq}; j: {j}')
-                    y = _x
-                    z = _x
-                    for a in range(len(seq)):
-                        y = seq[a](y)
-                        if printNet:
-                            print(f'seq[a]: {seq[a]}; a: {a}')
-                            print(f'Y shape: {y.shape}')
-                    x = y
-                    # x = seq(_x)
-                    j += 1
-
-                    seq = self.module_list[j]
-                    if printNet:
-                        print(f'Drin2!! seq: {seq}; j: {j}')
-
-                    for a in range(len(seq)):
-                        z = seq[a](z)
-                        if printNet:
-                            print(f'seq[a]: {seq[a]}; a: {a}')
-                            print(f'Y shape: {z.shape}')
-                    _x = z
-
-                    # _x = seq(_x)
-                    j += 1
-                else:
-                    x = seq(_x)
-                    j += 1
-                    if printNet:
-                        print(f'Shape: {x.shape}')
-                _x = _x + x
-                if printNet:
-                    print(f'X Shape: {_x.shape}')
-                _x = self.relu(_x)
-                # except RuntimeError:
-                #     print(f'Except')
-                #     print("\nJ: ", j, " ; ", self.module_list[j])
-                #     print(f'seq[a]: {seq[a]}')
-                #     print("\nX Shape: ", x.shape)
-
-        if printNet:
-            print("\nX Shape: ", x.shape)
-
-        if isinstance(self.module_list[j], nn.AdaptiveAvgPool2d):
-            try:
-                x = self.module_list[j](_x)
-                if printNet:
-                    print("\nJ: ", j, " ; ", self.module_list[j])
-                    print("\n\n X Shape 1: ", x.shape)
-                x = x.view(x.shape[0], x.shape[1])
-                if printNet:
-                    print("\n\n X Shape 2: ", x.shape)
-            except RuntimeError:
-                print("\n \n Oops!!!: ")
-                print("AvgPool")
-        elif isinstance(self.module_list[j], nn.Conv2d):
-            print(f'Sollte nicht Conv sondern AvgPool sein {j}; {self.archNums}')
-        elif isinstance(self.module_list[j], nn.Linear):
-            print(f'Sollte nicht Linear sondern AvgPool sein {j}')
-        elif isinstance(self.module_list[j], nn.BatchNorm2d):
-            print(f'Sollte nicht Bn sondern AvgPool sein {j}')
-        else:
-            print("\n \nElse Oops!!!: ")
-            print("AvgPool")
-
-        j = j + 1
-        if isinstance(self.module_list[j], nn.Linear):
-            x = self.module_list[j](x)
-            if printNet:
-                print("\nJ: ", j, " ; ", self.module_list[j])
-                print("\nfc: ", x.shape)
-        else:
-            print("\n \n Oops!!!: ")
-            print("Linear")
-        return x
-
-
-    def forward(self, x, print):
+    def forward(self, x, printNet):
         print(f'ArchNums: {self.archNums}')
         # First layer
-        printNet = True
         if printNet:
             print("\nX Shape: ", x.shape)
         # conv1

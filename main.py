@@ -586,7 +586,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         with torch.no_grad():
             inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
-        outputs = model(inputs)
+        outputs = model(inputs, False)
         loss = criterion(outputs, targets)
         # if batch_idx == 0 and (epoch == 10):
         #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
@@ -697,7 +697,7 @@ def test(testloader, model, criterion, epoch, use_cuda):
         # compute output
         # print(f'Test vor dem Forward')
 
-        outputs = model(inputs)
+        outputs = model(inputs, False)
         loss = criterion(outputs, targets)
         # print(f'Test nachdem loss')
         # measure accuracy and record loss
