@@ -654,7 +654,10 @@ class N2N(nn.Module):
             print(f'shape new w1: {new_w1.shape}')
             print(f'shape new w2: {new_w2.shape}')
             module.weight.data = nn.Parameter(torch.from_numpy(new_w1))
+            module.out_channels = module.out_channels * delta_width
+
             module1.weight.data = nn.Parameter(torch.from_numpy(new_w2))
+            module1.in_channels = module1.in_channels * delta_width
             if module.bias:
                 module.bias.data = nn.Parameter(torch.from_numpy(new_b1))
 
