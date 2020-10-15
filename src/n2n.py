@@ -532,11 +532,13 @@ class N2N(nn.Module):
                     new_weight_re = new_weight[:, np.newaxis, :, :]
                     new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
                     new_w2[:, index, :, :] = new_weight
-
+            print(f'shape new w1: {new_w1.shape}')
+            print(f'shape new w2: {new_w2.shape}')
             module.weight.data = nn.Parameter(torch.from_numpy(new_w1))
+            module1.weight.data = nn.Parameter(torch.from_numpy(new_w2))
             if module.bias:
                 module.bias.data = nn.Parameter(torch.from_numpy(new_b1))
-            module1.weight.data = nn.Parameter(torch.from_numpy(new_w2))
+
             if isinstance(moduleBn, nn.BatchNorm2d):
                 old_bn_w = moduleBn.weight.data.clone().cpu().detach().numpy()
                 print(f'len old w: {old_bn_w.size}')
