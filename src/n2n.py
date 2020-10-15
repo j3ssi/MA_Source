@@ -1356,6 +1356,7 @@ class N2N(nn.Module):
                         m = module[2 * pos - 2]
                         weight = conv.weight.data
                         print(f'neues conv: {conv}; j: {j}')
+
                         weight[:, :, 1, 1] = 1
 
                         # with torch.no_grad():
@@ -1373,10 +1374,10 @@ class N2N(nn.Module):
                         # torch.from_numpy(deeper_w)
 
                         for l in range(m.out_channels):
-                            weight = m.weight.data
-                            norm = weight.select(0, l).norm()
-                            weight.div_(norm)
-                            m.weight.data = weight
+                            weight1 = m.weight.data
+                            norm = weight1.select(0, l).norm()
+                            weight1.div_(norm)
+                            m.weight1.data = weight1
                         conv.weight.data = weight
                         seq.append(conv)
                         # print(f'GRAD: c{conv.}')
@@ -1429,10 +1430,10 @@ class N2N(nn.Module):
         # self.module_list = newModule_list
         # print(f'Self: {self}')
         batch_size = 1
-        self.cuda()
-        input = torch.randn(1, 3, 32, 32)
-        input = input.cuda()
-        self.forward(input, True)
+        # self.cuda()
+        # input = torch.randn(1, 3, 32, 32)
+        # input = input.cuda()
+        # self.forward(input, True)
         return self
 
 
