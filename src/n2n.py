@@ -681,8 +681,8 @@ class N2N(nn.Module):
                 print(f'new bn: {new_bn_b}; K : {k}; len of bn: {new_bn_b.size}')
                 moduleBn.weight.data = nn.Parameter(torch.from_numpy(new_bn_w))
                 moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
-                moduleBn.running_mean = nn.Parameter(torch.from_numpy(new_bn_mean))
-                moduleBn.running_var = nn.Parameter(torch.from_numpy(new_bn_var))
+                moduleBn.running_mean = torch.from_numpy(new_bn_mean)
+                moduleBn.running_var = torch.from_numpy(new_bn_var)
                 # assert index1 > index, "index<= index"
             index += index1 - index
             break
