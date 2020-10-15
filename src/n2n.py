@@ -561,6 +561,7 @@ class N2N(nn.Module):
         while index < len(self.module_list):
             i = index
             module = None
+            module1 = None
             if isinstance(self.module_list[index], nn.Conv2d):
                 module = self.module_list[index]
                 print(f'Module:= {module}')
@@ -572,6 +573,7 @@ class N2N(nn.Module):
                 module = moduleX[0]
                 if isinstance(moduleX[1], nn.BatchNorm2d):
                     moduleBn = moduleX[1]
+                module1 = moduleX[3]
             else:
                 while i < len(self.module_list):
                     if isinstance(self.module_list[i], nn.Conv2d):
@@ -582,19 +584,14 @@ class N2N(nn.Module):
                     else:
                         i += 1
 
-            module1 = None
-            index1 = i + 1
-            print(f'Index1: {index1}')
-            print(f'instance: {type(self.module_list[index1])}')
-            while module1 is None:
+            if module1 == None:
+                index1 = i + 1
+                print(f'Index1: {index1}')
+                print(f'instance: {type(self.module_list[index1])}')
+                while module1 is None:
                 print(f'while Index1: {index1}')
                 print(f'module: {self.module_list[index1]}')
-                if isinstance(self.module_list[index1], nn.Sequential):
-                    moduleX = self.module_list[index1]
-                    if isinstance(moduleX[0], nn.Conv2d):
-                        module1 = moduleX[0]
-                        break
-                elif isinstance(self.module_list[index1], nn.Linear):
+                if isinstance(self.module_list[index1], nn.Linear):
                     break
                 elif isinstance(self.module_list[index1], nn.BatchNorm2d):
                     print(f' batchnorm i: {index1}')
@@ -682,6 +679,7 @@ class N2N(nn.Module):
                     new_bn_var = np.append(new_bn_var, new_bn_var[index])
                     print(f'i: {i}')
                 print(f'new bn: {new_bn_b}; K : {k}; len of bn: {new_bn_b.size}')
+                moduleBn.in_features * delta_width
                 moduleBn.weight.data = nn.Parameter(torch.from_numpy(new_bn_w))
                 moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
                 moduleBn.running_mean = torch.from_numpy(new_bn_mean)
