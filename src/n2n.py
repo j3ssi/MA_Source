@@ -1275,12 +1275,12 @@ class N2N(nn.Module):
 
                         nn.init.normal_(conv.weight, mean=0, std=math.sqrt(2. / (n)))
                         m = module[3 * pos - 3]
-                        weight = conv.weight.data
+                        # weight = conv.weight.data
                         print(f'neues conv: {conv}; j: {j}')
-                        weight[:, :, 1, 1] = 1
-                        print(f'weight.size(): {weight.size()}')
-                        with torch.no_grad():
-                           m.weight.div_(torch.norm(m.weight, dim=2, keepdim=True))
+                        # weight[:, :, 1, 1] = 1
+                        # print(f'weight.size(): {weight.size()}')
+                        # with torch.no_grad():
+                        #   m.weight.div_(torch.norm(m.weight, dim=2, keepdim=True))
 
                         # deeper_w = deeper_w.numpy()
                         # center_h = ( i0 - 1) // 2
@@ -1298,7 +1298,7 @@ class N2N(nn.Module):
                             norm = weight1.select(0, l).norm()
                             weight1.div_(norm)
                             m.weight.data = weight1
-                        conv.weight.data = weight
+                        # conv.weight.data = weight
                         seq.append(conv)
                         # print(f'GRAD: c{conv.}')
                         # print(f'beues conv: {conv}; j= { 2 * pos +1 }')
