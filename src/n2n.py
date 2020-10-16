@@ -55,7 +55,7 @@ class N2N(nn.Module):
                 print("\nArch Num: ", self.archNums)
 
             self.module_list = nn.ModuleList()
-            self.relu = nn.LeakyReLU(negative_slope=0.1, inplace=True)
+            self.relu = nn.LeakyReLU(negative_slope=0.01, inplace=True)
 
             # first Layer
             # conv1
@@ -1222,17 +1222,6 @@ class N2N(nn.Module):
         # make each block with plus two layers (conv +batch) deeper
         blockComp = False
 
-        stages = []
-        tmp = 2
-        k = 0
-        add = -2
-        for s in range(0, self.numOfStages):
-            for t in range(len(self.archNums[s])):
-                tmp += self.archNums[s][t]
-            stages.append(tmp)
-
-        print(f'tmp: {stages}')
-        stage = 0
         for i in range(len(self.module_list)):
             if i > 4 and blockComp and isinstance(self.module_list[i], nn.Sequential):
                 print(f'skip: {i}')
@@ -1241,7 +1230,6 @@ class N2N(nn.Module):
                 blockComp = False
 
                 continue
-            print(f'stages: {stages[k]}')
 
             if isinstance(self.module_list[i], nn.Sequential):
 
@@ -1319,41 +1307,7 @@ class N2N(nn.Module):
                 if i0 != i1 and not blockComp:
                     blockComp = True
 
-                # if i == stages[k]:
-                #     k    += 1
-                # print(f'i: {i}')
-                # print(f'stages[k-1]: {stages[k - 1]}')
-                #
-                # if i - 2 == stages[k - 1]:
-                #     add = add + 4
-                # if i == stages[k - 1]:
-                #     print(f'blockComp')
-                #     blockComp = True
-                #
-                # block = (i + add) % self.numOfBlocksinStage[k]
-                # print(f'stage: {k}; block: {block}; i: {i}; i+ add: {(i + add) % 5}: add: {add}')
-                # # if stages[ k- 1 ] == i:
-                #
-                # self.archNums[k][block] += 1
-                # if (i - 2) % 5 == 0 and (i - 2) // 5 > 0:
-                #     blockComp = True
 
-            # elif isinstance(self.module_list[i], nn.AdaptiveAvgPool2d):
-            #     print(f'i: {i}; pool')
-            #     newModule_list.append(self.module_list[i])
-            # elif isinstance(self.module_list[i], nn.Linear):
-            #     print(f'i: {i}; linear')
-            #     newModule_list.append(self.module_list[i])
-            # else:
-            #     print(f' I: {i}!!!!')
-        # print(f'new module list: {newModule_list}')
-        # self.module_list = newModule_list
-        # print(f'Self: {self}')
-        batch_size = 1
-        # self.cuda()
-        # input = torch.randn(1, 3, 32, 32)
-        # input = input.cuda()
-        # self.forward(input, True)
         return self
 
 
