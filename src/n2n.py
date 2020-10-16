@@ -558,52 +558,39 @@ class N2N(nn.Module):
     def wider(self, stage, delta_width, weight_norm=True, random_init=True,
               addNoise=True):  # teacher_w1, teacher_b1, teacher_w2, new_width, verification):
         index = 0
+        seqIndex = 0
         while index < len(self.module_list):
             i = index
             module = None
             module1 = None
             if isinstance(self.module_list[index], nn.Conv2d):
                 module = self.module_list[index]
-                print(f'Module:= {module}')
-                if isinstance(self.module_list[index  + 1], nn.BatchNorm2d):
-                    moduleBn = self.module_list[index + 1]
+                indexConv = index + 1
+                while module1 == None:
+                    if isinstance(self.module_list[indexConv], nn.BatchNorm2d):
+                        moduleBn = self.module_list[indexConv]
+                    elif isinstance(self.module_list[indexConv], nn.Conv2d):
+                        module1 = self.module_list[indexConv]
+                    assert indexConv< len(self.module_list), "Falscher Index in wider"
+                    indexConv += 1
+
 
             elif isinstance(self.module_list[index], nn.Sequential):
                 moduleX = self.module_list[index]
-                module = moduleX[0]
-                if isinstance(moduleX[1], nn.BatchNorm2d):
-                    moduleBn = moduleX[1]
-                module1 = moduleX[3]
+                i = 0
+                while i < len(moduleX):
+                    if isinstance(moduleX[i], nn.Conv2d) and module == None:
+                        module = moduleX[i]
+                    elif isinstance(moduleX[i], nn.BatchNorm2d):
+                        moduleBn = moduleX[i]
+                    elif isinstance(moduleX[i],nn.Conv2d):
+                        module1 = moduleX[i]
+                    i += 1
+                if module1 == None:
+                    self.module_list
             else:
-                while i < len(self.module_list):
-                    if isinstance(self.module_list[i], nn.Conv2d):
-                        module = self.module_list[i]
-                        if isinstance(self.module_list[i+1], nn.BatchNorm2d):
-                            moduleBn = self.module_list[i+1]
-                        break
-                    else:
-                        i += 1
-
+                index += 1
             if module1 == None:
-                index1 = i + 1
-                print(f'Index1: {index1}')
-                print(f'instance: {type(self.module_list[index1])}')
-                while module1 is None:
-                    print(f'while Index1: {index1}')
-                    print(f'module: {self.module_list[index1]}')
-                    if isinstance(self.module_list[index1], nn.Linear):
-                        break
-                    elif isinstance(self.module_list[index1], nn.BatchNorm2d):
-                        print(f' batchnorm i: {index1}')
-                        index1 += 1
-                    elif isinstance(self.module_list[index1], nn.LeakyReLU):
-                        print(f'laekyrelu i: {index1}')
-                        index1 += 1
-                    elif isinstance(self.module_list[index1], nn.AdaptiveAvgPool2d):
-                        index1 += 1
-                    else:
-                        print(f'Problem!!')
-                        break
 
             assert module != None or module1 != None, "Probleme mit der Auswahl des nächsten Elements für wider"
             print(f'new width: {delta_width * module.weight.size(0) - module.weight.size(0)}')
