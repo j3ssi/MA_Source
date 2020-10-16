@@ -466,21 +466,24 @@ class N2N(nn.Module):
     def wider(self, stage, delta_width, weight_norm=True, random_init=True,
               addNoise=True):  # teacher_w1, teacher_b1, teacher_w2, new_width, verification):
         index = 0
+        index1 = 0
         seqIndex = 0
         while index < len(self.module_list):
             i = index
-            index = 1
-
+            print(f'Index: {index}')
             module = None
             module1 = None
             if isinstance(self.module_list[index], nn.Conv2d):
                 module = self.module_list[index]
+                print(f'Module= {module}; index: {index}')
                 indexConv = index + 1
                 while module1 == None:
                     if isinstance(self.module_list[indexConv], nn.BatchNorm2d):
                         moduleBn = self.module_list[indexConv]
+                        print(f' moduleBn: {moduleBn}')
                     elif isinstance(self.module_list[indexConv], nn.Conv2d):
                         module1 = self.module_list[indexConv]
+                        print(f'module1: {module1}; indexConv: {indexConv}; index: {index}')
                     assert indexConv< len(self.module_list), "Falscher Index in wider"
                     indexConv += 1
             elif isinstance(self.module_list[index], nn.Sequential):
@@ -489,13 +492,16 @@ class N2N(nn.Module):
                 while i < len(moduleX):
                     if isinstance(moduleX[i], nn.Conv2d) and module == None:
                         module = moduleX[i]
+                        print(f'Module= {module}; i: {i} index: {index}')
                     elif isinstance(moduleX[i], nn.BatchNorm2d):
                         moduleBn = moduleX[i]
+                        print(f' moduleBn: {moduleBn}; i: {i}; index: {index}')
                     elif isinstance(moduleX[i],nn.Conv2d):
                         module1 = moduleX[i]
+                        print(f'module1: {module1}; i: {i}; index: {index}')
                     i += 1
-                if module1 == None:
-                    self.module_list
+                # if module1 == None:
+                #     self.module_list
             else:
                 index += 1
             print(f'Module: {module}; moduleBn: {moduleBn}; module1: {module1}')
