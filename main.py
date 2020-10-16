@@ -648,7 +648,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         #         scaled_loss.backward()
         # else:
         loss.backward()
-            # print(f'After backward')
+        # print(f'After backward')
         optimizer.step()
 
         # print(f'After Step')
