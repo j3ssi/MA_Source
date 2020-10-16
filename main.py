@@ -648,6 +648,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         #         scaled_loss.backward()
         # else:
         loss.backward()
+        plot_grad_flow(model.named_parameters())
         # print(f'After backward')
         optimizer.step()
 
@@ -747,6 +748,25 @@ def adjust_learning_rate(optimizer, epoch, change_lr):
             exp = int((epoch - 1) / args.schedule_exp)
             lr *= (args.gamma ** exp)
     return lr
+
+
+def plot_grad_flow(named_parameters):
+    ave_grads = []
+    layers = []
+    for n, p in named_parameters:
+        if(p.requires_grad) and ("bias" not in n):
+            layers.append(n)
+            ave_grads.append(p.grad.abs().mean())
+    plt.plot(ave_grads, alpha=0.3, color="b")
+    plt.hlines(0, 0, len(ave_grads)+1, linewidth=1, color="k" )
+    plt.xticks(range(0,len(ave_grads), 1), layers, rotation="vertical")
+    plt.xlim(xmin=0, xmax=len(ave_grads))
+    plt.xlabel("Layers")
+    plt.ylabel("average gradient")
+    plt.title("Gradient flow")
+    plt.grid(True)
+    fileName = 'gradflow.png'
+    plt.savefig(fileName)
 
 
 def visualizePruneTrain(model, epoch, threshold):
