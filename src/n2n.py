@@ -478,6 +478,7 @@ class N2N(nn.Module):
                 print(f'Module= {module}; index: {index}')
                 indexConv = index + 1
                 while module1 == None:
+                    print(f'indexConv: {indexConv}')
                     if isinstance(self.module_list[indexConv], nn.BatchNorm2d):
                         moduleBn = self.module_list[indexConv]
                         print(f' moduleBn: {moduleBn}')
