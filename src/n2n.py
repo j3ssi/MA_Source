@@ -20,17 +20,19 @@ class N2N(nn.Module):
         self.numOfBlocksinStage = numOfBlocksinStage
         self.layersInBlock = layersInBlock
 
-        printName = False
+        printInit = False
         if widthOfLayers is not None:
             self.widthofFirstLayer = widthOfLayers[0]
             self.widthofLayers = widthOfLayers
-            print(f'width: {self.widthofFirstLayer}')
+            if printInit:
+                print(f'width: {self.widthofFirstLayer}')
         else:
             self.widthofFirstLayer = widthofFirstLayer
             self.widthofLayers = []
             s = widthofFirstLayer
 
-            print(f'numoFStages: {numOfStages}')
+            if printInit:
+                print(f'numoFStages: {numOfStages}')
 
             for stage in range(0, numOfStages):
                 self.widthofLayers.append(s)
@@ -49,7 +51,8 @@ class N2N(nn.Module):
 
                 if s != (self.numOfStages - 1):
                     self.archNums.append([])
-            print("\nArch Num: ", self.archNums)
+            if printInit:
+                print("\nArch Num: ", self.archNums)
 
             self.module_list = nn.ModuleList()
             self.relu = nn.LeakyReLU(negative_slope=0.1, inplace=True)
@@ -58,15 +61,18 @@ class N2N(nn.Module):
             # conv1
             conv0 = nn.Conv2d(3, self.widthofLayers[0], kernel_size=3, padding=1, bias=False, stride=1)
             self.module_list.append(conv0)
-            print(f'conv0: {conv0}; i: {j}')
+            if printInit:
+                print(f'conv0: {conv0}; i: {j}')
             # bn1
             j += 1
             bn1 = nn.BatchNorm2d(self.widthofLayers[0])
-            print(f'bn1: {bn1}; i: {j}')
+            if printInit:
+                print(f'bn1: {bn1}; i: {j}')
             j += 1
             self.module_list.append(bn1)
             self.module_list.append(self.relu)
-            print(f'Relu; i: {j}')
+            if printInit:
+                print(f'Relu; i: {j}')
             firstBlockInStage = False
 
             for stage in range(0, numOfStages):
@@ -79,74 +85,91 @@ class N2N(nn.Module):
                     i = 0
 
                     while i < self.archNums[stage][block]:
-                        print(f'i : {j}; block: {block}')
+                        if printInit:
+                            print(f'i : {j}; block: {block}')
                         if block == 0 and stage > 0 and i == 0:
                             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                              bias=False,
                                              stride=2)
-                            print(f'{conv}; i={i}')
+                            if printInit:
+                                print(f'{conv}; i={i}')
                             layer.append(conv)
                             bn = nn.BatchNorm2d(sizeOfLayer)
-                            print(f'{bn}; i={i}')
+                            if printInit:
+                                print(f'{bn}; i={i}')
                             layer.append(bn)
                             layer.append(self.relu)
-                            print(f'relu: {i}')
+                            if printInit:
+                                print(f'relu: {i}')
                             i = i + 1
                         elif block == 0 and stage > 0 and (i + 1) % self.archNums[stage][block] == 0:
                             conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
                                              bias=False,
                                              stride=2)
-                            print(f'{conv}; i: {i}')
+                            if printInit:
+                                print(f'{conv}; i: {i}')
                             layer2.append(conv)
                             bn = nn.BatchNorm2d(sizeOfLayer)
-                            print(f'{bn}; i: {i}')
+                            if printInit:
+                                print(f'{bn}; i: {i}')
                             layer2.append(bn)
                             layer2.append(self.relu)
-                            print(f'Relu; i: {i}')
+                            if printInit:
+                                print(f'Relu; i: {i}')
                             i = i + 1
                         elif i==0:
                             conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1,
                                              bias=False,
                                              stride=1)
-                            print(f'{conv}; i: {i}')
+                            if printInit:
+                                print(f'{conv}; i: {i}')
                             layer.append(conv)
                             bn = nn.BatchNorm2d(sizeOfLayer)
-                            print(f'{bn}; i: {i}')
+                            if printInit:
+                                print(f'{bn}; i: {i}')
                             layer.append(bn)
                             layer.append(self.relu)
-                            print(f'Relu; i: {i}')
+                            if printInit:
+                                print(f'Relu; i: {i}')
                             i = i + 1
 
                         else:
                             conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
                                              stride=1)
-                            print(f'{conv}; i: {i}')
+                            if printInit:
+                                print(f'{conv}; i: {i}')
                             layer.append(conv)
                             bn = nn.BatchNorm2d(sizeOfLayer)
-                            print(f'{bn}; i: {i}')
+                            if printInit:
+                                print(f'{bn}; i: {i}')
                             layer.append(bn)
                             layer.append(self.relu)
-                            print(f'relu; i: {i}')
+                            if printInit:
+                                print(f'relu; i: {i}')
                             i = i + 1
 
                     block = nn.Sequential(*layer)
-                    print(f'seq: {block}; i: {j}')
+                    if printInit:
+                        print(f'seq: {block}; i: {j}')
                     j += 1
                     self.module_list.append(block)
                     if len(layer2) > 0:
                         block1 = nn.Sequential(*layer2)
                         self.module_list.append(block1)
-                        print(f'seq1: {block1}; i: {j}')
+                        if printInit:
+                            print(f'seq1: {block1}; i: {j}')
 
 
             # print("\n self sizeofFC: ",self.sizeOfFC)
             avgpool = nn.AdaptiveAvgPool2d((1, 1))
             self.module_list.append(avgpool)
-            print(f'avgpoll: {avgpool}')
+            if printInit:
+                print(f'avgpoll: {avgpool}')
             # 19
             fc = nn.Linear(sizeOfLayer, num_classes)
             self.module_list.append(fc)
-            print(f'linear: {fc}')
+            if printInit:
+                print(f'linear: {fc}')
             for m in self.module_list:
                 if isinstance(m, nn.Conv2d):
                     n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
@@ -165,8 +188,9 @@ class N2N(nn.Module):
                             nn.init.ones_(seq.weight)
                             nn.init.zeros_(seq.bias)
 
-            print(f'Modell Erstellung')
-            print(self)
+            if printInit:
+                print(f'Modell Erstellung')
+                print(self)
 
     def newModuleList(self, num_classes):
         # self.sameNode, self.oddLayers = buildShareSameNodeLayers(self.module_list, self.numOfStages, self.archNums)
@@ -249,124 +273,8 @@ class N2N(nn.Module):
                 self.module_list.append(fc)
             elif isinstance(module_list[i], nn.LeakyReLU):
                 self.module_list.append(self.relu)
-        print(f' Modell: {self}')
-
-    # def forward(self, x):
-    #     # print(f'ArchNums: {self.archNums}')
-    #     # First layer
-    #     printNet = False
-    #     if printNet:
-    #         print("\nX Shape: ", x.shape)
-    #     # conv1
-    #     _x = self.module_list[0](x)
-    #     if printNet:
-    #         print("\nI: 0 ; ", self.module_list[0])
-    #         print("\nX Shape: ", _x.shape)
-    #     # bn1
-    #     _x = self.module_list[1](_x)
-    #     if printNet:
-    #         print("\nI: 1 ; ", self.module_list[1])
-    #         print("\nLast X Shape: ", _x.shape)
-    #     # relu
-    #     _x = self.module_list[2](_x)
-    #     j = 3
-    #     if printNet:
-    #         print("\nI: 2 ; ", self.module_list[2])
-    #         print("\nLast X Shape: ", _x.shape)
-    #
-    #     notfirstLayer = False
-    #     # try:
-    #     for stage in range(0, self.numOfStages):
-    #         # if printNet:
-    #         archNum = self.archNums[stage]
-    #         if printNet:
-    #             print(f'Stage: {stage}; archNum: {archNum}')
-    #
-    #         for block in range(0, len(archNum)):
-    #             # try:
-    #             if printNet:
-    #                 print(f'Block: {block}; j: {j}')
-    #             seq = self.module_list[j]
-    #             if printNet:
-    #                 print(f'seq: {seq}')
-    #             if block == 0 and stage > 0:
-    #                 if printNet:
-    #                     print(f'Drin!! seq: {seq}; j: {j}')
-    #                 y = _x
-    #                 z = _x
-    #                 for a in range(len(seq)):
-    #                     y = seq[a](y)
-    #                     if printNet:
-    #                         print(f'seq[a]: {seq[a]}; a: {a}')
-    #                         print(f'Y shape: {y.shape}')
-    #                 x = y
-    #                 # x = seq(_x)
-    #                 j += 1
-    #
-    #                 seq = self.module_list[j]
-    #                 if printNet:
-    #                     print(f'Drin2!! seq: {seq}; j: {j}')
-    #
-    #                 for a in range(len(seq)):
-    #                     z = seq[a](z)
-    #                     if printNet:
-    #                         print(f'seq[a]: {seq[a]}; a: {a}')
-    #                         print(f'Y shape: {z.shape}')
-    #                 _x = z
-    #
-    #                 # _x = seq(_x)
-    #                 j += 1
-    #             else:
-    #                 x = seq(_x)
-    #                 j += 1
-    #                 if printNet:
-    #                     print(f'Shape: {x.shape}')
-    #             _x = _x + x
-    #             if printNet:
-    #                 print(f'X Shape: {_x.shape}')
-    #             _x = self.relu(_x)
-    #             # except RuntimeError:
-    #             #     print(f'Except')
-    #             #     print("\nJ: ", j, " ; ", self.module_list[j])
-    #             #     print(f'seq[a]: {seq[a]}')
-    #             #     print("\nX Shape: ", x.shape)
-    #
-    #     if printNet:
-    #         print("\nX Shape: ", x.shape)
-    #
-    #     if isinstance(self.module_list[j], nn.AdaptiveAvgPool2d):
-    #         try:
-    #             x = self.module_list[j](_x)
-    #             if printNet:
-    #                 print("\nJ: ", j, " ; ", self.module_list[j])
-    #                 print("\n\n X Shape 1: ", x.shape)
-    #             x = x.view(x.shape[0], x.shape[1])
-    #             if printNet:
-    #                 print("\n\n X Shape 2: ", x.shape)
-    #         except RuntimeError:
-    #             print("\n \n Oops!!!: ")
-    #             print("AvgPool")
-    #     elif isinstance(self.module_list[j], nn.Conv2d):
-    #         print(f'Sollte nicht Conv sondern AvgPool sein {j}; {self.archNums}')
-    #     elif isinstance(self.module_list[j], nn.Linear):
-    #         print(f'Sollte nicht Linear sondern AvgPool sein {j}')
-    #     elif isinstance(self.module_list[j], nn.BatchNorm2d):
-    #         print(f'Sollte nicht Bn sondern AvgPool sein {j}')
-    #     else:
-    #         print("\n \nElse Oops!!!: ")
-    #         print("AvgPool")
-    #
-    #     j = j + 1
-    #     if isinstance(self.module_list[j], nn.Linear):
-    #         x = self.module_list[j](x)
-    #         if printNet:
-    #             print("\nJ: ", j, " ; ", self.module_list[j])
-    #             print("\nfc: ", x.shape)
-    #     else:
-    #         print("\n \n Oops!!!: ")
-    #         print("Linear")
-    #     return x
-
+        if printName:
+            print(f' Modell: {self}')
 
     def forward(self, x, printNet):
         if printNet:
@@ -561,6 +469,8 @@ class N2N(nn.Module):
         seqIndex = 0
         while index < len(self.module_list):
             i = index
+            index = 1
+
             module = None
             module1 = None
             if isinstance(self.module_list[index], nn.Conv2d):
@@ -573,8 +483,6 @@ class N2N(nn.Module):
                         module1 = self.module_list[indexConv]
                     assert indexConv< len(self.module_list), "Falscher Index in wider"
                     indexConv += 1
-
-
             elif isinstance(self.module_list[index], nn.Sequential):
                 moduleX = self.module_list[index]
                 i = 0
@@ -590,88 +498,89 @@ class N2N(nn.Module):
                     self.module_list
             else:
                 index += 1
+            print(f'Module: {module}; moduleBn: {moduleBn}; module1: {module1}')
             # if module1 == None:
 
-            assert module != None or module1 != None, "Probleme mit der Auswahl des nächsten Elements für wider"
-            print(f'new width: {delta_width * module.weight.size(0) - module.weight.size(0)}')
-
-            # ziehe zufällige Zahlen für die Mapping Funktion
-            mapping = np.random.randint(module.weight.size(0), size=(delta_width * module.weight.size(0) - module.weight.size(0)))
-            print(f'len of mapping: {len(mapping)}')
-
-            # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
-            replication_factor = np.bincount(mapping)
-            # Anlage der neuen Gewichte
-            new_w1 = module.weight.data.clone().cpu().detach().numpy()
-            new_w2 = module1.weight.data.clone().cpu().detach().numpy()
-            old_w1 = module.weight.data.clone().cpu().detach().numpy()
-            old_w2 = module1.weight.data.clone().cpu().detach().numpy()
-
-
-            if module.bias is not None:
-                new_b1 = module.weight.clone()
-                old_b1 = module.weight.clone()
-
-            # Fülle die neuen breiteren Gewichte mit dem richtigen Inhalt aus altem
-            for i in range(len(mapping)):
-                index = mapping[i]
-                new_weight = old_w1[index, :, :, :]
-                new_weight = new_weight[np.newaxis, :, :, :]
-                new_w1 = np.concatenate((new_w1, new_weight), axis=0)
-                if module.bias is not None:
-                    new_b1 = np.append(new_b1, old_b1[index])
-            # Fülle das Module1 mit den Gewichten un normalisiere
-            for i in range(len(mapping)):
-                index = mapping[i]
-                factor = replication_factor[index] + 1
-                assert factor > 1, "Fehler in Net2Wider"
-                if old_w2.ndim == 2:
-                    new_weight = old_w2[:, index] * (1. / factor)
-                    new_weight_re = new_weight[:, np.newaxis]
-                    new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
-                    new_w2[:, index] = new_weight
-                elif old_w2.ndim == 4:
-                    new_weight = old_w2[:, index, :, :] * (1. / factor)
-                    new_weight_re = new_weight[:, np.newaxis, :, :]
-                    new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
-                    new_w2[:, index, :, :] = new_weight
-            print(f'shape new w1: {new_w1.shape}')
-            print(f'shape new w2: {new_w2.shape}')
-            module.weight.data = nn.Parameter(torch.from_numpy(new_w1))
-            module.out_channels = module.out_channels * delta_width
-
-            module1.weight.data = nn.Parameter(torch.from_numpy(new_w2))
-            module1.in_channels = module1.in_channels * delta_width
-            if module.bias:
-                module.bias.data = nn.Parameter(torch.from_numpy(new_b1))
-
-            if isinstance(moduleBn, nn.BatchNorm2d):
-                old_bn_w = moduleBn.weight.data.clone().cpu().detach().numpy()
-                print(f'len old w: {old_bn_w.size}')
-
-                old_bn_b = moduleBn.bias.data.clone().cpu().detach().numpy()
-                old_bn_mean = moduleBn.running_mean.clone().cpu().detach().numpy()
-                old_bn_var = moduleBn.running_var.clone().cpu().detach().numpy()
-                new_bn_w = moduleBn.weight.data.clone().cpu().detach().numpy()
-                new_bn_b = moduleBn.bias.data.clone().cpu().detach().numpy()
-                new_bn_mean = moduleBn.running_mean.clone().cpu().detach().numpy()
-                new_bn_var = moduleBn.running_var.clone().cpu().detach().numpy()
-                print(f'old weight: {old_bn_w}')
-                for i in range(0, len(mapping)):
-                    index = mapping[i]
-                    k = i
-                    new_bn_w = np.append(new_bn_w, old_bn_w[index])
-                    new_bn_b = np.append(new_bn_b, old_bn_b[index])
-                    new_bn_mean = np.append(new_bn_mean, new_bn_mean[index])
-                    new_bn_var = np.append(new_bn_var, new_bn_var[index])
-                    print(f'i: {i}')
-                print(f'new bn: {new_bn_b}; K : {k}; len of bn: {new_bn_b.size}')
-                moduleBn.in_features * delta_width
-                moduleBn.weight.data = nn.Parameter(torch.from_numpy(new_bn_w))
-                moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
-                moduleBn.running_mean = torch.from_numpy(new_bn_mean)
-                moduleBn.running_var = torch.from_numpy(new_bn_var)
-                # assert index1 > index, "index<= index"
+            # assert module is not None or module1 is not None, "Probleme mit der Auswahl des nächsten Elements für wider"
+            # print(f'new width: {delta_width * module.weight.size(0) - module.weight.size(0)}')
+            #
+            # # ziehe zufällige Zahlen für die Mapping Funktion
+            # mapping = np.random.randint(module.weight.size(0), size=(delta_width * module.weight.size(0) - module.weight.size(0)))
+            # print(f'len of mapping: {len(mapping)}')
+            #
+            # # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
+            # replication_factor = np.bincount(mapping)
+            # # Anlage der neuen Gewichte
+            # new_w1 = module.weight.data.clone().cpu().detach().numpy()
+            # new_w2 = module1.weight.data.clone().cpu().detach().numpy()
+            # old_w1 = module.weight.data.clone().cpu().detach().numpy()
+            # old_w2 = module1.weight.data.clone().cpu().detach().numpy()
+            #
+            #
+            # if module.bias is not None:
+            #     new_b1 = module.weight.clone()
+            #     old_b1 = module.weight.clone()
+            #
+            # # Fülle die neuen breiteren Gewichte mit dem richtigen Inhalt aus altem
+            # for i in range(len(mapping)):
+            #     index = mapping[i]
+            #     new_weight = old_w1[index, :, :, :]
+            #     new_weight = new_weight[np.newaxis, :, :, :]
+            #     new_w1 = np.concatenate((new_w1, new_weight), axis=0)
+            #     if module.bias is not None:
+            #         new_b1 = np.append(new_b1, old_b1[index])
+            # # Fülle das Module1 mit den Gewichten un normalisiere
+            # for i in range(len(mapping)):
+            #     index = mapping[i]
+            #     factor = replication_factor[index] + 1
+            #     assert factor > 1, "Fehler in Net2Wider"
+            #     if old_w2.ndim == 2:
+            #         new_weight = old_w2[:, index] * (1. / factor)
+            #         new_weight_re = new_weight[:, np.newaxis]
+            #         new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
+            #         new_w2[:, index] = new_weight
+            #     elif old_w2.ndim == 4:
+            #         new_weight = old_w2[:, index, :, :] * (1. / factor)
+            #         new_weight_re = new_weight[:, np.newaxis, :, :]
+            #         new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
+            #         new_w2[:, index, :, :] = new_weight
+            # print(f'shape new w1: {new_w1.shape}')
+            # print(f'shape new w2: {new_w2.shape}')
+            # module.weight.data = nn.Parameter(torch.from_numpy(new_w1))
+            # module.out_channels = module.out_channels * delta_width
+            #
+            # module1.weight.data = nn.Parameter(torch.from_numpy(new_w2))
+            # module1.in_channels = module1.in_channels * delta_width
+            # if module.bias:
+            #     module.bias.data = nn.Parameter(torch.from_numpy(new_b1))
+            #
+            # if isinstance(moduleBn, nn.BatchNorm2d):
+            #     old_bn_w = moduleBn.weight.data.clone().cpu().detach().numpy()
+            #     print(f'len old w: {old_bn_w.size}')
+            #
+            #     old_bn_b = moduleBn.bias.data.clone().cpu().detach().numpy()
+            #     old_bn_mean = moduleBn.running_mean.clone().cpu().detach().numpy()
+            #     old_bn_var = moduleBn.running_var.clone().cpu().detach().numpy()
+            #     new_bn_w = moduleBn.weight.data.clone().cpu().detach().numpy()
+            #     new_bn_b = moduleBn.bias.data.clone().cpu().detach().numpy()
+            #     new_bn_mean = moduleBn.running_mean.clone().cpu().detach().numpy()
+            #     new_bn_var = moduleBn.running_var.clone().cpu().detach().numpy()
+            #     print(f'old weight: {old_bn_w}')
+            #     for i in range(0, len(mapping)):
+            #         index = mapping[i]
+            #         k = i
+            #         new_bn_w = np.append(new_bn_w, old_bn_w[index])
+            #         new_bn_b = np.append(new_bn_b, old_bn_b[index])
+            #         new_bn_mean = np.append(new_bn_mean, new_bn_mean[index])
+            #         new_bn_var = np.append(new_bn_var, new_bn_var[index])
+            #         print(f'i: {i}')
+            #     print(f'new bn: {new_bn_b}; K : {k}; len of bn: {new_bn_b.size}')
+            #     moduleBn.in_features * delta_width
+            #     moduleBn.weight.data = nn.Parameter(torch.from_numpy(new_bn_w))
+            #     moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
+            #     moduleBn.running_mean = torch.from_numpy(new_bn_mean)
+            #     moduleBn.running_var = torch.from_numpy(new_bn_var)
+            #     # assert index1 > index, "index<= index"
             index += index1 - index
             break
 
