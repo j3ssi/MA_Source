@@ -479,12 +479,14 @@ class N2N(nn.Module):
                 indexConv = index + 1
                 while module1 == None:
                     print(f'indexConv: {indexConv}')
+                    print(f'modulelist[indexConv]: {self.module_list[indexConv]}')
                     if isinstance(self.module_list[indexConv], nn.BatchNorm2d):
                         moduleBn = self.module_list[indexConv]
                         print(f' moduleBn: {moduleBn}')
                     elif isinstance(self.module_list[indexConv], nn.Conv2d):
                         module1 = self.module_list[indexConv]
                         print(f'module1: {module1}; indexConv: {indexConv}; index: {index}')
+                        break
                     assert indexConv< len(self.module_list), "Falscher Index in wider"
                     indexConv += 1
             elif isinstance(self.module_list[index], nn.Sequential):
