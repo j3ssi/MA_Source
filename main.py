@@ -765,7 +765,7 @@ def plot_grad_flow(named_parameters,epoche):
     plt.ylabel("average gradient")
     plt.title("Gradient flow")
     plt.grid(True)
-    fileName = 'gradflow' + epoche '.png'
+    fileName = 'gradflow' + epoche + '.png'
     plt.savefig(fileName)
 
 
