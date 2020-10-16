@@ -648,7 +648,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         #         scaled_loss.backward()
         # else:
         loss.backward()
-        plot_grad_flow(model.named_parameters())
+        plot_grad_flow(model.named_parameters(), epoch)
         # print(f'After backward')
         optimizer.step()
 
@@ -750,7 +750,7 @@ def adjust_learning_rate(optimizer, epoch, change_lr):
     return lr
 
 
-def plot_grad_flow(named_parameters):
+def plot_grad_flow(named_parameters,epoche):
     ave_grads = []
     layers = []
     for n, p in named_parameters:
@@ -765,7 +765,7 @@ def plot_grad_flow(named_parameters):
     plt.ylabel("average gradient")
     plt.title("Gradient flow")
     plt.grid(True)
-    fileName = 'gradflow.png'
+    fileName = 'gradflow' + epoche '.png'
     plt.savefig(fileName)
 
 
