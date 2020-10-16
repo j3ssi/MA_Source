@@ -590,7 +590,7 @@ class N2N(nn.Module):
                     self.module_list
             else:
                 index += 1
-            if module1 == None:
+            # if module1 == None:
 
             assert module != None or module1 != None, "Probleme mit der Auswahl des nächsten Elements für wider"
             print(f'new width: {delta_width * module.weight.size(0) - module.weight.size(0)}')
