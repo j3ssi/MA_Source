@@ -467,6 +467,12 @@ class N2N(nn.Module):
               addNoise=True):  # teacher_w1, teacher_b1, teacher_w2, new_width, verification):
         index = 0
         index1 = 0
+        i1 = 0
+        i11 = None
+        iBn1 = 0
+        iBn11 = None
+        i2 = 0
+        i21 = None
         seqIndex = 0
         printDeep = False
         while index < len(self.module_list):
@@ -477,6 +483,8 @@ class N2N(nn.Module):
             module1 = None
             if isinstance(self.module_list[index], nn.Conv2d):
                 module = self.module_list[index]
+                i1 = index
+
                 if printDeep:
                     print(f'Module= {module}; index: {index}')
                 indexConv = index + 1
@@ -486,16 +494,20 @@ class N2N(nn.Module):
                         print(f'modulelist[indexConv]: {self.module_list[indexConv]}')
                     if isinstance(self.module_list[indexConv], nn.BatchNorm2d):
                         moduleBn = self.module_list[indexConv]
+                        iBn1 = indexConv
                         if printDeep:
                             print(f' moduleBn: {moduleBn}')
                     elif isinstance(self.module_list[indexConv], nn.Conv2d):
                         module1 = self.module_list[indexConv]
+                        i2 = indexConv
                         if printDeep:
                             print(f'module1: {module1}; indexConv: {indexConv}; index: {index}')
                         break
                     elif isinstance(self.module_list[indexConv], nn.Sequential):
                         moduleX = self.module_list[indexConv]
                         module1 = moduleX[0]
+                        i2 = indexConv
+                        i21 = 0
                     assert indexConv< len(self.module_list), "Falscher Index in wider"
                     indexConv += 1
             elif isinstance(self.module_list[index], nn.Sequential):
