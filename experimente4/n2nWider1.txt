@@ -64131,3 +64131,61 @@ Epoch: [47][192/196]	Time 2.753 (2.105)	Data 0.000 (0.012)	Loss 0.9234 (0.7886)	
 1
 Epoche: [48/50]; Lr: 0.1
 batch Size 256
+Epoch: [48][0/196]	Time 2.768 (2.768)	Data 1.123 (1.123)	Loss 0.8359 (0.8359)	Acc@1 70.703 (70.703)	Acc@5 98.828 (98.828)
+Epoch: [48][64/196]	Time 4.071 (3.370)	Data 0.000 (0.022)	Loss 0.8814 (0.7954)	Acc@1 67.578 (71.839)	Acc@5 97.656 (98.203)
+Epoch: [48][128/196]	Time 4.323 (3.872)	Data 0.005 (0.015)	Loss 0.8466 (0.7947)	Acc@1 71.484 (72.005)	Acc@5 97.656 (98.138)
+Epoch: [48][192/196]	Time 5.133 (4.178)	Data 0.000 (0.012)	Loss 0.7854 (0.7902)	Acc@1 70.312 (72.177)	Acc@5 97.266 (98.081)
+1
+Epoche: [49/50]; Lr: 0.1
+batch Size 256
+Epoch: [49][0/196]	Time 5.286 (5.286)	Data 1.521 (1.521)	Loss 0.7900 (0.7900)	Acc@1 71.484 (71.484)	Acc@5 97.656 (97.656)
+Epoch: [49][64/196]	Time 5.611 (5.120)	Data 0.025 (0.029)	Loss 0.8354 (0.7925)	Acc@1 69.141 (72.121)	Acc@5 98.438 (98.077)
+Epoch: [49][128/196]	Time 5.040 (5.303)	Data 0.000 (0.018)	Loss 0.7825 (0.7911)	Acc@1 75.781 (72.281)	Acc@5 97.656 (98.086)
+Epoch: [49][192/196]	Time 6.940 (5.260)	Data 0.000 (0.014)	Loss 0.8244 (0.7934)	Acc@1 74.609 (72.075)	Acc@5 97.656 (98.065)
+1
+Epoche: [50/50]; Lr: 0.1
+batch Size 256
+Epoch: [50][0/196]	Time 5.354 (5.354)	Data 1.191 (1.191)	Loss 0.7094 (0.7094)	Acc@1 76.172 (76.172)	Acc@5 97.656 (97.656)
+Traceback (most recent call last):
+  File "main.py", line 887, in <module>
+    main()
+  File "main.py", line 361, in main
+    optimizer, epoch, use_cuda)
+  File "main.py", line 651, in train
+    plot_grad_flow(model.named_parameters(), epoch)
+  File "main.py", line 769, in plot_grad_flow
+    plt.savefig(fileName)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/matplotlib/pyplot.py", line 723, in savefig
+    res = fig.savefig(*args, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/matplotlib/figure.py", line 2203, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/matplotlib/backend_bases.py", line 2056, in print_figure
+    cbook._setattr_cm(self.figure, dpi=dpi):
+  File "/usr/lib/python3.6/contextlib.py", line 81, in __enter__
+    return next(self.gen)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/matplotlib/cbook/__init__.py", line 1964, in _setattr_cm
+    setattr(obj, attr, val)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/matplotlib/figure.py", line 476, in _set_dpi
+    self.dpi_scale_trans.clear().scale(dpi)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/matplotlib/transforms.py", line 1921, in clear
+    self.invalidate()
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/matplotlib/transforms.py", line 134, in invalidate
+    return self._invalidate_internal(value, invalidating_node=self)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/matplotlib/transforms.py", line 161, in _invalidate_internal
+    value=value, invalidating_node=self)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/matplotlib/transforms.py", line 161, in _invalidate_internal
+    value=value, invalidating_node=self)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/matplotlib/transforms.py", line 161, in _invalidate_internal
+    value=value, invalidating_node=self)
+  [Previous line repeated 2 more times]
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/matplotlib/transforms.py", line 2333, in _invalidate_internal
+    invalidating_node=invalidating_node)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/matplotlib/transforms.py", line 161, in _invalidate_internal
+    value=value, invalidating_node=self)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/matplotlib/transforms.py", line 2333, in _invalidate_internal
+    invalidating_node=invalidating_node)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/matplotlib/transforms.py", line 161, in _invalidate_internal
+    value=value, invalidating_node=self)
+  File "/home/jessica.buehler/venv/lib/python3.6/site-packages/matplotlib/transforms.py", line 160, in _invalidate_internal
+    parent._invalidate_internal(
+KeyboardInterrupt
