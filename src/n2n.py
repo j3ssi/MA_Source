@@ -1298,6 +1298,7 @@ class N2N(nn.Module):
                             norm = weight1.select(0, l).norm()
                             weight1.div_(norm)
                             m.weight.data = weight1
+                        module[3 * pos - 3] = m
                         # conv.weight.data = weight
                         seq.append(conv)
                         # print(f'GRAD: c{conv.}')
