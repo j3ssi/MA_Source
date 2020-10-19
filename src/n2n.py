@@ -1234,7 +1234,7 @@ class N2N(nn.Module):
         # make each block with plus two layers (conv +batch) deeper
         blockComp = False
 
-        for i in range(len(self.module_list)):
+        for i in range( len( self.module_list ) ):
             if i > 4 and blockComp and isinstance(self.module_list[i], nn.Sequential):
                 print(f'skip: {i}')
                 # newModule_list.append(self.module_list[i])
@@ -1273,7 +1273,7 @@ class N2N(nn.Module):
                         conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
                         n = conv.kernel_size[0] * conv.kernel_size[1] * conv.out_channels
 
-                        nn.init.normal_( conv.weight, mean = 0, std = math.sqrt( 1. / ( n ) ) )
+                        nn.init.normal_( conv.weight, mean = 0, std = math.sqrt( 0.5 / ( n ) ) )
                         m = module[ 3 * pos - 3 ]
                         weight = conv.weight.data
                         weight[ :, :, 1, 1 ] = 1
