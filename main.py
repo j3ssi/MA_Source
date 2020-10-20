@@ -330,7 +330,7 @@ def main():
         args.batch_size = batch_size
     elif args.batchTrue:
         batch_size = args.batch_size
-    batch_size = 10 # int(batch_size)
+    batch_size = 50 # int(batch_size)
     # args.lr *= (batch_size / 256)
 
     if not args.resume:
