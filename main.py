@@ -330,7 +330,7 @@ def main():
         args.batch_size = batch_size
     elif args.batchTrue:
         batch_size = args.batch_size
-    batch_size = 50 # int(batch_size)
+    batch_size = int(batch_size)
     # args.lr *= (batch_size / 256)
 
     if not args.resume:
@@ -447,6 +447,7 @@ def main():
         print("\n\nnow deeper1")
         # deeper student training
         model.deeper(pos=1)
+        batch_size = 512
         print(f'archNums: {model.archNums}')
         print(f'num: {num_classes}; numofstages: {args.numOfStages}, listofBlocks: {listofBlocks}, layers in blocj: {args.layersInBlock}')
         # model.newModuleList(num_classes)
