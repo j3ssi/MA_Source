@@ -337,7 +337,7 @@ def main():
         start_batchSize = batch_size
 
     trainloader = data.DataLoader(trainset, batch_size=batch_size, pin_memory=True,
-                                  shuffle=True, num_workers=args.workers)
+                                  shuffle=False, num_workers=args.workers)
     #    optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
     #                     weight_decay=args.weight_decay)
 
@@ -669,6 +669,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                   'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
                 epoch, batch_idx, len(trainloader), batch_time=batch_time,
                 data_time=data_time, loss=losses, top1=top1, top5=top5))
+
 
         break
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
