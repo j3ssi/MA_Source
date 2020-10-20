@@ -330,7 +330,7 @@ def main():
         args.batch_size = batch_size
     elif args.batchTrue:
         batch_size = args.batch_size
-    batch_size = int(batch_size)
+    batch_size = 10 # int(batch_size)
     # args.lr *= (batch_size / 256)
 
     if not args.resume:
@@ -457,7 +457,7 @@ def main():
         # optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
         #                 weight_decay=args.weight_decay)
 
-        optimizer = optim.SGD(model.parameters(), lr=0.4, momentum=args.momentum, weight_decay=args.weight_decay)
+        optimizer = optim.SGD(model.parameters(), lr=0.1, momentum=args.momentum, weight_decay=args.weight_decay)
         # scheduler = StepLR(optimizer, step_size=30, gamma=0.95)
         # print(model)
 
@@ -668,6 +668,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                   'Acc@5 {top5.val:.3f} ({top5.avg:.3f})'.format(
                 epoch, batch_idx, len(trainloader), batch_time=batch_time,
                 data_time=data_time, loss=losses, top1=top1, top5=top5))
+
+        break
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
     return losses.avg, top1.avg, epoch_time
 
