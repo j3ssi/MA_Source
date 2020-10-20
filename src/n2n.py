@@ -1259,8 +1259,8 @@ class N2N(nn.Module):
                         bn = nn.BatchNorm2d(module[0].out_channels)
                         torch.nn.init.ones_(bn.weight)
                         torch.nn.init.zeros_(bn.bias)
-                        bn.running_mean.fill_(0)
-                        bn.running_var.fill_(1)
+                        # bn.running_mean.fill_(0)
+                        # bn.running_var.fill_(1)
                         seq.append(bn)
                         # print(f'neues bn: {bn}; j: {j}')
                     if j == 3 * pos - 1:
@@ -1273,12 +1273,12 @@ class N2N(nn.Module):
                         conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
                         n = conv.kernel_size[0] * conv.kernel_size[1] * conv.out_channels
 
-                        nn.init.normal_( conv.weight, mean = 0, std = math.sqrt( 0.5 / ( n ) ) )
-                        m = module[ 3 * pos - 3 ]
-                        weight = conv.weight.data
-                        weight[ :, :, 1, 1 ] = 1
-                        conv.weight.data = weight
-                        print(f'neues conv: {conv}; j: {j}')
+                        nn.init.normal_( conv.weight, mean = 0, std = math.sqrt( 2. / ( n ) ) )
+                        # m = module[ 3 * pos - 3 ]
+                        # weight = conv.weight.data
+                        # weight[ :, :, 1, 1 ] = 1
+                        # conv.weight.data = weight
+                        # print(f'neues conv: {conv}; j: {j}')
                         # weight[:, :, 1, 1] = 1
                         # print(f'weight.size(): {weight.size()}')
                         # with torch.no_grad():
@@ -1295,12 +1295,12 @@ class N2N(nn.Module):
                         #
                         # torch.from_numpy(deeper_w)
 
-                        for l in range(m.out_channels):
-                            weight1 = m.weight.data
-                            norm = weight1.select(0, l).norm()
-                            weight1.div_(norm)
-                            m.weight.data = weight1
-                        module[3 * pos - 3] = m
+                        # for l in range(m.out_channels):
+                        #     weight1 = m.weight.data
+                        #     norm = weight1.select(0, l).norm()
+                        #     weight1.div_(norm)
+                        #     m.weight.data = weight1
+                        # module[3 * pos - 3] = m
                         # conv.weight.data = weight
                         seq.append(conv)
                         # print(f'GRAD: c{conv.}')
@@ -1308,10 +1308,23 @@ class N2N(nn.Module):
                     elif j > 3 * pos:
                         # print(f'module: {module[j - 2]}; j= {j + 2}')
                         # print(f'altes layer: {module[j - 3]}; j: {j}')
+                        if isinstance(module[ j - 3 ], nn.Conv2d):
+                            n = module[ j - 3 ].kernel_size[0] * module[ j - 3 ].kernel_size[1] * module[ j - 3 ].out_channels
+                            nn.init.normal_(module[ j - 3 ].weight, mean=0, std=math.sqrt(2. / (n)))
+                        elif isinstance(module[ j - 3 ], nn.BatchNorm2d):
+                            torch.nn.init.ones_( module[ j - 3 ] )
+                            torch.nn.init.zeros_( module[ j - 3 ] )
 
                         seq.append(module[j - 3])
                     elif j < 3 * pos - 2:
                         # prin   t(f'module: {module[j]}; j= {j}')
+                        if isinstance(module[j], nn.Conv2d):
+                            n = conv.kernel_size[0] * conv.kernel_size[1] * conv.out_channels
+                            nn.init.normal_(conv.weight, mean=0, std=math.sqrt(2. / (n)))
+                        elif isinstance(module[j], nn.BatchNorm2d):
+                            torch.nn.init.ones_(module[j])
+                            torch.nn.init.zeros_(module[j])
+
                         seq.append(module[j])
 
                         # print(f'altes layer: {module[j]}; j: {j}')
