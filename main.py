@@ -294,7 +294,7 @@ def main():
         model.cuda()
         criterion = nn.CrossEntropyLoss()
         start_epoch = 1
-        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum) #, weight_decay=args.weight_decay)
 
     print(f'Startepoche: {start_epoch}')
     print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
@@ -400,8 +400,8 @@ def main():
                 if not args.lars:
                     optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
                 else:
-                    optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
-                                     weight_decay=args.weight_decay)
+                    optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum) #,
+                                     # weight_decay=args.weight_decay)
 
             if args.visual:
                 visualizePruneTrain(model, epoch, args.threshold)
@@ -458,7 +458,7 @@ def main():
         # optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
         #                 weight_decay=args.weight_decay)
 
-        optimizer = optim.SGD(model.parameters(), lr=0.1, momentum=args.momentum, weight_decay=args.weight_decay)
+        optimizer = optim.SGD(model.parameters(), lr=0.1, momentum=args.momentum ) #, weight_decay=args.weight_decay)
         # scheduler = StepLR(optimizer, step_size=30, gamma=0.95)
         # print(model)
 
@@ -670,8 +670,6 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 epoch, batch_idx, len(trainloader), batch_time=batch_time,
                 data_time=data_time, loss=losses, top1=top1, top5=top5))
 
-
-        break
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
     return losses.avg, top1.avg, epoch_time
 
