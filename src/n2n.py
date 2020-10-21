@@ -1320,7 +1320,7 @@ class N2N(nn.Module):
                         # prin   t(f'module: {module[j]}; j= {j}')
                         if isinstance(module[j], nn.Conv2d):
                             n = module[j].kernel_size[0] * module[j].kernel_size[1] * module[j].out_channels
-                            nn.init.normal_(conv.weight, mean=0, std=math.sqrt(2. / (n)))
+                            nn.init.normal_(module[j].weight, mean=0, std=math.sqrt(2. / (n)))
                         elif isinstance(module[j], nn.BatchNorm2d):
                             torch.nn.init.ones_(module[j])
                             torch.nn.init.zeros_(module[j])
