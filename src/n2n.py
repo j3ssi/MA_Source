@@ -1264,7 +1264,7 @@ class N2N(nn.Module):
                         seq.append(bn)
                         # print(f'neues bn: {bn}; j: {j}')
                     if j == 3 * pos - 1:
-                        self.relu
+                        seq.append(self.relu)
                     if j == 3 * pos:
                         # continue
                         kernel_size = module[0].kernel_size
