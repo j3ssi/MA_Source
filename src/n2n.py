@@ -55,7 +55,7 @@ class N2N(nn.Module):
                 print("\nArch Num: ", self.archNums)
 
             self.module_list = nn.ModuleList()
-            self.relu = nn.LeakyReLU(negative_slope=0.01, inplace=True)
+            self.relu = nn.ReLU(inplace=True)
 
             # first Layer
             # conv1
@@ -254,7 +254,7 @@ class N2N(nn.Module):
                         if printName:
                             print("\n>new Layer: ", layer)
                         layer.append(layer1)
-                    elif isinstance(module[j], nn.LeakyReLU):
+                    elif isinstance(module[j], nn.ReLU):
                         layer.append(self.relu)
                 self.module_list.append(nn.Sequential(*layer))
                 if printName:
@@ -271,7 +271,7 @@ class N2N(nn.Module):
                 fc.weight.data = module.weight.data
                 fc.bias.data = module.bias.data
                 self.module_list.append(fc)
-            elif isinstance(module_list[i], nn.LeakyReLU):
+            elif isinstance(module_list[i], nn.ReLU):
                 self.module_list.append(self.relu)
         if printName:
             print(f' Modell: {self}')
