@@ -1264,7 +1264,7 @@ class N2N(nn.Module):
                         seq.append(bn)
                         # print(f'neues bn: {bn}; j: {j}')
                     if j == 3 * pos - 1:
-                        seq.append(self.relu)
+                        self.relu
                     if j == 3 * pos:
                         # continue
                         kernel_size = module[0].kernel_size
@@ -1312,8 +1312,8 @@ class N2N(nn.Module):
                             n = module[ j - 3 ].kernel_size[0] * module[ j - 3 ].kernel_size[1] * module[ j - 3 ].out_channels
                             nn.init.normal_(module[ j - 3 ].weight, mean=0, std=math.sqrt(2. / (n)))
                         elif isinstance(module[ j - 3 ], nn.BatchNorm2d):
-                            torch.nn.init.ones_( module[ j - 3 ] )
-                            torch.nn.init.zeros_( module[ j - 3 ] )
+                            torch.nn.init.ones_( module[ j - 3 ].weight )
+                            torch.nn.init.zeros_( module[ j - 3 ].bias )
 
                         seq.append(module[j - 3])
                     elif j < 3 * pos - 2:
