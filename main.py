@@ -67,12 +67,11 @@ parser.add_argument('--O2', default=False, action='store_true',
                     help='Use half precision apex methods O2')
 parser.add_argument('--O3', default=False, action='store_true',
                     help='Use half precision apex methods O3')
-
 # model size
 parser.add_argument('-s', '--numOfStages', default=3, type=int, help='defines the number of stages in the network')
 # parser.add_argument('-n', '--numOfBlocksinStage', type=int, default=5, help='defines the number of Blocks per Stage')
 parser.add_argument('-l', '--layersInBlock', type=int, default=3, help='defines the number of')
-parser.add_argument('-n', type=str, help="#stage numbers separated by commas")
+parser.add_argument('-n', type=str, help="#blocks per stag numbers separated by commas")
 parser.add_argument('-b', '--bottleneck', default=False, action='store_true',
                     help='Set the bootleneck parameter')
 parser.add_argument('-w', '--widthofFirstLayer', default=16, type=int,
@@ -83,7 +82,6 @@ parser.add_argument('--epochs', default=8, type=int, metavar='N',
                     help='number of total epochs to run')
 parser.add_argument('-r', '--reset', default=False, action='store_true',
                     help='Last Epoch')
-
 parser.add_argument('--start-epoch', default=1, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
 parser.add_argument('--epochsFromBegin', default=1, type=int, metavar='N',
@@ -92,7 +90,6 @@ parser.add_argument('--lastEpoch', default=False, action='store_true',
                     help='Last Epoch')
 parser.add_argument('--test', default=False, action='store_true',
                     help='Should the Test run?')
-
 # folder stuff
 parser.add_argument('--pathToModell', type=str, help='Path to the location where the model will be stored')
 parser.add_argument('-c', '--checkpoint', default='checkpoint', type=str, metavar='PATH',
@@ -197,6 +194,10 @@ listOfWidths = []
 if args.widthOfAllLayers is not None:
     listOfWidths = [int(i) for i in args.widthOfAllLayers.split(',')]
     print(listOfWidths)
+
+print(f'Pytorch Training main.py; workers: {args.j}; numOfStages: {args.numOfStages}; layerinBlock: {args.layersInBlock}; Number of Blocks per Stage: {}'
+      f'widthofFirstLayer: {args.widthofFirstLayer}; Epochen: {args.epochs}; reset: {args.reset}; start epoche: {args.start-epoch}; test: {args.test} '
+      f'pathtoModell: {args.pathToModell}; checkpoint: {args.checkpoint}; saveModell: {args.saveModell}; LR: {args.lr}')
 
 
 def main():
