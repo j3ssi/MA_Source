@@ -195,7 +195,7 @@ if args.widthOfAllLayers is not None:
     listOfWidths = [int(i) for i in args.widthOfAllLayers.split(',')]
     print(listOfWidths)
 
-print(f'Pytorch Training main.py; workers: {args.j}; numOfStages: {args.numOfStages}; layerinBlock: {args.layersInBlock};'
+print(f'Pytorch Training main.py; workers: {args.workers}; numOfStages: {args.numOfStages}; layerinBlock: {args.layersInBlock};'
       f'widthofFirstLayer: {args.widthofFirstLayer}; Epochen: {args.epochs}; reset: {args.reset}; start epoche: {args.start-epoch}; test: {args.test} '
       f'pathtoModell: {args.pathToModell}; checkpoint: {args.checkpoint}; saveModell: {args.saveModell}; LR: {args.lr}')
 
