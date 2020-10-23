@@ -82,7 +82,7 @@ parser.add_argument('--epochs', default=8, type=int, metavar='N',
                     help='number of total epochs to run')
 parser.add_argument('-r', '--reset', default=False, action='store_true',
                     help='Last Epoch')
-parser.add_argument('--start-epoch', default=1, type=int, metavar='N',
+parser.add_argument('--start_epoch', default=1, type=int, metavar='N',
                     help='manual epoch number (useful on restarts)')
 parser.add_argument('--epochsFromBegin', default=1, type=int, metavar='N',
                     help='number of Epochs from begin (default: 0)')
@@ -196,7 +196,7 @@ if args.widthOfAllLayers is not None:
     print(listOfWidths)
 
 print(f'Pytorch Training main.py; workers: {args.workers}; numOfStages: {args.numOfStages}; layerinBlock: {args.layersInBlock};'
-      f'widthofFirstLayer: {args.widthofFirstLayer}; Epochen: {args.epochs}; reset: {args.reset}; start epoche: {args.start-epoch}; test: {args.test} '
+      f'widthofFirstLayer: {args.widthofFirstLayer}; Epochen: {args.epochs}; reset: {args.reset}; start epoche: {args.start_epoch}; test: {args.test} '
       f'pathtoModell: {args.pathToModell}; checkpoint: {args.checkpoint}; saveModell: {args.saveModell}; LR: {args.lr}')
 
 
