@@ -256,7 +256,7 @@ def main():
     if args.resume:
         model = torch.load(args.pathToModell)
         model.cuda()
-        print(f'Model: {model}')
+        # print(f'Model: {model}')
         criterion = nn.CrossEntropyLoss()
         # Load checkpoint.
         print('==> Resuming from checkpoint..')
@@ -298,7 +298,7 @@ def main():
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum) #, weight_decay=args.weight_decay)
 
     print(f'Startepoche: {start_epoch}')
-    print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
+    # print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
 
     if args.evaluate:
         print('\nEvaluation only')
@@ -338,7 +338,7 @@ def main():
         start_batchSize = batch_size
 
     trainloader = data.DataLoader(trainset, batch_size=batch_size, pin_memory=True,
-                                  shuffle=False, num_workers=args.workers)
+                                  shuffle=True, num_workers=args.workers)
     #    optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
     #                     weight_decay=args.weight_decay)
 
@@ -654,7 +654,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         #         scaled_loss.backward()
         # else:
         loss.backward()
-        plot_grad_flow(model.named_parameters(), epoch)
+        # plot_grad_flow(model.named_parameters(), epoch)
         # print(f'After backward')
         optimizer.step()
 
@@ -725,35 +725,31 @@ def test(testloader, model, criterion, epoch, use_cuda):
 
 
 def adjust_learning_rate(optimizer, epoch, change_lr):
-    lr = 0
-    if change_lr:
-        if args.schedule_exp == 0:
-            print(f'1')
-            # Step-wise LR decay
-            lr = optimizer.param_groups[0]["lr"]
-            for lr_decay in args.schedule:
-                if epoch == lr_decay:
-                    lr *= args.gamma
-        else:
-            print(f'2')
-            # Exponential LR decay
-            lr = optimizer.param_groups[0]["lr"]
-            exp = int((epoch - 1) / args.schedule_exp)
-            lr *= (args.gamma ** exp)
-    else:
-        if args.schedule_exp == 0:
-            print(f'3')
-            # Step-wise LR decay
-            lr = optimizer.param_groups[0]["lr"]
-            for lr_decay in args.schedule:
-                if epoch >= lr_decay:
-                    lr *= args.gamma
-        else:
-            print(f'4')
-            # Exponential LR decay
-            lr = optimizer.param_groups[0]["lr"]
-            exp = int((epoch - 1) / args.schedule_exp)
-            lr *= (args.gamma ** exp)
+    # Step-wise LR decay
+    lr = optimizer.param_groups[0]["lr"]
+    for lr_decay in args.schedule:
+        if epoch == lr_decay:
+            lr *= args.gamma
+    #     else:
+    #         print(f'2')
+    #         # Exponential LR decay
+    #         lr = optimizer.param_groups[0]["lr"]
+    #         exp = int((epoch - 1) / args.schedule_exp)
+    #         lr *= (args.gamma ** exp)
+    # else:
+    #     if args.schedule_exp == 0:
+    #         print(f'3')
+    #         # Step-wise LR decay
+    #         lr = optimizer.param_groups[0]["lr"]
+    #         for lr_decay in args.schedule:
+    #             if epoch >= lr_decay:
+    #                 lr *= args.gamma
+    #     else:
+    #         print(f'4')
+    #         # Exponential LR decay
+    #         lr = optimizer.param_groups[0]["lr"]
+    #         exp = int((epoch - 1) / args.schedule_exp)
+    #         lr *= (args.gamma ** exp)
     return lr
 
 
