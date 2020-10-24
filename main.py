@@ -506,6 +506,9 @@ def main():
     print("[INFO] Storing checkpoint...")
     if args.reset:
         print(f'Reset! ')
+        start_epoch = 1
+        args.epochs = 0
+
         save_checkpoint({
             'epoch': args.epochs + start_epoch,
             'lr': optimizer.param_groups[0]["lr"],
@@ -514,8 +517,6 @@ def main():
             'scheduler': scheduler},
             checkpoint=args.checkpoint)
 
-        start_epoch = 1
-        args.epochs = 0
     if args.dB:
         save_checkpoint({
             'epoch': start_epoch + args.epochs,
