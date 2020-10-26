@@ -87,7 +87,7 @@ class N2N(nn.Module):
                                              bias=False,
                                              stride=2)
                         if printInit:
-                            print(f'{conv}; i={i}')
+                            print(f'{conv}; i={i}; if 1')
                         layer.append(conv)
                         bn = nn.BatchNorm2d(sizeOfLayer)
                         if printInit:
@@ -102,7 +102,7 @@ class N2N(nn.Module):
                                          bias=False,
                                          stride=2)
                         if printInit:
-                            print(f'{conv}; i: {i}')
+                            print(f'{conv}; i: {i} if 2')
                         layer2.append(conv)
                         bn = nn.BatchNorm2d(sizeOfLayer)
                         if printInit:
@@ -112,11 +112,11 @@ class N2N(nn.Module):
                         # if printInit:
                         #    print(f'Relu; i: {i}')
                         i = i + 1
-                    elif (i + 1) % self.archNums[stage][block] == 0:
+                    elif block == 0 and stage > 0 and (i + 2) % self.archNums[stage][block] == 0:
                         conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
                                          stride=1)
                         if printInit:
-                            print(f'{conv}; i: {i}')
+                            print(f'{conv}; i: {i} if 3')
                         layer.append(conv)
                         bn = nn.BatchNorm2d(sizeOfLayer)
                         if printInit:
@@ -131,7 +131,7 @@ class N2N(nn.Module):
                         conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
                                          stride=1)
                         if printInit:
-                            print(f'{conv}; i: {i}')
+                            print(f'{conv}; i: {i} if 4')
                         layer.append(conv)
                         bn = nn.BatchNorm2d(sizeOfLayer)
                         if printInit:
