@@ -17,7 +17,7 @@ class N2N(nn.Module):
         self.numOfBlocksinStage = numOfBlocksinStage
         self.layersInBlock = layersInBlock
 
-        printInit = False
+        printInit = True
         if widthOfLayers is not None:
             self.widthofFirstLayer = widthOfLayers[0]
             self.widthofLayers = widthOfLayers
