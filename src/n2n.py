@@ -109,8 +109,8 @@ class N2N(nn.Module):
                             print(f'{bn}; i: {i}')
                         layer2.append(bn)
                         # layer2.append(self.relu)
-                        if printInit:
-                            print(f'Relu; i: {i}')
+                        # if printInit:
+                        #    print(f'Relu; i: {i}')
                         i = i + 1
                     elif (i + 1) % self.archNums[stage][block] == 0:
                         conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
@@ -123,8 +123,8 @@ class N2N(nn.Module):
                             print(f'{bn}; i: {i}')
                         layer.append(bn)
                         # layer.append(self.relu)
-                        if printInit:
-                            print(f'relu; i: {i}')
+                        # if printInit:
+                        #    print(f'relu; i: {i}')
                         i = i + 1
 
                     else:
@@ -188,9 +188,9 @@ class N2N(nn.Module):
                         # nn.init.ones_(seq.weight)
                         # nn.init.zeros_(seq.bias)
 
-        if printInit:
-            print(f'Modell Erstellung')
-            print(self)
+        # if printInit:
+        print(f'Modell Erstellung')
+        print(self)
 
     def newModuleList(self, num_classes):
         # self.sameNode, self.oddLayers = buildShareSameNodeLayers(self.module_list, self.numOfStages, self.archNums)
