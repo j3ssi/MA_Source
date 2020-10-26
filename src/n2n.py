@@ -98,7 +98,7 @@ class N2N(nn.Module):
                             print(f'relu: {i}')
                         i = i + 1
                     elif block == 0 and stage > 0 and (i + 1) % self.archNums[stage][block] == 0:
-                        conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
+                        conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=1, padding=1,
                                          bias=False,
                                          stride=2)
                         if printInit:
