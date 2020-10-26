@@ -126,6 +126,20 @@ class N2N(nn.Module):
                         # if printInit:
                         #    print(f'relu; i: {i}')
                         i = i + 1
+                    elif (i + 1) % self.archNums[stage][block] == 0:
+                        conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
+                                         stride=1)
+                        if printInit:
+                            print(f'{conv}; i: {i} if 3')
+                        layer.append(conv)
+                        bn = nn.BatchNorm2d(sizeOfLayer)
+                        if printInit:
+                            print(f'{bn}; i: {i}')
+                        layer.append(bn)
+                        # layer.append(self.relu)
+                        # if printInit:
+                        #    print(f'relu; i: {i}')
+                        i = i + 1
 
                     else:
                         conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
