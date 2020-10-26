@@ -154,7 +154,7 @@ parser.add_argument('--n2n', default=False, action='store_true',
                     help='Use net2net functionality')
 parser.add_argument('--wider', default=False, action='store_true',
                     help='Make network wider')
-parser.add_argument('--deeper', default=False, action='store_true',
+parser.add_argument('--deeper', default=5, type =int,
                     help='Make network deeper')
 parser.add_argument('--deeper2', default=False, action='store_true',
                     help='Make network deeper')
