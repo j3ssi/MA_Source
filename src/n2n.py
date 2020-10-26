@@ -290,7 +290,8 @@ class N2N(nn.Module):
         if printName:
             print(f' Modell: {self}')
 
-    def forward(self, x, printNet):
+    def forward(self, x):
+        printNet = False
         if printNet:
             print(f'ArchNums: {self.archNums}')
         # First layer

@@ -1,19 +1,3 @@
-"""
- Copyright 2019 Sangkug Lym
- Copyright 2019 The University of Texas at Austin
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
-"""
 import copy
 import os
 import argparse
@@ -118,7 +102,7 @@ parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
                     metavar='LR', help='initial learning rate')
 parser.add_argument('-dlr', '--delta_learning_rate', default=False, action='store_true',
                     help='No change in learning rate')
-parser.add_argument('--schedule', type=int, nargs='+', default=[93, 150],
+parser.add_argument('--schedule', type=int, nargs='+', default=[50, 150],
                     help='Decrease learning rate at these epochs.')
 parser.add_argument('--gamma', type=float, default=0.1, help='LR is multiplied by gamma on schedule.')
 parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
@@ -270,11 +254,11 @@ def main():
         print(f'Start epoch: {start_epoch}')
         optimizer = checkpoint['optimizer']
         print(f'First Lr: {optimizer.param_groups[0]["lr"]}')
-        if args.scheduler:
-            if checkpoint['optimizer'] is not None:
-                scheduler = checkpoint['scheduler']
-            else:
-                scheduler = StepLR(optimizer, step_size=30, gamma=0.95)        # start_batchSize = checkpoint['start_batchSize']
+        # if args.scheduler:
+        #     if checkpoint['optimizer'] is not None:
+        #         scheduler = checkpoint['scheduler']
+        #     else:
+        #         scheduler = StepLR(optimizer, step_size=30, gamma=0.95)        # start_batchSize = checkpoint['start_batchSize']
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
     else:
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
@@ -594,7 +578,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         with torch.no_grad():
             inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
-        outputs = model(inputs, False)
+        outputs = model(inputs)
         loss = criterion(outputs, targets)
         # if batch_idx == 0 and (epoch == 10):
         #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
@@ -707,7 +691,7 @@ def test(testloader, model, criterion, epoch, use_cuda):
         # compute output
         # print(f'Test vor dem Forward')
 
-        outputs = model(inputs, False)
+        outputs = model(inputs)
         loss = criterion(outputs, targets)
         # print(f'Test nachdem loss')
         # measure accuracy and record loss
@@ -730,6 +714,8 @@ def adjust_learning_rate(optimizer, epoch, change_lr):
     for lr_decay in args.schedule:
         if epoch == lr_decay:
             lr *= args.gamma
+    state['lr'] =lr
+    args.lr = lr
     #     else:
     #         print(f'2')
     #         # Exponential LR decay
