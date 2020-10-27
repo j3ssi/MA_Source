@@ -440,10 +440,10 @@ def main():
                 print(f'model.para: {model.named_parameters()}')
                 # optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
                 #                 weight_decay=args.weight_decay)
-                state['lr'] = 0.001
-                args.lr = 0.001
+                # state['lr'] = 0.001
+                #args.lr = 0.001
 
-                optimizer = optim.SGD(model.parameters(), lr=0.001,
+                optimizer = optim.SGD(model.parameters(), lr=args.lr,
                                       momentum=args.momentum)  # , weight_decay=args.weight_decay)
 
                 # scheduler = StepLR(optimizer, step_size=30, gamma=0.95)
