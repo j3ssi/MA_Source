@@ -489,7 +489,7 @@ class N2N(nn.Module):
         i2 = 0
         i21 = None
         seqIndex = 0
-        printDeep = True
+        printDeep = False
         while index < len(self.module_list):
             i = index
             if printDeep:
@@ -545,7 +545,8 @@ class N2N(nn.Module):
                 #     self.module_list
             else:
                 index += 1
-            # print(f'Module: {module}; moduleBn: {moduleBn}; module1: {module1}')
+            index +=1
+            print(f'Module: {module}; moduleBn: {moduleBn}; module1: {module1}')
             # # if module1 == None:
             #
             # # assert module is not None or module1 is not None, "Probleme mit der Auswahl des nächsten Elements für wider"
