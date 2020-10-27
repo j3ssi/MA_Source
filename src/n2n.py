@@ -1303,7 +1303,7 @@ class N2N(nn.Module):
                                         norm = weight1.select(0, l).norm()
                                         weight1.div_(norm)
                                         m.weight.data = weight1
-                                        module[ k - i ] = m
+                                    module[ j - k ] = m
                                     lastConv = True
                                 else:
                                     k += 1
