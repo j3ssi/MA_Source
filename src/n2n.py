@@ -1286,59 +1286,46 @@ class N2N(nn.Module):
                         stride = 1
                         padding = 1
                         conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
-                        n = conv.kernel_size[0] * conv.kernel_size[1] * conv.out_channels
+                        # n = conv.kernel_size[0] * conv.kernel_size[1] * conv.out_channels
 
-                        nn.init.normal_( conv.weight, mean = 0, std = math.sqrt( 2. / ( n ) ) )
-                        # m = module[ 3 * pos - 3 ]
-                        # weight = conv.weight.data
-                        # weight[ :, :, 1, 1 ] = 1
-                        # conv.weight.data = weight
-                        # print(f'neues conv: {conv}; j: {j}')
-                        # weight[:, :, 1, 1] = 1
-                        # print(f'weight.size(): {weight.size()}')
-                        # with torch.no_grad():
-                        #   m.weight.div_(torch.norm(m.weight, dim=2, keepdim=True))
-
-                        # deeper_w = deeper_w.numpy()
-                        # center_h = ( i0 - 1) // 2
-                        # center_w = ( i0 - 1) // 2
-                        # for c in range( i3 ):
-                        #     tmp = np.zeros(( i0, i0, i3))
-                        #     tmp[center_h, center_w, c] = 1
-                        #     deeper_w[:, :, :, c] = tmp
-                        # deeper_w = deeper_w.astype('float32')
-                        #
-                        # torch.from_numpy(deeper_w)
-
-                        # for l in range(m.out_channels):
-                        #     weight1 = m.weight.data
-                        #     norm = weight1.select(0, l).norm()
-                        #     weight1.div_(norm)
-                        #     m.weight.data = weight1
-                        # module[3 * pos - 3] = m
-                        # conv.weight.data = weight
+                        # nn.init.normal_( conv.weight, mean = 0, std = math.sqrt( 2. / ( n ) ) )
+                        lastConv = False
+                        k = 1
+                        while not lastConv:
+                            m = module[ j - k ]
+                            if isinstance(m, nn.Conv2d):
+                                for l in range(m.out_channels):
+                                    weight1 = m.weight.data
+                                    norm = weight1.select(0, l).norm()
+                                    weight1.div_(norm)
+                                    m.weight.data = weight1
+                                    module[ k - i ] = m
+                            else:
+                                k += 1
+                        weight = conv.weight.data
+                        nn.init.zeros_(weight)
+                        weight[ :, :, 1, 1 ] = 1
+                        conv.weight.data = weight
                         seq.append(conv)
-                        # print(f'GRAD: c{conv.}')
-                        # print(f'beues conv: {conv}; j= { 2 * pos +1 }')
                     elif j > 3 * pos:
                         # print(f'module: {module[j - 2]}; j= {j + 2}')
                         # print(f'altes layer: {module[j - 3]}; j: {j}')
-                        if isinstance(module[ j - 3 ], nn.Conv2d):
-                            n = module[ j - 3 ].kernel_size[0] * module[ j - 3 ].kernel_size[1] * module[ j - 3 ].out_channels
-                            nn.init.normal_(module[ j - 3 ].weight, mean=0, std=math.sqrt(2. / (n)))
-                        elif isinstance(module[ j - 3 ], nn.BatchNorm2d):
-                            torch.nn.init.ones_( module[ j - 3 ].weight )
-                            torch.nn.init.zeros_( module[ j - 3 ].bias )
+                        # if isinstance(module[ j - 3 ], nn.Conv2d):
+                        #     n = module[ j - 3 ].kernel_size[0] * module[ j - 3 ].kernel_size[1] * module[ j - 3 ].out_channels
+                        #     nn.init.normal_(module[ j - 3 ].weight, mean=0, std=math.sqrt(2. / (n)))
+                        # elif isinstance(module[ j - 3 ], nn.BatchNorm2d):
+                        #     torch.nn.init.ones_( module[ j - 3 ].weight )
+                        #     torch.nn.init.zeros_( module[ j - 3 ].bias )
 
                         seq.append(module[j - 3])
                     elif j < 3 * pos - 2:
                         # prin   t(f'module: {module[j]}; j= {j}')
-                        if isinstance(module[j], nn.Conv2d):
-                            n = module[j].kernel_size[0] * module[j].kernel_size[1] * module[j].out_channels
-                            nn.init.normal_(module[j].weight, mean=0, std=math.sqrt(2. / (n)))
-                        elif isinstance(module[j], nn.BatchNorm2d):
-                            torch.nn.init.ones_(module[j].weight)
-                            torch.nn.init.zeros_(module[j].bias)
+                        # if isinstance(module[j], nn.Conv2d):
+                        #     n = module[j].kernel_size[0] * module[j].kernel_size[1] * module[j].out_channels
+                        #     nn.init.normal_(module[j].weight, mean=0, std=math.sqrt(2. / (n)))
+                        # elif isinstance(module[j], nn.BatchNorm2d):
+                        #     torch.nn.init.ones_(module[j].weight)
+                        #     torch.nn.init.zeros_(module[j].bias)
 
                         seq.append(module[j])
 
