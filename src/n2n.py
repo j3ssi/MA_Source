@@ -1292,7 +1292,7 @@ class N2N(nn.Module):
                         lastConv = False
                         k = 1
                         while not lastConv:
-                            if ( j - k ) > len(module):
+                            if ( j - k ) >= len(module):
                                 k += 1
                             else:
                                 m = module[ j - k ]
