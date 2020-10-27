@@ -1342,7 +1342,7 @@ class N2N(nn.Module):
                 if i0 != i1 and not blockComp:
                     blockComp = True
 
-        print self
+        print(self)
 
 
 def compare(layer, oddLayer):
