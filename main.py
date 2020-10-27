@@ -329,7 +329,7 @@ def main():
 
     i = 1
     # for epochNet2Net in range(1, 4):
-
+    print(f'deeper epoch: {args.deeper}')
 
     while i == 1:
         for epoch in range(start_epoch, args.epochs + start_epoch):
@@ -365,6 +365,8 @@ def main():
             countB = 0
             for p in model.parameters():
                 countB += p.data.nelement()
+
+
 
             # i = 2
             # SparseTrain routine
@@ -423,30 +425,31 @@ def main():
 
             elif args.dB and epoch % 5 == 4:
                 memory = tmp_memory
+            if args.deeper == epoch:
+                print("\n\nnow deeper1")
+                # deeper student training
+                model.deeper(pos=1)
+                batch_size = 512
+                print(f'archNums: {model.archNums}')
+                print(
+                    f'num: {num_classes}; numofstages: {args.numOfStages}, listofBlocks: {listofBlocks}, layers in blocj: {args.layersInBlock}')
+                # model.newModuleList(num_classes)
+                model.cuda()
+                criterion = nn.CrossEntropyLoss()
+                # optimizer = optim.Adam(model.parameters())
+                print(f'model.para: {model.named_parameters()}')
+                # optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
+                #                 weight_decay=args.weight_decay)
+
+                optimizer = optim.SGD(model.parameters(), lr=0.1,
+                                      momentum=args.momentum)  # , weight_decay=args.weight_decay)
+                # scheduler = StepLR(optimizer, step_size=30, gamma=0.95)
+                # print(model)
 
         i = 2
 
 
     # print(f'model parameters: {list(model.named_parameters())}')
-    if args.deeper:
-        print("\n\nnow deeper1")
-        # deeper student training
-        model.deeper(pos=1)
-        batch_size = 512
-        print(f'archNums: {model.archNums}')
-        print(f'num: {num_classes}; numofstages: {args.numOfStages}, listofBlocks: {listofBlocks}, layers in blocj: {args.layersInBlock}')
-        # model.newModuleList(num_classes)
-        model.cuda()
-        criterion = nn.CrossEntropyLoss()
-        # optimizer = optim.Adam(model.parameters())
-        print(f'model.para: {model.named_parameters()}')
-        # optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
-        #                 weight_decay=args.weight_decay)
-
-        optimizer = optim.SGD(model.parameters(), lr=0.1, momentum=args.momentum ) #, weight_decay=args.weight_decay)
-        # scheduler = StepLR(optimizer, step_size=30, gamma=0.95)
-        # print(model)
-
 
     if args.wider and not args.widerRnd:
         model.wider(3, 2, weight_norm=None, random_init=False, addNoise=True)
