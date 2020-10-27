@@ -1293,7 +1293,7 @@ class N2N(nn.Module):
                         k = 1
                         while not lastConv:
                             if ( j - k ) >= len(module):
-                                print(f'k: {k}; j-k: {j-k}; len(module): {len(module)}')
+                                # print(f'k: {k}; j-k: {j-k}; len(module): {len(module)}')
                                 k += 1
                             else:
                                 m = module[ j - k ]
@@ -1342,8 +1342,7 @@ class N2N(nn.Module):
                 if i0 != i1 and not blockComp:
                     blockComp = True
 
-
-        return self
+        print self
 
 
 def compare(layer, oddLayer):
