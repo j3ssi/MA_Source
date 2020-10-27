@@ -1292,16 +1292,20 @@ class N2N(nn.Module):
                         lastConv = False
                         k = 1
                         while not lastConv:
-                            m = module[ j - k ]
-                            if isinstance(m, nn.Conv2d):
-                                for l in range(m.out_channels):
-                                    weight1 = m.weight.data
-                                    norm = weight1.select(0, l).norm()
-                                    weight1.div_(norm)
-                                    m.weight.data = weight1
-                                    module[ k - i ] = m
-                            else:
+                            if ( j - k ) > len(module):
                                 k += 1
+                            else:
+                                m = module[ j - k ]
+                                if isinstance(m, nn.Conv2d):
+                                    for l in range(m.out_channels):
+                                        weight1 = m.weight.data
+                                        norm = weight1.select(0, l).norm()
+                                        weight1.div_(norm)
+                                        m.weight.data = weight1
+                                        module[ k - i ] = m
+                                    lastConv = True
+                                else:
+                                    k += 1
                         weight = conv.weight.data
                         nn.init.zeros_(weight)
                         weight[ :, :, 1, 1 ] = 1
