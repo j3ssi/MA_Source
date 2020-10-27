@@ -489,7 +489,7 @@ class N2N(nn.Module):
         i2 = 0
         i21 = None
         seqIndex = 0
-        printDeep = True
+        printDeep = False
         while index < len(self.module_list):
             i = index
             if printDeep:
@@ -523,6 +523,7 @@ class N2N(nn.Module):
                         module1 = moduleX[0]
                         i2 = indexConv
                         i21 = 0
+                        break
                     assert indexConv< len(self.module_list), "Falscher Index in wider"
                     indexConv += 1
             elif isinstance(self.module_list[index], nn.Sequential):
