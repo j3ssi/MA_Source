@@ -152,7 +152,7 @@ parser.add_argument('--visual', default=False, action='store_true',
 # N2N
 parser.add_argument('--n2n', default=False, action='store_true',
                     help='Use net2net functionality')
-parser.add_argument('--wider', default=False, action='store_true',
+parser.add_argument('--wider', default=1, type=int,
                     help='Make network wider')
 parser.add_argument('--deeper', default=5, type =int,
                     help='Make network deeper')
@@ -448,29 +448,28 @@ def main():
 
                 # scheduler = StepLR(optimizer, step_size=30, gamma=0.95)
                 # print(model)
+            if args.wider == epoch:
+                model.wider(3, 2, weight_norm=None, random_init=False, addNoise=True)
+
+                model.wider(2, 2, weight_norm=None, random_init=False, addNoise=True)
+
+                model.wider(1, 2, weight_norm=None, random_init=False, addNoise=True)
+
+                for i in range(len(model.widthofLayers)):
+                    model.widthofLayers[i] *= 2
+
+                model.cuda()
+                # print(model)
+                criterion = nn.CrossEntropyLoss()
+                optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+                                      weight_decay=args.weight_decay)
 
         i = 2
 
 
     # print(f'model parameters: {list(model.named_parameters())}')
 
-    if args.wider and not args.widerRnd:
-        model.wider(3, 2, weight_norm=None, random_init=False, addNoise=True)
-
-        model.wider(2, 2, weight_norm=None, random_init=False, addNoise=True)
-
-        model.wider(1, 2, weight_norm=None, random_init=False, addNoise=True)
-
-        for i in range(len(model.widthofLayers)):
-            model.widthofLayers[i] *= 2
-
-
-        model.cuda()
-        # print(model)
-        criterion = nn.CrossEntropyLoss()
-        optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=args.momentum,
-                              weight_decay=args.weight_decay)
-        scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
+            scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
     # if args.widerRnd and not args.wider:
     #     model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=True, addNoise=False)
     #
