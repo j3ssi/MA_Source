@@ -469,7 +469,7 @@ def main():
 
     # print(f'model parameters: {list(model.named_parameters())}')
 
-            scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
+            #scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
     # if args.widerRnd and not args.wider:
     #     model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=True, addNoise=False)
     #
