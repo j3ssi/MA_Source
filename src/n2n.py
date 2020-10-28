@@ -98,7 +98,7 @@ class N2N(nn.Module):
                             print(f'relu: {i}')
                         i = i + 1
                     elif block == 0 and stage > 0 and (i + 1) % self.archNums[stage][block] == 0:
-                        conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=3, padding=1,
+                        conv = nn.Conv2d(int(sizeOfLayer / 2), sizeOfLayer, kernel_size=1, padding=0,
                                          bias=False,
                                          stride=2)
                         if printInit:
@@ -180,27 +180,27 @@ class N2N(nn.Module):
             print(f'linear: {fc}')
         for m in self.module_list:
             if isinstance(m, nn.Conv2d):
-                n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
-                m.weight.data.normal_(0, math.sqrt(2. / n))
-                # nn.init.normal_(m.weight, mean=0, std=math.sqrt(2. / n))
+                # n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
+                # m.weight.data.normal_(0, math.sqrt(2. / n))
+                nn.init.normal_(m.weight, mean=0, std=math.sqrt(2. / n))
             elif isinstance(m, nn.BatchNorm2d):
-                m.weight.data.fill_(1)
-                m.bias.data.zero_()
-                # nn.init.ones_(m.weight)
-                # nn.init.zeros_(m.bias)
+                # m.weight.data.fill_(1)
+                # m.bias.data.zero_()
+                nn.init.ones_(m.weight)
+                nn.init.zeros_(m.bias)
 
             elif isinstance(m, nn.Sequential):
                 for a in range(len(m)):
                     seq = m[a]
                     if isinstance(seq, nn.Conv2d):
-                        n = seq.kernel_size[0] * seq.kernel_size[1] * seq.out_channels
-                        seq.weight.data.normal_(0, math.sqrt(2. / n))
-                        # nn.init.normal_(seq.weight, mean=0, std=math.sqrt(2. / n))
+                        # n = seq.kernel_size[0] * seq.kernel_size[1] * seq.out_channels
+                        # seq.weight.data.normal_(0, math.sqrt(2. / n))
+                        nn.init.normal_(seq.weight, mean=0, std=math.sqrt(2. / n))
                     elif isinstance(seq, nn.BatchNorm2d):
-                        seq.weight.data.fill_(1)
-                        seq.bias.data.zero_()
-                        # nn.init.ones_(seq.weight)
-                        # nn.init.zeros_(seq.bias)
+                        # seq.weight.data.fill_(1)
+                        # seq.bias.data.zero_()
+                        nn.init.ones_(seq.weight)
+                        nn.init.zeros_(seq.bias)
 
         # if printInit:
         print(f'Modell Erstellung')

@@ -40,6 +40,7 @@ from src.utils import AverageMeter, accuracy, mkdir_p, Logger
 # from apex.apex.multi_tensor_apply import multi_tensor_applier
 import platform, psutil
 from torchtest import assert_vars_change
+
 # Parser
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10/100 Training')
 # parameters for basic cuda
@@ -102,7 +103,7 @@ parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
                     metavar='LR', help='initial learning rate')
 parser.add_argument('-dlr', '--delta_learning_rate', default=False, action='store_true',
                     help='No change in learning rate')
-parser.add_argument('--schedule', type=int, nargs='+', default=[93,150],
+parser.add_argument('--schedule', type=int, nargs='+', default=[93, 150],
                     help='Decrease learning rate at these epochs.')
 parser.add_argument('--gamma', type=float, default=0.1, help='LR is multiplied by gamma on schedule.')
 parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
@@ -152,9 +153,9 @@ parser.add_argument('--visual', default=False, action='store_true',
 # N2N
 parser.add_argument('--n2n', default=False, action='store_true',
                     help='Use net2net functionality')
-parser.add_argument('--wider', default=1, type=int,
+parser.add_argument('--wider', default=0, type=int,
                     help='Make network wider')
-parser.add_argument('--deeper', default=5, type =int,
+parser.add_argument('--deeper', default=0, type=int,
                     help='Make network deeper')
 parser.add_argument('--deeper2', default=False, action='store_true',
                     help='Make network deeper')
@@ -179,9 +180,10 @@ if args.widthOfAllLayers is not None:
     listOfWidths = [int(i) for i in args.widthOfAllLayers.split(',')]
     print(listOfWidths)
 
-print(f'Pytorch Training main.py; workers: {args.workers}; numOfStages: {args.numOfStages}; layerinBlock: {args.layersInBlock};'
-      f'widthofFirstLayer: {args.widthofFirstLayer}; Epochen: {args.epochs}; reset: {args.reset}; start epoche: {args.start_epoch}; test: {args.test} '
-      f'pathtoModell: {args.pathToModell}; checkpoint: {args.checkpoint}; saveModell: {args.saveModell}; LR: {args.lr}')
+print(
+    f'Pytorch Training main.py; workers: {args.workers}; numOfStages: {args.numOfStages}; layerinBlock: {args.layersInBlock};'
+    f'widthofFirstLayer: {args.widthofFirstLayer}; Epochen: {args.epochs}; reset: {args.reset}; start epoche: {args.start_epoch}; test: {args.test} '
+    f'pathtoModell: {args.pathToModell}; checkpoint: {args.checkpoint}; saveModell: {args.saveModell}; LR: {args.lr}')
 
 
 def main():
@@ -326,7 +328,6 @@ def main():
     #    optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
     #                     weight_decay=args.weight_decay)
 
-
     i = 1
     # for epochNet2Net in range(1, 4):
     print(f'deeper epoch: {args.deeper}')
@@ -366,8 +367,6 @@ def main():
             for p in model.parameters():
                 countB += p.data.nelement()
 
-
-
             # i = 2
             # SparseTrain routine
             if not args.en_group_lasso:
@@ -385,10 +384,11 @@ def main():
                 gc.collect()
                 model.cuda()
                 if not args.lars:
-                    optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+                    optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+                                          weight_decay=args.weight_decay)
                 else:
-                    optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum) #,
-                                     # weight_decay=args.weight_decay)
+                    optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum)  # ,
+                    # weight_decay=args.weight_decay)
 
             if args.visual:
                 visualizePruneTrain(model, epoch, args.threshold)
@@ -441,7 +441,7 @@ def main():
                 # optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
                 #                 weight_decay=args.weight_decay)
                 # state['lr'] = 0.001
-                #args.lr = 0.001
+                # args.lr = 0.001
 
                 optimizer = optim.SGD(model.parameters(), lr=args.lr,
                                       momentum=args.momentum)  # , weight_decay=args.weight_decay)
@@ -466,10 +466,9 @@ def main():
 
         i = 2
 
-
     # print(f'model parameters: {list(model.named_parameters())}')
 
-            #scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
+    # scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
     # if args.widerRnd and not args.wider:
     #     model = model.wider(3, 2, out_size=None, weight_norm=None, random_init=True, addNoise=False)
     #
@@ -583,7 +582,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         with torch.no_grad():
             inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
-        outputs = model.forward(inputs)
+        outputs = model(inputs)
         loss = criterion(outputs, targets)
         # if batch_idx == 0 and (epoch == 10):
         #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
@@ -594,7 +593,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         #
         #     dot.render(filename=filename)
 
-            # lasso penalty
+        # lasso penalty
         init_batch = batch_idx == 0 and epoch == 1
 
         if args.en_group_lasso:
@@ -719,7 +718,7 @@ def adjust_learning_rate(optimizer, epoch, change_lr):
     for lr_decay in args.schedule:
         if epoch == lr_decay:
             lr *= args.gamma
-    state['lr'] =lr
+    state['lr'] = lr
     args.lr = lr
     #     else:
     #         print(f'2')
@@ -744,16 +743,16 @@ def adjust_learning_rate(optimizer, epoch, change_lr):
     return lr
 
 
-def plot_grad_flow(named_parameters,epoche):
+def plot_grad_flow(named_parameters, epoche):
     ave_grads = []
     layers = []
     for n, p in named_parameters:
-        if(p.requires_grad) and ("bias" not in n):
+        if (p.requires_grad) and ("bias" not in n):
             layers.append(n)
             ave_grads.append(p.grad.abs().mean())
     plt.plot(ave_grads, alpha=0.3, color="b")
-    plt.hlines(0, 0, len(ave_grads)+1, linewidth=1, color="k" )
-    plt.xticks(range(0,len(ave_grads), 1), layers, rotation="vertical")
+    plt.hlines(0, 0, len(ave_grads) + 1, linewidth=1, color="k")
+    plt.xticks(range(0, len(ave_grads), 1), layers, rotation="vertical")
     plt.xlim(xmin=0, xmax=len(ave_grads))
     plt.xlabel("Layers")
     plt.ylabel("average gradient")
