@@ -180,7 +180,7 @@ class N2N(nn.Module):
             print(f'linear: {fc}')
         for m in self.module_list:
             if isinstance(m, nn.Conv2d):
-                # n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
+                n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
                 # m.weight.data.normal_(0, math.sqrt(2. / n))
                 nn.init.normal_(m.weight, mean=0, std=math.sqrt(2. / n))
             elif isinstance(m, nn.BatchNorm2d):
@@ -193,7 +193,7 @@ class N2N(nn.Module):
                 for a in range(len(m)):
                     seq = m[a]
                     if isinstance(seq, nn.Conv2d):
-                        # n = seq.kernel_size[0] * seq.kernel_size[1] * seq.out_channels
+                        n = seq.kernel_size[0] * seq.kernel_size[1] * seq.out_channels
                         # seq.weight.data.normal_(0, math.sqrt(2. / n))
                         nn.init.normal_(seq.weight, mean=0, std=math.sqrt(2. / n))
                     elif isinstance(seq, nn.BatchNorm2d):
