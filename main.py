@@ -279,7 +279,7 @@ def main():
         model.cuda()
         criterion = nn.CrossEntropyLoss()
         start_epoch = 1
-        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum) #, weight_decay=args.weight_decay)
+        optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
 
     print(f'Startepoche: {start_epoch}')
     # print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
