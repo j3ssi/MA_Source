@@ -543,8 +543,8 @@ class N2N(nn.Module):
                         module = moduleX[i]
                         i1 = index
                         i11 = i
-                        # if printDeep:
-                        print(f'Module= {module}; i: {i} index: {index}')
+                        if printDeep:
+                            print(f'Module= {module}; i: {i} index: {index}')
                     elif isinstance(moduleX[i], nn.BatchNorm2d):
                         moduleBn = moduleX[i]
                         iBn1 = index
@@ -553,9 +553,11 @@ class N2N(nn.Module):
                             print(f' moduleBn: {moduleBn}; i: {i}; index: {index}')
                     elif isinstance(moduleX[i],nn.Conv2d) and module is not None:
                         module1 = moduleX[i]
-                        print(f'module1: {module1}; i: {i}; index: {index}')
+                        if printDeep:
+                            print(f'module1: {module1}; i: {i}; index: {index}')
                         i2 = index
                         i21 = i
+                        break
                     i += 1
                 if module1 is None:
                     index += 1
