@@ -535,8 +535,8 @@ class N2N(nn.Module):
                         module = moduleX[i]
                         i1 = index
                         i11 = indexConv
-                        if printDeep:
-                            print(f'Module= {module}; i: {i} index: {index}')
+                        # if printDeep:
+                        print(f'Module= {module}; i: {i} index: {index}')
                     elif isinstance(moduleX[i], nn.BatchNorm2d):
                         moduleBn = moduleX[i]
                         iBn1 = index
