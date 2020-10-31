@@ -488,6 +488,7 @@ class N2N(nn.Module):
         iBn11 = None
         i2 = 0
         i21 = None
+        changeOfWidth =False
         seqIndex = 0
         printDeep = False
         while index < len(self.module_list):
@@ -545,27 +546,26 @@ class N2N(nn.Module):
                         module1 = moduleX[i]
                         print(f'module1: {module1}; i: {i}; index: {index}')
                     i += 1
-                # if module1 == None:
-                #     self.module_list
+            elif isinstance(self.module_list[index],nn.Linear):
+                module1 = self.module_list[index]
             else:
                 index += 1
-            index +=1
-            print(f'Module: {module}; moduleBn: {moduleBn}; module1: {module1}')
-            # # if module1 == None:
+            if module.out_channels != module1.in_channels:
+                module1 =None
+                changeOfWidth =True
+            print(f'Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
+
+            # if module1 is not None:
+            #     # ziehe zufällige Zahlen für die Mapping Funktion
+            #     mapping = np.random.randint(module.weight.size(0), size=(delta_width * module.weight.size(0) - module.weight.size(0)))
+            #     print(f'len of mapping: {len(mapping)}')
             #
-            # # assert module is not None or module1 is not None, "Probleme mit der Auswahl des nächsten Elements für wider"
-            # print(f'new width: {delta_width * module.weight.size(0) - module.weight.size(0)}')
-            #
-            # # ziehe zufällige Zahlen für die Mapping Funktion
-            # mapping = np.random.randint(module.weight.size(0), size=(delta_width * module.weight.size(0) - module.weight.size(0)))
-            # print(f'len of mapping: {len(mapping)}')
-            #
-            # # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
-            # replication_factor = np.bincount(mapping)
-            # # Anlage der neuen Gewichte
-            # new_w1 = module.weight.data.clone().cpu().detach().numpy()
-            # new_w2 = module1.weight.data.clone().cpu().detach().numpy()
-            # old_w1 = module.weight.data.clone().cpu().detach().numpy()
+            #     # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
+            #     replication_factor = np.bincount(mapping)
+            #     # Anlage der neuen Gewichte
+            #     new_w1 = module.weight.data.clone().cpu().detach().numpy()
+            #     new_w2 = module1.weight.data.clone().cpu().detach().numpy()
+            #     old_w1 = module.weight.data.clone().cpu().detach().numpy()
             # old_w2 = module1.weight.data.clone().cpu().detach().numpy()
             #
             #
@@ -635,9 +635,9 @@ class N2N(nn.Module):
             #     moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
             #     moduleBn.running_mean = torch.from_numpy(new_bn_mean)
             #     moduleBn.running_var = torch.from_numpy(new_bn_var)
-            #     # assert index1 > index, "index<= index"
-            # index += index1 - index
-            # break
+                # assert index1 > index, "index<= index"
+            index += index1 - index
+
 
         print(f'self: {self}')
 
