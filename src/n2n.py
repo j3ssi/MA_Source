@@ -503,10 +503,10 @@ class N2N(nn.Module):
             if isinstance(self.module_list[index], nn.Conv2d):
                 module = self.module_list[index]
                 i1 = index
-
+                index += 1
                 if printDeep:
                     print(f'Module= {module}; index: {index}')
-                indexConv = index + 1
+                indexConv = index
                 while module1 is None:
                     if printDeep:
                         print(f'indexConv: {indexConv}')
@@ -670,7 +670,7 @@ class N2N(nn.Module):
             #     moduleBn.running_mean = torch.from_numpy(new_bn_mean)
             #     moduleBn.running_var = torch.from_numpy(new_bn_var)
                 # assert index1 > index, "index<= index"
-            index += 1
+            # index += 1
 
 
         print(f'self: {self}')
