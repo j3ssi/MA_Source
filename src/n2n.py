@@ -493,8 +493,8 @@ class N2N(nn.Module):
         printDeep = False
         while index < len(self.module_list):
             i = index
-            if printDeep:
-                print(f'Index: {index}')
+            # if printDeep:
+            print(f'Index: {index}')
             module = None
             module1 = None
             if isinstance(self.module_list[index], nn.Conv2d):
