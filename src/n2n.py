@@ -550,10 +550,11 @@ class N2N(nn.Module):
                 module1 = self.module_list[index]
             else:
                 index += 1
+            print(f'Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
+
             if module.out_channels != module1.in_channels:
                 module1 =None
                 changeOfWidth =True
-            print(f'Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
 
             # if module1 is not None:
             #     # ziehe zufällige Zahlen für die Mapping Funktion
