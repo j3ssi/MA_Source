@@ -534,7 +534,8 @@ class N2N(nn.Module):
                     indexConv += 1
             elif isinstance(self.module_list[index], nn.Sequential):
                 moduleX = self.module_list[index]
-                i = 0
+                if i11 is not None:
+                    i = i11
                 while i < len(moduleX):
                     if isinstance(moduleX[i], nn.Conv2d) and module is None:
                         module = moduleX[i]
@@ -548,7 +549,7 @@ class N2N(nn.Module):
                         iBn11 = i
                         if printDeep:
                             print(f' moduleBn: {moduleBn}; i: {i}; index: {index}')
-                    elif isinstance(moduleX[i],nn.Conv2d):
+                    elif isinstance(moduleX[i],nn.Conv2d) and module is not None:
                         module1 = moduleX[i]
                         print(f'module1: {module1}; i: {i}; index: {index}')
                         i2 = index
