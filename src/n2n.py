@@ -498,6 +498,7 @@ class N2N(nn.Module):
             # if printDeep:
             print(f'Index: {index}')
             module = None
+            moduleBn = None
             module1 = None
             if isinstance(self.module_list[index], nn.Conv2d):
                 module = self.module_list[index]
@@ -545,11 +546,31 @@ class N2N(nn.Module):
                         moduleBn = moduleX[i]
                         iBn1 = index
                         iBn11 = indexConv
-                        print(f' moduleBn: {moduleBn}; i: {i}; index: {index}')
+                        if printDeep:
+                            print(f' moduleBn: {moduleBn}; i: {i}; index: {index}')
                     elif isinstance(moduleX[i],nn.Conv2d):
                         module1 = moduleX[i]
                         print(f'module1: {module1}; i: {i}; index: {index}')
                     i += 1
+                if module1 is None:
+                   index += 1
+                moduleX =self.module_list[index]
+                i = 0
+                while i < len(moduleX):
+                    if isinstance(moduleX[i], nn.Conv2d):
+                        module = moduleX[i]
+                        i2 = index
+                        i21 = indexConv
+                        if printDeep:
+                            print(f'Module= {module}; i: {i} index: {index}')
+                    elif isinstance(moduleX[i], nn.BatchNorm2d):
+                        moduleBn = moduleX[i]
+                        iBn1 = index
+                        iBn11 = indexConv
+                        if printDeep:
+                            print(f' moduleBn: {moduleBn}; i: {i}; index: {index}')
+                    i += 1
+
             elif isinstance(self.module_list[index],nn.Linear):
                 module1 = self.module_list[index]
             else:
