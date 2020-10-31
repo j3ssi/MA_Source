@@ -491,7 +491,9 @@ class N2N(nn.Module):
         changeOfWidth =False
         seqIndex = 0
         printDeep = False
+        finished = True
         while index < len(self.module_list):
+            finished =True
             i = index
             # if printDeep:
             print(f'Index: {index}')
@@ -552,11 +554,13 @@ class N2N(nn.Module):
                 module1 = self.module_list[index]
             else:
                 index += 1
+                finished =False
             print(f'Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
 
-            if module.out_channels != module1.in_channels:
-                module1 =None
-                changeOfWidth =True
+            if finished:
+                if module.out_channels != module1.in_channels:
+                    module1 =None
+                    changeOfWidth =True
 
             # if module1 is not None:
             #     # ziehe zufällige Zahlen für die Mapping Funktion
