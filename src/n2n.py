@@ -636,7 +636,7 @@ class N2N(nn.Module):
             #     moduleBn.running_mean = torch.from_numpy(new_bn_mean)
             #     moduleBn.running_var = torch.from_numpy(new_bn_var)
                 # assert index1 > index, "index<= index"
-            index += index1 - index
+            index += 1
 
 
         print(f'self: {self}')
