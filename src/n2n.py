@@ -559,7 +559,9 @@ class N2N(nn.Module):
                         i21 = i
                         break
                     i += 1
-                if module1 is None and isinstance(self.module_list, nn.Sequential):
+                if i + 1 == len(moduleX):
+                    index += 1
+                if module1 is None and isinstance(self.module_list[index], nn.Sequential):
                     index += 1
                     moduleX =self.module_list[index]
                     i = 0
