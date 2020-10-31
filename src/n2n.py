@@ -590,12 +590,12 @@ class N2N(nn.Module):
                 finished =False
 
             if finished:
+                print(f'Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
 
                 if module.out_channels != module1.in_channels:
                     module1 =None
                     changeOfWidth =True
 
-                print(f'Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
 
             if module1 is not None and finished:
                 # ziehe zufällige Zahlen für die Mapping Funktion
