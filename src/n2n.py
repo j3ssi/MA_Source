@@ -562,7 +562,6 @@ class N2N(nn.Module):
                 if module1 is None:
                     index += 1
                 if module1 is None and isinstance(self.module_list[index], nn.Sequential):
-                    index += 1
                     moduleX =self.module_list[index]
                     i = 0
                     while i < len(moduleX):
