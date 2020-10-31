@@ -594,6 +594,8 @@ class N2N(nn.Module):
             if finished:
 
                 if module.out_channels != module1.in_channels:
+                    print(f'X!: Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
+
                     module1 =None
                     changeOfWidth =True
 
