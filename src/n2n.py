@@ -681,7 +681,7 @@ class N2N(nn.Module):
                         new_bn_var = np.append(new_bn_var, new_bn_var[index])
                         # print(f'i: {i}')
                     # print(f'new bn: {new_bn_b}; K : {k}; len of bn: {new_bn_b.size}')
-                    moduleBn.num_features * delta_width
+                    moduleBn.num_features *= delta_width
                     moduleBn.weight.data = nn.Parameter(torch.from_numpy(new_bn_w))
                     moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
                     moduleBn.running_mean = torch.from_numpy(new_bn_mean)
