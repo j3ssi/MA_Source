@@ -650,8 +650,10 @@ class N2N(nn.Module):
                 module.out_channels = module.out_channels * delta_width
 
                 module1.weight.data = nn.Parameter(torch.from_numpy(new_w2))
-                module1.in_channels = module1.in_channels * delta_width
-
+                if isinstance(module1, nn.Conv2d):
+                    module1.in_channels = module1.in_channels * delta_width
+                elif isinstance(module1, nn.Linear):
+                    module1.in_features *= delta_width
                 # print(f'module: {module}')
                 # print(f'module1: {module1}')
                 if module.bias:
