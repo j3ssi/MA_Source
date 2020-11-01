@@ -599,7 +599,7 @@ class N2N(nn.Module):
 
                     module1 =None
 
-            if changeOfWidth:
+            if changeOfWidth and finished:
                 # ziehe zufällige Zahlen für die Mapping Funktion
                 mapping = np.random.randint(module.in_channels, size=(delta_width * module.in_channels - module.out_channels))
                 # print(f'len of mapping: {len(mapping)}')
