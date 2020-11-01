@@ -779,13 +779,10 @@ class N2N(nn.Module):
                 print(f'shape new w2: {new_w2.shape}')
 
                 module1.weight.data = nn.Parameter(torch.from_numpy(new_w2))
-                if isinstance(module1, nn.Conv2d):
-                    module1.in_channels = module1.in_channels * delta_width
-                elif isinstance(module1, nn.Linear):
-                    module1.in_features *= delta_width
+                module1.in_channels = module1.in_channels * delta_width
                 # print(f'module: {module}')
                 # print(f'module1: {module1}')
-
+                changeOfWidth = False
 
             if isinstance(module1, nn.Linear):
                 break
