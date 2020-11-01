@@ -488,7 +488,7 @@ class N2N(nn.Module):
         iBn11 = None
         i2 = 0
         i21 = None
-        changeOfWidth =False
+        changeOfWidth = False
         seqIndex = 0
         printDeep = False
         finished = True
@@ -748,6 +748,45 @@ class N2N(nn.Module):
                     moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
                     moduleBn.running_mean = torch.from_numpy(new_bn_mean)
                     moduleBn.running_var = torch.from_numpy(new_bn_var)
+
+                # print(f'1: Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
+            elif changeOfWidth:
+                # ziehe zufällige Zahlen für die Mapping Funktion
+                mapping = np.random.randint(module.in_channels, size=(delta_width * module.in_channels - module.out_channels))
+                # print(f'len of mapping: {len(mapping)}')
+
+                # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
+                replication_factor = np.bincount(mapping)
+                # Anlage der neuen Gewichte
+                new_w2 = module1.weight.data.clone().cpu().detach().numpy()
+                old_w2 = module1.weight.data.clone().cpu().detach().numpy()
+
+                # Fülle das Module1 mit den Gewichten un normalisiere
+                for i in range(len(mapping)):
+                    index = mapping[i]
+                    factor = replication_factor[index] + 1
+                    assert factor > 1, "Fehler in Net2Wider"
+                    if old_w2.ndim == 2:
+                        new_weight = old_w2[:, index] * (1. / factor)
+                        new_weight_re = new_weight[:, np.newaxis]
+                        new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
+                        new_w2[:, index] = new_weight
+                    elif old_w2.ndim == 4:
+                        new_weight = old_w2[:, index, :, :] * (1. / factor)
+                        new_weight_re = new_weight[:, np.newaxis, :, :]
+                        new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
+                        new_w2[:, index, :, :] = new_weight
+                print(f'shape new w2: {new_w2.shape}')
+
+                module1.weight.data = nn.Parameter(torch.from_numpy(new_w2))
+                if isinstance(module1, nn.Conv2d):
+                    module1.in_channels = module1.in_channels * delta_width
+                elif isinstance(module1, nn.Linear):
+                    module1.in_features *= delta_width
+                # print(f'module: {module}')
+                # print(f'module1: {module1}')
+
+
             if isinstance(module1, nn.Linear):
                 break
         print(f'self: {self}')
