@@ -449,10 +449,6 @@ def main():
                 # scheduler = StepLR(optimizer, step_size=30, gamma=0.95)
                 # print(model)
             if args.wider == epoch:
-                model.wider(3, 2, weight_norm=None, random_init=False, addNoise=True)
-
-                model.wider(2, 2, weight_norm=None, random_init=False, addNoise=True)
-
                 model.wider(1, 2, weight_norm=None, random_init=False, addNoise=True)
 
                 for i in range(len(model.widthofLayers)):
