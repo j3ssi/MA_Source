@@ -750,7 +750,6 @@ class N2N(nn.Module):
                     moduleBn.running_var = torch.from_numpy(new_bn_var)
 
                 # print(f'1: Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
-            if changeOfWidth and finished:
 
                 # ziehe zufällige Zahlen für die Mapping Funktion
                 mapping = np.random.randint(module1.in_channels,
@@ -768,16 +767,10 @@ class N2N(nn.Module):
                     index = mapping[i]
                     factor = replication_factor[index] + 1
                     assert factor > 1, "Fehler in Net2Wider"
-                    if old_w2.ndim == 2:
-                        new_weight = old_w2[:, index] * (1. / factor)
-                        new_weight_re = new_weight[:, np.newaxis]
-                        new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
-                        new_w2[:, index] = new_weight
-                    elif old_w2.ndim == 4:
-                        new_weight = old_w2[:, index, :, :] * (1. / factor)
-                        new_weight_re = new_weight[:, np.newaxis, :, :]
-                        new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
-                        new_w2[:, index, :, :] = new_weight
+                    new_weight = old_w2[:, index, :, :] * (1. / factor)
+                    new_weight_re = new_weight[:, np.newaxis, :, :]
+                    new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
+                    new_w2[:, index, :, :] = new_weight
                 print(f'shape new w2: {new_w2.shape}')
 
                 module1.weight.data = nn.Parameter(torch.from_numpy(new_w2))
