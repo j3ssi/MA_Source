@@ -480,7 +480,7 @@ class N2N(nn.Module):
     # def wider(self, stage, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
     def wider(self, stage, delta_width, weight_norm=True, random_init=True,
               addNoise=True):  # teacher_w1, teacher_b1, teacher_w2, new_width, verification):
-        index = 0
+        indexL = 0
         index1 = 0
         i1 = 0
         i11 = None
@@ -492,21 +492,21 @@ class N2N(nn.Module):
         seqIndex = 0
         printDeep = False
         finished = True
-        while index < len(self.module_list):
+        while indexL < len(self.module_list):
             finished = True
-            i = index
+            i = indexL
             # if printDeep:
-            print(f'Index: {index}')
+            print(f'IndexL: {indexL}')
             module = None
             moduleBn = None
             module1 = None
-            if isinstance(self.module_list[index], nn.Conv2d):
-                module = self.module_list[index]
-                i1 = index
-                index += 1
+            if isinstance(self.module_list[indexL], nn.Conv2d):
+                module = self.module_list[indexL]
+                i1 = indexL
+                indexL += 1
                 if printDeep:
-                    print(f'Module= {module}; index: {index}')
-                indexConv = index
+                    print(f'Module= {module}; index: {indexL}')
+                indexConv = indexL
                 while module1 is None:
                     if printDeep:
                         print(f'indexConv: {indexConv}')
@@ -527,13 +527,14 @@ class N2N(nn.Module):
                         module1 = moduleX[0]
                         i2 = indexConv
                         i21 = 0
+                        indexL = indexConv
                         print(f'module1: {module1}; indexConv: {indexConv}; index: {index}')
 
                         break
                     assert indexConv< len(self.module_list), "Falscher Index in wider"
                     indexConv += 1
-            elif isinstance(self.module_list[index], nn.Sequential):
-                moduleX = self.module_list[index]
+            elif isinstance(self.module_list[indexL], nn.Sequential):
+                moduleX = self.module_list[indexL]
                 if i21 is not None:
                     i = i21
                 else:
@@ -541,56 +542,56 @@ class N2N(nn.Module):
                 while i < len(moduleX):
                     if isinstance(moduleX[i], nn.Conv2d) and module is None:
                         module = moduleX[i]
-                        i1 = index
+                        i1 = indexL
                         i11 = i
                         # if printDeep:
-                        print(f'Module= {module}; i: {i} index: {index}')
+                        print(f'Module= {module}; i: {i} indexL: {indexL}')
                     elif isinstance(moduleX[i], nn.BatchNorm2d):
                         moduleBn = moduleX[i]
-                        iBn1 = index
+                        iBn1 = indexL
                         iBn11 = i
                         # if printDeep:
-                        print(f' moduleBn: {moduleBn}; i: {i}; index: {index}')
+                        print(f' moduleBn: {moduleBn}; i: {i}; indexL: {indexL}')
                     elif isinstance(moduleX[i],nn.Conv2d) and module is not None:
                         module1 = moduleX[i]
                         # if printDeep:
-                        print(f'module1: {module1}; i: {i}; index: {index}')
-                        i2 = index
+                        print(f'module1: {module1}; i: {i}; indexL: {indexL}')
+                        i2 = indexL
                         i21 = i
                         break
                     i += 1
                 if module1 is None:
-                    index += 1
-                if module1 is None and isinstance(self.module_list[index], nn.Sequential):
-                    moduleX =self.module_list[index]
+                    indexL += 1
+                if module1 is None and isinstance(self.module_list[indexL], nn.Sequential):
+                    moduleX =self.module_list[indexL]
                     i = 0
                     while i < len(moduleX):
                         if isinstance(moduleX[i], nn.Conv2d):
                             module1 = moduleX[i]
-                            i2 = index
+                            i2 = indexL
                             i21 = i
                             if printDeep:
-                                print(f'Module= {module}; i: {i} index: {index}')
+                                print(f'Module= {module}; i: {i} indexL: {indexL}')
                             break
                         elif isinstance(moduleX[i], nn.BatchNorm2d):
                             moduleBn = moduleX[i]
-                            iBn1 = index
-                            iBn11 = indexConv
+                            iBn1 = indexL
+                            iBn11 = i
                             if printDeep:
-                                print(f' moduleBn: {moduleBn}; i: {i}; index: {index}')
+                                print(f' moduleBn: {moduleBn}; i: {i}; indexL: {indexL}')
                         i += 1
-                elif isinstance(self.module_list[index],nn.AdaptiveAvgPool2d):
-                    index += 1
-                    module1 = self.module_list[index]
-                    i2 = index
+                elif isinstance(self.module_list[indexL],nn.AdaptiveAvgPool2d):
+                    indexL += 1
+                    module1 = self.module_list[indexL]
+                    i2 = indexL
                     i21 = None
-            elif isinstance(self.module_list[index],nn.Linear):
-                module1 = self.module_list[index]
+            elif isinstance(self.module_list[indexL],nn.Linear):
+                module1 = self.module_list[indexL]
             else:
-                index += 1
+                indexL += 1
                 finished = False
 
-            if finished:
+            if finished and not isinstance(module1,nn.Linear):
 
                 if module.out_channels != module1.in_channels:
                     print(f'X!: Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
