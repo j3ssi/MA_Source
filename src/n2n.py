@@ -505,7 +505,7 @@ class N2N(nn.Module):
                 i1 = indexL
                 indexL += 1
                 if printDeep:
-                    print(f'Module= {module}; index: {indexL}')
+                    print(f'Module= {module}; indexL: {indexL}')
                 indexConv = indexL
                 while module1 is None:
                     if printDeep:
@@ -528,7 +528,8 @@ class N2N(nn.Module):
                         i2 = indexConv
                         i21 = 0
                         indexL = indexConv
-                        print(f'module1: {module1}; indexConv: {indexConv}; index: {index}')
+                        if printDeep:
+                            print(f'module1: {module1}; indexConv: {indexConv}; index: {indexL}')
 
                         break
                     assert indexConv< len(self.module_list), "Falscher Index in wider"
