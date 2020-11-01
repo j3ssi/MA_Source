@@ -746,7 +746,8 @@ class N2N(nn.Module):
                 #     moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
                 #     moduleBn.running_mean = torch.from_numpy(new_bn_mean)
                 #     moduleBn.running_var = torch.from_numpy(new_bn_var)
-
+            if isinstance(module1, nn.Linear):
+                break
         print(f'self: {self}')
 
 
