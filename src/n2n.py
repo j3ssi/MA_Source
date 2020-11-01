@@ -645,7 +645,7 @@ class N2N(nn.Module):
                         new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
                         new_w2[:, index, :, :] = new_weight
                 print(f'shape new w1: {new_w1.shape}')
-                print(f'shape new w2: {new_w2.shape}')
+                print(f'shape new w2: {new_w2.shape}; old w2: {old_w2.shape}')
                 module.weight.data = nn.Parameter(torch.from_numpy(new_w1))
                 module.out_channels = module.out_channels * delta_width
 
