@@ -598,7 +598,6 @@ class N2N(nn.Module):
                     print(f'X!: Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
 
                     module1 =None
-                    changeOfWidth =True
 
             if changeOfWidth:
                 # ziehe zufällige Zahlen für die Mapping Funktion
@@ -783,6 +782,9 @@ class N2N(nn.Module):
                     moduleBn.running_var = torch.from_numpy(new_bn_var)
 
                 # print(f'1: Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
+
+            if finished and module1 is None:
+                changeOfWidth = True
 
             if isinstance(module1, nn.Linear):
                 break
