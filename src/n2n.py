@@ -754,7 +754,7 @@ class N2N(nn.Module):
 
                 # ziehe zufällige Zahlen für die Mapping Funktion
                 mapping = np.random.randint(module.in_channels,
-                                            size=(delta_width * module.in_channels - module.out_channels))
+                                            size=(delta_width * module.in_channels - module.in_channels))
                 # print(f'len of mapping: {len(mapping)}')
 
                 # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
