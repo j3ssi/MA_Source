@@ -143,7 +143,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
             print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
     width = model.module_list[0].weight.size(0)
     print(f'Start width: {width}')
-    for idx in range( len( model.module_list ) ):
+    # for idx in range( len( model.module_list ) ):
         # print("\n> IDX: ", idx)
     #     edges = []
     #     # Find union of the channels sharing the same node
