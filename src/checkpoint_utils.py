@@ -165,12 +165,14 @@ def makeSparse(optimizer, model, threshold, reconf=True):
                 if (idx,0) in dense_chs and layerWidth == width:
                     edges = list(set().union(edges, dense_chs[(idx,0)]['in_chs']))
                     listI.append((idx,0))
+                    print(f'Append I: {(idx,0)}')
                 j = len(module)-1
                 while j>0:
                     if isinstance(module[j], nn.Conv2d):
                         if module[j].weight.size(1) == width:
                             edges = list(set().union(edges, dense_chs[(idx,j)]['out_chs']))
                             listO.append((idx,j))
+                            print(f'Append O: {(idx,j)}')
                         else:
                             new_edges = list(set().union(edges, dense_chs[(idx,j)]['out_chs']))
                             width = module[j].weight.size(1)
@@ -184,11 +186,13 @@ def makeSparse(optimizer, model, threshold, reconf=True):
                 if (idx,None) in dense_chs:
                     edges = list(set().union(edges, dense_chs[(idx, None)]['out_chs']))
                     listO.append((idx, None))
+                    print(f'Append O : {(idx,None)}')
                     idx += 1
             if isinstance(module, nn.Linear):
                 if (idx,None) in dense_chs:
                     edges = list(set().union(edges, dense_chs[(idx, None)]['out_chs']))
                     listI.append((idx,None))
+                    print(f'Append I: {(idx,None)}')
                     idx += 1
         print(f'listI: {listI}')
         print(f'listO: {listO}')
