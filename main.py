@@ -575,6 +575,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         data_load_time = time.time() - end
 
         if use_cuda:
+            print(f'test -2')
             inputs, targets = inputs.cuda(), targets.cuda()
         print(f'test -1')
         with torch.no_grad():
