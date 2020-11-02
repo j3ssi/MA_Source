@@ -579,7 +579,9 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         with torch.no_grad():
             inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
+        print(f'Test')
         outputs = model(inputs)
+        print(f'Test2')
         loss = criterion(outputs, targets)
         # if batch_idx == 0 and (epoch == 10):
         #     dot = tw.make_dot(outputs, params=dict(model.named_parameters()))
