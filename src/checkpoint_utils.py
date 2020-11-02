@@ -158,6 +158,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
         if listOTmp is not None:
             listO.append(listOTmp)
         listOTmp = None
+        layerWidth = width
         while width == layerWidth:
             if isinstance(module, nn.Sequential):
                 layerWidth = module[0].weight.size(0)
