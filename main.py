@@ -593,7 +593,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         # lasso penalty
         init_batch = False # batch_idx == 0 and epoch == 1
 
-        if args.en_group_lasso:
+        # if args.en_group_lasso:
             # if args.global_group_lasso:
             #     lasso_penalty = get_group_lasso_global(model)
             # else:
