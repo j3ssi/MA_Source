@@ -362,7 +362,11 @@ class N2N(nn.Module):
                     j += 1
                     if printNet:
                         print(f'Shape: {x.shape}')
-                _x = _x + x
+                try:
+                    _x = _x + x
+                except RuntimeError:
+                    print(f'Except')
+
                 if printNet:
                     print(f'X Shape: {_x.shape}')
                 _x = self.relu(_x)
