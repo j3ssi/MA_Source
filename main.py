@@ -630,7 +630,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
         losses.update(loss.item(), inputs.size(0))
         top1.update(prec1.item(), inputs.size(0))
         top5.update(prec5.item(), inputs.size(0))
-        lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
+        # lasso_ratio.update(lasso_penalty / loss.item(), inputs.size(0))
 
         optimizer.zero_grad()
         #   compute gradient and do SGD step
