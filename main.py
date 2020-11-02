@@ -373,6 +373,7 @@ def main():
                 pass
             elif args.en_group_lasso and (epoch % args.sparse_interval == 0) and not args.lastEpoch:
                 # Force weights under threshold to zero
+                print(f'Prune Train:')
                 dense_chs, chs_map = makeSparse(optimizer, model, args.threshold)
                 if args.visual:
                     visualizePruneTrain(model, epoch, args.threshold)
