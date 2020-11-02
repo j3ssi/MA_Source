@@ -563,13 +563,14 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     top1 = AverageMeter()
     top5 = AverageMeter()
     lasso_ratio = AverageMeter()
-
+    print(f'test -4')
     printLasso = False
     end = time.time()
 
     # for param in model.parameters():
     #    param.grad = None
     for batch_idx, (inputs, targets) in enumerate(trainloader):
+        print(f'test -3')
         # measure data loading time
         data_time.update(time.time() - end)
         data_load_time = time.time() - end
