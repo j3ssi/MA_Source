@@ -598,33 +598,33 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
             #     lasso_penalty = get_group_lasso_global(model)
             # else:
             #    lasso_penalty = get_group_lasso_group(model)
-            if printLasso:
-                print(f'Lasso Penalty1: {lasso_penalty}')
-                # Auto-tune the group-lasso coefficient @first training iteration
-                # coeff_dir = os.path.join(args.coeff_container, 'cifar')
-            if init_batch:
-                args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
-                        lasso_penalty * (1 - args.var_group_lasso_coeff))
-                grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
-
-                with open(os.path.join(args.checkpoint, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
-                    f_coeff.write(str(grp_lasso_coeff.item()))
-                if printLasso:
-                    print(f'Grp lasso coeff: {grp_lasso_coeff}')
-
-            else:
-                with open(os.path.join(args.checkpoint, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
-                    for line in f_coeff:
-                        grp_lasso_coeff = float(line)
-            lasso_penalty = lasso_penalty * grp_lasso_coeff
-            if printLasso:
-                print(f'Lasso Penalty2: {lasso_penalty}')
-        else:
-            lasso_penalty = 0
-            # print(f'nach group lasso')
-            # Group lasso calcution is not performance-optimized => Ignore from execution time
-        loss += lasso_penalty
-        # measure accuracy and record loss
+        #     if printLasso:
+        #         print(f'Lasso Penalty1: {lasso_penalty}')
+        #         # Auto-tune the group-lasso coefficient @first training iteration
+        #         # coeff_dir = os.path.join(args.coeff_container, 'cifar')
+        #     if init_batch:
+        #         args.grp_lasso_coeff = args.var_group_lasso_coeff * loss.item() / (
+        #                 lasso_penalty * (1 - args.var_group_lasso_coeff))
+        #         grp_lasso_coeff = torch.autograd.Variable(args.grp_lasso_coeff)
+        #
+        #         with open(os.path.join(args.checkpoint, str(args.var_group_lasso_coeff)), 'w') as f_coeff:
+        #             f_coeff.write(str(grp_lasso_coeff.item()))
+        #         if printLasso:
+        #             print(f'Grp lasso coeff: {grp_lasso_coeff}')
+        #
+        #     else:
+        #         with open(os.path.join(args.checkpoint, str(args.var_group_lasso_coeff)), 'r') as f_coeff:
+        #             for line in f_coeff:
+        #                 grp_lasso_coeff = float(line)
+        #     lasso_penalty = lasso_penalty * grp_lasso_coeff
+        #     if printLasso:
+        #         print(f'Lasso Penalty2: {lasso_penalty}')
+        # else:
+        #     lasso_penalty = 0
+        #     # print(f'nach group lasso')
+        #     # Group lasso calcution is not performance-optimized => Ignore from execution time
+        # loss += lasso_penalty
+        # # measure accuracy and record loss
 
         prec1, prec5 = accuracy(outputs, targets, topk=(1, 5))
         losses.update(loss.item(), inputs.size(0))
