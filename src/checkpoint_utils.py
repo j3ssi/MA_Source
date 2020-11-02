@@ -39,7 +39,7 @@ def makeSparse(optimizer, model, threshold, reconf=False):
             altList.append((index,None))
         elif isinstance(model.module_list[index],nn.Sequential):
             moduleX = model.module_list[index]
-            for i in moduleX:
+            for i in range( len( moduleX ) ):
                 if isinstance(moduleX[i], nn.Conv2d):
                     altList.append((index,i))
         elif isinstance(model.module_list[index], nn.Linear):
