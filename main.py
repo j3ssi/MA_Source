@@ -576,6 +576,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
 
         if use_cuda:
             inputs, targets = inputs.cuda(), targets.cuda()
+        print(f'test -1')
         with torch.no_grad():
             inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
