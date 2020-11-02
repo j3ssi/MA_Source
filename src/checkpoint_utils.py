@@ -35,7 +35,7 @@ def makeSparse(optimizer, model, threshold, reconf=False):
     # alternative List to find the layers by name and not the stupid index of module_list
     altList = []
     for index in model.module_list:
-        if isinstance(model.module_list[index], nn.Conv2D):
+        if isinstance(model.module_list[index], nn.Conv2d):
             altList.append((index,None))
         elif isinstance(model.module_list[index],nn.Sequential):
             moduleX = model.module_list[index]
