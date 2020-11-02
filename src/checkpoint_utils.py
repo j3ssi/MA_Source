@@ -139,25 +139,68 @@ def makeSparse(optimizer, model, threshold, reconf=True):
                     # print("\n>Edge: ", edge)
                     dense_chs[adj_lyr[idx]]['out_chs'] = edge
                     dense_chs[adj_lyr[idx + 1]]['in_chs'] = edge
-        for name in dense_chs:
-            print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
+        i += 1
+    # for name in dense_chs:
+    #    print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
     width = model.module_list[0].weight.size(0)
     print(f'Start width: {width}')
-    # for idx in range( len( model.module_list ) ):
+    idx = 0
+    new_edges = []
+    listOTmp = None
+    while idx < len( model.module_list ):
         # print("\n> IDX: ", idx)
-    #     edges = []
-    #     # Find union of the channels sharing the same node
-    #     for lyr_name in stagesI[idx]:
-    #         # print("\nLyr_name: ", lyr_name)
-    #         if lyr_name in dense_chs:
-    #             edges = list(set().union(edges, dense_chs[lyr_name]['in_chs']))
-    #     for lyr_name in stagesO[idx]:
-    #         # print("\nLyr_name: ", lyr_name)
-    #         if lyr_name in dense_chs:
-    #             edges = list(set().union(edges, dense_chs[lyr_name]['out_chs']))
+        edges = []
+        edges = list(set.union(edges, new_edges))
+        new_edges = []
+        module = model.module_list[idx]
+        listI = []
+        listO = []
+        if listOTmp is not None:
+            listO.append(listOTmp)
+        listOTmp = None
+        while width == layerWidth:
+            if isinstance(module, nn.Sequential):
+                layerWidth = module[0].weight.size(0)
+                if (idx,0) in dense_chs and layerWidth == width:
+                    edges = list(set().union(edges, dense_chs[(idx,0)]['in_chs']))
+                    listI.append((idx,0))
+                j = len(module)-1
+                while j>0:
+                    if isinstance(module[j], nn.Conv2d):
+                        if module[j].weight.size(1) == width:
+                            edges = list(set().union(edges, dense_chs[(idx,j)]['out_chs']))
+                            listO.append((idx,j))
+                        else:
+                            new_edges = list(set().union(edges, dense_chs[(idx,j)]['out_chs']))
+                            width = module[j].weight.size(1)
+                            listOTmp = (idx,j)
+                            break
+                    else: j = j - 1
+                idx += 1
+
+            if isinstance(module, nn.Conv2d):
+                layerWidth = module.weight.size(0)
+                if (idx,None) in dense_chs:
+                    edges = list(set().union(edges, dense_chs[(idx, None)]['out_chs']))
+                    listO.append((idx, None))
+                    idx += 1
+            if isinstance(module, nn.Linear):
+                if (idx,None) in dense_chs:
+                    edges = list(set().union(edges, dense_chs[(idx, None)]['out_chs']))
+                    listI.append((idx,None))
+                    idx += 1
+        print(f'listI: {listI}')
+        print(f'listO: {listO}')
+        for i,j in listI:
+            if (i,j) in dense_chs:
+                dense_chs[(i,j)]['in_chs'] = edges
+        for i, j in listO:
+            if (i, j) in dense_chs:
+                dense_chs[(i, j)]['out_chs'] = edges
+
     #     # Maintain the dense channels at the shared node
-    #     for lyr_name in stagesI[idx]:
-    #         if lyr_name in dense_chs:
+    # for lyr_name in stagesI[idx]:
+    #     if lyr_name in dense_chs:
     #             # print ("Input_ch [{}]: {} => {}".format(lyr_name, len(dense_chs[lyr_name]['in_chs']), len(edges)))
     #             dense_chs[lyr_name]['in_chs'] = edges
     #     for lyr_name in stagesO[idx]:
