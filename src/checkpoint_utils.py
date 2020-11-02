@@ -49,10 +49,10 @@ def makeSparse(optimizer, model, threshold, reconf=False):
     i = -1
     for i,j in altList:
         module = model.module_list[i]
-        param = module.weight
-
         if j is not None:
             module = module[j]
+        param = module.weight
+
         dims = list(param.shape)
         # print(f'name: {name}; dims {dims}')
 
