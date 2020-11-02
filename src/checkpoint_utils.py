@@ -29,7 +29,7 @@ Make only the (conv, FC) layer parameters sparse
 """
 
 
-def makeSparse(optimizer, model, threshold, reconf=False):
+def makeSparse(optimizer, model, threshold, reconf=True):
     print("[INFO] Force the sparse filters to zero...")
     dense_chs, chs_temp, idx = {}, {}, 0
     # alternative List to find the layers by name and not the stupid index of module_list
@@ -92,20 +92,20 @@ def makeSparse(optimizer, model, threshold, reconf=False):
         dense_chs[(i,j)] = {'in_chs': dense_in_chs, 'out_chs': dense_out_chs, 'idx': idx}
 
         # print the inter-layer tensor dim [out_ch, in_ch, feature_h, feature_w]
-        # if reconf:
-        #     print("\n\n Reconf: ")
-        #     if :
-        #         print("[{}]: [{}, {}]".format(name,
-        #                                       len(dense_chs[name]['out_chs']),
-        #                                       len(dense_chs[name]['in_chs']),
-        #                                       ))
-        #     else:
-        #         print("[{}]: [{}, {}, {}, {}]".format(name,
-        #                                               len(dense_chs[name]['out_chs']),
-        #                                               len(dense_chs[name]['in_chs']),
-        #                                               param.shape[2],
-        #                                               param.shape[3],
-        #                                               ))
+        if reconf:
+            print("\n\n Reconf: ")
+            if isinstance(module, nn.Linear):
+                print("[{}]: [{}, {}]".format((i,j),
+                                              len(dense_chs[(i,j)]['out_chs']),
+                                              len(dense_chs[(i,j)]['in_chs']),
+                                              ))
+            else:
+                print("[{}]: [{}, {}, {}, {}]".format((i,j),
+                                                      len(dense_chs[(i,j)]['out_chs']),
+                                                      len(dense_chs[(i,j)]['in_chs']),
+                                                      param.shape[2],
+                                                      param.shape[3],
+                                                      ))
     """
     Inter-layer channel is_gating
     - Union: Maintain all dense channels on the shared nodes (No indexing)
