@@ -342,7 +342,7 @@ def main():
             print(f'batch Size {batch_size}')
             start = time.time()
             torch.cuda.reset_max_memory_allocated()
-
+            print(f'befor train')
             train_loss, train_acc, train_epoch_time = train(trainloader, model, criterion,
                                                             optimizer, epoch, use_cuda)
             ende = time.time()
@@ -482,69 +482,69 @@ def main():
     #                           weight_decay=args.weight_decay)
     #     scheduler = StepLR(optimizer, step_size=60, gamma=0.75)
 
-    print("Test acc1: ", test_acc)
+    # print("Test acc1: ", test_acc)
     # test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, 1, use_cuda)
     # print("Test acc2: ", test_acc)
     if not args.scheduler:
         scheduler = None
 
-    print("[INFO] Storing checkpoint...")
-    if args.reset:
-        print(f'Reset! ')
-        start_epoch = 1
-        args.epochs = 0
-
-        save_checkpoint({
-            'epoch': args.epochs + start_epoch,
-            'lr': optimizer.param_groups[0]["lr"],
-            'acc': test_acc,
-            'optimizer': optimizer,
-            'scheduler': scheduler},
-            checkpoint=args.checkpoint)
-
-    if args.dB:
-        save_checkpoint({
-            'epoch': start_epoch + args.epochs,
-            'memory': memory,
-            'batch_size': batch_size,
-            'lr': optimizer.param_groups[0]["lr"],
-            'acc': test_acc,
-            'scheduler': scheduler,
-            'optimizer': optimizer, },
-            checkpoint=args.checkpoint)
-    else:
-        save_checkpoint({
-            'epoch': args.epochs + start_epoch,
-            'lr': optimizer.param_groups[0]["lr"],
-            'acc': test_acc,
-            'scheduler': scheduler,
-            'optimizer': optimizer, },
-            checkpoint=args.checkpoint)
-
-    # Leave unique checkpoint of pruned models druing training
-    if epoch % args.save_checkpoint == 0:
-        if args.dB:
-            save_checkpoint({
-                'epoch': args.epochs + start_epoch,
-                'memory': memory,
-                'batch_size': batch_size,
-                'scheduler': scheduler,
-                'lr': optimizer.param_groups[0]["lr"],
-                'acc': test_acc,
-                'optimizer': optimizer, },
-                checkpoint=args.checkpoint)
-        else:
-            save_checkpoint({
-                'epoch': args.epochs + start_epoch,
-                'acc': test_acc,
-                'scheduler': scheduler,
-                'optimizer': optimizer, },
-                checkpoint=args.checkpoint,
-                filename='checkpoint' + str(epoch) + '.tar')
-
-    if args.saveModell:
-        torch.save(model, args.pathToModell)
-    logger.close()
+    # print("[INFO] Storing checkpoint...")
+    # if args.reset:
+    #     print(f'Reset! ')
+    #     start_epoch = 1
+    #     args.epochs = 0
+    #
+    #     save_checkpoint({
+    #         'epoch': args.epochs + start_epoch,
+    #         'lr': optimizer.param_groups[0]["lr"],
+    #         'acc': test_acc,
+    #         'optimizer': optimizer,
+    #         'scheduler': scheduler},
+    #         checkpoint=args.checkpoint)
+    #
+    # if args.dB:
+    #     save_checkpoint({
+    #         'epoch': start_epoch + args.epochs,
+    #         'memory': memory,
+    #         'batch_size': batch_size,
+    #         'lr': optimizer.param_groups[0]["lr"],
+    #         'acc': test_acc,
+    #         'scheduler': scheduler,
+    #         'optimizer': optimizer, },
+    #         checkpoint=args.checkpoint)
+    # else:
+    #     save_checkpoint({
+    #         'epoch': args.epochs + start_epoch,
+    #         'lr': optimizer.param_groups[0]["lr"],
+    #         'acc': test_acc,
+    #         'scheduler': scheduler,
+    #         'optimizer': optimizer, },
+    #         checkpoint=args.checkpoint)
+    #
+    # # Leave unique checkpoint of pruned models druing training
+    # if epoch % args.save_checkpoint == 0:
+    #     if args.dB:
+    #         save_checkpoint({
+    #             'epoch': args.epochs + start_epoch,
+    #             'memory': memory,
+    #             'batch_size': batch_size,
+    #             'scheduler': scheduler,
+    #             'lr': optimizer.param_groups[0]["lr"],
+    #             'acc': test_acc,
+    #             'optimizer': optimizer, },
+    #             checkpoint=args.checkpoint)
+    #     else:
+    #         save_checkpoint({
+    #             'epoch': args.epochs + start_epoch,
+    #             'acc': test_acc,
+    #             'scheduler': scheduler,
+    #             'optimizer': optimizer, },
+    #             checkpoint=args.checkpoint,
+    #             filename='checkpoint' + str(epoch) + '.tar')
+    #
+    # if args.saveModell:
+    #     torch.save(model, args.pathToModell)
+    # logger.close()
 
     print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
     print(' {:5.3f}s'.format(ende - start), end='  ')
