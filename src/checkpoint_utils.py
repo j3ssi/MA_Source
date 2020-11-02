@@ -150,7 +150,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
     while idx < len( model.module_list ):
         # print("\n> IDX: ", idx)
         edges = []
-        edges = list(set.union(edges, new_edges))
+        edges = list(set().union(edges, new_edges))
         new_edges = []
         module = model.module_list[idx]
         listI = []
