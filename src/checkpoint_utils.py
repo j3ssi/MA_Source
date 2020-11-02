@@ -34,7 +34,7 @@ def makeSparse(optimizer, model, threshold, reconf=False):
     dense_chs, chs_temp, idx = {}, {}, 0
     # alternative List to find the layers by name and not the stupid index of module_list
     altList = []
-    for index in len(model.module_list):
+    for index in range( len( model.module_list ) ):
         if isinstance(model.module_list[index], nn.Conv2d):
             altList.append((index,None))
         elif isinstance(model.module_list[index],nn.Sequential):
