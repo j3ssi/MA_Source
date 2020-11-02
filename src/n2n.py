@@ -292,7 +292,7 @@ class N2N(nn.Module):
 
     def forward(self, x):
         printNet = True
-        
+
         if printNet:
             print(f'ArchNums: {self.archNums}')
         # First layer
