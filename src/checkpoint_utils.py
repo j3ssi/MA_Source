@@ -17,6 +17,7 @@
 
 import sys
 import torch
+from torch import nn
 from torch.nn.parameter import Parameter
 
 from src import n2n
@@ -33,84 +34,84 @@ def makeSparse(optimizer, model, threshold, reconf=False):
     dense_chs, chs_temp, idx = {}, {}, 0
     # alternative List to find the layers by name and not the stupid index of module_list
     altList = []
-    for name, param in model.named_parameters():
-        i = int(name.split('.')[1])
-        if i % 2 == 0:
-            altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
-        elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
-            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
-        elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
-            altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
-        elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
-            altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
-        elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
-            altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-    # print(f'altList: {altList}')
+    for index in model.module_list:
+        if isinstance(model.module_list[index], nn.Conv2D):
+            altList.append((index,None))
+        elif isinstance(model.module_list[index],nn.Sequential):
+            moduleX = model.module_list[index]
+            for i in moduleX:
+                if isinstance(moduleX[i], nn.Conv2d):
+                    altList.append((index,i))
+        elif isinstance(model.module_list[index], nn.Linear):
+            altList.append((index,None))
+
+    print(f'altList: {altList}')
     i = -1
-    for name, param in model.named_parameters():
-        i = i + 1
-        name = altList[i]
+    for i,j in altList:
+        module = model.module_list[i]
+        if j is not None:
+            module = module[j]
         dims = list(param.shape)
         # print(f'name: {name}; dims {dims}')
-        if (('conv' in name) or ('fc' in name)) and ('weight' in name):
+        param = module.weight
 
-            with torch.no_grad():
-                param = torch.where(param < threshold, torch.tensor(0.).cuda(), param)
+        with torch.no_grad():
+            param = torch.where(param < threshold, torch.tensor(0.).cuda(), param)
 
-            dense_in_chs, dense_out_chs = [], []
-            # param din ==4 -> param is for conv Layer
-            if param.dim() == 4:
-                if 'conv1.' in name:
-                    dense_in_chs.append(0)
-                    dense_in_chs.append(1)
-                    dense_in_chs.append(2)
-                # Forcing sparse input channels to zero
-                if 'conv1.' not in name:
-                    for c in range(dims[1]):
-                        if param[:, c, :, :].abs().max() > 0:
-                            dense_in_chs.append(c)
-                            # print(f'Dense In Ch. {c}')
-
-                # Forcing sparse output channels to zero
-                for c in range(dims[0]):
-                    if param[c, :, :, :].abs().max() > 0:
-                        dense_out_chs.append(c)
-                        # print(f'Dense Out Ch. {c}')
-
-            # Forcing input channels of FC layer to zero
-            elif param.dim() == 2:
-                # Last FC layers (fc, fc3): Remove only the input neurons
+        dense_in_chs, dense_out_chs = [], []
+        # param din ==4 -> param is for conv Layer
+        if param.dim() == 4:
+            if i == 0:
+                dense_in_chs.append(0)
+                dense_in_chs.append(1)
+                dense_in_chs.append(2)
+            # Forcing sparse input channels to zero
+            else:
                 for c in range(dims[1]):
-                    if param[:, c].abs().max() > 0:
+                    if param[:, c, :, :].abs().max() > 0:
                         dense_in_chs.append(c)
-                dense_out_chs = [c for c in range(dims[0])]
+                        # print(f'Dense In Ch. {c}')
 
-            chs_temp[idx] = {'name': name, 'in_chs': dense_in_chs, 'out_chs': dense_out_chs}
-            idx += 1
-            dense_chs[name] = {'in_chs': dense_in_chs, 'out_chs': dense_out_chs, 'idx': idx}
+            # Forcing sparse output channels to zero
+            for c in range(dims[0]):
+                if param[c, :, :, :].abs().max() > 0:
+                    dense_out_chs.append(c)
+                    # print(f'Dense Out Ch. {c}')
 
-            # print the inter-layer tensor dim [out_ch, in_ch, feature_h, feature_w]
-            if reconf:
-                print("\n\n Reconf: ")
-                if 'fc' in name:
-                    print("[{}]: [{}, {}]".format(name,
-                                                  len(dense_chs[name]['out_chs']),
-                                                  len(dense_chs[name]['in_chs']),
-                                                  ))
-                else:
-                    print("[{}]: [{}, {}, {}, {}]".format(name,
-                                                          len(dense_chs[name]['out_chs']),
-                                                          len(dense_chs[name]['in_chs']),
-                                                          param.shape[2],
-                                                          param.shape[3],
-                                                          ))
+        # Forcing input channels of FC layer to zero
+        elif param.dim() == 2:
+            # Last FC layers (fc, fc3): Remove only the input neurons
+            for c in range(dims[1]):
+                if param[:, c].abs().max() > 0:
+                    dense_in_chs.append(c)
+            dense_out_chs = [c for c in range(dims[0])]
+
+        chs_temp[idx] = {'i': i, 'j': j, 'in_chs': dense_in_chs, 'out_chs': dense_out_chs}
+        idx += 1
+        dense_chs[(i,j)] = {'in_chs': dense_in_chs, 'out_chs': dense_out_chs, 'idx': idx}
+
+        # print the inter-layer tensor dim [out_ch, in_ch, feature_h, feature_w]
+        # if reconf:
+        #     print("\n\n Reconf: ")
+        #     if :
+        #         print("[{}]: [{}, {}]".format(name,
+        #                                       len(dense_chs[name]['out_chs']),
+        #                                       len(dense_chs[name]['in_chs']),
+        #                                       ))
+        #     else:
+        #         print("[{}]: [{}, {}, {}, {}]".format(name,
+        #                                               len(dense_chs[name]['out_chs']),
+        #                                               len(dense_chs[name]['in_chs']),
+        #                                               param.shape[2],
+        #                                               param.shape[3],
+        #                                               ))
     """
     Inter-layer channel is_gating
     - Union: Maintain all dense channels on the shared nodes (No indexing)
     - Individual: Add gating layers >> Layers at the shared node skip more computation
     """
     # get the residual Path of Resnet
-    stagesI, stagesO = model.getResidualPath()
+    # stagesI, stagesO = model.getResidualPath()
     ch_maps = []
 
     # Within a residual branch >> Union of adjacent pairs

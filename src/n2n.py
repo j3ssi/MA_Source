@@ -359,10 +359,11 @@ class N2N(nn.Module):
                     # _x = seq(_x)
                     j += 1
                 else:
+                    if printNet:
+                        print(f'_X Shape: {_x.shape}')
                     x = seq(_x)
                     j += 1
-                    if printNet:
-                        print(f'Shape: {x.shape}')
+
                 try:
                     _x = _x + x
                 except RuntimeError:
