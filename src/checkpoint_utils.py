@@ -49,11 +49,12 @@ def makeSparse(optimizer, model, threshold, reconf=False):
     i = -1
     for i,j in altList:
         module = model.module_list[i]
+        param = module.weight
+
         if j is not None:
             module = module[j]
         dims = list(param.shape)
         # print(f'name: {name}; dims {dims}')
-        param = module.weight
 
         with torch.no_grad():
             param = torch.where(param < threshold, torch.tensor(0.).cuda(), param)
