@@ -566,7 +566,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     print(f'test -4')
     printLasso = False
     end = time.time()
-
+    print(f'test -3.5')
     # for param in model.parameters():
     #    param.grad = None
     for batch_idx, (inputs, targets) in enumerate(trainloader):
