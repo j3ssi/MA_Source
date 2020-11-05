@@ -357,12 +357,12 @@ def main():
             # print(f'lr: {optimizer.param_groups[0]["lr"]}')
 
             # print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated() / 10000000}')
-            #test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
+            test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
 
             # append logger file
-            #logger.append(
-            #    [optimizer.param_groups[0]["lr"], train_loss, test_loss, train_acc, test_acc, train_epoch_time,
-            #     test_epoch_time])
+            logger.append(
+               [optimizer.param_groups[0]["lr"], train_loss, test_loss, train_acc, test_acc, train_epoch_time,
+                test_epoch_time])
             countB = 0
             for p in model.parameters():
                 countB += p.data.nelement()
