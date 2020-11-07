@@ -496,7 +496,7 @@ class N2N(nn.Module):
         i21 = None
         changeOfWidth = False
         seqIndex = 0
-        printDeep = False
+        printDeep = True
         finished = True
         while indexL < len(self.module_list):
             finished = True
