@@ -626,6 +626,9 @@ class N2N(nn.Module):
                 if module.bias is not None:
                     new_b1 = module.weight.clone()
                     old_b1 = module.weight.clone()
+                if module1.bias is not None:
+                    new_b2 = module1.weight.clone()
+                    old_b2 = module1.weight.clone()
 
                 # Fülle die neuen breiteren Gewichte mit dem richtigen Inhalt aus altem
                 for i in range(len(mapping)):
@@ -635,6 +638,7 @@ class N2N(nn.Module):
                     new_w1 = np.concatenate((new_w1, new_weight), axis=0)
                     if module.bias is not None:
                         new_b1 = np.append(new_b1, old_b1[index])
+
                 # Fülle das Module1 mit den Gewichten un normalisiere
                 for i in range(len(mapping)):
                     index = mapping[i]
@@ -645,11 +649,16 @@ class N2N(nn.Module):
                         new_weight_re = new_weight[:, np.newaxis]
                         new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
                         new_w2[:, index] = new_weight
+
                     elif old_w2.ndim == 4:
                         new_weight = old_w2[:, index, :, :] * (1. / factor)
                         new_weight_re = new_weight[:, np.newaxis, :, :]
                         new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
                         new_w2[:, index, :, :] = new_weight
+                    if module1.bias is not None:
+                        new_b2 = np.append(new_b2, old_b2[index])
+
+
                 print(f'shape new w1: {new_w1.shape}')
                 print(f'shape new w2: {new_w2.shape}; old w2: {old_w2.shape}')
                 module.weight.data = nn.Parameter(torch.from_numpy(new_w1))
@@ -664,6 +673,8 @@ class N2N(nn.Module):
                 # print(f'module1: {module1}')
                 if module.bias:
                     module.bias.data = nn.Parameter(torch.from_numpy(new_b1))
+                if module1.bias:
+                    module1.bias.data = nn.Parameter(torch.from_numpy(new_b2))
 
                 if isinstance(moduleBn, nn.BatchNorm2d):
                     print(f'Batchnorm1')

@@ -565,19 +565,19 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
     printLasso = False
 
     lasso_ratio = AverageMeter()
-    print(f'test 4')
+    # print(f'test 4')
     end = time.time()
-    print(f'test 3')
+    # print(f'test 3')
     for batch_idx, (inputs, targets) in enumerate(trainloader):
-        print(f'test 2')
+        # print(f'test 2')
         # measure data loading time
         data_time.update(time.time() - end)
         data_load_time = time.time() - end
 
         if use_cuda:
-            print(f'test -2')
+            # print(f'test -2')
             inputs, targets = inputs.cuda(), targets.cuda()
-        print(f'test -1')
+        # print(f'test -1')
         with torch.no_grad():
             inputs = Variable(inputs)
         targets = torch.autograd.Variable(targets)
