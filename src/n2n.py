@@ -645,10 +645,10 @@ class N2N(nn.Module):
                     factor = replication_factor[index] + 1
                     assert factor > 1, "Fehler in Net2Wider"
                     if old_w2.ndim == 2:
-                        new_weight = old_w2[index, :] * (1. / factor)
-                        new_weight_re = new_weight[np.newaxis,:]
-                        new_w2 = np.concatenate((new_w2, new_weight_re), axis=0)
-                        new_w2[index, :] = new_weight
+                        new_weight = old_w2[:, index] * (1. / factor)
+                        new_weight_re = new_weight[:, np.newaxis]
+                        new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
+                        new_w2[:, index] = new_weight
 
                     elif old_w2.ndim == 4:
                         new_weight = old_w2[:, index, :, :] * (1. / factor)
