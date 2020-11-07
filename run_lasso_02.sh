@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "j: 0 bis 5"
-python3 main.py -j 6 --checkpoint ./output/experimente4/prune_lasso02_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 5,5,5 -dlr  --sparse_interval 5 --en_group_lasso --var_group_lasso_coeff 0.2 --threshold 0.0001 --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 0 --pathToModell ./output/experimente4/prune_lasso02_$1/model.nn 
+python3 main.py -j 0 --checkpoint ./output/experimente4/prune_lasso02_$1 --epochs 5 --batchTrue --batch_size 256  -s 3 -l 2 -n 5,5,5 -dlr  --sparse_interval 5 --en_group_lasso --var_group_lasso_coeff 0.2 --threshold 0.0001 --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 0 --pathToModell ./output/experimente4/prune_lasso02_$1/model.nn
 sleep 20
 
 echo "j: 6 bis 10"

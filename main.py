@@ -274,7 +274,7 @@ def main():
             model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True,
                             widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
         else:
-            model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True, args.bottleneck,
+            model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True,
                             widthofFirstLayer=args.widthofFirstLayer, model=None, archNums=None, widthOfLayers=None)
 
         print(f'device count: {torch.cuda.device_count()}')
