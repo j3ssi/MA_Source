@@ -607,12 +607,12 @@ class N2N(nn.Module):
 
 
 
-            if not changeOfWidth and finished:
+            if not changeOfWidth and finished and isinstance(module1, nn.Linear):
 
                 # print(f'1: Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
 
                 # ziehe zufällige Zahlen für die Mapping Funktion
-                mapping = np.random.randint(module.out_channels, size=(delta_width * module.out_channels - module.out_channels))
+                mapping = np.random.randint(module1.out_channels, size=(delta_width * module.out_channels - module.out_channels))
                 # print(f'len of mapping: {len(mapping)}')
 
                 # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
@@ -626,9 +626,6 @@ class N2N(nn.Module):
                 if module.bias is not None:
                     new_b1 = module.weight.clone()
                     old_b1 = module.weight.clone()
-                if module1.bias is not None:
-                    new_b2 = module1.weight.clone()
-                    old_b2 = module1.weight.clone()
 
                 # Fülle die neuen breiteren Gewichte mit dem richtigen Inhalt aus altem
                 for i in range(len(mapping)):
@@ -644,18 +641,10 @@ class N2N(nn.Module):
                     index = mapping[i]
                     factor = replication_factor[index] + 1
                     assert factor > 1, "Fehler in Net2Wider"
-                    if old_w2.ndim == 2:
-                        new_weight = old_w2[:, index] * (1. / factor)
-                        new_weight_re = new_weight[:, np.newaxis]
-                        new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
-                        new_w2[:, index] = new_weight
-
-                    elif old_w2.ndim == 4:
-                        new_weight = old_w2[:, index, :, :] * (1. / factor)
-                        new_weight_re = new_weight[:, np.newaxis, :, :]
-                        new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
-                        new_w2[:, index, :, :] = new_weight
-
+                    new_weight = old_w2[:, index] * (1. / factor)
+                    new_weight_re = new_weight[:, np.newaxis]
+                    new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
+                    new_w2[:, index] = new_weight
 
                 print(f'shape new w1: {new_w1.shape}')
                 print(f'shape new w2: {new_w2.shape}; old w2: {old_w2.shape}')
@@ -663,10 +652,7 @@ class N2N(nn.Module):
                 module.out_channels = module.out_channels * delta_width
 
                 module1.weight.data = nn.Parameter(torch.from_numpy(new_w2))
-                if isinstance(module1, nn.Conv2d):
-                    module1.in_channels = module1.in_channels * delta_width
-                elif isinstance(module1, nn.Linear):
-                    module1.in_features *= delta_width
+                module1.in_features *= delta_width
                 # print(f'module: {module}')
                 # print(f'module1: {module1}')
                 if module.bias:
@@ -699,6 +685,89 @@ class N2N(nn.Module):
                     moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
                     moduleBn.running_mean = torch.from_numpy(new_bn_mean)
                     moduleBn.running_var = torch.from_numpy(new_bn_var)
+            elif not changeOfWidth and finished:
+
+                # print(f'1: Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
+
+                # ziehe zufällige Zahlen für die Mapping Funktion
+                mapping = np.random.randint(module.out_channels,
+                                            size=(delta_width * module.out_channels - module.out_channels))
+                # print(f'len of mapping: {len(mapping)}')
+
+                # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
+                replication_factor = np.bincount(mapping)
+                # Anlage der neuen Gewichte
+                new_w1 = module.weight.data.clone().cpu().detach().numpy()
+                new_w2 = module1.weight.data.clone().cpu().detach().numpy()
+                old_w1 = module.weight.data.clone().cpu().detach().numpy()
+                old_w2 = module1.weight.data.clone().cpu().detach().numpy()
+
+                if module.bias is not None:
+                    new_b1 = module.weight.clone()
+                    old_b1 = module.weight.clone()
+                if module1.bias is not None:
+                    new_b2 = module1.weight.clone()
+                    old_b2 = module1.weight.clone()
+
+                # Fülle die neuen breiteren Gewichte mit dem richtigen Inhalt aus altem
+                for i in range(len(mapping)):
+                    index = mapping[i]
+                    new_weight = old_w1[index, :, :, :]
+                    new_weight = new_weight[np.newaxis, :, :, :]
+                    new_w1 = np.concatenate((new_w1, new_weight), axis=0)
+                    if module.bias is not None:
+                        new_b1 = np.append(new_b1, old_b1[index])
+
+                # Fülle das Module1 mit den Gewichten un normalisiere
+                for i in range(len(mapping)):
+                    index = mapping[i]
+                    factor = replication_factor[index] + 1
+                    assert factor > 1, "Fehler in Net2Wider"
+                    new_weight = old_w2[:, index, :, :] * (1. / factor)
+                    new_weight_re = new_weight[:, np.newaxis, :, :]
+                    new_w2 = np.concatenate((new_w2, new_weight_re), axis=1)
+                    new_w2[:, index, :, :] = new_weight
+
+                print(f'shape new w1: {new_w1.shape}')
+                print(f'shape new w2: {new_w2.shape}; old w2: {old_w2.shape}')
+                module.weight.data = nn.Parameter(torch.from_numpy(new_w1))
+                module.out_channels = module.out_channels * delta_width
+
+                module1.weight.data = nn.Parameter(torch.from_numpy(new_w2))
+                module1.in_channels = module1.in_channels * delta_width
+                # print(f'module: {module}')
+                # print(f'module1: {module1}')
+                if module.bias:
+                    module.bias.data = nn.Parameter(torch.from_numpy(new_b1))
+
+                if isinstance(moduleBn, nn.BatchNorm2d):
+                    print(f'Batchnorm1')
+                    old_bn_w = moduleBn.weight.data.clone().cpu().detach().numpy()
+                    # print(f'len old w: {old_bn_w.size}')
+
+                    old_bn_b = moduleBn.bias.data.clone().cpu().detach().numpy()
+                    old_bn_mean = moduleBn.running_mean.clone().cpu().detach().numpy()
+                    old_bn_var = moduleBn.running_var.clone().cpu().detach().numpy()
+                    new_bn_w = moduleBn.weight.data.clone().cpu().detach().numpy()
+                    new_bn_b = moduleBn.bias.data.clone().cpu().detach().numpy()
+                    new_bn_mean = moduleBn.running_mean.clone().cpu().detach().numpy()
+                    new_bn_var = moduleBn.running_var.clone().cpu().detach().numpy()
+                    # print(f'old weight: {old_bn_w}')
+                    for i in range(0, len(mapping)):
+                        index = mapping[i]
+                        k = i
+                        new_bn_w = np.append(new_bn_w, old_bn_w[index])
+                        new_bn_b = np.append(new_bn_b, old_bn_b[index])
+                        new_bn_mean = np.append(new_bn_mean, new_bn_mean[index])
+                        new_bn_var = np.append(new_bn_var, new_bn_var[index])
+                        # print(f'i: {i}')
+                    # print(f'new bn: {new_bn_b}; K : {k}; len of bn: {new_bn_b.size}')
+                    moduleBn.num_features *= delta_width
+                    moduleBn.weight.data = nn.Parameter(torch.from_numpy(new_bn_w))
+                    moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
+                    moduleBn.running_mean = torch.from_numpy(new_bn_mean)
+                    moduleBn.running_var = torch.from_numpy(new_bn_var)
+
             elif finished:
                 # print(f'2: Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
 
