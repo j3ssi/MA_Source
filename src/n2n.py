@@ -604,7 +604,7 @@ class N2N(nn.Module):
                     print(f'X!: Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
                     changeOfWidth = True
                     break
-                    
+
                     # module1 =None
 
 
