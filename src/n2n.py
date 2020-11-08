@@ -598,13 +598,14 @@ class N2N(nn.Module):
                 indexL += 1
                 finished = False
 
+            if module1.in_channels != 16:
+                continue
+
             if finished and not isinstance(module1,nn.Linear):
 
                 if module.out_channels != module1.in_channels:
                     print(f'X!: Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
                     changeOfWidth = True
-                    break
-
                     # module1 =None
 
 
@@ -772,67 +773,67 @@ class N2N(nn.Module):
                     moduleBn.running_var = torch.from_numpy(new_bn_var)
 
             elif finished:
-                # print(f'2: Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
-
-                # ziehe zufällige Zahlen für die Mapping Funktion
-                mapping = np.random.randint(module.weight.size(0),
-                                            size=(delta_width * module.weight.size(0) - module.weight.size(0)))
-                # print(f'len of mapping: {len(mapping)}')
-
-                # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
-                replication_factor = np.bincount(mapping)
-                # Anlage der neuen Gewichte
-                new_w1 = module.weight.data.clone().cpu().detach().numpy()
-                old_w1 = module.weight.data.clone().cpu().detach().numpy()
-
-                if module.bias is not None:
-                    new_b1 = module.weight.clone()
-                    old_b1 = module.weight.clone()
-
-                # Fülle die neuen breiteren Gewichte mit dem richtigen Inhalt aus altem
-                for i in range(len(mapping)):
-                    index = mapping[i]
-                    new_weight = old_w1[index, :, :, :]
-                    new_weight = new_weight[np.newaxis, :, :, :]
-                    new_w1 = np.concatenate((new_w1, new_weight), axis=0)
-                    if module.bias is not None:
-                        new_b1 = np.append(new_b1, old_b1[index])
-                print(f'shape new w1: {new_w1.shape}')
-                module.weight.data = nn.Parameter(torch.from_numpy(new_w1))
-                module.out_channels = module.out_channels * delta_width
-
-
-                print(f'module: {module}')
-                if module.bias:
-                    module.bias.data = nn.Parameter(torch.from_numpy(new_b1))
-
-                if isinstance(moduleBn, nn.BatchNorm2d):
-                    print(f'Batchnorm2')
-                    old_bn_w = moduleBn.weight.data.clone().cpu().detach().numpy()
-                    # print(f'len old w: {old_bn_w.size}')
-
-                    old_bn_b = moduleBn.bias.data.clone().cpu().detach().numpy()
-                    old_bn_mean = moduleBn.running_mean.clone().cpu().detach().numpy()
-                    old_bn_var = moduleBn.running_var.clone().cpu().detach().numpy()
-                    new_bn_w = moduleBn.weight.data.clone().cpu().detach().numpy()
-                    new_bn_b = moduleBn.bias.data.clone().cpu().detach().numpy()
-                    new_bn_mean = moduleBn.running_mean.clone().cpu().detach().numpy()
-                    new_bn_var = moduleBn.running_var.clone().cpu().detach().numpy()
-                    # print(f'old weight: {old_bn_w}')
-                    for i in range(0, len(mapping)):
-                        index = mapping[i]
-                        k = i
-                        new_bn_w = np.append(new_bn_w, old_bn_w[index])
-                        new_bn_b = np.append(new_bn_b, old_bn_b[index])
-                        new_bn_mean = np.append(new_bn_mean, new_bn_mean[index])
-                        new_bn_var = np.append(new_bn_var, new_bn_var[index])
-                        # print(f'i: {i}')
-                    # print(f'new bn: {new_bn_b}; K : {k}; len of bn: {new_bn_b.size}')
-                    moduleBn.num_features *= delta_width
-                    moduleBn.weight.data = nn.Parameter(torch.from_numpy(new_bn_w))
-                    moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
-                    moduleBn.running_mean = torch.from_numpy(new_bn_mean)
-                    moduleBn.running_var = torch.from_numpy(new_bn_var)
+                # # print(f'2: Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
+                #
+                # # ziehe zufällige Zahlen für die Mapping Funktion
+                # mapping = np.random.randint(module.weight.size(0),
+                #                             size=(delta_width * module.weight.size(0) - module.weight.size(0)))
+                # # print(f'len of mapping: {len(mapping)}')
+                #
+                # # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
+                # replication_factor = np.bincount(mapping)
+                # # Anlage der neuen Gewichte
+                # new_w1 = module.weight.data.clone().cpu().detach().numpy()
+                # old_w1 = module.weight.data.clone().cpu().detach().numpy()
+                #
+                # if module.bias is not None:
+                #     new_b1 = module.weight.clone()
+                #     old_b1 = module.weight.clone()
+                #
+                # # Fülle die neuen breiteren Gewichte mit dem richtigen Inhalt aus altem
+                # for i in range(len(mapping)):
+                #     index = mapping[i]
+                #     new_weight = old_w1[index, :, :, :]
+                #     new_weight = new_weight[np.newaxis, :, :, :]
+                #     new_w1 = np.concatenate((new_w1, new_weight), axis=0)
+                #     if module.bias is not None:
+                #         new_b1 = np.append(new_b1, old_b1[index])
+                # print(f'shape new w1: {new_w1.shape}')
+                # module.weight.data = nn.Parameter(torch.from_numpy(new_w1))
+                # module.out_channels = module.out_channels * delta_width
+                #
+                #
+                # print(f'module: {module}')
+                # if module.bias:
+                #     module.bias.data = nn.Parameter(torch.from_numpy(new_b1))
+                #
+                # if isinstance(moduleBn, nn.BatchNorm2d):
+                #     print(f'Batchnorm2')
+                #     old_bn_w = moduleBn.weight.data.clone().cpu().detach().numpy()
+                #     # print(f'len old w: {old_bn_w.size}')
+                #
+                #     old_bn_b = moduleBn.bias.data.clone().cpu().detach().numpy()
+                #     old_bn_mean = moduleBn.running_mean.clone().cpu().detach().numpy()
+                #     old_bn_var = moduleBn.running_var.clone().cpu().detach().numpy()
+                #     new_bn_w = moduleBn.weight.data.clone().cpu().detach().numpy()
+                #     new_bn_b = moduleBn.bias.data.clone().cpu().detach().numpy()
+                #     new_bn_mean = moduleBn.running_mean.clone().cpu().detach().numpy()
+                #     new_bn_var = moduleBn.running_var.clone().cpu().detach().numpy()
+                #     # print(f'old weight: {old_bn_w}')
+                #     for i in range(0, len(mapping)):
+                #         index = mapping[i]
+                #         k = i
+                #         new_bn_w = np.append(new_bn_w, old_bn_w[index])
+                #         new_bn_b = np.append(new_bn_b, old_bn_b[index])
+                #         new_bn_mean = np.append(new_bn_mean, new_bn_mean[index])
+                #         new_bn_var = np.append(new_bn_var, new_bn_var[index])
+                #         # print(f'i: {i}')
+                #     # print(f'new bn: {new_bn_b}; K : {k}; len of bn: {new_bn_b.size}')
+                #     moduleBn.num_features *= delta_width
+                #     moduleBn.weight.data = nn.Parameter(torch.from_numpy(new_bn_w))
+                #     moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
+                #     moduleBn.running_mean = torch.from_numpy(new_bn_mean)
+                #     moduleBn.running_var = torch.from_numpy(new_bn_var)
 
                 # print(f'1: Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
 
