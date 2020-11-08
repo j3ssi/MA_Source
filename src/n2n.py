@@ -603,6 +603,8 @@ class N2N(nn.Module):
                 if module.out_channels != module1.in_channels:
                     print(f'X!: Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
                     changeOfWidth = True
+                    break
+                    
                     # module1 =None
 
 
@@ -619,8 +621,9 @@ class N2N(nn.Module):
                 replication_factor = np.bincount(mapping)
                 # Anlage der neuen Gewichte
                 new_w1 = module.weight.data.clone().cpu().detach().numpy()
-                new_w2 = module1.weight.data.clone().cpu().detach().numpy()
                 old_w1 = module.weight.data.clone().cpu().detach().numpy()
+
+                new_w2 = module1.weight.data.clone().cpu().detach().numpy()
                 old_w2 = module1.weight.data.clone().cpu().detach().numpy()
 
                 if module.bias is not None:
