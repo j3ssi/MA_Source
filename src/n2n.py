@@ -598,7 +598,9 @@ class N2N(nn.Module):
                 indexL += 1
                 finished = False
 
-            if module1.in_channels != 16:
+            if not isinstance(module1,nn.Linear) and module1.in_channels != 16:
+                continue
+            elif isinstance(module1, nn.Linear):
                 continue
 
             if finished and not isinstance(module1,nn.Linear):
