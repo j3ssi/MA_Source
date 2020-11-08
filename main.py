@@ -661,6 +661,8 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 epoch, batch_idx, len(trainloader), batch_time=batch_time,
                 data_time=data_time, loss=losses, top1=top1, top5=top5))
         # break
+
+        break
     print(f'after train')
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
     return losses.avg, top1.avg, epoch_time

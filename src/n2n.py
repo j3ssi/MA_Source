@@ -291,7 +291,7 @@ class N2N(nn.Module):
             print(f' Modell: {self}')
 
     def forward(self, x):
-        printNet = False
+        printNet = True
 
         if printNet:
             print(f'ArchNums: {self.archNums}')
