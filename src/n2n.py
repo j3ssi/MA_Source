@@ -615,7 +615,7 @@ class N2N(nn.Module):
                 # print(f'1: Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
 
                 # ziehe zufällige Zahlen für die Mapping Funktion
-                mapping = np.random.randint(module.out_channels, size=(delta_width * module.out_channels - module.out_channels))
+                mapping = np.random.randint(module.out_channels, size=(int(delta_width * module.out_channels - module.out_channels)))
                 # print(f'len of mapping: {len(mapping)}')
 
                 # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
@@ -653,10 +653,10 @@ class N2N(nn.Module):
                 print(f'shape new w1: {new_w1.shape}')
                 print(f'shape new w2: {new_w2.shape}; old w2: {old_w2.shape}')
                 module.weight.data = nn.Parameter(torch.from_numpy(new_w1))
-                module.out_channels = module.out_channels * delta_width
+                module.out_channels = int( module.out_channels * delta_width)
 
-                module1.weight.data = nn.Parameter(torch.from_numpy(new_w2))
-                module1.in_features *= delta_width
+                module1.weight.data = nn.Parameter( torch.from_numpy( new_w2 ) )
+                module1.in_features = int( module1.in_features * delta_width )
                 # print(f'module: {module}')
                 # print(f'module1: {module1}')
                 if module.bias:
@@ -684,7 +684,7 @@ class N2N(nn.Module):
                         new_bn_var = np.append(new_bn_var, new_bn_var[index])
                         # print(f'i: {i}')
                     # print(f'new bn: {new_bn_b}; K : {k}; len of bn: {new_bn_b.size}')
-                    moduleBn.num_features *= delta_width
+                    moduleBn.num_features = int( moduleBn.num_features * delta_width )
                     moduleBn.weight.data = nn.Parameter(torch.from_numpy(new_bn_w))
                     moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
                     moduleBn.running_mean = torch.from_numpy(new_bn_mean)
@@ -695,7 +695,7 @@ class N2N(nn.Module):
 
                 # ziehe zufällige Zahlen für die Mapping Funktion
                 mapping = np.random.randint(module.out_channels,
-                                            size=(delta_width * module.out_channels - module.out_channels))
+                                            size=(int( delta_width * module.out_channels - module.out_channels ) ) )
                 # print(f'len of mapping: {len(mapping)}')
 
                 # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
@@ -735,10 +735,10 @@ class N2N(nn.Module):
                 print(f'shape new w1: {new_w1.shape}')
                 print(f'shape new w2: {new_w2.shape}; old w2: {old_w2.shape}')
                 module.weight.data = nn.Parameter(torch.from_numpy(new_w1))
-                module.out_channels = module.out_channels * delta_width
+                module.out_channels = int( module.out_channels * delta_width )
 
                 module1.weight.data = nn.Parameter(torch.from_numpy(new_w2))
-                module1.in_channels = module1.in_channels * delta_width
+                module1.in_channels = int( module1.in_channels * delta_width )
                 # print(f'module: {module}')
                 # print(f'module1: {module1}')
                 if module.bias:
@@ -766,7 +766,7 @@ class N2N(nn.Module):
                         new_bn_var = np.append(new_bn_var, new_bn_var[index])
                         # print(f'i: {i}')
                     # print(f'new bn: {new_bn_b}; K : {k}; len of bn: {new_bn_b.size}')
-                    moduleBn.num_features *= delta_width
+                    moduleBn.num_features = int(moduleBn.num_features * delta_width)
                     moduleBn.weight.data = nn.Parameter(torch.from_numpy(new_bn_w))
                     moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
                     moduleBn.running_mean = torch.from_numpy(new_bn_mean)
@@ -839,7 +839,7 @@ class N2N(nn.Module):
 
                 # ziehe zufällige Zahlen für die Mapping Funktion
                 mapping = np.random.randint(module1.in_channels,
-                                            size=(delta_width * module1.in_channels - module1.in_channels))
+                                            size=(int(delta_width * module1.in_channels - module1.in_channels)))
                 # print(f'len of mapping: {len(mapping)}')
 
                 # Ermittele wie häufig eine Zahl im Rand-Array vorhanden ist für Normalisierung
@@ -860,7 +860,7 @@ class N2N(nn.Module):
                 print(f'shape new w2: {new_w2.shape}')
 
                 module1.weight.data = nn.Parameter(torch.from_numpy(new_w2))
-                module1.in_channels = module1.in_channels * delta_width
+                module1.in_channels = int( module1.in_channels * delta_width )
                 # print(f'module: {module}')
                 # print(f'module1: {module1}')
                 changeOfWidth = False
