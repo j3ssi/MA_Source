@@ -662,7 +662,7 @@ def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
                 data_time=data_time, loss=losses, top1=top1, top5=top5))
         # break
 
-        break
+
     print(f'after train')
     epoch_time = batch_time.avg * len(trainloader)  # Time for total training dataset
     return losses.avg, top1.avg, epoch_time
@@ -711,8 +711,7 @@ def test(testloader, model, criterion, epoch, use_cuda):
         # measure elapsed time
         batch_time.update(time.time() - end - data_load_time)
         end = time.time()
-        break
-    # print(f'Test Ende')
+        # print(f'Test Ende')
     epoch_time = batch_time.avg * len(testloader)  # Time for total test dataset
     return (losses.avg, top1.avg, epoch_time)
 
