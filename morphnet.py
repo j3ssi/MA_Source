@@ -173,14 +173,19 @@ def train_epoch(model, optim, criterion, loader, lbda=None, cbns=None, maps=None
     total = 0
     top1 = 0
     regular =[]
+    print(f'-1')
     for i, (batch, label) in enumerate(loader):
         optim.zero_grad()
+        print(f'1')
         batch, label = batch.to('cuda'), label.to('cuda')
         total += batch.size(0)
-
+        print(f'2')
         out = model(batch)
+        print(f'3')
         _, pred = out.max(dim=1)
+        print(f'4')
         top1 += pred.eq(label).sum()
+        print(f'5')
         if constraint:
             reg = lbda * regularizer(model, constraint, cbns, maps)
             regN = reg.clone().cpu().detach().numpy()[0]
@@ -212,6 +217,7 @@ def train(model, train_loader, val_loader, epochs=10, lr=1e-2, name=''):
     criterion = torch.nn.CrossEntropyLoss()
     reg =[]
     for e in range(epochs):
+
         regularize = train_epoch(model, optimizer, criterion, train_loader)
         reg.append(regularize)
         top1, val_loss = test(model, val_loader)
