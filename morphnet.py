@@ -311,15 +311,15 @@ if __name__ == '__main__':
         ]))
     train_loader = torch.utils.data.DataLoader(
         train_set, batch_size=args.batch_size, shuffle=True,
-        num_workers=0, pin_memory=True
+        num_workers=6, pin_memory=True
     )
     val_loader = torch.utils.data.DataLoader(
         val_set, batch_size=args.batch_size, sampler=valid_sampler,
-        num_workers=0, pin_memory=True
+        num_workers=6, pin_memory=True
     )
     test_loader = torch.utils.data.DataLoader(
         test_set, batch_size=125, shuffle=False,
-        num_workers=0, pin_memory=False
+        num_workers=6, pin_memory=False
     )
     logger = Logger(args.logger, title='logMorphNet')
     logger.set_names(['Regularisierer', 'Zielgroesse', 'Top1'])
