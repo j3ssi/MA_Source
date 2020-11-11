@@ -430,7 +430,7 @@ def main():
                 print("\n\nnow deeper1")
                 # deeper student training
                 model.deeper(pos=1)
-                batch_size = 512
+                # batch_size = 512
                 print(f'archNums: {model.archNums}')
                 print(
                     f'num: {num_classes}; numofstages: {args.numOfStages}, listofBlocks: {listofBlocks}, layers in blocj: {args.layersInBlock}')
