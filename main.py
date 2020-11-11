@@ -451,9 +451,9 @@ def main():
                 # print(model)
             if args.wider == epoch:
                 model.wider(1.5, weight_norm=None, random_init=False, addNoise=True)
-                model.widthofLayers[0] *= 2
-                # for i in range(len(model.widthofLayers)):
-                #    model.widthofLayers[i] *= 2
+                # model.widthofLayers[0] *= 2
+                for i in range(len(model.widthofLayers)):
+                   model.widthofLayers[i] *= 2
                 model.newModuleList(10)
                 model.cuda()
                 # print(model)
