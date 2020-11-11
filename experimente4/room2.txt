@@ -1,0 +1,643 @@
+no display found. Using non-interactive Agg backend
+[3, 3, 3]
+[4, 8, 16]
+Pytorch Training main.py; workers: 0; numOfStages: 3; layerinBlock: 1;widthofFirstLayer: 16; Epochen: 180; reset: False; start epoche: 1; test: True pathtoModell: None; checkpoint: ./output/experimente4/room2; saveModell: False; LR: 0.1
+random number: 8112
+Files already downloaded and verified
+width: 4
+
+Arch Num:  [[1, 1, 1], [2, 1, 1], [2, 1, 1]]
+conv0: Conv2d(3, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False); i: 0
+bn1: BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True); i: 1
+Relu; i: 2
+i : 2; block: 0
+Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False); i: 0 if 3
+BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True); i: 0
+seq: Sequential(
+  (0): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (1): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+); i: 2
+i : 3; block: 1
+Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False); i: 0 if 3
+BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True); i: 0
+seq: Sequential(
+  (0): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (1): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+); i: 3
+i : 4; block: 2
+Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False); i: 0 if 3
+BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True); i: 0
+seq: Sequential(
+  (0): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (1): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+); i: 4
+i : 5; block: 0
+Conv2d(4, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False); i=0; if 1
+BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True); i=0
+relu: 0
+i : 5; block: 0
+Conv2d(4, 8, kernel_size=(1, 1), stride=(2, 2), bias=False); i: 1 if 2
+BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True); i: 1
+seq: Sequential(
+  (0): Conv2d(4, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+  (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (2): ReLU(inplace=True)
+); i: 5
+seq1: Sequential(
+  (0): Conv2d(4, 8, kernel_size=(1, 1), stride=(2, 2), bias=False)
+  (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+); i: 6
+i : 6; block: 1
+Conv2d(8, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False); i: 0 if 3
+BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True); i: 0
+seq: Sequential(
+  (0): Conv2d(8, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+); i: 6
+i : 7; block: 2
+Conv2d(8, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False); i: 0 if 3
+BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True); i: 0
+seq: Sequential(
+  (0): Conv2d(8, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+); i: 7
+i : 8; block: 0
+Conv2d(8, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False); i=0; if 1
+BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True); i=0
+relu: 0
+i : 8; block: 0
+Conv2d(8, 16, kernel_size=(1, 1), stride=(2, 2), bias=False); i: 1 if 2
+BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True); i: 1
+seq: Sequential(
+  (0): Conv2d(8, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+  (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (2): ReLU(inplace=True)
+); i: 8
+seq1: Sequential(
+  (0): Conv2d(8, 16, kernel_size=(1, 1), stride=(2, 2), bias=False)
+  (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+); i: 9
+i : 9; block: 1
+Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False); i: 0 if 3
+BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True); i: 0
+seq: Sequential(
+  (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+); i: 9
+i : 10; block: 2
+Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False); i: 0 if 3
+BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True); i: 0
+seq: Sequential(
+  (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+); i: 10
+avgpoll: AdaptiveAvgPool2d(output_size=(1, 1))
+linear: Linear(in_features=16, out_features=10, bias=True)
+Modell Erstellung
+N2N(
+  (module_list): ModuleList(
+    (0): Conv2d(3, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace=True)
+    (3): Sequential(
+      (0): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (4): Sequential(
+      (0): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (5): Sequential(
+      (0): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (6): Sequential(
+      (0): Conv2d(4, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+    )
+    (7): Sequential(
+      (0): Conv2d(4, 8, kernel_size=(1, 1), stride=(2, 2), bias=False)
+      (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (8): Sequential(
+      (0): Conv2d(8, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (9): Sequential(
+      (0): Conv2d(8, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (10): Sequential(
+      (0): Conv2d(8, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+    )
+    (11): Sequential(
+      (0): Conv2d(8, 16, kernel_size=(1, 1), stride=(2, 2), bias=False)
+      (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (12): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (13): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (14): AdaptiveAvgPool2d(output_size=(1, 1))
+    (15): Linear(in_features=16, out_features=10, bias=True)
+  )
+  (relu): ReLU(inplace=True)
+)
+device count: 1
+Startepoche: 1
+deeper epoch: 120
+Epoche: [1/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [1][0/196]	Time 0.047 (0.047)	Data 0.067 (0.067)	Loss 2.3855 (2.3855)	Acc@1 11.719 (11.719)	Acc@5 52.734 (52.734)
+Epoch: [1][64/196]	Time 0.038 (0.041)	Data 0.068 (0.066)	Loss 1.9994 (2.0353)	Acc@1 22.656 (21.046)	Acc@5 79.297 (74.910)
+Epoch: [1][128/196]	Time 0.037 (0.041)	Data 0.061 (0.066)	Loss 1.6418 (1.9029)	Acc@1 35.938 (25.827)	Acc@5 89.062 (80.820)
+Epoch: [1][192/196]	Time 0.038 (0.041)	Data 0.063 (0.066)	Loss 1.6393 (1.8335)	Acc@1 37.109 (28.977)	Acc@5 91.016 (83.312)
+after train
+Epoche: [2/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [2][0/196]	Time 0.038 (0.038)	Data 0.064 (0.064)	Loss 1.7047 (1.7047)	Acc@1 37.891 (37.891)	Acc@5 87.109 (87.109)
+Epoch: [2][64/196]	Time 0.039 (0.040)	Data 0.063 (0.066)	Loss 1.5445 (1.5885)	Acc@1 41.406 (40.391)	Acc@5 90.625 (90.210)
+Epoch: [2][128/196]	Time 0.043 (0.041)	Data 0.068 (0.066)	Loss 1.4457 (1.5346)	Acc@1 44.531 (42.866)	Acc@5 92.188 (91.155)
+Epoch: [2][192/196]	Time 0.038 (0.041)	Data 0.081 (0.067)	Loss 1.3472 (1.4976)	Acc@1 50.391 (44.442)	Acc@5 96.094 (91.655)
+after train
+Epoche: [3/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [3][0/196]	Time 0.044 (0.044)	Data 0.064 (0.064)	Loss 1.3977 (1.3977)	Acc@1 51.172 (51.172)	Acc@5 91.797 (91.797)
+Epoch: [3][64/196]	Time 0.043 (0.041)	Data 0.069 (0.068)	Loss 1.2428 (1.3888)	Acc@1 55.469 (49.056)	Acc@5 92.969 (93.263)
+Epoch: [3][128/196]	Time 0.045 (0.041)	Data 0.061 (0.068)	Loss 1.4173 (1.3622)	Acc@1 48.438 (50.327)	Acc@5 91.797 (93.674)
+Epoch: [3][192/196]	Time 0.042 (0.041)	Data 0.061 (0.068)	Loss 1.1741 (1.3467)	Acc@1 60.156 (50.913)	Acc@5 95.703 (93.843)
+after train
+Epoche: [4/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [4][0/196]	Time 0.040 (0.040)	Data 0.064 (0.064)	Loss 1.2521 (1.2521)	Acc@1 60.547 (60.547)	Acc@5 93.359 (93.359)
+Epoch: [4][64/196]	Time 0.038 (0.040)	Data 0.063 (0.066)	Loss 1.1736 (1.2906)	Acc@1 58.203 (53.750)	Acc@5 96.094 (94.219)
+Epoch: [4][128/196]	Time 0.037 (0.040)	Data 0.063 (0.067)	Loss 1.1464 (1.2712)	Acc@1 59.766 (54.273)	Acc@5 96.875 (94.449)
+Epoch: [4][192/196]	Time 0.040 (0.040)	Data 0.065 (0.067)	Loss 1.2032 (1.2543)	Acc@1 57.031 (54.953)	Acc@5 93.750 (94.665)
+after train
+Epoche: [5/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [5][0/196]	Time 0.046 (0.046)	Data 0.063 (0.063)	Loss 1.1176 (1.1176)	Acc@1 60.938 (60.938)	Acc@5 95.703 (95.703)
+Epoch: [5][64/196]	Time 0.039 (0.041)	Data 0.066 (0.068)	Loss 1.1962 (1.2159)	Acc@1 55.078 (56.520)	Acc@5 93.750 (94.784)
+Epoch: [5][128/196]	Time 0.040 (0.041)	Data 0.065 (0.068)	Loss 1.1773 (1.2041)	Acc@1 56.641 (56.795)	Acc@5 94.141 (94.952)
+Epoch: [5][192/196]	Time 0.039 (0.041)	Data 0.067 (0.067)	Loss 1.1358 (1.1959)	Acc@1 57.031 (56.971)	Acc@5 95.703 (94.964)
+after train
+Epoche: [6/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [6][0/196]	Time 0.040 (0.040)	Data 0.064 (0.064)	Loss 1.1179 (1.1179)	Acc@1 58.594 (58.594)	Acc@5 96.484 (96.484)
+Epoch: [6][64/196]	Time 0.043 (0.040)	Data 0.066 (0.067)	Loss 1.0693 (1.1693)	Acc@1 62.109 (57.482)	Acc@5 96.484 (95.487)
+Epoch: [6][128/196]	Time 0.042 (0.040)	Data 0.068 (0.067)	Loss 1.1262 (1.1647)	Acc@1 60.547 (58.027)	Acc@5 94.922 (95.370)
+Epoch: [6][192/196]	Time 0.040 (0.041)	Data 0.064 (0.067)	Loss 1.1940 (1.1548)	Acc@1 56.641 (58.308)	Acc@5 95.703 (95.416)
+after train
+Epoche: [7/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [7][0/196]	Time 0.042 (0.042)	Data 0.064 (0.064)	Loss 1.1731 (1.1731)	Acc@1 57.422 (57.422)	Acc@5 94.531 (94.531)
+Epoch: [7][64/196]	Time 0.041 (0.041)	Data 0.067 (0.067)	Loss 1.1067 (1.1295)	Acc@1 61.328 (59.405)	Acc@5 94.531 (95.619)
+Epoch: [7][128/196]	Time 0.040 (0.041)	Data 0.062 (0.067)	Loss 1.2124 (1.1264)	Acc@1 55.469 (59.254)	Acc@5 94.922 (95.609)
+Epoch: [7][192/196]	Time 0.041 (0.041)	Data 0.065 (0.067)	Loss 1.0759 (1.1196)	Acc@1 62.109 (59.507)	Acc@5 97.266 (95.644)
+after train
+Epoche: [8/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [8][0/196]	Time 0.042 (0.042)	Data 0.064 (0.064)	Loss 1.0952 (1.0952)	Acc@1 63.281 (63.281)	Acc@5 97.656 (97.656)
+Epoch: [8][64/196]	Time 0.040 (0.040)	Data 0.063 (0.067)	Loss 1.1206 (1.1024)	Acc@1 57.812 (60.192)	Acc@5 95.312 (95.968)
+Epoch: [8][128/196]	Time 0.047 (0.040)	Data 0.086 (0.067)	Loss 0.9881 (1.0942)	Acc@1 62.500 (60.368)	Acc@5 97.656 (96.030)
+Epoch: [8][192/196]	Time 0.038 (0.040)	Data 0.066 (0.067)	Loss 1.0827 (1.0918)	Acc@1 63.281 (60.506)	Acc@5 96.484 (95.922)
+after train
+Epoche: [9/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [9][0/196]	Time 0.041 (0.041)	Data 0.064 (0.064)	Loss 1.1067 (1.1067)	Acc@1 60.547 (60.547)	Acc@5 96.484 (96.484)
+Epoch: [9][64/196]	Time 0.045 (0.041)	Data 0.066 (0.066)	Loss 1.0442 (1.0951)	Acc@1 66.797 (60.499)	Acc@5 96.484 (95.775)
+Epoch: [9][128/196]	Time 0.043 (0.041)	Data 0.066 (0.066)	Loss 1.0015 (1.0794)	Acc@1 62.891 (61.213)	Acc@5 96.875 (95.970)
+Epoch: [9][192/196]	Time 0.037 (0.041)	Data 0.062 (0.066)	Loss 1.0646 (1.0741)	Acc@1 61.328 (61.454)	Acc@5 93.750 (95.960)
+after train
+Epoche: [10/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [10][0/196]	Time 0.043 (0.043)	Data 0.064 (0.064)	Loss 1.1262 (1.1262)	Acc@1 60.938 (60.938)	Acc@5 96.875 (96.875)
+Epoch: [10][64/196]	Time 0.041 (0.040)	Data 0.067 (0.068)	Loss 0.9627 (1.0622)	Acc@1 65.234 (61.569)	Acc@5 97.266 (96.292)
+Epoch: [10][128/196]	Time 0.043 (0.040)	Data 0.064 (0.067)	Loss 1.0500 (1.0562)	Acc@1 62.891 (61.646)	Acc@5 96.484 (96.333)
+Epoch: [10][192/196]	Time 0.039 (0.040)	Data 0.067 (0.067)	Loss 1.1553 (1.0602)	Acc@1 58.203 (61.609)	Acc@5 92.969 (96.300)
+after train
+Epoche: [11/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [11][0/196]	Time 0.043 (0.043)	Data 0.063 (0.063)	Loss 1.0720 (1.0720)	Acc@1 61.719 (61.719)	Acc@5 95.703 (95.703)
+Epoch: [11][64/196]	Time 0.040 (0.041)	Data 0.063 (0.067)	Loss 0.9997 (1.0665)	Acc@1 66.797 (61.454)	Acc@5 96.484 (96.508)
+Epoch: [11][128/196]	Time 0.042 (0.040)	Data 0.067 (0.068)	Loss 1.0357 (1.0556)	Acc@1 61.719 (61.788)	Acc@5 94.531 (96.475)
+Epoch: [11][192/196]	Time 0.041 (0.040)	Data 0.074 (0.068)	Loss 1.0214 (1.0532)	Acc@1 61.328 (61.994)	Acc@5 97.656 (96.454)
+after train
+Epoche: [12/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [12][0/196]	Time 0.040 (0.040)	Data 0.063 (0.063)	Loss 1.0843 (1.0843)	Acc@1 62.109 (62.109)	Acc@5 95.703 (95.703)
+Epoch: [12][64/196]	Time 0.044 (0.041)	Data 0.067 (0.067)	Loss 0.9932 (1.0561)	Acc@1 62.500 (61.749)	Acc@5 96.875 (96.292)
+Epoch: [12][128/196]	Time 0.040 (0.041)	Data 0.066 (0.067)	Loss 1.0738 (1.0420)	Acc@1 60.938 (62.230)	Acc@5 96.094 (96.472)
+Epoch: [12][192/196]	Time 0.042 (0.041)	Data 0.066 (0.067)	Loss 1.0151 (1.0350)	Acc@1 64.062 (62.648)	Acc@5 95.312 (96.460)
+after train
+Epoche: [13/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [13][0/196]	Time 0.045 (0.045)	Data 0.063 (0.063)	Loss 0.9558 (0.9558)	Acc@1 63.672 (63.672)	Acc@5 97.656 (97.656)
+Epoch: [13][64/196]	Time 0.040 (0.040)	Data 0.062 (0.068)	Loss 0.9485 (1.0180)	Acc@1 66.406 (63.419)	Acc@5 96.094 (96.671)
+Epoch: [13][128/196]	Time 0.044 (0.040)	Data 0.064 (0.068)	Loss 1.0543 (1.0210)	Acc@1 62.891 (63.581)	Acc@5 98.047 (96.663)
+Epoch: [13][192/196]	Time 0.041 (0.040)	Data 0.067 (0.068)	Loss 1.1305 (1.0284)	Acc@1 61.719 (63.261)	Acc@5 96.094 (96.634)
+after train
+Epoche: [14/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [14][0/196]	Time 0.044 (0.044)	Data 0.063 (0.063)	Loss 1.0324 (1.0324)	Acc@1 66.016 (66.016)	Acc@5 97.656 (97.656)
+Epoch: [14][64/196]	Time 0.038 (0.040)	Data 0.063 (0.067)	Loss 1.0154 (1.0204)	Acc@1 62.891 (63.125)	Acc@5 96.094 (96.556)
+Epoch: [14][128/196]	Time 0.045 (0.040)	Data 0.066 (0.067)	Loss 0.9295 (1.0205)	Acc@1 70.703 (63.199)	Acc@5 96.484 (96.584)
+Epoch: [14][192/196]	Time 0.048 (0.040)	Data 0.103 (0.067)	Loss 0.9261 (1.0200)	Acc@1 69.141 (63.364)	Acc@5 96.094 (96.592)
+after train
+Epoche: [15/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [15][0/196]	Time 0.039 (0.039)	Data 0.063 (0.063)	Loss 0.8369 (0.8369)	Acc@1 69.922 (69.922)	Acc@5 98.047 (98.047)
+Epoch: [15][64/196]	Time 0.042 (0.041)	Data 0.067 (0.067)	Loss 1.0686 (0.9828)	Acc@1 61.328 (64.862)	Acc@5 95.703 (96.869)
+Epoch: [15][128/196]	Time 0.037 (0.041)	Data 0.083 (0.068)	Loss 0.9920 (0.9953)	Acc@1 64.844 (64.399)	Acc@5 98.047 (96.778)
+Epoch: [15][192/196]	Time 0.036 (0.040)	Data 0.066 (0.068)	Loss 1.0652 (1.0011)	Acc@1 63.672 (64.311)	Acc@5 98.047 (96.739)
+after train
+Epoche: [16/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [16][0/196]	Time 0.046 (0.046)	Data 0.066 (0.066)	Loss 1.0614 (1.0614)	Acc@1 59.766 (59.766)	Acc@5 96.875 (96.875)
+Epoch: [16][64/196]	Time 0.041 (0.041)	Data 0.066 (0.067)	Loss 1.0188 (0.9964)	Acc@1 63.281 (64.363)	Acc@5 98.047 (96.839)
+Epoch: [16][128/196]	Time 0.039 (0.041)	Data 0.065 (0.067)	Loss 1.0129 (0.9882)	Acc@1 61.328 (64.692)	Acc@5 97.656 (96.884)
+Epoch: [16][192/196]	Time 0.040 (0.041)	Data 0.063 (0.067)	Loss 1.0268 (0.9891)	Acc@1 66.406 (64.749)	Acc@5 96.484 (96.832)
+after train
+Epoche: [17/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [17][0/196]	Time 0.046 (0.046)	Data 0.064 (0.064)	Loss 0.9906 (0.9906)	Acc@1 63.672 (63.672)	Acc@5 98.438 (98.438)
+Epoch: [17][64/196]	Time 0.042 (0.041)	Data 0.061 (0.066)	Loss 1.0732 (1.0113)	Acc@1 63.281 (63.582)	Acc@5 96.094 (96.857)
+Epoch: [17][128/196]	Time 0.044 (0.040)	Data 0.065 (0.066)	Loss 0.9315 (0.9969)	Acc@1 67.188 (64.041)	Acc@5 95.312 (96.917)
+Epoch: [17][192/196]	Time 0.040 (0.040)	Data 0.071 (0.067)	Loss 0.8907 (0.9883)	Acc@1 67.188 (64.724)	Acc@5 97.656 (96.895)
+after train
+Epoche: [18/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [18][0/196]	Time 0.041 (0.041)	Data 0.063 (0.063)	Loss 0.9672 (0.9672)	Acc@1 64.844 (64.844)	Acc@5 98.438 (98.438)
+Epoch: [18][64/196]	Time 0.039 (0.041)	Data 0.067 (0.067)	Loss 0.9905 (0.9573)	Acc@1 67.578 (66.004)	Acc@5 96.484 (97.242)
+Epoch: [18][128/196]	Time 0.040 (0.041)	Data 0.065 (0.067)	Loss 0.9280 (0.9646)	Acc@1 68.750 (65.737)	Acc@5 97.266 (97.193)
+Epoch: [18][192/196]	Time 0.037 (0.040)	Data 0.065 (0.067)	Loss 0.9344 (0.9641)	Acc@1 69.922 (65.637)	Acc@5 96.875 (97.225)
+after train
+Epoche: [19/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [19][0/196]	Time 0.041 (0.041)	Data 0.065 (0.065)	Loss 1.0013 (1.0013)	Acc@1 67.188 (67.188)	Acc@5 95.703 (95.703)
+Epoch: [19][64/196]	Time 0.038 (0.040)	Data 0.064 (0.067)	Loss 0.9599 (0.9629)	Acc@1 67.578 (66.130)	Acc@5 97.656 (96.983)
+Epoch: [19][128/196]	Time 0.040 (0.041)	Data 0.072 (0.067)	Loss 0.9113 (0.9587)	Acc@1 69.922 (66.088)	Acc@5 96.875 (97.075)
+Epoch: [19][192/196]	Time 0.042 (0.041)	Data 0.070 (0.067)	Loss 1.0413 (0.9597)	Acc@1 60.547 (66.022)	Acc@5 95.312 (97.112)
+after train
+Epoche: [20/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [20][0/196]	Time 0.040 (0.040)	Data 0.063 (0.063)	Loss 0.9013 (0.9013)	Acc@1 68.359 (68.359)	Acc@5 97.656 (97.656)
+Epoch: [20][64/196]	Time 0.038 (0.041)	Data 0.066 (0.067)	Loss 0.9446 (0.9561)	Acc@1 66.797 (65.925)	Acc@5 96.094 (97.067)
+Epoch: [20][128/196]	Time 0.042 (0.041)	Data 0.065 (0.067)	Loss 0.9247 (0.9510)	Acc@1 65.625 (66.106)	Acc@5 96.484 (97.114)
+Epoch: [20][192/196]	Time 0.037 (0.041)	Data 0.064 (0.068)	Loss 0.9523 (0.9477)	Acc@1 65.625 (66.240)	Acc@5 96.094 (97.154)
+after train
+Epoche: [21/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [21][0/196]	Time 0.043 (0.043)	Data 0.063 (0.063)	Loss 0.9599 (0.9599)	Acc@1 69.141 (69.141)	Acc@5 97.266 (97.266)
+Epoch: [21][64/196]	Time 0.041 (0.041)	Data 0.064 (0.067)	Loss 0.9952 (0.9496)	Acc@1 62.891 (66.274)	Acc@5 98.047 (97.350)
+Epoch: [21][128/196]	Time 0.037 (0.040)	Data 0.063 (0.067)	Loss 0.8476 (0.9565)	Acc@1 67.578 (66.164)	Acc@5 98.438 (97.193)
+Epoch: [21][192/196]	Time 0.044 (0.041)	Data 0.070 (0.067)	Loss 0.8375 (0.9506)	Acc@1 70.703 (66.443)	Acc@5 99.219 (97.162)
+after train
+Epoche: [22/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [22][0/196]	Time 0.042 (0.042)	Data 0.063 (0.063)	Loss 0.9291 (0.9291)	Acc@1 65.234 (65.234)	Acc@5 98.438 (98.438)
+Epoch: [22][64/196]	Time 0.044 (0.041)	Data 0.065 (0.067)	Loss 0.9191 (0.9345)	Acc@1 66.016 (66.677)	Acc@5 96.094 (97.314)
+Epoch: [22][128/196]	Time 0.040 (0.041)	Data 0.064 (0.066)	Loss 0.8872 (0.9418)	Acc@1 67.969 (66.597)	Acc@5 97.656 (97.184)
+Epoch: [22][192/196]	Time 0.041 (0.041)	Data 0.064 (0.066)	Loss 0.9217 (0.9452)	Acc@1 70.703 (66.459)	Acc@5 96.484 (97.181)
+after train
+Epoche: [23/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [23][0/196]	Time 0.042 (0.042)	Data 0.063 (0.063)	Loss 0.8571 (0.8571)	Acc@1 69.922 (69.922)	Acc@5 97.656 (97.656)
+Epoch: [23][64/196]	Time 0.039 (0.041)	Data 0.065 (0.068)	Loss 0.8338 (0.9450)	Acc@1 73.047 (66.737)	Acc@5 98.828 (97.085)
+Epoch: [23][128/196]	Time 0.040 (0.041)	Data 0.064 (0.068)	Loss 0.8853 (0.9347)	Acc@1 69.531 (67.085)	Acc@5 98.047 (97.217)
+Epoch: [23][192/196]	Time 0.039 (0.041)	Data 0.065 (0.067)	Loss 0.9203 (0.9364)	Acc@1 64.453 (66.898)	Acc@5 98.047 (97.138)
+after train
+Epoche: [24/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [24][0/196]	Time 0.040 (0.040)	Data 0.065 (0.065)	Loss 0.8423 (0.8423)	Acc@1 73.047 (73.047)	Acc@5 96.484 (96.484)
+Epoch: [24][64/196]	Time 0.041 (0.040)	Data 0.064 (0.067)	Loss 1.0377 (0.9150)	Acc@1 66.016 (67.873)	Acc@5 94.531 (97.482)
+Epoch: [24][128/196]	Time 0.043 (0.040)	Data 0.067 (0.066)	Loss 0.9363 (0.9319)	Acc@1 70.312 (66.988)	Acc@5 96.484 (97.405)
+Epoch: [24][192/196]	Time 0.043 (0.040)	Data 0.065 (0.066)	Loss 0.9943 (0.9345)	Acc@1 69.531 (66.908)	Acc@5 96.484 (97.334)
+after train
+Epoche: [25/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [25][0/196]	Time 0.041 (0.041)	Data 0.064 (0.064)	Loss 0.8533 (0.8533)	Acc@1 72.266 (72.266)	Acc@5 97.656 (97.656)
+Epoch: [25][64/196]	Time 0.043 (0.041)	Data 0.086 (0.067)	Loss 0.9481 (0.9358)	Acc@1 65.234 (66.629)	Acc@5 97.656 (97.344)
+Epoch: [25][128/196]	Time 0.042 (0.040)	Data 0.065 (0.067)	Loss 0.9577 (0.9305)	Acc@1 66.406 (67.030)	Acc@5 96.484 (97.332)
+Epoch: [25][192/196]	Time 0.040 (0.041)	Data 0.066 (0.067)	Loss 0.9709 (0.9300)	Acc@1 66.016 (67.100)	Acc@5 96.875 (97.274)
+after train
+Epoche: [26/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [26][0/196]	Time 0.042 (0.042)	Data 0.063 (0.063)	Loss 1.0849 (1.0849)	Acc@1 62.109 (62.109)	Acc@5 96.484 (96.484)
+Epoch: [26][64/196]	Time 0.037 (0.040)	Data 0.083 (0.067)	Loss 0.9041 (0.9346)	Acc@1 65.234 (67.194)	Acc@5 95.703 (97.037)
+Epoch: [26][128/196]	Time 0.042 (0.040)	Data 0.065 (0.067)	Loss 0.9150 (0.9211)	Acc@1 68.359 (67.648)	Acc@5 96.094 (97.244)
+Epoch: [26][192/196]	Time 0.043 (0.040)	Data 0.063 (0.067)	Loss 0.8760 (0.9259)	Acc@1 66.406 (67.566)	Acc@5 96.484 (97.294)
+after train
+Epoche: [27/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [27][0/196]	Time 0.042 (0.042)	Data 0.063 (0.063)	Loss 0.8916 (0.8916)	Acc@1 68.359 (68.359)	Acc@5 98.047 (98.047)
+Epoch: [27][64/196]	Time 0.040 (0.041)	Data 0.064 (0.067)	Loss 1.0401 (0.9314)	Acc@1 62.109 (66.959)	Acc@5 96.094 (97.422)
+Epoch: [27][128/196]	Time 0.042 (0.041)	Data 0.066 (0.067)	Loss 1.0161 (0.9195)	Acc@1 62.891 (67.412)	Acc@5 96.094 (97.429)
+Epoch: [27][192/196]	Time 0.038 (0.041)	Data 0.084 (0.067)	Loss 0.8598 (0.9209)	Acc@1 69.141 (67.497)	Acc@5 97.656 (97.369)
+after train
+Epoche: [28/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [28][0/196]	Time 0.041 (0.041)	Data 0.065 (0.065)	Loss 0.9980 (0.9980)	Acc@1 66.797 (66.797)	Acc@5 96.875 (96.875)
+Epoch: [28][64/196]	Time 0.043 (0.040)	Data 0.063 (0.065)	Loss 0.9265 (0.9323)	Acc@1 64.844 (67.302)	Acc@5 97.266 (97.218)
+Epoch: [28][128/196]	Time 0.039 (0.040)	Data 0.075 (0.066)	Loss 0.8035 (0.9176)	Acc@1 72.266 (67.769)	Acc@5 97.656 (97.317)
+Epoch: [28][192/196]	Time 0.041 (0.040)	Data 0.066 (0.066)	Loss 0.9675 (0.9217)	Acc@1 66.016 (67.594)	Acc@5 96.484 (97.304)
+after train
+Epoche: [29/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [29][0/196]	Time 0.039 (0.039)	Data 0.062 (0.062)	Loss 0.8214 (0.8214)	Acc@1 71.875 (71.875)	Acc@5 98.438 (98.438)
+Epoch: [29][64/196]	Time 0.044 (0.041)	Data 0.062 (0.068)	Loss 0.9155 (0.9170)	Acc@1 67.578 (67.873)	Acc@5 96.875 (97.368)
+Epoch: [29][128/196]	Time 0.037 (0.041)	Data 0.062 (0.067)	Loss 0.9700 (0.9153)	Acc@1 67.969 (67.772)	Acc@5 97.656 (97.432)
+Epoch: [29][192/196]	Time 0.040 (0.041)	Data 0.064 (0.067)	Loss 0.8647 (0.9150)	Acc@1 66.797 (67.716)	Acc@5 99.219 (97.371)
+after train
+Epoche: [30/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [30][0/196]	Time 0.045 (0.045)	Data 0.063 (0.063)	Loss 0.9003 (0.9003)	Acc@1 69.531 (69.531)	Acc@5 96.875 (96.875)
+Epoch: [30][64/196]	Time 0.043 (0.041)	Data 0.086 (0.066)	Loss 0.8563 (0.8977)	Acc@1 73.438 (68.347)	Acc@5 96.484 (97.434)
+Epoch: [30][128/196]	Time 0.038 (0.041)	Data 0.065 (0.067)	Loss 0.8459 (0.9107)	Acc@1 70.312 (67.860)	Acc@5 98.438 (97.387)
+Epoch: [30][192/196]	Time 0.041 (0.040)	Data 0.067 (0.067)	Loss 0.9475 (0.9126)	Acc@1 64.062 (67.781)	Acc@5 97.656 (97.310)
+after train
+Epoche: [31/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [31][0/196]	Time 0.040 (0.040)	Data 0.064 (0.064)	Loss 0.9388 (0.9388)	Acc@1 66.797 (66.797)	Acc@5 96.484 (96.484)
+Epoch: [31][64/196]	Time 0.040 (0.040)	Data 0.064 (0.065)	Loss 0.9341 (0.8980)	Acc@1 68.359 (68.347)	Acc@5 96.875 (97.464)
+Epoch: [31][128/196]	Time 0.044 (0.040)	Data 0.090 (0.067)	Loss 0.7668 (0.9057)	Acc@1 76.172 (68.084)	Acc@5 98.828 (97.426)
+Epoch: [31][192/196]	Time 0.047 (0.040)	Data 0.066 (0.067)	Loss 0.9307 (0.9030)	Acc@1 68.750 (68.236)	Acc@5 97.266 (97.478)
+after train
+Epoche: [32/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [32][0/196]	Time 0.043 (0.043)	Data 0.064 (0.064)	Loss 1.0167 (1.0167)	Acc@1 66.016 (66.016)	Acc@5 96.875 (96.875)
+Epoch: [32][64/196]	Time 0.038 (0.040)	Data 0.083 (0.065)	Loss 0.8838 (0.9064)	Acc@1 69.922 (68.059)	Acc@5 97.656 (97.500)
+Epoch: [32][128/196]	Time 0.042 (0.041)	Data 0.061 (0.066)	Loss 0.9761 (0.9054)	Acc@1 69.141 (68.108)	Acc@5 97.266 (97.438)
+Epoch: [32][192/196]	Time 0.041 (0.041)	Data 0.072 (0.067)	Loss 0.9295 (0.9010)	Acc@1 70.703 (68.343)	Acc@5 97.656 (97.423)
+after train
+Epoche: [33/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [33][0/196]	Time 0.043 (0.043)	Data 0.064 (0.064)	Loss 0.8224 (0.8224)	Acc@1 66.406 (66.406)	Acc@5 98.828 (98.828)
+Epoch: [33][64/196]	Time 0.037 (0.040)	Data 0.061 (0.068)	Loss 0.9049 (0.9117)	Acc@1 67.188 (68.095)	Acc@5 96.094 (97.512)
+Epoch: [33][128/196]	Time 0.040 (0.040)	Data 0.064 (0.068)	Loss 0.8668 (0.9004)	Acc@1 69.141 (68.435)	Acc@5 98.047 (97.584)
+Epoch: [33][192/196]	Time 0.043 (0.040)	Data 0.064 (0.068)	Loss 0.9353 (0.9009)	Acc@1 66.797 (68.473)	Acc@5 97.266 (97.543)
+after train
+Epoche: [34/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [34][0/196]	Time 0.039 (0.039)	Data 0.064 (0.064)	Loss 0.9214 (0.9214)	Acc@1 65.625 (65.625)	Acc@5 98.438 (98.438)
+Epoch: [34][64/196]	Time 0.045 (0.041)	Data 0.064 (0.068)	Loss 0.9291 (0.8889)	Acc@1 67.578 (68.450)	Acc@5 95.312 (97.566)
+Epoch: [34][128/196]	Time 0.036 (0.041)	Data 0.065 (0.068)	Loss 0.8626 (0.8912)	Acc@1 69.141 (68.438)	Acc@5 98.047 (97.559)
+Epoch: [34][192/196]	Time 0.037 (0.041)	Data 0.075 (0.068)	Loss 0.8819 (0.8957)	Acc@1 72.266 (68.351)	Acc@5 98.438 (97.498)
+after train
+Epoche: [35/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [35][0/196]	Time 0.041 (0.041)	Data 0.063 (0.063)	Loss 0.8766 (0.8766)	Acc@1 69.531 (69.531)	Acc@5 97.266 (97.266)
+Epoch: [35][64/196]	Time 0.037 (0.041)	Data 0.064 (0.067)	Loss 0.9336 (0.8996)	Acc@1 68.750 (68.522)	Acc@5 97.266 (97.416)
+Epoch: [35][128/196]	Time 0.042 (0.041)	Data 0.063 (0.067)	Loss 0.9400 (0.8991)	Acc@1 65.234 (68.529)	Acc@5 94.141 (97.444)
+Epoch: [35][192/196]	Time 0.039 (0.040)	Data 0.063 (0.066)	Loss 0.9258 (0.8967)	Acc@1 64.062 (68.503)	Acc@5 98.438 (97.452)
+after train
+Epoche: [36/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [36][0/196]	Time 0.045 (0.045)	Data 0.091 (0.091)	Loss 0.8420 (0.8420)	Acc@1 68.750 (68.750)	Acc@5 98.047 (98.047)
+Epoch: [36][64/196]	Time 0.038 (0.040)	Data 0.064 (0.067)	Loss 0.8578 (0.9099)	Acc@1 69.922 (67.963)	Acc@5 97.656 (97.194)
+Epoch: [36][128/196]	Time 0.046 (0.040)	Data 0.086 (0.067)	Loss 0.8629 (0.9102)	Acc@1 69.141 (67.948)	Acc@5 97.656 (97.332)
+Epoch: [36][192/196]	Time 0.037 (0.041)	Data 0.064 (0.068)	Loss 0.8731 (0.9006)	Acc@1 73.047 (68.410)	Acc@5 98.438 (97.387)
+after train
+Epoche: [37/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [37][0/196]	Time 0.040 (0.040)	Data 0.065 (0.065)	Loss 0.8984 (0.8984)	Acc@1 67.969 (67.969)	Acc@5 98.438 (98.438)
+Epoch: [37][64/196]	Time 0.039 (0.041)	Data 0.065 (0.067)	Loss 0.9221 (0.9038)	Acc@1 65.234 (68.383)	Acc@5 96.875 (97.254)
+Epoch: [37][128/196]	Time 0.046 (0.040)	Data 0.061 (0.067)	Loss 0.9007 (0.9017)	Acc@1 67.969 (68.417)	Acc@5 98.047 (97.335)
+Epoch: [37][192/196]	Time 0.044 (0.040)	Data 0.063 (0.067)	Loss 0.8620 (0.9001)	Acc@1 69.531 (68.606)	Acc@5 98.047 (97.355)
+after train
+Epoche: [38/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [38][0/196]	Time 0.044 (0.044)	Data 0.063 (0.063)	Loss 0.9441 (0.9441)	Acc@1 66.406 (66.406)	Acc@5 96.875 (96.875)
+Epoch: [38][64/196]	Time 0.046 (0.040)	Data 0.069 (0.069)	Loss 1.0044 (0.8980)	Acc@1 64.453 (68.564)	Acc@5 96.094 (97.362)
+Epoch: [38][128/196]	Time 0.039 (0.041)	Data 0.066 (0.069)	Loss 0.9078 (0.8910)	Acc@1 70.312 (68.789)	Acc@5 96.484 (97.423)
+Epoch: [38][192/196]	Time 0.038 (0.041)	Data 0.067 (0.068)	Loss 0.8466 (0.8908)	Acc@1 70.312 (68.861)	Acc@5 98.438 (97.371)
+after train
+Epoche: [39/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [39][0/196]	Time 0.044 (0.044)	Data 0.063 (0.063)	Loss 0.8244 (0.8244)	Acc@1 71.094 (71.094)	Acc@5 96.875 (96.875)
+Epoch: [39][64/196]	Time 0.040 (0.040)	Data 0.065 (0.066)	Loss 0.9903 (0.8922)	Acc@1 62.500 (68.822)	Acc@5 98.047 (97.470)
+Epoch: [39][128/196]	Time 0.037 (0.040)	Data 0.062 (0.066)	Loss 0.9432 (0.8943)	Acc@1 65.234 (68.705)	Acc@5 97.266 (97.541)
+Epoch: [39][192/196]	Time 0.042 (0.041)	Data 0.064 (0.067)	Loss 0.9090 (0.8956)	Acc@1 66.797 (68.677)	Acc@5 98.047 (97.494)
+after train
+Epoche: [40/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [40][0/196]	Time 0.042 (0.042)	Data 0.063 (0.063)	Loss 0.7529 (0.7529)	Acc@1 71.484 (71.484)	Acc@5 98.828 (98.828)
+Epoch: [40][64/196]	Time 0.041 (0.041)	Data 0.087 (0.068)	Loss 0.8896 (0.8914)	Acc@1 69.531 (68.954)	Acc@5 97.266 (97.500)
+Epoch: [40][128/196]	Time 0.043 (0.041)	Data 0.064 (0.067)	Loss 0.9116 (0.8876)	Acc@1 65.234 (68.892)	Acc@5 98.438 (97.559)
+Epoch: [40][192/196]	Time 0.044 (0.041)	Data 0.064 (0.068)	Loss 0.9586 (0.8917)	Acc@1 69.531 (68.754)	Acc@5 97.266 (97.531)
+after train
+Epoche: [41/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [41][0/196]	Time 0.045 (0.045)	Data 0.064 (0.064)	Loss 0.8192 (0.8192)	Acc@1 73.828 (73.828)	Acc@5 96.094 (96.094)
+Epoch: [41][64/196]	Time 0.040 (0.041)	Data 0.068 (0.066)	Loss 0.9725 (0.8775)	Acc@1 66.406 (69.285)	Acc@5 97.266 (97.374)
+Epoch: [41][128/196]	Time 0.040 (0.040)	Data 0.062 (0.066)	Loss 0.9420 (0.8750)	Acc@1 65.625 (69.238)	Acc@5 98.438 (97.574)
+Epoch: [41][192/196]	Time 0.041 (0.040)	Data 0.064 (0.066)	Loss 0.8654 (0.8818)	Acc@1 71.875 (69.021)	Acc@5 97.266 (97.523)
+after train
+Epoche: [42/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [42][0/196]	Time 0.039 (0.039)	Data 0.064 (0.064)	Loss 0.7445 (0.7445)	Acc@1 71.875 (71.875)	Acc@5 98.438 (98.438)
+Epoch: [42][64/196]	Time 0.042 (0.041)	Data 0.075 (0.068)	Loss 0.7806 (0.8728)	Acc@1 71.875 (69.189)	Acc@5 98.438 (97.608)
+Epoch: [42][128/196]	Time 0.041 (0.041)	Data 0.063 (0.068)	Loss 0.8883 (0.8763)	Acc@1 69.922 (69.228)	Acc@5 98.828 (97.623)
+Epoch: [42][192/196]	Time 0.041 (0.041)	Data 0.066 (0.067)	Loss 0.9981 (0.8817)	Acc@1 64.062 (69.050)	Acc@5 98.047 (97.561)
+after train
+Epoche: [43/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [43][0/196]	Time 0.045 (0.045)	Data 0.063 (0.063)	Loss 0.9677 (0.9677)	Acc@1 66.406 (66.406)	Acc@5 96.484 (96.484)
+Epoch: [43][64/196]	Time 0.037 (0.040)	Data 0.089 (0.067)	Loss 0.9105 (0.8858)	Acc@1 66.406 (68.377)	Acc@5 98.047 (97.596)
+Epoch: [43][128/196]	Time 0.042 (0.040)	Data 0.065 (0.067)	Loss 0.8585 (0.8876)	Acc@1 68.750 (68.650)	Acc@5 98.438 (97.541)
+Epoch: [43][192/196]	Time 0.036 (0.040)	Data 0.064 (0.067)	Loss 0.8505 (0.8855)	Acc@1 69.141 (68.888)	Acc@5 97.266 (97.515)
+after train
+Epoche: [44/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [44][0/196]	Time 0.039 (0.039)	Data 0.064 (0.064)	Loss 0.9161 (0.9161)	Acc@1 68.359 (68.359)	Acc@5 96.094 (96.094)
+Epoch: [44][64/196]	Time 0.041 (0.040)	Data 0.087 (0.066)	Loss 0.9091 (0.8847)	Acc@1 67.969 (69.123)	Acc@5 96.094 (97.572)
+Epoch: [44][128/196]	Time 0.043 (0.041)	Data 0.064 (0.066)	Loss 0.9589 (0.8879)	Acc@1 63.672 (68.917)	Acc@5 97.266 (97.544)
+Epoch: [44][192/196]	Time 0.043 (0.041)	Data 0.067 (0.067)	Loss 1.0293 (0.8841)	Acc@1 64.062 (68.892)	Acc@5 95.703 (97.596)
+after train
+Epoche: [45/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [45][0/196]	Time 0.042 (0.042)	Data 0.062 (0.062)	Loss 0.9001 (0.9001)	Acc@1 71.484 (71.484)	Acc@5 98.438 (98.438)
+Epoch: [45][64/196]	Time 0.042 (0.040)	Data 0.064 (0.066)	Loss 0.9548 (0.8858)	Acc@1 64.453 (69.441)	Acc@5 96.875 (97.584)
+Epoch: [45][128/196]	Time 0.037 (0.040)	Data 0.062 (0.066)	Loss 0.8291 (0.8863)	Acc@1 67.188 (69.259)	Acc@5 98.828 (97.502)
+Epoch: [45][192/196]	Time 0.038 (0.040)	Data 0.066 (0.066)	Loss 0.8324 (0.8853)	Acc@1 69.922 (69.242)	Acc@5 96.484 (97.498)
+after train
+Epoche: [46/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [46][0/196]	Time 0.039 (0.039)	Data 0.063 (0.063)	Loss 0.8404 (0.8404)	Acc@1 73.047 (73.047)	Acc@5 98.828 (98.828)
+Epoch: [46][64/196]	Time 0.042 (0.040)	Data 0.067 (0.067)	Loss 0.8096 (0.8824)	Acc@1 71.875 (69.399)	Acc@5 97.656 (97.566)
+Epoch: [46][128/196]	Time 0.040 (0.040)	Data 0.062 (0.067)	Loss 0.9447 (0.8937)	Acc@1 67.188 (68.823)	Acc@5 96.875 (97.353)
+Epoch: [46][192/196]	Time 0.041 (0.041)	Data 0.067 (0.067)	Loss 0.7746 (0.8863)	Acc@1 74.219 (69.118)	Acc@5 97.656 (97.430)
+after train
+Epoche: [47/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [47][0/196]	Time 0.053 (0.053)	Data 0.077 (0.077)	Loss 0.8363 (0.8363)	Acc@1 69.141 (69.141)	Acc@5 98.438 (98.438)
+Epoch: [47][64/196]	Time 0.037 (0.040)	Data 0.064 (0.067)	Loss 0.8152 (0.8729)	Acc@1 69.531 (68.954)	Acc@5 98.828 (97.578)
+Epoch: [47][128/196]	Time 0.042 (0.040)	Data 0.067 (0.066)	Loss 0.8850 (0.8690)	Acc@1 67.578 (69.286)	Acc@5 96.875 (97.711)
+Epoch: [47][192/196]	Time 0.046 (0.040)	Data 0.103 (0.066)	Loss 0.9343 (0.8754)	Acc@1 67.188 (69.171)	Acc@5 97.656 (97.579)
+after train
+Epoche: [48/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [48][0/196]	Time 0.044 (0.044)	Data 0.086 (0.086)	Loss 0.9255 (0.9255)	Acc@1 71.094 (71.094)	Acc@5 96.484 (96.484)
+Epoch: [48][64/196]	Time 0.037 (0.041)	Data 0.068 (0.068)	Loss 0.9492 (0.8803)	Acc@1 68.750 (69.321)	Acc@5 97.266 (97.476)
+Epoch: [48][128/196]	Time 0.045 (0.041)	Data 0.063 (0.067)	Loss 0.8430 (0.8782)	Acc@1 71.875 (69.407)	Acc@5 97.266 (97.529)
+Epoch: [48][192/196]	Time 0.040 (0.041)	Data 0.063 (0.068)	Loss 0.9485 (0.8755)	Acc@1 70.312 (69.462)	Acc@5 95.703 (97.492)
+after train
+Epoche: [49/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [49][0/196]	Time 0.044 (0.044)	Data 0.064 (0.064)	Loss 0.8965 (0.8965)	Acc@1 67.969 (67.969)	Acc@5 97.656 (97.656)
+Epoch: [49][64/196]	Time 0.041 (0.041)	Data 0.065 (0.065)	Loss 0.9228 (0.8672)	Acc@1 68.750 (69.375)	Acc@5 95.312 (97.590)
+Epoch: [49][128/196]	Time 0.043 (0.040)	Data 0.070 (0.065)	Loss 0.9136 (0.8720)	Acc@1 68.359 (69.422)	Acc@5 96.484 (97.508)
+Epoch: [49][192/196]	Time 0.038 (0.040)	Data 0.064 (0.066)	Loss 0.8026 (0.8724)	Acc@1 71.484 (69.458)	Acc@5 97.656 (97.517)
+after train
+Epoche: [50/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [50][0/196]	Time 0.042 (0.042)	Data 0.064 (0.064)	Loss 0.9526 (0.9526)	Acc@1 64.844 (64.844)	Acc@5 97.266 (97.266)
+Epoch: [50][64/196]	Time 0.044 (0.041)	Data 0.064 (0.068)	Loss 0.8795 (0.8711)	Acc@1 69.922 (69.567)	Acc@5 97.656 (97.686)
+Epoch: [50][128/196]	Time 0.039 (0.041)	Data 0.064 (0.067)	Loss 0.9648 (0.8706)	Acc@1 68.750 (69.716)	Acc@5 95.312 (97.644)
+Epoch: [50][192/196]	Time 0.036 (0.041)	Data 0.062 (0.068)	Loss 0.8591 (0.8669)	Acc@1 68.750 (69.912)	Acc@5 98.047 (97.666)
+after train
+Epoche: [51/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [51][0/196]	Time 0.041 (0.041)	Data 0.066 (0.066)	Loss 0.8390 (0.8390)	Acc@1 68.750 (68.750)	Acc@5 99.219 (99.219)
+Epoch: [51][64/196]	Time 0.044 (0.041)	Data 0.064 (0.066)	Loss 0.7562 (0.8643)	Acc@1 72.656 (69.742)	Acc@5 99.219 (97.662)
+Epoch: [51][128/196]	Time 0.040 (0.041)	Data 0.066 (0.067)	Loss 0.8219 (0.8651)	Acc@1 72.266 (69.713)	Acc@5 97.266 (97.611)
+Epoch: [51][192/196]	Time 0.041 (0.041)	Data 0.070 (0.067)	Loss 1.0435 (0.8727)	Acc@1 63.672 (69.479)	Acc@5 95.703 (97.559)
+after train
+Epoche: [52/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [52][0/196]	Time 0.050 (0.050)	Data 0.063 (0.063)	Loss 0.7632 (0.7632)	Acc@1 73.047 (73.047)	Acc@5 98.047 (98.047)
+Epoch: [52][64/196]	Time 0.039 (0.041)	Data 0.061 (0.068)	Loss 0.7953 (0.8706)	Acc@1 71.484 (69.585)	Acc@5 97.266 (97.410)
+Epoch: [52][128/196]	Time 0.043 (0.041)	Data 0.064 (0.067)	Loss 0.9040 (0.8751)	Acc@1 67.188 (69.437)	Acc@5 98.047 (97.332)
+Epoch: [52][192/196]	Time 0.036 (0.040)	Data 0.066 (0.067)	Loss 0.8679 (0.8698)	Acc@1 72.656 (69.622)	Acc@5 96.875 (97.450)
+after train
+Epoche: [53/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [53][0/196]	Time 0.044 (0.044)	Data 0.063 (0.063)	Loss 0.9946 (0.9946)	Acc@1 66.016 (66.016)	Acc@5 98.438 (98.438)
+Epoch: [53][64/196]	Time 0.041 (0.041)	Data 0.064 (0.067)	Loss 0.8683 (0.8618)	Acc@1 73.047 (70.240)	Acc@5 98.047 (97.578)
+Epoch: [53][128/196]	Time 0.041 (0.040)	Data 0.061 (0.066)	Loss 0.9817 (0.8658)	Acc@1 67.969 (70.043)	Acc@5 97.266 (97.565)
+Epoch: [53][192/196]	Time 0.037 (0.040)	Data 0.065 (0.067)	Loss 0.8558 (0.8715)	Acc@1 67.969 (69.811)	Acc@5 97.656 (97.494)
+after train
+Epoche: [54/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [54][0/196]	Time 0.041 (0.041)	Data 0.063 (0.063)	Loss 0.8384 (0.8384)	Acc@1 73.047 (73.047)	Acc@5 97.266 (97.266)
+Epoch: [54][64/196]	Time 0.043 (0.041)	Data 0.066 (0.066)	Loss 0.8159 (0.8668)	Acc@1 73.438 (69.820)	Acc@5 97.266 (97.584)
+Epoch: [54][128/196]	Time 0.040 (0.041)	Data 0.064 (0.066)	Loss 0.8816 (0.8610)	Acc@1 68.359 (69.961)	Acc@5 96.875 (97.735)
+Epoch: [54][192/196]	Time 0.039 (0.041)	Data 0.068 (0.067)	Loss 0.8697 (0.8630)	Acc@1 68.359 (69.942)	Acc@5 97.266 (97.646)
+after train
+Epoche: [55/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [55][0/196]	Time 0.043 (0.043)	Data 0.063 (0.063)	Loss 0.9185 (0.9185)	Acc@1 71.875 (71.875)	Acc@5 98.438 (98.438)
+Epoch: [55][64/196]	Time 0.044 (0.041)	Data 0.065 (0.068)	Loss 0.9913 (0.8617)	Acc@1 63.281 (69.976)	Acc@5 97.266 (97.668)
+Epoch: [55][128/196]	Time 0.045 (0.040)	Data 0.067 (0.068)	Loss 0.8463 (0.8699)	Acc@1 68.750 (69.689)	Acc@5 98.047 (97.529)
+Epoch: [55][192/196]	Time 0.041 (0.040)	Data 0.067 (0.067)	Loss 0.9252 (0.8666)	Acc@1 68.359 (69.794)	Acc@5 97.266 (97.525)
+after train
+Epoche: [56/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [56][0/196]	Time 0.042 (0.042)	Data 0.063 (0.063)	Loss 0.7933 (0.7933)	Acc@1 70.703 (70.703)	Acc@5 98.047 (98.047)
+Epoch: [56][64/196]	Time 0.039 (0.040)	Data 0.068 (0.067)	Loss 0.9316 (0.8897)	Acc@1 66.406 (68.966)	Acc@5 96.875 (97.446)
+Epoch: [56][128/196]	Time 0.039 (0.040)	Data 0.065 (0.067)	Loss 0.8259 (0.8757)	Acc@1 70.703 (69.492)	Acc@5 98.047 (97.532)
+Epoch: [56][192/196]	Time 0.041 (0.040)	Data 0.064 (0.067)	Loss 0.9133 (0.8691)	Acc@1 65.234 (69.645)	Acc@5 98.828 (97.583)
+after train
+Epoche: [57/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [57][0/196]	Time 0.045 (0.045)	Data 0.065 (0.065)	Loss 0.8627 (0.8627)	Acc@1 67.578 (67.578)	Acc@5 97.656 (97.656)
+Epoch: [57][64/196]	Time 0.041 (0.040)	Data 0.063 (0.068)	Loss 0.8164 (0.8796)	Acc@1 68.750 (69.111)	Acc@5 97.656 (97.518)
+Epoch: [57][128/196]	Time 0.039 (0.040)	Data 0.064 (0.068)	Loss 0.9238 (0.8808)	Acc@1 69.922 (69.219)	Acc@5 97.656 (97.505)
+Epoch: [57][192/196]	Time 0.043 (0.040)	Data 0.064 (0.068)	Loss 0.7815 (0.8779)	Acc@1 73.047 (69.303)	Acc@5 98.438 (97.529)
+after train
+Epoche: [58/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [58][0/196]	Time 0.045 (0.045)	Data 0.063 (0.063)	Loss 0.8960 (0.8960)	Acc@1 69.922 (69.922)	Acc@5 98.047 (98.047)
+Epoch: [58][64/196]	Time 0.039 (0.041)	Data 0.063 (0.069)	Loss 0.8082 (0.8756)	Acc@1 70.312 (69.567)	Acc@5 99.219 (97.572)
+Epoch: [58][128/196]	Time 0.041 (0.041)	Data 0.062 (0.068)	Loss 0.8343 (0.8656)	Acc@1 72.656 (69.922)	Acc@5 98.047 (97.596)
+Epoch: [58][192/196]	Time 0.038 (0.041)	Data 0.064 (0.068)	Loss 0.9162 (0.8690)	Acc@1 69.141 (69.924)	Acc@5 96.094 (97.571)
+after train
+Epoche: [59/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [59][0/196]	Time 0.042 (0.042)	Data 0.076 (0.076)	Loss 0.8442 (0.8442)	Acc@1 71.094 (71.094)	Acc@5 98.438 (98.438)
+Epoch: [59][64/196]	Time 0.041 (0.041)	Data 0.073 (0.067)	Loss 0.8642 (0.8660)	Acc@1 67.969 (69.952)	Acc@5 98.828 (97.566)
+Epoch: [59][128/196]	Time 0.040 (0.041)	Data 0.061 (0.068)	Loss 0.8515 (0.8630)	Acc@1 69.531 (69.837)	Acc@5 97.266 (97.526)
+Epoch: [59][192/196]	Time 0.039 (0.041)	Data 0.064 (0.067)	Loss 0.8360 (0.8620)	Acc@1 67.578 (69.912)	Acc@5 98.047 (97.535)
+after train
+Epoche: [60/180]; Lr: 0.1
+batch Size 256
+befor train
+Epoch: [60][0/196]	Time 0.044 (0.044)	Data 0.063 (0.063)	Loss 0.8491 (0.8491)	Acc@1 70.703 (70.703)	Acc@5 96.875 (96.875)
+Epoch: [60][64/196]	Time 0.040 (0.041)	Data 0.066 (0.068)	Loss 0.7956 (0.8726)	Acc@1 72.656 (69.681)	Acc@5 97.656 (97.374)
+Epoch: [60][128/196]	Time 0.037 (0.041)	Data 0.064 (0.068)	Loss 0.9478 (0.8747)	Acc@1 68.750 (69.380)	Acc@5 95.312 (97.465)
+Epoch: [60][192/196]	Time 0.043 (0.041)	Data 0.064 (0.067)	Loss 0.9460 (0.8681)	Acc@1 65.234 (69.489)	Acc@5 98.047 (97.551)
+after train/home/jessica.buehler/venv/lib/python3.6/site-packages/torch/cuda/memory.py:234: FutureWarning: torch.cuda.reset_max_memory_allocated now calls torch.cuda.reset_peak_memory_stats, which resets /all/ peak memory stats.
+  FutureWarning)
+
+Traceback (most recent call last):
+  File "main.py", line 884, in <module>
+    main()
+  File "main.py", line 453, in main
+    model.wider(1.5, weight_norm=None, random_init=False, addNoise=True)
+TypeError: wider() missing 1 required positional argument: 'delta_width'
