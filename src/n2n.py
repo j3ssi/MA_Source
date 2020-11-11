@@ -484,7 +484,7 @@ class N2N(nn.Module):
     """
 
     # def wider(self, stage, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
-    def wider(self, stage, delta_width, weight_norm=True, random_init=True,
+    def wider(self, delta_width, weight_norm=True, random_init=True,
               addNoise=True):  # teacher_w1, teacher_b1, teacher_w2, new_width, verification):
         indexL = 0
         index1 = 0
