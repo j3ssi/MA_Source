@@ -1,4 +1,11 @@
 library(dplyr)
+
+setwd("/home/j3ssi/MA_Source/output/experimente4/Logs")
+
+baselineD_Lr1 <- read.delim("baselineD_Lr1.txt", header = TRUE, sep = "\t", dec = ".")
+plot(baselineD_Lr1$ValidAcc.)
+
+
 setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/Baseline")
 
 baseline1 <- read.delim("baseline1.txt", header = TRUE, sep = "\t", dec = ".")
@@ -70,7 +77,7 @@ baselineS4Sum <- sum(baselineS4$TrainEpochTime.s.)/180
 baselineS5Sum <- sum(baselineS5$TrainEpochTime.s.)/180
 
 baselineSSum1 <- c(baselineS1Sum, baselineS2Sum, baselineS3Sum, baselineS4Sum, baselineS5Sum)
-
+plot(baselineS1$ValidAcc.)
 
 setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/BaselineMul")
 
@@ -780,10 +787,26 @@ boxplot(baselineAcc1, bSizeAcc1, bSizeAcc,
 library(smooth)
 library(mComp)
 library(pracma)
-acc <- baseline1$ValidAcc.
+acc <- baselineD_Lr1$ValidAcc.
 x<-movavg(acc,n=10,type="e")
 y<-movavg(acc,n=30,type="e")
-plot(acc,xlim=c(0,180))
+plot(acc,xlim=c(0,180),pch=20)
 par(new=FALSE)
 lines(x,col="blue")
 lines(y,col="green")
+rollapply(x, width = 10, FUN = max, na.rm = TRUE)
+
+
+t = 0:180
+plot.new()
+frame()
+par(mfcol=c(2,2))
+# the stationary signal and ACF
+plot(t,x,
+     type='l',col='red',
+     xlab = "time (t)",
+     ylab = "Y(t)",
+     main = "Stationary signal")
+acf(x,lag.max = length(x),
+    xlab = "lag #", ylab = 'ACF',main=' ')
+
