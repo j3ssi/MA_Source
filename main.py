@@ -373,10 +373,10 @@ def main():
             k = 2
             while k <= n1:
                 wAcc = (1-a1) * wAcc + a1 *test_acc
-                print(f'wAcc')
-                print(f'n1: {k}')
+                # print(f'n1: {k}')
                 k += 1
             y.append(wAcc)
+            print(f'wAcc: {wAcc}')
 
             # print(f'n1: {n1}')
             # append logger file
