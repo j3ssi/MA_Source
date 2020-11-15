@@ -365,7 +365,16 @@ def main():
             testacc.append(test_acc)
             y = []
             if n1> epoch:
-                n1 = n1 - epoch
+                n1 = epoch
+            y.append(test_acc[-1])
+            wAcc = testacc[ - n1 ]
+            print(f'n1: {n1}')
+            for k in range(1,n1):
+                wAcc = (1-a1) * wAcc + a1 *test_acc
+                print(f'wAcc')
+                print(f'n1: {k}')
+            y.append(wAcc)
+
             print(f'n1: {n1}')
             # append logger file
             logger.append(
