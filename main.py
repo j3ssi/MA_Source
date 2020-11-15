@@ -371,7 +371,7 @@ def main():
 
             wAcc = testacc[ - n1 ]
             print(f'n1: {n1} for:')
-            k = n1
+            k = n1 -1 
             while k > 1:
                 wAcc = (1-a1) * wAcc + a1 *testacc[ - k ]
                 print(f'n1: {k}')
