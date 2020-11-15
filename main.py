@@ -327,7 +327,7 @@ def main():
                                   shuffle=True, num_workers=args.workers)
     #    optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
     #                     weight_decay=args.weight_decay)
-    k = args.epoch/6
+    k = args.epochs/6
     n1 = 30
     a1 = 2/(n+1)
     n2 = 3
