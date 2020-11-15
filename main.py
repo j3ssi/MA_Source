@@ -369,10 +369,12 @@ def main():
             y.append(testacc[-1])
             wAcc = testacc[ - n1 ]
             print(f'n1: {n1} for:')
-            for k in range(1,n1+1):
+            k = 1
+            while k < n1:
                 wAcc = (1-a1) * wAcc + a1 *test_acc
                 print(f'wAcc')
                 print(f'n1: {k}')
+                k += 1
             y.append(wAcc)
 
             print(f'n1: {n1}')
