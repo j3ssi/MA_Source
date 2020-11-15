@@ -3,7 +3,7 @@ library(dplyr)
 setwd("/home/j3ssi/MA_Source/output/experimente4/Logs")
 
 baselineD_Lr1 <- read.delim("baselineD_Lr1.txt", header = TRUE, sep = "\t", dec = ".")
-plot(baselineD_Lr1$ValidAcc.)
+plot(baselineD_Lr1$ValidAcc., ylab='Accuracy', xlab='Epoche')
 
 
 setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/Baseline")
@@ -788,14 +788,15 @@ library(smooth)
 library(mComp)
 library(pracma)
 acc <- baselineD_Lr1$ValidAcc.
-x<-movavg(acc,n=10,type="e")
-y<-movavg(acc,n=30,type="e")
-plot(acc,xlim=c(0,180),pch=20)
-par(new=FALSE)
-lines(x,col="blue")
-lines(y,col="green")
-rollapply(x, width = 10, FUN = max, na.rm = TRUE)
+x<-movavg(acc,n=30,type="e")
+xMin <- 
+xMax <-
 
+plot(y,xlim=c(0,180),type='l',col ='blue', xlab='Epoche', ylab='gleitender Mittelwert')
+par(new=FALSE)
+lines(y,col="green")
+
+lines(x,col="blue")
 
 t = 0:180
 plot.new()

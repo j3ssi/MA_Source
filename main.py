@@ -327,11 +327,15 @@ def main():
                                   shuffle=True, num_workers=args.workers)
     #    optimizer = LARS(model.parameters(), eta=args.larsLR, lr=args.lr, momentum=args.momentum,
     #                     weight_decay=args.weight_decay)
-
+    k = args.epoch/6
+    n1 = 30
+    a1 = 2/(n+1)
+    n2 = 3
     i = 1
     # for epochNet2Net in range(1, 4):
     print(f'deeper epoch: {args.deeper}')
-
+    testacc = []
+    wAvg = []
     while i == 1:
         for epoch in range(start_epoch, args.epochs + start_epoch):
 
@@ -358,7 +362,11 @@ def main():
 
             # print(f'Max memory in training epoch: {torch.cuda.max_memory_allocated() / 10000000}')
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
-
+            testacc.append(test_acc)
+            y = []
+            if n1> epoch:
+                n1 = n1 - epoch
+            print(f'n1: {n1}')
             # append logger file
             logger.append(
                [optimizer.param_groups[0]["lr"], train_loss, test_loss, train_acc, test_acc, train_epoch_time,
