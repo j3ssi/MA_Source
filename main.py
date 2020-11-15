@@ -377,6 +377,8 @@ def main():
                 print(f'n1: {k}')
                 print(f'test acc: {test_acc}')
                 k = k - 1
+            if epoch > 1:
+
             y.append(wAcc)
             print(f'wAcc: {wAcc}')
 
