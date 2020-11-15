@@ -802,7 +802,7 @@ class N2N(nn.Module):
                         new_b1 = np.append(new_b1, old_b1[index])
                 print(f'shape new w1: {new_w1.shape}')
                 module.weight.data = nn.Parameter(torch.from_numpy(new_w1))
-                module.out_channels = module.out_channels * delta_width
+                module.out_channels = int( module.out_channels * delta_width )
 
 
                 print(f'module: {module}')

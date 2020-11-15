@@ -784,30 +784,23 @@ boxplot(baselineAcc1, bSizeAcc1, bSizeAcc,
 
 
 #Exponentiel geglätteter Durchschnitt
-library(smooth)
-library(mComp)
-library(pracma)
-acc <- baselineD_Lr1$ValidAcc.
+library('caTools')
+library('pracma')
+setwd("/home/j3ssi/MA_Source/output/experimente4/Logs")
+
+baselineS_Lr1 <- read.delim("baselineS_Lr1.txt", header = TRUE, sep = "\t", dec = ".")
+plot(baselineS_Lr1$ValidAcc., ylab='Accuracy', xlab='Epoche')
+
+
+acc <- baselineS_Lr1$ValidAcc.
 x<-movavg(acc,n=30,type="e")
-xMin <- 
-xMax <-
-
-plot(y,xlim=c(0,180),type='l',col ='blue', xlab='Epoche', ylab='gleitender Mittelwert')
+xMean <- runmean(x,k=30)
+plot(x,xlim=c(0,180),ylim=c(30,95),type='l', xlab='Epoche', ylab='gleitender Mittelwert')
 par(new=FALSE)
-lines(y,col="green")
-
-lines(x,col="blue")
-
-t = 0:180
-plot.new()
-frame()
-par(mfcol=c(2,2))
-# the stationary signal and ACF
-plot(t,x,
-     type='l',col='red',
-     xlab = "time (t)",
-     ylab = "Y(t)",
-     main = "Stationary signal")
-acf(x,lag.max = length(x),
-    xlab = "lag #", ylab = 'ACF',main=' ')
-
+points(acc)
+lines(xMean,col="green")
+lines(xMax,col="blue")
+y<-diff(x, lag=1)
+y<- movavg(y,n=3)
+plot(y, type='p',col = ifelse(y < 0.2,'red','green'))
+abline(h=0.2)
