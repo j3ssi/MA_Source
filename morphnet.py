@@ -302,7 +302,7 @@ if __name__ == '__main__':
     np.random.shuffle(indices)
 
     # train_idx, valid_idx = indices[split:], indices[:split]
-    train_sampler = SubsetRandomSampler(train_idx)
+    # train_sampler = SubsetRandomSampler(train_idx)
     # valid_sampler = SubsetRandomSampler(valid_idx)
 
     test_set = eval(args.dataset)(args.datapath, False, transforms.Compose([
