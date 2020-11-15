@@ -375,12 +375,12 @@ def main():
             while k > 1:
                 wAcc = (1-a1) * wAcc + a1 *testacc[ - k ]
                 # print(f'n1: {k}')
-                # print(f'test acc: {test_acc}')
                 k = k - 1
             # if epoch > 1:
 
             y.append(wAcc)
             print(f'wAcc: {wAcc}')
+            print(f'test acc: {test_acc}')
 
             # print(f'n1: {n1}')
             # append logger file
