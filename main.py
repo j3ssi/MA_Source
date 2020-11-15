@@ -265,7 +265,7 @@ def main():
     else:
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
         logger.set_names(
-            ['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.', 'TrainEpochTime(s)',
+            ['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.','AvgAcc.' ,'TrainEpochTime(s)',
              'TestEpochTime(s)'])
         assert args.numOfStages == len(
             listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
@@ -381,7 +381,7 @@ def main():
             # print(f'n1: {n1}')
             # append logger file
             logger.append(
-               [optimizer.param_groups[0]["lr"], train_loss, test_loss, train_acc, test_acc, train_epoch_time,
+               [optimizer.param_groups[0]["lr"], train_loss, test_loss, wAcc, train_acc, test_acc, train_epoch_time,
                 test_epoch_time])
             countB = 0
             for p in model.parameters():
