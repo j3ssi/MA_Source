@@ -329,7 +329,7 @@ def main():
     #                     weight_decay=args.weight_decay)
     k = args.epochs/6
     n1 = 30
-    a1 = 2/(n+1)
+    a1 = 2/(n1+1)
     n2 = 3
     i = 1
     # for epochNet2Net in range(1, 4):
