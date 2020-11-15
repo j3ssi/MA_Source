@@ -366,10 +366,10 @@ def main():
             y = []
             if n1> epoch:
                 n1 = epoch
-            y.append(testacc[-1])
+            y.append( testacc[-1] )
             wAcc = testacc[ - n1 ]
             print(f'n1: {n1} for:')
-            k = 1
+            k = 2
             while k < n1:
                 wAcc = (1-a1) * wAcc + a1 *test_acc
                 print(f'wAcc')
