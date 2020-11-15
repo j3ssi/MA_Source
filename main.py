@@ -364,7 +364,8 @@ def main():
             test_loss, test_acc, test_epoch_time = test(testloader, model, criterion, epoch, use_cuda)
             testacc.append(test_acc)
             y = []
-            if n1> epoch:
+            n1 = 30
+            if n1 > epoch:
                 n1 = epoch
             y.append( testacc[-1] )
             wAcc = testacc[ - n1 ]
