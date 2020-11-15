@@ -366,7 +366,7 @@ def main():
             y = []
             if n1> epoch:
                 n1 = epoch
-            y.append(test_acc[-1])
+            y.append(testacc[-1])
             wAcc = testacc[ - n1 ]
             print(f'n1: {n1}')
             for k in range(1,n1):
