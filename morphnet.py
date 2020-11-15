@@ -213,7 +213,7 @@ def train(model, train_loader, val_loader, epochs=10, lr=1e-2, name=''):
     model.train()
 
     optimizer = optim.SGD(model.parameters(), lr=lr, momentum=0.9, weight_decay=5e-4, nesterov=True)
-    scheduler = optim.lr_scheduler.MultiStepLR(optimizer, [int(epochs*0.3), int(epochs*0.6), int(epochs*0.8)], gamma=0.2)
+    scheduler = optim.lr_scheduler.MultiStepLR(optimizer, [93,150] , gamma=0.1)
     criterion = torch.nn.CrossEntropyLoss()
     reg =[]
     for e in range(epochs):
@@ -226,7 +226,7 @@ def train(model, train_loader, val_loader, epochs=10, lr=1e-2, name=''):
         scheduler.step()
     return model
 
-def train_mask(model, train_loader, val_loader, pruner, epochs=10, lr=1e-2, lbda=1.3*1e-8, cbns=None, maps=None, constraint='flops'):
+def train_mask(model, train_loader, testloader, pruner, epochs=10, lr=1e-2, lbda=1.3*1e-8, cbns=None, maps=None, constraint='flops'):
     model = model.to('cuda')
     model.train()
 
@@ -239,7 +239,7 @@ def train_mask(model, train_loader, val_loader, pruner, epochs=10, lr=1e-2, lbda
         flops, num_params = measure_model(pruner.model, pruner, 32)
         print(f'Epoche: {e}; regular: {regularize}: flops {flops}')
 
-        top1, _ = test(model, val_loader)
+        top1, _ = test(model, test_loader)
         logger.append([regularize, num_params, top1])
         print('#Filters: {}, #FLOPs: {:.2f}M | Top-1: {:.2f}'.format(num_alive_filters(model), pruner.get_valid_flops()/1000000., top1))
     return model
@@ -296,14 +296,14 @@ if __name__ == '__main__':
 
     num_train = len(train_set)
     indices = list(range(num_train))
-    split = int(np.floor(0.1 * num_train))
+    # split = int(np.floor(0.1 * num_train))
 
     np.random.seed(98)
     np.random.shuffle(indices)
 
-    train_idx, valid_idx = indices[split:], indices[:split]
+    # train_idx, valid_idx = indices[split:], indices[:split]
     train_sampler = SubsetRandomSampler(train_idx)
-    valid_sampler = SubsetRandomSampler(valid_idx)
+    # valid_sampler = SubsetRandomSampler(valid_idx)
 
     test_set = eval(args.dataset)(args.datapath, False, transforms.Compose([
             transforms.ToTensor(),
@@ -313,10 +313,10 @@ if __name__ == '__main__':
         train_set, batch_size=args.batch_size, shuffle=True,
         num_workers=6, pin_memory=True
     )
-    val_loader = torch.utils.data.DataLoader(
-        val_set, batch_size=args.batch_size, sampler=valid_sampler,
-        num_workers=6, pin_memory=True
-    )
+    # val_loader = torch.utils.data.DataLoader(
+    #     val_set, batch_size=args.batch_size, sampler=valid_sampler,
+    #     num_workers=6, pin_memory=True
+    # )
     test_loader = torch.utils.data.DataLoader(
         test_set, batch_size=125, shuffle=False,
         num_workers=6, pin_memory=False
@@ -337,7 +337,7 @@ if __name__ == '__main__':
         cbns = get_cbns(pruner.model)
 
         print('Before Pruning | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops/1000000., num_params/1000000.))
-        train_mask(pruner.model, train_loader, val_loader, pruner, epochs=5, lr=1e-3, lbda=args.lbda, cbns=cbns, maps=maps, constraint=args.constraint)
+        train_mask(pruner.model, train_loader,test_loader, pruner, epochs=5, lr=1e-3, lbda=args.lbda, cbns=cbns, maps=maps, constraint=args.constraint)
 
         print('Target ({}): {:.3f}M'.format(args.constraint, target/1000000.))
         prune_model(pruner.model, cbns, pruner)
