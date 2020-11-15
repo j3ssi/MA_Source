@@ -260,7 +260,7 @@ def prune_model(model, cbns, pruner):
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--datapath", type=str, default='/home/jessica.buehler/MA_Source/dataset/data/torch')
-    parser.add_argument("--logger", type=str, default='/home/jessica.buehler/MA_Source/MorphLogs')
+    parser.add_argument("--logger", type=str, default='/home/jessica.buehler/MA_Source/MorphLogs/log.txt')
     parser.add_argument("--dataset", type=str, default='torchvision.datasets.CIFAR10')
     parser.add_argument("--epoch", type=int, default=5)
     parser.add_argument("--name", type=str, default='ft_mbnetv2')
