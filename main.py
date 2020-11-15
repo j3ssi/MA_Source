@@ -377,7 +377,7 @@ def main():
                 k += 1
             y.append(wAcc)
 
-            print(f'n1: {n1}')
+            # print(f'n1: {n1}')
             # append logger file
             logger.append(
                [optimizer.param_groups[0]["lr"], train_loss, test_loss, train_acc, test_acc, train_epoch_time,
