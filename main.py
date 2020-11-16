@@ -484,6 +484,17 @@ def main():
                 # criterion = nn.CrossEntropyLoss()
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
+            if args.widerRnd == epoch:
+                model.wider(1.5, weight_norm=None, random_init=True, addNoise=True)
+                # model.widthofLayers[0] *= 2
+                for i in range(len(model.widthofLayers)):
+                   model.widthofLayers[i] *= 2
+                model.newModuleList(10)
+                model.cuda()
+                # print(model)
+                # criterion = nn.CrossEntropyLoss()
+                optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+                                      weight_decay=args.weight_decay)
 
         i = 2
 

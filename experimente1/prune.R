@@ -788,7 +788,15 @@ library('caTools')
 library('pracma')
 setwd("/home/j3ssi/MA_Source/output/experimente4/Logs")
 
+
+wider_lr1 <-read.delim("wider_lr1.txt", header = TRUE, sep = "\t", dec = ".")
+plot(wider_lr1$ValidAcc.,type ='l')
+
+
+
 baselineS_Lr1 <- read.delim("baselineS_Lr1.txt", header = TRUE, sep = "\t", dec = ".")
+lines(baselineS_Lr1$ValidAcc., col='blue')
+
 plot(baselineS_Lr1$ValidAcc., ylab='Accuracy', xlab='Epoche')
 
 

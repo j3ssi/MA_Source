@@ -611,8 +611,7 @@ class N2N(nn.Module):
                     # module1 =None
 
 
-
-            if not changeOfWidth and finished and isinstance(module1, nn.Linear):
+            if not random_init and not changeOfWidth and finished and isinstance(module1, nn.Linear):
 
                 # print(f'1: Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
 
@@ -634,6 +633,7 @@ class N2N(nn.Module):
                     old_b1 = module.weight.clone()
 
                 # Fülle die neuen breiteren Gewichte mit dem richtigen Inhalt aus altem
+
                 for i in range(len(mapping)):
                     index = mapping[i]
                     new_weight = old_w1[index, :, :, :]
@@ -691,7 +691,7 @@ class N2N(nn.Module):
                     moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
                     moduleBn.running_mean = torch.from_numpy(new_bn_mean)
                     moduleBn.running_var = torch.from_numpy(new_bn_var)
-            elif not changeOfWidth and finished:
+            elif not random_init and not changeOfWidth and finished:
 
                 # print(f'1: Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
 
@@ -773,8 +773,7 @@ class N2N(nn.Module):
                     moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
                     moduleBn.running_mean = torch.from_numpy(new_bn_mean)
                     moduleBn.running_var = torch.from_numpy(new_bn_var)
-
-            elif finished:
+            elif not random_init and finished:
                 # # print(f'2: Module: {i1}; {i11}; moduleBn: {iBn1}; {iBn11}; module1: {i2}; {i21}')
                 #
                 # # ziehe zufällige Zahlen für die Mapping Funktion
@@ -866,6 +865,42 @@ class N2N(nn.Module):
                 # print(f'module: {module}')
                 # print(f'module1: {module1}')
                 changeOfWidth = False
+            elif random_init:
+                i0 = int( module.out_channels * delta_width )
+                i1 = module.out_channels
+                i2 = module.kernel_size[0]
+                i3 = module.kernel_size[1]
+                old_w1 = module.weight.data.clone().cpu().detach().numpy()
+                n = i2 * i3 * module.out_channels
+                new_w1 = torch.empty(size = (i0,i1,i2,i3), dtype = old_w1.dtype() ).normal_(mean = 0, std = n)
+                for k in range(0, module.out_channels):
+                    new_w1[k,:,:,:] = old_w1[k,:,:,:]
+                module.out_channels = int( module.out_channels * delta_width)
+                module.data = new_w1
+                new_w2 = module1.weight.data.clone().cpu().detach().numpy()
+                if isinstance(module1, nn.Conv2d):
+                    i0 = int(module1.in_channels * delta_width)
+                    i1 = module1.in_channels
+                    i2 = module1.kernel_size[0]
+                    i3 = module1.kernel_size[1]
+                    old_w2 = module1.weight.data.clone().cpu().detach().numpy()
+                    n = i2 * i3 * module1.in_channels
+                    new_w2 = torch.empty(size=(i0, i1, i2, i3), dtype=old_w2.dtype()).normal_(mean=0, std=n)
+                    for k in range(0, module1.in_channels):
+                        new_w1[:, k, :, :] = old_w1[:, k, :, :]
+                    module1.in_channels = int(module1.in_channels * delta_width)
+                    module1.data = new_w1
+                elif isinstance(module1, nn.Linear):
+                    i0 = int(module1.in_channels * delta_width)
+                    i1 = module1.in_features
+                    old_w2 = module1.weight.data.clone().cpu().detach().numpy()
+                    n = i1
+                    new_w2 = torch.empty(size=(i0, i1), dtype=old_w2.dtype()).normal_(mean=0, std=n)
+                    for k in range(0, module1.in_features):
+                        new_w1[:, k, :, :] = old_w1[:, k, :, :]
+                    module1.in_features = int(module1.in_features * delta_width)
+                    module1.data = new_w1
+
             if isinstance(module1, nn.Linear):
                 break
         print(f'self: {self}')
