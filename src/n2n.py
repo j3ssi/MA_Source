@@ -866,38 +866,41 @@ class N2N(nn.Module):
                 # print(f'module1: {module1}')
                 changeOfWidth = False
             elif random_init:
-                i0 = int( module.out_channels * delta_width )
+                i0 = int( module.out_channels * (delta_width - 1) )
                 i1 = module.out_channels
                 i2 = module.kernel_size[0]
                 i3 = module.kernel_size[1]
                 old_w1 = module.weight.data.clone().cpu().detach().numpy()
                 n = i2 * i3 * module.out_channels
                 new_w1 = n * np.random.randn(i0,i1,i2,i3)
-                for k in range(0, module.out_channels):
-                    new_w1[k, :, :, :] = old_w1[k, :, :, :]
+                new_w1 = np.concatenate((old_w1, new_w1), axis = 0 )
+                # for k in range(0, module.out_channels):
+                #     new_w1[k, :, :, :] = old_w1[k, :, :, :]
                 module.out_channels = int( module.out_channels * delta_width)
                 module.data = new_w1
                 new_w2 = module1.weight.data.clone().cpu().detach().numpy()
                 if isinstance(module1, nn.Conv2d):
                     i0 = module1.out_channels
-                    i1 = int( module1.in_channels * delta_width)
+                    i1 = int( module1.in_channels * (delta_width - 1))
                     i2 = module1.kernel_size[0]
                     i3 = module1.kernel_size[1]
                     old_w2 = module1.weight.data.clone().cpu().detach().numpy()
                     n = i2 * i3 * module1.in_channels
                     new_w2 = n * np.random.randn(i0, i1, i2, i3)
-                    for k in range(0, module1.in_channels):
-                        new_w2[:, k, :, :] = old_w2[:, k, :, :]
+                    new_w2 = np.concatenate((old_w2, new_w2), axis = 1)
+                    # for k in range(0, module1.in_channels):
+                    #     new_w2[:, k, :, :] = old_w2[:, k, :, :]
                     module1.in_channels = int(module1.in_channels * delta_width)
                     module1.data = new_w2
                 elif isinstance(module1, nn.Linear):
                     i0 = module1.out_features
-                    i1 = int(module1.in_features * delta_width)
+                    i1 = int(module1.in_features * (delta_width -1))
                     old_w2 = module1.weight.data.clone().cpu().detach().numpy()
                     n = i1
                     new_w2 = n * np.random.randn(i1, i0)
-                    for k in range(0, module1.in_features):
-                        new_w2[:, k] = old_w2[:, k]
+                    new_w2 = np.concatenate(old_w2,new_w2)
+                    # for k in range(0, module1.in_features):
+                    #     new_w2[:, k] = old_w2[:, k]
                     module1.in_features = int(module1.in_features * delta_width)
                     module1.data = new_w1
 
