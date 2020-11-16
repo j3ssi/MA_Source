@@ -867,7 +867,7 @@ class N2N(nn.Module):
                 changeOfWidth = False
             elif random_init:
                 i0 = int( module.out_channels * (delta_width - 1) )
-                i1 = module.out_channels
+                i1 = module.in_channels
                 i2 = module.kernel_size[0]
                 i3 = module.kernel_size[1]
                 old_w1 = module.weight.data.clone().cpu().detach().numpy()
