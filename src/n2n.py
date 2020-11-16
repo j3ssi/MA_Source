@@ -872,11 +872,9 @@ class N2N(nn.Module):
                 i3 = module.kernel_size[1]
                 old_w1 = module.weight.data.clone().cpu().detach().numpy()
                 n = i2 * i3 * module.out_channels
-                new_w1 = n * np.random.randn(i1,i0,i2,i3)
+                new_w1 = n * np.random.randn(i0,i1,i2,i3)
                 for k in range(0, module.out_channels):
-                    new_w1_re = old_w1[k,:,:,:]
-                    new_w1_re = new_w1_re[np.newaxis, :, :, :]
-                    new_w1 = np.concatenate((new_w1, new_w1_re), axis = 0)
+                    new_w1[:,k,:,:] = old_w1[:,k,:,:]
                 module.out_channels = int( module.out_channels * delta_width)
                 module.data = new_w1
                 new_w2 = module1.weight.data.clone().cpu().detach().numpy()
@@ -887,12 +885,9 @@ class N2N(nn.Module):
                     i3 = module1.kernel_size[1]
                     old_w2 = module1.weight.data.clone().cpu().detach().numpy()
                     n = i2 * i3 * module1.in_channels
-                    new_w2 = n * np.random.randn(i1, i0, i2, i3)
+                    new_w2 = n * np.random.randn(i0, i1, i2, i3)
                     for k in range(0, module1.in_channels):
-                        new_w2_re = old_w2[:, k, :, :]
-                        new_w2_re = new_w2_re[:, np.newaxis, :, :]
-                        new_w2 = np.concatenate((new_w2, new_w2_re), axis = 1)
-
+                        new_w2[k, :, :, :] = old_w2[k, :, :, :]
                     module1.in_channels = int(module1.in_channels * delta_width)
                     module1.data = new_w2
                 elif isinstance(module1, nn.Linear):
@@ -902,10 +897,7 @@ class N2N(nn.Module):
                     n = i1
                     new_w2 = n * np.random.randn(i1, i0)
                     for k in range(0, module1.in_features):
-                        new_w2_re = old_w2[:, k]
-                        new_w2_re = new_w2_re[:, np.newaxis]
-
-                        new_w2 = np.concatenate((new_w2, new_w2_re), axis = 1)
+                        new_w2[:, k] = old_w2[:, k]
                     module1.in_features = int(module1.in_features * delta_width)
                     module1.data = new_w1
 
