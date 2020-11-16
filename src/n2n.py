@@ -874,7 +874,7 @@ class N2N(nn.Module):
                 n = i2 * i3 * module.out_channels
                 new_w1 = n * np.random.randn(i0,i1,i2,i3)
                 for k in range(0, module.out_channels):
-                    new_w1[:,k,:,:] = old_w1[:,k,:,:]
+                    new_w1[k, :, :, :] = old_w1[k, :, :, :]
                 module.out_channels = int( module.out_channels * delta_width)
                 module.data = new_w1
                 new_w2 = module1.weight.data.clone().cpu().detach().numpy()
@@ -887,7 +887,7 @@ class N2N(nn.Module):
                     n = i2 * i3 * module1.in_channels
                     new_w2 = n * np.random.randn(i0, i1, i2, i3)
                     for k in range(0, module1.in_channels):
-                        new_w2[k, :, :, :] = old_w2[k, :, :, :]
+                        new_w2[:, k, :, :] = old_w2[:, k, :, :]
                     module1.in_channels = int(module1.in_channels * delta_width)
                     module1.data = new_w2
                 elif isinstance(module1, nn.Linear):
