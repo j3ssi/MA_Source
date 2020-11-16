@@ -501,8 +501,8 @@ class N2N(nn.Module):
         while indexL < len(self.module_list):
             finished = True
             i = indexL
-            # if printDeep:
-            print(f'IndexL: {indexL}')
+            if printDeep:
+                print(f'IndexL: {indexL}')
             module = None
             moduleBn = None
             module1 = None
@@ -551,18 +551,18 @@ class N2N(nn.Module):
                         module = moduleX[i]
                         i1 = indexL
                         i11 = i
-                        # if printDeep:
-                        print(f'Module= {module}; i: {i} indexL: {indexL}')
+                        if printDeep:
+                            print(f'Module= {module}; i: {i} indexL: {indexL}')
                     elif isinstance(moduleX[i], nn.BatchNorm2d):
                         moduleBn = moduleX[i]
                         iBn1 = indexL
                         iBn11 = i
-                        # if printDeep:
-                        print(f' moduleBn: {moduleBn}; i: {i}; indexL: {indexL}')
+                        if printDeep:
+                            print(f' moduleBn: {moduleBn}; i: {i}; indexL: {indexL}')
                     elif isinstance(moduleX[i],nn.Conv2d) and module is not None:
                         module1 = moduleX[i]
-                        # if printDeep:
-                        print(f'module1: {module1}; i: {i}; indexL: {indexL}')
+                        if printDeep:
+                            print(f'module1: {module1}; i: {i}; indexL: {indexL}')
                         i2 = indexL
                         i21 = i
                         break
