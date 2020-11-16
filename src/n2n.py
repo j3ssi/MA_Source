@@ -872,7 +872,7 @@ class N2N(nn.Module):
                 i3 = module.kernel_size[1]
                 old_w1 = module.weight.data.clone().cpu().detach().numpy()
                 n = i2 * i3 * module.out_channels
-                new_w1 = n * np.randn(shape=(i0,i1,i2,i3), dtype = old_w1.dtype)
+                new_w1 = n * np.random.randn(shape=(i0,i1,i2,i3), dtype = old_w1.dtype)
                 for k in range(0, module.out_channels):
                     new_w1_re = old_w1[k,:,:,:]
                     new_w1 = np.concatenate((new_w1, new_w1_re), axis = 0)
@@ -886,7 +886,7 @@ class N2N(nn.Module):
                     i3 = module1.kernel_size[1]
                     old_w2 = module1.weight.data.clone().cpu().detach().numpy()
                     n = i2 * i3 * module1.in_channels
-                    new_w2 = n * np.randn(shape=(i0, i1, i2, i3), dtype=old_w2.dtype)
+                    new_w2 = n * np.random.randn(shape=(i0, i1, i2, i3), dtype=old_w2.dtype)
                     for k in range(0, module1.in_channels):
                         new_w2_re = old_w2[:, k, :, :]
                         new_w2 = np.concatenate((new_w2, new_w2_re), axis = 1)
@@ -898,7 +898,7 @@ class N2N(nn.Module):
                     i1 = module1.in_features
                     old_w2 = module1.weight.data.clone().cpu().detach().numpy()
                     n = i1
-                    new_w2 = n * np.randn(shape=(i0, i1), dtype=old_w2.dtype)
+                    new_w2 = n * np.random.randn(shape=(i0, i1), dtype=old_w2.dtype)
                     for k in range(0, module1.in_features):
                         new_w2_re = old_w2[:, k]
                         new_w2 = np.concatenate((new_w2, new_w2_re), axis = 1)
