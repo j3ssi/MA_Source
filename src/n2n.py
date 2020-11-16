@@ -871,8 +871,10 @@ class N2N(nn.Module):
                 i2 = module.kernel_size[0]
                 i3 = module.kernel_size[1]
                 old_w1 = module.weight.data.clone().cpu().detach().numpy()
+
                 n = i2 * i3 * module.out_channels
                 new_w1 = n * np.random.randn(i0,i1,i2,i3)
+                print(f'oldw shape: {old_w1.shape}; new shape: {new_w1.shape}')
                 new_w1 = np.concatenate((old_w1, new_w1), axis = 0 )
                 # for k in range(0, module.out_channels):
                 #     new_w1[k, :, :, :] = old_w1[k, :, :, :]
