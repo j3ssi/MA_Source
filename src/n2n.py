@@ -866,13 +866,14 @@ class N2N(nn.Module):
                 # print(f'module1: {module1}')
                 changeOfWidth = False
             elif random_init:
+                dtype = module1.weight.dtype
                 i0 = int( module.out_channels * delta_width )
                 i1 = module.out_channels
                 i2 = module.kernel_size[0]
                 i3 = module.kernel_size[1]
                 old_w1 = module.weight.data.clone().cpu().detach().numpy()
                 n = i2 * i3 * module.out_channels
-                new_w1 = torch.empty(size = (i0,i1,i2,i3), dtype = old_w1.dtype ).normal_(mean = 0, std = n)
+                new_w1 = torch.empty(size = (i0,i1,i2,i3), dtype = dtype ).normal_(mean = 0, std = n)
                 for k in range(0, module.out_channels):
                     new_w1[k,:,:,:] = old_w1[k,:,:,:]
                 module.out_channels = int( module.out_channels * delta_width)
@@ -885,7 +886,7 @@ class N2N(nn.Module):
                     i3 = module1.kernel_size[1]
                     old_w2 = module1.weight.data.clone().cpu().detach().numpy()
                     n = i2 * i3 * module1.in_channels
-                    new_w2 = torch.empty(size=(i0, i1, i2, i3), dtype=old_w2.dtype).normal_(mean=0, std=n)
+                    new_w2 = torch.empty(size=(i0, i1, i2, i3), dtype=dtype).normal_(mean=0, std=n)
                     for k in range(0, module1.in_channels):
                         new_w1[:, k, :, :] = old_w1[:, k, :, :]
                     module1.in_channels = int(module1.in_channels * delta_width)
@@ -895,7 +896,7 @@ class N2N(nn.Module):
                     i1 = module1.in_features
                     old_w2 = module1.weight.data.clone().cpu().detach().numpy()
                     n = i1
-                    new_w2 = torch.empty(size=(i0, i1), dtype=old_w2.dtype).normal_(mean=0, std=n)
+                    new_w2 = torch.empty(size=(i0, i1), dtype=dtype).normal_(mean=0, std=n)
                     for k in range(0, module1.in_features):
                         new_w1[:, k, :, :] = old_w1[:, k, :, :]
                     module1.in_features = int(module1.in_features * delta_width)
