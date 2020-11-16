@@ -160,7 +160,7 @@ parser.add_argument('--deeper', default=0, type=int,
 parser.add_argument('--deeper2', default=False, action='store_true',
                     help='Make network deeper')
 
-parser.add_argument('--widerRnd', default=False, action='store_true',
+parser.add_argument('--widerRnd', default=0, type= int,
                     help='Make network wider')
 parser.add_argument('--widthOfAllLayers', type=str, help="#width of stages separated by commas")
 
