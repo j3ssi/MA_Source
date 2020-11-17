@@ -908,7 +908,7 @@ class N2N(nn.Module):
                     old_w2 = module1.weight.data.clone().cpu().detach().numpy()
                     n = i1
                     new_w2 = n * np.random.randn(i1, i0)
-                    new_w2 = np.concatenate(old_w2,new_w2)
+                    new_w2 = np.concatenate((old_w2,new_w2), axis = 1)
                     # for k in range(0, module1.in_features):
                     #     new_w2[:, k] = old_w2[:, k]
                     module1.in_features = int(module1.in_features * delta_width)
