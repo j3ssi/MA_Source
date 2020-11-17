@@ -331,7 +331,7 @@ if __name__ == '__main__':
     flops, num_params = measure_model(pruner.model, pruner, 32)
 
     target = int(args.prune_away * flops)
-    for i in range(0,1):
+    for i in range(0,36):
         print(f'flops: {flops}')
         maps = pruner.omap_size
         cbns = get_cbns(pruner.model)
@@ -345,7 +345,7 @@ if __name__ == '__main__':
         print('After Pruning | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops/1000000., num_params/1000000.))
         if args.no_grow:
             i=1
-            train(model, train_loader, test_loader, epochs=args.epoch, lr=args.lr, name='{}_pregrow'.format(args.name))
+            # train(model, train_loader, test_loader, epochs=args.epoch, lr=args.lr, name='{}_pregrow'.format(args.name))
         else:
             if flops < target:
                 ratio = pruner.get_uniform_ratio(target)
