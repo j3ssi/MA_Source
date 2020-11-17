@@ -881,6 +881,7 @@ class N2N(nn.Module):
                 #     new_w1[k, :, :, :] = old_w1[k, :, :, :]
                 module.out_channels = int( module.out_channels * delta_width)
                 module.data = new_w1
+                print(f'module after: {module}')
                 new_w2 = module1.weight.data.clone().cpu().detach().numpy()
                 if isinstance(module1, nn.Conv2d):
                     i0 = module1.out_channels
@@ -898,6 +899,7 @@ class N2N(nn.Module):
                     #     new_w2[:, k, :, :] = old_w2[:, k, :, :]
                     module1.in_channels = int(module1.in_channels * delta_width)
                     module1.data = new_w2
+                    print(f'module1 after: {module1}')
                 elif isinstance(module1, nn.Linear):
                     i0 = module1.out_features
                     i1 = int(module1.in_features * (delta_width -1))
