@@ -887,8 +887,8 @@ class N2N(nn.Module):
                 print(f'module after: {module}')
                 print(f'size of weight after: {module.weight.size()}')
 
-                mapping = np.random.randint(module.out_channels,
-                                            size=(int((delta_width -1) * module.out_channels )))
+                mapping = np.random.randint(i0,
+                                            size=(int((delta_width -1) * i0 )))
 
                 if isinstance(moduleBn, nn.BatchNorm2d):
                     print(f'Batchnorm1')
