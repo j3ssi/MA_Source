@@ -474,7 +474,7 @@ def main():
                 # scheduler = StepLR(optimizer, step_size=30, gamma=0.95)
                 # print(model)
             if args.wider == epoch:
-                model.wider(1.5, weight_norm=None, random_init=False, addNoise=True)
+                model.wider(2, weight_norm=None, random_init=False, addNoise=True)
                 # model.widthofLayers[0] *= 2
                 for i in range(len(model.widthofLayers)):
                    model.widthofLayers[i] *= 2
@@ -485,7 +485,7 @@ def main():
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
             if args.widerRnd == epoch:
-                model.wider(1.5, weight_norm=None, random_init=True, addNoise=True)
+                model.wider(2, weight_norm=None, random_init=True, addNoise=True)
                 # model.widthofLayers[0] *= 2
                 for i in range(len(model.widthofLayers)):
                    model.widthofLayers[i] *= 2
