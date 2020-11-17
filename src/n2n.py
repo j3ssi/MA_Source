@@ -952,6 +952,8 @@ class N2N(nn.Module):
                     #     new_w2[:, k] = old_w2[:, k]
                     module1.in_features = int(module1.in_features * delta_width)
                     module1.data = torch.from_numpy(new_w1)
+                    print(f'module after: {module1}')
+                    print(f'size of weight after: {module1.weight.size()}')
 
             if isinstance(module1, nn.Linear):
                 break
