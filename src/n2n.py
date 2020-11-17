@@ -875,6 +875,7 @@ class N2N(nn.Module):
                 # print(f'size of weight before: {module.weight.size()}')
                 n = i2 * i3 * module.out_channels
                 new_w1 = n * np.random.randn(i0, i1, i2, i3)
+                print(f'dtype new tensor: {new_w1.dtype}')
                 print(f'oldw shape: {old_w1.shape}; new shape: {new_w1.shape}')
                 new_w1 = np.concatenate((old_w1, new_w1), axis = 0 )
                 print(f'new shape: {new_w1.shape}')
