@@ -951,7 +951,7 @@ class N2N(nn.Module):
                     # for k in range(0, module1.in_features):
                     #     new_w2[:, k] = old_w2[:, k]
                     module1.in_features = int(module1.in_features * delta_width)
-                    module1.data = torch.from_numpy(new_w1)
+                    module1.data = torch.from_numpy(new_w2)
                     print(f'module after: {module1}')
                     print(f'size of weight after: {module1.weight.size()}')
 
