@@ -882,6 +882,8 @@ class N2N(nn.Module):
                 module.out_channels = int( module.out_channels * delta_width)
                 module.data = torch.from_numpy(new_w1)
                 print(f'module after: {module}')
+                print(f'size of weight after: {module.weight.size()}')
+
                 new_w2 = module1.weight.data.clone().cpu().detach().numpy()
                 if isinstance(module1, nn.Conv2d):
                     i0 = module1.out_channels
