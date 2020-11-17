@@ -908,7 +908,7 @@ class N2N(nn.Module):
                     old_w2 = module1.weight.data.clone().cpu().detach().numpy()
                     n = i1
 
-                    new_w2 = n * np.random.randn(i1, i0)
+                    new_w2 = n * np.random.randn(i0, i1)
                     print(f'oldw2 shape: {old_w2.shape}; new shape w2: {new_w2.shape}')
                     new_w2 = np.concatenate((old_w2,new_w2), axis = 1)
                     print(f'new shape: {new_w2.shape}')
