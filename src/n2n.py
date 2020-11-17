@@ -887,6 +887,37 @@ class N2N(nn.Module):
                 print(f'module after: {module}')
                 print(f'size of weight after: {module.weight.size()}')
 
+                mapping = np.random.randint(module.out_channels,
+                                            size=(int((delta_width -1) * module.out_channels )))
+
+                if isinstance(moduleBn, nn.BatchNorm2d):
+                    print(f'Batchnorm1')
+                    old_bn_w = moduleBn.weight.data.clone().cpu().detach().numpy()
+                    # print(f'len old w: {old_bn_w.size}')
+
+                    old_bn_b = moduleBn.bias.data.clone().cpu().detach().numpy()
+                    old_bn_mean = moduleBn.running_mean.clone().cpu().detach().numpy()
+                    old_bn_var = moduleBn.running_var.clone().cpu().detach().numpy()
+                    new_bn_w = moduleBn.weight.data.clone().cpu().detach().numpy()
+                    new_bn_b = moduleBn.bias.data.clone().cpu().detach().numpy()
+                    new_bn_mean = moduleBn.running_mean.clone().cpu().detach().numpy()
+                    new_bn_var = moduleBn.running_var.clone().cpu().detach().numpy()
+                    # print(f'old weight: {old_bn_w}')
+                    for i in range(0, len(mapping)):
+                        index = mapping[i]
+                        k = i
+                        new_bn_w = np.append(new_bn_w, old_bn_w[index])
+                        new_bn_b = np.append(new_bn_b, old_bn_b[index])
+                        new_bn_mean = np.append(new_bn_mean, new_bn_mean[index])
+                        new_bn_var = np.append(new_bn_var, new_bn_var[index])
+                        # print(f'i: {i}')
+                    # print(f'new bn: {new_bn_b}; K : {k}; len of bn: {new_bn_b.size}')
+                    moduleBn.num_features = int(moduleBn.num_features * delta_width)
+                    moduleBn.weight.data = nn.Parameter(torch.from_numpy(new_bn_w))
+                    moduleBn.bias.data = nn.Parameter(torch.from_numpy(new_bn_b))
+                    moduleBn.running_mean = torch.from_numpy(new_bn_mean)
+                    moduleBn.running_var = torch.from_numpy(new_bn_var)
+
                 if isinstance(module1, nn.Conv2d):
                     i0 = module1.out_channels
                     i1 = int( module1.in_channels * (delta_width - 1))
