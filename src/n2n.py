@@ -867,6 +867,7 @@ class N2N(nn.Module):
                 changeOfWidth = False
             elif random_init:
                 i0 = int( module.out_channels * (delta_width - 1) )
+                iX = module.out_channels
                 i1 = module.in_channels
                 i2 = module.kernel_size[0]
                 i3 = module.kernel_size[1]
@@ -887,17 +888,15 @@ class N2N(nn.Module):
                 print(f'module after: {module}')
                 print(f'size of weight after: {module.weight.size()}')
 
-                mapping = np.random.randint(i0,
-                                            size=(int((delta_width -1) * i0 )))
 
                 if isinstance(moduleBn, nn.BatchNorm2d):
+                    mapping = np.random.randint(iX,
+                                                size=(int((delta_width - 1) * iX)))
                     print(f'Batchnorm1')
                     old_bn_w = moduleBn.weight.data.clone().cpu().detach().numpy()
                     # print(f'len old w: {old_bn_w.size}')
 
                     old_bn_b = moduleBn.bias.data.clone().cpu().detach().numpy()
-                    old_bn_mean = moduleBn.running_mean.clone().cpu().detach().numpy()
-                    old_bn_var = moduleBn.running_var.clone().cpu().detach().numpy()
                     new_bn_w = moduleBn.weight.data.clone().cpu().detach().numpy()
                     new_bn_b = moduleBn.bias.data.clone().cpu().detach().numpy()
                     new_bn_mean = moduleBn.running_mean.clone().cpu().detach().numpy()
@@ -905,7 +904,6 @@ class N2N(nn.Module):
                     # print(f'old weight: {old_bn_w}')
                     for i in range(0, len(mapping)):
                         index = mapping[i]
-                        k = i
                         new_bn_w = np.append(new_bn_w, old_bn_w[index])
                         new_bn_b = np.append(new_bn_b, old_bn_b[index])
                         new_bn_mean = np.append(new_bn_mean, new_bn_mean[index])
