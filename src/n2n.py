@@ -871,7 +871,8 @@ class N2N(nn.Module):
                 i2 = module.kernel_size[0]
                 i3 = module.kernel_size[1]
                 old_w1 = module.weight.data.clone().cpu().detach().numpy()
-                print(f'size of weight before: {module.weight.size()}')
+                print(f'dtype tensor: {module.weight.data.dtype}; dtype numpy: {old_w1.dtype}')
+                # print(f'size of weight before: {module.weight.size()}')
                 n = i2 * i3 * module.out_channels
                 new_w1 = n * np.random.randn(i0, i1, i2, i3)
                 print(f'oldw shape: {old_w1.shape}; new shape: {new_w1.shape}')
@@ -884,7 +885,6 @@ class N2N(nn.Module):
                 print(f'module after: {module}')
                 print(f'size of weight after: {module.weight.size()}')
 
-                new_w2 = module1.weight.data.clone().cpu().detach().numpy()
                 if isinstance(module1, nn.Conv2d):
                     i0 = module1.out_channels
                     i1 = int( module1.in_channels * (delta_width - 1))
