@@ -890,7 +890,10 @@ class N2N(nn.Module):
                     old_w2 = module1.weight.data.clone().cpu().detach().numpy()
                     n = i2 * i3 * module1.in_channels
                     new_w2 = n * np.random.randn(i0, i1, i2, i3)
+                    print(f'oldw2 shape: {old_w2.shape}; new shape w2: {new_w2.shape}')
                     new_w2 = np.concatenate((old_w2, new_w2), axis = 1)
+                    print(f'new shape: {new_w2.shape}')
+
                     # for k in range(0, module1.in_channels):
                     #     new_w2[:, k, :, :] = old_w2[:, k, :, :]
                     module1.in_channels = int(module1.in_channels * delta_width)
