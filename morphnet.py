@@ -133,7 +133,7 @@ def truncate_smallbeta(model, cbns):
         cur_mask = target_bn.weight.data.cpu().numpy()
         zero_idx = np.abs(cur_mask) < 0.01
         cur_mask[zero_idx] = 0
-        print(f'cur mask: {chain_max_dim - len(cur_mask)}')
+        # print(f'cur mask: {chain_max_dim - len(cur_mask)}')
         cur_mask = np.concatenate((cur_mask, np.zeros(chain_max_dim - len(cur_mask))))
         mask = np.logical_or(mask, cur_mask)
 
