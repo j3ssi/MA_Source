@@ -344,7 +344,7 @@ if __name__ == '__main__':
         print('After Pruning | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops / 1000000., num_params / 1000000.))
         if args.no_grow:
             i = 1
-            train(model, train_loader, test_loader, epochs=args.epoch, lr=args.lr, name='{}_pregrow'.format(args.name))
+            # train(model, train_loader, test_loader, epochs=args.epoch, lr=args.lr, name='{}_pregrow'.format(args.name))
         else:
             if flops < target:
                 ratio = pruner.get_uniform_ratio(target)
