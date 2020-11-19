@@ -348,3 +348,7 @@ if __name__ == '__main__':
         else:
             if flops < target:
                 ratio = pruner.get_uniform_ratio(target)
+
+    test_acc, test_loss = test(pruner.model,test_loader)
+    print(f'Test acc: {test_acc}')
+    logger.append([0,0,test_acc])
