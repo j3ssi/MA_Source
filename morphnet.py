@@ -223,10 +223,11 @@ def train(model, train_loader, val_loader, epochs=10, lr=1e-2, name=''):
         top1, val_loss = test(model, val_loader)
         print('Epoch {} | Top-1: {:.2f}'.format(e, top1))
         torch.save(model, 'ckpt/{}_best.t7'.format(name))
-        scheduler.step()
+        # scheduler.step()
     return model
 
 def train_mask(model, train_loader, testloader, pruner, epochs=10, lr=1e-2, lbda=1.3*1e-8, cbns=None, maps=None, constraint='flops'):
+
     model = model.to('cuda')
     model.train()
 
@@ -339,15 +340,16 @@ if __name__ == '__main__':
         train_mask(pruner.model, train_loader, test_loader, pruner, epochs=5, lr=1e-3, lbda=args.lbda, cbns=cbns,
                    maps=maps, constraint=args.constraint)
         print('Target ({}): {:.3f}M'.format(args.constraint, target / 1000000.))
-        prune_model(pruner.model, cbns, pruner)
         flops, num_params = measure_model(pruner.model, pruner, 32)
         print('After Pruning | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops / 1000000., num_params / 1000000.))
         if args.no_grow:
             i = 1
-            # train(model, train_loader, test_loader, epochs=args.epoch, lr=args.lr, name='{}_pregrow'.format(args.name))
         else:
             if flops < target:
                 ratio = pruner.get_uniform_ratio(target)
+
+    prune_model(pruner.model, cbns, pruner)
+    train(model, train_loader, test_loader, epochs=30, lr=args.lr, name='{}_pregrow'.format(args.name))
 
     test_acc, test_loss = test(pruner.model,test_loader)
     print(f'Test acc: {test_acc}')
