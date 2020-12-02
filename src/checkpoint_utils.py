@@ -277,7 +277,9 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
     # for key in optimizer.state:
     #    print("==> {}, {}, {}".format(key, type(key), optimizer.state[key]))
     # for name, param in model.named_parameters():
-    # for name, param in model.named_parameters():
+    for name, param in model.named_parameters():
+        print(f'name: {name}')
+
     #    i = i + 1
 
     for i,j in dense_chs:
