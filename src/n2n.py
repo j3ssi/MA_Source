@@ -203,7 +203,7 @@ class N2N(nn.Module):
                         nn.init.ones_(seq.weight)
                         nn.init.zeros_(seq.bias)
         self.cuda()
-        self.dense_chs, _ = makeSparse(optimizer, self, threshold)
+        self.dense_chs, _ = makeSparse(optimizer, self, threshold, reconf=False)
         # if printInit:
         print(f'Modell Erstellung')
         print(self)
