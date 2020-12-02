@@ -183,6 +183,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
                             edges = list(set().union(edges, dense_chs[(idx,j)]['out_chs']))
                             listO.append((idx,j))
                             print(f'Append O: {(idx,j)}')
+                            j = j-1
                         else:
                             new_edges = list(set().union(edges, dense_chs[(idx,j)]['out_chs']))
                             width = module[j].weight.size(1)
