@@ -169,6 +169,8 @@ def makeSparse(optimizer, model, threshold, reconf=True):
                     listI.append((idx,0))
                     print(f'Append I: {(idx,0)}')
                 else:
+                    width = module[0].weight.size(0)
+                
                     break
                 j = len(module)-1
                 print(f'J: {j}')
