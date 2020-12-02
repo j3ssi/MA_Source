@@ -198,6 +198,8 @@ def makeSparse(optimizer, model, threshold, reconf=True):
                     listI.append((idx,None))
                     print(f'Append I: {(idx,None)}')
                     idx += 1
+            else:
+                idx += 1
         print(f'listI: {listI}')
         print(f'listO: {listO}')
         for i,j in listI:
