@@ -153,7 +153,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
         edges = []
         edges = list(set().union(edges, new_edges))
         new_edges = []
-        module = model.module_list[idx]
+        # module = model.module_list[idx]
         listI = []
         listO = []
         if listOTmp is not None:
@@ -161,7 +161,9 @@ def makeSparse(optimizer, model, threshold, reconf=True):
         listOTmp = None
         layerWidth = width
         while width == layerWidth:
-            print(f'Width: {width}; layerWidth: {layerWidth}')
+            module = model.module_list[idx]
+
+            print(f'Width: {width}; layerWidth: {layerWidth}; idx: {idx}')
             if isinstance(module, nn.Sequential):
                 layerWidth = module[0].weight.size(0)
                 print(f'layerWidth: {layerWidth}')
