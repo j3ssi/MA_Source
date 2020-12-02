@@ -787,12 +787,16 @@ boxplot(baselineAcc1, bSizeAcc1, bSizeAcc,
 library('caTools')
 library('pracma')
 setwd("/home/j3ssi/MA_Source/output/experimente4/Logs")
+baselineS_Lr1 <-read.delim("baselineS_Lr1.txt", header = TRUE, sep = "\t", dec = "." )
+plot(baselineS_Lr1$ValidAcc., ylab = "Accuracy", xlab="Epochen")
 
 
-wider_lr1 <-read.delim("wider_lr1.txt", header = TRUE, sep = "\t", dec = ".")
-plot(wider_lr1$ValidAcc.,type ='l')
+wider_lr1 <-read.delim("wider_lr1.txt", header = TRUE, sep = "\t", dec = "." )
+plot(wider_lr1$ValidAcc.,type ='l', ylab = "Accuracy", xlab="Epochen",xlim =c(90,180),ylim=c(75,100))
+wider_lr2 <-read.delim("wider_lr2.txt", header = TRUE, sep = "\t", dec = "." )
+plot(wider_lr2$ValidAcc.,type ='l', ylab = "Accuracy", xlab="Epochen")
 
-
+lines(baseline1$ValidAcc.)
 
 baselineS_Lr1 <- read.delim("baselineS_Lr1.txt", header = TRUE, sep = "\t", dec = ".")
 lines(baselineS_Lr1$ValidAcc., col='blue')
@@ -800,12 +804,12 @@ lines(baselineS_Lr1$ValidAcc., col='blue')
 plot(baselineS_Lr1$ValidAcc., ylab='Accuracy', xlab='Epoche')
 
 
-acc <- baselineS_Lr1$ValidAcc.
-x<-movavg(acc,n=30,type="e")
+acc <- wider_lr2$ValidAcc.
+x<-movavg(acc,n=10,type="e")
 xMean <- runmean(x,k=30)
-plot(x,xlim=c(0,180),ylim=c(30,95),type='l', xlab='Epoche', ylab='gleitender Mittelwert')
+plot(x,type='l',xlim=c(150,270),ylim=c(85,92), xlab='Epoche', ylab='gleitender Mittelwert')
 par(new=FALSE)
-points(acc)
+line(acc)
 lines(xMean,col="green")
 lines(xMax,col="blue")
 y<-diff(x, lag=1)

@@ -401,7 +401,7 @@ def main():
                 dense_chs, chs_map = makeSparse(optimizer, model, args.threshold)
                 if args.visual:
                     visualizePruneTrain(model, epoch, args.threshold)
-
+                print(f'Dense channels: {dense_chs}')
                 genDenseModel(model, dense_chs, optimizer, 'cifar')
                 model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, False, 16,
                                 model,

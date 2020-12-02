@@ -6,11 +6,12 @@ import torch.nn as nn
 import math
 import numpy as np
 
+from src.checkpoint_utils import makeSparse
 
 class N2N(nn.Module):
 
     def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock,
-                 first, widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=None):
+                 first, widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=None, optimizer = None, threshold = None):
         super(N2N, self).__init__()
         self.numOfStages = numOfStages
         self.oddLayers = []
@@ -202,6 +203,7 @@ class N2N(nn.Module):
                         nn.init.ones_(seq.weight)
                         nn.init.zeros_(seq.bias)
 
+        self.dense_chs, _ = makeSparse(optimizer, self, threshold)
         # if printInit:
         print(f'Modell Erstellung')
         print(self)
@@ -413,6 +415,12 @@ class N2N(nn.Module):
             print("\n \n Oops!!!: ")
             print("Linear")
         return x
+
+    def kombiPrune(self, optimizer, threshold):
+
+        dense_chs, _ = makeSparse(optimizer, self, threshold)
+        for i,j in dense_chs:
+            dense = self.dense_chs
 
 
     def delete(self, model, index):
