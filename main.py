@@ -272,7 +272,7 @@ def main():
         memory = 0
         if len(listOfWidths) > 0:
             model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True,
-                            widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths)
+                            widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=listOfWidths, optimizer=None,threshold=100 )
         else:
             model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, True,
                             widthofFirstLayer=args.widthofFirstLayer, model=None, archNums=None, widthOfLayers=None)
