@@ -487,12 +487,7 @@ class N2N(nn.Module):
     def getShareSameNodeLayers(self):
         return self.sameNode
 
-    """
-    Convert all layers in layer to its wider version by adapting next weight layer and possible batch norm layer in btw.
-    layers = 'conv 3, conv6'
-    """
 
-    # def wider(self, stage, delta_width, out_size=None, weight_norm=True, random_init=True, addNoise=True):
     def wider(self, delta_width, weight_norm=True, random_init=True,
               addNoise=True):  # teacher_w1, teacher_b1, teacher_w2, new_width, verification):
         indexL = 0
