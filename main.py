@@ -278,7 +278,7 @@ def main():
                             widthofFirstLayer=args.widthofFirstLayer, model=None, archNums=None, widthOfLayers=None)
 
         print(f'device count: {torch.cuda.device_count()}')
-        model.cuda()
+        # model.cuda()
         criterion = nn.CrossEntropyLoss()
         start_epoch = 1
         optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
