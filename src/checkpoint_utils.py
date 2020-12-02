@@ -164,13 +164,14 @@ def makeSparse(optimizer, model, threshold, reconf=True):
 
             if isinstance(module, nn.Sequential):
                 layerWidth = module[0].weight.size(0)
+                print(f'layerWidth: {layerWidth}')
                 if (idx,0) in dense_chs and layerWidth == width:
                     edges = list(set().union(edges, dense_chs[(idx,0)]['in_chs']))
                     listI.append((idx,0))
                     print(f'Append I: {(idx,0)}')
                 else:
                     width = module[0].weight.size(0)
-                
+
                     break
                 j = len(module)-1
                 print(f'J: {j}')
