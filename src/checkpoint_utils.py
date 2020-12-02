@@ -148,6 +148,8 @@ def makeSparse(optimizer, model, threshold, reconf=True):
     new_edges = []
     listOTmp = None
     while idx < len( model.module_list ):
+        print("\n> IDX: ", idx)
+
         edges = []
         edges = list(set().union(edges, new_edges))
         new_edges = []
@@ -159,7 +161,6 @@ def makeSparse(optimizer, model, threshold, reconf=True):
         listOTmp = None
         layerWidth = width
         while width == layerWidth:
-            print("\n> IDX: ", idx)
 
             if isinstance(module, nn.Sequential):
                 layerWidth = module[0].weight.size(0)
@@ -167,6 +168,8 @@ def makeSparse(optimizer, model, threshold, reconf=True):
                     edges = list(set().union(edges, dense_chs[(idx,0)]['in_chs']))
                     listI.append((idx,0))
                     print(f'Append I: {(idx,0)}')
+                else:
+                    break
                 j = len(module)-1
                 print(f'J: {j}')
                 while j>0:
