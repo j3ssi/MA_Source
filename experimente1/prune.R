@@ -212,10 +212,16 @@ prune_lasso025_5Sum <- sum(prune_lasso025_5$TrainEpochTime.s.)/180
 
 prune_lasso025 <- c(prune_lasso025_1Sum, prune_lasso025_2Sum, prune_lasso025_3Sum, prune_lasso025_4Sum, prune_lasso025_5Sum)
 
+t.test(baselineSum1, prune_lasso005, alternative = "two.sided", var.equal = FALSE)
+t.test(baselineSum1, prune_lasso01, alternative = "two.sided", var.equal = FALSE)
+t.test(baselineSum1, prune_lasso015, alternative = "two.sided", var.equal = FALSE)
+t.test(baselineSum1, prune_lasso02, alternative = "two.sided", var.equal = FALSE)
+t.test(baselineSum1, prune_lasso025, alternative = "two.sided", var.equal = FALSE)
+
 t.test(prune_lasso005, prune_lasso01, alternative = "two.sided", var.equal = FALSE)
 t.test(prune_lasso005, prune_lasso015, alternative = "two.sided", var.equal = FALSE)
-t.test(prune_lasso005, prune_lasso02, alternative = "two.sided", var.equal = FALSE)
 t.test(prune_lasso005, prune_lasso025, alternative = "two.sided", var.equal = FALSE)
+t.test(prune_lasso005, prune_lasso02, alternative = "two.sided", var.equal = FALSE)
 
 t.test(prune_lasso01, prune_lasso015, alternative = "two.sided", var.equal = FALSE)
 t.test(prune_lasso01, prune_lasso02, alternative = "two.sided", var.equal = FALSE)
@@ -227,7 +233,7 @@ t.test(prune_lasso015, prune_lasso025, alternative = "two.sided", var.equal = FA
 t.test(prune_lasso02, prune_lasso025, alternative = "two.sided", var.equal = FALSE)
 
 
-boxplot(baseline1Sum,prune_lasso005, prune_lasso01, prune_lasso015, prune_lasso02, prune_lasso025,
+boxplot(baselineSum1,prune_lasso005, prune_lasso01, prune_lasso015, prune_lasso02, prune_lasso025,
         log = "y",
         ylab = "Durchschnittliche Trainingszeit in Sekunden",
         xlab = "verschiedene Experimentengruppen")
@@ -306,6 +312,14 @@ lassoAcc025 <- c(lassoAcc025_1, lassoAcc025_2, lassoAcc025_3, lassoAcc025_4, las
 
 
 lassoAcc<- c(lassoAcc005, lassoAcc01, lassoAcc01, lassoAcc015, lassoAcc02)
+
+t.test(baselineAcc1, lassoAcc005, alternative = "two.sided", var.equal = FALSE)
+t.test(baselineAcc1, lassoAcc01, alternative = "two.sided", var.equal = FALSE)
+t.test(baselineAcc1, lassoAcc015, alternative = "two.sided", var.equal = FALSE)
+t.test(baselineAcc1, lassoAcc02, alternative = "two.sided", var.equal = FALSE)
+t.test(baselineAcc1, lassoAcc025, alternative = "two.sided", var.equal = FALSE)
+
+
 t.test(lassoAcc005, lassoAcc01, alternative = "two.sided", var.equal = FALSE)
 t.test(lassoAcc005, lassoAcc015, alternative = "two.sided", var.equal = FALSE)
 t.test(lassoAcc005, lassoAcc02, alternative = "two.sided", var.equal = FALSE)
@@ -341,7 +355,7 @@ prune_reconf2_3Sum <- sum(prune_reconf2_3$TrainEpochTime.s.)/180
 prune_reconf2_4Sum <- sum(prune_reconf2_4$TrainEpochTime.s.)/180
 prune_reconf2_5Sum <- sum(prune_reconf2_5$TrainEpochTime.s.)/180
 
-reconf2_sum <- c(prune_reconf2_1Sum, prune_reconf2_2Sum, prune_reconf2_3Sum, prune_reconf2_4Sum, prune_reconf2_5Sum)
+reconf2_sum <- c(prune_reconf2_2Sum, prune_reconf2_3Sum, prune_reconf2_4Sum, prune_reconf2_5Sum)
 
 prune_reconf5_1 <- read.delim("prune_reconf5_1.txt", header = TRUE, sep = "\t", dec = ".")
 prune_reconf5_2 <- read.delim("prune_reconf5_2.txt", header = TRUE, sep = "\t", dec = ".")
@@ -355,7 +369,7 @@ prune_reconf5_3Sum <- sum(prune_reconf5_3$TrainEpochTime.s.)/180
 prune_reconf5_4Sum <- sum(prune_reconf5_4$TrainEpochTime.s.)/180
 prune_reconf5_5Sum <- sum(prune_reconf5_5$TrainEpochTime.s.)/180
 
-reconf5_sum <- c(prune_reconf5_1Sum, prune_reconf5_2Sum, prune_reconf5_3Sum, prune_reconf5_4Sum, prune_reconf5_5Sum)
+reconf5_sum <- c(prune_reconf5_2Sum, prune_reconf5_3Sum, prune_reconf5_4Sum, prune_reconf5_5Sum)
 
 prune_reconf10_1 <- read.delim("prune_reconf10_1.txt", header = TRUE, sep = "\t", dec = ".")
 prune_reconf10_2 <- read.delim("prune_reconf10_2.txt", header = TRUE, sep = "\t", dec = ".")
@@ -372,13 +386,13 @@ prune_reconf10_5Sum <- sum(prune_reconf10_5$TrainEpochTime.s.)/180
 reconf10_sum <- c(prune_reconf10_1Sum, prune_reconf10_2Sum, prune_reconf10_3Sum, prune_reconf10_4Sum, prune_reconf10_5Sum)
 
 
-boxplot(reconf2_sum, reconf5_sum, reconf10_sum,
+boxplot(baselineSum1,reconf2_sum, reconf5_sum, reconf10_sum,
         ylab = "durchschnittliche Trainingszeit in Sekunden",
         xlab = "verschiedene Experimentengruppen")
-        axis(at=c(1,2,3), side=1, labels = c('Rekonfigurationsintervall 2', 'Rekonfigurationsintervall 5', 'Rekonfigurationsintervall10'))
+        axis(at=c(1,2,3,4), side=1, labels = c('Baseline','Rekonfigurationsintervall 2', 'Rekonfigurationsintervall 5', 'Rekonfigurationsintervall10'))
 
 
-t.test(reconf2, reconf5, alternative = "two.sided", var.equal = FALSE)
+t.test(reconf2_sum, reconf5_sum, alternative = "two.sided", var.equal = FALSE)
 
 
 boxplot(prune_reconf2_1$TrainEpochTime.s., prune_reconf2_2$TrainEpochTime.s., prune_reconf2_3$TrainEpochTime.s., prune_reconf2_4$TrainEpochTime.s., prune_reconf2_5$TrainEpochTime.s.,
@@ -433,8 +447,8 @@ acc103 <- tail(acc103, n=5)
 acc104 <- tail(acc104, n=5)
 acc105 <- tail(acc105, n=5)
 
-acc2 <- c(acc21, acc22, acc23, acc24, acc25)
-acc5 <- c(acc51, acc52, acc53, acc54, acc55)
+acc2 <- c(acc22, acc23, acc24, acc25)
+acc5 <- c(acc52, acc53, acc54, acc55)
 acc10 <- c(acc101, acc102, acc103, acc104, acc105)
 
 
@@ -788,7 +802,20 @@ library('caTools')
 library('pracma')
 setwd("/home/j3ssi/MA_Source/output/experimente4/Logs")
 baselineS_Lr1 <-read.delim("baselineS_Lr1.txt", header = TRUE, sep = "\t", dec = "." )
-plot(baselineS_Lr1$ValidAcc., ylab = "Accuracy", xlab="Epochen")
+plot(baselineS_Lr1$ValidAcc., ylab = "Accuracy", xlab="Epochen",ylim=c(30,95))
+
+baselineS_mLr1 <-read.delim("baselineS_mLr1.txt", header = TRUE, sep = "\t", dec = "." )
+points(baselineS_mLr1$ValidAcc.)
+plot(baselineS_mLr1$ValidAcc., ylab = "Accuracy", xlab="Epochen", col='blue')
+
+baseline_Lr1 <-read.delim("baseline_Lr1.txt", header = TRUE, sep = "\t", dec = "." )
+plot(baseline_Lr1$ValidAcc., ylab = "Accuracy", xlab="Epochen",ylim=c(30,100))
+
+baseline_mLr1 <-read.delim("baseline_mLr1.txt", header = TRUE, sep = "\t", dec = "." )
+points(baseline_mLr1$ValidAcc.,col='blue')
+plot(baseline_mLr1$ValidAcc., ylab = "Accuracy", xlab="Epochen", col='blue')
+
+
 
 
 wider_lr1 <-read.delim("wider_lr1.txt", header = TRUE, sep = "\t", dec = "." )
