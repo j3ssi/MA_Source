@@ -206,6 +206,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
                     edges = list(set().union(edges, dense_chs[(idx, None)]['out_chs']))
                     listI.append((idx,None))
                     print(f'Append I: {(idx,None)}')
+                    idx += 1
                     break
             else:
                 idx += 1
