@@ -143,7 +143,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
     # for name in dense_chs:
     #    print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
     width = model.module_list[0].weight.size(0)
-    print(f'Start width: {width}')
+    # print(f'Start width: {width}')
     idx = 0
     new_edges = []
     listOTmp = None
@@ -167,6 +167,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
                     listI.append((idx,0))
                     print(f'Append I: {(idx,0)}')
                 j = len(module)-1
+                print(f'J: {j}')
                 while j>0:
                     if isinstance(module[j], nn.Conv2d):
                         if module[j].weight.size(1) == width:
@@ -178,7 +179,9 @@ def makeSparse(optimizer, model, threshold, reconf=True):
                             width = module[j].weight.size(1)
                             listOTmp = (idx,j)
                             break
-                    else: j = j - 1
+                    else:
+                        j = j - 1
+                        print(f'J: {j}')
                 idx += 1
 
             if isinstance(module, nn.Conv2d):
