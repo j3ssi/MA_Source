@@ -336,7 +336,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
 
         # Change parameters of non-neural computing layers (BN, biases)
         else:
-            # print("\n>Name: ", name)
+            print("\n>Name: ", name)
             w_name = name.replace('bias', 'weight').replace('bn', 'conv')
             # print("\n>WName: ", w_name)
             dense_out_ch_idxs = dense_chs[w_name]['out_chs']
