@@ -403,9 +403,7 @@ def main():
                     visualizePruneTrain(model, epoch, args.threshold)
                 print(f'Dense channels: {dense_chs}')
                 genDenseModel(model, dense_chs, optimizer, 'cifar')
-                model = n2n.N2N(num_classes, args.numOfStages, listofBlocks, args.layersInBlock, False, False, 16,
-                                model,
-                                model.archNums)
+                model.newModuleList(num_classes)
                 gc.collect()
                 model.cuda()
                 if not args.lars:
