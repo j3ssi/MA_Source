@@ -212,6 +212,7 @@ def makeSparse(optimizer, model, threshold, reconf=False):
                 idx += 1
         # print(f'listI: {listI}')
         # print(f'listO: {listO}')
+
         for i,j in listI:
             if (i,j) in dense_chs:
                 dense_chs[(i,j)]['in_chs'] = edges
