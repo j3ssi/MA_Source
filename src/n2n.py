@@ -1152,6 +1152,9 @@ class N2N(nn.Module):
                                     stagesO[width].append((k, len(module) + j))
                                 else:
                                     stagesI[width] = [(k, len(module) + j)]#                     j = 1
+                                j = 1
+                        else:
+                            j= j-1
                     k += 1
 
             #                 else:
