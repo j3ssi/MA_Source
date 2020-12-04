@@ -162,73 +162,61 @@ def makeSparse(optimizer, model, threshold, reconf=True):
     width = model.module_list[0].weight.size(0)
     # print(f'Start width: {width}')
     idx = 0
-    new_edges = []
     listOTmp = None
-    for key in model.res
-        print("\n> IDX: ", idx)
-
+    for width in model.widthofLayers:
         edges = []
-        edges = list(set().union(edges, new_edges))
-        new_edges = []
-        # module = model.module_list[idx]
-        listI = []
-        listO = []
-        if listOTmp is not None:
-            listO.append(listOTmp)
-        listOTmp = None
-        layerWidth = width
-        while width == layerWidth:
-            module = model.module_list[idx]
+        listI = model.StagesI[width]
+        listO = model.StagesO[width]
 
-            print(f'Width: {width}; layerWidth: {layerWidth}; idx: {idx}')
-            if isinstance(module, nn.Sequential):
-                layerWidth = module[0].weight.size(0)
-                # print(f'layerWidth: {layerWidth}')
-                if (idx,0) in dense_chs and layerWidth == width:
-                    edges = list(set().union(edges, dense_chs[(idx,0)]['in_chs']))
-                    listI.append((idx,0))
-                    print(f'Append I: {(idx,0)}')
-                else:
-                    width = module[0].weight.size(0)
-                    break
-                j = len(module)-1
-                # print(f'J: {j}')
-                while j>0:
-                    if isinstance(module[j], nn.Conv2d):
-                        if module[j].weight.size(1) == width:
-                            edges = list(set().union(edges, dense_chs[(idx,j)]['out_chs']))
-                            listO.append((idx,j))
-                            print(f'Append O: {(idx,j)}')
-                            j = j-1
-                        else:
-                            new_edges = list(set().union(edges, dense_chs[(idx,j)]['out_chs']))
-                            width = module[j].weight.size(1)
-                            listOTmp = (idx,j)
-                            break
-                    else:
-                        j = j - 1
-                        # print(f'J: {j}')
-                idx += 1
+        for i,j in listI:
+            if (i,j) in dense_chs:
+                edges = list(set().union(edges, dense_chs[(idx,0)]['in_chs']))
+        for i, j in listO:
+            if (i, j) in dense_chs:
+                edges = list(set().union(edges, dense_chs[(idx, 0)]['out_chs']))
 
-            if isinstance(module, nn.Conv2d):
-                layerWidth = module.weight.size(0)
-                if (idx,None) in dense_chs:
-                    edges = list(set().union(edges, dense_chs[(idx, None)]['out_chs']))
-                    listO.append((idx, None))
-                    # print(f'Append O : {(idx,None)}')
-                    idx += 1
-            if isinstance(module, nn.Linear):
-                if (idx,None) in dense_chs:
-                    edges = list(set().union(edges, dense_chs[(idx, None)]['out_chs']))
-                    listI.append((idx,None))
-                    # print(f'Append I: {(idx,None)}')
-                    idx += 1
-                    break
-            else:
-                idx += 1
-        print(f'listI: {listI}')
-        print(f'listO: {listO}')
-
+        #             listI.append((idx,0))
+        #             print(f'Append I: {(idx,0)}')
+        #         else:
+        #             width = module[0].weight.size(0)
+        #             break
+        #         j = len(module)-1
+        #         # print(f'J: {j}')
+        #         while j>0:
+        #             if isinstance(module[j], nn.Conv2d):
+        #                 if module[j].weight.size(1) == width:
+        #                     edges = list(set().union(edges, dense_chs[(idx,j)]['out_chs']))
+        #                     listO.append((idx,j))
+        #                     print(f'Append O: {(idx,j)}')
+        #                     j = j-1
+        #                 else:
+        #                     new_edges = list(set().union(edges, dense_chs[(idx,j)]['out_chs']))
+        #                     width = module[j].weight.size(1)
+        #                     listOTmp = (idx,j)
+        #                     break
+        #             else:
+        #                 j = j - 1
+        #                 # print(f'J: {j}')
+        #         idx += 1
+        #
+        #     if isinstance(module, nn.Conv2d):
+        #         layerWidth = module.weight.size(0)
+        #         if (idx,None) in dense_chs:
+        #             edges = list(set().union(edges, dense_chs[(idx, None)]['out_chs']))
+        #             listO.append((idx, None))
+        #             # print(f'Append O : {(idx,None)}')
+        #             idx += 1
+        #     if isinstance(module, nn.Linear):
+        #         if (idx,None) in dense_chs:
+        #             edges = list(set().union(edges, dense_chs[(idx, None)]['out_chs']))
+        #             listI.append((idx,None))
+        #             # print(f'Append I: {(idx,None)}')
+        #             idx += 1
+        #             break
+        #     else:
+        #         idx += 1
+        # print(f'listI: {listI}')
+        # print(f'listO: {listO}')
         for i,j in listI:
             if (i,j) in dense_chs:
                 dense_chs[(i,j)]['in_chs'] = edges
