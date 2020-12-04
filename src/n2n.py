@@ -204,7 +204,7 @@ class N2N(nn.Module):
                         nn.init.zeros_(seq.bias)
         self.cuda()
         print(f'')
-        self.residualPath = self.buildResidualPath(module_list = self.module_list, widthofLayers = self.widthofLayers)
+        self.residualPath = self.buildResidualPath(self)
         self.dense_chs, _ = makeSparse(optimizer, self, 100, reconf=False)
         print(f'dense: {self.dense_chs}')
         # if printInit:
@@ -1065,7 +1065,7 @@ class N2N(nn.Module):
 
         print(self)
 
-    def buildResidualPath(module_list, widthofLayers):
+    def buildResidualPath(self,):
         # # stage0O = [n(1), n(3), n(5), n(7), n(9), n(11)]
     # # stages1O = [n(13), n(14), n(16), n(18), n(20), n(22)]
     # # stages2O = [n(24), n(25), n(27), n(29), n(31), n(33)]
@@ -1129,10 +1129,10 @@ class N2N(nn.Module):
     # # print(f'stagesO: {stagesO}')
         stagesI, stagesO = {}, {}
 
-        for width in widthofLayers:
+        for width in self.widthofLayers:
             print(f'width: {width}')
             k = 0
-            for module in module_list:
+            for module in self.module_list:
                 print(f'module: {module}')
                 if isinstance(module, nn.Sequential):
                     if module[0].in_channels == width:
