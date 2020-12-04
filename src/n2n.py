@@ -1148,12 +1148,11 @@ class N2N(nn.Module):
                         if isinstance(module[j],nn.Conv2d):
                             if module[j].out_channels == width:
                                 print(f'conv gefunden')
-                                if width not in stagesO.keys():
+                                if width in stagesO.keys():
                                     print(f'(i,j): ({k}, {len(module) + j}')
-
-                            #         stagesO[width].append((k, len(module) + j))
-                            #     else:
-                            #         stagesI[width] = [(k, len(module) + j)]#                     j = 1
+                                    stagesO[width].append((k, len(module) + j))
+                                else:
+                                    stagesO[width] = [(k, len(module) + j)]#                     j = 1
                             j = 1
                         else:
                             j= j-1
