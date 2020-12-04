@@ -1134,9 +1134,9 @@ class N2N(nn.Module):
             k = 0
             for module in self.module_list:
                 print(f'module: {module}')
-            #     if isinstance(module, nn.Sequential):
-            #         if module[0].in_channels == width:
-            #             stagesI[k] = {'width': width, 'channels': (k,0)}
+                if isinstance(module, nn.Sequential):
+                    if module[0].in_channels == width:
+                        stagesI[k] = {'width': width, 'channels': (k,0)}
             #         j = - 1
             #         while j < 0:
             #             if isinstance(module[j],nn.Conv2d):
