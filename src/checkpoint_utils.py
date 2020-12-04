@@ -226,8 +226,8 @@ def makeSparse(optimizer, model, threshold, reconf=True):
                     break
             else:
                 idx += 1
-        # print(f'listI: {listI}')
-        # print(f'listO: {listO}')
+        print(f'listI: {listI}')
+        print(f'listO: {listO}')
 
         for i,j in listI:
             if (i,j) in dense_chs:
