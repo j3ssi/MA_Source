@@ -167,11 +167,10 @@ def makeSparse(optimizer, model, threshold, reconf=True):
         edges = []
         listI = model.StagesI[width]
         listO = model.StagesO[width]
-
-        for i,j in listI:
+        for (i,j) in listI:
             if (i,j) in dense_chs:
                 edges = list(set().union(edges, dense_chs[(idx,0)]['in_chs']))
-        for i, j in listO:
+        for (i, j) in listO:
             if (i, j) in dense_chs:
                 edges = list(set().union(edges, dense_chs[(idx, 0)]['out_chs']))
 
