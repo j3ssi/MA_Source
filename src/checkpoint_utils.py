@@ -149,12 +149,12 @@ def makeSparse(optimizer, model, threshold, reconf=True):
             # else:
             print("\n> Adj_lyr: ", adj_lyrs[idx])
 
-                print(f'>IDX: {idx}; IDX+1: {idx+1}')
-                    edge = list(set().union(dense_chs[adj_lyrs[idx]]['out_chs'],
-                                            dense_chs[adj_lyrs[idx + 1]]['in_chs']))
-                    print("\n>Edge: ", edge)
-                    dense_chs[adj_lyrs[idx]]['out_chs'] = edge
-                    dense_chs[adj_lyrs[idx + 1]]['in_chs'] = edge
+            # print(f'>IDX: {idx}; IDX+1: {idx+1}')
+            edge = list(set().union(dense_chs[adj_lyrs[idx]]['out_chs'],
+                                    dense_chs[adj_lyrs[idx + 1]]['in_chs']))
+            print("\n>Edge: ", edge)
+            dense_chs[adj_lyrs[idx]]['out_chs'] = edge
+            dense_chs[adj_lyrs[idx + 1]]['in_chs'] = edge
         i += 1
 
     for name in dense_chs:
