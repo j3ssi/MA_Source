@@ -1150,9 +1150,9 @@ class N2N(nn.Module):
                 elif isinstance(module, nn.Conv2d):
                     print(f'module')
 
-    print(f'stagesI: {stagesI}')
-    print(f'stagesO: {stagesO}')
-    return stagesI, stagesO
+        print(f'stagesI: {stagesI}')
+        print(f'stagesO: {stagesO}')
+        return stagesI, stagesO
 
 
 
