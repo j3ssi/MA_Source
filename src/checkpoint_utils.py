@@ -215,9 +215,11 @@ def makeSparse(optimizer, model, threshold, reconf=False):
         for i,j in listI:
             if (i,j) in dense_chs:
                 dense_chs[(i,j)]['in_chs'] = edges
+                print(f'listI (i,j): {i},{j}; edges: {edges} ')
         for i, j in listO:
             if (i, j) in dense_chs:
                 dense_chs[(i, j)]['out_chs'] = edges
+                print(f'listO (i,j): {i},{j}; edges: {edges} ')
 
     #     # Maintain the dense channels at the shared node
     # for lyr_name in stagesI[idx]:
