@@ -374,7 +374,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
     # print(f'Change moving mean and var of BN')
     # Change moving_mean and moving_var of BN
     for name, buf in model.named_buffers():
-        # print("\nBuffer Name: ", name)
+        print("\nBuffer Name: ", name)
         if 'running_mean' in name or 'running_var' in name:
             i = int(name.split('.')[1])
             w_name = 'module.conv' + str(int((i + 1) / 2)) + '.weight'
