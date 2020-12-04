@@ -341,7 +341,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
         else:
             if j == None:
                 w_name = (i-1,j)
-            else
+            else:
                 w_name = (i,j-1)
             dense_out_ch_idxs = dense_chs[w_name]['out_chs']
             num_out_ch = len(dense_out_ch_idxs)
