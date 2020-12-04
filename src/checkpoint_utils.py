@@ -282,8 +282,9 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
         if len(name.split('.')) ==4:
             j = int(name.split('.')[2])
         # print(f'(i,j): ({i}, {j})')
-        name = (i,j)
         print("\nName: ", name)
+
+        name = (i,j)
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[param]['momentum_buffer']
 
