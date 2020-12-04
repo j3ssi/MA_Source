@@ -205,7 +205,7 @@ class N2N(nn.Module):
         self.cuda()
         print(f'')
         self.StagesI, self.StagesO = self.buildResidualPath()
-        self.dense_chs, _ = makeSparse(optimizer, self, 100, reconf=False)
+        # self.dense_chs, _ = makeSparse(optimizer, self, 100, reconf=False)
         print(f'dense: {self.dense_chs}')
         # if printInit:
         print(f'Modell Erstellung')
