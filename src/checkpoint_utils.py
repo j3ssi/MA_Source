@@ -126,7 +126,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
         print(f'i: {i}')
         if isinstance(module, nn.Sequential):
             size1 = module[0].out_channels
-            for j in range( len ( module ) ):
+            for j in range(1, len ( module ) ):
                 if isinstance(module[j], nn.Conv2d):
                     size0 = module[j].in_channels
 
