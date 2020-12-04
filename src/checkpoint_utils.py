@@ -373,6 +373,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
 
     # print(f'Change moving mean and var of BN')
     # Change moving_mean and moving_var of BN
+    print(f'dense: {dense_chs.keys()}')
     for name, buf in model.named_buffers():
         i = int(name.split('.')[1])
         j = None
