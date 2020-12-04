@@ -373,26 +373,26 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
 
     # print(f'Change moving mean and var of BN')
     # Change moving_mean and moving_var of BN
-    print(f'dense: {dense_chs.keys()}')
-    for name, buf in model.named_buffers():
-        i = int(name.split('.')[1])
-        j = None
-        if len(name.split('.')) == 4:
-            j = int(name.split('.')[2])-1
-        else:
-            i = i-1
-        print("\nBuffer Name: ", name)
-        if 'running_mean' in name or 'running_var' in name:
-            w_name = (i,j)
-            print("\nW_name2: ", w_name)
-            dense_out_ch_idxs = dense_chs[w_name]['out_chs']
-            num_out_ch = len(dense_out_ch_idxs)
-            new_buf = Parameter(torch.Tensor(num_out_ch)).cuda()
-
-            for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
-                with torch.no_grad():
-                    new_buf[out_idx] = buf[out_ch]
-            buf.data = new_buf
+    # print(f'dense: {dense_chs.keys()}')
+    # for name, buf in model.named_buffers():
+    #     i = int(name.split('.')[1])
+    #     j = None
+    #     if len(name.split('.')) == 4:
+    #         j = int(name.split('.')[2])-1
+    #     else:
+    #         i = i-1
+    #     print("\nBuffer Name: ", name)
+    #     if 'running_mean' in name or 'running_var' in name:
+    #         w_name = (i,j)
+    #         print("\nW_name2: ", w_name)
+    #         dense_out_ch_idxs = dense_chs[w_name]['out_chs']
+    #         num_out_ch = len(dense_out_ch_idxs)
+    #         new_buf = Parameter(torch.Tensor(num_out_ch)).cuda()
+    #
+    #         for out_idx, out_ch in enumerate(sorted(dense_out_ch_idxs)):
+    #             with torch.no_grad():
+    #                 new_buf[out_idx] = buf[out_ch]
+    #         buf.data = new_buf
     """
     Remove layers (Only applicable to ResNet-like networks)
     - Remove model parameters
