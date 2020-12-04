@@ -251,7 +251,7 @@ Generate a new dense network model
 
 def genDenseModel(model, dense_chs, optimizer, dataset):
     print("[INFO] Squeezing the sparse model to dense one...")
-
+    print(f'dense chs: {dense_chs}')
     # Sanity check
     # for layer in dense_chs:
     #     print("==> [{}]: {},{}".format(layer, len(dense_chs[layer]['in_chs']), len(dense_chs[layer]['out_chs'])))
