@@ -1154,12 +1154,12 @@ def buildResidualPath(module_list, numOfStages, archNums, widthofLayers):
                 if module[0].in_channels == width:
                     stagesI[k] = {'width': width, 'channels': (k,0)}
                 j = - 1
-                while j != 0:
+                while j < 0:
                     if isinstance(module[j],nn.Conv2d):
                         if module[j].out_channels == width:
                             print(f'(i,j): ({k}, {len(module) + j}')
                             stagesO[k] = {'width': width, 'channels': (k, len(module) + j)}
-                            j = 0
+                            j = 1
                         else:
                             j = j - 1
     print(f'stagesI: {stagesI}')
