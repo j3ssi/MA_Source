@@ -131,6 +131,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
                     size0 = module[j].in_channels
 
                     if (i,j) in altList and size0 == size1:
+                        print(f'(i,j): ({i},{j})')
                         adj_lyrs.append((i,j))
                     size1 = module[j].out_channels
 
