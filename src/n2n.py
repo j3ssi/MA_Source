@@ -1144,15 +1144,16 @@ class N2N(nn.Module):
                             stagesI[width]= [(k,0)]
                     j = - 1
 
-                k += 1
-                while j < 0:
-                    if isinstance(module[j],nn.Conv2d):
-                        if module[j].out_channels == width:
-                            print(f'(i,j): ({k}, {len(module) + j}')
-                            if width in stagesO.keys():
-                                stagesO[width].append((k, len(module) + j))
-                            else:
-                                stagesI[width] = [(k, len(module) + j)]#                     j = 1
+                    while j < 0:
+                        if isinstance(module[j],nn.Conv2d):
+                            if module[j].out_channels == width:
+                                print(f'(i,j): ({k}, {len(module) + j}')
+                                if width in stagesO.keys():
+                                    stagesO[width].append((k, len(module) + j))
+                                else:
+                                    stagesI[width] = [(k, len(module) + j)]#                     j = 1
+                    k += 1
+
             #                 else:
             #                     j = j - 1
             #
