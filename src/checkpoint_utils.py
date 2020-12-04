@@ -378,8 +378,9 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
         i = int(name.split('.')[1])
         j = None
         if len(name.split('.')) == 4:
-            j = int(name.split('.')[2])
-
+            j = int(name.split('.')[2])-1
+        else:
+            i = i-1
         print("\nBuffer Name: ", name)
         if 'running_mean' in name or 'running_var' in name:
             w_name = (i,j)
