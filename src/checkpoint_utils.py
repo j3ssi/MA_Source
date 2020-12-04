@@ -124,9 +124,15 @@ def makeSparse(optimizer, model, threshold, reconf=True):
         adj_lyrs = []
         module = model.module_list[i]
         if isinstance(module, nn.Sequential):
+            size0 = module[0].in_channels
+            size1 = module[0].out_channels
             for j in range( len ( module ) ):
-                if (i,j) in altList:
+                size0 = module[j].in_channels
+
+                if (i,j) in altList and size0 == size1:
                     adj_lyrs.append((i,j))
+                size1 = module[j].out_channels
+
         for adj_lyr in adj_lyrs:
         #if i exists that is in adj_lyr and this i is not in dense_chs
             if any(i for i in adj_lyr if i not in dense_chs):
@@ -140,6 +146,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
                     dense_chs[adj_lyr[idx]]['out_chs'] = edge
                     dense_chs[adj_lyr[idx + 1]]['in_chs'] = edge
         i += 1
+        size
     for name in dense_chs:
         print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
     width = model.module_list[0].weight.size(0)
