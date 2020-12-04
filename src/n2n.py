@@ -1156,7 +1156,12 @@ class N2N(nn.Module):
                             j = 1
                         else:
                             j= j-1
-                    k += 1
+                elif isinstance(module, nn.Conv2d):
+                    stagesO[width] = [(0,None)]
+                elif isinstance(module, nn.Linear):
+                    stagesI[width].append((k, None))
+
+                k += 1
 
             #                 else:
             #                     j = j - 1
