@@ -29,7 +29,7 @@ Make only the (conv, FC) layer parameters sparse
 """
 
 
-def makeSparse(optimizer, model, threshold, reconf=True):
+def makeSparse(optimizer, model, threshold, reconf=False):
     print("[INFO] Force the sparse filters to zero...")
     dense_chs, chs_temp, idx = {}, {}, 0
     # alternative List to find the layers by name and not the stupid index of module_list
@@ -45,7 +45,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
         elif isinstance(model.module_list[index], nn.Linear):
             altList.append((index,None))
 
-    print(f'altList: {altList}')
+    # print(f'altList: {altList}')
     i = -1
     for i,j in altList:
         module = model.module_list[i]
@@ -148,7 +148,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
     new_edges = []
     listOTmp = None
     while idx < len( model.module_list ):
-        print("\n> IDX: ", idx)
+        # print("\n> IDX: ", idx)
 
         edges = []
         edges = list(set().union(edges, new_edges))
@@ -163,26 +163,26 @@ def makeSparse(optimizer, model, threshold, reconf=True):
         while width == layerWidth:
             module = model.module_list[idx]
 
-            print(f'Width: {width}; layerWidth: {layerWidth}; idx: {idx}')
+            # print(f'Width: {width}; layerWidth: {layerWidth}; idx: {idx}')
             if isinstance(module, nn.Sequential):
                 layerWidth = module[0].weight.size(0)
-                print(f'layerWidth: {layerWidth}')
+                # print(f'layerWidth: {layerWidth}')
                 if (idx,0) in dense_chs and layerWidth == width:
                     edges = list(set().union(edges, dense_chs[(idx,0)]['in_chs']))
                     listI.append((idx,0))
-                    print(f'Append I: {(idx,0)}')
+                    # print(f'Append I: {(idx,0)}')
                 else:
                     width = module[0].weight.size(0)
 
                     break
                 j = len(module)-1
-                print(f'J: {j}')
+                # print(f'J: {j}')
                 while j>0:
                     if isinstance(module[j], nn.Conv2d):
                         if module[j].weight.size(1) == width:
                             edges = list(set().union(edges, dense_chs[(idx,j)]['out_chs']))
                             listO.append((idx,j))
-                            print(f'Append O: {(idx,j)}')
+                            # print(f'Append O: {(idx,j)}')
                             j = j-1
                         else:
                             new_edges = list(set().union(edges, dense_chs[(idx,j)]['out_chs']))
@@ -191,7 +191,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
                             break
                     else:
                         j = j - 1
-                        print(f'J: {j}')
+                        # print(f'J: {j}')
                 idx += 1
 
             if isinstance(module, nn.Conv2d):
@@ -199,19 +199,19 @@ def makeSparse(optimizer, model, threshold, reconf=True):
                 if (idx,None) in dense_chs:
                     edges = list(set().union(edges, dense_chs[(idx, None)]['out_chs']))
                     listO.append((idx, None))
-                    print(f'Append O : {(idx,None)}')
+                    # print(f'Append O : {(idx,None)}')
                     idx += 1
             if isinstance(module, nn.Linear):
                 if (idx,None) in dense_chs:
                     edges = list(set().union(edges, dense_chs[(idx, None)]['out_chs']))
                     listI.append((idx,None))
-                    print(f'Append I: {(idx,None)}')
+                    # print(f'Append I: {(idx,None)}')
                     idx += 1
                     break
             else:
                 idx += 1
-        print(f'listI: {listI}')
-        print(f'listO: {listO}')
+        # print(f'listI: {listI}')
+        # print(f'listO: {listO}')
         for i,j in listI:
             if (i,j) in dense_chs:
                 dense_chs[(i,j)]['in_chs'] = edges
@@ -283,7 +283,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
             j = int(name.split('.')[2])
         # print(f'(i,j): ({i}, {j})')
         name = (i,j)
-        # print("\nName: ", name)
+        print("\nName: ", name)
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[param]['momentum_buffer']
 
