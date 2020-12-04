@@ -123,6 +123,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
     while i < len( model.module_list ) :
         adj_lyrs = []
         module = model.module_list[i]
+        print(f'i: {i}')
         if isinstance(module, nn.Sequential):
             size0 = module[0].in_channels
             size1 = module[0].out_channels
