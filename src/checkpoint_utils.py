@@ -297,6 +297,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
             dims = list(param.shape)
             # print(f'dims: {dims}')
             dense_in_ch_idxs = dense_chs[name]['in_chs']
+            print(f'in chs: {dense_in_ch_idxs}')
             dense_out_ch_idxs = dense_chs[name]['out_chs']
             num_in_ch, num_out_ch = len(dense_in_ch_idxs), len(dense_out_ch_idxs)
 
