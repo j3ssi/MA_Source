@@ -1081,7 +1081,7 @@ def n(name):
         return 'module.' + name + '.weight'
 
 
-def buildResidualPath(module_list, numOfStages, archNums, widthofLayers):
+def buildResidualPath(module_list, widthofLayers):
     # # stage0O = [n(1), n(3), n(5), n(7), n(9), n(11)]
     # # stages1O = [n(13), n(14), n(16), n(18), n(20), n(22)]
     # # stages2O = [n(24), n(25), n(27), n(29), n(31), n(33)]
@@ -1162,6 +1162,10 @@ def buildResidualPath(module_list, numOfStages, archNums, widthofLayers):
                             j = 1
                         else:
                             j = j - 1
+
+            elif isinstance(module, nn.Conv2d):
+                print(f'module')
+
     print(f'stagesI: {stagesI}')
     print(f'stagesO: {stagesO}')
     return stagesI, stagesO
