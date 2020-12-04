@@ -204,7 +204,7 @@ class N2N(nn.Module):
                         nn.init.zeros_(seq.bias)
         self.cuda()
         print(f'')
-        self.residualPath = self.buildResidualPath(self)
+        self.residualPath = self.buildResidualPath()
         self.dense_chs, _ = makeSparse(optimizer, self, 100, reconf=False)
         print(f'dense: {self.dense_chs}')
         # if printInit:
