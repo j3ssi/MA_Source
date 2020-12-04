@@ -118,7 +118,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
     # Within a residual branch >> Union of adjacent pairs
     # get the Layers that share the same node
     # adj_lyrs = model.getShareSameNodeLayers()
-    print(adj_lyrs)
+    # print(adj_lyrs)
     i = 0
     while i < len( model.module_list ) :
         adj_lyrs = []
@@ -149,6 +149,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
             else:
                 # print("\n> Adj_lyr: ", adj_lyr)
                 for idx in range(len(adj_lyr) - 1):
+                    print(f'>IDX: {idx}; IDX+1: {idx+1}')
                     edge = list(set().union(dense_chs[adj_lyr[idx]]['out_chs'],
                                             dense_chs[adj_lyr[idx + 1]]['in_chs']))
                     print("\n>Edge: ", edge)
