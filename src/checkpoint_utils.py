@@ -287,9 +287,11 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
         name = (i,j)
         # Get Momentum parameters to adjust
         mom_param = optimizer.state[param]['momentum_buffer']
-
+        module = model.module_list[i]
+        if j is not None:
+            module = module[j]
         # Change parameters of neural computing layers (Conv, FC)
-        if (('conv' in name) or ('fc' in name)) and ('weight' in name):
+        if isinstance(module, nn.Conv2d) or isinstance(module, nn.Linear):
 
             dims = list(param.shape)
             # print(f'dims: {dims}')
@@ -337,9 +339,12 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
 
         # Change parameters of non-neural computing layers (BN, biases)
         else:
+            i = int(name.split('.')[1])
+            j = None
+            if len(name.split('.')) == 4:
+                j = int(name.split('.')[2])
             print("\n>Name: ", name)
-            w_name = name.replace('bias', 'weight').replace('bn', 'conv')
-            # print("\n>WName: ", w_name)
+            w_name = (i,j)
             dense_out_ch_idxs = dense_chs[w_name]['out_chs']
             num_out_ch = len(dense_out_ch_idxs)
 
