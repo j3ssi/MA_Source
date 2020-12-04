@@ -382,7 +382,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
         print("\nBuffer Name: ", name)
         if 'running_mean' in name or 'running_var' in name:
             w_name = (i,j)
-            # print("\nW_name2: ", w_name)
+            print("\nW_name2: ", w_name)
             dense_out_ch_idxs = dense_chs[w_name]['out_chs']
             num_out_ch = len(dense_out_ch_idxs)
             new_buf = Parameter(torch.Tensor(num_out_ch)).cuda()
