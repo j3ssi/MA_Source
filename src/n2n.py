@@ -227,9 +227,9 @@ class N2N(nn.Module):
         for i in range(len(module_list)):
             # print("\n>i: ", i)
             print(f'module: {module_list[i]}')
-            if not isinstance(module_list[i], nn.ReLU):
-                print(f'Size of Weight: {module_list[i].weight.size()}')
             if isinstance(module_list[i], nn.Conv2d):
+                print(f'Size of Weight: {module_list[i].weight.size()}')
+
                 module = module_list[i]
                 kernel_size = module.kernel_size
                 stride = module.stride
@@ -243,6 +243,8 @@ class N2N(nn.Module):
                 layer.weight.data = module.weight.data
                 self.module_list.append(layer)
             elif isinstance(module_list[i], nn.BatchNorm2d):
+                print(f'Size of Weight: {module_list[i].weight.size()}')
+
                 module = module_list[i]
                 layer = nn.BatchNorm2d(module.num_features)
                 layer.weight.data = module.weight.data
@@ -254,7 +256,9 @@ class N2N(nn.Module):
                 module = module_list[i]
                 layer = []
                 for j in range(len(module)):
+
                     if isinstance(module[j], nn.Conv2d):
+                        print(f'Size of Weight: {module[j].weight.size()}')
 
                         module1 = module[j]
                         kernel_size = module1.kernel_size
@@ -269,6 +273,8 @@ class N2N(nn.Module):
                         layer1.weight.data = module1.weight.data
                         layer.append(layer1)
                     elif isinstance(module[j], nn.BatchNorm2d):
+                        print(f'Size of Weight: {module[j].weight.size()}')
+
                         module1 = module[j]
                         layer1 = nn.BatchNorm2d(module1.num_features)
                         layer1.weight.data = module1.weight.data
