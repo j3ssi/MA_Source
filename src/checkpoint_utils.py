@@ -164,7 +164,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
     idx = 0
     new_edges = []
     listOTmp = None
-    while idx < len( model.module_list ):
+    for key in model.res
         print("\n> IDX: ", idx)
 
         edges = []
