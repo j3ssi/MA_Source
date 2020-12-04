@@ -142,19 +142,19 @@ def makeSparse(optimizer, model, threshold, reconf=True):
 
                     size1 = module[j].out_channels
         print(f'adj layrs: {adj_lyrs}')
-        for adj_lyr in adj_lyrs:
+        for idx in  range(adj_lyrs - 1):
             # if i exists that is in adj_lyr and this i is not in dense_chs
-            if not adj_lyr in dense_chs:
-                """ not doing anything """
-            else:
-                print("\n> Adj_lyr: ", adj_lyr)
-                for idx in range(len(adj_lyr) - 1):
-                    print(f'>IDX: {idx}; IDX+1: {idx+1}')
-                    edge = list(set().union(dense_chs[adj_lyr[idx]]['out_chs'],
-                                            dense_chs[adj_lyr[idx + 1]]['in_chs']))
+            # if not adj_lyr in dense_chs:
+            #     """ not doing anything """
+            # else:
+            print("\n> Adj_lyr: ", adj_lyrs[idx])
+
+                print(f'>IDX: {idx}; IDX+1: {idx+1}')
+                    edge = list(set().union(dense_chs[adj_lyrs[idx]]['out_chs'],
+                                            dense_chs[adj_lyrs[idx + 1]]['in_chs']))
                     print("\n>Edge: ", edge)
-                    dense_chs[adj_lyr[idx]]['out_chs'] = edge
-                    dense_chs[adj_lyr[idx + 1]]['in_chs'] = edge
+                    dense_chs[adj_lyrs[idx]]['out_chs'] = edge
+                    dense_chs[adj_lyrs[idx + 1]]['in_chs'] = edge
         i += 1
 
     for name in dense_chs:
