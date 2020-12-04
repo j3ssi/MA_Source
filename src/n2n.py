@@ -1131,24 +1131,24 @@ class N2N(nn.Module):
 
         for width in self.widthofLayers:
             print(f'width: {width}')
-            k = 0
-            for module in self.module_list:
-                print(f'module: {module}')
-                if isinstance(module, nn.Sequential):
-                    if module[0].in_channels == width:
-                        stagesI[k] = {'width': width, 'channels': (k,0)}
-                    j = - 1
-                    while j < 0:
-                        if isinstance(module[j],nn.Conv2d):
-                            if module[j].out_channels == width:
-                                print(f'(i,j): ({k}, {len(module) + j}')
-                                stagesO[k] = {'width': width, 'channels': (k, len(module) + j)}
-                                j = 1
-                            else:
-                                j = j - 1
-
-                elif isinstance(module, nn.Conv2d):
-                    print(f'module')
+            # k = 0
+            # for module in self.module_list:
+            #     print(f'module: {module}')
+            #     if isinstance(module, nn.Sequential):
+            #         if module[0].in_channels == width:
+            #             stagesI[k] = {'width': width, 'channels': (k,0)}
+            #         j = - 1
+            #         while j < 0:
+            #             if isinstance(module[j],nn.Conv2d):
+            #                 if module[j].out_channels == width:
+            #                     print(f'(i,j): ({k}, {len(module) + j}')
+            #                     stagesO[k] = {'width': width, 'channels': (k, len(module) + j)}
+            #                     j = 1
+            #                 else:
+            #                     j = j - 1
+            #
+            #     elif isinstance(module, nn.Conv2d):
+            #         print(f'module')
 
         print(f'stagesI: {stagesI}')
         print(f'stagesO: {stagesO}')
