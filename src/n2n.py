@@ -226,6 +226,8 @@ class N2N(nn.Module):
         # print("\naltList", altList)
         for i in range(len(module_list)):
             # print("\n>i: ", i)
+            print(f'module: {module_list[i]}')
+            print(f'Size of Weight: {module_list[i].weight.size()}')
             if isinstance(module_list[i], nn.Conv2d):
                 module = module_list[i]
                 kernel_size = module.kernel_size
