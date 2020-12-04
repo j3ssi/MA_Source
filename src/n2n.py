@@ -1134,6 +1134,7 @@ class N2N(nn.Module):
             k = 0
             for module in self.module_list:
                 print(f'module: {module}')
+                print(f'width Module: {module[0].in_channels}')
                 if isinstance(module, nn.Sequential):
                     if module[0].in_channels == width:
                         if width in stagesI.keys():
