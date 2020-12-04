@@ -290,6 +290,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
         module = model.module_list[i]
         if j is not None:
             module = module[j]
+        print(f'Module: {module}')
         # Change parameters of neural computing layers (Conv, FC)
         if isinstance(module, nn.Conv2d) or isinstance(module, nn.Linear):
             print("\nName: ", name)
