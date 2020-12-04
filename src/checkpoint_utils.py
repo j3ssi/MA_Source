@@ -405,80 +405,53 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
         m = 0
         # print(f'RM List vorher: {rm_list}')
 
-        for rm in rm_list:
-            index = int(rm.split('.')[1].split('v')[1])
-            # index = (index - 1) * 2
-            indexList.append(index)
-        # (f'indexList: {indexList}')
-        for stage in range(0, model.numOfStages):
-            # print(f'Stage: {stage}')
-            archNum = model.archNums[stage]
-
-            for block in range(0, len(archNum)):
-                # print(f'Block: {block}')
-                arch = archNum[block]
-                sameBlock = False
-                i = 0
-                while i < arch:
-                    if len(indexList) > 0:
-                        if indexList[0] == j and not sameBlock:
-                            elem = indexList[0]
-                            indexList.remove(elem)
-                            # print(f'pop element: {elem}')
-                            # print(f'IndexListe: {indexList}')
-                            sameBlock = True
-                            m = m + 1
-                            j = j + 1
-                            i = i + 1
-                        elif indexList[0] == j and sameBlock:
-                            elem = indexList[0]
-                            indexList.remove(elem)
-                            # print(f'pop element2: {elem}')
-                            delete = rm_list[m]
-                            # print(f'delete: {delete}')
-                            rm_list.remove(delete)
-                            j = j + 1
-                            i = i + 1
-                        else:
-                            j = j + 1
-                            i = i + 1
-
-                    else:
-                        i = arch + 1
-        # print(f'RM List nachher: {rm_list}')
-        for name in reversed(rm_list):
-            # delete module from moduleList
-            index = int(name.split('.')[1].split('v')[1])
-            index = (index - 1) * 2
-            module = model.module_list[index]
-            # print("\nModule List Length: ", len(model.module_list))
-            model.delete(module, index)
-            # print("\nModule List Length After Delete: ", len(model.module_list))
-            # i=0
-            # for s in range(0, model.numOfStages):
-            #     blocks = model.archNums[s]
-            #     for b in range(0, model.numOfBlocksinStage):
-            #         i = i + blocks[b]
-            #         if(index == i):
-            #             blocks[b] = blocks[b] - 1
-
-        # # Sanity check: Print out optimizer parameters before change
-        # print("[INFO] ==== Size of parameter group (Before)")
-        # for g in optimizer.param_groups:
-        #     for idx, g2 in enumerate(g['params']):
-        #         print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
-
-    # Sanity check => Print out optimizer parameters after change
-    # print("[INFO] ==== Size of parameter group (After)")
-    # for g in optimizer.param_groups:
-    #    for idx, g2 in enumerate(g['params']):
-    #        print("idx:{}, param_shape:{}".format(idx, list(g2.shape)))
-
-# Sanity check => Check the changed parameters
-# for name, param in model.named_parameters():
-#  print("===>>> [{}]: {}".format(name, list(param.shape)))
-
-# Sanity check => Check the changed buffers
-# for name
-# , param in model.named_parameters():
-#  print("===<<< [{}]: {}".format(name, optimizer.state[param]['momentum_buffer'].shape))
+ #        for rm in rm_list:
+ #            index = int(rm.split('.')[1].split('v')[1])
+ #            # index = (index - 1) * 2
+ #            indexList.append(index)
+ #        # (f'indexList: {indexList}')
+ #        for stage in range(0, model.numOfStages):
+ #            # print(f'Stage: {stage}')
+ #            archNum = model.archNums[stage]
+ #
+ #            for block in range(0, len(archNum)):
+ #                # print(f'Block: {block}')
+ #                arch = archNum[block]
+ #                sameBlock = False
+ #                i = 0
+ #                while i < arch:
+ #                    if len(indexList) > 0:
+ #                        if indexList[0] == j and not sameBlock:
+ #                            elem = indexList[0]
+ #                            indexList.remove(elem)
+ #                            # print(f'pop element: {elem}')
+ #                            # print(f'IndexListe: {indexList}')
+ #                            sameBlock = True
+ #                            m = m + 1
+ #                            j = j + 1
+ #                            i = i + 1
+ #                        elif indexList[0] == j and sameBlock:
+ #                            elem = indexList[0]
+ #                            indexList.remove(elem)
+ #                            # print(f'pop element2: {elem}')
+ #                            delete = rm_list[m]
+ #                            # print(f'delete: {delete}')
+ #                            rm_list.remove(delete)
+ #                            j = j + 1
+ #                            i = i + 1
+ #                        else:
+ #                            j = j + 1
+ #                            i = i + 1
+ #
+ #                    else:
+ #                        i = arch + 1
+ #        # print(f'RM List nachher: {rm_list}')
+ #        for name in reversed(rm_list):
+ #            # delete module from moduleList
+ #            index = int(name.split('.')[1].split('v')[1])
+ #            index = (index - 1) * 2
+ #            module = model.module_list[index]
+ #            # print("\nModule List Length: ", len(model.module_list))
+ #            model.delete(module, index)
+ #            # print("\nModule List Length After Delete: ", len(model.module_list))
+ #
