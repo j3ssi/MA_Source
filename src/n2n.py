@@ -203,7 +203,8 @@ class N2N(nn.Module):
                         nn.init.ones_(seq.weight)
                         nn.init.zeros_(seq.bias)
         self.cuda()
-        # self.residualPath = buildResidualPath(module_list = self.module_list, widthofLayers = self.widthofLayers)
+        print(f'')
+        self.residualPath = buildResidualPath(module_list = self.module_list, widthofLayers = self.widthofLayers)
         self.dense_chs, _ = makeSparse(optimizer, self, 100, reconf=False)
         print(f'dense: {self.dense_chs}')
         # if printInit:
