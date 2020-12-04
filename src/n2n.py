@@ -1131,9 +1131,9 @@ class N2N(nn.Module):
 
         for width in self.widthofLayers:
             print(f'width: {width}')
-            # k = 0
-            # for module in self.module_list:
-            #     print(f'module: {module}')
+            k = 0
+            for module in self.module_list:
+                print(f'module: {module}')
             #     if isinstance(module, nn.Sequential):
             #         if module[0].in_channels == width:
             #             stagesI[k] = {'width': width, 'channels': (k,0)}
