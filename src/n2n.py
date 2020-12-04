@@ -204,7 +204,7 @@ class N2N(nn.Module):
                         nn.init.zeros_(seq.bias)
         self.cuda()
         print(f'')
-        self.residualPath = buildResidualPath(module_list = self.module_list, widthofLayers = self.widthofLayers)
+        self.residualPath = self.buildResidualPath(module_list = self.module_list, widthofLayers = self.widthofLayers)
         self.dense_chs, _ = makeSparse(optimizer, self, 100, reconf=False)
         print(f'dense: {self.dense_chs}')
         # if printInit:
@@ -1065,25 +1065,8 @@ class N2N(nn.Module):
 
         print(self)
 
-
-def compare(layer, oddLayer):
-    i1 = int(layer.split('.')[1].split('v')[1])
-    i2 = int(oddLayer.split('.')[1].split('v')[1])
-    if i2 + 2 == i1:
-        return True
-    else:
-        return False
-
-
-def n(name):
-    if isinstance(name, int):
-        return 'module.conv' + str(name) + '.weight'
-    else:
-        return 'module.' + name + '.weight'
-
-
-def buildResidualPath(module_list, widthofLayers):
-    # # stage0O = [n(1), n(3), n(5), n(7), n(9), n(11)]
+    def buildResidualPath(module_list, widthofLayers):
+        # # stage0O = [n(1), n(3), n(5), n(7), n(9), n(11)]
     # # stages1O = [n(13), n(14), n(16), n(18), n(20), n(22)]
     # # stages2O = [n(24), n(25), n(27), n(29), n(31), n(33)]
     # printStages = False
@@ -1144,32 +1127,50 @@ def buildResidualPath(module_list, widthofLayers):
     # # print(f'stagesI: {stagesI}')
     #
     # # print(f'stagesO: {stagesO}')
-    stagesI, stagesO = {}, {}
+        stagesI, stagesO = {}, {}
 
-    for width in widthofLayers:
-        print(f'width: {width}')
-        k = 0
-        for module in module_list:
-            print(f'module: {module}')
-            if isinstance(module, nn.Sequential):
-                if module[0].in_channels == width:
-                    stagesI[k] = {'width': width, 'channels': (k,0)}
-                j = - 1
-                while j < 0:
-                    if isinstance(module[j],nn.Conv2d):
-                        if module[j].out_channels == width:
-                            print(f'(i,j): ({k}, {len(module) + j}')
-                            stagesO[k] = {'width': width, 'channels': (k, len(module) + j)}
-                            j = 1
-                        else:
-                            j = j - 1
+        for width in widthofLayers:
+            print(f'width: {width}')
+            k = 0
+            for module in module_list:
+                print(f'module: {module}')
+                if isinstance(module, nn.Sequential):
+                    if module[0].in_channels == width:
+                        stagesI[k] = {'width': width, 'channels': (k,0)}
+                    j = - 1
+                    while j < 0:
+                        if isinstance(module[j],nn.Conv2d):
+                            if module[j].out_channels == width:
+                                print(f'(i,j): ({k}, {len(module) + j}')
+                                stagesO[k] = {'width': width, 'channels': (k, len(module) + j)}
+                                j = 1
+                            else:
+                                j = j - 1
 
-            elif isinstance(module, nn.Conv2d):
-                print(f'module')
+                elif isinstance(module, nn.Conv2d):
+                    print(f'module')
 
     print(f'stagesI: {stagesI}')
     print(f'stagesO: {stagesO}')
     return stagesI, stagesO
+
+
+
+def compare(layer, oddLayer):
+    i1 = int(layer.split('.')[1].split('v')[1])
+    i2 = int(oddLayer.split('.')[1].split('v')[1])
+    if i2 + 2 == i1:
+        return True
+    else:
+        return False
+
+
+def n(name):
+    if isinstance(name, int):
+        return 'module.conv' + str(name) + '.weight'
+    else:
+        return 'module.' + name + '.weight'
+
 
 
 def buildShareSameNodeLayers(module_list, numOfStages, archNums):
