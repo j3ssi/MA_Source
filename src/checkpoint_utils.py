@@ -118,7 +118,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
     # Within a residual branch >> Union of adjacent pairs
     # get the Layers that share the same node
     # adj_lyrs = model.getShareSameNodeLayers()
-    # print(adj_lyrs)
+    print(adj_lyrs)
     i = 0
     while i < len( model.module_list ) :
         adj_lyrs = []
