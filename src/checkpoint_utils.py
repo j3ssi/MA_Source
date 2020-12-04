@@ -142,7 +142,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
 
                     size1 = module[j].out_channels
         print(f'adj layrs: {adj_lyrs}')
-        for idx in  range(adj_lyrs - 1):
+        for idx in  range(len(adj_lyrs) - 1):
             # if i exists that is in adj_lyr and this i is not in dense_chs
             # if not adj_lyr in dense_chs:
             #     """ not doing anything """
