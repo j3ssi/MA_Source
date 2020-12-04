@@ -1157,8 +1157,10 @@ class N2N(nn.Module):
                         else:
                             j= j-1
                 elif isinstance(module, nn.Conv2d):
-                    stagesO[width] = [(0,None)]
+                    if module.out_channels == width:
+                        stagesO[width] = [(0,None)]
                 elif isinstance(module, nn.Linear):
+                    if module.in_features == width:
                     stagesI[width].append((k, None))
 
                 k += 1
