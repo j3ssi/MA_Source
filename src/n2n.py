@@ -56,7 +56,7 @@ class N2N(nn.Module):
 
         # first Layer
         # conv1
-        conv0 = nn.Conv2d(3, self.widthofLayers[0], kernel_size=3, padding=1, bias=False, stride=1)
+        conv0 = nn.Conv2d(in_channels = 3, out_channels = self.widthofLayers[0], kernel_size=3, padding=1, bias=False, stride=1)
         self.module_list.append(conv0)
         if printInit:
             print(f'conv0: {conv0}; i: {j}')
