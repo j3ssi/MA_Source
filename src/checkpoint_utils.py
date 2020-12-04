@@ -131,7 +131,7 @@ def makeSparse(optimizer, model, threshold, reconf=True):
                     size0 = module[j].in_channels
 
                     if (i,j) in altList and size0 == size1 and j==3 and (i,0) not in adj_lyrs:
-                        print(f'(i,j): ({i},{j})')
+                        print(f'0: (i,j): ({i},{j})')
                         adj_lyrs.append((i,0))
                         adj_lyrs.append((i,j))
                     elif (i,j) in altList and size0 == size1:
