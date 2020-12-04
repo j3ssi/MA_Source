@@ -1080,68 +1080,87 @@ def n(name):
         return 'module.' + name + '.weight'
 
 
-def buildResidualPath(module_list, numOfStages, archNums):
-    # stage0O = [n(1), n(3), n(5), n(7), n(9), n(11)]
-    # stages1O = [n(13), n(14), n(16), n(18), n(20), n(22)]
-    # stages2O = [n(24), n(25), n(27), n(29), n(31), n(33)]
-    printStages = False
-    sameNode, oddLayers = buildShareSameNodeLayers(module_list, numOfStages, archNums)
-    tempStagesI = []
-    tempStagesO = [n(1)]
-    stageWidth = module_list[0].weight.size()[0]
-    oddLayersCopy = oddLayers
-    oddLayersBool = False
-    for node in sameNode:
-        if len(oddLayers) > 0:
-            # print(f'oddLayer: {self.oddLayers[0]}')
-            if compare(node[-1], oddLayers[0]):
-                oddLayer = oddLayers.pop(0)
-                tempStagesO.append(oddLayer)
-                tempStagesI.append(oddLayer)
-                oddLayersBool = True
-        tempStagesI.append(node[0])
-        tempStagesO.append(node[-1])
+def buildResidualPath(module_list, numOfStages, archNums, widthofLayers):
+    # # stage0O = [n(1), n(3), n(5), n(7), n(9), n(11)]
+    # # stages1O = [n(13), n(14), n(16), n(18), n(20), n(22)]
+    # # stages2O = [n(24), n(25), n(27), n(29), n(31), n(33)]
+    # printStages = False
+    # sameNode, oddLayers = buildShareSameNodeLayers(module_list, numOfStages, archNums)
+    # tempStagesI = []
+    # tempStagesO = [n(1)]
+    # stageWidth = module_list[0].weight.size()[0]
+    # oddLayersCopy = oddLayers
+    # oddLayersBool = False
+    # for node in sameNode:
+    #     if len(oddLayers) > 0:
+    #         # print(f'oddLayer: {self.oddLayers[0]}')
+    #         if compare(node[-1], oddLayers[0]):
+    #             oddLayer = oddLayers.pop(0)
+    #             tempStagesO.append(oddLayer)
+    #             tempStagesI.append(oddLayer)
+    #             oddLayersBool = True
+    #     tempStagesI.append(node[0])
+    #     tempStagesO.append(node[-1])
+    #
+    # length = len(module_list)
+    # fcStr = 'fc' + str(int(length / 2))
+    # tempStagesI.append(n(fcStr))
+    # stagesI = [[]]
+    # stagesO = [[]]
+    # for layer in tempStagesI:
+    #     # print(layer)
+    #     if 'conv' in layer:
+    #         i = int(layer.split('.')[1].split('v')[1])
+    #         i = 2 * i - 2
+    #         if i == 0:
+    #             stagesI[0].append(layer)
+    #         elif module_list[i].weight.size()[1] == stageWidth:
+    #             stagesI[-1].append(layer)
+    #         else:
+    #             stageWidth = module_list[i].weight.size()[1]
+    #             stagesI.append([])
+    #             stagesI[-1].append(layer)
+    #
+    #     elif 'fc' in layer:
+    #         stagesI[-1].append(layer)
+    #     # print(f'StagesI:{stagesI}')
+    #
+    # stageWidth = module_list[0].weight.size()[0]
+    # for layer in tempStagesO:
+    #     # print(layer)
+    #     i = int(layer.split('.')[1].split('v')[1])
+    #     i = 2 * i - 2
+    #     if module_list[i].weight.size()[0] == stageWidth:
+    #         stagesO[-1].append(layer)
+    #     elif layer in oddLayersCopy:
+    #         stagesO[1].append(layer)
+    #     else:
+    #         stageWidth = module_list[i].weight.size()[0]
+    #         stagesO.append([])
+    #         stagesO[-1].append(layer)
+    #
+    # # print(f'stagesI: {stagesI}')
+    #
+    # # print(f'stagesO: {stagesO}')
+    stagesI, stagesO = {}, {}
 
-    length = len(module_list)
-    fcStr = 'fc' + str(int(length / 2))
-    tempStagesI.append(n(fcStr))
-    stagesI = [[]]
-    stagesO = [[]]
-    for layer in tempStagesI:
-        # print(layer)
-        if 'conv' in layer:
-            i = int(layer.split('.')[1].split('v')[1])
-            i = 2 * i - 2
-            if i == 0:
-                stagesI[0].append(layer)
-            elif module_list[i].weight.size()[1] == stageWidth:
-                stagesI[-1].append(layer)
-            else:
-                stageWidth = module_list[i].weight.size()[1]
-                stagesI.append([])
-                stagesI[-1].append(layer)
-
-        elif 'fc' in layer:
-            stagesI[-1].append(layer)
-        # print(f'StagesI:{stagesI}')
-
-    stageWidth = module_list[0].weight.size()[0]
-    for layer in tempStagesO:
-        # print(layer)
-        i = int(layer.split('.')[1].split('v')[1])
-        i = 2 * i - 2
-        if module_list[i].weight.size()[0] == stageWidth:
-            stagesO[-1].append(layer)
-        elif layer in oddLayersCopy:
-            stagesO[1].append(layer)
-        else:
-            stageWidth = module_list[i].weight.size()[0]
-            stagesO.append([])
-            stagesO[-1].append(layer)
-
-    # print(f'stagesI: {stagesI}')
-
-    # print(f'stagesO: {stagesO}')
+    for width in widthofLayers:
+        k = 0
+        for module in module_list:
+            if isinstance(module, nn.Sequential):
+                if module[0].in_channels == width:
+                    stagesI[k] = {'width': width, 'channels': (k,0)}
+                j = - 1
+                while j != 0:
+                    if isinstance(module[-j],nn.Conv2d):
+                        if module[j].out_channels == width:
+                            print(f'(i,j): ({k}, {len(module)-j}')
+                            stagesO[k] = {'width': width, 'channels': (k, len(module)-j)}
+                            j = 0
+                        else:
+                            j = j - 1
+    print(f'stagesI: {stagesI}')
+    print(f'stagesO: {stagesO}')
     return stagesI, stagesO
 
 
