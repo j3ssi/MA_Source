@@ -1146,8 +1146,10 @@ def buildResidualPath(module_list, numOfStages, archNums, widthofLayers):
     stagesI, stagesO = {}, {}
 
     for width in widthofLayers:
+        print(f'width: {width}')
         k = 0
         for module in module_list:
+            print(f'module: {module}')
             if isinstance(module, nn.Sequential):
                 if module[0].in_channels == width:
                     stagesI[k] = {'width': width, 'channels': (k,0)}
