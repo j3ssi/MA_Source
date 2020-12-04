@@ -1131,16 +1131,15 @@ class N2N(nn.Module):
 
         for width in self.widthofLayers:
             print(f'width: {width}')
-            k = 0
             for module in self.module_list:
                 print(f'module: {module}')
                 print(f'width Module: {module[0].in_channels}')
                 if isinstance(module, nn.Sequential):
                     if module[0].in_channels == width:
                         if width in stagesI.keys():
-                            stagesI[k].append((k,0))
+                            stagesI[width].append((k,0))
                         else:
-                            stagesI[k]= [(k,0)]
+                            stagesI[width]= [(k,0)]
                     j = - 1
             #         while j < 0:
             #             if isinstance(module[j],nn.Conv2d):
