@@ -157,8 +157,8 @@ def makeSparse(optimizer, model, threshold, reconf=True):
             dense_chs[adj_lyrs[idx + 1]]['in_chs'] = edge
         i += 1
 
-    for name in dense_chs:
-        print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
+    # for name in dense_chs:
+    #     print("1: [{}]: {}, {}".format(name, dense_chs[name]['in_chs'], dense_chs[name]['out_chs']))
     width = model.module_list[0].weight.size(0)
     # print(f'Start width: {width}')
     idx = 0
@@ -216,11 +216,11 @@ def makeSparse(optimizer, model, threshold, reconf=True):
         #         idx += 1
         # print(f'listI: {listI}')
         # print(f'listO: {listO}')
-        for i,j in listI:
+        for (i,j) in listI:
             if (i,j) in dense_chs:
                 dense_chs[(i,j)]['in_chs'] = edges
                 print(f'listI (i,j): {i},{j}; edges: {edges} ')
-        for i, j in listO:
+        for (i, j) in listO:
             if (i, j) in dense_chs:
                 dense_chs[(i, j)]['out_chs'] = edges
                 print(f'listO (i,j): {i},{j}; edges: {edges} ')
