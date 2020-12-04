@@ -284,7 +284,7 @@ class N2N(nn.Module):
                 self.module_list.append(nn.AdaptiveAvgPool2d((1, 1)))
             elif isinstance(module_list[i], nn.Linear):
                 module = module_list[i]
-                fc = nn.Linear(module.in_features, num_classes)
+                fc = nn.Linear(in_features=module.in_features, out_features=num_classes)
                 if printName:
                     print("\nLinear: ", fc)
                 fc.weight.data = module.weight.data
