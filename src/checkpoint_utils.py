@@ -127,11 +127,12 @@ def makeSparse(optimizer, model, threshold, reconf=True):
             size0 = module[0].in_channels
             size1 = module[0].out_channels
             for j in range( len ( module ) ):
-                size0 = module[j].in_channels
+                if isinstance(module[j], nn.Conv2d):
+                    size0 = module[j].in_channels
 
-                if (i,j) in altList and size0 == size1:
-                    adj_lyrs.append((i,j))
-                size1 = module[j].out_channels
+                    if (i,j) in altList and size0 == size1:
+                        adj_lyrs.append((i,j))
+                    size1 = module[j].out_channels
 
         for adj_lyr in adj_lyrs:
         #if i exists that is in adj_lyr and this i is not in dense_chs
