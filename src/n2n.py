@@ -1136,13 +1136,16 @@ class N2N(nn.Module):
                 print(f'module: {module}')
                 if isinstance(module, nn.Sequential):
                     if module[0].in_channels == width:
-                        stagesI[k] = {'width': width, 'channels': (k,0)}
-            #         j = - 1
+                        if width in stagesI.keys():
+                            stagesI[k].append((k,0))
+                        else:
+                            stagesI[k]= [(k,0)]
+                    j = - 1
             #         while j < 0:
             #             if isinstance(module[j],nn.Conv2d):
             #                 if module[j].out_channels == width:
             #                     print(f'(i,j): ({k}, {len(module) + j}')
-            #                     stagesO[k] = {'width': width, 'channels': (k, len(module) + j)}
+            # #                     stagesO[k] = {'width': width, 'channels': (k, len(module) + j)}
             #                     j = 1
             #                 else:
             #                     j = j - 1
