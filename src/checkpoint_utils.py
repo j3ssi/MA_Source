@@ -130,9 +130,16 @@ def makeSparse(optimizer, model, threshold, reconf=True):
                 if isinstance(module[j], nn.Conv2d):
                     size0 = module[j].in_channels
 
-                    if (i,j) in altList and size0 == size1:
+                    if (i,j) in altList and size0 == size1 and j>1:
                         print(f'(i,j): ({i},{j})')
+                        adj_lyrs.append((i,0))
                         adj_lyrs.append((i,j))
+                    elif (i,j) in altList and size0 == size1:
+                        print(f'(i,j): ({i},{j})')
+                        adj_lyrs.append((i,0))
+                        adj_lyrs.append((i,j))
+
+
                     size1 = module[j].out_channels
 
         for adj_lyr in adj_lyrs:
