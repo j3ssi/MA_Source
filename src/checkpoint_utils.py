@@ -276,8 +276,7 @@ def genDenseModel(model, dense_chs, optimizer):
         name = (i,j)
         # Get Momentum parameters to adjust
 
-        mom_param = param.momentum_buffer()
-            #optimizer.state[k]['momentum_buffer']
+        mom_param = optimizer.state_dict[k]['momentum_buffer']
         module = model.module_list[i]
         if j is not None:
             module = module[j]
