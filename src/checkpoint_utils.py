@@ -327,7 +327,7 @@ def genDenseModel(model, dense_chs, optimizer):
                     assert True, "Wrong tensor dimension: {} at layer {}".format(dims, name)
                 # print(f'Übertrage new Param')
                 param.data = new_param
-                optimizer.state[param]['momentum_buffer'].data = new_mom_param
+                optimizer.state_dict['state'][k]['momentum_buffer'].data = new_mom_param
 
                 # print("[{}]: {} >> {}".format(name, dims, list(new_param.shape)))
 

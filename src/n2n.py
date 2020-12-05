@@ -308,7 +308,7 @@ class N2N(nn.Module):
 
     def forward(self, x):
         printNet = False
-        
+        sizeofX = []
 
         if printNet:
             print(f'ArchNums: {self.archNums}')
@@ -316,17 +316,21 @@ class N2N(nn.Module):
         if printNet:
             print("\nX Shape: ", x.shape)
         # conv1
+        sizeofX.append(x)
         _x = self.module_list[0](x)
+        sizeofX.append(_x)
         if printNet:
             print("\nI: 0 ; ", self.module_list[0])
             print("\n _X Shape: ", _x.shape)
         # bn1
         _x = self.module_list[1](_x)
+        sizeofX.append(_x)
         if printNet:
             print("\nI: 1 ; ", self.module_list[1])
             print("\n _X Shape: ", _x.shape)
         # relu
         _x = self.module_list[2](_x)
+        sizeofX.append(_x)
         j = 3
         if printNet:
             print("\nI: 2 ; ", self.module_list[2])
@@ -355,6 +359,7 @@ class N2N(nn.Module):
 
                     for a in range(len(seq)):
                         y = seq[a](y)
+                        sizeofX.append(y)
                         if printNet:
                             print(f'seq[a]: {seq[a]}; a: {a}')
                             print(f'y shape: {y.shape}')
@@ -368,6 +373,7 @@ class N2N(nn.Module):
 
                     for a in range(len(seq)):
                         z = seq[a](z)
+                        sizeofX.append(z)
                         if printNet:
                             print(f'seq[a]: {seq[a]}; a: {a}')
                             print(f'z shape: {z.shape}')
@@ -378,17 +384,27 @@ class N2N(nn.Module):
                 else:
                     if printNet:
                         print(f'_X Shape: {_x.shape}')
-                    x = seq(_x)
+                    z = _x
+                    for a in range(len(seq)):
+                        z = seq[a](z)
+                        sizeofX.append(z)
+                        if printNet:
+                            print(f'seq[a]: {seq[a]}; a: {a}')
+                            print(f'z shape: {z.shape}')
+
+                    x = z
                     j += 1
 
                 try:
                     _x = _x + x
+                    sizeofX.append(_x)
                 except RuntimeError:
                     print(f'Except')
 
                 if printNet:
                     print(f'X Shape: {_x.shape}')
                 _x = self.relu(_x)
+                sizeofX.append(_x)
                 # except RuntimeError:
                 #     print(f'Except')
                 #     print("\nJ: ", j, " ; ", self.module_list[j])
@@ -401,10 +417,12 @@ class N2N(nn.Module):
         if isinstance(self.module_list[j], nn.AdaptiveAvgPool2d):
             try:
                 x = self.module_list[j](_x)
+                sizeofX.append(x)
                 if printNet:
                     print("\nJ: ", j, " ; ", self.module_list[j])
                     print("\n\n X Shape 1: ", x.shape)
                 x = x.view(x.shape[0], x.shape[1])
+                sizeofX.append(x)
                 if printNet:
                     print("\n\n X Shape 2: ", x.shape)
             except RuntimeError:
@@ -424,12 +442,13 @@ class N2N(nn.Module):
         if isinstance(self.module_list[j], nn.Linear):
             try:
                 x = self.module_list[j](x)
+                sizeofX.append(x)
             except RuntimeError:
                 print(f'x: {x.shape}')
 
             if printNet:
                 print("\nJ: ", j, " ; ", self.module_list[j])
-                print("\nfc: ", x.shape)
+                print(f"\nsize of X: {sizeofX}")
         else:
             print("\n \n Oops!!!: ")
             print("Linear")
