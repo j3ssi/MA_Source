@@ -264,7 +264,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
     #    print("==> {}, {}, {}".format(key, type(key), optimizer.state[key]))
     for var_name in optimizer.state_dict():
         print(var_name, "\t", optimizer.state_dict()[var_name])
-
+    k = 0
     for name, param in model.named_parameters():
         i = int(name.split('.')[1])
         j = None
@@ -276,7 +276,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
         name = (i,j)
         # Get Momentum parameters to adjust
 
-        mom_param = optimizer.state[param]['momentum_buffer']
+        mom_param = optimizer.state[k]['momentum_buffer']
         module = model.module_list[i]
         if j is not None:
             module = module[j]
@@ -353,6 +353,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
             optimizer.state[param]['momentum_buffer'].data = new_mom_param
 
             # print("[{}]: {} >> {}".format(name, dims[0], num_out_ch))
+        k = k +1
 
     # print(f'Change moving mean and var of BN')
     # Change moving_mean and moving_var of BN
