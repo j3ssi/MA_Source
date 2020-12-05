@@ -11,7 +11,7 @@ from src.checkpoint_utils import makeSparse
 class N2N(nn.Module):
 
     def __init__(self, num_classes, numOfStages, numOfBlocksinStage, layersInBlock,
-                 first, widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=None, optimizer = None, threshold = None):
+                 first, widthofFirstLayer=16, model=None, archNums=None, widthOfLayers=None):
         super(N2N, self).__init__()
         self.numOfStages = numOfStages
         self.oddLayers = []
