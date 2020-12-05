@@ -258,7 +258,6 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
 
     # List of layers to remove
     rm_list = []
-    altList = []
     # for name, param in model.named_parameters():
     #     # print("\nName: {}", name)
     #     i = int(name.split('.')[1])
@@ -300,7 +299,6 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
         # Change parameters of neural computing layers (Conv, FC)
         if isinstance(module, nn.Conv2d) or isinstance(module, nn.Linear):
             print("\nName: ", name)
-
             dims = list(param.shape)
             # print(f'dims: {dims}')
             dense_in_ch_idxs = dense_chs[name]['in_chs']
