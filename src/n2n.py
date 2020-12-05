@@ -222,7 +222,7 @@ class N2N(nn.Module):
         module_list = self.module_list
         # del model
         self.module_list = nn.ModuleList()
-        printName = True
+        printName = False
         # print("\naltList", altList)
         for i in range(len(module_list)):
             # print("\n>i: ", i)
@@ -307,7 +307,7 @@ class N2N(nn.Module):
             print(f' Modell: {self}')
 
     def forward(self, x):
-        printNet = False
+        printNet = True
 
         if printNet:
             print(f'ArchNums: {self.archNums}')
