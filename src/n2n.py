@@ -421,7 +421,11 @@ class N2N(nn.Module):
 
         j = j + 1
         if isinstance(self.module_list[j], nn.Linear):
-            x = self.module_list[j](x)
+            try:
+                x = self.module_list[j](x)
+            except RuntimeError:
+                print(f'x: {x.shape}')
+
             if printNet:
                 print("\nJ: ", j, " ; ", self.module_list[j])
                 print("\nfc: ", x.shape)
