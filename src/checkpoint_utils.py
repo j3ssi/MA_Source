@@ -264,6 +264,7 @@ def genDenseModel(model, dense_chs, optimizer):
     #    print("==> {}, {}, {}".format(key, type(key), optimizer.state[key]))
     # for var_name in optimizer.state_dict():
     #     print(var_name, "\t", optimizer.state_dict()[var_name])
+    print(f'optimizer: {optimizer.state_dict()}')
     k = 0
     for name, param in model.named_parameters():
         i = int(name.split('.')[1])
@@ -272,7 +273,7 @@ def genDenseModel(model, dense_chs, optimizer):
             j = int(name.split('.')[2])
         # print(f'(i,j): ({i}, {j})')
         print("\nName: ", name)
-        print(f'param: {param}')
+        # print(f'param: {param}')
         name = (i,j)
         # Get Momentum parameters to adjust
 
