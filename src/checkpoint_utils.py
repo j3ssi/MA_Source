@@ -333,7 +333,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
                     # print(f'Dims =2')
                     new_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
                     new_mom_param = Parameter(torch.Tensor(num_out_ch, num_in_ch)).cuda()
-
+                    print(f'Shape of Linear: {new_param.shape}')
                     for in_idx, in_ch in enumerate(sorted(dense_in_ch_idxs)):
                         with torch.no_grad():
                             new_param[:, in_idx] = param[:, in_ch]
