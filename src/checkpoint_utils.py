@@ -258,29 +258,13 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
 
     # List of layers to remove
     rm_list = []
-    # for name, param in model.named_parameters():
-    #     # print("\nName: {}", name)
-    #     i = int(name.split('.')[1])
-    #     if i % 2 == 0:
-    #         altList.append('module.conv' + str(int((i / 2) + 1)) + '.weight')
-    #
-    #     elif (i % 2 == 1) and ('weight' in name) and (i < (len(model.module_list) - 2)):
-    #         altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".weight")
-    #     elif (i % 2 == 1) and ('weight' in name) and (i > (len(model.module_list) - 3)):
-    #         altList.append('module.fc' + str(int((i + 1) / 2)) + ".weight")
-    #
-    #     elif (i % 2 == 1) and ('bias' in name) and (i < (len(model.module_list) - 1)):
-    #         altList.append('module.bn' + str(int(((i - 1) / 2) + 1)) + ".bias")
-    #     elif (i % 2 == 1) and ('bias' in name) and (i > (len(model.module_list) - 2)):
-    #         altList.append('module.fc' + str(int((i + 1) / 2)) + ".bias")
-    #     else:
-    #         assert True, "Hier fehlt was!! "
-    # # print("\n> altList: ", altList)
-    # i = -1
     # print("\nParam: ", paramList)
     # print("==================")
     # for key in optimizer.state:
     #    print("==> {}, {}, {}".format(key, type(key), optimizer.state[key]))
+    for var_name in optimizer.state_dict():
+        print(var_name, "\t", optimizer.state_dict()[var_name])
+
     for name, param in model.named_parameters():
         i = int(name.split('.')[1])
         j = None
@@ -291,6 +275,7 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
 
         name = (i,j)
         # Get Momentum parameters to adjust
+
         mom_param = optimizer.state[param]['momentum_buffer']
         module = model.module_list[i]
         if j is not None:
