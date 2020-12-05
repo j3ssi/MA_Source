@@ -249,7 +249,7 @@ Generate a new dense network model
 """
 
 
-def genDenseModel(model, dense_chs, optimizer, dataset):
+def genDenseModel(model, dense_chs, optimizer):
     print("[INFO] Squeezing the sparse model to dense one...")
     print(f'dense chs: {dense_chs}')
     # Sanity check
@@ -276,7 +276,8 @@ def genDenseModel(model, dense_chs, optimizer, dataset):
         name = (i,j)
         # Get Momentum parameters to adjust
 
-        mom_param = optimizer.state[k]['momentum_buffer']
+        mom_param = param.momentum_buffer()
+            #optimizer.state[k]['momentum_buffer']
         module = model.module_list[i]
         if j is not None:
             module = module[j]
