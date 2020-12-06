@@ -265,8 +265,7 @@ def genDenseModel(model, dense_chs, optimizer):
     #     print(var_name, "\t", optimizer.state_dict()[var_name])
     #  print(f'optimizer: {optimizer.state_dict()}')
 
-    print(f'optimzer state dict: {optimizer.state_dict()}')
-
+    k = 0
     for name, param in model.named_parameters():
         i = int(name.split('.')[1])
         j = None
@@ -275,12 +274,16 @@ def genDenseModel(model, dense_chs, optimizer):
         name = (i, j)
         # Get Momentum parameters to adjust
         # print(f'Param State: {param.state}')
-        mom_param = optimizer.state[param]['momentum_buffer']
         module = model.module_list[i]
+        if not isinstance(module, nn.Linear):
+            mom_param = optimizer.state['state'][k]['momentum_buffer']
+        else:
+            break
         if j is not None:
             module = module[j]
         print(f'Module: {module}')
         # Change parameters of neural computing layers (Conv, FC)
+
         if isinstance(module, nn.Conv2d) or isinstance(module, nn.Linear):
             print("\nName: ", name)
             dims = list(param.shape)
