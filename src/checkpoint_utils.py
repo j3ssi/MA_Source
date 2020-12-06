@@ -275,6 +275,10 @@ def genDenseModel(model, dense_chs, optimizer):
             for p in group['params']:
                 if momentum != 0:
                     param_state = optimizer.state[p]
+                    k = 0
+                    for x in param_state['momentum_buffer']:
+                        print(f'k: {k}' )
+                        k = k + 1
                     print(f'Param state:{param_state["momentum_buffer"]}')
 
 
