@@ -276,7 +276,7 @@ def genDenseModel(model, dense_chs, optimizer):
         # print(f'Param State: {param.state}')
         module = model.module_list[i]
         if not isinstance(module, nn.Linear):
-            mom_param = optimizer.state['state'][k]['momentum_buffer']
+            mom_param = optimizer.state_dict()['state'][k]['momentum_buffer']
         else:
             break
         if j is not None:
