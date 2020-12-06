@@ -34,20 +34,20 @@ def makeSparse(optimizer, model, threshold, reconf=True):
     dense_chs, chs_temp, idx = {}, {}, 0
     # alternative List to find the layers by name and not the stupid index of module_list
     altList = []
-    for index in range( len( model.module_list ) ):
+    for index in range(len(model.module_list)):
         if isinstance(model.module_list[index], nn.Conv2d):
-            altList.append((index,None))
-        elif isinstance(model.module_list[index],nn.Sequential):
+            altList.append((index, None))
+        elif isinstance(model.module_list[index], nn.Sequential):
             moduleX = model.module_list[index]
-            for i in range( len( moduleX ) ):
+            for i in range(len(moduleX)):
                 if isinstance(moduleX[i], nn.Conv2d):
-                    altList.append((index,i))
+                    altList.append((index, i))
         elif isinstance(model.module_list[index], nn.Linear):
-            altList.append((index,None))
+            altList.append((index, None))
 
     # print(f'altList: {altList}')
     i = -1
-    for i,j in altList:
+    for i, j in altList:
         module = model.module_list[i]
         if j is not None:
             module = module[j]
@@ -89,20 +89,20 @@ def makeSparse(optimizer, model, threshold, reconf=True):
 
         chs_temp[idx] = {'i': i, 'j': j, 'in_chs': dense_in_chs, 'out_chs': dense_out_chs}
         idx += 1
-        dense_chs[(i,j)] = {'in_chs': dense_in_chs, 'out_chs': dense_out_chs, 'idx': idx}
+        dense_chs[(i, j)] = {'in_chs': dense_in_chs, 'out_chs': dense_out_chs, 'idx': idx}
 
         # print the inter-layer tensor dim [out_ch, in_ch, feature_h, feature_w]
         if reconf:
             print("\n\n Reconf: ")
             if isinstance(module, nn.Linear):
-                print("[{}]: [{}, {}]".format((i,j),
-                                              len(dense_chs[(i,j)]['out_chs']),
-                                              len(dense_chs[(i,j)]['in_chs']),
+                print("[{}]: [{}, {}]".format((i, j),
+                                              len(dense_chs[(i, j)]['out_chs']),
+                                              len(dense_chs[(i, j)]['in_chs']),
                                               ))
             else:
-                print("[{}]: [{}, {}, {}, {}]".format((i,j),
-                                                      len(dense_chs[(i,j)]['out_chs']),
-                                                      len(dense_chs[(i,j)]['in_chs']),
+                print("[{}]: [{}, {}, {}, {}]".format((i, j),
+                                                      len(dense_chs[(i, j)]['out_chs']),
+                                                      len(dense_chs[(i, j)]['in_chs']),
                                                       param.shape[2],
                                                       param.shape[3],
                                                       ))
@@ -120,36 +120,35 @@ def makeSparse(optimizer, model, threshold, reconf=True):
     # adj_lyrs = model.getShareSameNodeLayers()
     # print(adj_lyrs)
     i = 0
-    while i < len( model.module_list ) :
+    while i < len(model.module_list):
         adj_lyrs = []
         module = model.module_list[i]
         print(f'i: {i}')
         if isinstance(module, nn.Sequential):
             size1 = module[0].out_channels
-            for j in range(1, len ( module ) ):
+            for j in range(1, len(module)):
                 if isinstance(module[j], nn.Conv2d):
                     size0 = module[j].in_channels
 
-                    if (i,j) in altList and size0 == size1 and (i,0) not in adj_lyrs:
+                    if (i, j) in altList and size0 == size1 and (i, 0) not in adj_lyrs:
                         print(f'0: (i,j): ({i},{j})')
-                        adj_lyrs.append((i,0))
-                        adj_lyrs.append((i,j))
-                    elif (i,j) in altList and size0 == size1:
+                        adj_lyrs.append((i, 0))
+                        adj_lyrs.append((i, j))
+                    elif (i, j) in altList and size0 == size1:
                         print(f'(i,j): ({i},{j})')
-                        adj_lyrs.append((i,0))
-                        adj_lyrs.append((i,j))
-
+                        adj_lyrs.append((i, 0))
+                        adj_lyrs.append((i, j))
 
                     size1 = module[j].out_channels
         print(f'adj layrs: {adj_lyrs}')
-        for idx in  range(len(adj_lyrs) - 1):
+        for idx in range(len(adj_lyrs) - 1):
             # if i exists that is in adj_lyr and this i is not in dense_chs
             # if not adj_lyr in dense_chs:
             #     """ not doing anything """
             # else:
             print("\n> Adj_lyr: ", adj_lyrs[idx])
 
-            print(f'>IDX: {idx}; IDX+1: {idx+1}')
+            print(f'>IDX: {idx}; IDX+1: {idx + 1}')
             edge = list(set().union(dense_chs[adj_lyrs[idx]]['out_chs'],
                                     dense_chs[adj_lyrs[idx + 1]]['in_chs']))
             print("\n>Edge: ", edge)
@@ -167,9 +166,9 @@ def makeSparse(optimizer, model, threshold, reconf=True):
         edges = []
         listI = model.StagesI[width]
         listO = model.StagesO[width]
-        for (i,j) in listI:
-            if (i,j) in dense_chs:
-                edges = list(set().union(edges, dense_chs[(i,j)]['in_chs']))
+        for (i, j) in listI:
+            if (i, j) in dense_chs:
+                edges = list(set().union(edges, dense_chs[(i, j)]['in_chs']))
         for (i, j) in listO:
             if (i, j) in dense_chs:
                 edges = list(set().union(edges, dense_chs[(i, j)]['out_chs']))
@@ -216,9 +215,9 @@ def makeSparse(optimizer, model, threshold, reconf=True):
         #         idx += 1
         # print(f'listI: {listI}')
         # print(f'listO: {listO}')
-        for (i,j) in listI:
-            if (i,j) in dense_chs:
-                dense_chs[(i,j)]['in_chs'] = edges
+        for (i, j) in listI:
+            if (i, j) in dense_chs:
+                dense_chs[(i, j)]['in_chs'] = edges
                 print(f'listI (i,j): {i},{j}; edges: {edges} ')
         for (i, j) in listO:
             if (i, j) in dense_chs:
@@ -266,29 +265,30 @@ def genDenseModel(model, dense_chs, optimizer):
     #     print(var_name, "\t", optimizer.state_dict()[var_name])
     #  print(f'optimizer: {optimizer.state_dict()}')
     k = 0
+    for name, buf in model.named_buffers():
+        print(f'name: {name}')
     for group in optimizer.param_groups:
-            weight_decay = group['weight_decay']
-            momentum = group['momentum']
-            dampening = group['dampening']
-            nesterov = group['nesterov']
-            k = 0
+        weight_decay = group['weight_decay']
+        momentum = group['momentum']
+        dampening = group['dampening']
+        nesterov = group['nesterov']
+        k = 0
 
-            for p in group['params']:
-                if momentum != 0:
-                    # param_state = optimizer.state[p]
-                    print(f'k: {k}' )
-                    k = k + 1
-                    # print(f'Param state:{param_state["momentum_buffer"]}')
-
+        for p in group['params']:
+            if momentum != 0:
+                # param_state = optimizer.state[p]
+                print(f'k: {k}')
+                k = k + 1
+                # print(f'Param state:{param_state["momentum_buffer"]}')
 
     for name, param in model.named_parameters():
         i = int(name.split('.')[1])
         j = None
-        if len(name.split('.')) ==4:
+        if len(name.split('.')) == 4:
             j = int(name.split('.')[2])
-        name = (i,j)
+        name = (i, j)
         # Get Momentum parameters to adjust
-        print(f'Param State: {param.state}')
+        # print(f'Param State: {param.state}')
         mom_param = optimizer.state[param]['momentum_buffer']
         module = model.module_list[i]
         if j is not None:
@@ -346,9 +346,9 @@ def genDenseModel(model, dense_chs, optimizer):
         else:
 
             if j == None:
-                w_name = (i-1,j)
+                w_name = (i - 1, j)
             else:
-                w_name = (i,j-1)
+                w_name = (i, j - 1)
             print("\nWName: ", w_name)
 
             dense_out_ch_idxs = dense_chs[w_name]['out_chs']
@@ -366,7 +366,7 @@ def genDenseModel(model, dense_chs, optimizer):
             optimizer.state_dict()['state'][k]['momentum_buffer'].data = new_mom_param
 
             # print("[{}]: {} >> {}".format(name, dims[0], num_out_ch))
-        k = k +1
+        k = k + 1
 
     # print(f'Change moving mean and var of BN')
     # Change moving_mean and moving_var of BN
@@ -402,53 +402,53 @@ def genDenseModel(model, dense_chs, optimizer):
         m = 0
         # print(f'RM List vorher: {rm_list}')
 
- #        for rm in rm_list:
- #            index = int(rm.split('.')[1].split('v')[1])
- #            # index = (index - 1) * 2
- #            indexList.append(index)
- #        # (f'indexList: {indexList}')
- #        for stage in range(0, model.numOfStages):
- #            # print(f'Stage: {stage}')
- #            archNum = model.archNums[stage]
- #
- #            for block in range(0, len(archNum)):
- #                # print(f'Block: {block}')
- #                arch = archNum[block]
- #                sameBlock = False
- #                i = 0
- #                while i < arch:
- #                    if len(indexList) > 0:
- #                        if indexList[0] == j and not sameBlock:
- #                            elem = indexList[0]
- #                            indexList.remove(elem)
- #                            # print(f'pop element: {elem}')
- #                            # print(f'IndexListe: {indexList}')
- #                            sameBlock = True
- #                            m = m + 1
- #                            j = j + 1
- #                            i = i + 1
- #                        elif indexList[0] == j and sameBlock:
- #                            elem = indexList[0]
- #                            indexList.remove(elem)
- #                            # print(f'pop element2: {elem}')
- #                            delete = rm_list[m]
- #                            # print(f'delete: {delete}')
- #                            rm_list.remove(delete)
- #                            j = j + 1
- #                            i = i + 1
- #                        else:
- #                            j = j + 1
- #                            i = i + 1
- #
- #                    else:
- #                        i = arch + 1
- #        # print(f'RM List nachher: {rm_list}')
- #        for name in reversed(rm_list):
- #            # delete module from moduleList
- #            index = int(name.split('.')[1].split('v')[1])
- #            index = (index - 1) * 2
- #            module = model.module_list[index]
- #            # print("\nModule List Length: ", len(model.module_list))
- #            model.delete(module, index)
- #            # print("\nModule List Length After Delete: ", len(model.module_list))
- #
+#        for rm in rm_list:
+#            index = int(rm.split('.')[1].split('v')[1])
+#            # index = (index - 1) * 2
+#            indexList.append(index)
+#        # (f'indexList: {indexList}')
+#        for stage in range(0, model.numOfStages):
+#            # print(f'Stage: {stage}')
+#            archNum = model.archNums[stage]
+#
+#            for block in range(0, len(archNum)):
+#                # print(f'Block: {block}')
+#                arch = archNum[block]
+#                sameBlock = False
+#                i = 0
+#                while i < arch:
+#                    if len(indexList) > 0:
+#                        if indexList[0] == j and not sameBlock:
+#                            elem = indexList[0]
+#                            indexList.remove(elem)
+#                            # print(f'pop element: {elem}')
+#                            # print(f'IndexListe: {indexList}')
+#                            sameBlock = True
+#                            m = m + 1
+#                            j = j + 1
+#                            i = i + 1
+#                        elif indexList[0] == j and sameBlock:
+#                            elem = indexList[0]
+#                            indexList.remove(elem)
+#                            # print(f'pop element2: {elem}')
+#                            delete = rm_list[m]
+#                            # print(f'delete: {delete}')
+#                            rm_list.remove(delete)
+#                            j = j + 1
+#                            i = i + 1
+#                        else:
+#                            j = j + 1
+#                            i = i + 1
+#
+#                    else:
+#                        i = arch + 1
+#        # print(f'RM List nachher: {rm_list}')
+#        for name in reversed(rm_list):
+#            # delete module from moduleList
+#            index = int(name.split('.')[1].split('v')[1])
+#            index = (index - 1) * 2
+#            module = model.module_list[index]
+#            # print("\nModule List Length: ", len(model.module_list))
+#            model.delete(module, index)
+#            # print("\nModule List Length After Delete: ", len(model.module_list))
+#
