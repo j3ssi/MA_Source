@@ -271,15 +271,14 @@ def genDenseModel(model, dense_chs, optimizer):
             momentum = group['momentum']
             dampening = group['dampening']
             nesterov = group['nesterov']
+            k = 0
 
             for p in group['params']:
                 if momentum != 0:
-                    param_state = optimizer.state[p]
-                    k = 0
-                    for x in param_state['momentum_buffer']:
-                        print(f'k: {k}' )
-                        k = k + 1
-                    print(f'Param state:{param_state["momentum_buffer"]}')
+                    # param_state = optimizer.state[p]
+                    print(f'k: {k}' )
+                    k = k + 1
+                    # print(f'Param state:{param_state["momentum_buffer"]}')
 
 
     for name, param in model.named_parameters():
