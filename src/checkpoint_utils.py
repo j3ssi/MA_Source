@@ -266,19 +266,27 @@ def genDenseModel(model, dense_chs, optimizer):
     #     print(var_name, "\t", optimizer.state_dict()[var_name])
     #  print(f'optimizer: {optimizer.state_dict()}')
     k = 0
+    for group in optimizer.param_groups:
+            weight_decay = group['weight_decay']
+            momentum = group['momentum']
+            dampening = group['dampening']
+            nesterov = group['nesterov']
+
+            for p in group['params']:
+                if momentum != 0:
+                    param_state = optimizer.state[p]
+                    print(f'Param state:{param_state["momentum_buffer"]}')
+
+
     for name, param in model.named_parameters():
         i = int(name.split('.')[1])
         j = None
         if len(name.split('.')) ==4:
             j = int(name.split('.')[2])
-        # print(f'(i,j): ({i}, {j})')
-        print("\nName: ", name)
-        print(f'K: {k}')
-        # print(f'param: {param}')
         name = (i,j)
         # Get Momentum parameters to adjust
         print(f'Param State: {param.state}')
-        mom_param = optimizer.state_dict()['state'][k]['momentum_buffer']
+        mom_param = optimizer.state[param]['momentum_buffer']
         module = model.module_list[i]
         if j is not None:
             module = module[j]
