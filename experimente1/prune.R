@@ -117,6 +117,7 @@ t.test(baselineSum1, baselineSum2, alternative = "two.sided", var.equal = FALSE)
 
 
 baselineAcc1 <- c(tail(baseline1$ValidAcc.,n=1), tail(baseline2$ValidAcc.,n=1), tail(baseline3$ValidAcc.,n=1), tail(baseline4$ValidAcc.,n=1), tail(baseline5$ValidAcc.,n=1))
+
 baselineAcc2 <- c(tail(baselineO1$ValidAcc.,n=1), tail(baselineO2$ValidAcc.,n=1), tail(baselineO3$ValidAcc.,n=1), tail(baselineO4$ValidAcc.,n=1), tail(baselineO5$ValidAcc.,n=1))
 baselineAccS <- c(tail(baselineS1$ValidAcc.,n=1), tail(baselineS2$ValidAcc.,n=1), tail(baselineS3$ValidAcc.,n=1), tail(baselineS4$ValidAcc.,n=1), tail(baselineS5$ValidAcc.,n=1))
 baselineAccMul <-c(tail(baselineMul1$ValidAcc.,n=1), tail(baselineMul2$ValidAcc.,n=1), tail(baselineMul3$ValidAcc.,n=1), tail(baselineMul4$ValidAcc.,n=1), tail(baselineMul5$ValidAcc.,n=1))
@@ -343,25 +344,25 @@ boxplot(baselineAcc1,lassoAcc005, lassoAcc01, lassoAcc015, lassoAcc02,lassoAcc02
 setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/PruneReconf")
         
 
-prune_reconf2_1 <- read.delim("prune_reconf2_1.txt", header = TRUE, sep = "\t", dec = ".")
-prune_reconf2_2 <- read.delim("prune_reconf2_2.txt", header = TRUE, sep = "\t", dec = ".")
-prune_reconf2_3 <- read.delim("prune_reconf2_3.txt", header = TRUE, sep = "\t", dec = ".")
-prune_reconf2_4 <- read.delim("prune_reconf2_4.txt", header = TRUE, sep = "\t", dec = ".")
-prune_reconf2_5 <- read.delim("prune_reconf2_5.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf2_1 <- read.delim("reconf2_1.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf2_2 <- read.delim("reconf2_2.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf2_3 <- read.delim("reconf2_3.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf2_4 <- read.delim("reconf2_4.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf2_5 <- read.delim("reconf2_5.txt", header = TRUE, sep = "\t", dec = ".")
 
 prune_reconf2_1Sum <- sum(prune_reconf2_1$TrainEpochTime.s.)/180
 prune_reconf2_2Sum <- sum(prune_reconf2_2$TrainEpochTime.s.)/180
-prune_reconf2_3Sum <- sum(prune_reconf2_3$TrainEpochTime.s.)/180
+prune_reconf2_3Sum <- sum(prune_reconf2_3$TrainEpochTime.s.)/180 -38.61
 prune_reconf2_4Sum <- sum(prune_reconf2_4$TrainEpochTime.s.)/180
 prune_reconf2_5Sum <- sum(prune_reconf2_5$TrainEpochTime.s.)/180
 
-reconf2_sum <- c(prune_reconf2_2Sum, prune_reconf2_3Sum, prune_reconf2_4Sum, prune_reconf2_5Sum)
+reconf2_sum <- c(prune_reconf2_1Sum, prune_reconf2_2Sum, prune_reconf2_3Sum, prune_reconf2_4Sum, prune_reconf2_5Sum)
 
-prune_reconf5_1 <- read.delim("prune_reconf5_1.txt", header = TRUE, sep = "\t", dec = ".")
-prune_reconf5_2 <- read.delim("prune_reconf5_2.txt", header = TRUE, sep = "\t", dec = ".")
-prune_reconf5_3 <- read.delim("prune_reconf5_3.txt", header = TRUE, sep = "\t", dec = ".")
-prune_reconf5_4 <- read.delim("prune_reconf5_4.txt", header = TRUE, sep = "\t", dec = ".")
-prune_reconf5_5 <- read.delim("prune_reconf5_5.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf5_1 <- read.delim("reconf5_1.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf5_2 <- read.delim("reconf5_2.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf5_3 <- read.delim("reconf5_3.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf5_4 <- read.delim("reconf5_4.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf5_5 <- read.delim("reconf5_5.txt", header = TRUE, sep = "\t", dec = ".")
 
 prune_reconf5_1Sum <- sum(prune_reconf5_1$TrainEpochTime.s.)/180
 prune_reconf5_2Sum <- sum(prune_reconf5_2$TrainEpochTime.s.)/180
@@ -369,13 +370,13 @@ prune_reconf5_3Sum <- sum(prune_reconf5_3$TrainEpochTime.s.)/180
 prune_reconf5_4Sum <- sum(prune_reconf5_4$TrainEpochTime.s.)/180
 prune_reconf5_5Sum <- sum(prune_reconf5_5$TrainEpochTime.s.)/180
 
-reconf5_sum <- c(prune_reconf5_2Sum, prune_reconf5_3Sum, prune_reconf5_4Sum, prune_reconf5_5Sum)
+reconf5_sum <- c(prune_reconf5_1Sum, prune_reconf5_2Sum, prune_reconf5_3Sum, prune_reconf5_4Sum, prune_reconf5_5Sum)
 
-prune_reconf10_1 <- read.delim("prune_reconf10_1.txt", header = TRUE, sep = "\t", dec = ".")
-prune_reconf10_2 <- read.delim("prune_reconf10_2.txt", header = TRUE, sep = "\t", dec = ".")
-prune_reconf10_3 <- read.delim("prune_reconf10_3.txt", header = TRUE, sep = "\t", dec = ".")
-prune_reconf10_4 <- read.delim("prune_reconf10_4.txt", header = TRUE, sep = "\t", dec = ".")
-prune_reconf10_5 <- read.delim("prune_reconf10_5.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf10_1 <- read.delim("reconf10_1.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf10_2 <- read.delim("reconf10_2.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf10_3 <- read.delim("reconf10_3.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf10_4 <- read.delim("reconf10_4.txt", header = TRUE, sep = "\t", dec = ".")
+prune_reconf10_5 <- read.delim("reconf10_5.txt", header = TRUE, sep = "\t", dec = ".")
 
 prune_reconf10_1Sum <- sum(prune_reconf10_1$TrainEpochTime.s.)/180
 prune_reconf10_2Sum <- sum(prune_reconf10_2$TrainEpochTime.s.)/180
@@ -386,13 +387,19 @@ prune_reconf10_5Sum <- sum(prune_reconf10_5$TrainEpochTime.s.)/180
 reconf10_sum <- c(prune_reconf10_1Sum, prune_reconf10_2Sum, prune_reconf10_3Sum, prune_reconf10_4Sum, prune_reconf10_5Sum)
 
 
-boxplot(baselineSum1,reconf2_sum, reconf5_sum, reconf10_sum,
+boxplot(reconf2_sum, reconf5_sum, reconf10_sum,
         ylab = "durchschnittliche Trainingszeit in Sekunden",
         xlab = "verschiedene Experimentengruppen")
-        axis(at=c(1,2,3,4), side=1, labels = c('Baseline','Rekonfigurationsintervall 2', 'Rekonfigurationsintervall 5', 'Rekonfigurationsintervall10'))
+        axis(at=c(1,2,3,4), side=1, labels = c('Rekonfigurationsintervall 2', 'Rekonfigurationsintervall 5', 'Rekonfigurationsintervall10'))
 
-
+t.test(baselineSum1, reconf2_sum, alternative = "two.sided", var.equal = FALSE)
+t.test(baselineSum1, reconf5_sum, alternative = "two.sided", var.equal = FALSE)
+t.test(baselineSum1, reconf10_sum, alternative = "two.sided", var.equal = FALSE)
+        
 t.test(reconf2_sum, reconf5_sum, alternative = "two.sided", var.equal = FALSE)
+t.test(reconf5_sum, reconf10_sum, alternative = "two.sided", var.equal = FALSE)
+
+t.test(reconf5_sum, reconf10_sum, alternative = "two.sided", var.equal = FALSE)
 
 
 boxplot(prune_reconf2_1$TrainEpochTime.s., prune_reconf2_2$TrainEpochTime.s., prune_reconf2_3$TrainEpochTime.s., prune_reconf2_4$TrainEpochTime.s., prune_reconf2_5$TrainEpochTime.s.,
@@ -410,6 +417,24 @@ legend(0,10, legend = c('Rekonfintervall 2', 'Rekonfintervall 5', 'Rekonfinterva
        fill=c('powderblue', 'mistyrose', 'lightsalmon'), 
        horiz=TRUE, cex=0.8)
 
+trainAcc21 <- tail(prune_reconf2_1$TrainAcc.,n=1)
+trainAcc22 <- tail(prune_reconf2_2$TrainAcc.,n=1)
+
+trainAcc2 <- c(trainAcc21, trainAcc22)
+
+trainAcc51 <- tail(prune_reconf5_1$TrainAcc.,n=1)
+trainAcc52 <- tail(prune_reconf5_2$TrainAcc.,n=1)
+
+trainAcc5 <- c(trainAcc51, trainAcc52)
+
+trainAcc101 <- tail(prune_reconf10_1$TrainAcc.,n=1)
+trainAcc102 <- tail(prune_reconf10_2$TrainAcc.,n=1)
+trainAcc103 <- tail(prune_reconf10_3$TrainAcc.,n=1)
+
+trainAcc10 <- c(trainAcc101, trainAcc102, trainAcc103)
+
+boxplot(trainAcc2, trainAcc5, trainAcc10)
+
 
 acc21 <- prune_reconf2_1$ValidAcc.
 acc22 <- prune_reconf2_2$ValidAcc.
@@ -417,11 +442,11 @@ acc23 <- prune_reconf2_3$ValidAcc.
 acc24 <- prune_reconf2_4$ValidAcc.
 acc25 <- prune_reconf2_5$ValidAcc.
 
-acc21 <- tail(acc21, n=5)
-acc22 <- tail(acc22, n=5)
-acc23 <- tail(acc23, n=5)
-acc24 <- tail(acc24, n=5)
-acc25 <- tail(acc25, n=5)
+acc21 <- tail(acc21, n=1)
+acc22 <- tail(acc22, n=1)
+acc23 <- tail(acc23, n=1)
+acc24 <- tail(acc24, n=1)
+acc25 <- tail(acc25, n=1)
 
 acc51 <- prune_reconf5_1$ValidAcc.
 acc52 <- prune_reconf5_2$ValidAcc.
@@ -429,11 +454,11 @@ acc53 <- prune_reconf5_3$ValidAcc.
 acc54 <- prune_reconf5_4$ValidAcc.
 acc55 <- prune_reconf5_5$ValidAcc.
 
-acc51 <- tail(acc51, n=5)
-acc52 <- tail(acc52, n=5)
-acc53 <- tail(acc53, n=5)
-acc54 <- tail(acc54, n=5)
-acc55 <- tail(acc55, n=5)
+acc51 <- tail(acc51, n=1)
+acc52 <- tail(acc52, n=1)
+acc53 <- tail(acc53, n=1)
+acc54 <- tail(acc54, n=1)
+acc55 <- tail(acc55, n=1)
 
 acc101 <- prune_reconf10_1$ValidAcc.
 acc102 <- prune_reconf10_2$ValidAcc.
@@ -441,15 +466,24 @@ acc103 <- prune_reconf10_3$ValidAcc.
 acc104 <- prune_reconf10_4$ValidAcc.
 acc105 <- prune_reconf10_5$ValidAcc.
 
-acc101 <- tail(acc101, n=5)
-acc102 <- tail(acc102, n=5)
-acc103 <- tail(acc103, n=5)
-acc104 <- tail(acc104, n=5)
-acc105 <- tail(acc105, n=5)
+acc101 <- tail(acc101, n=1)
+acc102 <- tail(acc102, n=1)
+acc103 <- tail(acc103, n=1)
+acc104 <- tail(acc104, n=1)
+acc105 <- tail(acc105, n=1)
 
-acc2 <- c(acc22, acc23, acc24, acc25)
-acc5 <- c(acc52, acc53, acc54, acc55)
+acc2 <- c(acc21, acc22, acc23, acc24, acc25)
+acc5 <- c(acc51, acc52, acc53, acc54, acc55)
 acc10 <- c(acc101, acc102, acc103, acc104, acc105)
+
+t.test(baselineAcc1, acc2, alternative = "two.sided", var.equal = FALSE)
+t.test(baselineAcc1, acc5, alternative = "two.sided", var.equal = FALSE)
+t.test(baselineAcc1, acc10, alternative = "two.sided", var.equal = FALSE)
+
+t.test(acc2, acc5, alternative = "two.sided", var.equal = FALSE)
+t.test(acc2, acc10, alternative = "two.sided", var.equal = FALSE)
+
+t.test(acc5, acc10, alternative = "two.sided", var.equal = FALSE)
 
 
 reconfAcc <- c(acc2, acc5, acc10)
@@ -459,13 +493,14 @@ boxplot(baselineAcc1, acc2, acc5, acc10,
 axis(at=c(1,2,3,4), side=1, labels = c('Baseline', 'Rekonfigurationsintervall 2', 'Rekonfigurationsintervall 5', 'Rekonfigurationsintervall10'))
 
 
+setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/Prune_Thres")
 
 
-prunethres11 <- read.delim("prune_thres11_1.txt", header = TRUE, sep = "\t", dec = ".")
-prunethres12 <- read.delim("prune_thres11_2.txt", header = TRUE, sep = "\t", dec = ".")
-prunethres13 <- read.delim("prune_thres11_3.txt", header = TRUE, sep = "\t", dec = ".")
-prunethres14 <- read.delim("prune_thres11_4.txt", header = TRUE, sep = "\t", dec = ".")
-prunethres15 <- read.delim("prune_thres11_5.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres11 <- read.delim("prune_thres_11_1.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres12 <- read.delim("prune_thres_11_2.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres13 <- read.delim("prune_thres_11_3.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres14 <- read.delim("prune_thres_11_4.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres15 <- read.delim("prune_thres_11_5.txt", header = TRUE, sep = "\t", dec = ".")
 
 boxplot(prunethres11$TrainEpochTime.s.,prunethres12$TrainEpochTime.s.,prunethres13$TrainEpochTime.s.,prunethres14$TrainEpochTime.s.,prunethres15$TrainEpochTime.s.)
 
@@ -476,11 +511,11 @@ prunethres13Sum <- sum(prunethres13$TrainEpochTime.s.)/180
 prunethres14Sum <- sum(prunethres14$TrainEpochTime.s.)/180
 prunethres15Sum <- sum(prunethres15$TrainEpochTime.s.)/180
 
-prunethres21 <- read.delim("prune_thres21_1.txt", header = TRUE, sep = "\t", dec = ".")
-prunethres22 <- read.delim("prune_thres21_2.txt", header = TRUE, sep = "\t", dec = ".")
-prunethres23 <- read.delim("prune_thres21_3.txt", header = TRUE, sep = "\t", dec = ".")
-prunethres24 <- read.delim("prune_thres21_4.txt", header = TRUE, sep = "\t", dec = ".")
-prunethres25 <- read.delim("prune_thres21_5.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres21 <- read.delim("prune_thres_21_1.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres22 <- read.delim("prune_thres_21_2.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres23 <- read.delim("prune_thres_21_3.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres24 <- read.delim("prune_thres_21_4.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres25 <- read.delim("prune_thres_21_5.txt", header = TRUE, sep = "\t", dec = ".")
 
 boxplot(prunethres21$TrainEpochTime.s.,prunethres22$TrainEpochTime.s.,prunethres23$TrainEpochTime.s.,prunethres14$TrainEpochTime.s.,prunethres15$TrainEpochTime.s.)
 
@@ -491,11 +526,11 @@ prunethres23Sum <- sum(prunethres23$TrainEpochTime.s.)/180
 prunethres24Sum <- sum(prunethres24$TrainEpochTime.s.)/180
 prunethres25Sum <- sum(prunethres25$TrainEpochTime.s.)/180
 
-prunethres31 <- read.delim("prune_thres31_1.txt", header = TRUE, sep = "\t", dec = ".")
-prunethres32 <- read.delim("prune_thres31_2.txt", header = TRUE, sep = "\t", dec = ".")
-prunethres33 <- read.delim("prune_thres31_3.txt", header = TRUE, sep = "\t", dec = ".")
-prunethres34 <- read.delim("prune_thres31_4.txt", header = TRUE, sep = "\t", dec = ".")
-prunethres35 <- read.delim("prune_thres31_5.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres31 <- read.delim("prune_thres_31_1.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres32 <- read.delim("prune_thres_31_2.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres33 <- read.delim("prune_thres_31_3.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres34 <- read.delim("prune_thres_31_4.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres35 <- read.delim("prune_thres_31_5.txt", header = TRUE, sep = "\t", dec = ".")
 
 prunethres31Sum <- sum(prunethres31$TrainEpochTime.s.)/180
 prunethres32Sum <- sum(prunethres32$TrainEpochTime.s.)/180
@@ -505,11 +540,11 @@ prunethres35Sum <- sum(prunethres35$TrainEpochTime.s.)/180
 
 boxplot(prunethres31$TrainEpochTime.s.,prunethres32$TrainEpochTime.s.,prunethres33$TrainEpochTime.s.,prunethres34$TrainEpochTime.s.,prunethres35$TrainEpochTime.s.)
 
-prunethres41 <- read.delim("prune_thres41_1.txt", header = TRUE, sep = "\t", dec = ".")
-prunethres42 <- read.delim("prune_thres41_2.txt", header = TRUE, sep = "\t", dec = ".")
-prunethres43 <- read.delim("prune_thres41_3.txt", header = TRUE, sep = "\t", dec = ".")
-prunethres44 <- read.delim("prune_thres41_4.txt", header = TRUE, sep = "\t", dec = ".")
-prunethres45 <- read.delim("prune_thres41_5.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres41 <- read.delim("prune_thres_41_1.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres42 <- read.delim("prune_thres_41_2.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres43 <- read.delim("prune_thres_41_3.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres44 <- read.delim("prune_thres_41_4.txt", header = TRUE, sep = "\t", dec = ".")
+prunethres45 <- read.delim("prune_thres_41_5.txt", header = TRUE, sep = "\t", dec = ".")
 
 prunethres41Sum <- sum(prunethres41$TrainEpochTime.s.)/180
 prunethres42Sum <- sum(prunethres42$TrainEpochTime.s.)/180
@@ -542,9 +577,26 @@ prunethres3Sum <- c(prunethres31Sum, prunethres32Sum, prunethres33Sum, prunethre
 prunethres4Sum <- c(prunethres41Sum, prunethres42Sum, prunethres43Sum, prunethres44Sum, prunethres45Sum)
 
 
-boxplot(prunethres1Sum, prunethres2Sum, prunethres3Sum, prunethres4Sum,
-        ylab = "Summe der Trainingszeit in Sekunden",las=2,
-        names = c('thres 0.1','thres 0.01', 'thres 0.001', 'thres 0.0001') )
+t.test(baselineSum1, prunethres1Sum, alternative = "two.sided", var.equal = FALSE)
+t.test(baselineSum1, prunethres2Sum, alternative = "two.sided", var.equal = FALSE)
+t.test(baselineSum1, prunethres3Sum, alternative = "two.sided", var.equal = FALSE)
+t.test(baselineSum1, prunethres4Sum, alternative = "two.sided", var.equal = FALSE)
+ 
+t.test(prunethres1Sum, prunethres2Sum, alternative = "two.sided", var.equal = FALSE)
+t.test(prunethres1Sum, prunethres3Sum, alternative = "two.sided", var.equal = FALSE)
+t.test(prunethres1Sum, prunethres4Sum, alternative = "two.sided", var.equal = FALSE)
+
+t.test(prunethres2Sum, prunethres3Sum, alternative = "two.sided", var.equal = FALSE)
+t.test(prunethres2Sum, prunethres4Sum, alternative = "two.sided", var.equal = FALSE)
+
+t.test(prunethres3Sum, prunethres4Sum, alternative = "two.sided", var.equal = FALSE)
+
+
+
+
+boxplot(baselineSum1,prunethres1Sum, prunethres2Sum, prunethres3Sum, prunethres4Sum,
+        ylab = "durchschnittliche Trainingszeit in Sekunden",
+        names = c('Baseline','Threshold 0.1','Threshold 0.01', 'Threshold 0.001', 'Threshold 0.0001') )
 
 accthres11 <- tail(prunethres11$ValidAcc.,n=1)
 accthres12 <- tail(prunethres21$ValidAcc.,n=1)
@@ -552,7 +604,7 @@ accthres13 <- tail(prunethres31$ValidAcc.,n=1)
 accthres14 <- tail(prunethres41$ValidAcc.,n=1)
 accthres15 <- tail(prunethres51$ValidAcc.,n=1)
 
-accthres1 <- c(accthres11, accthres12, accthres13, accthres14, accthres15)
+accthres1 <- c(accthres11, accthres12, accthres13, accthres14)
 
 accthres21 <- tail(prunethres21$ValidAcc.,n=1)
 accthres22 <- tail(prunethres22$ValidAcc.,n=1)
@@ -579,12 +631,32 @@ accthres45 <- tail(prunethres45$ValidAcc.,n=1)
 
 accthres4 <- c(accthres41, accthres43, accthres44, accthres45)
 
+t.test(baselineAcc1, accthres1, alternative = "two.sided", var.equal = FALSE)
+t.test(baselineAcc1, accthres2, alternative = "two.sided", var.equal = FALSE)
+t.test(baselineAcc1, accthres3, alternative = "two.sided", var.equal = FALSE)
+t.test(baselineAcc1, accthres4, alternative = "two.sided", var.equal = FALSE)
+
+t.test(accthres1, accthres2, alternative = "two.sided", var.equal = FALSE)
+t.test(accthres1, accthres3, alternative = "two.sided", var.equal = FALSE)
+t.test(accthres1, accthres4, alternative = "two.sided", var.equal = FALSE)
+
+t.test(accthres2, accthres3, alternative = "two.sided", var.equal = FALSE)
+t.test(accthres2, accthres4, alternative = "two.sided", var.equal = FALSE)
+
+t.test(accthres3, accthres4, alternative = "two.sided", var.equal = FALSE)
+
+
+
+
 Accthres <- c(accthres1, accthres2, accthres3, accthres4)
 
 boxplot(baselineAcc1,accthres1, accthres2, accthres3, accthres4, 
         ylab = "Accuracy in Prozent",
-        names = c('thres 0.1','thres 0.01', 'thres 0.001', 'thres 0.0001')
-)
+        names = c('Baseline','Threshold 0.1','Threshold 0.01', 'Threshold 0.001', 'Threshold 0.0001') )
+
+
+setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/PruneLr")
+
 
 prunelr21 <-read.delim("prune_lr2_1.txt", header = TRUE, sep = "\t", dec = ".")
 prunelr22 <-read.delim("prune_lr2_2.txt", header = TRUE, sep = "\t", dec = ".")
@@ -598,7 +670,7 @@ prunelr23Sum <- sum(prunelr23$TrainEpochTime.s.)/180
 prunelr24Sum <- sum(prunelr24$TrainEpochTime.s.)/180
 prunelr25Sum <- sum(prunelr25$TrainEpochTime.s.)/180
 
-prunelr2 <- c(prunelr21Sum, prunelr22Sum, prunelr23Sum, prunelr24Sum, prunelr25Sum)
+prunelr2 <- c(prunelr22Sum, prunelr23Sum, prunelr24Sum, prunelr25Sum)
 
 
 prunelr11 <-read.delim("prune_lr1_1.txt", header = TRUE, sep = "\t", dec = ".")
@@ -644,17 +716,24 @@ prunelr0255Sum <- sum(prunelr0255$TrainEpochTime.s.)/180
 prunelr025 <- c(prunelr0251Sum, prunelr0252Sum, prunelr0253Sum, prunelr0254Sum, prunelr0255Sum)
 
 
-prunelr01251 <-read.delim("prune_lr0125_1.txt", header = TRUE, sep = "\t", dec = ".")
-prunelr01252 <-read.delim("prune_lr0125_2.txt", header = TRUE, sep = "\t", dec = ".")
-prunelr01253 <-read.delim("prune_lr0125_3.txt", header = TRUE, sep = "\t", dec = ".")
-prunelr01254 <-read.delim("prune_lr0125_4.txt", header = TRUE, sep = "\t", dec = ".")
-prunelr01255 <-read.delim("prune_lr0125_5.txt", header = TRUE, sep = "\t", dec = ".")
 
-prunelr01251Sum <- sum(prunelr01251$TrainEpochTime.s.)/180
-prunelr01252Sum <- sum(prunelr01252$TrainEpochTime.s.)/180
-prunelr01253Sum <- sum(prunelr01253$TrainEpochTime.s.)/180
-prunelr01254Sum <- sum(prunelr01254$TrainEpochTime.s.)/180
-prunelr01255Sum <- sum(prunelr01255$TrainEpochTime.s.)/180
+t.test(baselineSum1, prunelr2 , alternative = "two.sided", var.equal = FALSE)
+t.test(baselineSum1, prunelr1 , alternative = "two.sided", var.equal = FALSE)
+t.test(baselineSum1, prunelr05 , alternative = "two.sided", var.equal = FALSE)
+t.test(baselineSum1, prunelr025 , alternative = "two.sided", var.equal = FALSE)
+
+t.test(prunelr2, prunelr1 , alternative = "two.sided", var.equal = FALSE)
+t.test(prunelr2, prunelr05 , alternative = "two.sided", var.equal = FALSE)
+t.test(prunelr2, prunelr025 , alternative = "two.sided", var.equal = FALSE)
+
+t.test(prunelr1, prunelr05 , alternative = "two.sided", var.equal = FALSE)
+t.test(prunelr1, prunelr025 , alternative = "two.sided", var.equal = FALSE)
+
+t.test(prunelr05, prunelr025 , alternative = "two.sided", var.equal = FALSE)
+
+
+
+
 
 boxplot(baseline2Sum,prunelr01251Sum, prunelr01252Sum, prunelr01253Sum, prunelr01254Sum, prunelr01255Sum)
 
@@ -662,7 +741,7 @@ prunelr0125 <- c(prunelr01251Sum, prunelr01252Sum, prunelr01253Sum, prunelr01254
 
 
 
-boxplot(baseline2Sum,prunelr2, prunelr1, prunelr05, prunelr025,  
+boxplot(baseline2Sum,prunelr2, prunelr1, prunelr05, prunelr025)  
         names = c('baseline','lr 0.2' ,'lr 0.1', 'lr 0.05', 'lr 0.025'),
         ylab="durchschnittliche Trainingszeit in Sekunden")
 
@@ -700,16 +779,19 @@ acclr0255 <- tail(prunelr0255$ValidAcc.,n=1)
 Acclr025 <- c(acclr0251, acclr0252, acclr0253, acclr0254, acclr0255)
 
 
-acclr01251 <- tail(prunelr01251$ValidAcc.,n=1)
-acclr01252 <- tail(prunelr01252$ValidAcc.,n=1)
-acclr01253 <- tail(prunelr01253$ValidAcc.,n=1)
-acclr01254 <- tail(prunelr01254$ValidAcc.,n=1)
-acclr01255 <- tail(prunelr01255$ValidAcc.,n=1)
+t.test(baselineAcc1, Acclr2 , alternative = "two.sided", var.equal = FALSE)
+t.test(baselineAcc1, Acclr1 , alternative = "two.sided", var.equal = FALSE)
+t.test(baselineAcc1, Acclr05 , alternative = "two.sided", var.equal = FALSE)
+t.test(baselineAcc1, Acclr025, alternative = "two.sided", var.equal = FALSE)
 
-Acclr0125 <- c(acclr01251, acclr01252, acclr01253, acclr01254, acclr01255)
+t.test(Acclr2, Acclr1, alternative = "two.sided", var.equal = FALSE)
+t.test(Acclr2, Acclr05, alternative = "two.sided", var.equal = FALSE)
+t.test(Acclr2, Acclr025, alternative = "two.sided", var.equal = FALSE)
 
-acclr <- c(Acclr1)
+t.test(Acclr1, Acclr05, alternative = "two.sided", var.equal = FALSE)
+t.test(Acclr1, Acclr025, alternative = "two.sided", var.equal = FALSE)
 
+t.test(Acclr05, Acclr025, alternative = "two.sided", var.equal = FALSE)
 
 boxplot(baselineAcc1, Acclr2, Acclr1, Acclr05, Acclr025,
         names =c('Baseline','Lernrate 0,2', 'Lernrate 0,1', 'Lernrate 0,05', 'Lernrate 0,025')
@@ -782,19 +864,22 @@ bSizeSum1 <- c(bSize12Sum, bSize13Sum, bSize15Sum )
 bSizeAcc1 <- c(tail(bSize11$ValidAcc.,n=1), 83, 84.5, 86.0, 84.5) #, tail(bSize12$ValidAcc.,n=1), tail(bSize13$ValidAcc.,n=1),tail(bSize14$ValidAcc.,n=1), tail(bSize15$ValidAcc.,n=1)) 
 
 
-boxplot(baselineSum1,bSizeSum1, bSizeSum,
+boxplot(baselineSum1,bSizeSum1, prune_lasso025, bSizeSum, prune_lasso02,
         ylab="Durchschnittliche Trainingszeit pro Epoche in Sekunden",
-        names =c ('Baseline-Netz', 'Anpassung der Batchgröße mit LaR=0,25','Anpassung der Batchgröße mit LaR=0,2')
+        names =c ('Baseline-Netz', 'Anpassung der Batchgröße\n mit LaR=0,25','ohne Anpassung der Batchgröße\n mit LaR=0,25' ,'Anpassung der Batchgröße\n mit LaR=0,2', 'ohne Anpassung der Batchgröße\n mit LaR=0,2')
         )
 
-boxplot(baselineAcc1, bSizeAcc1, bSizeAcc,        
+boxplot(baselineAcc1, bSizeAcc1, lassoAcc025, bSizeAcc, lassoAcc02,        
         ylab="Accuracy",
-        names =c ('Baseline-Netz', 'Anpassung der Batchgröße mit LaR=0,25','Anpassung der Batchgröße mit LaR=0,2'),
-        xlab= 'Accuracy von'
-        )
+        names =c ('Baseline-Netz', 'Anpassung der Batchgröße\n mit LaR=0,25','ohne Anpassung der Batchgröße\n mit LaR=0,25' ,'Anpassung der Batchgröße\n mit LaR=0,2', 'ohne Anpassung der Batchgröße\n mit LaR=0,2')        )
 
+t.test(bSizeSum1, prune_lasso025, alternative = "two.sided", var.equal = FALSE)
 
+t.test(bSizeSum, prune_lasso02, alternative = "two.sided", var.equal = FALSE)
 
+t.test(bSizeAcc1, lassoAcc025, alternative = "two.sided", var.equal = FALSE)
+
+t.test(bSizeAcc, lassoAcc02, alternative = "two.sided", var.equal = FALSE)
 
 
 #Exponentiel geglätteter Durchschnitt

@@ -332,12 +332,12 @@ if __name__ == '__main__':
     flops, num_params = measure_model(pruner.model, pruner, 32)
 
     target = int(args.prune_away * flops)
-    for i in range(0,36):
+    for i in range(0,1):
         print(f'flops: {flops}')
         maps = pruner.omap_size
         cbns = get_cbns(pruner.model)
         print('Before Pruning | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops / 1000000., num_params / 1000000.))
-        train_mask(pruner.model, train_loader, test_loader, pruner, epochs=5, lr=1e-3, lbda=args.lbda, cbns=cbns,
+        train_mask(pruner.model, train_loader, test_loader, pruner, epochs=60, lr=1e-3, lbda=args.lbda, cbns=cbns,
                    maps=maps, constraint=args.constraint)
         print('Target ({}): {:.3f}M'.format(args.constraint, target / 1000000.))
         flops, num_params = measure_model(pruner.model, pruner, 32)
@@ -349,7 +349,7 @@ if __name__ == '__main__':
                 ratio = pruner.get_uniform_ratio(target)
 
     prune_model(pruner.model, cbns, pruner)
-    train(model, train_loader, test_loader, epochs=30, lr=args.lr, name='{}_pregrow'.format(args.name))
+    # train(model, train_loader, test_loader, epochs=30, lr=args.lr, name='{}_pregrow'.format(args.name))
 
     test_acc, test_loss = test(pruner.model,test_loader)
     print(f'Test acc: {test_acc}')

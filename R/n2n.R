@@ -19,10 +19,10 @@ baselineSum1 <- c(baseline1Sum, baseline2Sum, baseline3Sum, baseline4Sum, baseli
 baselineAcc1 <- c(tail(baseline1$ValidAcc.,n=1), tail(baseline2$ValidAcc.,n=1), tail(baseline3$ValidAcc.,n=1), tail(baseline4$ValidAcc.,n=1), tail(baseline5$ValidAcc.,n=1))
 
 
-setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/N2NWider")
+setwd("/home/j3ssi/MA_Source/output/experimente4/Logs")
 
 
-n2nwider1 <- read.delim("n2nwider11.txt", header = TRUE, sep = "\t", dec = ".")
+n2nwider1 <- read.delim("wider_lr1.txt", header = TRUE, sep = "\t", dec = ".")
 n2nwider2 <- read.delim("n2nwider12.txt", header = TRUE, sep = "\t", dec = ".")
 n2nwider3 <- read.delim("n2nwider13.txt", header = TRUE, sep = "\t", dec = ".")
 n2nwider4 <- read.delim("n2nwider14.txt", header = TRUE, sep = "\t", dec = ".")
@@ -61,12 +61,17 @@ n2nWiderRndAcc1 <- c(tail(n2nWiderRnd1$ValidAcc.,n=1), tail(n2nWiderRnd3$ValidAc
 # , tail(n2nwider2$ValidAcc.,n=1)
 
 boxplot(baselineAcc1,n2nwiderAcc1, n2nWiderRndAcc1)
+setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/BaselineO")
 
 
-n2nWiderAccRnd181 <- tail(n2nWiderRnd1$ValidAcc., n=195)
+baselineO1 <- read.delim("baselineO1.txt", header = TRUE, sep = "\t", dec = ".")
+
+
+n2nWiderAccRnd181 <- tail(n2nWiderRnd1$ValidAcc.)
 n2nWiderAcc181 <- tail(n2nwider1$ValidAcc., n=195)
-plot(n2nWiderAccRnd181, col='blue',xlab='',ylab='',ylim=c(90,94),xlim=c(90,180))
+plot(n2nWiderAccRnd181, col='blue',xlab='',ylab='',xlim=c(0,180),ylim=c(50,96))
 par(new=TRUE)
-plot(n2nWiderAcc181, col='green',xlab='Epochen',ylab='Accuracy',ylim=c(90,94),xlim=c(90,180))
+plot(n2nwider1$X, col='green',xlim=c(0,180),ylim=c(50,96),xlab='Epochen',ylab='Accuracy')
 par(new=TRUE)
-plot(baseline1$ValidAcc.,col='black',xlim=c(90,180),ylim=c(90,94.0),xlab='',ylab='')
+plot(baselineO1$ValidAcc.,col='black',xlab='',ylab='',xlim=c(0,180),ylim=c(50,96))
+abline(v=90)
