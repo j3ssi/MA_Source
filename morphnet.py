@@ -208,7 +208,7 @@ def train_epoch(model, optim, criterion, loader, lbda=None, cbns=None, maps=None
         truncate_smallbeta(model, cbns)
     return meanReg
 
-def train(model, train_loader, val_loader, epochs=10, lr=1e-2, name=''):
+def train(model, pruner,  train_loader, val_loader, epochs=10, lr=1e-2, name=''):
     model = model.to('cuda')
     model.train()
 
@@ -220,6 +220,14 @@ def train(model, train_loader, val_loader, epochs=10, lr=1e-2, name=''):
 
         regularize = train_epoch(model, optimizer, criterion, train_loader)
         reg.append(regularize)
+        flops, num_params = measure_model(pruner.model, pruner, 32)
+        print(f'Epoche: {e}; regular: {regularize}: flops {flops}')
+
+        top1, _ = test(model, test_loader)
+        logger.append([regularize, num_params, top1])
+        print('#Filters: {}, #FLOPs: {:.2f}M | Top-1: {:.2f}'.format(num_alive_filters(model),
+                                                                     pruner.get_valid_flops() / 1000000., top1))
+
         top1, val_loss = test(model, val_loader)
         print('Epoch {} | Top-1: {:.2f}'.format(e, top1))
         torch.save(model, 'ckpt/{}_best.t7'.format(name))
@@ -349,7 +357,7 @@ if __name__ == '__main__':
                 ratio = pruner.get_uniform_ratio(target)
 
     prune_model(pruner.model, cbns, pruner)
-    # train(model, train_loader, test_loader, epochs=30, lr=args.lr, name='{}_pregrow'.format(args.name))
+    train(model, train_loader, test_loader, epochs=1, lr=args.lr, name='{}_pregrow'.format(args.name))
 
     test_acc, test_loss = test(pruner.model,test_loader)
     print(f'Test acc: {test_acc}')
