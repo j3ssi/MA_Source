@@ -345,7 +345,7 @@ if __name__ == '__main__':
         maps = pruner.omap_size
         cbns = get_cbns(pruner.model)
         print('Before Pruning | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops / 1000000., num_params / 1000000.))
-        train_mask(pruner.model, train_loader, test_loader, pruner, epochs=args.epochs, lr=1e-3, lbda=args.lbda, cbns=cbns,
+        train_mask(pruner.model, train_loader, test_loader, pruner, epochs=args.epoch, lr=1e-3, lbda=args.lbda, cbns=cbns,
                    maps=maps, constraint=args.constraint)
         print('Target ({}): {:.3f}M'.format(args.constraint, target / 1000000.))
         flops, num_params = measure_model(pruner.model, pruner, 32)
