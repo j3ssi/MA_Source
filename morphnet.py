@@ -357,7 +357,7 @@ if __name__ == '__main__':
                 ratio = pruner.get_uniform_ratio(target)
 
     prune_model(pruner.model, cbns, pruner)
-    train(model, train_loader, test_loader, epochs=1, lr=args.lr, name='{}_pregrow'.format(args.name))
+    train(model, pruner, train_loader, test_loader, epochs=1, lr=args.lr, name='{}_pregrow'.format(args.name))
 
     test_acc, test_loss = test(pruner.model,test_loader)
     print(f'Test acc: {test_acc}')
