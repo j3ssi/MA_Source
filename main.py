@@ -494,6 +494,8 @@ def main():
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
 
+            print(f'Parameter: {model.paramList}')
+            print(f'Parameter1: {model.paramList1}')
         i = 2
 
     # print(f'model parameters: {list(model.named_parameters())}')

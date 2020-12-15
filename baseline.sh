@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "j: 0 bis 5"
-python3 main.py -j 6 --checkpoint ./output/experimente4/test_1 --epochs 5 --batchTrue --batch_size 256 -s 3 -l 2 -n 5,5,5 -dlr --widthOfAllLayers  16,32,64  --cifar10 --test --saveModell --test_batch 200 --epochsFromBegin 0 --pathToModell ./output/experimente4/test_1/model.nn
+python3 main.py -j 6 --checkpoint ./output/experimente4/baselineMul --epochs 5 --batchTrue --batch_size 256 -s 3 -l 2 -n 4,4,4 --widthOfAllLayers  16,32,64  --cifar10 --test --test_batch 200
 sleep 3
 
 echo "j: 6 bis 10"
