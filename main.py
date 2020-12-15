@@ -497,7 +497,7 @@ def main():
             for param in model.paramList:
                 print(f'Parameter: {param}')
             for param in model.paramList1:
-                print(f'Parameter1: {model.paramList1}')
+                print(f'Parameter1: {param}')
         i = 2
 
     # print(f'model parameters: {list(model.named_parameters())}')
