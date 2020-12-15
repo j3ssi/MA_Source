@@ -495,9 +495,9 @@ def main():
                                       weight_decay=args.weight_decay)
 
             for param in model.paramList:
-                print(f'Parameter: {param}')
+                print(f'Parameter: {param.data}')
             for param in model.paramList1:
-                print(f'Parameter1: {param}')
+                print(f'Parameter1: {param.data}')
         i = 2
 
     # print(f'model parameters: {list(model.named_parameters())}')
