@@ -17,7 +17,9 @@ class N2N(nn.Module):
         self.oddLayers = []
         self.numOfBlocksinStage = numOfBlocksinStage
         self.layersInBlock = layersInBlock
-
+        self.deeper2 = False
+        self.paramList = nn.ParameterList()
+        self.paramList1 = nn.ParameterList()
         printInit = False
         if widthOfLayers is not None:
             self.widthofFirstLayer = widthOfLayers[0]
@@ -157,6 +159,9 @@ class N2N(nn.Module):
                             print(f'relu; i: {i}')
                         i = i + 1
 
+                    self.paramList.append(nn.Parameter(torch.ones(1), requires_grad=True))
+                    self.paramList1.append(nn.Parameter(torch.ones(1), requires_grad=True))
+
                 block = nn.Sequential(*layer)
                 if printInit:
                     print(f'seq: {block}; i: {j}')
@@ -170,6 +175,8 @@ class N2N(nn.Module):
 
 
             # print("\n self sizeofFC: ",self.sizeOfFC)
+
+
         avgpool = nn.AdaptiveAvgPool2d((1, 1))
         self.module_list.append(avgpool)
         if printInit:
@@ -203,6 +210,8 @@ class N2N(nn.Module):
                         nn.init.ones_(seq.weight)
                         nn.init.zeros_(seq.bias)
         self.cuda()
+        self.paramList.cuda()
+        self.paramList1.cuda()
         print(f'')
         self.StagesI, self.StagesO = self.buildResidualPath()
         # self.dense_chs, _ = makeSparse(optimizer, self, 100, reconf=False)
@@ -309,7 +318,7 @@ class N2N(nn.Module):
     def forward(self, x):
         printNet = False
         sizeofX = []
-
+        blockNum = 0
         if printNet:
             print(f'ArchNums: {self.archNums}')
         # First layer
@@ -364,6 +373,7 @@ class N2N(nn.Module):
                             print(f'seq[a]: {seq[a]}; a: {a}')
                             print(f'y shape: {y.shape}')
                     x = y
+                    block += 1
                     # x = seq(_x)
                     j += 1
 
@@ -396,6 +406,8 @@ class N2N(nn.Module):
                     j += 1
 
                 try:
+                    _x = _x * self.paramList[block]
+                    x = x * self.paramList1[block]
                     _x = _x + x
                     sizeofX.append(_x)
                 except RuntimeError:
