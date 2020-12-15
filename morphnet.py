@@ -10,6 +10,7 @@ import torch.optim as optim
 from torch.utils.data.sampler import SubsetRandomSampler
 from torchvision import transforms
 import model.resnet_cifar10 as resnet
+import m
 # from pruner.fp_mbnetv2 import FilterPrunerMBNetV2
 # from pruner.fp_resnet import FilterPrunerResNet
 from pruner.fp_resnet import FilterPrunerResNet
@@ -340,13 +341,14 @@ if __name__ == '__main__':
     flops, num_params = measure_model(pruner.model, pruner, 32)
 
     target = int(args.prune_away * flops)
-    for i in range(0,1):
+    for i in range(0,10):
         print(f'flops: {flops}')
         maps = pruner.omap_size
         cbns = get_cbns(pruner.model)
         print('Before Pruning | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops / 1000000., num_params / 1000000.))
         train_mask(pruner.model, train_loader, test_loader, pruner, epochs=args.epoch, lr=1e-3, lbda=args.lbda, cbns=cbns,
                    maps=maps, constraint=args.constraint)
+        prune_model(pruner.model, cbns, pruner)
         print('Target ({}): {:.3f}M'.format(args.constraint, target / 1000000.))
         flops, num_params = measure_model(pruner.model, pruner, 32)
         print('After Pruning | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops / 1000000., num_params / 1000000.))
@@ -356,7 +358,6 @@ if __name__ == '__main__':
             if flops < target:
                 ratio = pruner.get_uniform_ratio(target)
 
-    prune_model(pruner.model, cbns, pruner)
     train(model, pruner, train_loader, test_loader, epochs=1, lr=args.lr, name='{}_pregrow'.format(args.name))
 
     test_acc, test_loss = test(pruner.model,test_loader)

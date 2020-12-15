@@ -18,8 +18,13 @@ baselineSum1 <- c(baseline1Sum, baseline2Sum, baseline3Sum, baseline4Sum, baseli
 
 baselineAcc1 <- c(tail(baseline1$ValidAcc.,n=1), tail(baseline2$ValidAcc.,n=1), tail(baseline3$ValidAcc.,n=1), tail(baseline4$ValidAcc.,n=1), tail(baseline5$ValidAcc.,n=1))
 
+baselineS1 <- read.delim("baselineS1.txt", header = TRUE, sep = "\t", dec = ".")
+baselineSAcc1 <- baselineS1$ValidAcc.
 
 setwd("/home/j3ssi/MA_Source/output/experimente4/Logs")
+
+deeper1 <- read.delim("deeper.txt", header = TRUE, sep = "\t", dec = ".")
+
 
 
 n2nwider1 <- read.delim("wider_lr1.txt", header = TRUE, sep = "\t", dec = ".")
@@ -39,10 +44,10 @@ n2nwiderSum1 <- c(n2nwider1Sum, n2nwider2Sum, n2nwider3Sum, n2nwider4Sum, n2nwid
 n2nwiderAcc1 <- c(tail(n2nwider1$ValidAcc.,n=1), tail(n2nwider2$ValidAcc.,n=1), tail(n2nwider3$ValidAcc.,n=1), tail(n2nwider4$ValidAcc.,n=1), tail(n2nwider5$ValidAcc.,n=1))
 
 
-setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/N2NWiderRnd")
+setwd("/home/j3ssi/MA_Source/output/experimente4/Logs")
 
 
-n2nWiderRnd1 <- read.delim("n2nWiderRnd11.txt", header = TRUE, sep = "\t", dec = ".")
+n2nWiderRnd1 <- read.delim("widerRnd1.txt", header = TRUE, sep = "\t", dec = ".")
 # n2nWiderRnd2 <- read.delim("n2nWiderRnd12.txt", header = TRUE, sep = "\t", dec = ".")
 n2nWiderRnd3 <- read.delim("n2nWiderRnd13.txt", header = TRUE, sep = "\t", dec = ".")
 n2nWiderRnd4 <- read.delim("n2nWiderRnd14.txt", header = TRUE, sep = "\t", dec = ".")
@@ -67,11 +72,39 @@ setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/BaselineO")
 baselineO1 <- read.delim("baselineO1.txt", header = TRUE, sep = "\t", dec = ".")
 
 
-n2nWiderAccRnd181 <- tail(n2nWiderRnd1$ValidAcc.)
-n2nWiderAcc181 <- tail(n2nwider1$ValidAcc., n=195)
-plot(n2nWiderAccRnd181, col='blue',xlab='',ylab='',xlim=c(0,180),ylim=c(50,96))
+n2nWiderAccRnd181 <- n2nWiderRnd1$ValidAcc.
+n2nWiderAcc181 <- n2nwider1$ValidAcc., n=195)
+plot(n2nWiderAccRnd181, col='blue',xlab='',ylab='',xlim=c(0,180),ylim=c(25,96))
+
+plot(baselineSAcc1, col='blue',xlim=c(0,180),ylim=c(25,96), xlab="Epochen", ylab = "Accuracy")
+
 par(new=TRUE)
-plot(n2nwider1$X, col='green',xlim=c(0,180),ylim=c(50,96),xlab='Epochen',ylab='Accuracy')
+plot(n2nwider1$X, col='green',xlim=c(0,180),ylim=c(25,96),xlab='Epochen',ylab='Accuracy')
 par(new=TRUE)
-plot(baselineO1$ValidAcc.,col='black',xlab='',ylab='',xlim=c(0,180),ylim=c(50,96))
-abline(v=90)
+plot(baselineO1$ValidAcc.,xlab='',ylab='',xlim=c(0,180),ylim=c(25,96))
+par(new=TRUE)
+
+
+plot(deeper1$ValidAcc., col='green',ylim=c(75,96),xlab='Epochen',ylab='Accuracy')
+abline(h=87.71)
+
+
+
+
+library('caTools')
+library('pracma')
+x <- seq(from=1, to=180)
+
+f <- gradient(baselineSAcc1)
+
+  
+plot(f, type ="l"), xlim =c(20,180),ylim=c(0,1.5))
+par(new=TRUE)
+abline(h=0.1)
+for( l in x){
+  
+}
+
+
+plot(x, grad(func=(x,y),x0=x)
+x <- 
