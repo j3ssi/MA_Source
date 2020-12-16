@@ -277,7 +277,7 @@ def get_args():
     parser.add_argument("--batch_size", type=int, default=256)
     parser.add_argument("--lr", type=float, default=1e-1)
     parser.add_argument("--lbda", type=float, default=3e-8)
-    parser.add_argument("--prune_away", type=float, default=3.97, help='The constraint level in portion to the original network, e.g. 0.5 is prune away 50%')
+    parser.add_argument("--prune_away", type=float, default=1, help='The constraint level in portion to the original network, e.g. 0.5 is prune away 50%')
     parser.add_argument("--constraint", type=str, default='flops')
     parser.add_argument("--large_input", action='store_true', default=False)
     parser.add_argument("--no_grow", action='store_true', default=False)
@@ -356,8 +356,13 @@ if __name__ == '__main__':
         else:
             if flops < target:
                 ratio = pruner.get_uniform_ratio(target)
+                print(ratio)
+                pruner.uniform_grow(ratio)
+                flops, num_params = measure_model(pruner.model, pruner, 32)
+                print('After Growth | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops/1000000., num_params/1000000.))
+                # train(pruner.model, train_loader, test_loader, epochs=args.epoch, lr=args.lr, name=args.name)
 
-    train(model, pruner, train_loader, test_loader, epochs=1, lr=args.lr, name='{}_pregrow'.format(args.name))
+    train(model, pruner, train_loader, test_loader, epochs=30, lr=args.lr, name='{}_pregrow'.format(args.name))
 
     test_acc, test_loss = test(pruner.model,test_loader)
     print(f'Test acc: {test_acc}')
