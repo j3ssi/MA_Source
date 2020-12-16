@@ -406,8 +406,9 @@ class N2N(nn.Module):
                     j += 1
 
                 try:
-                    _x = _x * self.paramList[block]
-                    x = x * self.paramList1[block]
+                    if self.deeper2:
+                        _x = _x * self.paramList[block]
+                        x = x * self.paramList1[block]
                     _x = _x + x
                     sizeofX.append(_x)
                 except RuntimeError:

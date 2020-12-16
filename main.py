@@ -472,6 +472,7 @@ def main():
                 # scheduler = StepLR(optimizer, step_size=30, gamma=0.95)
                 # print(model)
             if args.wider == epoch:
+                end = time.time()
                 model.wider(2, weight_norm=None, random_init=False, addNoise=True)
                 # model.widthofLayers[0] *= 2
                 for i in range(len(model.widthofLayers)):
@@ -480,6 +481,8 @@ def main():
                 model.cuda()
                 # print(model)
                 # criterion = nn.CrossEntropyLoss()
+                time = time.time -end
+                print(f'time for n2n: {time}')
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
             if args.widerRnd == epoch:
@@ -494,10 +497,10 @@ def main():
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
 
-            for param in model.paramList:
-                print(f'Parameter: {param.data}')
-            for param in model.paramList1:
-                print(f'Parameter1: {param.data}')
+            # for param in model.paramList:
+            #    print(f'Parameter: {param.data}')
+            # for param in model.paramList1:
+            #    print(f'Parameter1: {param.data}')
         i = 2
 
     # print(f'model parameters: {list(model.named_parameters())}')
