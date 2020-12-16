@@ -481,7 +481,7 @@ def main():
                 model.cuda()
                 # print(model)
                 # criterion = nn.CrossEntropyLoss()
-                time = time.time -end
+                time = time.time() -end
                 print(f'time for n2n: {time}')
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
