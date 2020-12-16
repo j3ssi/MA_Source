@@ -472,7 +472,7 @@ def main():
                 # scheduler = StepLR(optimizer, step_size=30, gamma=0.95)
                 # print(model)
             if args.wider == epoch:
-                end = time.time()
+                start = time.time()
                 model.wider(2, weight_norm=None, random_init=False, addNoise=True)
                 # model.widthofLayers[0] *= 2
                 for i in range(len(model.widthofLayers)):
@@ -481,8 +481,8 @@ def main():
                 model.cuda()
                 # print(model)
                 # criterion = nn.CrossEntropyLoss()
-                time = time.time() -end
-                print(f'time for n2n: {time}')
+                ende = time.time() -start
+                print(f'time for n2n: {ende}')
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
             if args.widerRnd == epoch:
