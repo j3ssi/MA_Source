@@ -28,6 +28,8 @@ deeper1 <- read.delim("deeper.txt", header = TRUE, sep = "\t", dec = ".")
 
 
 n2nwider1 <- read.delim("wider_lr1.txt", header = TRUE, sep = "\t", dec = ".")
+
+
 n2nwider2 <- read.delim("n2nwider12.txt", header = TRUE, sep = "\t", dec = ".")
 n2nwider3 <- read.delim("n2nwider13.txt", header = TRUE, sep = "\t", dec = ".")
 n2nwider4 <- read.delim("n2nwider14.txt", header = TRUE, sep = "\t", dec = ".")
@@ -71,7 +73,8 @@ setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/BaselineO")
 
 baselineO1 <- read.delim("baselineO1.txt", header = TRUE, sep = "\t", dec = ".")
 
-
+boxplot(n2nWiderRnd1$TrainEpochTime.s., baselineO1$TrainEpochTime.s.)
+        
 n2nWiderAccRnd181 <- n2nWiderRnd1$ValidAcc.
 n2nWiderAcc181 <- n2nwider1$ValidAcc., n=195)
 plot(n2nWiderAccRnd181, col='blue',xlab='',ylab='',xlim=c(0,180),ylim=c(25,96))

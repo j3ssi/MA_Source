@@ -1,3 +1,4 @@
+import time
 from statistics import mean
 
 import torch
@@ -217,14 +218,17 @@ def train(model, pruner,  train_loader, val_loader, epochs=10, lr=1e-2, name='')
     criterion = torch.nn.CrossEntropyLoss()
     reg =[]
     for e in range(epochs):
+        start = time.time()
 
         regularize = train_epoch(model, optimizer, criterion, train_loader)
         reg.append(regularize)
         flops, num_params = measure_model(pruner.model, pruner, 32)
+        ende = time.time() -start
+
         print(f'Epoche: {e}; regular: {regularize}: flops {flops}')
 
         top1, _ = test(model, test_loader)
-        logger.append([regularize, num_params, top1])
+        logger.append([regularize, num_params, top1, ende])
         print('#Filters: {}, #FLOPs: {:.2f}M | Top-1: {:.2f}'.format(num_alive_filters(model),
                                                                      pruner.get_valid_flops() / 1000000., top1))
 
@@ -244,12 +248,13 @@ def train_mask(model, train_loader, testloader, pruner, epochs=10, lr=1e-2, lbda
 
     for e in range(epochs):
         print('Epoch {}'.format(e))
+        start = time.time()
         regularize = train_epoch(model, optimizer, criterion, train_loader, lbda, cbns, maps, constraint)
         flops, num_params = measure_model(pruner.model, pruner, 32)
         print(f'Epoche: {e}; regular: {regularize}: flops {flops}')
-
+        ende = time.time() -start
         top1, _ = test(model, test_loader)
-        logger.append([regularize, num_params, top1])
+        logger.append([regularize, num_params, top1, ende])
         print('#Filters: {}, #FLOPs: {:.2f}M | Top-1: {:.2f}'.format(num_alive_filters(model), pruner.get_valid_flops()/1000000., top1))
     return model
 
@@ -331,7 +336,7 @@ if __name__ == '__main__':
         num_workers=6, pin_memory=False
     )
     logger = Logger(args.logger, title='logMorphNet')
-    logger.set_names(['Regularisierer', 'Zielgroesse', 'Top1'])
+    logger.set_names(['Regularisierer', 'Zielgroesse', 'Top1', 'Trainingszeit'])
     if 'CIFAR10' in args.dataset:
         train_set.num_classes = 10
     elif 'CIFAR100' in args.dataset:
@@ -366,4 +371,4 @@ if __name__ == '__main__':
 
     test_acc, test_loss = test(pruner.model,test_loader)
     print(f'Test acc: {test_acc}')
-    logger.append([0,0,test_acc])
+    # logger.append([0,0,test_acc])
