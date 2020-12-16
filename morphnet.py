@@ -346,6 +346,7 @@ if __name__ == '__main__':
 
     target = int(args.prune_away * flops)
     for i in range(0,6):
+        print(f'I: {i}')
         print(f'flops: {flops}')
         maps = pruner.omap_size
         cbns = get_cbns(pruner.model)
@@ -355,6 +356,8 @@ if __name__ == '__main__':
         prune_model(pruner.model, cbns, pruner)
         print('Target ({}): {:.3f}M'.format(args.constraint, target / 1000000.))
         flops, num_params = measure_model(pruner.model, pruner, 32)
+        logger.append([0, num_params, 0, 0])
+
         print('After Pruning | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops / 1000000., num_params / 1000000.))
         if args.no_grow:
             i = 1
