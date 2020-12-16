@@ -343,12 +343,12 @@ def main():
 
             print(f'Epoche: [{epoch}/{args.epochs + start_epoch - 1}]; Lr: {optimizer.param_groups[0]["lr"]}')
             print(f'batch Size {batch_size}')
-            start = time.time()
+            # start = time.time()
             torch.cuda.reset_max_memory_allocated()
             print(f'befor train')
             train_loss, train_acc, train_epoch_time = train(trainloader, model, criterion,
                                                             optimizer, epoch, use_cuda)
-            ende = time.time()
+            # ende = time.time()
             tmp_memory = torch.cuda.max_memory_allocated()
 
             # print(f'lr: {optimizer.param_groups[0]["lr"]}')
