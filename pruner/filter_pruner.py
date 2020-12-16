@@ -775,6 +775,8 @@ class FilterPruner(object):
                 m.weight.data = torch.from_numpy(new_weights).to(self.device)
                 m.weight.grad = None
 
+
+
     def get_pruning_plan_multi_target(self, targets):
         if not self.quota:
             self.quota = {}

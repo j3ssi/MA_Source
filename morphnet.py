@@ -368,7 +368,7 @@ if __name__ == '__main__':
                 # train(pruner.model, train_loader, test_loader, epochs=args.epoch, lr=args.lr, name=args.name)
 
     train(model, pruner, train_loader, test_loader, epochs=30, lr=args.lr, name='{}_pregrow'.format(args.name))
-
+    print(f'model: {model}')
     test_acc, test_loss = test(pruner.model,test_loader)
     print(f'Test acc: {test_acc}')
     # logger.append([0,0,test_acc])
