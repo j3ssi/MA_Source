@@ -1017,9 +1017,9 @@ class N2N(nn.Module):
     def deeper(self, pos=1):
         # make each block with plus two layers (conv +batch) deeper
         blockComp = False
-
-        for i in range( len( self.module_list ) ):
-            if i > 4 and blockComp and isinstance(self.module_list[i], nn.Sequential):
+        k = 0
+        for i in  self.module_list:
+            if k > 4 and blockComp and isinstance(i, nn.Sequential):
                 print(f'skip: {i}')
                 # newModule_list.append(self.module_list[i])
                 # stages[k] += 1
@@ -1027,11 +1027,10 @@ class N2N(nn.Module):
 
                 continue
 
-            if isinstance(self.module_list[i], nn.Sequential):
-
+            if isinstance(i, nn.Sequential):
                 print(f'i: {i}')
                 # print(f'davor: {self.module_list[i]}')
-                module = self.module_list[i]
+                module = i
                 i0 = module[0].out_channels
                 i1 = module[0].in_channels
                 seq = []
@@ -1061,11 +1060,6 @@ class N2N(nn.Module):
                             for j in range(conv.weight.shape[1]):
                                 deeper_w[i][j][1][1]=1
                                 print(f'deeper w :{deeper_w[i][j]}')
-
-
-
-                        # n = conv.kernel_size[0] * conv.kernel_size[1] * conv.out_channels
-
                         conv.weight.data = torch.from_numpy(deeper_w)
                         # nn.init.normal_( conv.weight, mean = 0, std = math.sqrt( 1. / ( n*n ) ) )
                         lastConv = False
@@ -1113,10 +1107,11 @@ class N2N(nn.Module):
 
                 print(f'i: {i}; i0=: {i0}; i1=: {i1}')
                 module = nn.Sequential(*seq)
-                self.module_list[i] = module
+                i = module
                 if i0 != i1 and not blockComp:
                     blockComp = True
 
+            k += 1
         print(self)
 
     def buildResidualPath(self,):
