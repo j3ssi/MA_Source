@@ -453,7 +453,7 @@ def main():
                 # deeper student training
                 model.deeper(pos=1)
                 # batch_size = 512
-                print(f'arDreamings es kickt mich unheinmchNums: {model.archNums}')
+                print(f'Nums: {model.archNums}')
                 print(
                     f'num: {num_classes}; numofstages: {args.numOfStages}, listofBlocks: {listofBlocks}, layers in blocj: {args.layersInBlock}')
                 # model.newModuleList(num_classes)
