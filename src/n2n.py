@@ -1063,7 +1063,7 @@ class N2N(nn.Module):
                             tmp = np.zeros((conv.weight.shape[0], conv.weight.shape[1], conv.weight.shape[3]))
                             tmp[1, 1, i] = 1
                             deeper_w[:, :, :, i] = tmp
-                        conv.weight.data = deeper_w
+                        conv.weight.data = torch.from_numpy(deeper_w)
                         # nn.init.normal_( conv.weight, mean = 0, std = math.sqrt( 1. / ( n*n ) ) )
                         lastConv = False
                         k = 1
