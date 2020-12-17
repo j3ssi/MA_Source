@@ -1036,6 +1036,7 @@ class N2N(nn.Module):
                 seq = []
                 # print(f'seq: {module}')
                 for j in range(0, len(module) + 3):
+                    print(f'j: j; module[j]: {module[j]}')
                     if j == 3 * pos - 2:
                         # continue
                         # print(f'Module {self.module_list[i]}; i: {i}')
@@ -1224,8 +1225,6 @@ class N2N(nn.Module):
         print(f'stagesO: {stagesO}')
         return stagesI, stagesO
 
-
-
 def compare(layer, oddLayer):
     i1 = int(layer.split('.')[1].split('v')[1])
     i2 = int(oddLayer.split('.')[1].split('v')[1])
@@ -1234,14 +1233,11 @@ def compare(layer, oddLayer):
     else:
         return False
 
-
 def n(name):
     if isinstance(name, int):
         return 'module.conv' + str(name) + '.weight'
     else:
         return 'module.' + name + '.weight'
-
-
 
 def buildShareSameNodeLayers(module_list, numOfStages, archNums):
     sameNode = []
