@@ -76,8 +76,13 @@ baselineS3Sum <- sum(baselineS3$TrainEpochTime.s.)/180
 baselineS4Sum <- sum(baselineS4$TrainEpochTime.s.)/180
 baselineS5Sum <- sum(baselineS5$TrainEpochTime.s.)/180
 
+
+
+
 baselineSSum1 <- c(baselineS1Sum, baselineS2Sum, baselineS3Sum, baselineS4Sum, baselineS5Sum)
-plot(baselineS1$ValidAcc.)
+
+boxplot(baselineSSum1, baseline1Sum, ylab ="Durchschnittliche Trainingszeit")
+axis(at=c(1,2),side =1, labels = c('schmalles Baseline Netz', 'breites Baseline Netz'))
 
 setwd("/home/j3ssi/MA_Source/output/experimente4/Logs/BaselineMul")
 

@@ -84,11 +84,11 @@ plot(baselineSAcc1, col='blue',xlim=c(0,180),ylim=c(25,96), xlab="Epochen", ylab
 par(new=TRUE)
 plot(n2nwider1$X, col='green',xlim=c(0,180),ylim=c(25,96),xlab='Epochen',ylab='Accuracy')
 par(new=TRUE)
-plot(baselineO1$ValidAcc.,xlab='',ylab='',xlim=c(0,180),ylim=c(25,96))
+plot(baselineO1$ValidAcc.,xlab='',ylab='',xlim=c(0,250),ylim=c(75,96))
 par(new=TRUE)
 
 
-plot(deeper1$ValidAcc., col='green',ylim=c(75,96),xlab='Epochen',ylab='Accuracy')
+plot(deeper1$ValidAcc., col='green',ylim=c(75,96),xlim=c(0,250),xlab='Epochen',ylab='Accuracy')
 abline(h=87.71)
 
 
