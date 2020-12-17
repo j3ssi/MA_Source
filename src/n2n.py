@@ -1035,7 +1035,7 @@ class N2N(nn.Module):
                 i1 = module[0].in_channels
                 seq = []
                 # print(f'seq: {module}')
-                for j in range(len(module) + 3):
+                for j in range(0, len(module) + 3):
                     if j == 3 * pos - 2:
                         # continue
                         # print(f'Module {self.module_list[i]}; i: {i}')
