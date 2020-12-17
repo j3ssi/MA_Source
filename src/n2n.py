@@ -1024,7 +1024,7 @@ class N2N(nn.Module):
                 blockComp = False
                 continue
 
-            if isinstance(i, nn.Sequential):
+            if isinstance(module, nn.Sequential):
                 print(f'i: {i}')
 
                 i0 = module[0].out_channels
