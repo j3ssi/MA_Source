@@ -1018,33 +1018,26 @@ class N2N(nn.Module):
         # make each block with plus two layers (conv +batch) deeper
         blockComp = False
         k = 0
-        for i in self.module_list:
+        for i in range(0, len(self.module_list)):
+            module= self.module_list[i]
             if k > 4 and blockComp and isinstance(i, nn.Sequential):
                 print(f'skip: {i}')
-                # newModule_list.append(self.module_list[i])
-                # stages[k] += 1
                 blockComp = False
-
                 continue
 
             if isinstance(i, nn.Sequential):
                 print(f'i: {i}')
-                # print(f'davor: {self.module_list[i]}')
-                module = i
+
                 i0 = module[0].out_channels
                 i1 = module[0].in_channels
                 seq = []
-                # print(f'seq: {module}')
+
                 for j in range(0, len(module) + 3):
                     print(f'j: {j}; ')
                     if j == (3 * pos - 2):
-                        # continue
-                        # print(f'Module {self.module_list[i]}; i: {i}')
                         bn = nn.BatchNorm2d(module[0].out_channels)
                         torch.nn.init.ones_(bn.weight)
                         torch.nn.init.zeros_(bn.bias)
-                        # bn.running_mean.fill_(0)
-                        # bn.running_var.fill_(1)
                         seq.append(bn)
                         # print(f'neues bn: {bn}; j: {j}')
                     elif j == (3 * pos - 1):
@@ -1056,7 +1049,7 @@ class N2N(nn.Module):
                         padding = 1
                         conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
 
-                        deeper_w = np.zeros((i0, i0, 3, 3))
+                        deeper_w = np.zeros((i0, i0, kernel_size, kernel_size))
                         for k in range(0, i0):
                             for l in range(0, i0):
                                 deeper_w[k][l][1][1]=1
@@ -1108,8 +1101,7 @@ class N2N(nn.Module):
                     print(f'seq: {seq}')
                     print(f'seq[j]: {seq[j]}')
                 print(f'i: {i}; i0=: {i0}; i1=: {i1}')
-                module = nn.Sequential(*seq)
-                i = module
+                self.module_list[i] = nn.Sequential(*seq)
                 if i0 != i1 and not blockComp:
                     blockComp = True
 
