@@ -1018,7 +1018,7 @@ class N2N(nn.Module):
         blockComp = False
         for i in range(0, len(self.module_list)):
             module = self.module_list[i]
-            if i > 4 and blockComp and isinstance(i, nn.Sequential):
+            if i > 4 and blockComp and isinstance(module, nn.Sequential):
                 print(f'skip: {i}')
                 blockComp = False
                 continue
