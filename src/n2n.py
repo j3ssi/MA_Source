@@ -1059,6 +1059,7 @@ class N2N(nn.Module):
                         deeper_w = np.zeros((conv.weight.shape[0], conv.weight.shape[1], conv.weight.shape[3], conv.weight.shape[3]))
                         for i in range( conv.weight.shape[0]):
                             for j in range(conv.weight.shape[1]):
+                                deeper_w[i][j][1][1]=1
                                 print(f'deeper w :{deeper_w[i][j]}')
                         print(deeper_w[0,0,:,:])
 
