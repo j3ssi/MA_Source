@@ -88,7 +88,7 @@ plot(baselineO1$ValidAcc.,xlab='',ylab='',xlim=c(0,250),ylim=c(75,96))
 par(new=TRUE)
 
 
-plot(deeper1$ValidAcc., col='green',ylim=c(75,96),xlim=c(0,250),xlab='Epochen',ylab='Accuracy')
+plot(deeper1$ValidAcc., col='green',ylim=c(25,96),xlim=c(0,250),xlab='Epochen',ylab='Accuracy')
 abline(h=87.71)
 
 

@@ -351,7 +351,7 @@ if __name__ == '__main__':
         maps = pruner.omap_size
         cbns = get_cbns(pruner.model)
         print('Before Pruning | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops / 1000000., num_params / 1000000.))
-        train_mask(pruner.model, train_loader, test_loader, pruner, epochs=args.epoch, lr=1e-3, lbda=args.lbda, cbns=cbns,
+        train_mask(pruner.model, train_loader, test_loader, pruner, epochs=args.epoch, lr=args.lr, lbda=args.lbda, cbns=cbns,
                    maps=maps, constraint=args.constraint)
         prune_model(pruner.model, cbns, pruner)
         print('Target ({}): {:.3f}M'.format(args.constraint, target / 1000000.))
@@ -370,7 +370,8 @@ if __name__ == '__main__':
                 print('After Growth | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops/1000000., num_params/1000000.))
                 # train(pruner.model, train_loader, test_loader, epochs=args.epoch, lr=args.lr, name=args.name)
 
-    train(model, pruner, train_loader, test_loader, epochs=30, lr=args.lr, name='{}_pregrow'.format(args.name))
+    train_mask(pruner.model, train_loader, test_loader, pruner, epochs=30, lr=args.lr, lbda = args.lbda,
+               cbns = cbns, maps = maps, constraint=None)
     print(f'model: {model}')
     test_acc, test_loss = test(pruner.model,test_loader)
     print(f'Test acc: {test_acc}')
