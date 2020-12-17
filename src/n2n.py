@@ -1057,7 +1057,7 @@ class N2N(nn.Module):
                         conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
                         n = conv.kernel_size[0] * conv.kernel_size[1] * conv.out_channels
 
-                        nn.init.normal_( conv.weight, mean = 0, std = math.sqrt( 1. / ( n ) ) )
+                        nn.init.normal_( conv.weight, mean = 0, std = math.sqrt( 1. / ( n*n ) ) )
                         lastConv = False
                         k = 1
                         while not lastConv:
