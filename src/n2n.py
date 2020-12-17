@@ -1051,7 +1051,7 @@ class N2N(nn.Module):
                         deeper_w = np.zeros((i0, i0, kernel_size[0], kernel_size[1]))
                         for k in range(0, i0):
                             for l in range(0, i0):
-                                deeper_w[k][l][1][1]=1
+                                deeper_w[k, l, 1, 1]=1
                                 # print(f'deeper w :{deeper_w[i][j]}')
                         conv.weight.data = torch.from_numpy(deeper_w)
                         # nn.init.normal_( conv.weight, mean = 0, std = math.sqrt( 1. / ( n*n ) ) )
