@@ -1013,14 +1013,13 @@ class N2N(nn.Module):
                 break
         print(f'self: {self}')
 
-
     def deeper(self, pos=1):
         # make each block with plus two layers (conv +batch) deeper
         blockComp = False
         k = 0
         for i in range(0, len(self.module_list)):
-            module= self.module_list[i]
-            if k > 4 and blockComp and isinstance(i, nn.Sequential):
+            module = self.module_list[i]
+            if i > 4 and blockComp and isinstance(i, nn.Sequential):
                 print(f'skip: {i}')
                 blockComp = False
                 continue
@@ -1105,7 +1104,6 @@ class N2N(nn.Module):
                 if i0 != i1 and not blockComp:
                     blockComp = True
 
-            k += 1
         print(self)
 
     def buildResidualPath(self,):
