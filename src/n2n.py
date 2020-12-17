@@ -1105,7 +1105,7 @@ class N2N(nn.Module):
                         seq.append(module[j])
 
                         # print(f'altes layer: {module[j]}; j: {j}')
-
+                    print(f'seq: {seq}')
                     print(f'seq[j]: {seq[j]}')
                 print(f'i: {i}; i0=: {i0}; i1=: {i1}')
                 module = nn.Sequential(*seq)
