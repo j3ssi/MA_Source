@@ -1016,7 +1016,6 @@ class N2N(nn.Module):
     def deeper(self, pos=1):
         # make each block with plus two layers (conv +batch) deeper
         blockComp = False
-        k = 0
         for i in range(0, len(self.module_list)):
             module = self.module_list[i]
             if i > 4 and blockComp and isinstance(i, nn.Sequential):
@@ -1049,9 +1048,9 @@ class N2N(nn.Module):
                         conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
 
                         deeper_w = np.zeros((i0, i0, kernel_size[0], kernel_size[1]))
-                        for k in range(0, i0):
-                            for l in range(0, i0):
-                                deeper_w[k, l, 1, 1]=1
+                        for a in range(0, i0):
+                            for b in range(0, i0):
+                                deeper_w[a][b][1][1]=1
                                 # print(f'deeper w :{deeper_w[i][j]}')
                         conv.weight.data = torch.from_numpy(deeper_w)
                         # nn.init.normal_( conv.weight, mean = 0, std = math.sqrt( 1. / ( n*n ) ) )
