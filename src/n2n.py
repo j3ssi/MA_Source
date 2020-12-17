@@ -1037,7 +1037,7 @@ class N2N(nn.Module):
                 # print(f'seq: {module}')
                 for j in range(0, len(module) + 3):
                     print(f'j: {j}; ')
-                    if j == 3 * pos - 2:
+                    if j == (3 * pos - 2):
                         # continue
                         # print(f'Module {self.module_list[i]}; i: {i}')
                         bn = nn.BatchNorm2d(module[0].out_channels)
@@ -1047,9 +1047,9 @@ class N2N(nn.Module):
                         # bn.running_var.fill_(1)
                         seq.append(bn)
                         # print(f'neues bn: {bn}; j: {j}')
-                    if j == 3 * pos - 1:
+                    elif j == (3 * pos - 1):
                         seq.append(self.relu)
-                    if j == 3 * pos:
+                    elif j == (3 * pos):
                         # continue
                         kernel_size = module[0].kernel_size
                         stride = 1
@@ -1058,8 +1058,8 @@ class N2N(nn.Module):
 
                         deeper_w = np.zeros((conv.weight.shape[0], conv.weight.shape[1], conv.weight.shape[3], conv.weight.shape[3]))
                         for k in range( conv.weight.shape[0]):
-                            for j in range(conv.weight.shape[1]):
-                                deeper_w[k][j][1][1]=1
+                            for l in range(conv.weight.shape[1]):
+                                deeper_w[k][l][1][1]=1
                                 # print(f'deeper w :{deeper_w[i][j]}')
                         conv.weight.data = torch.from_numpy(deeper_w)
                         # nn.init.normal_( conv.weight, mean = 0, std = math.sqrt( 1. / ( n*n ) ) )
@@ -1082,7 +1082,7 @@ class N2N(nn.Module):
                                 else:
                                     k += 1
                         seq.append(conv)
-                    elif j > 3 * pos:
+                    elif j > (3 * pos):
                         # print(f'module: {module[j - 2]}; j= {j + 2}')
                         # print(f'altes layer: {module[j - 3]}; j: {j}')
                         # if isinstance(module[ j - 3 ], nn.Conv2d):
