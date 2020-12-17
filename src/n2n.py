@@ -1055,9 +1055,16 @@ class N2N(nn.Module):
                         stride = 1
                         padding = 1
                         conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
-                        n = conv.kernel_size[0] * conv.kernel_size[1] * conv.out_channels
+                        deeper_w = np.zeros((conv.weight.shape[0], conv.weight.shape[1], conv.weight.shape[3], conv.weight.shape[3]))
 
-                        nn.init.normal_( conv.weight, mean = 0, std = math.sqrt( 1. / ( n*n ) ) )
+                        n = conv.kernel_size[0] * conv.kernel_size[1] * conv.out_channels
+                        nn.init.zeros_(conv.weight)
+                        for i in range(conv.weight.shape[3]):
+                            tmp = np.zeros((conv.weight.shape[0], conv.weight.shape[1], conv.weight.shape[3]))
+                            tmp[1, 1, i] = 1
+                            deeper_w[:, :, :, i] = tmp
+                        conv.weight.data = deeper_w
+                        # nn.init.normal_( conv.weight, mean = 0, std = math.sqrt( 1. / ( n*n ) ) )
                         lastConv = False
                         k = 1
                         while not lastConv:
