@@ -1036,7 +1036,7 @@ class N2N(nn.Module):
                 seq = []
                 # print(f'seq: {module}')
                 for j in range(0, len(module) + 3):
-                    print(f'j: j; module[j]: {module[j]}')
+                    print(f'j: {j}; ')
                     if j == 3 * pos - 2:
                         # continue
                         # print(f'Module {self.module_list[i]}; i: {i}')
@@ -1106,6 +1106,7 @@ class N2N(nn.Module):
 
                         # print(f'altes layer: {module[j]}; j: {j}')
 
+                    print(f'seq[j]: {seq[j]}')
                 print(f'i: {i}; i0=: {i0}; i1=: {i1}')
                 module = nn.Sequential(*seq)
                 i = module
