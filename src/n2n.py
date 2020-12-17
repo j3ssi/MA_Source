@@ -1086,10 +1086,6 @@ class N2N(nn.Module):
                                     lastConv = True
                                 else:
                                     k += 1
-                        weight = conv.weight.data
-                        nn.init.zeros_(weight)
-                        weight[ :, :, 1, 1 ] = 1
-                        conv.weight.data = weight
                         seq.append(conv)
                     elif j > 3 * pos:
                         # print(f'module: {module[j - 2]}; j= {j + 2}')
