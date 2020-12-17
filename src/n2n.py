@@ -1048,7 +1048,7 @@ class N2N(nn.Module):
                         padding = 1
                         conv = nn.Conv2d(i0, i0, kernel_size=kernel_size, stride=stride, padding=padding)
 
-                        deeper_w = np.zeros((i0, i0, kernel_size, kernel_size))
+                        deeper_w = np.zeros((i0, i0, kernel_size[0], kernel_size[1]))
                         for k in range(0, i0):
                             for l in range(0, i0):
                                 deeper_w[k][l][1][1]=1
