@@ -63,7 +63,7 @@ class BasicBlock(nn.Module):
 class ResNet(nn.Module):
     def __init__(self, block, num_blocks, num_classes=10):
         super(ResNet, self).__init__()
-        inPlanes = 16
+        inPlanes = 8
         self.in_planes = inPlanes
 
         self.features = [conv_bn(3, inPlanes, 1)]
