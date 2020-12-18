@@ -1103,7 +1103,6 @@ class N2N(nn.Module):
                 self.module_list[i] = nn.Sequential(*seq)
                 if i0 != i1 and not blockComp:
                     blockComp = True
-
         print(self)
 
     def buildResidualPath(self,):
