@@ -1052,8 +1052,8 @@ class N2N(nn.Module):
                             for b1 in range(0, i0):
                                 deeper_w[a1, b1, 1, 1]=1
                                 # print(f'deeper w :{deeper_w[i][j]}')
-                        deeper_w.astype(numpy.float)
-                        conv.weight.data = torch.from_numpy(deeper_w)
+                        deeper_w = torch.from_numpy(deeper_w)
+                        conv.weight.data = deeper_w.type(torch.FloatTensor)
                         # nn.init.normal_( conv.weight, mean = 0, std = math.sqrt( 1. / ( n*n ) ) )
                         lastConv = False
                         k = 1
