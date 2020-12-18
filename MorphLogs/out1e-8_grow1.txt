@@ -1,1663 +1,720 @@
 no display found. Using non-interactive Agg backend
-Namespace(batch_size=256, constraint='flops', datapath='/home/jessica.buehler/MA_Source/dataset/data/torch', dataset='torchvision.datasets.CIFAR10', epoch=30, large_input=False, lbda=1e-08, logger='MorphLogs/logMorphNetFlops1e-8', lr=0.1, model='ft_mbnetv2', name='ft_mbnetv2', no_grow=False, prune_away=1, pruner='FilterPrunnerResNet')
+Namespace(batch_size=256, constraint='flops', datapath='/home/jessica.buehler/MA_Source/dataset/data/torch', dataset='torchvision.datasets.CIFAR10', epoch=30, large_input=False, lbda=1e-08, logger='MorphLogs/logMorphNetFlops1e-8', lr=0.1, model='ft_mbnetv2', name='ft_mbnetv2', no_grow=False, prune_away=4.0, pruner='FilterPrunnerResNet')
 I: 0
-flops: 68862592
-Before Pruning | FLOPs: 68.863M | #Params: 0.462M
+flops: 17326400
+Before Pruning | FLOPs: 17.326M | #Params: 0.116M
 Epoch 0
-Train | Batch (1/196) | Top-1: 10.55 (27/256)
-Train | Batch (101/196) | Top-1: 27.72 (7167/25856)
-Train | Batch (196/196) | Top-1: 35.34 (17668/50000)
-Regular: 1.8056453466415405
-Epoche: 0; regular: 1.8056453466415405: flops 68862592
-#Filters: 1108, #FLOPs: 64.73M | Top-1: 27.79
+Train | Batch (1/196) | Top-1: 8.98 (23/256)
+Train | Batch (101/196) | Top-1: 29.13 (7531/25856)
+Train | Batch (196/196) | Top-1: 35.38 (17690/50000)
+Regular: 0.5428292155265808
+Epoche: 0; regular: 0.5428292155265808: flops 17326400
+#Filters: 568, #FLOPs: 17.33M | Top-1: 41.13
 Epoch 1
-Train | Batch (1/196) | Top-1: 46.09 (118/256)
-Train | Batch (101/196) | Top-1: 53.81 (13913/25856)
-Train | Batch (196/196) | Top-1: 56.75 (28374/50000)
-Regular: 0.6337161064147949
-Epoche: 1; regular: 0.6337161064147949: flops 68862592
-#Filters: 1012, #FLOPs: 55.52M | Top-1: 54.26
+Train | Batch (1/196) | Top-1: 45.31 (116/256)
+Train | Batch (101/196) | Top-1: 50.76 (13125/25856)
+Train | Batch (196/196) | Top-1: 53.86 (26930/50000)
+Regular: 0.3002820611000061
+Epoche: 1; regular: 0.3002820611000061: flops 17326400
+#Filters: 554, #FLOPs: 16.29M | Top-1: 50.79
 Epoch 2
-Train | Batch (1/196) | Top-1: 59.77 (153/256)
-Train | Batch (101/196) | Top-1: 63.68 (16464/25856)
-Train | Batch (196/196) | Top-1: 65.26 (32630/50000)
-Regular: 0.2962760627269745
-Epoche: 2; regular: 0.2962760627269745: flops 68862592
-#Filters: 979, #FLOPs: 53.56M | Top-1: 35.15
+Train | Batch (1/196) | Top-1: 57.42 (147/256)
+Train | Batch (101/196) | Top-1: 61.59 (15926/25856)
+Train | Batch (196/196) | Top-1: 63.31 (31657/50000)
+Regular: 0.18073490262031555
+Epoche: 2; regular: 0.18073490262031555: flops 17326400
+#Filters: 537, #FLOPs: 15.26M | Top-1: 51.87
 Epoch 3
 Train | Batch (1/196) | Top-1: 66.02 (169/256)
-Train | Batch (101/196) | Top-1: 69.20 (17893/25856)
-Train | Batch (196/196) | Top-1: 70.04 (35022/50000)
-Regular: 0.2163732498884201
-Epoche: 3; regular: 0.2163732498884201: flops 68862592
-#Filters: 910, #FLOPs: 50.32M | Top-1: 43.74
+Train | Batch (101/196) | Top-1: 67.55 (17467/25856)
+Train | Batch (196/196) | Top-1: 68.15 (34074/50000)
+Regular: 0.13806737959384918
+Epoche: 3; regular: 0.13806737959384918: flops 17326400
+#Filters: 532, #FLOPs: 15.11M | Top-1: 61.73
 Epoch 4
 Train | Batch (1/196) | Top-1: 68.36 (175/256)
-Train | Batch (101/196) | Top-1: 72.56 (18762/25856)
-Train | Batch (196/196) | Top-1: 73.24 (36618/50000)
-Regular: 0.20973029732704163
-Epoche: 4; regular: 0.20973029732704163: flops 68862592
-#Filters: 884, #FLOPs: 49.20M | Top-1: 44.03
+Train | Batch (101/196) | Top-1: 70.16 (18140/25856)
+Train | Batch (196/196) | Top-1: 70.56 (35281/50000)
+Regular: 0.12153097987174988
+Epoche: 4; regular: 0.12153097987174988: flops 17326400
+#Filters: 525, #FLOPs: 14.71M | Top-1: 48.73
 Epoch 5
-Train | Batch (1/196) | Top-1: 70.31 (180/256)
-Train | Batch (101/196) | Top-1: 74.81 (19342/25856)
-Train | Batch (196/196) | Top-1: 75.37 (37687/50000)
-Regular: 0.20803070068359375
-Epoche: 5; regular: 0.20803070068359375: flops 68862592
-#Filters: 871, #FLOPs: 48.16M | Top-1: 46.87
+Train | Batch (1/196) | Top-1: 73.05 (187/256)
+Train | Batch (101/196) | Top-1: 72.21 (18670/25856)
+Train | Batch (196/196) | Top-1: 72.34 (36172/50000)
+Regular: 0.11615097522735596
+Epoche: 5; regular: 0.11615097522735596: flops 17326400
+#Filters: 518, #FLOPs: 14.51M | Top-1: 59.82
 Epoch 6
-Train | Batch (1/196) | Top-1: 67.19 (172/256)
-Train | Batch (101/196) | Top-1: 75.85 (19611/25856)
-Train | Batch (196/196) | Top-1: 76.08 (38039/50000)
-Regular: 0.20636983215808868
-Epoche: 6; regular: 0.20636983215808868: flops 68862592
-#Filters: 860, #FLOPs: 47.70M | Top-1: 43.13
+Train | Batch (1/196) | Top-1: 77.34 (198/256)
+Train | Batch (101/196) | Top-1: 73.30 (18953/25856)
+Train | Batch (196/196) | Top-1: 73.67 (36833/50000)
+Regular: 0.11433395743370056
+Epoche: 6; regular: 0.11433395743370056: flops 17326400
+#Filters: 522, #FLOPs: 14.87M | Top-1: 42.82
 Epoch 7
+Train | Batch (1/196) | Top-1: 71.09 (182/256)
+Train | Batch (101/196) | Top-1: 74.95 (19380/25856)
+Train | Batch (196/196) | Top-1: 74.71 (37357/50000)
+Regular: 0.1138685792684555
+Epoche: 7; regular: 0.1138685792684555: flops 17326400
+#Filters: 519, #FLOPs: 14.64M | Top-1: 52.05
+Epoch 8
 Train | Batch (1/196) | Top-1: 72.27 (185/256)
-Train | Batch (101/196) | Top-1: 77.11 (19937/25856)
-Train | Batch (196/196) | Top-1: 77.36 (38680/50000)
-Regular: 0.2083059847354889
-Epoche: 7; regular: 0.2083059847354889: flops 68862592
-#Filters: 852, #FLOPs: 48.00M | Top-1: 45.55
-Epoch 8
-Train | Batch (1/196) | Top-1: 77.34 (198/256)
-Train | Batch (101/196) | Top-1: 78.00 (20168/25856)
-Train | Batch (196/196) | Top-1: 77.98 (38991/50000)
-Regular: 0.20577150583267212
-Epoche: 8; regular: 0.20577150583267212: flops 68862592
-#Filters: 847, #FLOPs: 47.20M | Top-1: 51.30
+Train | Batch (101/196) | Top-1: 75.34 (19481/25856)
+Train | Batch (196/196) | Top-1: 75.28 (37638/50000)
+Regular: 0.11264742910861969
+Epoche: 8; regular: 0.11264742910861969: flops 17326400
+#Filters: 513, #FLOPs: 14.38M | Top-1: 60.00
 Epoch 9
-Train | Batch (1/196) | Top-1: 79.30 (203/256)
-Train | Batch (101/196) | Top-1: 78.36 (20260/25856)
-Train | Batch (196/196) | Top-1: 78.41 (39203/50000)
-Regular: 0.20436985790729523
-Epoche: 9; regular: 0.20436985790729523: flops 68862592
-#Filters: 835, #FLOPs: 46.39M | Top-1: 54.05
+Train | Batch (1/196) | Top-1: 74.22 (190/256)
+Train | Batch (101/196) | Top-1: 75.84 (19610/25856)
+Train | Batch (196/196) | Top-1: 75.99 (37996/50000)
+Regular: 0.11206533759832382
+Epoche: 9; regular: 0.11206533759832382: flops 17326400
+#Filters: 510, #FLOPs: 14.19M | Top-1: 61.09
 Epoch 10
-Train | Batch (1/196) | Top-1: 75.00 (192/256)
-Train | Batch (101/196) | Top-1: 78.51 (20299/25856)
-Train | Batch (196/196) | Top-1: 78.87 (39435/50000)
-Regular: 0.20554746687412262
-Epoche: 10; regular: 0.20554746687412262: flops 68862592
-#Filters: 817, #FLOPs: 45.21M | Top-1: 59.97
-Epoch 11
-Train | Batch (1/196) | Top-1: 76.95 (197/256)
-Train | Batch (101/196) | Top-1: 79.36 (20519/25856)
-Train | Batch (196/196) | Top-1: 79.45 (39724/50000)
-Regular: 0.20499910414218903
-Epoche: 11; regular: 0.20499910414218903: flops 68862592
-#Filters: 823, #FLOPs: 45.58M | Top-1: 62.64
-Epoch 12
-Train | Batch (1/196) | Top-1: 77.73 (199/256)
-Train | Batch (101/196) | Top-1: 79.63 (20589/25856)
-Train | Batch (196/196) | Top-1: 79.73 (39864/50000)
-Regular: 0.20709890127182007
-Epoche: 12; regular: 0.20709890127182007: flops 68862592
-#Filters: 822, #FLOPs: 45.99M | Top-1: 41.24
-Epoch 13
-Train | Batch (1/196) | Top-1: 78.52 (201/256)
-Train | Batch (101/196) | Top-1: 79.64 (20592/25856)
-Train | Batch (196/196) | Top-1: 79.75 (39874/50000)
-Regular: 0.2071359008550644
-Epoche: 13; regular: 0.2071359008550644: flops 68862592
-#Filters: 816, #FLOPs: 45.91M | Top-1: 41.00
-Epoch 14
-Train | Batch (1/196) | Top-1: 80.86 (207/256)
-Train | Batch (101/196) | Top-1: 80.44 (20799/25856)
-Train | Batch (196/196) | Top-1: 80.31 (40157/50000)
-Regular: 0.20276786386966705
-Epoche: 14; regular: 0.20276786386966705: flops 68862592
-#Filters: 804, #FLOPs: 45.36M | Top-1: 47.95
-Epoch 15
-Train | Batch (1/196) | Top-1: 78.12 (200/256)
-Train | Batch (101/196) | Top-1: 80.59 (20837/25856)
-Train | Batch (196/196) | Top-1: 80.62 (40310/50000)
-Regular: 0.20194034278392792
-Epoche: 15; regular: 0.20194034278392792: flops 68862592
-#Filters: 803, #FLOPs: 45.82M | Top-1: 50.76
-Epoch 16
-Train | Batch (1/196) | Top-1: 77.34 (198/256)
-Train | Batch (101/196) | Top-1: 80.67 (20859/25856)
-Train | Batch (196/196) | Top-1: 80.58 (40288/50000)
-Regular: 0.20148682594299316
-Epoche: 16; regular: 0.20148682594299316: flops 68862592
-#Filters: 799, #FLOPs: 45.47M | Top-1: 35.61
-Epoch 17
-Train | Batch (1/196) | Top-1: 81.25 (208/256)
-Train | Batch (101/196) | Top-1: 81.20 (20995/25856)
-Train | Batch (196/196) | Top-1: 80.84 (40421/50000)
-Regular: 0.19883283972740173
-Epoche: 17; regular: 0.19883283972740173: flops 68862592
-#Filters: 793, #FLOPs: 45.27M | Top-1: 61.68
-Epoch 18
-Train | Batch (1/196) | Top-1: 80.47 (206/256)
-Train | Batch (101/196) | Top-1: 80.90 (20918/25856)
-Train | Batch (196/196) | Top-1: 80.91 (40456/50000)
-Regular: 0.2042786180973053
-Epoche: 18; regular: 0.2042786180973053: flops 68862592
-#Filters: 789, #FLOPs: 44.77M | Top-1: 55.51
-Epoch 19
-Train | Batch (1/196) | Top-1: 77.73 (199/256)
-Train | Batch (101/196) | Top-1: 80.84 (20901/25856)
-Train | Batch (196/196) | Top-1: 81.06 (40532/50000)
-Regular: 0.19976270198822021
-Epoche: 19; regular: 0.19976270198822021: flops 68862592
-#Filters: 788, #FLOPs: 44.62M | Top-1: 47.76
-Epoch 20
-Train | Batch (1/196) | Top-1: 83.20 (213/256)
-Train | Batch (101/196) | Top-1: 81.70 (21124/25856)
-Train | Batch (196/196) | Top-1: 81.62 (40812/50000)
-Regular: 0.19980672001838684
-Epoche: 20; regular: 0.19980672001838684: flops 68862592
-#Filters: 790, #FLOPs: 45.25M | Top-1: 47.92
-Epoch 21
-Train | Batch (1/196) | Top-1: 80.86 (207/256)
-Train | Batch (101/196) | Top-1: 81.28 (21017/25856)
-Train | Batch (196/196) | Top-1: 81.47 (40733/50000)
-Regular: 0.20044034719467163
-Epoche: 21; regular: 0.20044034719467163: flops 68862592
-#Filters: 784, #FLOPs: 44.72M | Top-1: 67.76
-Epoch 22
-Train | Batch (1/196) | Top-1: 80.86 (207/256)
-Train | Batch (101/196) | Top-1: 81.59 (21096/25856)
-Train | Batch (196/196) | Top-1: 81.57 (40783/50000)
-Regular: 0.19877585768699646
-Epoche: 22; regular: 0.19877585768699646: flops 68862592
-#Filters: 791, #FLOPs: 45.29M | Top-1: 41.66
-Epoch 23
-Train | Batch (1/196) | Top-1: 75.78 (194/256)
-Train | Batch (101/196) | Top-1: 81.95 (21189/25856)
-Train | Batch (196/196) | Top-1: 81.73 (40867/50000)
-Regular: 0.2006009966135025
-Epoche: 23; regular: 0.2006009966135025: flops 68862592
-#Filters: 784, #FLOPs: 44.88M | Top-1: 53.19
-Epoch 24
-Train | Batch (1/196) | Top-1: 82.42 (211/256)
-Train | Batch (101/196) | Top-1: 81.61 (21101/25856)
-Train | Batch (196/196) | Top-1: 81.68 (40840/50000)
-Regular: 0.1972484141588211
-Epoche: 24; regular: 0.1972484141588211: flops 68862592
-#Filters: 776, #FLOPs: 44.37M | Top-1: 63.20
-Epoch 25
-Train | Batch (1/196) | Top-1: 82.42 (211/256)
-Train | Batch (101/196) | Top-1: 81.70 (21124/25856)
-Train | Batch (196/196) | Top-1: 81.60 (40800/50000)
-Regular: 0.20157396793365479
-Epoche: 25; regular: 0.20157396793365479: flops 68862592
-#Filters: 772, #FLOPs: 44.11M | Top-1: 42.75
-Epoch 26
-Train | Batch (1/196) | Top-1: 80.47 (206/256)
-Train | Batch (101/196) | Top-1: 81.60 (21099/25856)
-Train | Batch (196/196) | Top-1: 81.81 (40907/50000)
-Regular: 0.1999196857213974
-Epoche: 26; regular: 0.1999196857213974: flops 68862592
-#Filters: 779, #FLOPs: 44.81M | Top-1: 70.56
-Epoch 27
-Train | Batch (1/196) | Top-1: 80.47 (206/256)
-Train | Batch (101/196) | Top-1: 81.94 (21187/25856)
-Train | Batch (196/196) | Top-1: 81.92 (40961/50000)
-Regular: 0.19982485473155975
-Epoche: 27; regular: 0.19982485473155975: flops 68862592
-#Filters: 774, #FLOPs: 44.70M | Top-1: 58.55
-Epoch 28
-Train | Batch (1/196) | Top-1: 82.03 (210/256)
-Train | Batch (101/196) | Top-1: 82.14 (21238/25856)
-Train | Batch (196/196) | Top-1: 81.97 (40984/50000)
-Regular: 0.19795635342597961
-Epoche: 28; regular: 0.19795635342597961: flops 68862592
-#Filters: 760, #FLOPs: 43.89M | Top-1: 35.73
-Epoch 29
-Train | Batch (1/196) | Top-1: 76.95 (197/256)
-Train | Batch (101/196) | Top-1: 81.97 (21193/25856)
-Train | Batch (196/196) | Top-1: 81.95 (40976/50000)
-Regular: 0.20307597517967224
-Epoche: 29; regular: 0.20307597517967224: flops 68862592
-#Filters: 772, #FLOPs: 44.62M | Top-1: 38.60
-Drin!!
-Layers that will be prunned: [(1, 14), (3, 12), (5, 15), (7, 15), (9, 15), (11, 2), (13, 29), (15, 30), (17, 27), (19, 29), (21, 3), (23, 28), (25, 44), (27, 43), (29, 25)]
-Prunning filters..
-Layer index: 1; Pruned filters: 3
-Layer index: 1; Pruned filters: 1
-Layer index: 1; Pruned filters: 10
-Layer index: 3; Pruned filters: 1
-Layer index: 3; Pruned filters: 1
-Layer index: 3; Pruned filters: 2
-Layer index: 3; Pruned filters: 6
-Layer index: 3; Pruned filters: 2
-Layer index: 5; Pruned filters: 11
-Layer index: 5; Pruned filters: 4
-Layer index: 7; Pruned filters: 11
-Layer index: 7; Pruned filters: 4
-Layer index: 9; Pruned filters: 8
-Layer index: 9; Pruned filters: 7
-Layer index: 11; Pruned filters: 1
-Layer index: 11; Pruned filters: 1
-Layer index: 13; Pruned filters: 10
-Layer index: 13; Pruned filters: 2
-Layer index: 13; Pruned filters: 7
-Layer index: 13; Pruned filters: 10
-Layer index: 15; Pruned filters: 23
-Layer index: 15; Pruned filters: 5
-Layer index: 15; Pruned filters: 2
-Layer index: 17; Pruned filters: 2
-Layer index: 17; Pruned filters: 1
-Layer index: 17; Pruned filters: 4
-Layer index: 17; Pruned filters: 14
-Layer index: 17; Pruned filters: 1
-Layer index: 17; Pruned filters: 5
-Layer index: 19; Pruned filters: 3
-Layer index: 19; Pruned filters: 16
-Layer index: 19; Pruned filters: 10
-Layer index: 21; Pruned filters: 1
-Layer index: 21; Pruned filters: 1
-Layer index: 21; Pruned filters: 1
-Layer index: 23; Pruned filters: 3
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 7
-Layer index: 23; Pruned filters: 2
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 3
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 1
-Layer index: 25; Pruned filters: 1
-Layer index: 25; Pruned filters: 1
-Layer index: 25; Pruned filters: 5
-Layer index: 25; Pruned filters: 9
-Layer index: 25; Pruned filters: 1
-Layer index: 25; Pruned filters: 3
-Layer index: 25; Pruned filters: 2
-Layer index: 25; Pruned filters: 5
-Layer index: 25; Pruned filters: 1
-Layer index: 25; Pruned filters: 4
-Layer index: 25; Pruned filters: 6
-Layer index: 25; Pruned filters: 5
-Layer index: 25; Pruned filters: 1
-Layer index: 27; Pruned filters: 5
-Layer index: 27; Pruned filters: 1
-Layer index: 27; Pruned filters: 7
-Layer index: 27; Pruned filters: 3
-Layer index: 27; Pruned filters: 2
-Layer index: 27; Pruned filters: 9
-Layer index: 27; Pruned filters: 1
-Layer index: 27; Pruned filters: 1
-Layer index: 27; Pruned filters: 10
-Layer index: 27; Pruned filters: 1
-Layer index: 27; Pruned filters: 1
-Layer index: 27; Pruned filters: 2
-Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 2
-Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 2
-Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 2
-Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 2
-Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 2
-Layer index: 29; Pruned filters: 3
-Target (flops): 68.863M
-After Pruning | FLOPs: 20.257M | #Params: 0.210M
-1.853091990831555
-After Growth | FLOPs: 69.570M | #Params: 0.724M
-I: 1
-flops: 69570470
-Before Pruning | FLOPs: 69.570M | #Params: 0.724M
-Epoch 0
-Train | Batch (1/196) | Top-1: 81.25 (208/256)
-Train | Batch (101/196) | Top-1: 82.24 (21265/25856)
-Train | Batch (196/196) | Top-1: 82.03 (41017/50000)
-Regular: 1.1315863132476807
-Epoche: 0; regular: 1.1315863132476807: flops 69570470
-#Filters: 1421, #FLOPs: 64.33M | Top-1: 43.65
-Epoch 1
-Train | Batch (1/196) | Top-1: 83.20 (213/256)
-Train | Batch (101/196) | Top-1: 81.79 (21148/25856)
-Train | Batch (196/196) | Top-1: 81.54 (40771/50000)
-Regular: 0.5698237419128418
-Epoche: 1; regular: 0.5698237419128418: flops 69570470
-#Filters: 1288, #FLOPs: 54.69M | Top-1: 44.47
-Epoch 2
-Train | Batch (1/196) | Top-1: 79.69 (204/256)
-Train | Batch (101/196) | Top-1: 81.93 (21184/25856)
-Train | Batch (196/196) | Top-1: 81.55 (40776/50000)
-Regular: 0.33530741930007935
-Epoche: 2; regular: 0.33530741930007935: flops 69570470
-#Filters: 1236, #FLOPs: 53.40M | Top-1: 49.16
-Epoch 3
-Train | Batch (1/196) | Top-1: 77.73 (199/256)
-Train | Batch (101/196) | Top-1: 81.67 (21116/25856)
-Train | Batch (196/196) | Top-1: 81.61 (40806/50000)
-Regular: 0.2611149847507477
-Epoche: 3; regular: 0.2611149847507477: flops 69570470
-#Filters: 1229, #FLOPs: 52.47M | Top-1: 34.31
-Epoch 4
-Train | Batch (1/196) | Top-1: 80.08 (205/256)
-Train | Batch (101/196) | Top-1: 82.09 (21224/25856)
-Train | Batch (196/196) | Top-1: 81.95 (40973/50000)
-Regular: 0.22693587839603424
-Epoche: 4; regular: 0.22693587839603424: flops 69570470
-#Filters: 947, #FLOPs: 41.67M | Top-1: 58.71
-Epoch 5
-Train | Batch (1/196) | Top-1: 78.52 (201/256)
-Train | Batch (101/196) | Top-1: 81.70 (21125/25856)
-Train | Batch (196/196) | Top-1: 81.68 (40838/50000)
-Regular: 0.21311011910438538
-Epoche: 5; regular: 0.21311011910438538: flops 69570470
-#Filters: 948, #FLOPs: 41.53M | Top-1: 56.49
-Epoch 6
-Train | Batch (1/196) | Top-1: 81.25 (208/256)
-Train | Batch (101/196) | Top-1: 82.04 (21213/25856)
-Train | Batch (196/196) | Top-1: 81.94 (40968/50000)
-Regular: 0.20908235013484955
-Epoche: 6; regular: 0.20908235013484955: flops 69570470
-#Filters: 947, #FLOPs: 42.15M | Top-1: 72.49
-Epoch 7
-Train | Batch (1/196) | Top-1: 82.81 (212/256)
-Train | Batch (101/196) | Top-1: 82.15 (21241/25856)
-Train | Batch (196/196) | Top-1: 81.93 (40965/50000)
-Regular: 0.2168830931186676
-Epoche: 7; regular: 0.2168830931186676: flops 69570470
-#Filters: 946, #FLOPs: 41.66M | Top-1: 63.65
-Epoch 8
-Train | Batch (1/196) | Top-1: 87.11 (223/256)
-Train | Batch (101/196) | Top-1: 82.19 (21251/25856)
-Train | Batch (196/196) | Top-1: 82.06 (41030/50000)
-Regular: 0.20569933950901031
-Epoche: 8; regular: 0.20569933950901031: flops 69570470
-#Filters: 946, #FLOPs: 41.22M | Top-1: 37.62
-Epoch 9
-Train | Batch (1/196) | Top-1: 78.52 (201/256)
-Train | Batch (101/196) | Top-1: 82.16 (21244/25856)
-Train | Batch (196/196) | Top-1: 82.16 (41080/50000)
-Regular: 0.22242698073387146
-Epoche: 9; regular: 0.22242698073387146: flops 69570470
-#Filters: 943, #FLOPs: 41.15M | Top-1: 32.74
-Epoch 10
-Train | Batch (1/196) | Top-1: 82.03 (210/256)
-Train | Batch (101/196) | Top-1: 81.92 (21180/25856)
-Train | Batch (196/196) | Top-1: 82.20 (41101/50000)
-Regular: 0.22277967631816864
-Epoche: 10; regular: 0.22277967631816864: flops 69570470
-#Filters: 947, #FLOPs: 41.80M | Top-1: 42.61
-Epoch 11
 Train | Batch (1/196) | Top-1: 76.17 (195/256)
-Train | Batch (101/196) | Top-1: 82.08 (21222/25856)
-Train | Batch (196/196) | Top-1: 81.96 (40979/50000)
-Regular: 0.2081373631954193
-Epoche: 11; regular: 0.2081373631954193: flops 69570470
-#Filters: 947, #FLOPs: 41.87M | Top-1: 42.94
+Train | Batch (101/196) | Top-1: 76.39 (19751/25856)
+Train | Batch (196/196) | Top-1: 76.38 (38192/50000)
+Regular: 0.11222794651985168
+Epoche: 10; regular: 0.11222794651985168: flops 17326400
+#Filters: 513, #FLOPs: 14.49M | Top-1: 71.41
+Epoch 11
+Train | Batch (1/196) | Top-1: 79.69 (204/256)
+Train | Batch (101/196) | Top-1: 77.10 (19935/25856)
+Train | Batch (196/196) | Top-1: 77.01 (38503/50000)
+Regular: 0.11198706179857254
+Epoche: 11; regular: 0.11198706179857254: flops 17326400
+#Filters: 509, #FLOPs: 14.08M | Top-1: 57.49
 Epoch 12
-Train | Batch (1/196) | Top-1: 83.98 (215/256)
-Train | Batch (101/196) | Top-1: 82.07 (21220/25856)
-Train | Batch (196/196) | Top-1: 81.86 (40928/50000)
-Regular: 0.21108339726924896
-Epoche: 12; regular: 0.21108339726924896: flops 69570470
-#Filters: 944, #FLOPs: 41.87M | Top-1: 47.09
+Train | Batch (1/196) | Top-1: 75.78 (194/256)
+Train | Batch (101/196) | Top-1: 77.56 (20054/25856)
+Train | Batch (196/196) | Top-1: 77.40 (38701/50000)
+Regular: 0.11157771199941635
+Epoche: 12; regular: 0.11157771199941635: flops 17326400
+#Filters: 504, #FLOPs: 14.01M | Top-1: 65.64
 Epoch 13
-Train | Batch (1/196) | Top-1: 80.86 (207/256)
-Train | Batch (101/196) | Top-1: 82.66 (21372/25856)
-Train | Batch (196/196) | Top-1: 82.43 (41213/50000)
-Regular: 0.2070188969373703
-Epoche: 13; regular: 0.2070188969373703: flops 69570470
-#Filters: 940, #FLOPs: 41.60M | Top-1: 23.81
+Train | Batch (1/196) | Top-1: 81.64 (209/256)
+Train | Batch (101/196) | Top-1: 77.70 (20089/25856)
+Train | Batch (196/196) | Top-1: 77.72 (38858/50000)
+Regular: 0.11221002042293549
+Epoche: 13; regular: 0.11221002042293549: flops 17326400
+#Filters: 502, #FLOPs: 13.79M | Top-1: 64.58
 Epoch 14
-Train | Batch (1/196) | Top-1: 80.47 (206/256)
-Train | Batch (101/196) | Top-1: 82.44 (21315/25856)
-Train | Batch (196/196) | Top-1: 82.22 (41110/50000)
-Regular: 0.20283445715904236
-Epoche: 14; regular: 0.20283445715904236: flops 69570470
-#Filters: 941, #FLOPs: 41.70M | Top-1: 59.77
+Train | Batch (1/196) | Top-1: 68.75 (176/256)
+Train | Batch (101/196) | Top-1: 78.06 (20184/25856)
+Train | Batch (196/196) | Top-1: 78.08 (39038/50000)
+Regular: 0.1129310205578804
+Epoche: 14; regular: 0.1129310205578804: flops 17326400
+#Filters: 506, #FLOPs: 14.06M | Top-1: 58.64
 Epoch 15
-Train | Batch (1/196) | Top-1: 83.98 (215/256)
-Train | Batch (101/196) | Top-1: 81.99 (21199/25856)
-Train | Batch (196/196) | Top-1: 81.99 (40996/50000)
-Regular: 0.20301079750061035
-Epoche: 15; regular: 0.20301079750061035: flops 69570470
-#Filters: 935, #FLOPs: 41.12M | Top-1: 35.49
+Train | Batch (1/196) | Top-1: 79.30 (203/256)
+Train | Batch (101/196) | Top-1: 78.51 (20300/25856)
+Train | Batch (196/196) | Top-1: 78.36 (39181/50000)
+Regular: 0.11214421689510345
+Epoche: 15; regular: 0.11214421689510345: flops 17326400
+#Filters: 502, #FLOPs: 13.75M | Top-1: 59.26
 Epoch 16
-Train | Batch (1/196) | Top-1: 80.08 (205/256)
-Train | Batch (101/196) | Top-1: 82.56 (21348/25856)
-Train | Batch (196/196) | Top-1: 82.17 (41087/50000)
-Regular: 0.20271135866641998
-Epoche: 16; regular: 0.20271135866641998: flops 69570470
-#Filters: 933, #FLOPs: 40.94M | Top-1: 48.39
+Train | Batch (1/196) | Top-1: 76.17 (195/256)
+Train | Batch (101/196) | Top-1: 78.83 (20382/25856)
+Train | Batch (196/196) | Top-1: 78.70 (39349/50000)
+Regular: 0.11172451078891754
+Epoche: 16; regular: 0.11172451078891754: flops 17326400
+#Filters: 503, #FLOPs: 13.84M | Top-1: 56.45
 Epoch 17
-Train | Batch (1/196) | Top-1: 82.42 (211/256)
-Train | Batch (101/196) | Top-1: 82.27 (21271/25856)
-Train | Batch (196/196) | Top-1: 82.24 (41119/50000)
-Regular: 0.203947976231575
-Epoche: 17; regular: 0.203947976231575: flops 69570470
-#Filters: 938, #FLOPs: 41.49M | Top-1: 68.60
+Train | Batch (1/196) | Top-1: 77.73 (199/256)
+Train | Batch (101/196) | Top-1: 78.43 (20278/25856)
+Train | Batch (196/196) | Top-1: 78.55 (39276/50000)
+Regular: 0.11290781199932098
+Epoche: 17; regular: 0.11290781199932098: flops 17326400
+#Filters: 505, #FLOPs: 13.97M | Top-1: 56.11
 Epoch 18
-Train | Batch (1/196) | Top-1: 80.86 (207/256)
-Train | Batch (101/196) | Top-1: 82.44 (21315/25856)
-Train | Batch (196/196) | Top-1: 82.26 (41132/50000)
-Regular: 0.20219942927360535
-Epoche: 18; regular: 0.20219942927360535: flops 69570470
-#Filters: 933, #FLOPs: 41.01M | Top-1: 65.56
+Train | Batch (1/196) | Top-1: 81.64 (209/256)
+Train | Batch (101/196) | Top-1: 78.82 (20379/25856)
+Train | Batch (196/196) | Top-1: 79.06 (39531/50000)
+Regular: 0.11168000847101212
+Epoche: 18; regular: 0.11168000847101212: flops 17326400
+#Filters: 502, #FLOPs: 13.81M | Top-1: 65.07
 Epoch 19
-Train | Batch (1/196) | Top-1: 80.86 (207/256)
-Train | Batch (101/196) | Top-1: 82.16 (21243/25856)
-Train | Batch (196/196) | Top-1: 82.36 (41178/50000)
-Regular: 0.20035405457019806
-Epoche: 19; regular: 0.20035405457019806: flops 69570470
-#Filters: 935, #FLOPs: 41.25M | Top-1: 62.23
+Train | Batch (1/196) | Top-1: 82.03 (210/256)
+Train | Batch (101/196) | Top-1: 79.03 (20435/25856)
+Train | Batch (196/196) | Top-1: 78.85 (39423/50000)
+Regular: 0.11215081810951233
+Epoche: 19; regular: 0.11215081810951233: flops 17326400
+#Filters: 495, #FLOPs: 13.47M | Top-1: 57.25
 Epoch 20
-Train | Batch (1/196) | Top-1: 86.33 (221/256)
-Train | Batch (101/196) | Top-1: 82.33 (21286/25856)
-Train | Batch (196/196) | Top-1: 82.44 (41221/50000)
-Regular: 0.20176659524440765
-Epoche: 20; regular: 0.20176659524440765: flops 69570470
-#Filters: 933, #FLOPs: 41.15M | Top-1: 44.76
+Train | Batch (1/196) | Top-1: 78.91 (202/256)
+Train | Batch (101/196) | Top-1: 79.22 (20482/25856)
+Train | Batch (196/196) | Top-1: 79.42 (39711/50000)
+Regular: 0.11218956857919693
+Epoche: 20; regular: 0.11218956857919693: flops 17326400
+#Filters: 498, #FLOPs: 13.68M | Top-1: 60.13
 Epoch 21
-Train | Batch (1/196) | Top-1: 82.42 (211/256)
-Train | Batch (101/196) | Top-1: 82.82 (21415/25856)
-Train | Batch (196/196) | Top-1: 82.64 (41322/50000)
-Regular: 0.20118892192840576
-Epoche: 21; regular: 0.20118892192840576: flops 69570470
-#Filters: 927, #FLOPs: 40.74M | Top-1: 43.19
+Train | Batch (1/196) | Top-1: 79.30 (203/256)
+Train | Batch (101/196) | Top-1: 79.43 (20537/25856)
+Train | Batch (196/196) | Top-1: 79.44 (39720/50000)
+Regular: 0.11255484074354172
+Epoche: 21; regular: 0.11255484074354172: flops 17326400
+#Filters: 495, #FLOPs: 13.49M | Top-1: 62.19
 Epoch 22
 Train | Batch (1/196) | Top-1: 75.00 (192/256)
-Train | Batch (101/196) | Top-1: 82.78 (21404/25856)
-Train | Batch (196/196) | Top-1: 82.60 (41302/50000)
-Regular: 0.2034137099981308
-Epoche: 22; regular: 0.2034137099981308: flops 69570470
-#Filters: 932, #FLOPs: 41.15M | Top-1: 57.54
+Train | Batch (101/196) | Top-1: 80.07 (20703/25856)
+Train | Batch (196/196) | Top-1: 79.69 (39843/50000)
+Regular: 0.11186475306749344
+Epoche: 22; regular: 0.11186475306749344: flops 17326400
+#Filters: 497, #FLOPs: 13.66M | Top-1: 61.14
 Epoch 23
-Train | Batch (1/196) | Top-1: 80.47 (206/256)
-Train | Batch (101/196) | Top-1: 82.80 (21410/25856)
-Train | Batch (196/196) | Top-1: 82.51 (41255/50000)
-Regular: 0.20904354751110077
-Epoche: 23; regular: 0.20904354751110077: flops 69570470
-#Filters: 927, #FLOPs: 41.29M | Top-1: 63.39
+Train | Batch (1/196) | Top-1: 76.17 (195/256)
+Train | Batch (101/196) | Top-1: 79.80 (20632/25856)
+Train | Batch (196/196) | Top-1: 79.61 (39805/50000)
+Regular: 0.11324203014373779
+Epoche: 23; regular: 0.11324203014373779: flops 17326400
+#Filters: 498, #FLOPs: 13.58M | Top-1: 58.71
 Epoch 24
 Train | Batch (1/196) | Top-1: 82.81 (212/256)
-Train | Batch (101/196) | Top-1: 82.67 (21376/25856)
-Train | Batch (196/196) | Top-1: 82.58 (41291/50000)
-Regular: 0.20733115077018738
-Epoche: 24; regular: 0.20733115077018738: flops 69570470
-#Filters: 931, #FLOPs: 41.56M | Top-1: 68.18
+Train | Batch (101/196) | Top-1: 79.52 (20561/25856)
+Train | Batch (196/196) | Top-1: 79.70 (39852/50000)
+Regular: 0.11198166757822037
+Epoche: 24; regular: 0.11198166757822037: flops 17326400
+#Filters: 500, #FLOPs: 13.70M | Top-1: 68.62
 Epoch 25
-Train | Batch (1/196) | Top-1: 80.47 (206/256)
-Train | Batch (101/196) | Top-1: 82.64 (21367/25856)
-Train | Batch (196/196) | Top-1: 82.48 (41238/50000)
-Regular: 0.20031408965587616
-Epoche: 25; regular: 0.20031408965587616: flops 69570470
-#Filters: 929, #FLOPs: 41.29M | Top-1: 60.81
+Train | Batch (1/196) | Top-1: 78.91 (202/256)
+Train | Batch (101/196) | Top-1: 80.18 (20731/25856)
+Train | Batch (196/196) | Top-1: 80.14 (40069/50000)
+Regular: 0.11073211580514908
+Epoche: 25; regular: 0.11073211580514908: flops 17326400
+#Filters: 493, #FLOPs: 13.47M | Top-1: 67.40
 Epoch 26
-Train | Batch (1/196) | Top-1: 77.73 (199/256)
-Train | Batch (101/196) | Top-1: 82.84 (21420/25856)
-Train | Batch (196/196) | Top-1: 82.69 (41346/50000)
-Regular: 0.20014387369155884
-Epoche: 26; regular: 0.20014387369155884: flops 69570470
-#Filters: 926, #FLOPs: 41.12M | Top-1: 61.35
+Train | Batch (1/196) | Top-1: 80.86 (207/256)
+Train | Batch (101/196) | Top-1: 79.88 (20655/25856)
+Train | Batch (196/196) | Top-1: 79.82 (39910/50000)
+Regular: 0.1099267527461052
+Epoche: 26; regular: 0.1099267527461052: flops 17326400
+#Filters: 488, #FLOPs: 13.31M | Top-1: 70.98
 Epoch 27
-Train | Batch (1/196) | Top-1: 78.12 (200/256)
-Train | Batch (101/196) | Top-1: 82.56 (21347/25856)
-Train | Batch (196/196) | Top-1: 82.65 (41325/50000)
-Regular: 0.2176748812198639
-Epoche: 27; regular: 0.2176748812198639: flops 69570470
-#Filters: 927, #FLOPs: 41.60M | Top-1: 73.28
+Train | Batch (1/196) | Top-1: 81.25 (208/256)
+Train | Batch (101/196) | Top-1: 79.88 (20655/25856)
+Train | Batch (196/196) | Top-1: 80.07 (40036/50000)
+Regular: 0.11272414773702621
+Epoche: 27; regular: 0.11272414773702621: flops 17326400
+#Filters: 487, #FLOPs: 13.27M | Top-1: 56.43
 Epoch 28
-Train | Batch (1/196) | Top-1: 83.20 (213/256)
-Train | Batch (101/196) | Top-1: 82.84 (21420/25856)
-Train | Batch (196/196) | Top-1: 82.83 (41416/50000)
-Regular: 0.19846363365650177
-Epoche: 28; regular: 0.19846363365650177: flops 69570470
-#Filters: 917, #FLOPs: 40.57M | Top-1: 48.01
+Train | Batch (1/196) | Top-1: 79.30 (203/256)
+Train | Batch (101/196) | Top-1: 80.19 (20733/25856)
+Train | Batch (196/196) | Top-1: 80.13 (40066/50000)
+Regular: 0.11616379767656326
+Epoche: 28; regular: 0.11616379767656326: flops 17326400
+#Filters: 488, #FLOPs: 13.33M | Top-1: 66.08
 Epoch 29
-Train | Batch (1/196) | Top-1: 85.16 (218/256)
-Train | Batch (101/196) | Top-1: 82.71 (21385/25856)
-Train | Batch (196/196) | Top-1: 82.66 (41331/50000)
-Regular: 0.20039762556552887
-Epoche: 29; regular: 0.20039762556552887: flops 69570470
-#Filters: 929, #FLOPs: 41.36M | Top-1: 51.80
+Train | Batch (1/196) | Top-1: 80.08 (205/256)
+Train | Batch (101/196) | Top-1: 80.58 (20834/25856)
+Train | Batch (196/196) | Top-1: 80.55 (40273/50000)
+Regular: 0.11420869082212448
+Epoche: 29; regular: 0.11420869082212448: flops 17326400
+#Filters: 488, #FLOPs: 13.35M | Top-1: 63.87
 Drin!!
-Layers that will be prunned: [(1, 3), (3, 4), (5, 1), (7, 1), (11, 30), (13, 4), (15, 2), (17, 8), (19, 4), (21, 52), (22, 55), (23, 37), (24, 55), (25, 24), (26, 55), (27, 26), (28, 55), (29, 45), (30, 55)]
+Layers that will be prunned: [(1, 7), (3, 7), (5, 6), (7, 7), (9, 7), (11, 2), (13, 10), (15, 13), (17, 12), (19, 1), (27, 4), (29, 2)]
 Prunning filters..
-Layer index: 22; Pruned filters: 55
-Layer index: 24; Pruned filters: 55
-Layer index: 26; Pruned filters: 55
-Layer index: 28; Pruned filters: 55
-Layer index: 30; Pruned filters: 55
+Layer index: 1; Pruned filters: 4
 Layer index: 1; Pruned filters: 3
-Layer index: 3; Pruned filters: 1
 Layer index: 3; Pruned filters: 3
-Layer index: 5; Pruned filters: 1
-Layer index: 7; Pruned filters: 1
+Layer index: 3; Pruned filters: 4
+Layer index: 5; Pruned filters: 3
+Layer index: 5; Pruned filters: 3
+Layer index: 7; Pruned filters: 4
+Layer index: 7; Pruned filters: 3
+Layer index: 9; Pruned filters: 4
+Layer index: 9; Pruned filters: 3
 Layer index: 11; Pruned filters: 1
 Layer index: 11; Pruned filters: 1
-Layer index: 11; Pruned filters: 1
-Layer index: 11; Pruned filters: 1
-Layer index: 11; Pruned filters: 26
-Layer index: 13; Pruned filters: 1
 Layer index: 13; Pruned filters: 3
-Layer index: 15; Pruned filters: 2
-Layer index: 17; Pruned filters: 4
-Layer index: 17; Pruned filters: 4
-Layer index: 19; Pruned filters: 4
-Layer index: 21; Pruned filters: 52
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 31
-Layer index: 25; Pruned filters: 1
-Layer index: 25; Pruned filters: 1
-Layer index: 25; Pruned filters: 1
-Layer index: 25; Pruned filters: 2
-Layer index: 25; Pruned filters: 1
-Layer index: 25; Pruned filters: 1
-Layer index: 25; Pruned filters: 17
-Layer index: 27; Pruned filters: 2
-Layer index: 27; Pruned filters: 2
-Layer index: 27; Pruned filters: 1
-Layer index: 27; Pruned filters: 1
-Layer index: 27; Pruned filters: 1
-Layer index: 27; Pruned filters: 1
-Layer index: 27; Pruned filters: 18
-Layer index: 29; Pruned filters: 2
-Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 2
-Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 2
-Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 33
-Target (flops): 68.863M
-After Pruning | FLOPs: 22.929M | #Params: 0.197M
-1.746550190916974
-After Growth | FLOPs: 68.108M | #Params: 0.598M
-I: 2
-flops: 68107936
-Before Pruning | FLOPs: 68.108M | #Params: 0.598M
-Epoch 0
-Train | Batch (1/196) | Top-1: 83.98 (215/256)
-Train | Batch (101/196) | Top-1: 82.75 (21397/25856)
-Train | Batch (196/196) | Top-1: 82.74 (41368/50000)
-Regular: 0.9244845509529114
-Epoche: 0; regular: 0.9244845509529114: flops 68107936
-#Filters: 1623, #FLOPs: 61.63M | Top-1: 72.53
-Epoch 1
-Train | Batch (1/196) | Top-1: 83.59 (214/256)
-Train | Batch (101/196) | Top-1: 82.93 (21442/25856)
-Train | Batch (196/196) | Top-1: 82.63 (41315/50000)
-Regular: 0.5170814990997314
-Epoche: 1; regular: 0.5170814990997314: flops 68107936
-#Filters: 1510, #FLOPs: 54.41M | Top-1: 45.68
-Epoch 2
-Train | Batch (1/196) | Top-1: 82.81 (212/256)
-Train | Batch (101/196) | Top-1: 82.53 (21338/25856)
-Train | Batch (196/196) | Top-1: 82.69 (41346/50000)
-Regular: 0.33420702815055847
-Epoche: 2; regular: 0.33420702815055847: flops 68107936
-#Filters: 1509, #FLOPs: 54.29M | Top-1: 46.16
-Epoch 3
-Train | Batch (1/196) | Top-1: 78.12 (200/256)
-Train | Batch (101/196) | Top-1: 82.85 (21421/25856)
-Train | Batch (196/196) | Top-1: 82.38 (41192/50000)
-Regular: 0.2837351858615875
-Epoche: 3; regular: 0.2837351858615875: flops 68107936
-#Filters: 1510, #FLOPs: 54.35M | Top-1: 33.21
-Epoch 4
-Train | Batch (1/196) | Top-1: 80.86 (207/256)
-Train | Batch (101/196) | Top-1: 82.21 (21257/25856)
-Train | Batch (196/196) | Top-1: 82.21 (41107/50000)
-Regular: 0.246679425239563
-Epoche: 4; regular: 0.246679425239563: flops 68107936
-#Filters: 1509, #FLOPs: 54.23M | Top-1: 46.58
-Epoch 5
-Train | Batch (1/196) | Top-1: 79.69 (204/256)
-Train | Batch (101/196) | Top-1: 82.32 (21285/25856)
-Train | Batch (196/196) | Top-1: 82.36 (41178/50000)
-Regular: 0.3355599343776703
-Epoche: 5; regular: 0.3355599343776703: flops 68107936
-#Filters: 1506, #FLOPs: 54.34M | Top-1: 26.76
-Epoch 6
-Train | Batch (1/196) | Top-1: 80.47 (206/256)
-Train | Batch (101/196) | Top-1: 83.11 (21488/25856)
-Train | Batch (196/196) | Top-1: 82.70 (41349/50000)
-Regular: 0.22663938999176025
-Epoche: 6; regular: 0.22663938999176025: flops 68107936
-#Filters: 1424, #FLOPs: 53.10M | Top-1: 67.70
-Epoch 7
-Train | Batch (1/196) | Top-1: 82.42 (211/256)
-Train | Batch (101/196) | Top-1: 82.45 (21319/25856)
-Train | Batch (196/196) | Top-1: 82.38 (41191/50000)
-Regular: 0.20487703382968903
-Epoche: 7; regular: 0.20487703382968903: flops 68107936
-#Filters: 1419, #FLOPs: 52.48M | Top-1: 21.87
-Epoch 8
-Train | Batch (1/196) | Top-1: 69.92 (179/256)
-Train | Batch (101/196) | Top-1: 82.23 (21261/25856)
-Train | Batch (196/196) | Top-1: 82.24 (41122/50000)
-Regular: 0.21495996415615082
-Epoche: 8; regular: 0.21495996415615082: flops 68107936
-#Filters: 1423, #FLOPs: 52.38M | Top-1: 46.78
-Epoch 9
-Train | Batch (1/196) | Top-1: 83.20 (213/256)
-Train | Batch (101/196) | Top-1: 82.86 (21423/25856)
-Train | Batch (196/196) | Top-1: 82.59 (41294/50000)
-Regular: 0.20906084775924683
-Epoche: 9; regular: 0.20906084775924683: flops 68107936
-#Filters: 1422, #FLOPs: 52.32M | Top-1: 42.40
-Epoch 10
-Train | Batch (1/196) | Top-1: 80.86 (207/256)
-Train | Batch (101/196) | Top-1: 82.41 (21307/25856)
-Train | Batch (196/196) | Top-1: 82.63 (41314/50000)
-Regular: 0.20663674175739288
-Epoche: 10; regular: 0.20663674175739288: flops 68107936
-#Filters: 1423, #FLOPs: 52.68M | Top-1: 40.59
-Epoch 11
-Train | Batch (1/196) | Top-1: 78.12 (200/256)
-Train | Batch (101/196) | Top-1: 83.12 (21492/25856)
-Train | Batch (196/196) | Top-1: 83.02 (41509/50000)
-Regular: 0.20266416668891907
-Epoche: 11; regular: 0.20266416668891907: flops 68107936
-#Filters: 1424, #FLOPs: 52.80M | Top-1: 57.61
-Epoch 12
-Train | Batch (1/196) | Top-1: 85.55 (219/256)
-Train | Batch (101/196) | Top-1: 82.54 (21341/25856)
-Train | Batch (196/196) | Top-1: 82.64 (41318/50000)
-Regular: 0.19686928391456604
-Epoche: 12; regular: 0.19686928391456604: flops 68107936
-#Filters: 1422, #FLOPs: 52.50M | Top-1: 67.44
-Epoch 13
-Train | Batch (1/196) | Top-1: 80.47 (206/256)
-Train | Batch (101/196) | Top-1: 82.62 (21361/25856)
-Train | Batch (196/196) | Top-1: 82.56 (41278/50000)
-Regular: 0.19608789682388306
-Epoche: 13; regular: 0.19608789682388306: flops 68107936
-#Filters: 1406, #FLOPs: 51.91M | Top-1: 39.95
-Epoch 14
-Train | Batch (1/196) | Top-1: 79.30 (203/256)
-Train | Batch (101/196) | Top-1: 83.28 (21533/25856)
-Train | Batch (196/196) | Top-1: 82.90 (41452/50000)
-Regular: 0.19494764506816864
-Epoche: 14; regular: 0.19494764506816864: flops 68107936
-#Filters: 1409, #FLOPs: 51.79M | Top-1: 44.85
-Epoch 15
-Train | Batch (1/196) | Top-1: 85.16 (218/256)
-Train | Batch (101/196) | Top-1: 82.78 (21404/25856)
-Train | Batch (196/196) | Top-1: 82.84 (41419/50000)
-Regular: 0.20465049147605896
-Epoche: 15; regular: 0.20465049147605896: flops 68107936
-#Filters: 1055, #FLOPs: 41.34M | Top-1: 46.15
-Epoch 16
-Train | Batch (1/196) | Top-1: 81.25 (208/256)
-Train | Batch (101/196) | Top-1: 82.80 (21409/25856)
-Train | Batch (196/196) | Top-1: 82.73 (41363/50000)
-Regular: 0.18882149457931519
-Epoche: 16; regular: 0.18882149457931519: flops 68107936
-#Filters: 1055, #FLOPs: 41.34M | Top-1: 67.32
-Epoch 17
-Train | Batch (1/196) | Top-1: 81.64 (209/256)
-Train | Batch (101/196) | Top-1: 82.73 (21391/25856)
-Train | Batch (196/196) | Top-1: 82.69 (41343/50000)
-Regular: 0.20279145240783691
-Epoche: 17; regular: 0.20279145240783691: flops 68107936
-#Filters: 1054, #FLOPs: 41.63M | Top-1: 36.33
-Epoch 18
-Train | Batch (1/196) | Top-1: 85.16 (218/256)
-Train | Batch (101/196) | Top-1: 82.36 (21296/25856)
-Train | Batch (196/196) | Top-1: 82.31 (41157/50000)
-Regular: 0.20868979394435883
-Epoche: 18; regular: 0.20868979394435883: flops 68107936
-#Filters: 1055, #FLOPs: 41.73M | Top-1: 22.46
-Epoch 19
-Train | Batch (1/196) | Top-1: 85.16 (218/256)
-Train | Batch (101/196) | Top-1: 82.86 (21425/25856)
-Train | Batch (196/196) | Top-1: 82.64 (41321/50000)
-Regular: 0.20010657608509064
-Epoche: 19; regular: 0.20010657608509064: flops 68107936
-#Filters: 1053, #FLOPs: 41.21M | Top-1: 64.31
-Epoch 20
-Train | Batch (1/196) | Top-1: 80.47 (206/256)
-Train | Batch (101/196) | Top-1: 82.52 (21336/25856)
-Train | Batch (196/196) | Top-1: 82.57 (41283/50000)
-Regular: 0.19081057608127594
-Epoche: 20; regular: 0.19081057608127594: flops 68107936
-#Filters: 1050, #FLOPs: 41.14M | Top-1: 58.11
-Epoch 21
-Train | Batch (1/196) | Top-1: 85.94 (220/256)
-Train | Batch (101/196) | Top-1: 82.64 (21367/25856)
-Train | Batch (196/196) | Top-1: 82.76 (41379/50000)
-Regular: 0.19891272485256195
-Epoche: 21; regular: 0.19891272485256195: flops 68107936
-#Filters: 1055, #FLOPs: 41.22M | Top-1: 57.38
-Epoch 22
-Train | Batch (1/196) | Top-1: 84.38 (216/256)
-Train | Batch (101/196) | Top-1: 83.14 (21497/25856)
-Train | Batch (196/196) | Top-1: 82.92 (41459/50000)
-Regular: 0.19376203417778015
-Epoche: 22; regular: 0.19376203417778015: flops 68107936
-#Filters: 1054, #FLOPs: 41.45M | Top-1: 57.81
-Epoch 23
-Train | Batch (1/196) | Top-1: 81.25 (208/256)
-Train | Batch (101/196) | Top-1: 83.11 (21488/25856)
-Train | Batch (196/196) | Top-1: 82.96 (41479/50000)
-Regular: 0.19460627436637878
-Epoche: 23; regular: 0.19460627436637878: flops 68107936
-#Filters: 1057, #FLOPs: 41.82M | Top-1: 64.79
-Epoch 24
-Train | Batch (1/196) | Top-1: 79.69 (204/256)
-Train | Batch (101/196) | Top-1: 82.48 (21327/25856)
-Train | Batch (196/196) | Top-1: 82.64 (41321/50000)
-Regular: 0.19944632053375244
-Epoche: 24; regular: 0.19944632053375244: flops 68107936
-#Filters: 1054, #FLOPs: 41.82M | Top-1: 43.62
-Epoch 25
-Train | Batch (1/196) | Top-1: 83.59 (214/256)
-Train | Batch (101/196) | Top-1: 83.03 (21467/25856)
-Train | Batch (196/196) | Top-1: 82.78 (41391/50000)
-Regular: 0.20550809800624847
-Epoche: 25; regular: 0.20550809800624847: flops 68107936
-#Filters: 1053, #FLOPs: 41.15M | Top-1: 47.50
-Epoch 26
-Train | Batch (1/196) | Top-1: 82.81 (212/256)
-Train | Batch (101/196) | Top-1: 82.94 (21444/25856)
-Train | Batch (196/196) | Top-1: 82.85 (41424/50000)
-Regular: 0.18986903131008148
-Epoche: 26; regular: 0.18986903131008148: flops 68107936
-#Filters: 1053, #FLOPs: 41.87M | Top-1: 55.31
-Epoch 27
-Train | Batch (1/196) | Top-1: 80.47 (206/256)
-Train | Batch (101/196) | Top-1: 82.81 (21412/25856)
-Train | Batch (196/196) | Top-1: 83.09 (41546/50000)
-Regular: 0.1981019824743271
-Epoche: 27; regular: 0.1981019824743271: flops 68107936
-#Filters: 1052, #FLOPs: 41.39M | Top-1: 63.84
-Epoch 28
-Train | Batch (1/196) | Top-1: 85.55 (219/256)
-Train | Batch (101/196) | Top-1: 83.05 (21474/25856)
-Train | Batch (196/196) | Top-1: 82.92 (41459/50000)
-Regular: 0.19543848931789398
-Epoche: 28; regular: 0.19543848931789398: flops 68107936
-#Filters: 1054, #FLOPs: 41.57M | Top-1: 55.45
-Epoch 29
-Train | Batch (1/196) | Top-1: 78.12 (200/256)
-Train | Batch (101/196) | Top-1: 83.08 (21482/25856)
-Train | Batch (196/196) | Top-1: 82.99 (41497/50000)
-Regular: 0.19389916956424713
-Epoche: 29; regular: 0.19389916956424713: flops 68107936
-#Filters: 1056, #FLOPs: 41.70M | Top-1: 50.47
-Drin!!
-Layers that will be prunned: [(1, 1), (3, 3), (5, 1), (7, 1), (9, 1), (11, 21), (12, 40), (13, 1), (14, 40), (15, 1), (16, 40), (18, 40), (19, 1), (20, 40), (21, 49), (22, 49), (23, 26), (24, 49), (25, 10), (26, 49), (27, 12), (28, 49), (29, 24), (30, 49)]
-Prunning filters..
-Layer index: 12; Pruned filters: 1
-Layer index: 12; Pruned filters: 39
-Layer index: 14; Pruned filters: 1
-Layer index: 14; Pruned filters: 39
-Layer index: 16; Pruned filters: 1
-Layer index: 16; Pruned filters: 39
-Layer index: 18; Pruned filters: 1
-Layer index: 18; Pruned filters: 39
-Layer index: 20; Pruned filters: 1
-Layer index: 20; Pruned filters: 39
-Layer index: 22; Pruned filters: 1
-Layer index: 22; Pruned filters: 48
-Layer index: 24; Pruned filters: 1
-Layer index: 24; Pruned filters: 48
-Layer index: 26; Pruned filters: 1
-Layer index: 26; Pruned filters: 48
-Layer index: 28; Pruned filters: 1
-Layer index: 28; Pruned filters: 48
-Layer index: 30; Pruned filters: 1
-Layer index: 30; Pruned filters: 48
-Layer index: 1; Pruned filters: 1
-Layer index: 3; Pruned filters: 1
-Layer index: 3; Pruned filters: 2
-Layer index: 5; Pruned filters: 1
-Layer index: 7; Pruned filters: 1
-Layer index: 9; Pruned filters: 1
-Layer index: 11; Pruned filters: 1
-Layer index: 11; Pruned filters: 1
-Layer index: 11; Pruned filters: 19
+Layer index: 13; Pruned filters: 3
 Layer index: 13; Pruned filters: 1
+Layer index: 13; Pruned filters: 1
+Layer index: 13; Pruned filters: 2
 Layer index: 15; Pruned filters: 1
+Layer index: 15; Pruned filters: 8
+Layer index: 15; Pruned filters: 4
+Layer index: 17; Pruned filters: 3
+Layer index: 17; Pruned filters: 3
+Layer index: 17; Pruned filters: 2
+Layer index: 17; Pruned filters: 3
+Layer index: 17; Pruned filters: 1
 Layer index: 19; Pruned filters: 1
-Layer index: 21; Pruned filters: 1
-Layer index: 21; Pruned filters: 1
-Layer index: 21; Pruned filters: 1
-Layer index: 21; Pruned filters: 46
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 22
-Layer index: 25; Pruned filters: 10
 Layer index: 27; Pruned filters: 1
+Layer index: 27; Pruned filters: 2
 Layer index: 27; Pruned filters: 1
-Layer index: 27; Pruned filters: 10
-Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 1
 Layer index: 29; Pruned filters: 2
-Layer index: 29; Pruned filters: 20
-Target (flops): 68.863M
-After Pruning | FLOPs: 26.337M | #Params: 0.191M
-1.634426642624907
-After Growth | FLOPs: 69.133M | #Params: 0.507M
-I: 3
-flops: 69132550
-Before Pruning | FLOPs: 69.133M | #Params: 0.507M
+Target (flops): 69.306M
+After Pruning | FLOPs: 9.327M | #Params: 0.097M
+2.7467539584359013
+After Growth | FLOPs: 69.342M | #Params: 0.726M
+I: 1
+flops: 69342064
+Before Pruning | FLOPs: 69.342M | #Params: 0.726M
 Epoch 0
-Train | Batch (1/196) | Top-1: 85.16 (218/256)
-Train | Batch (101/196) | Top-1: 83.18 (21506/25856)
-Train | Batch (196/196) | Top-1: 82.85 (41423/50000)
-Regular: 0.8335119485855103
-Epoche: 0; regular: 0.8335119485855103: flops 69132550
-#Filters: 1734, #FLOPs: 61.15M | Top-1: 48.59
+Train | Batch (1/196) | Top-1: 82.42 (211/256)
+Train | Batch (101/196) | Top-1: 80.54 (20824/25856)
+Train | Batch (196/196) | Top-1: 80.13 (40066/50000)
+Regular: 1.5138561725616455
+Epoche: 0; regular: 1.5138561725616455: flops 69342064
+#Filters: 1325, #FLOPs: 66.81M | Top-1: 61.71
 Epoch 1
-Train | Batch (1/196) | Top-1: 83.20 (213/256)
-Train | Batch (101/196) | Top-1: 82.91 (21438/25856)
-Train | Batch (196/196) | Top-1: 82.71 (41357/50000)
-Regular: 0.50409334897995
-Epoche: 1; regular: 0.50409334897995: flops 69132550
-#Filters: 1644, #FLOPs: 55.40M | Top-1: 10.63
+Train | Batch (1/196) | Top-1: 82.81 (212/256)
+Train | Batch (101/196) | Top-1: 79.22 (20484/25856)
+Train | Batch (196/196) | Top-1: 78.98 (39488/50000)
+Regular: 0.6992611885070801
+Epoche: 1; regular: 0.6992611885070801: flops 69342064
+#Filters: 1244, #FLOPs: 60.47M | Top-1: 61.65
 Epoch 2
-Train | Batch (1/196) | Top-1: 77.34 (198/256)
-Train | Batch (101/196) | Top-1: 82.90 (21434/25856)
-Train | Batch (196/196) | Top-1: 82.61 (41305/50000)
-Regular: 0.4260607361793518
-Epoche: 2; regular: 0.4260607361793518: flops 69132550
-#Filters: 1646, #FLOPs: 55.52M | Top-1: 18.52
+Train | Batch (1/196) | Top-1: 75.78 (194/256)
+Train | Batch (101/196) | Top-1: 79.42 (20534/25856)
+Train | Batch (196/196) | Top-1: 79.05 (39527/50000)
+Regular: 0.2921568751335144
+Epoche: 2; regular: 0.2921568751335144: flops 69342064
+#Filters: 976, #FLOPs: 47.65M | Top-1: 62.47
 Epoch 3
-Train | Batch (1/196) | Top-1: 83.98 (215/256)
-Train | Batch (101/196) | Top-1: 82.55 (21345/25856)
-Train | Batch (196/196) | Top-1: 82.50 (41248/50000)
-Regular: 0.36385461688041687
-Epoche: 3; regular: 0.36385461688041687: flops 69132550
-#Filters: 1645, #FLOPs: 55.01M | Top-1: 63.13
+Train | Batch (1/196) | Top-1: 79.30 (203/256)
+Train | Batch (101/196) | Top-1: 78.76 (20363/25856)
+Train | Batch (196/196) | Top-1: 78.97 (39483/50000)
+Regular: 0.2151648849248886
+Epoche: 3; regular: 0.2151648849248886: flops 69342064
+#Filters: 975, #FLOPs: 47.55M | Top-1: 61.52
 Epoch 4
-Train | Batch (1/196) | Top-1: 81.25 (208/256)
-Train | Batch (101/196) | Top-1: 82.07 (21219/25856)
-Train | Batch (196/196) | Top-1: 82.09 (41043/50000)
-Regular: 0.24927271902561188
-Epoche: 4; regular: 0.24927271902561188: flops 69132550
-#Filters: 1642, #FLOPs: 54.70M | Top-1: 21.07
+Train | Batch (1/196) | Top-1: 75.39 (193/256)
+Train | Batch (101/196) | Top-1: 78.69 (20347/25856)
+Train | Batch (196/196) | Top-1: 78.92 (39459/50000)
+Regular: 0.19151845574378967
+Epoche: 4; regular: 0.19151845574378967: flops 69342064
+#Filters: 632, #FLOPs: 30.70M | Top-1: 38.83
 Epoch 5
-Train | Batch (1/196) | Top-1: 71.88 (184/256)
-Train | Batch (101/196) | Top-1: 80.94 (20929/25856)
-Train | Batch (196/196) | Top-1: 81.23 (40616/50000)
-Regular: 0.2635654807090759
-Epoche: 5; regular: 0.2635654807090759: flops 69132550
-#Filters: 1640, #FLOPs: 55.28M | Top-1: 31.56
-Epoch 6
-Train | Batch (1/196) | Top-1: 75.00 (192/256)
-Train | Batch (101/196) | Top-1: 82.22 (21258/25856)
-Train | Batch (196/196) | Top-1: 82.31 (41155/50000)
-Regular: 0.5778852701187134
-Epoche: 6; regular: 0.5778852701187134: flops 69132550
-#Filters: 1645, #FLOPs: 54.74M | Top-1: 39.82
-Epoch 7
-Train | Batch (1/196) | Top-1: 79.69 (204/256)
-Train | Batch (101/196) | Top-1: 82.48 (21327/25856)
-Train | Batch (196/196) | Top-1: 82.47 (41237/50000)
-Regular: 0.3240855932235718
-Epoche: 7; regular: 0.3240855932235718: flops 69132550
-#Filters: 1603, #FLOPs: 55.32M | Top-1: 43.55
-Epoch 8
-Train | Batch (1/196) | Top-1: 78.52 (201/256)
-Train | Batch (101/196) | Top-1: 82.20 (21253/25856)
-Train | Batch (196/196) | Top-1: 82.42 (41208/50000)
-Regular: 0.26752397418022156
-Epoche: 8; regular: 0.26752397418022156: flops 69132550
-#Filters: 1599, #FLOPs: 55.09M | Top-1: 66.53
-Epoch 9
-Train | Batch (1/196) | Top-1: 81.64 (209/256)
-Train | Batch (101/196) | Top-1: 82.44 (21315/25856)
-Train | Batch (196/196) | Top-1: 82.49 (41245/50000)
-Regular: 0.34243160486221313
-Epoche: 9; regular: 0.34243160486221313: flops 69132550
-#Filters: 1603, #FLOPs: 54.48M | Top-1: 59.73
-Epoch 10
-Train | Batch (1/196) | Top-1: 85.55 (219/256)
-Train | Batch (101/196) | Top-1: 82.56 (21346/25856)
-Train | Batch (196/196) | Top-1: 82.44 (41221/50000)
-Regular: 0.30831262469291687
-Epoche: 10; regular: 0.30831262469291687: flops 69132550
-#Filters: 1603, #FLOPs: 55.46M | Top-1: 53.74
-Epoch 11
-Train | Batch (1/196) | Top-1: 78.12 (200/256)
-Train | Batch (101/196) | Top-1: 82.55 (21345/25856)
-Train | Batch (196/196) | Top-1: 82.64 (41318/50000)
-Regular: 0.22731482982635498
-Epoche: 11; regular: 0.22731482982635498: flops 69132550
-#Filters: 1606, #FLOPs: 56.56M | Top-1: 52.94
-Epoch 12
-Train | Batch (1/196) | Top-1: 82.81 (212/256)
-Train | Batch (101/196) | Top-1: 82.50 (21331/25856)
-Train | Batch (196/196) | Top-1: 82.53 (41264/50000)
-Regular: 0.19930636882781982
-Epoche: 12; regular: 0.19930636882781982: flops 69132550
-#Filters: 1600, #FLOPs: 55.93M | Top-1: 53.87
-Epoch 13
-Train | Batch (1/196) | Top-1: 78.12 (200/256)
-Train | Batch (101/196) | Top-1: 82.67 (21375/25856)
-Train | Batch (196/196) | Top-1: 82.75 (41374/50000)
-Regular: 0.18797722458839417
-Epoche: 13; regular: 0.18797722458839417: flops 69132550
-#Filters: 1604, #FLOPs: 55.58M | Top-1: 65.42
-Epoch 14
-Train | Batch (1/196) | Top-1: 83.98 (215/256)
-Train | Batch (101/196) | Top-1: 82.78 (21403/25856)
-Train | Batch (196/196) | Top-1: 82.51 (41253/50000)
-Regular: 0.22184357047080994
-Epoche: 14; regular: 0.22184357047080994: flops 69132550
-#Filters: 1593, #FLOPs: 55.50M | Top-1: 50.42
-Epoch 15
-Train | Batch (1/196) | Top-1: 81.64 (209/256)
-Train | Batch (101/196) | Top-1: 82.16 (21244/25856)
-Train | Batch (196/196) | Top-1: 82.30 (41152/50000)
-Regular: 0.17969483137130737
-Epoche: 15; regular: 0.17969483137130737: flops 69132550
-#Filters: 1595, #FLOPs: 54.77M | Top-1: 22.59
-Epoch 16
-Train | Batch (1/196) | Top-1: 84.77 (217/256)
-Train | Batch (101/196) | Top-1: 82.45 (21318/25856)
-Train | Batch (196/196) | Top-1: 82.50 (41248/50000)
-Regular: 0.20258237421512604
-Epoche: 16; regular: 0.20258237421512604: flops 69132550
-#Filters: 1598, #FLOPs: 55.93M | Top-1: 65.86
-Epoch 17
-Train | Batch (1/196) | Top-1: 80.86 (207/256)
-Train | Batch (101/196) | Top-1: 82.16 (21243/25856)
-Train | Batch (196/196) | Top-1: 82.17 (41087/50000)
-Regular: 0.18759015202522278
-Epoche: 17; regular: 0.18759015202522278: flops 69132550
-#Filters: 1598, #FLOPs: 55.22M | Top-1: 50.77
-Epoch 18
-Train | Batch (1/196) | Top-1: 81.64 (209/256)
-Train | Batch (101/196) | Top-1: 83.03 (21468/25856)
-Train | Batch (196/196) | Top-1: 82.64 (41322/50000)
-Regular: 0.24003289639949799
-Epoche: 18; regular: 0.24003289639949799: flops 69132550
-#Filters: 1108, #FLOPs: 43.65M | Top-1: 48.71
-Epoch 19
-Train | Batch (1/196) | Top-1: 80.86 (207/256)
-Train | Batch (101/196) | Top-1: 82.88 (21429/25856)
-Train | Batch (196/196) | Top-1: 82.69 (41344/50000)
-Regular: 0.21657320857048035
-Epoche: 19; regular: 0.21657320857048035: flops 69132550
-#Filters: 1108, #FLOPs: 42.53M | Top-1: 55.59
-Epoch 20
-Train | Batch (1/196) | Top-1: 83.98 (215/256)
-Train | Batch (101/196) | Top-1: 82.90 (21434/25856)
-Train | Batch (196/196) | Top-1: 82.57 (41287/50000)
-Regular: 0.1849653720855713
-Epoche: 20; regular: 0.1849653720855713: flops 69132550
-#Filters: 1108, #FLOPs: 42.85M | Top-1: 50.50
-Epoch 21
-Train | Batch (1/196) | Top-1: 80.86 (207/256)
-Train | Batch (101/196) | Top-1: 82.87 (21426/25856)
-Train | Batch (196/196) | Top-1: 82.71 (41357/50000)
-Regular: 0.17734989523887634
-Epoche: 21; regular: 0.17734989523887634: flops 69132550
-#Filters: 1107, #FLOPs: 42.34M | Top-1: 62.14
-Epoch 22
-Train | Batch (1/196) | Top-1: 84.38 (216/256)
-Train | Batch (101/196) | Top-1: 83.14 (21497/25856)
-Train | Batch (196/196) | Top-1: 82.98 (41491/50000)
-Regular: 0.20619550347328186
-Epoche: 22; regular: 0.20619550347328186: flops 69132550
-#Filters: 1108, #FLOPs: 42.53M | Top-1: 48.18
-Epoch 23
-Train | Batch (1/196) | Top-1: 80.47 (206/256)
-Train | Batch (101/196) | Top-1: 83.17 (21505/25856)
-Train | Batch (196/196) | Top-1: 82.77 (41386/50000)
-Regular: 0.17829279601573944
-Epoche: 23; regular: 0.17829279601573944: flops 69132550
-#Filters: 1107, #FLOPs: 42.91M | Top-1: 49.59
-Epoch 24
-Train | Batch (1/196) | Top-1: 82.81 (212/256)
-Train | Batch (101/196) | Top-1: 83.14 (21496/25856)
-Train | Batch (196/196) | Top-1: 82.97 (41485/50000)
-Regular: 0.20617784559726715
-Epoche: 24; regular: 0.20617784559726715: flops 69132550
-#Filters: 1107, #FLOPs: 42.20M | Top-1: 42.35
-Epoch 25
-Train | Batch (1/196) | Top-1: 81.25 (208/256)
-Train | Batch (101/196) | Top-1: 82.47 (21324/25856)
-Train | Batch (196/196) | Top-1: 82.61 (41303/50000)
-Regular: 0.6367005109786987
-Epoche: 25; regular: 0.6367005109786987: flops 69132550
-#Filters: 1105, #FLOPs: 42.22M | Top-1: 60.24
-Epoch 26
 Train | Batch (1/196) | Top-1: 76.56 (196/256)
-Train | Batch (101/196) | Top-1: 82.79 (21405/25856)
-Train | Batch (196/196) | Top-1: 83.02 (41510/50000)
-Regular: 0.5370412468910217
-Epoche: 26; regular: 0.5370412468910217: flops 69132550
-#Filters: 1104, #FLOPs: 42.02M | Top-1: 63.17
-Epoch 27
-Train | Batch (1/196) | Top-1: 87.11 (223/256)
-Train | Batch (101/196) | Top-1: 82.87 (21428/25856)
-Train | Batch (196/196) | Top-1: 82.65 (41324/50000)
-Regular: 0.27305302023887634
-Epoche: 27; regular: 0.27305302023887634: flops 69132550
-#Filters: 1102, #FLOPs: 41.77M | Top-1: 65.67
-Epoch 28
-Train | Batch (1/196) | Top-1: 83.59 (214/256)
-Train | Batch (101/196) | Top-1: 82.00 (21201/25856)
-Train | Batch (196/196) | Top-1: 82.16 (41082/50000)
-Regular: 0.2520918846130371
-Epoche: 28; regular: 0.2520918846130371: flops 69132550
-#Filters: 1105, #FLOPs: 42.08M | Top-1: 45.81
-Epoch 29
+Train | Batch (101/196) | Top-1: 79.04 (20436/25856)
+Train | Batch (196/196) | Top-1: 78.98 (39492/50000)
+Regular: 0.18814930319786072
+Epoche: 5; regular: 0.18814930319786072: flops 69342064
+#Filters: 627, #FLOPs: 30.45M | Top-1: 57.73
+Epoch 6
+Train | Batch (1/196) | Top-1: 76.17 (195/256)
+Train | Batch (101/196) | Top-1: 79.28 (20498/25856)
+Train | Batch (196/196) | Top-1: 79.27 (39635/50000)
+Regular: 0.18766656517982483
+Epoche: 6; regular: 0.18766656517982483: flops 69342064
+#Filters: 627, #FLOPs: 30.95M | Top-1: 59.41
+Epoch 7
+Train | Batch (1/196) | Top-1: 78.91 (202/256)
+Train | Batch (101/196) | Top-1: 79.22 (20483/25856)
+Train | Batch (196/196) | Top-1: 79.22 (39609/50000)
+Regular: 0.1871410608291626
+Epoche: 7; regular: 0.1871410608291626: flops 69342064
+#Filters: 627, #FLOPs: 30.70M | Top-1: 48.70
+Epoch 8
+Train | Batch (1/196) | Top-1: 79.30 (203/256)
+Train | Batch (101/196) | Top-1: 79.58 (20577/25856)
+Train | Batch (196/196) | Top-1: 79.50 (39751/50000)
+Regular: 0.18356573581695557
+Epoche: 8; regular: 0.18356573581695557: flops 69342064
+#Filters: 624, #FLOPs: 30.80M | Top-1: 55.89
+Epoch 9
+Train | Batch (1/196) | Top-1: 77.73 (199/256)
+Train | Batch (101/196) | Top-1: 79.38 (20524/25856)
+Train | Batch (196/196) | Top-1: 79.14 (39572/50000)
+Regular: 0.18247860670089722
+Epoche: 9; regular: 0.18247860670089722: flops 69342064
+#Filters: 615, #FLOPs: 29.94M | Top-1: 58.95
+Epoch 10
+Train | Batch (1/196) | Top-1: 82.81 (212/256)
+Train | Batch (101/196) | Top-1: 79.25 (20491/25856)
+Train | Batch (196/196) | Top-1: 79.44 (39721/50000)
+Regular: 0.18152128159999847
+Epoche: 10; regular: 0.18152128159999847: flops 69342064
+#Filters: 618, #FLOPs: 30.24M | Top-1: 64.68
+Epoch 11
+Train | Batch (1/196) | Top-1: 85.55 (219/256)
+Train | Batch (101/196) | Top-1: 79.46 (20546/25856)
+Train | Batch (196/196) | Top-1: 79.32 (39658/50000)
+Regular: 0.18841922283172607
+Epoche: 11; regular: 0.18841922283172607: flops 69342064
+#Filters: 623, #FLOPs: 30.39M | Top-1: 48.25
+Epoch 12
+Train | Batch (1/196) | Top-1: 80.86 (207/256)
+Train | Batch (101/196) | Top-1: 79.60 (20582/25856)
+Train | Batch (196/196) | Top-1: 79.17 (39583/50000)
+Regular: 0.18078339099884033
+Epoche: 12; regular: 0.18078339099884033: flops 69342064
+#Filters: 619, #FLOPs: 30.09M | Top-1: 50.90
+Epoch 13
 Train | Batch (1/196) | Top-1: 76.95 (197/256)
-Train | Batch (101/196) | Top-1: 83.10 (21486/25856)
-Train | Batch (196/196) | Top-1: 82.99 (41497/50000)
-Regular: 0.20331884920597076
-Epoche: 29; regular: 0.20331884920597076: flops 69132550
-#Filters: 1107, #FLOPs: 42.34M | Top-1: 70.34
+Train | Batch (101/196) | Top-1: 79.49 (20552/25856)
+Train | Batch (196/196) | Top-1: 79.50 (39751/50000)
+Regular: 0.17838361859321594
+Epoche: 13; regular: 0.17838361859321594: flops 69342064
+#Filters: 613, #FLOPs: 29.99M | Top-1: 59.72
+Epoch 14
+Train | Batch (1/196) | Top-1: 76.95 (197/256)
+Train | Batch (101/196) | Top-1: 79.68 (20603/25856)
+Train | Batch (196/196) | Top-1: 79.50 (39749/50000)
+Regular: 0.17908422648906708
+Epoche: 14; regular: 0.17908422648906708: flops 69342064
+#Filters: 619, #FLOPs: 30.45M | Top-1: 66.62
+Epoch 15
+Train | Batch (1/196) | Top-1: 75.39 (193/256)
+Train | Batch (101/196) | Top-1: 79.33 (20511/25856)
+Train | Batch (196/196) | Top-1: 79.41 (39704/50000)
+Regular: 0.17785948514938354
+Epoche: 15; regular: 0.17785948514938354: flops 69342064
+#Filters: 615, #FLOPs: 30.34M | Top-1: 58.04
+Epoch 16
+Train | Batch (1/196) | Top-1: 81.64 (209/256)
+Train | Batch (101/196) | Top-1: 79.44 (20540/25856)
+Train | Batch (196/196) | Top-1: 79.39 (39694/50000)
+Regular: 0.17867411673069
+Epoche: 16; regular: 0.17867411673069: flops 69342064
+#Filters: 615, #FLOPs: 30.29M | Top-1: 52.68
+Epoch 17
+Train | Batch (1/196) | Top-1: 82.03 (210/256)
+Train | Batch (101/196) | Top-1: 79.47 (20548/25856)
+Train | Batch (196/196) | Top-1: 79.62 (39808/50000)
+Regular: 0.17898514866828918
+Epoche: 17; regular: 0.17898514866828918: flops 69342064
+#Filters: 611, #FLOPs: 29.99M | Top-1: 56.49
+Epoch 18
+Train | Batch (1/196) | Top-1: 81.64 (209/256)
+Train | Batch (101/196) | Top-1: 79.46 (20546/25856)
+Train | Batch (196/196) | Top-1: 79.39 (39697/50000)
+Regular: 0.17991860210895538
+Epoche: 18; regular: 0.17991860210895538: flops 69342064
+#Filters: 611, #FLOPs: 29.58M | Top-1: 47.42
+Epoch 19
+Train | Batch (1/196) | Top-1: 80.47 (206/256)
+Train | Batch (101/196) | Top-1: 79.18 (20472/25856)
+Train | Batch (196/196) | Top-1: 79.35 (39676/50000)
+Regular: 0.17973065376281738
+Epoche: 19; regular: 0.17973065376281738: flops 69342064
+#Filters: 614, #FLOPs: 29.84M | Top-1: 44.04
+Epoch 20
+Train | Batch (1/196) | Top-1: 76.56 (196/256)
+Train | Batch (101/196) | Top-1: 79.66 (20596/25856)
+Train | Batch (196/196) | Top-1: 79.61 (39804/50000)
+Regular: 0.18502649664878845
+Epoche: 20; regular: 0.18502649664878845: flops 69342064
+#Filters: 613, #FLOPs: 29.79M | Top-1: 48.01
+Epoch 21
+Train | Batch (1/196) | Top-1: 76.17 (195/256)
+Train | Batch (101/196) | Top-1: 79.76 (20622/25856)
+Train | Batch (196/196) | Top-1: 79.78 (39892/50000)
+Regular: 0.1784418821334839
+Epoche: 21; regular: 0.1784418821334839: flops 69342064
+#Filters: 610, #FLOPs: 29.89M | Top-1: 70.03
+Epoch 22
+Train | Batch (1/196) | Top-1: 85.16 (218/256)
+Train | Batch (101/196) | Top-1: 79.25 (20491/25856)
+Train | Batch (196/196) | Top-1: 79.37 (39686/50000)
+Regular: 0.1779748499393463
+Epoche: 22; regular: 0.1779748499393463: flops 69342064
+#Filters: 607, #FLOPs: 29.74M | Top-1: 62.78
+Epoch 23
+Train | Batch (1/196) | Top-1: 80.86 (207/256)
+Train | Batch (101/196) | Top-1: 79.92 (20663/25856)
+Train | Batch (196/196) | Top-1: 79.68 (39839/50000)
+Regular: 0.17652449011802673
+Epoche: 23; regular: 0.17652449011802673: flops 69342064
+#Filters: 606, #FLOPs: 29.58M | Top-1: 42.00
+Epoch 24
+Train | Batch (1/196) | Top-1: 82.81 (212/256)
+Train | Batch (101/196) | Top-1: 79.92 (20664/25856)
+Train | Batch (196/196) | Top-1: 79.75 (39875/50000)
+Regular: 0.17584489285945892
+Epoche: 24; regular: 0.17584489285945892: flops 69342064
+#Filters: 603, #FLOPs: 29.58M | Top-1: 57.02
+Epoch 25
+Train | Batch (1/196) | Top-1: 72.66 (186/256)
+Train | Batch (101/196) | Top-1: 79.74 (20618/25856)
+Train | Batch (196/196) | Top-1: 79.68 (39842/50000)
+Regular: 0.1744225025177002
+Epoche: 25; regular: 0.1744225025177002: flops 69342064
+#Filters: 603, #FLOPs: 29.89M | Top-1: 38.32
+Epoch 26
+Train | Batch (1/196) | Top-1: 77.73 (199/256)
+Train | Batch (101/196) | Top-1: 79.75 (20621/25856)
+Train | Batch (196/196) | Top-1: 79.65 (39825/50000)
+Regular: 0.17501527070999146
+Epoche: 26; regular: 0.17501527070999146: flops 69342064
+#Filters: 602, #FLOPs: 29.79M | Top-1: 65.69
+Epoch 27
+Train | Batch (1/196) | Top-1: 82.81 (212/256)
+Train | Batch (101/196) | Top-1: 79.69 (20604/25856)
+Train | Batch (196/196) | Top-1: 79.87 (39933/50000)
+Regular: 0.17385171353816986
+Epoche: 27; regular: 0.17385171353816986: flops 69342064
+#Filters: 600, #FLOPs: 29.79M | Top-1: 58.42
+Epoch 28
+Train | Batch (1/196) | Top-1: 77.34 (198/256)
+Train | Batch (101/196) | Top-1: 79.83 (20640/25856)
+Train | Batch (196/196) | Top-1: 79.66 (39832/50000)
+Regular: 0.1721772998571396
+Epoche: 28; regular: 0.1721772998571396: flops 69342064
+#Filters: 593, #FLOPs: 29.38M | Top-1: 53.55
+Epoch 29
+Train | Batch (1/196) | Top-1: 76.56 (196/256)
+Train | Batch (101/196) | Top-1: 79.55 (20569/25856)
+Train | Batch (196/196) | Top-1: 79.40 (39698/50000)
+Regular: 0.17135240137577057
+Epoche: 29; regular: 0.17135240137577057: flops 69342064
+#Filters: 597, #FLOPs: 29.23M | Top-1: 39.97
 Drin!!
-Layers that will be prunned: [(0, 22), (1, 1), (2, 22), (3, 2), (4, 22), (5, 1), (6, 22), (8, 22), (9, 1), (10, 22), (11, 20), (12, 40), (13, 1), (14, 40), (15, 1), (16, 40), (17, 1), (18, 40), (19, 1), (20, 40), (21, 41), (22, 40), (23, 17), (24, 40), (25, 9), (26, 40), (27, 7), (28, 40), (29, 16), (30, 40)]
+Layers that will be prunned: [(1, 2), (3, 2), (5, 4), (7, 2), (9, 1), (11, 26), (12, 12), (13, 15), (14, 12), (15, 6), (16, 12), (17, 10), (18, 12), (19, 31), (20, 12), (21, 56), (22, 56), (23, 57), (24, 56), (25, 58), (26, 56), (27, 65), (28, 56), (29, 58), (30, 56)]
 Prunning filters..
-Layer index: 0; Pruned filters: 22
-Layer index: 2; Pruned filters: 22
-Layer index: 4; Pruned filters: 22
-Layer index: 6; Pruned filters: 22
-Layer index: 8; Pruned filters: 22
-Layer index: 10; Pruned filters: 22
-Layer index: 12; Pruned filters: 40
-Layer index: 14; Pruned filters: 40
-Layer index: 16; Pruned filters: 40
-Layer index: 18; Pruned filters: 40
-Layer index: 20; Pruned filters: 40
-Layer index: 22; Pruned filters: 40
-Layer index: 24; Pruned filters: 40
-Layer index: 26; Pruned filters: 40
-Layer index: 28; Pruned filters: 40
-Layer index: 30; Pruned filters: 40
-Layer index: 1; Pruned filters: 1
+Layer index: 12; Pruned filters: 12
+Layer index: 14; Pruned filters: 12
+Layer index: 16; Pruned filters: 12
+Layer index: 18; Pruned filters: 12
+Layer index: 20; Pruned filters: 12
+Layer index: 22; Pruned filters: 56
+Layer index: 24; Pruned filters: 56
+Layer index: 26; Pruned filters: 56
+Layer index: 28; Pruned filters: 56
+Layer index: 30; Pruned filters: 56
+Layer index: 1; Pruned filters: 2
 Layer index: 3; Pruned filters: 2
 Layer index: 5; Pruned filters: 1
+Layer index: 5; Pruned filters: 3
+Layer index: 7; Pruned filters: 2
 Layer index: 9; Pruned filters: 1
-Layer index: 11; Pruned filters: 2
 Layer index: 11; Pruned filters: 1
 Layer index: 11; Pruned filters: 1
-Layer index: 11; Pruned filters: 16
-Layer index: 13; Pruned filters: 1
-Layer index: 15; Pruned filters: 1
-Layer index: 17; Pruned filters: 1
+Layer index: 11; Pruned filters: 24
+Layer index: 13; Pruned filters: 5
+Layer index: 13; Pruned filters: 10
+Layer index: 15; Pruned filters: 6
+Layer index: 17; Pruned filters: 3
+Layer index: 17; Pruned filters: 7
 Layer index: 19; Pruned filters: 1
-Layer index: 21; Pruned filters: 1
-Layer index: 21; Pruned filters: 1
-Layer index: 21; Pruned filters: 1
-Layer index: 21; Pruned filters: 1
-Layer index: 21; Pruned filters: 37
+Layer index: 19; Pruned filters: 1
+Layer index: 19; Pruned filters: 1
+Layer index: 19; Pruned filters: 28
+Layer index: 21; Pruned filters: 56
 Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 16
+Layer index: 23; Pruned filters: 56
 Layer index: 25; Pruned filters: 1
-Layer index: 25; Pruned filters: 8
-Layer index: 27; Pruned filters: 7
+Layer index: 25; Pruned filters: 1
+Layer index: 25; Pruned filters: 56
+Layer index: 27; Pruned filters: 2
+Layer index: 27; Pruned filters: 3
+Layer index: 27; Pruned filters: 1
+Layer index: 27; Pruned filters: 3
+Layer index: 27; Pruned filters: 4
+Layer index: 27; Pruned filters: 2
+Layer index: 27; Pruned filters: 1
+Layer index: 27; Pruned filters: 49
+Layer index: 29; Pruned filters: 2
 Layer index: 29; Pruned filters: 1
-Layer index: 29; Pruned filters: 15
-Target (flops): 68.863M
-After Pruning | FLOPs: 26.709M | #Params: 0.182M
-1.6262649280820334
-After Growth | FLOPs: 69.446M | #Params: 0.477M
-I: 4
-flops: 69445884
-Before Pruning | FLOPs: 69.446M | #Params: 0.477M
+Layer index: 29; Pruned filters: 1
+Layer index: 29; Pruned filters: 1
+Layer index: 29; Pruned filters: 1
+Layer index: 29; Pruned filters: 52
+Target (flops): 69.306M
+After Pruning | FLOPs: 11.354M | #Params: 0.091M
+2.511431363316917
+After Growth | FLOPs: 71.125M | #Params: 0.573M
+I: 2
+flops: 71125280
+Before Pruning | FLOPs: 71.125M | #Params: 0.573M
 Epoch 0
-Train | Batch (1/196) | Top-1: 82.42 (211/256)
-Train | Batch (101/196) | Top-1: 83.20 (21511/25856)
-Train | Batch (196/196) | Top-1: 83.14 (41569/50000)
-Regular: 0.7409114241600037
-Epoche: 0; regular: 0.7409114241600037: flops 69445884
-#Filters: 1807, #FLOPs: 61.46M | Top-1: 37.73
-Epoch 1
-Train | Batch (1/196) | Top-1: 78.52 (201/256)
-Train | Batch (101/196) | Top-1: 82.88 (21429/25856)
-Train | Batch (196/196) | Top-1: 82.23 (41113/50000)
-Regular: 0.6220520734786987
-Epoche: 1; regular: 0.6220520734786987: flops 69445884
-#Filters: 1729, #FLOPs: 56.05M | Top-1: 71.14
-Epoch 2
-Train | Batch (1/196) | Top-1: 84.38 (216/256)
-Train | Batch (101/196) | Top-1: 82.92 (21441/25856)
-Train | Batch (196/196) | Top-1: 82.72 (41362/50000)
-Regular: 0.49326545000076294
-Epoche: 2; regular: 0.49326545000076294: flops 69445884
-#Filters: 1727, #FLOPs: 55.93M | Top-1: 54.67
-Epoch 3
-Train | Batch (1/196) | Top-1: 83.98 (215/256)
-Train | Batch (101/196) | Top-1: 83.04 (21472/25856)
-Train | Batch (196/196) | Top-1: 82.74 (41370/50000)
-Regular: 0.3987804353237152
-Epoche: 3; regular: 0.3987804353237152: flops 69445884
-#Filters: 1728, #FLOPs: 56.99M | Top-1: 49.24
-Epoch 4
-Train | Batch (1/196) | Top-1: 82.03 (210/256)
-Train | Batch (101/196) | Top-1: 82.80 (21409/25856)
-Train | Batch (196/196) | Top-1: 82.45 (41225/50000)
-Regular: 0.5103297233581543
-Epoche: 4; regular: 0.5103297233581543: flops 69445884
-#Filters: 1724, #FLOPs: 56.40M | Top-1: 62.92
-Epoch 5
-Train | Batch (1/196) | Top-1: 80.08 (205/256)
-Train | Batch (101/196) | Top-1: 82.85 (21422/25856)
-Train | Batch (196/196) | Top-1: 82.97 (41485/50000)
-Regular: 0.8908637762069702
-Epoche: 5; regular: 0.8908637762069702: flops 69445884
-#Filters: 1724, #FLOPs: 56.40M | Top-1: 60.68
-Epoch 6
-Train | Batch (1/196) | Top-1: 81.25 (208/256)
-Train | Batch (101/196) | Top-1: 82.54 (21341/25856)
-Train | Batch (196/196) | Top-1: 82.64 (41320/50000)
-Regular: 0.33654654026031494
-Epoche: 6; regular: 0.33654654026031494: flops 69445884
-#Filters: 1729, #FLOPs: 56.05M | Top-1: 48.56
-Epoch 7
-Train | Batch (1/196) | Top-1: 79.69 (204/256)
-Train | Batch (101/196) | Top-1: 82.71 (21385/25856)
-Train | Batch (196/196) | Top-1: 82.71 (41355/50000)
-Regular: 0.40075260400772095
-Epoche: 7; regular: 0.40075260400772095: flops 69445884
-#Filters: 1687, #FLOPs: 55.52M | Top-1: 66.14
-Epoch 8
-Train | Batch (1/196) | Top-1: 80.86 (207/256)
-Train | Batch (101/196) | Top-1: 82.84 (21418/25856)
-Train | Batch (196/196) | Top-1: 82.82 (41412/50000)
-Regular: 0.34093374013900757
-Epoche: 8; regular: 0.34093374013900757: flops 69445884
-#Filters: 1684, #FLOPs: 56.17M | Top-1: 35.95
-Epoch 9
-Train | Batch (1/196) | Top-1: 83.98 (215/256)
-Train | Batch (101/196) | Top-1: 82.82 (21415/25856)
-Train | Batch (196/196) | Top-1: 82.74 (41371/50000)
-Regular: 0.17694830894470215
-Epoche: 9; regular: 0.17694830894470215: flops 69445884
-#Filters: 1688, #FLOPs: 56.76M | Top-1: 56.87
-Epoch 10
-Train | Batch (1/196) | Top-1: 83.98 (215/256)
-Train | Batch (101/196) | Top-1: 83.53 (21597/25856)
-Train | Batch (196/196) | Top-1: 83.15 (41573/50000)
-Regular: 0.1813030242919922
-Epoche: 10; regular: 0.1813030242919922: flops 69445884
-#Filters: 1688, #FLOPs: 56.58M | Top-1: 47.36
-Epoch 11
-Train | Batch (1/196) | Top-1: 81.25 (208/256)
-Train | Batch (101/196) | Top-1: 82.67 (21374/25856)
-Train | Batch (196/196) | Top-1: 82.84 (41420/50000)
-Regular: 0.5647053718566895
-Epoche: 11; regular: 0.5647053718566895: flops 69445884
-#Filters: 1685, #FLOPs: 56.11M | Top-1: 47.41
-Epoch 12
-Train | Batch (1/196) | Top-1: 83.98 (215/256)
-Train | Batch (101/196) | Top-1: 83.32 (21544/25856)
-Train | Batch (196/196) | Top-1: 82.90 (41452/50000)
-Regular: 0.5666409134864807
-Epoche: 12; regular: 0.5666409134864807: flops 69445884
-#Filters: 1685, #FLOPs: 56.46M | Top-1: 61.21
-Epoch 13
-Train | Batch (1/196) | Top-1: 82.81 (212/256)
-Train | Batch (101/196) | Top-1: 83.56 (21605/25856)
-Train | Batch (196/196) | Top-1: 83.22 (41610/50000)
-Regular: 0.2770649492740631
-Epoche: 13; regular: 0.2770649492740631: flops 69445884
-#Filters: 1685, #FLOPs: 55.46M | Top-1: 67.84
-Epoch 14
-Train | Batch (1/196) | Top-1: 86.33 (221/256)
-Train | Batch (101/196) | Top-1: 82.78 (21403/25856)
-Train | Batch (196/196) | Top-1: 82.70 (41349/50000)
-Regular: 0.3048350512981415
-Epoche: 14; regular: 0.3048350512981415: flops 69445884
-#Filters: 1685, #FLOPs: 55.64M | Top-1: 73.67
-Epoch 15
-Train | Batch (1/196) | Top-1: 81.25 (208/256)
-Train | Batch (101/196) | Top-1: 83.43 (21571/25856)
-Train | Batch (196/196) | Top-1: 82.62 (41310/50000)
-Regular: 0.2599567472934723
-Epoche: 15; regular: 0.2599567472934723: flops 69445884
-#Filters: 1683, #FLOPs: 55.17M | Top-1: 54.90
-Epoch 16
-Train | Batch (1/196) | Top-1: 81.25 (208/256)
-Train | Batch (101/196) | Top-1: 82.89 (21432/25856)
-Train | Batch (196/196) | Top-1: 83.10 (41551/50000)
-Regular: 0.20051147043704987
-Epoche: 16; regular: 0.20051147043704987: flops 69445884
-#Filters: 1686, #FLOPs: 55.52M | Top-1: 69.63
-Epoch 17
-Train | Batch (1/196) | Top-1: 79.69 (204/256)
-Train | Batch (101/196) | Top-1: 82.75 (21396/25856)
-Train | Batch (196/196) | Top-1: 82.66 (41329/50000)
-Regular: 0.2124652862548828
-Epoche: 17; regular: 0.2124652862548828: flops 69445884
-#Filters: 1688, #FLOPs: 55.64M | Top-1: 48.16
-Epoch 18
-Train | Batch (1/196) | Top-1: 79.69 (204/256)
-Train | Batch (101/196) | Top-1: 83.07 (21479/25856)
-Train | Batch (196/196) | Top-1: 83.08 (41540/50000)
-Regular: 0.17246849834918976
-Epoche: 18; regular: 0.17246849834918976: flops 69445884
-#Filters: 1102, #FLOPs: 42.12M | Top-1: 62.50
-Epoch 19
-Train | Batch (1/196) | Top-1: 87.11 (223/256)
-Train | Batch (101/196) | Top-1: 83.29 (21536/25856)
-Train | Batch (196/196) | Top-1: 82.17 (41086/50000)
-Regular: 0.3466658592224121
-Epoche: 19; regular: 0.3466658592224121: flops 69445884
-#Filters: 1101, #FLOPs: 41.71M | Top-1: 57.37
-Epoch 20
-Train | Batch (1/196) | Top-1: 81.25 (208/256)
-Train | Batch (101/196) | Top-1: 82.19 (21251/25856)
-Train | Batch (196/196) | Top-1: 82.21 (41104/50000)
-Regular: 0.7120078206062317
-Epoche: 20; regular: 0.7120078206062317: flops 69445884
-#Filters: 1095, #FLOPs: 42.18M | Top-1: 52.18
-Epoch 21
-Train | Batch (1/196) | Top-1: 85.16 (218/256)
-Train | Batch (101/196) | Top-1: 83.05 (21474/25856)
-Train | Batch (196/196) | Top-1: 82.68 (41342/50000)
-Regular: 0.39378824830055237
-Epoche: 21; regular: 0.39378824830055237: flops 69445884
-#Filters: 1098, #FLOPs: 42.53M | Top-1: 38.65
-Epoch 22
-Train | Batch (1/196) | Top-1: 82.03 (210/256)
-Train | Batch (101/196) | Top-1: 82.44 (21315/25856)
-Train | Batch (196/196) | Top-1: 82.11 (41054/50000)
-Regular: 0.7191134095191956
-Epoche: 22; regular: 0.7191134095191956: flops 69445884
-#Filters: 1097, #FLOPs: 42.47M | Top-1: 64.73
-Epoch 23
-Train | Batch (1/196) | Top-1: 78.52 (201/256)
-Train | Batch (101/196) | Top-1: 82.69 (21380/25856)
-Train | Batch (196/196) | Top-1: 82.53 (41265/50000)
-Regular: 0.6061094999313354
-Epoche: 23; regular: 0.6061094999313354: flops 69445884
-#Filters: 1097, #FLOPs: 42.47M | Top-1: 44.94
-Epoch 24
-Train | Batch (1/196) | Top-1: 82.03 (210/256)
-Train | Batch (101/196) | Top-1: 82.70 (21383/25856)
-Train | Batch (196/196) | Top-1: 82.30 (41149/50000)
-Regular: 0.4884145259857178
-Epoche: 24; regular: 0.4884145259857178: flops 69445884
-#Filters: 1097, #FLOPs: 42.65M | Top-1: 61.43
-Epoch 25
-Train | Batch (1/196) | Top-1: 79.30 (203/256)
-Train | Batch (101/196) | Top-1: 82.28 (21274/25856)
-Train | Batch (196/196) | Top-1: 82.23 (41114/50000)
-Regular: 1.7649418115615845
-Epoche: 25; regular: 1.7649418115615845: flops 69445884
-#Filters: 1098, #FLOPs: 41.71M | Top-1: 57.52
-Epoch 26
-Train | Batch (1/196) | Top-1: 86.72 (222/256)
-Train | Batch (101/196) | Top-1: 82.70 (21384/25856)
-Train | Batch (196/196) | Top-1: 82.60 (41299/50000)
-Regular: 1.0875886678695679
-Epoche: 26; regular: 1.0875886678695679: flops 69445884
-#Filters: 1097, #FLOPs: 41.47M | Top-1: 66.15
-Epoch 27
-Train | Batch (1/196) | Top-1: 80.47 (206/256)
-Train | Batch (101/196) | Top-1: 82.35 (21292/25856)
-Train | Batch (196/196) | Top-1: 82.52 (41258/50000)
-Regular: 0.5365935564041138
-Epoche: 27; regular: 0.5365935564041138: flops 69445884
-#Filters: 1097, #FLOPs: 42.29M | Top-1: 14.28
-Epoch 28
-Train | Batch (1/196) | Top-1: 68.36 (175/256)
-Train | Batch (101/196) | Top-1: 81.81 (21153/25856)
-Train | Batch (196/196) | Top-1: 81.92 (40958/50000)
-Regular: 0.23090608417987823
-Epoche: 28; regular: 0.23090608417987823: flops 69445884
-#Filters: 1095, #FLOPs: 42.35M | Top-1: 61.65
-Epoch 29
-Train | Batch (1/196) | Top-1: 82.81 (212/256)
-Train | Batch (101/196) | Top-1: 82.12 (21232/25856)
-Train | Batch (196/196) | Top-1: 82.32 (41162/50000)
-Regular: 0.16689573228359222
-Epoche: 29; regular: 0.16689573228359222: flops 69445884
-#Filters: 1098, #FLOPs: 42.53M | Top-1: 35.56
-Drin!!
-Layers that will be prunned: [(0, 39), (1, 1), (2, 39), (4, 39), (5, 1), (6, 39), (7, 1), (8, 39), (9, 1), (10, 39), (11, 15), (12, 39), (13, 1), (14, 39), (15, 1), (16, 39), (17, 1), (18, 39), (19, 1), (20, 39), (21, 36), (22, 39), (23, 16), (24, 39), (25, 9), (26, 39), (27, 8), (28, 39), (29, 14), (30, 39)]
-Prunning filters..
-Layer index: 0; Pruned filters: 39
-Layer index: 2; Pruned filters: 39
-Layer index: 4; Pruned filters: 39
-Layer index: 6; Pruned filters: 39
-Layer index: 8; Pruned filters: 39
-Layer index: 10; Pruned filters: 39
-Layer index: 12; Pruned filters: 39
-Layer index: 14; Pruned filters: 39
-Layer index: 16; Pruned filters: 39
-Layer index: 18; Pruned filters: 39
-Layer index: 20; Pruned filters: 39
-Layer index: 22; Pruned filters: 39
-Layer index: 24; Pruned filters: 39
-Layer index: 26; Pruned filters: 39
-Layer index: 28; Pruned filters: 39
-Layer index: 30; Pruned filters: 39
-Layer index: 1; Pruned filters: 1
-Layer index: 5; Pruned filters: 1
-Layer index: 7; Pruned filters: 1
-Layer index: 9; Pruned filters: 1
-Layer index: 11; Pruned filters: 1
-Layer index: 11; Pruned filters: 1
-Layer index: 11; Pruned filters: 1
-Layer index: 11; Pruned filters: 12
-Layer index: 13; Pruned filters: 1
-Layer index: 15; Pruned filters: 1
-Layer index: 17; Pruned filters: 1
-Layer index: 19; Pruned filters: 1
-Layer index: 21; Pruned filters: 1
-Layer index: 21; Pruned filters: 1
-Layer index: 21; Pruned filters: 34
-Layer index: 23; Pruned filters: 16
-Layer index: 25; Pruned filters: 1
-Layer index: 25; Pruned filters: 8
-Layer index: 27; Pruned filters: 8
-Layer index: 29; Pruned filters: 14
-Target (flops): 68.863M
-After Pruning | FLOPs: 26.709M | #Params: 0.175M
-1.6262649280820334
-After Growth | FLOPs: 68.153M | #Params: 0.457M
-I: 5
-flops: 68153340
-Before Pruning | FLOPs: 68.153M | #Params: 0.457M
-Epoch 0
-Train | Batch (1/196) | Top-1: 84.38 (216/256)
-Train | Batch (101/196) | Top-1: 82.89 (21433/25856)
-Train | Batch (196/196) | Top-1: 82.52 (41259/50000)
-Regular: 0.6863258481025696
-Epoche: 0; regular: 0.6863258481025696: flops 68153340
-#Filters: 1792, #FLOPs: 59.46M | Top-1: 57.37
-Epoch 1
-Train | Batch (1/196) | Top-1: 84.77 (217/256)
-Train | Batch (101/196) | Top-1: 82.63 (21364/25856)
-Train | Batch (196/196) | Top-1: 82.71 (41355/50000)
-Regular: 0.43874305486679077
-Epoche: 1; regular: 0.43874305486679077: flops 68153340
-#Filters: 1716, #FLOPs: 54.99M | Top-1: 63.74
-Epoch 2
-Train | Batch (1/196) | Top-1: 83.20 (213/256)
-Train | Batch (101/196) | Top-1: 82.44 (21315/25856)
-Train | Batch (196/196) | Top-1: 82.48 (41242/50000)
-Regular: 0.32084494829177856
-Epoche: 2; regular: 0.32084494829177856: flops 68153340
-#Filters: 1718, #FLOPs: 56.29M | Top-1: 18.68
-Epoch 3
-Train | Batch (1/196) | Top-1: 79.30 (203/256)
-Train | Batch (101/196) | Top-1: 82.49 (21328/25856)
-Train | Batch (196/196) | Top-1: 82.22 (41111/50000)
-Regular: 0.24442952871322632
-Epoche: 3; regular: 0.24442952871322632: flops 68153340
-#Filters: 1703, #FLOPs: 54.94M | Top-1: 61.73
-Epoch 4
-Train | Batch (1/196) | Top-1: 79.30 (203/256)
-Train | Batch (101/196) | Top-1: 82.89 (21432/25856)
-Train | Batch (196/196) | Top-1: 81.75 (40873/50000)
-Regular: 2.0638492107391357
-Epoche: 4; regular: 2.0638492107391357: flops 68153340
-#Filters: 1703, #FLOPs: 54.94M | Top-1: 58.32
-Epoch 5
-Train | Batch (1/196) | Top-1: 80.86 (207/256)
-Train | Batch (101/196) | Top-1: 81.94 (21187/25856)
-Train | Batch (196/196) | Top-1: 82.25 (41125/50000)
-Regular: 4.408034324645996
-Epoche: 5; regular: 4.408034324645996: flops 68153340
-#Filters: 1718, #FLOPs: 55.29M | Top-1: 58.08
-Epoch 6
-Train | Batch (1/196) | Top-1: 81.64 (209/256)
-Train | Batch (101/196) | Top-1: 82.20 (21253/25856)
-Train | Batch (196/196) | Top-1: 82.39 (41194/50000)
-Regular: 3.7300968170166016
-Epoche: 6; regular: 3.7300968170166016: flops 68153340
-#Filters: 1717, #FLOPs: 56.23M | Top-1: 70.45
-Epoch 7
-Train | Batch (1/196) | Top-1: 79.69 (204/256)
-Train | Batch (101/196) | Top-1: 82.33 (21288/25856)
-Train | Batch (196/196) | Top-1: 82.32 (41159/50000)
-Regular: 3.1255948543548584
-Epoche: 7; regular: 3.1255948543548584: flops 68153340
-#Filters: 1680, #FLOPs: 56.52M | Top-1: 60.44
-Epoch 8
-Train | Batch (1/196) | Top-1: 80.47 (206/256)
-Train | Batch (101/196) | Top-1: 82.53 (21340/25856)
-Train | Batch (196/196) | Top-1: 82.37 (41185/50000)
-Regular: 2.5766642093658447
-Epoche: 8; regular: 2.5766642093658447: flops 68153340
-#Filters: 1680, #FLOPs: 56.34M | Top-1: 52.69
-Epoch 9
-Train | Batch (1/196) | Top-1: 85.16 (218/256)
-Train | Batch (101/196) | Top-1: 82.64 (21368/25856)
-Train | Batch (196/196) | Top-1: 82.21 (41104/50000)
-Regular: 2.084408760070801
-Epoche: 9; regular: 2.084408760070801: flops 68153340
-#Filters: 1678, #FLOPs: 55.23M | Top-1: 60.02
-Epoch 10
-Train | Batch (1/196) | Top-1: 72.66 (186/256)
-Train | Batch (101/196) | Top-1: 82.43 (21313/25856)
-Train | Batch (196/196) | Top-1: 82.36 (41182/50000)
-Regular: 1.638265609741211
-Epoche: 10; regular: 1.638265609741211: flops 68153340
-#Filters: 1681, #FLOPs: 56.40M | Top-1: 57.19
-Epoch 11
 Train | Batch (1/196) | Top-1: 77.73 (199/256)
-Train | Batch (101/196) | Top-1: 82.27 (21271/25856)
-Train | Batch (196/196) | Top-1: 82.20 (41102/50000)
-Regular: 1.2316397428512573
-Epoche: 11; regular: 1.2316397428512573: flops 68153340
-#Filters: 1678, #FLOPs: 55.05M | Top-1: 35.06
-Epoch 12
-Train | Batch (1/196) | Top-1: 82.81 (212/256)
-Train | Batch (101/196) | Top-1: 82.53 (21340/25856)
-Train | Batch (196/196) | Top-1: 82.50 (41252/50000)
-Regular: 0.8647110462188721
-Epoche: 12; regular: 0.8647110462188721: flops 68153340
-#Filters: 1675, #FLOPs: 56.05M | Top-1: 37.49
-Epoch 13
-Train | Batch (1/196) | Top-1: 80.08 (205/256)
-Train | Batch (101/196) | Top-1: 83.06 (21475/25856)
-Train | Batch (196/196) | Top-1: 82.71 (41356/50000)
-Regular: 0.5326416492462158
-Epoche: 13; regular: 0.5326416492462158: flops 68153340
-#Filters: 1679, #FLOPs: 55.46M | Top-1: 42.94
-Epoch 14
-Train | Batch (1/196) | Top-1: 81.25 (208/256)
-Train | Batch (101/196) | Top-1: 82.61 (21359/25856)
-Train | Batch (196/196) | Top-1: 82.59 (41293/50000)
-Regular: 0.241671621799469
-Epoche: 14; regular: 0.241671621799469: flops 68153340
-#Filters: 1680, #FLOPs: 55.17M | Top-1: 50.83
-Epoch 15
-Train | Batch (1/196) | Top-1: 81.64 (209/256)
-Train | Batch (101/196) | Top-1: 83.38 (21558/25856)
-Train | Batch (196/196) | Top-1: 82.74 (41371/50000)
-Regular: 0.16745109856128693
-Epoche: 15; regular: 0.16745109856128693: flops 68153340
-#Filters: 1678, #FLOPs: 55.05M | Top-1: 16.96
-Epoch 16
-Train | Batch (1/196) | Top-1: 87.50 (224/256)
-Train | Batch (101/196) | Top-1: 83.12 (21492/25856)
-Train | Batch (196/196) | Top-1: 82.51 (41257/50000)
-Regular: 0.16444942355155945
-Epoche: 16; regular: 0.16444942355155945: flops 68153340
-#Filters: 1677, #FLOPs: 56.17M | Top-1: 19.96
-Epoch 17
-Train | Batch (1/196) | Top-1: 79.69 (204/256)
-Train | Batch (101/196) | Top-1: 82.49 (21329/25856)
-Train | Batch (196/196) | Top-1: 82.61 (41307/50000)
-Regular: 0.1593230664730072
-Epoche: 17; regular: 0.1593230664730072: flops 68153340
-#Filters: 1676, #FLOPs: 56.11M | Top-1: 53.98
-Epoch 18
-Train | Batch (1/196) | Top-1: 83.98 (215/256)
-Train | Batch (101/196) | Top-1: 82.22 (21260/25856)
-Train | Batch (196/196) | Top-1: 82.12 (41058/50000)
-Regular: 0.16438165307044983
-Epoche: 18; regular: 0.16438165307044983: flops 68153340
-#Filters: 1093, #FLOPs: 42.48M | Top-1: 66.16
-Epoch 19
-Train | Batch (1/196) | Top-1: 85.55 (219/256)
-Train | Batch (101/196) | Top-1: 82.79 (21407/25856)
-Train | Batch (196/196) | Top-1: 82.52 (41258/50000)
-Regular: 0.15816263854503632
-Epoche: 19; regular: 0.15816263854503632: flops 68153340
-#Filters: 1092, #FLOPs: 41.42M | Top-1: 62.26
-Epoch 20
-Train | Batch (1/196) | Top-1: 81.25 (208/256)
-Train | Batch (101/196) | Top-1: 82.46 (21321/25856)
-Train | Batch (196/196) | Top-1: 82.24 (41121/50000)
-Regular: 0.7409733533859253
-Epoche: 20; regular: 0.7409733533859253: flops 68153340
-#Filters: 1090, #FLOPs: 41.31M | Top-1: 60.73
-Epoch 21
-Train | Batch (1/196) | Top-1: 82.03 (210/256)
-Train | Batch (101/196) | Top-1: 82.75 (21397/25856)
-Train | Batch (196/196) | Top-1: 82.41 (41203/50000)
-Regular: 0.8241675496101379
-Epoche: 21; regular: 0.8241675496101379: flops 68153340
-#Filters: 1092, #FLOPs: 41.42M | Top-1: 55.80
-Epoch 22
-Train | Batch (1/196) | Top-1: 81.64 (209/256)
-Train | Batch (101/196) | Top-1: 82.56 (21347/25856)
-Train | Batch (196/196) | Top-1: 82.64 (41319/50000)
-Regular: 0.4954183101654053
-Epoche: 22; regular: 0.4954183101654053: flops 68153340
-#Filters: 1090, #FLOPs: 42.31M | Top-1: 51.40
-Epoch 23
-Train | Batch (1/196) | Top-1: 84.38 (216/256)
-Train | Batch (101/196) | Top-1: 82.82 (21414/25856)
-Train | Batch (196/196) | Top-1: 82.44 (41221/50000)
-Regular: 0.35888251662254333
-Epoche: 23; regular: 0.35888251662254333: flops 68153340
-#Filters: 1090, #FLOPs: 42.31M | Top-1: 48.64
-Epoch 24
-Train | Batch (1/196) | Top-1: 82.81 (212/256)
-Train | Batch (101/196) | Top-1: 82.79 (21406/25856)
-Train | Batch (196/196) | Top-1: 82.58 (41290/50000)
-Regular: 1.7208433151245117
-Epoche: 24; regular: 1.7208433151245117: flops 68153340
-#Filters: 1091, #FLOPs: 41.37M | Top-1: 52.17
-Epoch 25
-Train | Batch (1/196) | Top-1: 84.38 (216/256)
-Train | Batch (101/196) | Top-1: 82.72 (21389/25856)
-Train | Batch (196/196) | Top-1: 82.70 (41349/50000)
-Regular: 1.3146926164627075
-Epoche: 25; regular: 1.3146926164627075: flops 68153340
-#Filters: 1093, #FLOPs: 42.83M | Top-1: 44.84
-Epoch 26
-Train | Batch (1/196) | Top-1: 79.69 (204/256)
-Train | Batch (101/196) | Top-1: 83.27 (21529/25856)
-Train | Batch (196/196) | Top-1: 82.93 (41467/50000)
-Regular: 0.9414612650871277
-Epoche: 26; regular: 0.9414612650871277: flops 68153340
-#Filters: 1092, #FLOPs: 42.60M | Top-1: 59.18
-Epoch 27
-Train | Batch (1/196) | Top-1: 80.08 (205/256)
-Train | Batch (101/196) | Top-1: 82.79 (21407/25856)
-Train | Batch (196/196) | Top-1: 82.76 (41382/50000)
-Regular: 0.6050790548324585
-Epoche: 27; regular: 0.6050790548324585: flops 68153340
-#Filters: 1095, #FLOPs: 41.95M | Top-1: 63.26
-Epoch 28
-Train | Batch (1/196) | Top-1: 84.38 (216/256)
-Train | Batch (101/196) | Top-1: 83.01 (21464/25856)
-Train | Batch (196/196) | Top-1: 82.90 (41449/50000)
-Regular: 0.2965824007987976
-Epoche: 28; regular: 0.2965824007987976: flops 68153340
-#Filters: 1091, #FLOPs: 42.19M | Top-1: 43.96
-Epoch 29
-Train | Batch (1/196) | Top-1: 80.08 (205/256)
-Train | Batch (101/196) | Top-1: 82.56 (21348/25856)
-Train | Batch (196/196) | Top-1: 82.52 (41260/50000)
-Regular: 0.16973470151424408
-Epoche: 29; regular: 0.16973470151424408: flops 68153340
-#Filters: 1092, #FLOPs: 42.42M | Top-1: 31.18
-Drin!!
-Layers that will be prunned: [(0, 39), (1, 1), (2, 39), (3, 1), (4, 39), (6, 39), (7, 1), (8, 39), (9, 1), (10, 39), (11, 12), (12, 39), (13, 1), (14, 39), (15, 1), (16, 39), (17, 1), (18, 39), (19, 1), (20, 39), (21, 33), (22, 39), (23, 17), (24, 39), (25, 7), (26, 39), (27, 8), (28, 39), (29, 14), (30, 39)]
-Prunning filters..
-Layer index: 0; Pruned filters: 39
-Layer index: 2; Pruned filters: 39
-Layer index: 4; Pruned filters: 39
-Layer index: 6; Pruned filters: 39
-Layer index: 8; Pruned filters: 39
-Layer index: 10; Pruned filters: 39
-Layer index: 12; Pruned filters: 39
-Layer index: 14; Pruned filters: 39
-Layer index: 16; Pruned filters: 39
-Layer index: 18; Pruned filters: 39
-Layer index: 20; Pruned filters: 39
-Layer index: 22; Pruned filters: 39
-Layer index: 24; Pruned filters: 39
-Layer index: 26; Pruned filters: 39
-Layer index: 28; Pruned filters: 39
-Layer index: 30; Pruned filters: 39
-Layer index: 1; Pruned filters: 1
-Layer index: 3; Pruned filters: 1
-Layer index: 7; Pruned filters: 1
-Layer index: 9; Pruned filters: 1
-Layer index: 11; Pruned filters: 1
-Layer index: 11; Pruned filters: 1
-Layer index: 11; Pruned filters: 10
-Layer index: 13; Pruned filters: 1
-Layer index: 15; Pruned filters: 1
-Layer index: 17; Pruned filters: 1
-Layer index: 19; Pruned filters: 1
-Layer index: 21; Pruned filters: 33
-Layer index: 23; Pruned filters: 1
-Layer index: 23; Pruned filters: 16
-Layer index: 25; Pruned filters: 7
-Layer index: 27; Pruned filters: 1
-Layer index: 27; Pruned filters: 1
-Layer index: 27; Pruned filters: 6
-Layer index: 29; Pruned filters: 14
-Target (flops): 68.863M
-After Pruning | FLOPs: 27.071M | #Params: 0.170M
-1.6148172982937876
-After Growth | FLOPs: 67.918M | #Params: 0.443M
-Epoch 0
-Train | Batch (1/196) | Top-1: 80.47 (206/256)
-Train | Batch (101/196) | Top-1: 84.10 (21746/25856)
-Train | Batch (196/196) | Top-1: 84.05 (42025/50000)
-Regular: nan
-Epoche: 0; regular: nan: flops 67918332
-/home/jessica.buehler/venv/lib/python3.6/site-packages/numpy/core/fromnumeric.py:3335: RuntimeWarning: Mean of empty slice.
-  out=out, **kwargs)
-/home/jessica.buehler/venv/lib/python3.6/site-packages/numpy/core/_methods.py:161: RuntimeWarning: invalid value encountered in double_scalars
-  ret = ret.dtype.type(ret / rcount)
-#Filters: 1855, #FLOPs: 58.52M | Top-1: 72.50
+Train | Batch (101/196) | Top-1: 79.92 (20663/25856)
+Train | Batch (196/196) | Top-1: 79.52 (39762/50000)
+Regular: 1.3603944778442383
+Epoche: 0; regular: 1.3603944778442383: flops 71125280
+#Filters: 1467, #FLOPs: 59.12M | Top-1: 56.60
 Epoch 1
-Train | Batch (1/196) | Top-1: 83.59 (214/256)
-Train | Batch (101/196) | Top-1: 84.61 (21878/25856)
-Train | Batch (196/196) | Top-1: 84.42 (42211/50000)
-Regular: nan
-Epoche: 1; regular: nan: flops 67918332
-#Filters: 1855, #FLOPs: 58.52M | Top-1: 79.12
+Train | Batch (1/196) | Top-1: 77.73 (199/256)
+Train | Batch (101/196) | Top-1: 79.76 (20624/25856)
+Train | Batch (196/196) | Top-1: 79.41 (39707/50000)
+Regular: 0.7973113059997559
+Epoche: 1; regular: 0.7973113059997559: flops 71125280
+#Filters: 1463, #FLOPs: 58.95M | Top-1: 43.14
 Epoch 2
-Train | Batch (1/196) | Top-1: 88.28 (226/256)
-Train | Batch (101/196) | Top-1: 84.69 (21898/25856)
-Train | Batch (196/196) | Top-1: 84.64 (42318/50000)
-Regular: nan
-Epoche: 2; regular: nan: flops 67918332
-#Filters: 1855, #FLOPs: 58.52M | Top-1: 76.08
+Train | Batch (1/196) | Top-1: 79.69 (204/256)
+Train | Batch (101/196) | Top-1: 79.52 (20561/25856)
+Train | Batch (196/196) | Top-1: 79.48 (39738/50000)
+Regular: 0.36565542221069336
+Epoche: 2; regular: 0.36565542221069336: flops 71125280
+#Filters: 1268, #FLOPs: 49.82M | Top-1: 47.69
 Epoch 3
-Train | Batch (1/196) | Top-1: 85.55 (219/256)
-Train | Batch (101/196) | Top-1: 84.69 (21898/25856)
-Train | Batch (196/196) | Top-1: 84.86 (42428/50000)
-Regular: nan
-Epoche: 3; regular: nan: flops 67918332
-#Filters: 1855, #FLOPs: 58.52M | Top-1: 76.15
+Train | Batch (1/196) | Top-1: 79.30 (203/256)
+Train | Batch (101/196) | Top-1: 79.88 (20654/25856)
+Train | Batch (196/196) | Top-1: 80.07 (40037/50000)
+Regular: 0.2233850359916687
+Epoche: 3; regular: 0.2233850359916687: flops 71125280
+#Filters: 1268, #FLOPs: 50.60M | Top-1: 55.75
 Epoch 4
+Train | Batch (1/196) | Top-1: 83.98 (215/256)
+Train | Batch (101/196) | Top-1: 78.50 (20298/25856)
+Train | Batch (196/196) | Top-1: 78.64 (39319/50000)
+Regular: 0.1933509111404419
+Epoche: 4; regular: 0.1933509111404419: flops 71125280
+#Filters: 1266, #FLOPs: 49.81M | Top-1: 22.36
+Epoch 5
+Train | Batch (1/196) | Top-1: 74.22 (190/256)
+Train | Batch (101/196) | Top-1: 79.23 (20485/25856)
+Train | Batch (196/196) | Top-1: 79.38 (39692/50000)
+Regular: 0.18682058155536652
+Epoche: 5; regular: 0.18682058155536652: flops 71125280
+#Filters: 1221, #FLOPs: 49.95M | Top-1: 62.02
+Epoch 6
+Train | Batch (1/196) | Top-1: 76.95 (197/256)
+Train | Batch (101/196) | Top-1: 79.38 (20524/25856)
+Train | Batch (196/196) | Top-1: 79.50 (39752/50000)
+Regular: 0.1769348382949829
+Epoche: 6; regular: 0.1769348382949829: flops 71125280
+#Filters: 1218, #FLOPs: 49.86M | Top-1: 25.73
+Epoch 7
+Train | Batch (1/196) | Top-1: 76.17 (195/256)
+Train | Batch (101/196) | Top-1: 78.36 (20260/25856)
+Train | Batch (196/196) | Top-1: 78.75 (39375/50000)
+Regular: 0.27203649282455444
+Epoche: 7; regular: 0.27203649282455444: flops 71125280
+#Filters: 1218, #FLOPs: 50.04M | Top-1: 49.33
+Epoch 8
+Train | Batch (1/196) | Top-1: 80.47 (206/256)
+Train | Batch (101/196) | Top-1: 79.61 (20583/25856)
+Train | Batch (196/196) | Top-1: 79.56 (39781/50000)
+Regular: 0.1903401017189026
+Epoche: 8; regular: 0.1903401017189026: flops 71125280
+#Filters: 1220, #FLOPs: 50.14M | Top-1: 62.40
+Epoch 9
+Train | Batch (1/196) | Top-1: 81.25 (208/256)
+Train | Batch (101/196) | Top-1: 79.68 (20602/25856)
+Train | Batch (196/196) | Top-1: 79.49 (39745/50000)
+Regular: 0.18894460797309875
+Epoche: 9; regular: 0.18894460797309875: flops 71125280
+#Filters: 1217, #FLOPs: 49.86M | Top-1: 65.49
+Epoch 10
+Train | Batch (1/196) | Top-1: 82.81 (212/256)
+Train | Batch (101/196) | Top-1: 79.56 (20570/25856)
+Train | Batch (196/196) | Top-1: 79.59 (39794/50000)
+Regular: 0.27045702934265137
+Epoche: 10; regular: 0.27045702934265137: flops 71125280
+#Filters: 649, #FLOPs: 29.48M | Top-1: 49.24
+Epoch 11
+Train | Batch (1/196) | Top-1: 78.91 (202/256)
+Train | Batch (101/196) | Top-1: 79.46 (20546/25856)
+Train | Batch (196/196) | Top-1: 79.47 (39734/50000)
+Regular: 0.2562350630760193
+Epoche: 11; regular: 0.2562350630760193: flops 71125280
+#Filters: 649, #FLOPs: 29.48M | Top-1: 51.57
+Epoch 12
+Train | Batch (1/196) | Top-1: 77.34 (198/256)
+Train | Batch (101/196) | Top-1: 79.96 (20674/25856)
+Train | Batch (196/196) | Top-1: 79.81 (39903/50000)
+Regular: 0.2294052243232727
+Epoche: 12; regular: 0.2294052243232727: flops 71125280
+#Filters: 646, #FLOPs: 29.90M | Top-1: 38.43
+Epoch 13
+Train | Batch (1/196) | Top-1: 77.73 (199/256)
+Train | Batch (101/196) | Top-1: 79.63 (20590/25856)
+Train | Batch (196/196) | Top-1: 79.48 (39739/50000)
+Regular: 0.23732662200927734
+Epoche: 13; regular: 0.23732662200927734: flops 71125280
+#Filters: 647, #FLOPs: 29.94M | Top-1: 62.07
+Epoch 14
+Train | Batch (1/196) | Top-1: 76.17 (195/256)
+Train | Batch (101/196) | Top-1: 79.79 (20631/25856)
+Train | Batch (196/196) | Top-1: 79.55 (39776/50000)
+Regular: 0.17895184457302094
+Epoche: 14; regular: 0.17895184457302094: flops 71125280
+#Filters: 645, #FLOPs: 29.85M | Top-1: 52.27
+Epoch 15
+Train | Batch (1/196) | Top-1: 73.05 (187/256)
+Train | Batch (101/196) | Top-1: 79.76 (20622/25856)
+Train | Batch (196/196) | Top-1: 79.70 (39850/50000)
+Regular: 0.17063915729522705
+Epoche: 15; regular: 0.17063915729522705: flops 71125280
+#Filters: 648, #FLOPs: 29.44M | Top-1: 61.22
+Epoch 16
+Train | Batch (1/196) | Top-1: 73.05 (187/256)
+Train | Batch (101/196) | Top-1: 80.09 (20708/25856)
+Train | Batch (196/196) | Top-1: 79.94 (39971/50000)
+Regular: 0.18940840661525726
+Epoche: 16; regular: 0.18940840661525726: flops 71125280
+#Filters: 648, #FLOPs: 29.99M | Top-1: 53.17
+Epoch 17
+Train | Batch (1/196) | Top-1: 78.12 (200/256)
+Train | Batch (101/196) | Top-1: 79.75 (20620/25856)
+Train | Batch (196/196) | Top-1: 79.63 (39816/50000)
+Regular: 0.17328301072120667
+Epoche: 17; regular: 0.17328301072120667: flops 71125280
+#Filters: 646, #FLOPs: 30.13M | Top-1: 63.30
+Epoch 18
+Train | Batch (1/196) | Top-1: 80.86 (207/256)
+Train | Batch (101/196) | Top-1: 79.70 (20606/25856)
+Train | Batch (196/196) | Top-1: 79.67 (39833/50000)
+Regular: 0.16867667436599731
+Epoche: 18; regular: 0.16867667436599731: flops 71125280
+#Filters: 646, #FLOPs: 30.05M | Top-1: 65.22
+Epoch 19
+Train | Batch (1/196) | Top-1: 83.59 (214/256)
+Train | Batch (101/196) | Top-1: 79.78 (20627/25856)
+Train | Batch (196/196) | Top-1: 79.76 (39881/50000)
+Regular: 0.1732373684644699
+Epoche: 19; regular: 0.1732373684644699: flops 71125280
+#Filters: 645, #FLOPs: 30.05M | Top-1: 49.76
+Epoch 20
+Train | Batch (1/196) | Top-1: 78.91 (202/256)
+Train | Batch (101/196) | Top-1: 80.00 (20685/25856)
+Train | Batch (196/196) | Top-1: 79.92 (39959/50000)
+Regular: 0.1646701991558075
+Epoche: 20; regular: 0.1646701991558075: flops 71125280
+#Filters: 645, #FLOPs: 30.05M | Top-1: 57.29
+Epoch 21
+Train | Batch (1/196) | Top-1: 80.08 (205/256)
+Train | Batch (101/196) | Top-1: 79.97 (20678/25856)
+Train | Batch (196/196) | Top-1: 79.81 (39907/50000)
+Regular: 0.17444375157356262
+Epoche: 21; regular: 0.17444375157356262: flops 71125280
+#Filters: 642, #FLOPs: 29.62M | Top-1: 57.37
+Epoch 22
+Train | Batch (1/196) | Top-1: 76.17 (195/256)
+Train | Batch (101/196) | Top-1: 79.35 (20516/25856)
+Train | Batch (196/196) | Top-1: 79.51 (39754/50000)
+Regular: 0.16947010159492493
+Epoche: 22; regular: 0.16947010159492493: flops 71125280
+#Filters: 642, #FLOPs: 29.72M | Top-1: 52.32
+Epoch 23
+Train | Batch (1/196) | Top-1: 79.30 (203/256)
+Train | Batch (101/196) | Top-1: 79.88 (20653/25856)
+Train | Batch (196/196) | Top-1: 79.67 (39837/50000)
+Regular: 0.17162539064884186
+Epoche: 23; regular: 0.17162539064884186: flops 71125280
+#Filters: 639, #FLOPs: 29.45M | Top-1: 69.60
+Epoch 24
+Train | Batch (1/196) | Top-1: 81.25 (208/256)
+Train | Batch (101/196) | Top-1: 79.48 (20550/25856)
+Train | Batch (196/196) | Top-1: 79.57 (39785/50000)
+Regular: 0.16985099017620087
+Epoche: 24; regular: 0.16985099017620087: flops 71125280
+#Filters: 637, #FLOPs: 29.45M | Top-1: 42.18
+Epoch 25
+Train | Batch (1/196) | Top-1: 83.20 (213/256)
+Train | Batch (101/196) | Top-1: 79.72 (20612/25856)
+Train | Batch (196/196) | Top-1: 79.76 (39882/50000)
+Regular: 0.17068085074424744
+Epoche: 25; regular: 0.17068085074424744: flops 71125280
+#Filters: 642, #FLOPs: 29.63M | Top-1: 65.10
+Epoch 26
+Train | Batch (1/196) | Top-1: 76.95 (197/256)
+Train | Batch (101/196) | Top-1: 79.56 (20570/25856)
+Train | Batch (196/196) | Top-1: 79.79 (39893/50000)
+Regular: 0.17311826348304749
+Epoche: 26; regular: 0.17311826348304749: flops 71125280
+#Filters: 644, #FLOPs: 29.68M | Top-1: 64.97
+Epoch 27
+Train | Batch (1/196) | Top-1: 75.00 (192/256)
+Train | Batch (101/196) | Top-1: 79.62 (20586/25856)
+Train | Batch (196/196) | Top-1: 79.57 (39787/50000)
+Regular: 0.17075876891613007
+Epoche: 27; regular: 0.17075876891613007: flops 71125280
+#Filters: 644, #FLOPs: 29.68M | Top-1: 58.47
+Epoch 28
