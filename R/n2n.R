@@ -23,7 +23,8 @@ baselineSAcc1 <- baselineS1$ValidAcc.
 
 setwd("/home/j3ssi/MA_Source/output/experimente4/Logs")
 
-deeper1 <- read.delim("deeper.txt", header = TRUE, sep = "\t", dec = ".")
+deeperX <- read.delim("deeperX.txt", header = TRUE, sep = "\t", dec = ".")
+deeperX1 <- read.delim("deeperX1.txt", header = TRUE, sep = "\t", dec = ".")
 
 
 
