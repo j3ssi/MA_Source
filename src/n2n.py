@@ -1056,24 +1056,24 @@ class N2N(nn.Module):
                         deeper_w = torch.from_numpy(deeper_w)
                         conv.weight.data = deeper_w.type(torch.FloatTensor)
                         # nn.init.normal_( conv.weight, mean = 0, std = math.sqrt( 1. / ( n*n ) ) )
-                        lastConv = False
-                        k = 1
-                        while not lastConv:
-                            if ( j - k ) >= len(module):
-                                # print(f'k: {k}; j-k: {j-k}; len(module): {len(module)}')
-                                k += 1
-                            else:
-                                m = module[ j - k ]
-                                if isinstance(m, nn.Conv2d):
-                                    for l in range(m.out_channels):
-                                        weight1 = m.weight.data
-                                        norm = weight1.select(0, l).norm()
-                                        weight1.div_(norm)
-                                        m.weight.data = weight1
-                                    module[ j - k ] = m
-                                    lastConv = True
-                                else:
-                                    k += 1
+                        # lastConv = False
+                        # k = 1
+                        # while not lastConv:
+                        #     if ( j - k ) >= len(module):
+                        #         # print(f'k: {k}; j-k: {j-k}; len(module): {len(module)}')
+                        #         k += 1
+                        #     else:
+                        #         m = module[ j - k ]
+                        #         if isinstance(m, nn.Conv2d):
+                        #             for l in range(m.out_channels):
+                        #                 weight1 = m.weight.data
+                        #                 norm = weight1.select(0, l).norm()
+                        #                 weight1.div_(norm)
+                        #                 m.weight.data = weight1
+                        #             module[ j - k ] = m
+                        #             lastConv = True
+                        #         else:
+                        #             k += 1
                         seq.append(conv)
                     elif j > (3 * pos):
                         # print(f'module: {module[j - 2]}; j= {j + 2}')

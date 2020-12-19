@@ -277,6 +277,7 @@ def get_args():
     parser.add_argument("--logger", type=str, default='/home/jessica.buehler/MA_Source/MorphLogs/log.txt')
     parser.add_argument("--dataset", type=str, default='torchvision.datasets.CIFAR10')
     parser.add_argument("--epoch", type=int, default=5)
+    parser.add_argument("--inPlanes", type=int, default=16)
     parser.add_argument("--name", type=str, default='ft_mbnetv2')
     parser.add_argument("--model", type=str, default='ft_mbnetv2')
     parser.add_argument("--batch_size", type=int, default=256)
@@ -293,7 +294,7 @@ def get_args():
 if __name__ == '__main__':
     args = get_args()
     print(args)
-    model = resnet.ResNet32(10)
+    model = resnet.ResNet32(num_classes=10, inPlanes = args.inPlanes)
     model.cuda()
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                      std=[0.229, 0.224, 0.225])
