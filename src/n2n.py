@@ -157,8 +157,8 @@ class N2N(nn.Module):
                             print(f'relu; i: {i}')
                         i = i + 1
 
-                    self.paramList.append(nn.Parameter(torch.ones(1), requires_grad=True))
-                    self.paramList1.append(nn.Parameter(torch.ones(1), requires_grad=True))
+                    # self.paramList.append(nn.Parameter(torch.ones(1), requires_grad=True))
+                    # self.paramList1.append(nn.Parameter(torch.ones(1), requires_grad=True))
 
                 block = nn.Sequential(*layer)
                 if printInit:
