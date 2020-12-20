@@ -1145,7 +1145,6 @@ class N2N(nn.Module):
                 i3 = module.weight.size(3)
                 if printDeeper:
                     print(f'size: {i0}, {i1}, {i2}, {i3}; j: {j}')
-
                 for block in range(0, len(self.archNums[stage])+ 1):
                     print(f'Block: {block}')
                     if block < pos and stage > 0 and block == 0 :
@@ -1208,7 +1207,6 @@ class N2N(nn.Module):
                         if printDeeper:
                             print(f'seq: {block}; i: {j}')
                         moduleList.append(block)
-
                     elif block > pos:
                         paramListTmp.append(nn.Parameter(self.paramList[k], requires_grad=True))
                         paramListTmp1.append(nn.Parameter(self.paramList1[k], requires_grad=True))
