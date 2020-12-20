@@ -1152,7 +1152,10 @@ class N2N(nn.Module):
                     elif block == pos:
                         numOfBlocks = self.archNums[stage][0]
                         self.archNums[stage].insert(k, numOfBlocks)
-                        paramListTmp.append(nn.Parameter(0.5, requires_grad=True))
+                        param1 = nn.Parameter(torch.ones(1))
+                        param1.data.fill_(0.5)
+                        paramListTmp.append(param1)
+                        paramListTmp1.append(param1)
                         k += 1
                         layer = []
                         i = 0
