@@ -1242,7 +1242,7 @@ class N2N(nn.Module):
 
         # print(f'paramlist: {paramListTmp}')
         # print(f'paramlist1: {paramListTmp1}')
-
+        print(f'archNums: {self.archNums}')
         avgpool = nn.AdaptiveAvgPool2d((1, 1))
         moduleList.append(avgpool)
         moduleList.append(self.module_list[-1])
