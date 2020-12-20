@@ -1144,6 +1144,7 @@ class N2N(nn.Module):
                     print(f'size: {i0}, {i1}, {i2}, {i3}; j: {j}')
 
                 for block in range(0, len(self.archNums[stage])+ 1):
+                    print(f'Block: {block}')
                     if block<pos:
                         moduleList.append(self.module_list[k])
                         paramListTmp.append(nn.Parameter(self.paramList[k], requires_grad=True))
