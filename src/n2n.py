@@ -1160,7 +1160,6 @@ class N2N(nn.Module):
                         param1.data.fill_(0.5)
                         paramListTmp.append(param1)
                         paramListTmp1.append(param1)
-                        k += 1
                         layer = []
                         i = 0
                         sizeOfLayer = self.widthofLayers[stage]
