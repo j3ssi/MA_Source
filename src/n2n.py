@@ -1126,71 +1126,72 @@ class N2N(nn.Module):
         firstBlockInStage = True
         paramListTmp = nn.ParameterList()
         paramListTmp1 = nn.ParameterList()
-        k = 0
+        k = 2
         for stage in range(0, self.numOfStages):
-            module = self.module_list[k][0]
-            i0 = module.weight.size(0)
-            i1 = module.weight.size(1)
-            i2 = module.weight.size(2)
-            i3 = module.weight.size(3)
-            if printDeeper:
-                print(f'size: {i0}, {i1}, {i2}, {i3}; j: {j}')
+            if isinstance(self.module_list[k], nn.Sequential):
+                module = self.module_list[k][0]
+                i0 = module.weight.size(0)
+                i1 = module.weight.size(1)
+                i2 = module.weight.size(2)
+                i3 = module.weight.size(3)
+                if printDeeper:
+                    print(f'size: {i0}, {i1}, {i2}, {i3}; j: {j}')
 
-            for block in range(0, len(self.archNums[stage])+ 1):
-                if block<pos:
-                    paramListTmp.append(nn.Parameter(self.paramList[k], requires_grad=True))
-                    paramListTmp1.append(nn.Parameter(self.paramList1[k], requires_grad = True))
-                    k += 1
-                elif block == pos:
-                    numOfBlocks = self.archNums[stage][0]
-                    self.archNums[stage].insert(k, numOfBlocks)
-                    paramListTmp.append(nn.Parameter(0.5, requires_grad=True))
-                    k += 1
-                    layer = []
-                    i = 0
-                    sizeOfLayer = self.widthofLayers[stage]
-                    while i < numOfBlocks:
+                for block in range(0, len(self.archNums[stage])+ 1):
+                    if block<pos:
+                        paramListTmp.append(nn.Parameter(self.paramList[k], requires_grad=True))
+                        paramListTmp1.append(nn.Parameter(self.paramList1[k], requires_grad = True))
+                        k += 1
+                    elif block == pos:
+                        numOfBlocks = self.archNums[stage][0]
+                        self.archNums[stage].insert(k, numOfBlocks)
+                        paramListTmp.append(nn.Parameter(0.5, requires_grad=True))
+                        k += 1
+                        layer = []
+                        i = 0
+                        sizeOfLayer = self.widthofLayers[stage]
+                        while i < numOfBlocks:
+                            if printDeeper:
+                                print(f'i : {j}; block: {block}')
+                            if (i + 1) % self.archNums[stage][block] == 0:
+                                conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
+                                                 stride=1)
+                                if printDeeper:
+                                    print(f'{conv}; i: {i} if 3')
+                                layer.append(conv)
+                                bn = nn.BatchNorm2d(sizeOfLayer)
+                                if printDeeper:
+                                    print(f'{bn}; i: {i}')
+                                layer.append(bn)
+                                # layer.append(self.relu)
+                                # if printInit:
+                                #    print(f'relu; i: {i}')
+                                i = i + 1
+
+                            else:
+                                conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
+                                                 stride=1)
+                                if printDeeper:
+                                    print(f'{conv}; i: {i} if 4')
+                                layer.append(conv)
+                                bn = nn.BatchNorm2d(sizeOfLayer)
+                                if printDeeper:
+                                    print(f'{bn}; i: {i}')
+                                layer.append(bn)
+                                layer.append(self.relu)
+                                if printDeeper:
+                                    print(f'relu; i: {i}')
+                                i = i + 1
+
+                        block = nn.Sequential(*layer)
                         if printDeeper:
-                            print(f'i : {j}; block: {block}')
-                        if (i + 1) % self.archNums[stage][block] == 0:
-                            conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
-                                         stride=1)
-                            if printDeeper:
-                                print(f'{conv}; i: {i} if 3')
-                            layer.append(conv)
-                            bn = nn.BatchNorm2d(sizeOfLayer)
-                            if printDeeper:
-                                print(f'{bn}; i: {i}')
-                            layer.append(bn)
-                            # layer.append(self.relu)
-                            # if printInit:
-                            #    print(f'relu; i: {i}')
-                            i = i + 1
+                            print(f'seq: {block}; i: {j}')
+                        self.module_list.insert(k + 3)
 
-                        else:
-                            conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
-                                             stride=1)
-                            if printDeeper:
-                                print(f'{conv}; i: {i} if 4')
-                            layer.append(conv)
-                            bn = nn.BatchNorm2d(sizeOfLayer)
-                            if printDeeper:
-                                print(f'{bn}; i: {i}')
-                            layer.append(bn)
-                            layer.append(self.relu)
-                            if printDeeper:
-                                print(f'relu; i: {i}')
-                            i = i + 1
-
-                    block = nn.Sequential(*layer)
-                    if printDeeper:
-                        print(f'seq: {block}; i: {j}')
-                    self.module_list.insert(k + 3)
-
-                elif block > pos:
-                    paramListTmp.append(nn.Parameter(self.paramList[k-1], requires_grad=True))
-                    paramListTmp1.append(nn.Parameter(self.paramList1[k-1], requires_grad=True))
-                    k += 1
+                    elif block > pos:
+                        paramListTmp.append(nn.Parameter(self.paramList[k-1], requires_grad=True))
+                        paramListTmp1.append(nn.Parameter(self.paramList1[k-1], requires_grad=True))
+                        k += 1
         # b = 2
         # c = 0
         # for i in range(0, stage - 1):
