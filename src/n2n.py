@@ -1132,6 +1132,7 @@ class N2N(nn.Module):
         moduleList.append(self.module_list[2])
 
         k = 3
+        j = 3
         for stage in range(0, self.numOfStages):
             if isinstance(self.module_list[k], nn.Sequential):
                 module = self.module_list[k]
@@ -1145,11 +1146,13 @@ class N2N(nn.Module):
 
                 for block in range(0, len(self.archNums[stage])+ 1):
                     print(f'Block: {block}')
-                    if block<pos:
-                        moduleList.append(self.module_list[k])
+                    if block < pos:
+                        moduleList.append(self.module_list[j])
+                        moduleList.append(self.module_list[j + 1])
                         paramListTmp.append(nn.Parameter(self.paramList[k], requires_grad=True))
                         paramListTmp1.append(nn.Parameter(self.paramList1[k], requires_grad = True))
                         k += 1
+                        j += 2
                     elif block == pos:
                         numOfBlocks = self.archNums[stage][0]
                         self.archNums[stage].insert(k, numOfBlocks)
@@ -1202,9 +1205,9 @@ class N2N(nn.Module):
                     elif block > pos:
                         paramListTmp.append(nn.Parameter(self.paramList[k-1], requires_grad=True))
                         paramListTmp1.append(nn.Parameter(self.paramList1[k-1], requires_grad=True))
-                        moduleList.append(self.module_list[k-1])
-
+                        moduleList.append(self.module_list[j])
                         k += 1
+                        j += 1
         # b = 2
         # c = 0
         # for i in range(0, stage - 1):
