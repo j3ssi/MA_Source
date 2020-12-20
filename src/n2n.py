@@ -1126,7 +1126,12 @@ class N2N(nn.Module):
         firstBlockInStage = True
         paramListTmp = nn.ParameterList()
         paramListTmp1 = nn.ParameterList()
-        k = 2
+        moduleList = nn.ModuleList()
+        moduleList.append(self.module_list[0])
+        moduleList.append(self.module_list[1])
+        moduleList.append(self.module_list[2])
+
+        k = 3
         for stage in range(0, self.numOfStages):
             if isinstance(self.module_list[k], nn.Sequential):
                 module = self.module_list[k]
@@ -1140,6 +1145,7 @@ class N2N(nn.Module):
 
                 for block in range(0, len(self.archNums[stage])+ 1):
                     if block<pos:
+                        moduleList.append(self.module_list[k])
                         paramListTmp.append(nn.Parameter(self.paramList[k], requires_grad=True))
                         paramListTmp1.append(nn.Parameter(self.paramList1[k], requires_grad = True))
                         k += 1
@@ -1187,11 +1193,13 @@ class N2N(nn.Module):
                         block = nn.Sequential(*layer)
                         if printDeeper:
                             print(f'seq: {block}; i: {j}')
-                        self.module_list.insert(k + 3)
+                        moduleList.append(block)
 
                     elif block > pos:
                         paramListTmp.append(nn.Parameter(self.paramList[k-1], requires_grad=True))
                         paramListTmp1.append(nn.Parameter(self.paramList1[k-1], requires_grad=True))
+                        moduleList.append(self.module_list[k-1])
+
                         k += 1
         # b = 2
         # c = 0
@@ -1220,6 +1228,11 @@ class N2N(nn.Module):
 
         # print(f'paramlist: {paramListTmp}')
         # print(f'paramlist1: {paramListTmp1}')
+
+        avgpool = nn.AdaptiveAvgPool2d((1, 1))
+        moduleList.append(avgpool)
+        moduleList.append(self.module_list[-1])
+        self.module_list = moduleList
         self.paramList = paramListTmp
         self.paramList1 = paramListTmp1
         self.paramList.cuda()
