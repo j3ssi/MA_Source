@@ -1108,6 +1108,7 @@ class N2N(nn.Module):
 
     def deeper2(self, pos):
         # make each stage with one block more
+        print(f'deep2: {self.deep2}')
         if not self.deep2:
             self.deep2 = True
             self.paramList = nn.ParameterList()
@@ -1116,6 +1117,7 @@ class N2N(nn.Module):
                 for block in range(0, len(self.archNums[stage])):
                     self.paramList.append(nn.Parameter(torch.ones(1), requires_grad=True))
                     self.paramList1.append(nn.Parameter(torch.ones(1), requires_grad=True))
+        print(f'len param: {len(self.paramList)}')
         printDeeper = True
         j = 2
         notfirstStage = False
