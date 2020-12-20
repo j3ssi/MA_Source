@@ -17,9 +17,7 @@ class N2N(nn.Module):
         self.oddLayers = []
         self.numOfBlocksinStage = numOfBlocksinStage
         self.layersInBlock = layersInBlock
-        self.deeper2 = False
-        self.paramList = nn.ParameterList()
-        self.paramList1 = nn.ParameterList()
+        self.deep2 = False
         printInit = False
         if widthOfLayers is not None:
             self.widthofFirstLayer = widthOfLayers[0]
@@ -210,8 +208,6 @@ class N2N(nn.Module):
                         nn.init.ones_(seq.weight)
                         nn.init.zeros_(seq.bias)
         self.cuda()
-        self.paramList.cuda()
-        self.paramList1.cuda()
         print(f'')
         self.StagesI, self.StagesO = self.buildResidualPath()
         # self.dense_chs, _ = makeSparse(optimizer, self, 100, reconf=False)
@@ -1105,6 +1101,123 @@ class N2N(nn.Module):
                 if i0 != i1 and not blockComp:
                     blockComp = True
         print(self)
+
+    def deeper2(self, pos):
+        # make each stage with one block more
+        if not self.deep2:
+            self.deep2 = True
+            self.paramList = nn.ParameterList()
+            self.paramList1 = nn.ParameterList()
+            for stage in range(0, self.numOfStages):
+                for block in range(0, len(self.archNums[stage])):
+                    self.paramList.append(nn.Parameter(torch.ones(1), requires_grad=True))
+                    self.paramList1.append(nn.Parameter(torch.ones(1), requires_grad=True))
+        printDeeper = True
+        j = 2
+        notfirstStage = False
+
+        if printDeeper:
+            print("\n\nStage: ", stage)
+        archNum = self.archNums[stage]
+        firstBlockInStage = True
+        paramListTmp = nn.ParameterList()
+        paramListTmp1 = nn.ParameterList()
+        k = 0
+        for stage in range(0, self.numOfStages):
+            module = self.module_list[k][0]
+            i0 = module.weight.size(0)
+            i1 = module.weight.size(1)
+            i2 = module.weight.size(2)
+            i3 = module.weight.size(3)
+            if printDeeper:
+                print(f'size: {i0}, {i1}, {i2}, {i3}; j: {j}')
+
+            for block in range(0, len(self.archNums[stage])+ 1):
+                if block<pos:
+                    paramListTmp.append(nn.Parameter(self.paramList[k], requires_grad=True))
+                    paramListTmp1.append(nn.Parameter(self.paramList1[k], requires_grad = True))
+                    k += 1
+                elif block == pos:
+                    numOfBlocks = self.archNums[stage][0]
+                    self.archNums[stage].insert(k, numOfBlocks)
+                    paramListTmp.append(nn.Parameter(0.5, requires_grad=True))
+                    k += 1
+                    layer = []
+                    i = 0
+                    sizeOfLayer = self.widthofLayers[stage]
+                    while i < numOfBlocks:
+                        if printDeeper:
+                            print(f'i : {j}; block: {block}')
+                        if (i + 1) % self.archNums[stage][block] == 0:
+                            conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
+                                         stride=1)
+                            if printDeeper:
+                                print(f'{conv}; i: {i} if 3')
+                            layer.append(conv)
+                            bn = nn.BatchNorm2d(sizeOfLayer)
+                            if printDeeper:
+                                print(f'{bn}; i: {i}')
+                            layer.append(bn)
+                            # layer.append(self.relu)
+                            # if printInit:
+                            #    print(f'relu; i: {i}')
+                            i = i + 1
+
+                        else:
+                            conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
+                                             stride=1)
+                            if printDeeper:
+                                print(f'{conv}; i: {i} if 4')
+                            layer.append(conv)
+                            bn = nn.BatchNorm2d(sizeOfLayer)
+                            if printDeeper:
+                                print(f'{bn}; i: {i}')
+                            layer.append(bn)
+                            layer.append(self.relu)
+                            if printDeeper:
+                                print(f'relu; i: {i}')
+                            i = i + 1
+
+                    block = nn.Sequential(*layer)
+                    if printDeeper:
+                        print(f'seq: {block}; i: {j}')
+                    self.module_list.insert(k + 3)
+
+                elif block > pos:
+                    paramListTmp.append(nn.Parameter(self.paramList[k-1], requires_grad=True))
+                    paramListTmp1.append(nn.Parameter(self.paramList1[k-1], requires_grad=True))
+                    k += 1
+        # b = 2
+        # c = 0
+        # for i in range(0, stage - 1):
+        #     archStage = self.archNums[i - 1]
+        #     print(f'archStage: {archStage}')
+        #     for j in range(len(archStage)):
+        #         b += 2 * archStage[j - 1]
+        #         c = c + 1
+        # archStage = self.archNums[stage - 1]
+        # for i in range(0, pos):
+        #     b += 2 * pos
+        #     c = c + 1
+        # print(f'B: {b}; c: {c}')
+        # paramListTmp1 = nn.ParameterList()
+        # paramListTmp = nn.ParameterList()
+        # for i in range(len(self.paramList)):
+        #
+        #     if i == c:
+        #         param1 = nn.Parameter(torch.ones(1))
+        #         param1.data.fill_(0.5)
+        #         paramListTmp.append(param1)
+        #         paramListTmp1.append(param1)
+        #     paramListTmp.append(self.paramList[i])
+        #     paramListTmp1.append(self.paramList1[i])
+
+        # print(f'paramlist: {paramListTmp}')
+        # print(f'paramlist1: {paramListTmp1}')
+        self.paramList = paramListTmp
+        self.paramList1 = paramListTmp1
+        self.paramList.cuda()
+        self.paramList1.cuda()
 
     def buildResidualPath(self,):
         # # stage0O = [n(1), n(3), n(5), n(7), n(9), n(11)]

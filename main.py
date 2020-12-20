@@ -157,7 +157,7 @@ parser.add_argument('--wider', default=0, type=int,
                     help='Make network wider')
 parser.add_argument('--deeper', default=0, type=int,
                     help='Make network deeper')
-parser.add_argument('--deeper2', default=False, action='store_true',
+parser.add_argument('--deeper2', default=0, type=int,
                     help='Make network deeper')
 
 parser.add_argument('--widerRnd', default=0, type= int,
@@ -496,6 +496,17 @@ def main():
                 # criterion = nn.CrossEntropyLoss()
                 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
                                       weight_decay=args.weight_decay)
+            if args.deeper2 == epoch:
+                print("\n\nnow deeper1")
+                # deeper student training
+                model.deeper2(pos = 1)
+                print(f'args.layersInBlock: {args.layersInBlock}')
+                model.newModuleList(num_classes= 10)
+                model.cuda()
+                criterion = nn.CrossEntropyLoss()
+                optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum,
+                                      weight_decay=args.weight_decay)
+                print(model)
 
             # for param in model.paramList:
             #    print(f'Parameter: {param.data}')
