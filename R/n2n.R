@@ -21,10 +21,6 @@ baselineAcc1 <- c(tail(baseline1$ValidAcc.,n=1), tail(baseline2$ValidAcc.,n=1), 
 baselineS1 <- read.delim("baselineS1.txt", header = TRUE, sep = "\t", dec = ".")
 baselineSAcc1 <- baselineS1$ValidAcc.
 
-setwd("/home/j3ssi/MA_Source/output/experimente4/Logs")
-
-deeperX <- read.delim("deeperX.txt", header = TRUE, sep = "\t", dec = ".")
-deeperX1 <- read.delim("deeperX1.txt", header = TRUE, sep = "\t", dec = ".")
 
 
 
@@ -85,11 +81,22 @@ plot(baselineSAcc1, col='blue',xlim=c(0,180),ylim=c(25,96), xlab="Epochen", ylab
 par(new=TRUE)
 plot(n2nwider1$X, col='green',xlim=c(0,180),ylim=c(25,96),xlab='Epochen',ylab='Accuracy')
 par(new=TRUE)
-plot(baselineO1$ValidAcc.,xlab='',ylab='',xlim=c(0,250),ylim=c(75,96))
+setwd("/home/j3ssi/MA_Source/output/experimente4/Logs")
+
+deeperX <- read.delim("deeperX.txt", header = TRUE, sep = "\t", dec = ".")
+deeperX1 <- read.delim("deeperX1.txt", header = TRUE, sep = "\t", dec = ".")
+deeperX2 <- read.delim("deeperX2.txt", header = TRUE, sep = "\t", dec = ".")
+
+
+plot(baselineO1$ValidAcc.,xlab='',ylab='',xlim=c(0,180),ylim=c(25,96))
 par(new=TRUE)
 
 
-plot(deeper1$ValidAcc., col='green',ylim=c(25,96),xlim=c(0,250),xlab='Epochen',ylab='Accuracy')
+plot(deeperX$ValidAcc., col='green',ylim=c(25,96),xlim=c(0,180),xlab='Epochen',ylab='Accuracy')
+par(new=TRUE)
+
+plot(deeperX1$ValidAcc., col='blue',ylim=c(25,96),xlim=c(0,180),xlab='Epochen',ylab='Accuracy')
+
 abline(h=87.71)
 
 
