@@ -1133,7 +1133,7 @@ class N2N(nn.Module):
         moduleList.append(self.module_list[1])
         moduleList.append(self.module_list[2])
 
-        k = 3
+        k = 0
         j = 3
         for stage in range(0, self.numOfStages):
             if isinstance(self.module_list[k], nn.Sequential):
