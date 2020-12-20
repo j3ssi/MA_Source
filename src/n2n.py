@@ -1179,10 +1179,22 @@ class N2N(nn.Module):
                             if (i + 1) % self.archNums[stage][block] == 0:
                                 conv = nn.Conv2d(sizeOfLayer, sizeOfLayer, kernel_size=3, padding=1, bias=False,
                                                  stride=1)
+                                deeper_w = np.zeros((i0, i0, i2, i3))
+                                # deeper_w = np.random.normal(loc=0, scale=0.15,size=(i0, i0, kernel_size[0], kernel_size[1]))
+                                for a1 in range(0, i0):
+                                    for b1 in range(0, i0):
+                                        deeper_w[a1, b1, 1, 1] = 1
+                                        # print(f'deeper w :{deeper_w[i][j]}')
+                                deeper_w = torch.from_numpy(deeper_w)
+                                conv.weight.data = deeper_w.type(torch.FloatTensor)
+
                                 if printDeeper:
                                     print(f'{conv}; i: {i} if 3')
                                 layer.append(conv)
                                 bn = nn.BatchNorm2d(sizeOfLayer)
+                                torch.nn.init.ones_(bn.weight)
+                                torch.nn.init.zeros_(bn.bias)
+
                                 if printDeeper:
                                     print(f'{bn}; i: {i}')
                                 layer.append(bn)
@@ -1198,6 +1210,8 @@ class N2N(nn.Module):
                                     print(f'{conv}; i: {i} if 4')
                                 layer.append(conv)
                                 bn = nn.BatchNorm2d(sizeOfLayer)
+                                torch.nn.init.ones_(bn.weight)
+                                torch.nn.init.zeros_(bn.bias)
                                 if printDeeper:
                                     print(f'{bn}; i: {i}')
                                 layer.append(bn)
