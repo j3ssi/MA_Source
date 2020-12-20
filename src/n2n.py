@@ -1139,7 +1139,7 @@ class N2N(nn.Module):
             if isinstance(self.module_list[j], nn.Sequential):
                 module = self.module_list[j]
                 module = module[0]
-                i0 = module.weight.size(0)
+                i0 = module.out_channels
                 i1 = module.weight.size(1)
                 i2 = module.weight.size(2)
                 i3 = module.weight.size(3)
@@ -1161,7 +1161,10 @@ class N2N(nn.Module):
                         k += 1
                         j += 1
                     elif block == pos:
-                        numOfBlocks = self.archNums[stage][0]-1
+                        if stage>0:
+                            numOfBlocks = self.archNums[stage][0]-1
+                        else:
+                            numOfBlocks = self.archNums[stage][0]
                         self.archNums[stage].insert(k, numOfBlocks)
                         param1 = nn.Parameter(torch.ones(1))
                         param1.data.fill_(0.5)
@@ -1241,6 +1244,8 @@ class N2N(nn.Module):
         # print(f'paramlist: {paramListTmp}')
         # print(f'paramlist1: {paramListTmp1}')
         print(f'archNums: {self.archNums}')
+        print(f'len paramList: {len(paramListTmp)}')
+
         avgpool = nn.AdaptiveAvgPool2d((1, 1))
         moduleList.append(avgpool)
         moduleList.append(self.module_list[-1])
