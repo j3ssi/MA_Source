@@ -402,10 +402,13 @@ class N2N(nn.Module):
                     j += 1
 
                 try:
-                    if self.deeper2:
+                    if self.deep2:
                         try:
                             _x = _x * self.paramList[block]
                             x = x * self.paramList1[block]
+                        except:
+                            if not self.deep2:
+                                print(f'Fehler!')
                     _x = _x + x
                     sizeofX.append(_x)
                 except RuntimeError:
