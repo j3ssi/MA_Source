@@ -1224,6 +1224,7 @@ class N2N(nn.Module):
         self.paramList1 = paramListTmp1
         self.paramList.cuda()
         self.paramList1.cuda()
+        print(self)
 
     def buildResidualPath(self,):
         # # stage0O = [n(1), n(3), n(5), n(7), n(9), n(11)]
