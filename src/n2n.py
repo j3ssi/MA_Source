@@ -1129,7 +1129,8 @@ class N2N(nn.Module):
         k = 2
         for stage in range(0, self.numOfStages):
             if isinstance(self.module_list[k], nn.Sequential):
-                module = self.module_list[k][0]
+                module = self.module_list[k]
+                module = module[0]
                 i0 = module.weight.size(0)
                 i1 = module.weight.size(1)
                 i2 = module.weight.size(2)
