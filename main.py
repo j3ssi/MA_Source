@@ -247,7 +247,7 @@ def main():
         # Load checkpoint.
         print('==> Resuming from checkpoint..')
         assert os.path.isfile(args.resume), 'Error: no checkpoint directory found!'
-        args.checkpoint = os.path.dirname(args.resume)
+        # args.checkpoint = os.path.dirname(args.resume)
         checkpoint = torch.load(args.resume)
         if args.dB:
             memory = checkpoint['memory']
