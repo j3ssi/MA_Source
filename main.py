@@ -262,6 +262,11 @@ def main():
         #     else:
         #         scheduler = StepLR(optimizer, step_size=30, gamma=0.95)        # start_batchSize = checkpoint['start_batchSize']
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title, resume=True)
+        logger.set_names(
+            ['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.', 'TrainEpochTime(s)',
+             'TestEpochTime(s)'])
+
+
     else:
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
         logger.set_names(
