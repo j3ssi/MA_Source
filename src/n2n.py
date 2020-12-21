@@ -682,9 +682,9 @@ class N2N(nn.Module):
                 new_w2 = module1.weight.data.clone().cpu().detach().numpy()
                 old_w2 = module1.weight.data.clone().cpu().detach().numpy()
 
-                if module.bias is not None:
-                    new_b1 = module.weight.clone()
-                    old_b1 = module.weight.clone()
+                # if module.bias is not None:
+                #    new_b1 = module.weight.clone()
+                #    old_b1 = module.weight.clone()
 
                 # Fülle die neuen breiteren Gewichte mit dem richtigen Inhalt aus altem
 
