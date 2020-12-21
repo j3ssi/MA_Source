@@ -265,7 +265,7 @@ def main():
     else:
         logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
         logger.set_names(
-            ['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.','AvgAcc.' ,'TrainEpochTime(s)',
+            ['LearningRate', 'TrainLoss', 'ValidLoss', 'TrainAcc.', 'ValidAcc.' ,'TrainEpochTime(s)',
              'TestEpochTime(s)'])
         assert args.numOfStages == len(
             listofBlocks), 'Liste der Blöcke pro Stage sollte genauso lang sein wie Stages vorkommen!!!'
@@ -368,27 +368,27 @@ def main():
                 n1 = epoch
             y.append( testacc[-1] )
             a1 = 2 / (n1 + 1)
+            #
+            # try:
+            #     wAcc = testacc[ - n1 ]
+            # except:
+            #     wAcc = 0
+            # print(f'n1: {n1} for:')
+            # k = n1
+            # while k > 1:
+            #     wAcc = (1-a1) * wAcc + a1 *testacc[ - k ]
+            #     # print(f'n1: {k}')
+            #     k = k - 1
+            # # if epoch > 1:
 
-            try:
-                wAcc = testacc[ - n1 ]
-            except:
-                wAcc = 0
-            print(f'n1: {n1} for:')
-            k = n1
-            while k > 1:
-                wAcc = (1-a1) * wAcc + a1 *testacc[ - k ]
-                # print(f'n1: {k}')
-                k = k - 1
-            # if epoch > 1:
-
-            y.append(wAcc)
-            print(f'wAcc: {wAcc}')
+            # y.append(wAcc)
+            # print(f'wAcc: {wAcc}')
             print(f'test acc: {test_acc}')
 
             # print(f'n1: {n1}')
             # append logger file
             logger.append(
-               [optimizer.param_groups[0]["lr"], train_loss, test_loss, wAcc, train_acc, test_acc, train_epoch_time,
+               [optimizer.param_groups[0]["lr"], train_loss, test_loss, train_acc, test_acc, train_epoch_time,
                 test_epoch_time])
             countB = 0
             for p in model.parameters():
