@@ -715,8 +715,8 @@ class N2N(nn.Module):
                 module1.in_features = int( module1.in_features * delta_width )
                 # print(f'module: {module}')
                 # print(f'module1: {module1}')
-                if module.bias:
-                    module.bias.data = nn.Parameter(torch.from_numpy(new_b1))
+#                if module.bias:
+#                    module.bias.data = nn.Parameter(torch.from_numpy(new_b1))
 
                 if isinstance(moduleBn, nn.BatchNorm2d):
                     print(f'Batchnorm1')
