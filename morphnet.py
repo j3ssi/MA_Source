@@ -254,7 +254,12 @@ def train_mask(model, train_loader, testloader, pruner, epochs=10, lr=1e-2, lbda
         print(f'Epoche: {e}; regular: {regularize}: flops {flops}')
         ende = time.time() -start
         top1, _ = test(model, test_loader)
-        logger.append([regularize, flops, top1, ende])
+        if constraint == 'flops':
+            logger.append([regularize, flops, top1, ende])
+        elif constraint == 'size':
+            logger.append([regularize, num_params, top1, ende])
+        else:
+            print(f'FEHLER!!!!!!!!!!!!!!!!!!!!!')
         print('#Filters: {}, #FLOPs: {:.2f}M | Top-1: {:.2f}'.format(num_alive_filters(model), pruner.get_valid_flops()/1000000., top1))
     return model
 
