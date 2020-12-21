@@ -369,7 +369,10 @@ def main():
             y.append( testacc[-1] )
             a1 = 2 / (n1 + 1)
 
-            wAcc = testacc[ - n1 ]
+            try:
+                wAcc = testacc[ - n1 ]
+            except:
+                wAcc = 0
             print(f'n1: {n1} for:')
             k = n1
             while k > 1:
