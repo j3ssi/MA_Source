@@ -851,8 +851,8 @@ class N2N(nn.Module):
                     new_weight = old_w1[index, :, :, :]
                     new_weight = new_weight[np.newaxis, :, :, :]
                     new_w1 = np.concatenate((new_w1, new_weight), axis=0)
-                    if module.bias is not None:
-                        new_b1 = np.append(new_b1, old_b1[index])
+                    # if module.bias is not None:
+                    #    new_b1 = np.append(new_b1, old_b1[index])
                 print(f'shape new w1: {new_w1.shape}')
                 module.weight.data = nn.Parameter(torch.from_numpy(new_w1))
                 module.out_channels = int( module.out_channels * delta_width )
