@@ -693,8 +693,8 @@ class N2N(nn.Module):
                     new_weight = old_w1[index, :, :, :]
                     new_weight = new_weight[np.newaxis, :, :, :]
                     new_w1 = np.concatenate((new_w1, new_weight), axis=0)
-                    if module.bias is not None:
-                        new_b1 = np.append(new_b1, old_b1[index])
+                    # if module.bias is not None:
+                    #    new_b1 = np.append(new_b1, old_b1[index])
 
                 # Fülle das Module1 mit den Gewichten un normalisiere
                 for i in range(len(mapping)):
