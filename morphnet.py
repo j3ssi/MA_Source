@@ -371,8 +371,8 @@ if __name__ == '__main__':
                 print('After Growth | FLOPs: {:.3f}M | #Params: {:.3f}M'.format(flops/1000000., num_params/1000000.))
                 # train(pruner.model, train_loader, test_loader, epochs=args.epoch, lr=args.lr, name=args.name)
 
-    train_mask(pruner.model, train_loader, test_loader, pruner, epochs=30, lr=args.lr, lbda = args.lbda,
-               cbns = cbns, maps = maps, constraint=None)
+    #train_mask(pruner.model, train_loader, test_loader, pruner, epochs=30, lr=args.lr, lbda = args.lbda,
+    #           cbns = cbns, maps = maps, constraint=None)
     print(f'model: {model}')
     test_acc, test_loss = test(pruner.model,test_loader)
     print(f'Test acc: {test_acc}')
