@@ -1118,13 +1118,13 @@ class N2N(nn.Module):
                     self.paramList.append(nn.Parameter(torch.ones(1), requires_grad=True))
                     self.paramList1.append(nn.Parameter(torch.ones(1), requires_grad=True))
         print(f'len param: {len(self.paramList)}')
-        printDeeper = True
+        printDeeper = False
         j = 2
         notfirstStage = False
 
-        if printDeeper:
-            print("\n\nStage: ", stage)
-        archNum = self.archNums[stage]
+        # if printDeeper:
+        #    print("\n\nStage: ", stage)
+        # archNum = self.archNums[stage]
         firstBlockInStage = True
         paramListTmp = nn.ParameterList()
         paramListTmp1 = nn.ParameterList()
