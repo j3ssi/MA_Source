@@ -606,7 +606,7 @@ def main():
     logger.close()
 
     print(f'Max memory: {torch.cuda.max_memory_allocated() / 10000000}')
-    print(' {:5.3f}s'.format(ende - start), end='  ')
+#    print(' {:5.3f}s'.format(ende - start), end='  ')
 
 
 def train(trainloader, model, criterion, optimizer, epoch, use_cuda):
